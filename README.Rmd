@@ -1,0 +1,49 @@
+---
+output: github_document
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# wastr gets WAStD into R
+
+`wastdr` facilitates reading, parsing and using data from the WAStD API.
+
+
+## Installation
+
+Install `wastdr` from GitHub:
+
+```{r}
+require(devtools) || install.packages("devtools")
+devtools::install_github("parksandwildlife/wastdr")
+```
+
+Set confidential variables:
+
+TODO follow ckanr_setup
+
+## Get data
+
+
+### Live from the API
+
+```{r}
+library(wastdr)
+# d <- wastd_api("animal-encounters")
+# print(d)
+```
+### Example data from wastdr
+
+```{r}
+cat("Implement: load data from WAStD, save as data/, then show here: load from data/")
+```
+
+## Learn more
+
+See the vignette for in-depth examples of all functionality provided here.
