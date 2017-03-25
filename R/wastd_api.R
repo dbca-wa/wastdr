@@ -37,40 +37,60 @@
 #'                          format='json'),
 #'                        simplify=FALSE)
 #' }
-wastd_api <- function(serializer, base_url = "https://strandings.dpaw.wa.gov.au/api/1/", query = list(taxon = "Cheloniidae", limit = 10000, format = "json"), 
-    wastd_api_token = Sys.getenv("WASTD_APITOKEN"), simplify = TRUE) {
-    
+wastd_api <- function(serializer, base_url = "https://strandings.dpaw.wa.gov.au/api/1/",
+    query = list(taxon = "Cheloniidae", limit = 10000, format = "json"), wastd_api_token = Sys.getenv("WASTD_APITOKEN"),
+    simplify = TRUE) {
+
     ua <- httr::user_agent("http://github.com/parksandwildlife/turtle-scripts")
-    
+
     url <- paste0(base_url, serializer)
-    
-    res <- httr::GET(url, ua, query = query, httr::add_headers(c(Authorization = wastd_api_token)))
+
+    res <- httr::GET(url,
+                     ua,
+                     query = query,
+                     httr::add_headers(c(Authorization = wastd_api_token)))
     # %>% httr::stop_for_status()
-    
+
     if (res$status_code == 401) {
-        stop(paste("Authorization failed. \n", "Set your WAStD API token as system variable with", "Sys.setenv(WASTD_APITOKEN=\"Token MY-WASTD-API-TOKEN\").", 
-            "You can find your API token under \"My Profile\" in WAStD."), call. = FALSE)
+        stop(paste("Authorization failed. \n",
+                   "Set your WAStD API token as system variable with",
+                   "Sys.setenv(WASTD_APITOKEN=\"Token MY-WASTD-API-TOKEN\").",
+                   "You can find your API token under \"My Profile\" in WAStD."),
+            call. = FALSE)
     }
-    
+
     if (httr::http_type(res) != "application/json") {
-        stop(paste("API did not return JSON.\nIs", url, "a valid endpoint?"), call. = FALSE)
+        stop(paste("API did not return JSON.\nIs", url, "a valid endpoint?"),
+             call. = FALSE)
     }
-    
+
     text <- httr::content(res, as = "text", encoding = "UTF-8")
-    
+
     if (identical(text, "")) {
         stop("The response did not return any content.", call. = FALSE)
     }
-    
-    parsed <- jsonlite::fromJSON(text, flatten = simplify, simplifyVector = simplify)$features
-    
+
+    parsed <- jsonlite::fromJSON(text,
+                                 flatten = simplify,
+                                 simplifyVector = simplify)$features
+
     if (httr::http_error(res)) {
-        stop(sprintf("WAStD API request failed [%s]\n%s\n<%s>", httr::status_code(res), parsed$message), call. = FALSE)
+        stop(sprintf("WAStD API request failed [%s]\n%s\n<%s>",
+                     httr::status_code(res),
+                     parsed$message),
+             call. = FALSE)
     }
-    
-    
-    structure(list(content = parsed, serializer = serializer, response = res), class = "wastd_api")
-    
+
+
+    structure(
+        list(
+            content = parsed,
+            serializer = serializer,
+            response = res
+            ),
+        class = "wastd_api"
+        )
+
 }
 
 #' @title S3 print method for 'wastd_api'.
@@ -80,7 +100,8 @@ wastd_api <- function(serializer, base_url = "https://strandings.dpaw.wa.gov.au/
 #' @importFrom utils str
 #' @export
 print.wastd_api <- function(x, ...) {
-    cat("<WAStD API endpoint", x$serializer, ">\n", "Retrieved on ", x$response$headers$date, ">\n", sep = "")
+    cat("<WAStD API endpoint", x$serializer, ">\n",
+        "Retrieved on ", x$response$headers$date, ">\n", sep = "")
     utils::str(x$content)
     invisible(x)
 }
