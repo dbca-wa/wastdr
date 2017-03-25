@@ -8,6 +8,8 @@
 }
 \arguments{
 \item{x}{An object of class `wastd_api` as returned by `wastd_api`.}
+
+\item{...}{Extra parameters for `print`}
 }
 \description{
 Prints a short representation of data returned by `wastd_api`.

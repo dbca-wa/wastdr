@@ -104,6 +104,7 @@ wastd_api <- function(serializer,
 #' @title S3 print method for 'wastd_api'.
 #' @description Prints a short representation of data returned by `wastd_api`.
 #' @param x An object of class `wastd_api` as returned by `wastd_api`.
+#' @param ... Extra parameters for `print`
 #' @importFrom utils str
 #' @export
 print.wastd_api <- function(x, ...) {
