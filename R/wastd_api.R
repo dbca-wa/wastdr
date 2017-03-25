@@ -37,8 +37,12 @@
 #'                          format='json'),
 #'                        simplify=FALSE)
 #' }
-wastd_api <- function(serializer, base_url = "https://strandings.dpaw.wa.gov.au/api/1/",
-    query = list(taxon = "Cheloniidae", limit = 10000, format = "json"), wastd_api_token = Sys.getenv("WASTD_APITOKEN"),
+wastd_api <- function(serializer,
+                      base_url = "https://strandings.dpaw.wa.gov.au/api/1/",
+                      query = list(taxon = "Cheloniidae",
+                                   limit = 10000,
+                                   format = "json"),
+                      wastd_api_token = Sys.getenv("WASTD_APITOKEN"),
     simplify = TRUE) {
 
     ua <- httr::user_agent("http://github.com/parksandwildlife/turtle-scripts")
@@ -55,7 +59,8 @@ wastd_api <- function(serializer, base_url = "https://strandings.dpaw.wa.gov.au/
         stop(paste("Authorization failed. \n",
                    "Set your WAStD API token as system variable with",
                    "Sys.setenv(WASTD_APITOKEN=\"Token MY-WASTD-API-TOKEN\").",
-                   "You can find your API token under \"My Profile\" in WAStD."),
+                   "You can find your API token under \"My Profile\" in ",
+                   "WAStD."),
             call. = FALSE)
     }
 
