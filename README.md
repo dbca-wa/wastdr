@@ -1,8 +1,10 @@
 
-wastr gets WAStD into R
-=======================
+wastdr makes WA Strandings Data accessible in R
+===============================================
 
-`wastdr` facilitates reading, parsing and using data from the WAStD API.
+The [WA Strandings Database WAStD](https://strandings.dpaw.wa.gov.au/) lives at [github.com/parksandwildlife/wastd](https://github.com/parksandwildlife/wastd) and provides a RESTful API.
+
+`wastdr` facilitates reading, parsing and using data from the WAStD API by providing helpers to access the API as well as examples on how to flatten the GeoJSON from the API into a two-dimensional tibble.
 
 Installation
 ------------
@@ -11,38 +13,45 @@ Install `wastdr` from GitHub:
 
 ``` r
 require(devtools) || install.packages("devtools")
-#> Loading required package: devtools
-#> [1] TRUE
 devtools::install_github("parksandwildlife/wastdr")
-#> Skipping install of 'wastdr' from a github remote, the SHA1 (90911352) has not changed since last install.
-#>   Use `force = TRUE` to force installation
 ```
 
-Set confidential variables:
+Setup
+-----
 
-TODO follow ckanr\_setup
+Find your valid WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) under "My Profile" and run:
 
-Get data
---------
+``` r
+wastdr::wastdr_setup(api_token = "c12345asdfqwer")
+```
 
-### Live from the API
+Review the settings with:
 
 ``` r
 library(wastdr)
 #> Loading required package: httr
 #> Loading required package: jsonlite
-# d <- wastd_api("animal-encounters")
-# print(d)
+wastdr_settings()
+#> <wastdr settings>
+#>   API URL:  https://strandings.dpaw.wa.gov.au/api/1/ 
+#>   API Token:  Token c12345asdfqwer
 ```
 
-### Example data from wastdr
+Get WAStD
+---------
 
 ``` r
-cat("Implement: load data from WAStD, save as data/, then show here: load from data/")
-#> Implement: load data from WAStD, save as data/, then show here: load from data/
+track_records <- get_wastd('turtle-nest-encounters')
+listviewer::jsonedit(track_records)
 ```
 
 Learn more
 ----------
 
-See the vignette for in-depth examples of all functionality provided here.
+See the vignette for in-depth examples of transforming and analysing data.
+
+``` r
+vignette("getting-wastd")
+#> starting httpd help server ...
+#>  done
+```

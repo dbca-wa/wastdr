@@ -16,15 +16,16 @@ Depends:
     jsonlite
 Suggests:
     ckanr,
+    DT,
     Hmisc,
     htmlTable,
-    DT,
-    plyr,
-    lubridate,
-    stringr,
-    tibble,
     knitr,
-    rmarkdown
+    listviewer,
+    lubridate,
+    plyr,
+    rmarkdown,
+    stringr,
+    tidyverse
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

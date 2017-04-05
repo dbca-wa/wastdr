@@ -3,47 +3,56 @@ output: github_document
 ---
 
 ```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
-)
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.path = "README-")
 ```
 
-# wastr gets WAStD into R
+# wastdr makes WA Strandings Data accessible in R
 
-`wastdr` facilitates reading, parsing and using data from the WAStD API.
+The [WA Strandings Database WAStD](https://strandings.dpaw.wa.gov.au/) lives at
+[github.com/parksandwildlife/wastd](https://github.com/parksandwildlife/wastd)
+and provides a RESTful API.
 
+`wastdr` facilitates reading, parsing and using data from the WAStD API by providing
+helpers to access the API as well as examples on how to flatten the GeoJSON from
+the API into a two-dimensional tibble.
 
 ## Installation
 
 Install `wastdr` from GitHub:
 
-```{r}
+```{r, eval=FALSE}
 require(devtools) || install.packages("devtools")
 devtools::install_github("parksandwildlife/wastdr")
 ```
 
-Set confidential variables:
 
-TODO follow ckanr_setup
+## Setup
 
-## Get data
+Find your valid WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) 
+under "My Profile" and run:
 
+```{r}
+wastdr::wastdr_setup(api_token = "c12345asdfqwer")
+```
 
-### Live from the API
+Review the settings with:
 
 ```{r}
 library(wastdr)
-# d <- wastd_api("animal-encounters")
-# print(d)
+wastdr_settings()
 ```
-### Example data from wastdr
 
-```{r}
-cat("Implement: load data from WAStD, save as data/, then show here: load from data/")
+## Get WAStD
+
+```{r, eval=FALSE}
+track_records <- get_wastd('turtle-nest-encounters')
+listviewer::jsonedit(track_records)
 ```
 
 ## Learn more
 
-See the vignette for in-depth examples of all functionality provided here.
+See the vignette for in-depth examples of transforming and analysing data.
+
+```{r}
+vignette("getting-wastd")
+```
