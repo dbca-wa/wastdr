@@ -32,6 +32,7 @@
 #' @importFrom purrr map map_chr map_dbl
 parse_turtle_nest_encounters <- function(wastd_api_response){
     obs <- NULL  # Make R CMD check happy
+    . <- "Shut up Wesley"
     wastd_api_response$content %>% {
         tibble::tibble(
             datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08,
