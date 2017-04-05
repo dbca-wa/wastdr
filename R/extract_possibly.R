@@ -4,6 +4,7 @@
 #' @seealso \url{https://rdrr.io/cran/purrr/man/safely.html}
 #' @importFrom magrittr extract
 #' @importFrom purrr possibly
+#' @export
 #' @examples
 #'   lol <- list(field1=1, field2=2, field3=3, field4=4, field5=5)
 #'   extract_possibly(lol, "field1")

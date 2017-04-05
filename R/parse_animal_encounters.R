@@ -35,6 +35,7 @@
 #' @importFrom tibble tibble
 #' @importFrom purrr map map_chr map_dbl
 parse_animal_encounters <- function(wastd_api_response){
+    obs <- NULL  # Make R CMD check happy
     wastd_api_response$content %>% {
         tibble::tibble(
             datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08,

@@ -9,10 +9,14 @@
 #' @import magrittr
 #' @export
 #' @examples
+#' \dontrun{
+#' require(magrittr)
 #' nest_json <- get_wastd("turtle-nest-encounters")
 #' nest_hs <- nest_json$content %>% {
 #'   tibble::tibble(
+#'     obs = purrr::map(., c("properties", "observation_set")),
 #'     hatching_success = obs %>% purrr::map(get_num_field, "hatching_success") %>% as.numeric
 #'  )
 #'  }
+#' }
 get_num_field <- function(lol, field) lol %>% unlist %>% extract_possibly(field) %>% unlist %>% as.numeric

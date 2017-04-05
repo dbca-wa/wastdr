@@ -2,10 +2,12 @@
 
 S3method(print,wastd_api_response)
 S3method(print,wastdr_settings)
+export(extract_possibly)
 export(get_num_field)
 export(get_wastd)
 export(get_wastdr_api_token)
 export(get_wastdr_api_url)
+export(httpdate_as_gmt08)
 export(httpdate_as_gmt08_turtle_date)
 export(humanize)
 export(parse_animal_encounters)
