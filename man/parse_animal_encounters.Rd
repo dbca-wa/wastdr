@@ -8,7 +8,7 @@ parse_animal_encounters(wastd_api_response)
 }
 \arguments{
 \item{wastd_api_response}{A \code{wastd_api_response} of
-\code{animal-encounters}, e.g. \code{\link{get_wastd("animal-encounters")}}}
+\code{animal-encounters}, e.g. \code{get_wastd("animal-encounters")}}
 }
 \value{
 A \code{tbl_df} with columns:

@@ -1,7 +1,7 @@
 #' 300 animal encounters
 #'
 #' A \code{wastd_api_response} with 300 animal encounters from
-#' \code{\link{get_wastd("animal-encounters")}}
+#' \code{get_wastd("animal-encounters")}
 #'
 #' @format A \code{tbl_df} with columns:
 #' \itemize{
@@ -37,7 +37,7 @@
 #' A \code{wastd_api_response} with 300 turtle nest encounters (tracks and nests)
 #'
 #' A \code{wastd_api_response} with 300 turtle nest encounters from
-#' \code{\link{get_wastd("turtle-nest-encounters")}}
+#' \code{get_wastd("turtle-nest-encounters")}
 #'
 #' @format A \code{tbl_df} with columns:
 #' \itemize{
@@ -70,7 +70,7 @@
 #' A \code{wastd_api_response} with 300 turtle nest encounters (only nests)
 #'
 #' A \code{wastd_api_response} with 300 turtle nest encounters from
-#' \code{\link{get_wastd("turtle-nest-encounters")}}
+#' \code{get_wastd("turtle-nest-encounters")}
 #'
 #' @format A \code{tbl_df} with columns:
 #' \itemize{

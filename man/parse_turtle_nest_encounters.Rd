@@ -8,7 +8,7 @@ parse_turtle_nest_encounters(wastd_api_response)
 }
 \arguments{
 \item{wastd_api_response}{A \code{wastd_api_response} of
-\code{turtle-nest-encounters}, e.g. \code{\link{get_wastd("turtle-nest-encounters")}}}
+\code{turtle-nest-encounters}, e.g. \code{get_wastd("turtle-nest-encounters")}}
 }
 \value{
 A \code{tbl_df} with columns:

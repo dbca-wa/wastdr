@@ -2,7 +2,7 @@
 #'
 #'
 #' @param wastd_api_response A \code{wastd_api_response} of
-#' \code{turtle-nest-encounters}, e.g. \code{\link{get_wastd("turtle-nest-encounters")}}
+#' \code{turtle-nest-encounters}, e.g. \code{get_wastd("turtle-nest-encounters")}
 #' @return A \code{tbl_df} with columns:
 #' \itemize{
 #'   \item datetime (dttm)

@@ -6,8 +6,8 @@
 #' @importFrom purrr possibly
 #' @examples
 #'   lol <- list(field1=1, field2=2, field3=3, field4=4, field5=5)
-#'   lol %>% extract_possibly("field1")
-#'   lol %>% extract_possibly("field8")
+#'   extract_possibly(lol, "field1")
+#'   extract_possibly(lol, "field8")
 extract_possibly <- purrr::possibly(magrittr::extract, otherwise = -1)
 
 

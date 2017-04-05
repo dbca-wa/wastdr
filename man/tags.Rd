@@ -36,6 +36,9 @@ tags
 }
 \description{
 A \code{wastd_api_response} with 300 animal encounters from
-\code{\link{get_wastd("animal-encounters")}}
+\code{get_wastd("animal-encounters")}
+}
+\examples{
+  head(tags)
 }
 \keyword{datasets}

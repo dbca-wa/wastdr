@@ -35,10 +35,9 @@ tracks
 }
 \description{
 A \code{wastd_api_response} with 300 turtle nest encounters from
-\code{\link{get_wastd("turtle-nest-encounters")}}
+\code{get_wastd("turtle-nest-encounters")}
 }
 \examples{
-  data("tracks")
   head(tracks)
 }
 \keyword{datasets}
