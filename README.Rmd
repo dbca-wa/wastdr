@@ -53,6 +53,6 @@ listviewer::jsonedit(track_records)
 
 See the vignette for in-depth examples of transforming and analysing data.
 
-```{r}
+```{r, eval=FALSE}
 vignette("getting-wastd")
 ```

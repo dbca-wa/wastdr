@@ -135,36 +135,40 @@ wastdr::<span class="kw">wastdr_setup</span>(<span class="dt">api_token =</span>
 <h2>Get WAStD</h2>
 <p>With your valid API key and access to the WAStD API, you can retrieve data with <code>get_wastd</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tag_json &lt;-<span class="st"> </span><span class="kw">get_wastd</span>(<span class="st">&quot;animal-encounters&quot;</span>, 
-                             <span class="dt">query=</span><span class="kw">list</span>(<span class="dt">taxon=</span><span class="st">&quot;Cheloniidae&quot;</span>, 
-                                        <span class="dt">limit=</span><span class="dv">300</span>, 
-                                        <span class="dt">format=</span><span class="st">&quot;json&quot;</span>))
+                      <span class="dt">query=</span><span class="kw">list</span>(<span class="dt">taxon=</span><span class="st">&quot;Cheloniidae&quot;</span>, 
+                                 <span class="dt">limit=</span><span class="dv">300</span>, 
+                                 <span class="dt">format=</span><span class="st">&quot;json&quot;</span>))
+listviewer::<span class="kw">jsonedit</span>(<span class="kw">head</span>(tag_json$content))
+tags &lt;-<span class="st"> </span>tag_json %&gt;%<span class="st"> </span>parse_animal_encounters
+<span class="co"># devtools::use_data(tags, overwrite=T)</span>
+
 track_json &lt;-<span class="st"> </span><span class="kw">get_wastd</span>(<span class="st">&quot;turtle-nest-encounters&quot;</span>, 
-                             <span class="dt">query=</span><span class="kw">list</span>(<span class="dt">taxon=</span><span class="st">&quot;Cheloniidae&quot;</span>, 
-                                        <span class="dt">limit=</span><span class="dv">300</span>, 
-                                        <span class="dt">format=</span><span class="st">&quot;json&quot;</span>))
+                        <span class="dt">query=</span><span class="kw">list</span>(<span class="dt">taxon=</span><span class="st">&quot;Cheloniidae&quot;</span>, 
+                                   <span class="dt">limit=</span><span class="dv">300</span>, 
+                                   <span class="dt">format=</span><span class="st">&quot;json&quot;</span>))
+tracks &lt;-<span class="st"> </span>nest_json %&gt;%<span class="st"> </span>parse_turtle_nest_encounters
+listviewer::<span class="kw">jsonedit</span>(<span class="kw">head</span>(track_json$content))
+<span class="co"># devtools::use_data(tracks, overwrite=T)</span>
+
 nest_json &lt;-<span class="st"> </span><span class="kw">get_wastd</span>(<span class="st">&quot;turtle-nest-encounters&quot;</span>, 
-                             <span class="dt">query=</span><span class="kw">list</span>(<span class="dt">taxon=</span><span class="st">&quot;Cheloniidae&quot;</span>, 
-                                        <span class="dt">limit=</span><span class="dv">300</span>, 
-                                        <span class="dt">format=</span><span class="st">&quot;json&quot;</span>, 
-                                        <span class="dt">nest_type=</span><span class="st">&quot;hatched-nest&quot;</span>))</code></pre></div>
-<p>For this vignette, we’ll use the packaged data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tag_json &lt;-<span class="st"> </span><span class="kw">data</span>(<span class="st">&quot;tag_json&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># listviewer::jsonedit(head(nest_json$content))</span></code></pre></div>
+                       <span class="dt">query=</span><span class="kw">list</span>(<span class="dt">taxon=</span><span class="st">&quot;Cheloniidae&quot;</span>, 
+                                  <span class="dt">limit=</span><span class="dv">300</span>, 
+                                  <span class="dt">format=</span><span class="st">&quot;json&quot;</span>, 
+                                  <span class="dt">nest_type=</span><span class="st">&quot;hatched-nest&quot;</span>))
+nests &lt;-<span class="st"> </span>nest_json %&gt;%<span class="st"> </span>parse_turtle_nest_encounters
+listviewer::<span class="kw">jsonedit</span>(<span class="kw">head</span>(nest_json$content))
+<span class="co"># devtools::use_data(nests, overwrite=T)</span></code></pre></div>
+<p>For this vignette, we’ll use the packaged example data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;tags&quot;</span>)
+<span class="kw">data</span>(<span class="st">&quot;tracks&quot;</span>)
+<span class="kw">data</span>(<span class="st">&quot;nests&quot;</span>)</code></pre></div>
 </div>
 <div id="formatting-the-response" class="section level2">
 <h2>Formatting the response</h2>
 <p>TODO split out functions, write tests</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#' Convert between url-safe dash-separated-names and Human Readable Title Case</span>
-humanize &lt;-<span class="st"> </span>. %&gt;%<span class="st"> </span>stringr::<span class="kw">str_to_title</span>() %&gt;%<span class="st"> </span>stringr::<span class="kw">str_replace</span>(<span class="st">&quot;-&quot;</span>, <span class="st">&quot; &quot;</span>)
-urlize &lt;-<span class="st"> </span>. %&gt;%<span class="st"> </span>stringr::<span class="kw">str_to_lower</span>() %&gt;%<span class="st"> </span>stringr::<span class="kw">str_replace</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;-&quot;</span>)
-
-<span class="co">#' O Lord of Darkness, accept this our functional sacrifice of three days and three nights</span>
-<span class="co">#' From a list of unnamed lists, or the data.frame equivalent, extract a field or -1</span>
-extract_possibly &lt;-<span class="st"> </span>purrr::<span class="kw">possibly</span>(magrittr::extract, <span class="dt">otherwise =</span> -<span class="dv">1</span>)
-get_f &lt;-<span class="st"> </span>function(lol, field) lol %&gt;%<span class="st"> </span>unlist %&gt;%<span class="st"> </span><span class="kw">extract_possibly</span>(field) %&gt;%<span class="st"> </span>unlist %&gt;%<span class="st"> </span>as.numeric
-
-<span class="co">#' Filter a data.frame to records collected at THV after 19 Dec 2016</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#' Filter a data.frame to records collected at THV after 19 Dec 2016</span>
 <span class="co">#' TODO replace with filtering for THV 2016/2017 field trips at API</span>
+<span class="co">#' with query parameter `expedition=1`.</span>
 thv_filter &lt;-<span class="st"> </span>. %&gt;%<span class="st"> </span><span class="kw">filter</span>(
     latitude &lt;<span class="st"> </span>-<span class="fl">21.43</span>,
     latitude &gt;<span class="st"> </span>-<span class="fl">21.48</span>,
@@ -172,19 +176,9 @@ thv_filter &lt;-<span class="st"> </span>. %&gt;%<span class="st"> </span><span 
     longitude &lt;<span class="st"> </span><span class="fl">115.05</span>,
     date &gt;<span class="st"> </span><span class="kw">dmy</span>(<span class="st">&quot;17/11/2016&quot;</span>))
 
-<span class="co"># nests &lt;- nest_json$content %&gt;% {</span>
-<span class="co">#   tibble::tibble(</span>
-<span class="co">#     datetime = map_chr(., c(&quot;properties&quot;, &quot;when&quot;)) %&gt;% utc_as_gmt08,</span>
-<span class="co">#     longitude = map_dbl(., c(&quot;properties&quot;, &quot;longitude&quot;)),</span>
-<span class="co">#     latitude = map_dbl(., c(&quot;properties&quot;, &quot;latitude&quot;)),</span>
-<span class="co">#     date = map_chr(., c(&quot;properties&quot;, &quot;when&quot;)) %&gt;% as_turtle_date,</span>
-<span class="co">#     species = map_chr(., c(&quot;properties&quot;, &quot;species&quot;)),</span>
-<span class="co">#     obs = map(., c(&quot;properties&quot;, &quot;observation_set&quot;)),</span>
-<span class="co">#     hatching_success = obs %&gt;% map(get_f, &quot;hatching_success&quot;) %&gt;% as.numeric,</span>
-<span class="co">#     emergence_success = obs %&gt;% map(get_f, &quot;emergence_success&quot;) %&gt;% as.numeric,</span>
-<span class="co">#     clutch_size = obs %&gt;% map(get_f, &quot;egg_count_calculated&quot;) %&gt;% as.numeric</span>
-<span class="co">#     )</span>
-<span class="co"># } %&gt;% thv_filter</span></code></pre></div>
+tracks &lt;-<span class="st"> </span>tracks %&gt;%<span class="st"> </span>thv_filter
+
+nests &lt;-<span class="st"> </span>nest_json %&gt;%<span class="st"> </span>parse_turtle_nest_encounters %&gt;%<span class="st"> </span>thv_filter</code></pre></div>
 </div>
 <div id="visualise" class="section level2">
 <h2>Visualise</h2>

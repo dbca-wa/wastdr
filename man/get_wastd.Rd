@@ -10,17 +10,18 @@ get_wastd(serializer, query = list(taxon = "Cheloniidae", limit = 10000,
 }
 \arguments{
 \item{serializer}{(character) WAStD API serializer name (required).
-  Possible values as per
-  \code{https://strandings.dpaw.wa.gov.au/api/1/?format=corejson} are:
-
-  * encounters (all encounters, but only core fields)
-  * animal-encounters (strandings, tagging)
-  * turtle-nest-encounters (tracks and nests)
-  * logger-encounters (temp and other loggers)
-  * areas (polygons of known areas)
-  * media-attachments (photos, data sheets etc)
-  * nesttag-observations (sightings of nest tags)
-  * tag-observations (tag observations during encounters)}
+Possible values as per
+\code{https://strandings.dpaw.wa.gov.au/api/1/?format=corejson} are:
+\itemize{
+\item encounters (all encounters, but only core fields)
+\item animal-encounters (strandings, tagging)
+\item turtle-nest-encounters (tracks and nests)
+\item logger-encounters (temp and other loggers)
+\item areas (polygons of known areas)
+\item media-attachments (photos, data sheets etc)
+\item nesttag-observations (sightings of nest tags)
+\item tag-observations (tag observations during encounters)
+}}
 
 \item{query}{(list) API query parameters for format, limit, filtering
 (default: list(taxon='Cheloniidae', limit=10000, format='json'))}
@@ -45,15 +46,12 @@ An S3 object of class 'wastd_api_response' containing:
   response: The API HTTP response with all metadata
 }
 \description{
-Return GeoJSON features from a WAStD API endpoint as data.table or list
-}
-\details{
 Call the WAStD API serializer's list view with given GET parameters,
-parse the response as text into a GeoJSON FeatureCollection.
-Parse the FeatureCollection using jsonlite::fromJSON and return its features
-as nested data.frame (simplify=TRUE) or as list of lists (simplify=FALSE).
-TODO: use pagination, see
-https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html
+  parse the response as text into a GeoJSON FeatureCollection.
+  Parse the FeatureCollection using jsonlite::fromJSON and return its features
+  as nested data.frame (simplify=TRUE) or as list of lists (simplify=FALSE).
+  TODO: use pagination, see
+  \url{https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html}
 }
 \examples{
 \dontrun{

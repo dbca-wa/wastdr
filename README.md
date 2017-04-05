@@ -52,6 +52,4 @@ See the vignette for in-depth examples of transforming and analysing data.
 
 ``` r
 vignette("getting-wastd")
-#> starting httpd help server ...
-#>  done
 ```
