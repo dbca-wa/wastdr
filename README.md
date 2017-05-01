@@ -1,16 +1,12 @@
-[![Build Status](https://travis-ci.org/parksandwildlife/wastdr.svg?branch=master)](https://travis-ci.org/parksandwildlife/wastdr)
-[![Test coverage](https://codecov.io/gh/parksandwildlife/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/parksandwildlife/wastdr)
 
+[![Build Status](https://travis-ci.org/parksandwildlife/wastdr.svg?branch=master)](https://travis-ci.org/parksandwildlife/wastdr) [![Test coverage](https://codecov.io/gh/parksandwildlife/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/parksandwildlife/wastdr)
 
 wastdr makes WA Strandings Data accessible in R
 ===============================================
 
-The [WA Strandings Database WAStD](https://strandings.dpaw.wa.gov.au/) lives at [github.com/parksandwildlife/wastd](https://github.com/parksandwildlife/wastd) 
-and provides a RESTful API.
+The [WA Strandings Database WAStD](https://strandings.dpaw.wa.gov.au/) lives at [github.com/parksandwildlife/wastd](https://github.com/parksandwildlife/wastd) and provides a RESTful API.
 
-`wastdr` facilitates reading, parsing and using data from the WAStD API by 
-providing helpers to access the API as well as examples on how to flatten the 
-GeoJSON from the API into a two-dimensional tibble.
+`wastdr` facilitates reading, parsing and using data from the WAStD API by providing helpers to access the API as well as examples on how to flatten the GeoJSON from the API into a two-dimensional tibble.
 
 Installation
 ------------
@@ -25,8 +21,7 @@ devtools::install_github("parksandwildlife/wastdr")
 Setup
 -----
 
-Find your valid WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) 
-under "My Profile" and run:
+Find your valid WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) under "My Profile" and run:
 
 ``` r
 wastdr::wastdr_setup(api_token = "c12345asdfqwer")
@@ -36,6 +31,15 @@ Review the settings with:
 
 ``` r
 library(wastdr)
+#> Loading required package: dplyr
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 #> Loading required package: httr
 #> Loading required package: jsonlite
 wastdr_settings()
@@ -47,10 +51,18 @@ wastdr_settings()
 Get WAStD
 ---------
 
+Load data from WAStD simply with:
+
 ``` r
 track_records <- get_wastd('turtle-nest-encounters')
 listviewer::jsonedit(track_records)
 ```
+
+Valid endpoints are listed in the base API URL of WAStD, e.g.:
+
+-   `encounters`
+-   `animal-encounters`
+-   `turtle-nest-encounters`
 
 Learn more
 ----------
@@ -62,16 +74,13 @@ vignette("getting-wastd")
 ```
 
 Contribute
-----------
+==========
 
-Run checks:
+Any contribution or suggestion is welcome! Send us your [issues](https://github.com/parksandwildlife/wastdr/issues) or submit a pull request.
 
-```r
+Pull requests should pass checks (not introduce ERRORs, WARNINGs or NOTEs apart from the "New CRAN package" NOTE) and pass all tests:
+
+``` r
 devtools::check(check_version = T, force_suggests = T, cran = T)
-```
-
-Run tests:
-
-```r
 devtools::test()
 ```
