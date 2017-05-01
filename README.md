@@ -5,9 +5,12 @@
 wastdr makes WA Strandings Data accessible in R
 ===============================================
 
-The [WA Strandings Database WAStD](https://strandings.dpaw.wa.gov.au/) lives at [github.com/parksandwildlife/wastd](https://github.com/parksandwildlife/wastd) and provides a RESTful API.
+The [WA Strandings Database WAStD](https://strandings.dpaw.wa.gov.au/) lives at [github.com/parksandwildlife/wastd](https://github.com/parksandwildlife/wastd) 
+and provides a RESTful API.
 
-`wastdr` facilitates reading, parsing and using data from the WAStD API by providing helpers to access the API as well as examples on how to flatten the GeoJSON from the API into a two-dimensional tibble.
+`wastdr` facilitates reading, parsing and using data from the WAStD API by 
+providing helpers to access the API as well as examples on how to flatten the 
+GeoJSON from the API into a two-dimensional tibble.
 
 Installation
 ------------
@@ -22,7 +25,8 @@ devtools::install_github("parksandwildlife/wastdr")
 Setup
 -----
 
-Find your valid WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) under "My Profile" and run:
+Find your valid WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) 
+under "My Profile" and run:
 
 ``` r
 wastdr::wastdr_setup(api_token = "c12345asdfqwer")
