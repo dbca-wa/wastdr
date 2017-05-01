@@ -31,15 +31,6 @@ Review the settings with:
 
 ``` r
 library(wastdr)
-#> Loading required package: dplyr
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 #> Loading required package: httr
 #> Loading required package: jsonlite
 wastdr_settings()
@@ -78,9 +69,12 @@ Contribute
 
 Any contribution or suggestion is welcome! Send us your [issues](https://github.com/parksandwildlife/wastdr/issues) or submit a pull request.
 
+Make sure to rebuild the documentation before checking the package.
+
 Pull requests should pass checks (not introduce ERRORs, WARNINGs or NOTEs apart from the "New CRAN package" NOTE) and pass all tests:
 
 ``` r
+devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
 devtools::check(check_version = T, force_suggests = T, cran = T)
 devtools::test()
 ```

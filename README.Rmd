@@ -73,10 +73,13 @@ Any contribution or suggestion is welcome!
 Send us your [issues](https://github.com/parksandwildlife/wastdr/issues) or
 submit a pull request.
 
+Make sure to rebuild the documentation before checking the package.
+
 Pull requests should pass checks (not introduce ERRORs, WARNINGs or NOTEs apart 
 from the "New CRAN package" NOTE) and pass all tests:
 
 ```{r, eval=FALSE}
+devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
 devtools::check(check_version = T, force_suggests = T, cran = T)
 devtools::test()
 ```

@@ -17,8 +17,9 @@ This API response is parsed into wastr's data "tags"
 \examples{
 data(animal_encounters)
 data(tags)
+library(dplyr)
 fresh_tags <- parse_animal_encounters(animal_encounters)
-testthat::expect_equal(nrow(ta), nrow(tags))
+testthat::expect_equal(nrow(fresh_tags), nrow(tags))
 # can't compare list columns like obs
 deselect_obs <- . \%>\% dplyr::select(-obs)
 testthat::expect_equal(fresh_tags \%>\% deselect_obs, tags \%>\% deselect_obs)
