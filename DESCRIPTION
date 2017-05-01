@@ -6,11 +6,11 @@ Authors@R: person(c("Florian", "W."), "Mayer",
     email="Florian.Mayer@dpaw.wa.gov.au", role=c("aut", "cre"))
 Author: Florian W. Mayer [aut, cre]
 Maintainer: Florian W. Mayer <Florian.Mayer@dpaw.wa.gov.au>
-Description: The 'WA Sea Turtle Database' 'WAStD' is a 'Django' web app with a 'RESTful'
-    'API' returning 'GeoJSON' 'FeatureCollections'. 'wastdr' provides helpers to retrieve
-    data from the 'API', and to turn the received 'GeoJSON' into R 'tibbles'.
-    'wastdr' will grow alongside implemented use cases of retrieving and analysing
-    'WAStD' data.
+Description: The 'WA Sea Turtle Database' 'WAStD' is a 'Django' web app with a 
+    'RESTful' 'API' returning 'GeoJSON' 'FeatureCollections'. 
+    'wastdr' provides helpers to retrieve data from the 'API', and to turn the 
+    received 'GeoJSON' into R 'tibbles'. 'wastdr' will grow alongside 
+    implemented use cases of retrieving and analysing 'WAStD' data.
 Depends:
     R (>= 3.1.0),
     httr,
