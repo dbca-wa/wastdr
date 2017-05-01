@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/parksandwildlife/wastdr.svg?branch=master)](https://travis-ci.org/parksandwildlife/wastdr)
+[![Test coverage](https://codecov.io/gh/parksandwildlife/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/parksandwildlife/wastdr)
+
 
 wastdr makes WA Strandings Data accessible in R
 ===============================================
