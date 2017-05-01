@@ -6,6 +6,7 @@ at <- "c12345asdfqwer"
 testthat::test_that("wastdr_settings can set and get default api_url", {
     wastdr_setup()
     testthat::expect_equal(get_wastdr_api_url(), au)
+    testthat::expect_s3_class(wastdr_settings(), "wastdr_settings")
 })
 
 testthat::test_that("wastdr_settings can set and get any api_url", {

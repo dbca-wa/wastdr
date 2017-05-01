@@ -21,6 +21,8 @@ devtools::install_github("parksandwildlife/wastdr")
 Setup
 -----
 
+`wastdr` requires two settings, the API URL and an access token. `wastdr` functions expect both settings to be available as environment variables. For convenience, `wastdr_setup` sets the correct variables, while `wastdr_settings` retrieves the currently set values.
+
 Find your valid WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) under "My Profile" and run:
 
 ``` r
@@ -30,10 +32,7 @@ wastdr::wastdr_setup(api_token = "c12345asdfqwer")
 Review the settings with:
 
 ``` r
-library(wastdr)
-#> Loading required package: httr
-#> Loading required package: jsonlite
-wastdr_settings()
+wastdr::wastdr_settings()
 #> <wastdr settings>
 #>   API URL:  https://strandings.dpaw.wa.gov.au/api/1/ 
 #>   API Token:  Token c12345asdfqwer
