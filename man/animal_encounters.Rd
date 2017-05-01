@@ -15,13 +15,22 @@ animal_encounters
 This API response is parsed into wastr's data "tags"
 }
 \examples{
-data(animal_encounters)
-data(tags)
+\dontrun{
+# Generate animal_encounters ("observed" by author)
+q = list(taxon = "Cheloniidae", limit = 10, format = "json", observer = 1)
+animal_encounters <- get_wastd("animal-encounters", query = q)
+animals <- parse_animal_encounters(animal_encounters)
+devtools::use_data(animal_encounters, overwrite = TRUE)
+devtools::use_data(animals, overwrite = TRUE)
+}
+# Prove that animal_encounters parses to animals
 library(dplyr)
-fresh_tags <- parse_animal_encounters(animal_encounters)
-testthat::expect_equal(nrow(fresh_tags), nrow(tags))
-# can't compare list columns like obs
-deselect_obs <- . \%>\% dplyr::select(-obs)
-testthat::expect_equal(fresh_tags \%>\% deselect_obs, tags \%>\% deselect_obs)
+data(animal_encounters)
+data(animals)
+fresh_animals <- parse_animal_encounters(animal_encounters)
+testthat::expect_equal(nrow(fresh_animals), nrow(animals))
+# Compare pickled and fresh animals excluding list columns (like obs)
+testthat::expect_equal(fresh_animals \%>\% dplyr::select(-obs),
+                       animals \%>\% dplyr::select(-obs))
 }
 \keyword{datasets}

@@ -1,6 +1,32 @@
-#' 300 animal encounters (taggings, strandings and others)
+#' AnimalEncounter WAStD API response
 #'
-#' A parsed \code{wastd_api_response} with 300 animal encounters from
+#' This API response is parsed into wastr's data "tags"
+#'
+#' @source https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&limit=10&format=json
+#' @examples
+#' \dontrun{
+#' # Generate animal_encounters ("observed" by author)
+#' q = list(taxon = "Cheloniidae", limit = 10, format = "json", observer = 1)
+#' animal_encounters <- get_wastd("animal-encounters", query = q)
+#' animals <- parse_animal_encounters(animal_encounters)
+#' devtools::use_data(animal_encounters, overwrite = TRUE)
+#' devtools::use_data(animals, overwrite = TRUE)
+#' }
+#' # Prove that animal_encounters parses to animals
+#' library(dplyr)
+#' data(animal_encounters)
+#' data(animals)
+#' fresh_animals <- parse_animal_encounters(animal_encounters)
+#' testthat::expect_equal(nrow(fresh_animals), nrow(animals))
+#' # Compare pickled and fresh animals excluding list columns (like obs)
+#' testthat::expect_equal(fresh_animals %>% dplyr::select(-obs),
+#'                        animals %>% dplyr::select(-obs))
+"animal_encounters"
+
+
+#' 10 example animal encounters (taggings, strandings and others)
+#'
+#' A parsed \code{wastd_api_response} with 10 animal encounters from
 #' \code{get_wastd("animal-encounters")}
 #'
 #' @source https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&limit=10&format=json
@@ -33,10 +59,20 @@
 #'   \item status (chr)
 #' }
 #' @examples
-#'   head(tags)
-"tags"
+#'   head(animals)
+"animals"
 
-#' 300 turtle nest encounters (tracks and nests)
+
+# turtle_nest_encounters <- wastdr::get_wastd("turtle-nest-encounters",
+#                                     query = list(taxon = "Cheloniidae",
+#                                                  limit = 10,
+#                                                  format = "json",
+#                                                  nest_type = "hatched-nest"))
+# TODO: sanitize response from personal data, parse and save to nests, add docs and tests
+
+
+
+#' 10 turtle nest encounters (tracks and nests)
 #'
 #' A parsed \code{wastd_api_response} with 300 turtle nest encounters from
 #' \code{get_wastd("turtle-nest-encounters")}
@@ -102,20 +138,3 @@
 #'   data("nests")
 #'   head(nests)
 "nests"
-
-
-#' AnimalEncounter WAStD API response
-#'
-#' This API response is parsed into wastr's data "tags"
-#'
-#' @source https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&limit=10&format=json
-#' @examples
-#' data(animal_encounters)
-#' data(tags)
-#' library(dplyr)
-#' fresh_tags <- parse_animal_encounters(animal_encounters)
-#' testthat::expect_equal(nrow(fresh_tags), nrow(tags))
-#' # can't compare list columns like obs
-#' deselect_obs <- . %>% dplyr::select(-obs)
-#' testthat::expect_equal(fresh_tags %>% deselect_obs, tags %>% deselect_obs)
-"animal_encounters"

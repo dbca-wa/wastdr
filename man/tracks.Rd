@@ -3,7 +3,7 @@
 \docType{data}
 \name{tracks}
 \alias{tracks}
-\title{300 turtle nest encounters (tracks and nests)}
+\title{10 turtle nest encounters (tracks and nests)}
 \format{A \code{tbl_df} with columns:
 \itemize{
   \item datetime (dttm)
