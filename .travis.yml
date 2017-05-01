@@ -18,5 +18,8 @@ r_github_packages:
     - jimhester/covr
     - parksandwlidlife/wastdr
 
+r_packages:
+  - covr
+
 after_success:
     - Rscript -e 'library(covr);codecov()'
