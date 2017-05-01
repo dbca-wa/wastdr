@@ -1,7 +1,9 @@
-#' 300 animal encounters
+#' 300 animal encounters (taggings, strandings and others)
 #'
-#' A \code{wastd_api_response} with 300 animal encounters from
+#' A parsed \code{wastd_api_response} with 300 animal encounters from
 #' \code{get_wastd("animal-encounters")}
+#'
+#' @source https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&limit=10&format=json
 #'
 #' @format A \code{tbl_df} with columns:
 #' \itemize{
@@ -34,9 +36,9 @@
 #'   head(tags)
 "tags"
 
-#' A \code{wastd_api_response} with 300 turtle nest encounters (tracks and nests)
+#' 300 turtle nest encounters (tracks and nests)
 #'
-#' A \code{wastd_api_response} with 300 turtle nest encounters from
+#' A parsed \code{wastd_api_response} with 300 turtle nest encounters from
 #' \code{get_wastd("turtle-nest-encounters")}
 #'
 #' @format A \code{tbl_df} with columns:
@@ -67,9 +69,9 @@
 #'   head(tracks)
 "tracks"
 
-#' A \code{wastd_api_response} with 300 turtle nest encounters (only nests)
+#' 300 turtle nest encounters (only nests, excluding tracks)
 #'
-#' A \code{wastd_api_response} with 300 turtle nest encounters from
+#' A parsed \code{wastd_api_response} with 300 turtle nest encounters from
 #' \code{get_wastd("turtle-nest-encounters")}
 #'
 #' @format A \code{tbl_df} with columns:
@@ -95,9 +97,22 @@
 #'   \item encounter_type <chr>
 #'   \item status <chr>
 #' }
-#' @source https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=300&format=json&nest_type=hatched-nest
+#' @source https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=10&format=json&nest_type=hatched-nest
 #' @examples
 #'   data("nests")
 #'   head(nests)
 "nests"
 
+
+#' AnimalEncounter WAStD API response
+#'
+#' @source https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&limit=10&format=json
+#' @examples
+#'     data(animal_encounters)
+#'     data(tags)
+#'     ae <- get_wastd("animal-encounters",
+#'         query = list(taxon = "Cheloniidae", limit = 10, format = "json"))
+#'     ta <- parse_animal_encounters(ae)
+#'     testthat::expect_equal(ae, animal_encounters)
+#'     testthat::expect_equal(ta, tags)
+"animal_encounters"

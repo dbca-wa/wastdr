@@ -3,7 +3,7 @@
 \docType{data}
 \name{tags}
 \alias{tags}
-\title{300 animal encounters}
+\title{300 animal encounters (taggings, strandings and others)}
 \format{A \code{tbl_df} with columns:
 \itemize{
   \item datetime (dttm)
@@ -31,11 +31,14 @@
   \item encounter_type (chr)
   \item status (chr)
 }}
+\source{
+https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&limit=10&format=json
+}
 \usage{
 tags
 }
 \description{
-A \code{wastd_api_response} with 300 animal encounters from
+A parsed \code{wastd_api_response} with 300 animal encounters from
 \code{get_wastd("animal-encounters")}
 }
 \examples{
