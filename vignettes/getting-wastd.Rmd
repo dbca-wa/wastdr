@@ -80,7 +80,7 @@ TODO split out functions, write tests
 #' Filter a data.frame to records collected at THV after 19 Dec 2016
 #' TODO replace with filtering for THV 2016/2017 field trips at API
 #' with query parameter `expedition=1`.
-thv_filter <- . %>% filter(
+thv_filter <- . %>% dplyr::filter(
     latitude < -21.43,
     latitude > -21.48,
     longitude > 114.96,

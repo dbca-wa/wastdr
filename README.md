@@ -60,3 +60,18 @@ See the vignette for in-depth examples of transforming and analysing data.
 ``` r
 vignette("getting-wastd")
 ```
+
+Contribute
+----------
+
+Run checks:
+
+```r
+devtools::check(check_version = T, force_suggests = T, cran = T)
+```
+
+Run tests:
+
+```r
+devtools::test()
+```
