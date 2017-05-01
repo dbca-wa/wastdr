@@ -4,6 +4,7 @@ library(dplyr)
 testthat::test_that("animal_encounters parses correctly to tags", {
     data(animal_encounters)
     data(tags)
+    print(animal_encounters)
     ta <- parse_animal_encounters(animal_encounters)
     testthat::expect_equal(nrow(ta), nrow(tags))
     # can't compare list columns like obs
