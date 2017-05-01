@@ -16,7 +16,6 @@ env: _R_CHECK_CRAN_INCOMING_=FALSE
 
 r_github_packages:
     - jimhester/covr
-    - parksandwlidlife/wastdr
 
 r_packages:
   - covr
