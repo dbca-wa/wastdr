@@ -12,15 +12,15 @@ https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&lim
 animal_encounters
 }
 \description{
-AnimalEncounter WAStD API response
+This API response is parsed into wastr's data "tags"
 }
 \examples{
-    data(animal_encounters)
-    data(tags)
-    ae <- get_wastd("animal-encounters",
-        query = list(taxon = "Cheloniidae", limit = 10, format = "json"))
-    ta <- parse_animal_encounters(ae)
-    testthat::expect_equal(ae, animal_encounters)
-    testthat::expect_equal(ta, tags)
+data(animal_encounters)
+data(tags)
+fresh_tags <- parse_animal_encounters(animal_encounters)
+testthat::expect_equal(nrow(ta), nrow(tags))
+# can't compare list columns like obs
+deselect_obs <- . \%>\% dplyr::select(-obs)
+testthat::expect_equal(fresh_tags \%>\% deselect_obs, tags \%>\% deselect_obs)
 }
 \keyword{datasets}
