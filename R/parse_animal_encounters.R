@@ -11,6 +11,7 @@
 #'   \item crs (chr)
 #'   \item location_accuracy (dbl)
 #'   \item date (date)
+#'   \item name (chr)
 #'   \item species (chr)
 #'   \item health (chr)
 #'   \item sex (chr)
@@ -45,6 +46,7 @@ parse_animal_encounters <- function(wastd_api_response){
             crs = purrr::map_chr(., c("properties", "crs")),
             location_accuracy = purrr::map_chr(., c("properties", "location_accuracy")) %>% as.integer,
             date = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08_turtle_date,
+            name = map_chr_hack(., c("properties", "name")),
             species = purrr::map_chr(., c("properties", "species")),
             health = purrr::map_chr(., c("properties", "health")),
             sex = purrr::map_chr(., c("properties", "sex")),

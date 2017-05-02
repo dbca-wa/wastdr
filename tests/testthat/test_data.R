@@ -1,5 +1,5 @@
 context("data")
-library(dplyr)
+suppressMessages(library(dplyr))
 
 testthat::test_that("animal_encounters parses correctly to animals", {
     data(animal_encounters)

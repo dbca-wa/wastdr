@@ -18,6 +18,7 @@ Depends:
 Imports:
     DT,
     dplyr,
+    leaflet,
     lubridate,
     magrittr,
     purrr,
@@ -25,7 +26,6 @@ Imports:
     tibble
 Suggests:
     ckanr,
-    DT,
     Hmisc,
     htmlTable,
     knitr,

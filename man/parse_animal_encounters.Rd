@@ -19,6 +19,7 @@ A \code{tbl_df} with columns:
   \item crs (chr)
   \item location_accuracy (dbl)
   \item date (date)
+  \item name (chr)
   \item species (chr)
   \item health (chr)
   \item sex (chr)
