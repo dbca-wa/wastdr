@@ -117,3 +117,10 @@ devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
 devtools::test()
 devtools::check(check_version = T, force_suggests = T, cran = T)
 ```
+
+To enable local testing of the API as well as checking and upload of test coverage, add these two lines with the respective tokens to your .Rprofile:
+
+``` r
+Sys.setenv(CODECOV_TOKEN = "my-codecov-token")
+Sys.setenv(MY_API_TOKEN = "my-api-token")
+```

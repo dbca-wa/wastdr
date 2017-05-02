@@ -13,10 +13,10 @@ testthat::test_that("animal_encounters parses correctly to animals", {
 
 testthat::test_that("wastd_api_response prints", {
     data(animal_encounters)
-    print(animal_encounters)
+    capture.output(print(animal_encounters))
 
     data("turtle_nest_encounters_hatched")
-    print(turtle_nest_encounters_hatched)
+    capture.output(print(turtle_nest_encounters_hatched))
 })
 
 
