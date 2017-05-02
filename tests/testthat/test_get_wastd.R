@@ -24,6 +24,7 @@ testthat::test_that("get_wastd fails if no valid JSON is returned", {
 })
 
 testthat::test_that("get_wastd fails if HTTP error is returned", {
+    testthat::expect_error(get_wastd("", api_url="http://httpstat.us/401", query = list()))
     testthat::expect_error(get_wastd("", api_url="http://httpstat.us/500", query = list()))
     testthat::expect_error(get_wastd("", api_url="http://httpstat.us/404", query = list()))
 })
