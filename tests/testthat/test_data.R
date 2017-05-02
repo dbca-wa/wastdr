@@ -30,6 +30,14 @@ testthat::test_that("turtle_nest_encounters_hatched parses correctly to nests", 
                            nests %>% dplyr::select(-obs))
 })
 
-
+testthat::test_that("turtle_nest_encounters parses correctly to tracks", {
+    data(turtle_nest_encounters)
+    data(tracks)
+    fresh_tracks <- parse_turtle_nest_encounters(turtle_nest_encounters)
+    testthat::expect_equal(nrow(fresh_tracks), nrow(tracks))
+    # Compare pickled and fresh nests excluding list columns (like obs)
+    testthat::expect_equal(fresh_tracks %>% dplyr::select(-obs),
+                           tracks %>% dplyr::select(-obs))
+})
 
 

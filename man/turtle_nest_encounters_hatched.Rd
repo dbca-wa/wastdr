@@ -6,7 +6,7 @@
 \title{TurtleNestEncounter (hatched nests) WAStD API response}
 \format{An object of class \code{wastd_api_response} of length 3.}
 \source{
-https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&limit=10&format=json&nest_type__exact=hatched-nest
+https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=10&format=json&nest_type__exact=hatched-nest
 }
 \usage{
 turtle_nest_encounters_hatched

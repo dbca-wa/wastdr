@@ -1,5 +1,6 @@
 ---
 output: github_document
+always_allow_html: yes
 ---
 
 ```{r, echo = FALSE}
@@ -13,21 +14,43 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.path = "README-")
 
 The [WA Strandings Database WAStD](https://strandings.dpaw.wa.gov.au/) lives at
 [github.com/parksandwildlife/wastd](https://github.com/parksandwildlife/wastd)
-and provides a RESTful API.
+and provides a RESTful API. WAStD contains data about turtle strandings, turtle
+taggings, turtle track and nest encounters, and some ancillary data (areas, staff).
+WAStD is accessible to authenticated staff of the WA Department of Parks & Wildlife.
+The WAStD API, while in development, is accessible to the DPaW intranet.
 
-`wastdr` facilitates reading, parsing and using data from the WAStD API by providing
-helpers to access the API as well as examples on how to flatten the GeoJSON from
-the API into a two-dimensional tibble.
+The API returns GeoJSON, which can be loaded directly into any standard-compliant
+GIS environments, e.g. [Quantum GIS](http://www.qgis.org/en/site/).
+
+If the data consumer however wishes to analyse data in a statistical package like
+R, the data need to be transformed from a nested list of lists (GeoJSON) into a
+two-dimensional tablular structure.
+
+The main purpose of `wastdr` is to facilitate reading, parsing and using WAStD data
+by providing helpers to access the API and flatten the API outputs into a 
+[tidy](http://vita.had.co.nz/papers/tidy-data.html) `dplyr::tibble`.
+
+The secondary purpose of `wastdr` is to centralise a collection of commonly used
+analyses and visualisations of turtle data.
+As development progresses, example analyses and visualisationsn will be added to 
+the vignette. Contributions and requests are welcome!
+
+Lastly, to facilitate collaboration with external stakeholders, `wastdr` contains
+some anonymized example data (raw GeoJSON and parsed `tibble`) of turtle taggings, 
+turtle track counts, and turtle nests.
 
 ## Installation
 
 Install `wastdr` from GitHub:
 
 ```{r, eval=FALSE}
-require(devtools) || install.packages("devtools")
+# install.packages("devtools")
 devtools::install_github("parksandwildlife/wastdr")
 ```
 
+While the WAStD API is only accessible to a selected audience, and `wastdr` is
+under active development, it is not feasible to release `wastdr` on CRAN yet.
+Therefore, `wastdr` will be distributed via GitHub for the time being.
 
 ## Setup
 
@@ -54,8 +77,10 @@ wastdr::wastdr_settings()
 Load data from WAStD simply with:
 
 ```{r, eval=FALSE}
-track_records <- get_wastd('turtle-nest-encounters')
-listviewer::jsonedit(track_records)
+turtle_nest_encounters <- get_wastd('turtle-nest-encounters')
+listviewer::jsonedit(turtle_nest_encounters)
+
+tracks <- parse_turtle_nest_encounters(turtle_nest_encounters)
 ```
 
 Valid endpoints are listed in the base API URL of WAStD, e.g.:
@@ -64,26 +89,50 @@ Valid endpoints are listed in the base API URL of WAStD, e.g.:
 * `animal-encounters`
 * `turtle-nest-encounters`
 
+## ...or have a pickle
+
+If you don't have access to the WAStD API, you can still get a feel for the data
+by using the pickled example data:
+
+```{r}
+require(wastdr)
+
+data("animal_encounters")
+data("turtle_nest_encounters_hatched")
+data("turtle_nest_encounters")
+
+listviewer::jsonedit(animal_encounters$content)
+# listviewer::jsonedit(turtle_nest_encounters_hatched$content)
+# listviewer::jsonedit(turtle_nest_encounters$content)
+
+animals <- wastdr::parse_animal_encounters(animal_encounters)
+nests <- wastdr::parse_turtle_nest_encounters(turtle_nest_encounters_hatched)
+tracks <- wastdr::parse_turtle_nest_encounters(turtle_nest_encounters)
+
+DT::datatable(animals)
+# DT::datatable(nests)
+# DT::datatable(tracks)
+```
+
 ## Learn more
 
-See the vignette for in-depth examples of transforming and analysing data.
+See the vignette for in-depth examples of transforming, analysing and visualising data.
 
 ```{r, eval=FALSE}
 vignette("getting-wastd")
 ```
 
 # Contribute
-Any contribution or suggestion is welcome! 
-Send us your [issues](https://github.com/parksandwildlife/wastdr/issues) or
-submit a pull request.
+Every contribution, constructive feedback, or suggestion is welcome! 
 
-Make sure to rebuild the documentation before checking the package.
+Send us your ideas and requests as [issues](https://github.com/parksandwildlife/wastdr/issues) 
+or submit a pull request.
 
-Pull requests should pass checks (not introduce ERRORs, WARNINGs or NOTEs apart 
-from the "New CRAN package" NOTE) and pass all tests:
+Pull requests should eventually pass tests and checks (not introducing new 
+ERRORs, WARNINGs or NOTEs apart from the "New CRAN package" NOTE):
 
 ```{r, eval=FALSE}
 devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
-devtools::check(check_version = T, force_suggests = T, cran = T)
 devtools::test()
+devtools::check(check_version = T, force_suggests = T, cran = T)
 ```

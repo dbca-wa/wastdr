@@ -3,7 +3,7 @@
 \docType{data}
 \name{tracks}
 \alias{tracks}
-\title{10 turtle nest encounters (tracks and nests)}
+\title{100 example turtle nest encounters (tracks and nests)}
 \format{A \code{tbl_df} with columns:
 \itemize{
   \item datetime (dttm)
@@ -28,13 +28,13 @@
   \item status <chr>
 }}
 \source{
-https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=300&format=json
+https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=100&format=json
 }
 \usage{
 tracks
 }
 \description{
-A parsed \code{wastd_api_response} with 10 turtle nest encounters from
+A parsed \code{wastd_api_response} with 100 turtle nest encounters from
 \code{get_wastd("turtle-nest-encounters")}
 }
 \examples{

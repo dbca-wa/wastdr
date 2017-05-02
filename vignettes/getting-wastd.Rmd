@@ -11,10 +11,7 @@ vignette: >
 
 ## Setup
 
-Find your valid WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) 
-under "My Profile" and run:
-
-```{r setup}
+```{r setup, message=FALSE}
 require(dplyr)
 require(lubridate)
 require(stringr)
@@ -22,12 +19,23 @@ require(tidyverse)
 require(magrittr)
 require(listviewer)
 library(wastdr)
+```
+
+`wastdr` requires two settings, the API URL and an access token.
+`wastdr` functions expect both settings to be available as environment variables.
+For convenience, `wastdr_setup` sets the correct variables, while 
+`wastdr_settings` retrieves the currently set values.
+
+Find your valid WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) 
+under "My Profile" and run:
+
+```{r}
 wastdr::wastdr_setup(api_token = "c12345asdfqwer")
 ```
 
-Review the `wastdr` settings with:
+Review the settings with:
 
-```{r review_settings}
+```{r}
 wastdr::wastdr_settings()
 ```
 
@@ -37,69 +45,63 @@ With your valid API key and access to the WAStD API, you can retrieve data with
 `get_wastd`.
 
 ```{r call_api, eval=FALSE}
-tag_json <- get_wastd("animal-encounters", 
-                      query=list(taxon="Cheloniidae", 
-                                 limit=300, 
-                                 format="json"))
-listviewer::jsonedit(head(tag_json$content))
-tags <- tag_json %>% parse_animal_encounters
-# devtools::use_data(tags, overwrite=T)
+turtle_nest_encounters <- get_wastd('turtle-nest-encounters')
+listviewer::jsonedit(turtle_nest_encounters)
 
-track_json <- get_wastd("turtle-nest-encounters", 
-                        query=list(taxon="Cheloniidae", 
-                                   limit=300, 
-                                   format="json"))
-tracks <- nest_json %>% parse_turtle_nest_encounters
-listviewer::jsonedit(head(track_json$content))
-# devtools::use_data(tracks, overwrite=T)
-
-nest_json <- get_wastd("turtle-nest-encounters", 
-                       query=list(taxon="Cheloniidae", 
-                                  limit=300, 
-                                  format="json", 
-                                  nest_type="hatched-nest"))
-nests <- nest_json %>% parse_turtle_nest_encounters
-listviewer::jsonedit(head(nest_json$content))
-# devtools::use_data(nests, overwrite=T)
+tracks <- parse_turtle_nest_encounters(turtle_nest_encounters)
 ```
 
 For this vignette, we'll use the packaged example data.
 
 ```{r}
-data("tags")
-data("tracks")
-data("nests")
+require(wastdr)
+
+data("animal_encounters")
+data("turtle_nest_encounters_hatched")
+data("turtle_nest_encounters")
+
+listviewer::jsonedit(animal_encounters$content)
+# listviewer::jsonedit(turtle_nest_encounters_hatched$content)
+# listviewer::jsonedit(turtle_nest_encounters$content)
+
+animals <- wastdr::parse_animal_encounters(animal_encounters)
+nests <- wastdr::parse_turtle_nest_encounters(turtle_nest_encounters_hatched)
+tracks <- wastdr::parse_turtle_nest_encounters(turtle_nest_encounters)
+
+DT::datatable(animals)
+# DT::datatable(nests)
+# DT::datatable(tracks)
 ```
 
 
-## Formatting the response
+<!-- ## Formatting the response -->
 
-TODO split out functions, write tests
+<!-- TODO split out functions, write tests -->
 
-```{r, eval=F}
-#' Filter a data.frame to records collected at THV after 19 Dec 2016
-#' TODO replace with filtering for THV 2016/2017 field trips at API
-#' with query parameter `expedition=1`.
-thv_filter <- . %>% dplyr::filter(
-    latitude < -21.43,
-    latitude > -21.48,
-    longitude > 114.96,
-    longitude < 115.05,
-    date > dmy("17/11/2016"))
+<!-- ```{r, eval=F} -->
+<!-- #' Filter a data.frame to records collected at THV after 19 Dec 2016 -->
+<!-- #' TODO replace with filtering for THV 2016/2017 field trips at API -->
+<!-- #' with query parameter `expedition=1`. -->
+<!-- thv_filter <- . %>% dplyr::filter( -->
+<!--     latitude < -21.43, -->
+<!--     latitude > -21.48, -->
+<!--     longitude > 114.96, -->
+<!--     longitude < 115.05, -->
+<!--     date > dmy("17/11/2016")) -->
 
-tracks <- tracks %>% thv_filter
+<!-- tracks <- tracks %>% thv_filter -->
 
-nests <- nest_json %>% parse_turtle_nest_encounters %>% thv_filter
-
-
-```
+<!-- nests <- nest_json %>% parse_turtle_nest_encounters %>% thv_filter -->
 
 
-## Visualise
+<!-- ``` -->
 
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
 
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
+<!-- ## Visualise -->
+
+<!-- You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`. -->
+
+<!-- ```{r, echo=FALSE, results='asis'} -->
+<!-- knitr::kable(head(mtcars, 10)) -->
+<!-- ``` -->
 
