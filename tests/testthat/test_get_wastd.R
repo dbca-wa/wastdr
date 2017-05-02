@@ -13,6 +13,12 @@ wastd_api_works <- function(){
     res$status_code == 200
 }
 
+testthat::test_that("get_wastd returns something", {
+    res <- get_wastd("", api_url="http://echo.jsontest.com/", query = list())
+    testthat::expect_equal(res$response$status_code, 200)
+    testthat::expect_s3_class(res, "wastd_api_response")
+})
+
 testthat::test_that("get_wastd fails if no valid JSON is returned", {
     testthat::expect_error(get_wastd("", api_url="http://httpstat.us/200", query = list()))
 })

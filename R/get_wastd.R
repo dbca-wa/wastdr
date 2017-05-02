@@ -57,7 +57,7 @@ get_wastd <- function(serializer,
                                    format = "json"),
                       api_url = get_wastdr_api_url(),
                       api_token = get_wastdr_api_token(),
-    simplify = FALSE) {
+                      simplify = FALSE) {
 
     ua <- httr::user_agent("http://github.com/parksandwildlife/turtle-scripts")
 
