@@ -34,7 +34,7 @@ https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniida
 tracks
 }
 \description{
-A parsed \code{wastd_api_response} with 300 turtle nest encounters from
+A parsed \code{wastd_api_response} with 10 turtle nest encounters from
 \code{get_wastd("turtle-nest-encounters")}
 }
 \examples{

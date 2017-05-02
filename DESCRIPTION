@@ -16,6 +16,7 @@ Depends:
     httr,
     jsonlite
 Imports:
+    DT,
     dplyr,
     lubridate,
     magrittr,

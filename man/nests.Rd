@@ -3,7 +3,7 @@
 \docType{data}
 \name{nests}
 \alias{nests}
-\title{300 turtle nest encounters (only nests, excluding tracks)}
+\title{10 example turtle nest encounters (only nests, excluding tracks)}
 \format{A \code{tbl_df} with columns:
 \itemize{
   \item datetime (dttm)
@@ -34,7 +34,7 @@ https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniida
 nests
 }
 \description{
-A parsed \code{wastd_api_response} with 300 turtle nest encounters from
+A parsed \code{wastd_api_response} with 10 turtle nest encounters from
 \code{get_wastd("turtle-nest-encounters")}
 }
 \examples{
