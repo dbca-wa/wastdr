@@ -13,6 +13,15 @@ wastd_api_works <- function(){
     res$status_code == 200
 }
 
+testthat::test_that("get_wastd fails if no valid JSON is returned", {
+    testthat::expect_error(get_wastd("", api_url="http://httpstat.us/200", query = list()))
+})
+
+testthat::test_that("get_wastd fails if HTTP error is returned", {
+    testthat::expect_error(get_wastd("", api_url="http://httpstat.us/500", query = list()))
+    testthat::expect_error(get_wastd("", api_url="http://httpstat.us/404", query = list()))
+})
+
 testthat::test_that("get_wastd works with correct API token", {
     # API token available?
     token <- Sys.getenv("MY_API_TOKEN")

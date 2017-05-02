@@ -70,11 +70,10 @@ get_wastd <- function(serializer,
     # %>% httr::stop_for_status()
 
     if (res$status_code == 401) {
-        stop(paste("Authorization failed. \n",
+        stop(paste("Authorization failed.\n",
                    "Set your WAStD API token as system variable with",
-                   "Sys.setenv(WASTD_APITOKEN=\"Token MY-WASTD-API-TOKEN\").",
-                   "You can find your API token under \"My Profile\" in ",
-                   "WAStD."),
+                   "Sys.setenv(WASTD_APITOKEN=\"Token MY-WASTD-API-TOKEN\").\n",
+                   "You can find your API token under \"My Profile\" in WAStD."),
             call. = FALSE)
     }
 
@@ -99,7 +98,6 @@ get_wastd <- function(serializer,
                      parsed$message),
              call. = FALSE)
     }
-
 
     structure(
         list(

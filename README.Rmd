@@ -135,6 +135,7 @@ ERRORs, WARNINGs or NOTEs apart from the "New CRAN package" NOTE):
 devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
 devtools::test()
 devtools::check(check_version = T, force_suggests = T, cran = T)
+covr::codecov()
 ```
 
 To enable local testing of the API as well as checking and upload of test 
