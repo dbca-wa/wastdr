@@ -101,7 +101,7 @@ data("animal_encounters")
 data("turtle_nest_encounters_hatched")
 data("turtle_nest_encounters")
 
-listviewer::jsonedit(animal_encounters$content)
+# listviewer::jsonedit(animal_encounters$content)
 # listviewer::jsonedit(turtle_nest_encounters_hatched$content)
 # listviewer::jsonedit(turtle_nest_encounters$content)
 
@@ -109,7 +109,7 @@ animals <- wastdr::parse_animal_encounters(animal_encounters)
 nests <- wastdr::parse_turtle_nest_encounters(turtle_nest_encounters_hatched)
 tracks <- wastdr::parse_turtle_nest_encounters(turtle_nest_encounters)
 
-DT::datatable(animals)
+# DT::datatable(animals)
 # DT::datatable(nests)
 # DT::datatable(tracks)
 ```
