@@ -9,5 +9,7 @@
 #'   urlize("file name 1")
 #'   urlize("Natator depressus")
 urlize <- function(human_string){
-    human_string %>% stringr::str_to_lower() %>% stringr::str_replace_all(" ", "-")
+    human_string %>%
+        stringr::str_to_lower(.) %>%
+        stringr::str_replace_all(" ", "-")
 }

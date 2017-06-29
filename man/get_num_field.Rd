@@ -17,7 +17,8 @@ The field value or -1
 \description{
 The given list of lists is unlisted,
   \code{\link{extract_possibly}} extracts the value of the field or -1,
-  another call to unlist deduplicates, and finally the result is cast to numeric.
+  another call to unlist deduplicates, and finally the result is cast to
+  numeric.
 }
 \examples{
 \dontrun{
@@ -26,8 +27,8 @@ nest_json <- get_wastd("turtle-nest-encounters")
 nest_hs <- nest_json$content \%>\% {
   tibble::tibble(
     obs = purrr::map(., c("properties", "observation_set")),
-    hatching_success = obs \%>\% purrr::map(get_num_field, "hatching_success") \%>\% as.numeric
- )
+    hatching_success = obs \%>\%
+      purrr::map(get_num_field, "hatching_success") \%>\% as.numeric)
  }
 }
 }

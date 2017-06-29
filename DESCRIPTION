@@ -11,13 +11,15 @@ Description: The 'WA Sea Turtle Database' 'WAStD' is a 'Django' web app with a
     'wastdr' provides helpers to retrieve data from the 'API', and to turn the 
     received 'GeoJSON' into R 'tibbles'. 'wastdr' will grow alongside 
     implemented use cases of retrieving and analysing 'WAStD' data.
+URL: https://github.com/parksandwildlife/wastdr
+BugReports: https://github.com/parksandwildlife/wastdr/issues
 Depends:
-    R (>= 3.1.0),
-    httr,
-    jsonlite
+    R (>= 3.1.0)
 Imports:
     DT,
     dplyr,
+    httr,
+    jsonlite,
     leaflet,
     lubridate,
     magrittr,
