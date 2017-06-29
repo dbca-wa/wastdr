@@ -116,6 +116,7 @@ Pull requests should eventually pass tests and checks (not introducing new ERROR
 devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
 devtools::test()
 devtools::check(check_version = T, force_suggests = T, cran = T)
+covr::codecov()
 ```
 
 To enable local testing of the API as well as checking and upload of test coverage, add these two lines with the respective tokens to your .Rprofile:
