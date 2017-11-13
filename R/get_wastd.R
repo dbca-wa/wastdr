@@ -72,7 +72,7 @@ get_wastd <- function(serializer,
     if (!is.null(api_token)) {
         auth <- httr::add_headers(c(Authorization = api_token))
     } else {
-        auth <- httr::authenticate(un, pw, type = "digest")
+        auth <- httr::authenticate(api_un, api_pw, type = "digest")
     }
 
     res <- httr::GET(url, auth, ua, query = query)

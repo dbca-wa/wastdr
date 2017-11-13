@@ -72,6 +72,9 @@ Review the settings with:
 wastdr::wastdr_settings()
 ```
 
+If you are an external collaborator, see the vignette "Getting WAStD" for an
+alternative setup with username and password instead of an API token.
+
 ## Get WAStD
 
 Load data from WAStD simply with:

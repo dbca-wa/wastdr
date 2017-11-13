@@ -45,11 +45,12 @@ Review the settings with:
 wastdr::wastdr_settings()
 #> <wastdr settings>
 #>   API URL:  https://strandings.dpaw.wa.gov.au/api/1/ 
-#>   API Token:  Token c12345asdfqwer
+#>   API Token:  Token c12345asdfqwer 
+#>   API Username:   
+#>   API Password:
 ```
 
-If you are an external collaborator, see the vignette "Getting WAStD" for an
-alternative setup with username and password instead of an API token.
+If you are an external collaborator, see the vignette "Getting WAStD" for an alternative setup with username and password instead of an API token.
 
 Get WAStD
 ---------
@@ -77,8 +78,6 @@ If you don't have access to the WAStD API, you can still get a feel for the data
 ``` r
 require(wastdr)
 #> Loading required package: wastdr
-#> Loading required package: httr
-#> Loading required package: jsonlite
 
 data("animal_encounters")
 data("turtle_nest_encounters_hatched")
