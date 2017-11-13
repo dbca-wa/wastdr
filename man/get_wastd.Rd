@@ -10,7 +10,7 @@ get_wastd(serializer, query = list(taxon = "Cheloniidae", limit = 10000,
   api_pw = get_wastdr_api_pw(), simplify = FALSE)
 }
 \arguments{
-\item{serializer}{(character) WAStD API serializer name (required).
+\item{serializer}{(character) WAStD API serializer name (required)
 Possible values as per
 \code{https://strandings.dpaw.wa.gov.au/api/1/?format=corejson} are:
 \itemize{
@@ -57,8 +57,8 @@ Call the WAStD API serializer's list view with given GET parameters,
   parse the response as text into a GeoJSON FeatureCollection.
   Parse the FeatureCollection using jsonlite::fromJSON and return its features
   as nested data.frame (simplify=TRUE) or as list of lists (simplify=FALSE).
-  TODO: use pagination, see
-  \url{https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html}
+  TODO: use pagination, see the vignette on paging at
+  \url{https://CRAN.R-project.org/package=jsonlite}.
 }
 \examples{
 \dontrun{

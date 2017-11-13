@@ -4,9 +4,9 @@
 #'   parse the response as text into a GeoJSON FeatureCollection.
 #'   Parse the FeatureCollection using jsonlite::fromJSON and return its features
 #'   as nested data.frame (simplify=TRUE) or as list of lists (simplify=FALSE).
-#'   TODO: use pagination, see
-#'   \url{https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html}
-#' @param serializer (character) WAStD API serializer name (required).
+#'   TODO: use pagination, see the vignette on paging at
+#'   \url{https://CRAN.R-project.org/package=jsonlite}.
+#' @param serializer (character) WAStD API serializer name (required)
 #'   Possible values as per
 #'   \code{https://strandings.dpaw.wa.gov.au/api/1/?format=corejson} are:
 #'   \itemize{
