@@ -17,16 +17,17 @@ This API response is parsed into wastr's data "tags"
 \examples{
 \dontrun{
 # Generate animal_encounters ("observed" by author)
-q = list(taxon = "Cheloniidae", limit = 10, format = "json", observer = 1)
-animal_encounters <- get_wastd("animal-encounters", query = q)
-animals <- parse_animal_encounters(animal_encounters)
-devtools::use_data(animal_encounters, overwrite = TRUE)
-devtools::use_data(animals, overwrite = TRUE)
+ q = list(taxon = "Cheloniidae", limit = 10, format = "json", observer = 1)
+ animal_encounters <- get_wastd("animal-encounters", query = q)
+ animals <- parse_animal_encounters(animal_encounters)
+ devtools::use_data(animal_encounters, overwrite = TRUE)
+ devtools::use_data(animals, overwrite = TRUE)
 }
 # Prove that animal_encounters parses to animals
+
 library(dplyr)
-data(animal_encounters)
-data(animals)
+data("animal_encounters")
+data("animals")
 fresh_animals <- parse_animal_encounters(animal_encounters)
 testthat::expect_equal(nrow(fresh_animals), nrow(animals))
 # Compare pickled and fresh animals excluding list columns (like obs)

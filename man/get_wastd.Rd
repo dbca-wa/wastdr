@@ -6,7 +6,8 @@
 \usage{
 get_wastd(serializer, query = list(taxon = "Cheloniidae", limit = 10000,
   format = "json"), api_url = get_wastdr_api_url(),
-  api_token = get_wastdr_api_token(), simplify = FALSE)
+  api_token = get_wastdr_api_token(), api_un = get_wastdr_api_un(),
+  api_pw = get_wastdr_api_pw(), simplify = FALSE)
 }
 \arguments{
 \item{serializer}{(character) WAStD API serializer name (required).

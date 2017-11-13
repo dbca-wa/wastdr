@@ -22,17 +22,28 @@ require(leaflet)
 library(wastdr)
 ```
 
-`wastdr` requires two settings, the API URL and an access token.
-`wastdr` functions expect both settings to be available as environment variables.
+`wastdr` requires two settings, the API URL and an access token or a username / 
+password.
+`wastdr` functions expect these settings to be available as environment variables.
 For convenience, `wastdr_setup` sets the correct variables, while 
 `wastdr_settings` retrieves the currently set values.
 
-Find your valid WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) 
+If you are an employee of the Western Australian Department of Biodiversity,
+Conservation and Attractions (DBCA), formerly the Department of Parks and Wildlife,
+then you can find your valid WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) 
 under "My Profile" and run:
 
 ```{r}
 wastdr::wastdr_setup(api_token = "c12345asdfqwer")
 ```
+
+If you are an external collaborator, you will have given a username and password
+to access the WAStD API.
+
+```{r}
+wastdr::wastdr_setup(api_un = "my_username", api_pw = "my_password")
+```
+
 
 Review the settings with:
 
@@ -74,6 +85,12 @@ DT::datatable(animals)
 # DT::datatable(tracks)
 ```
 
+## Filtering data
+This section will be expanded to show how to filter the data, e.g.
+
+* All data from an area (marine protected area, location, study site)
+* All data collected or recorded by a certain person
+* All data with specific properties, e.g. only certain stranding types, taxonomic groups etc.
 
 # Visualise
 
@@ -138,6 +155,7 @@ leaflet(tracks, width = 800, height = 600) %>%
                    overlayGroups = c("Tracks", "Tags", "Nests"))
 
 ```
+
 ## GGplot
 
 ```{r}

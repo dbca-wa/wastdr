@@ -15,17 +15,18 @@ turtle_nest_encounters_hatched
 This API response is parsed into wastr's data "nests".
 }
 \examples{
-\dontrun{
 # Generate turtle_nest_encounters_hatched
+\dontrun{
 q = list(taxon = "Cheloniidae", limit = 10, format = "json", nest_type = "hatched-nest")
 turtle_nest_encounters_hatched <- wastdr::get_wastd("turtle-nest-encounters", query = q)
 anonymize <- function(dict){
-    dummy = list(name = "Test Name",
+    anon = list(
+             name = "Test Name",
              username = "test_name",
              email = "test@email.com",
              phone = "")
     dict$properties <- dict$properties \%>\%
-        purrr::update_list(observer = dummy, reporter = dummy)
+        purrr::update_list(observer = anon, reporter = anon)
     dict
 }
 turtle_nest_encounters_hatched$content <- turtle_nest_encounters_hatched$content \%>\% map(anonymize)
