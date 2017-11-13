@@ -57,16 +57,21 @@ get_wastd <- function(serializer,
                                    format = "json"),
                       api_url = get_wastdr_api_url(),
                       api_token = get_wastdr_api_token(),
+                      api_un = get_wastdr_api_un(),
+                      api_pw = get_wastdr_api_pw(),
                       simplify = FALSE) {
 
     ua <- httr::user_agent("http://github.com/parksandwildlife/turtle-scripts")
 
     url <- paste0(api_url, serializer)
 
-    res <- httr::GET(url,
-                     ua,
-                     query = query,
-                     httr::add_headers(c(Authorization = api_token)))
+    if (!is.null(api_token)) {
+        auth <- httr::add_headers(c(Authorization = api_token))
+    } else {
+        auth <- httr::authenticate(un, pw, type = "digest")
+    }
+
+    res <- httr::GET(url, auth, ua, query = query)
     # %>% httr::stop_for_status()
 
     if (res$status_code == 401) {
