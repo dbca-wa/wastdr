@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -111,34 +111,15 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Generate turtle_nest_encounters_hatched</span>
-<span class='no'>q</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>taxon</span> <span class='kw'>=</span> <span class='st'>"Cheloniidae"</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>, <span class='kw'>nest_type</span> <span class='kw'>=</span> <span class='st'>"hatched-nest"</span>)
-<span class='no'>turtle_nest_encounters_hatched</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/wastdr/topics/get_wastd'>get_wastd</a></span>(<span class='st'>"turtle-nest-encounters"</span>, <span class='kw'>query</span> <span class='kw'>=</span> <span class='no'>q</span>)
-<span class='no'>anonymize</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>dict</span>){
-    <span class='no'>dummy</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Test Name"</span>,
-             <span class='kw'>username</span> <span class='kw'>=</span> <span class='st'>"test_name"</span>,
-             <span class='kw'>email</span> <span class='kw'>=</span> <span class='st'>"test@email.com"</span>,
-             <span class='kw'>phone</span> <span class='kw'>=</span> <span class='st'>""</span>)
-    <span class='no'>dict</span>$<span class='no'>properties</span> <span class='kw'>&lt;-</span> <span class='no'>dict</span>$<span class='no'>properties</span> <span class='kw'>%&gt;%</span>
-        <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/update_list'>update_list</a></span>(<span class='kw'>observer</span> <span class='kw'>=</span> <span class='no'>dummy</span>, <span class='kw'>reporter</span> <span class='kw'>=</span> <span class='no'>dummy</span>)
-    <span class='no'>dict</span>
-}
-<span class='no'>turtle_nest_encounters_hatched</span>$<span class='no'>content</span> <span class='kw'>&lt;-</span> <span class='no'>turtle_nest_encounters_hatched</span>$<span class='no'>content</span> <span class='kw'>%&gt;%</span> <span class='fu'>map</span>(<span class='no'>anonymize</span>)
-<span class='kw pkg'>listviewer</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/listviewer/topics/jsonedit'>jsonedit</a></span>(<span class='no'>turtle_nest_encounters_hatched</span>$<span class='no'>content</span>)
-<span class='no'>nests</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='parse_turtle_nest_encounters.html'>parse_turtle_nest_encounters</a></span>(<span class='no'>turtle_nest_encounters_hatched</span>)
-<span class='kw pkg'>DT</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/DT/topics/datatable'>datatable</a></span>(<span class='no'>nests</span>)
-<span class='kw pkg'>devtools</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/devtools/topics/use_data'>use_data</a></span>(<span class='no'>turtle_nest_encounters_hatched</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='kw pkg'>devtools</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/devtools/topics/use_data'>use_data</a></span>(<span class='no'>nests</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='co'># }</span><div class='input'><span class='co'># Prove that turtle_nest_encounters_hatched parses to nests</span>
+    <pre class="examples"><div class='input'><span class='co'># Prove that turtle_nest_encounters_hatched parses to nests</span>
 <span class='fu'>library</span>(<span class='no'>dplyr</span>)
 <span class='fu'>data</span>(<span class='no'>turtle_nest_encounters_hatched</span>)
 <span class='fu'>data</span>(<span class='no'>nests</span>)
 <span class='no'>fresh_nests</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='parse_turtle_nest_encounters.html'>parse_turtle_nest_encounters</a></span>(<span class='no'>turtle_nest_encounters_hatched</span>)
 <span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/testthat/topics/equality-expectations'>expect_equal</a></span>(<span class='fu'>nrow</span>(<span class='no'>fresh_nests</span>), <span class='fu'>nrow</span>(<span class='no'>nests</span>))
 <span class='co'># Compare pickled and fresh nests excluding list columns (like obs)</span>
-<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/testthat/topics/equality-expectations'>expect_equal</a></span>(<span class='no'>fresh_nests</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(-<span class='no'>obs</span>),
-                       <span class='no'>nests</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(-<span class='no'>obs</span>))</div></pre>
+<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/testthat/topics/equality-expectations'>expect_equal</a></span>(<span class='no'>fresh_nests</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>obs</span>),
+                       <span class='no'>nests</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>obs</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

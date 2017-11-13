@@ -6,10 +6,15 @@ require(tidyverse)
 require(magrittr)
 require(listviewer)
 require(leaflet)
-library(wastdr)
+require(wastdr)
+require(scales)
+require(ggplot2)
 
 ## ------------------------------------------------------------------------
 wastdr::wastdr_setup(api_token = "c12345asdfqwer")
+
+## ------------------------------------------------------------------------
+wastdr::wastdr_setup(api_un = "my_username", api_pw = "my_password")
 
 ## ------------------------------------------------------------------------
 wastdr::wastdr_settings()

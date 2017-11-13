@@ -46,8 +46,8 @@ wastdr::wastdr_settings()
 #> <wastdr settings>
 #>   API URL:  https://strandings.dpaw.wa.gov.au/api/1/ 
 #>   API Token:  Token c12345asdfqwer 
-#>   API Username:  username 
-#>   API Password:  password
+#>   API Username:  my_username 
+#>   API Password:  my_password
 ```
 
 If you are an external collaborator, see the vignette "Getting WAStD" for an alternative setup with username and password instead of an API token.
@@ -126,4 +126,15 @@ To enable local testing of the API as well as checking and upload of test covera
 ``` r
 Sys.setenv(CODECOV_TOKEN = "my-codecov-token")
 Sys.setenv(MY_API_TOKEN = "my-api-token")
+```
+
+Updating the package documentation
+----------------------------------
+
+The `wastdr` [webpage](https://parksandwildlife.github.io/wastdr/) is hosted on gh-pages and generated using [pkgdown](https://github.com/hadley/pkgdown).
+
+``` r
+devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
+# devtools::install_github("hadley/pkgdown")
+pkgdown::build_site()
 ```
