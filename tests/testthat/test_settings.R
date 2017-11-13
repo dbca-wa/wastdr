@@ -2,6 +2,8 @@ context("wastdr_settings")
 
 au <- "https://strandings.dpaw.wa.gov.au/api/1/"
 at <- "c12345asdfqwer"
+un <- "username"
+pw <- "password"
 
 testthat::test_that("wastdr_settings can set and get default api_url", {
     wastdr_setup()
@@ -20,4 +22,14 @@ testthat::test_that("ckanr_settings can set and get any api token", {
     wastdr_setup(api_token = at)
     token_string <- paste("Token", at)
     testthat::expect_equal(token_string, get_wastdr_api_token())
+})
+
+testthat::test_that("ckanr_settings can set and get any api username", {
+    wastdr_setup(api_un = un)
+    testthat::expect_equal(un, get_wastdr_api_un())
+})
+
+testthat::test_that("ckanr_settings can set and get any api password", {
+    wastdr_setup(api_pw = pw)
+    testthat::expect_equal(pw, get_wastdr_api_pw())
 })

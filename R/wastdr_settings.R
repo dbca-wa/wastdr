@@ -27,6 +27,12 @@ print.wastdr_settings <- function(x, ...) {
     cat("  API Token: ", x$api_token, "\n")
     cat("  API Username: ", x$api_un, "\n")
     cat("  API Password: ", x$api_pw, "\n")
+
+
+    if (is.null(x$api_token) && is.null(x$api_un)) {
+        message(paste0("wastdr requires either an API token or a username and ",
+                       "password to authenticate requests to the WAStD API."))
+    }
 }
 
 #------------------------------------------------------------------------------#
@@ -72,10 +78,6 @@ wastdr_setup <- function(
     }
     if (!is.null(api_pw)) {
         Sys.setenv("WASTDR_API_PW" = api_pw)
-    }
-
-    if (is.null(api_token) && is.null(api_un)) {
-        warning("wastdr requires either an API token or a username and password.")
     }
 }
 

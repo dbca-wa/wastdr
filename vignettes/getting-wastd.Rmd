@@ -19,7 +19,9 @@ require(tidyverse)
 require(magrittr)
 require(listviewer)
 require(leaflet)
-library(wastdr)
+require(wastdr)
+require(scales)
+require(ggplot2)
 ```
 
 `wastdr` requires two settings, the API URL and an access token or a username / 

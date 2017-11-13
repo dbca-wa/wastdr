@@ -28,6 +28,7 @@ Imports:
     tibble
 Suggests:
     ckanr,
+    ggplot2,
     Hmisc,
     htmlTable,
     knitr,
