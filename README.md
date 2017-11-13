@@ -48,6 +48,9 @@ wastdr::wastdr_settings()
 #>   API Token:  Token c12345asdfqwer
 ```
 
+If you are an external collaborator, see the vignette "Getting WAStD" for an
+alternative setup with username and password instead of an API token.
+
 Get WAStD
 ---------
 

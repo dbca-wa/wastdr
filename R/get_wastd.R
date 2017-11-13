@@ -25,6 +25,10 @@
 #'   default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}
 #' @param api_token (character) The WAStD API token,
 #'   default \code{\link{get_wastdr_api_token}}, see \code{\link{wastdr_setup}}
+#' @param api_un (character) A WAStD API username,
+#'   default \code{\link{get_wastdr_api_un}}, see \code{\link{wastdr_setup}}
+#' @param api_pw (character) A WAStD API password,
+#'   default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}
 #' @param simplify (Boolean) Whether to flatten nested data frames into a single
 #'   data frame with repeating unnamed groups as lists (simplify = TRUE), or as
 #'   list of lists (default: FALSE)
@@ -77,9 +81,11 @@ get_wastd <- function(serializer,
     if (res$status_code == 401) {
         stop(paste(
             "Authorization failed.\n",
-            "Set your WAStD API token as system variable with",
+            "If you are DBCA staff, set your WAStD API token as system variable with",
             "Sys.setenv(WASTD_APITOKEN=\"Token MY-WASTD-API-TOKEN\").\n",
-            "You can find your API token under \"My Profile\" in WAStD."),
+            "You can find your API token under \"My Profile\" in WAStD.\n",
+            "External collaborators need to set their username and password,\n",
+            "see ?wastdr_setup."),
         call. = FALSE)
     }
 

@@ -4,7 +4,10 @@
 #' @return \code{wastdr_settings} prints your base url and WAStD API key.
 #' \code{ckanr_setup} sets your production and test settings, while
 #' @seealso \code{\link{wastdr_setup}},
-#' \code{\link{get_wastdr_api_url}}, \code{\link{get_wastdr_api_token}}.
+#' \code{\link{get_wastdr_api_url}},
+#' \code{\link{get_wastdr_api_token}},
+#' \code{\link{get_wastdr_api_un}}, and
+#' \code{\link{get_wastdr_api_pw}}.
 #' @family wastr settings
 #' @examples
 #' wastdr_settings()
@@ -34,7 +37,9 @@ print.wastdr_settings <- function(x, ...) {
 #' @export
 #' @param api_url A WAStD API URL (optional),
 #'   default: "https://strandings.dpaw.wa.gov.au/api/1/"
-#' @param api_token A CKAN API token (required, character)
+#' @param api_token A CKAN API token (character)
+#' @param api_un Alternatively, a CKAN API username (character)
+#' @param api_pw The password to the CKAN username (character)
 #' @details
 #' \code{wastdr_setup} sets WAStD API connection details. \code{wastdr}'s
 #' functions default to use the default URL, but require an API key to work.
@@ -67,6 +72,10 @@ wastdr_setup <- function(
     }
     if (!is.null(api_pw)) {
         Sys.setenv("WASTDR_API_PW" = api_pw)
+    }
+
+    if (is.null(api_token) && is.null(api_un)) {
+        warning("wastdr requires either an API token or a username and password.")
     }
 }
 
