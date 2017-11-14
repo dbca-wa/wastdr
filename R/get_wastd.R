@@ -72,7 +72,7 @@ get_wastd <- function(serializer,
     if (!is.null(api_token)) {
         auth <- httr::add_headers(c(Authorization = api_token))
     } else {
-        auth <- httr::authenticate(api_un, api_pw, type = "digest")
+        auth <- httr::authenticate(api_un, api_pw, type = "basic")
     }
 
     res <- httr::GET(url, auth, ua, query = query)
@@ -123,8 +123,8 @@ get_wastd <- function(serializer,
 }
 
 #' @title S3 print method for 'wastd_api_response'.
-#' @description Prints a short representation of data returned by \
-#'   code{\link{get_wastd}}.
+#' @description Prints a short representation of data returned by
+#' \code{\link{get_wastd}}.
 #' @param x An object of class `wastd_api_response` as returned by
 #'   \code{\link{get_wastd}}.
 #' @param ... Extra parameters for `print`

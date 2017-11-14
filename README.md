@@ -46,8 +46,8 @@ wastdr::wastdr_settings()
 #> <wastdr settings>
 #>   API URL:  https://strandings.dpaw.wa.gov.au/api/1/ 
 #>   API Token:  Token c12345asdfqwer 
-#>   API Username:  my_username 
-#>   API Password:  my_password
+#>   API Username:  wastd_username 
+#>   API Password:  wastd_password
 ```
 
 If you are an external collaborator, see the vignette "Getting WAStD" for an alternative setup with username and password instead of an API token.
