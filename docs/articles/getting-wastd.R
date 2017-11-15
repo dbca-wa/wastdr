@@ -1,33 +1,17 @@
-## ----setup, message=FALSE------------------------------------------------
-require(dplyr)
-require(lubridate)
-require(stringr)
-require(tidyverse)
-require(magrittr)
-require(listviewer)
-require(leaflet)
-require(wastdr)
-require(scales)
-require(ggplot2)
-
-## ------------------------------------------------------------------------
-wastdr::wastdr_setup(api_token = "c12345asdfqwer")
-
-## ------------------------------------------------------------------------
-wastdr::wastdr_setup(api_un = "my_username", api_pw = "my_password")
-
-## ------------------------------------------------------------------------
-wastdr::wastdr_settings()
-
 ## ----call_api, eval=FALSE------------------------------------------------
+#  library(wastdr)
+#  library(dplyr)
+#  library(leaflet)
+#  library(listviewer)
+#  library(DT)
+#  library(ggplot2)
+#  
 #  turtle_nest_encounters <- get_wastd('turtle-nest-encounters')
 #  listviewer::jsonedit(turtle_nest_encounters$content, width = 800, height = 600)
 #  
 #  tracks <- parse_turtle_nest_encounters(turtle_nest_encounters)
 
 ## ------------------------------------------------------------------------
-require(wastdr)
-
 data("animal_encounters")
 data("turtle_nest_encounters_hatched")
 data("turtle_nest_encounters")
@@ -46,9 +30,9 @@ DT::datatable(animals)
 
 ## ------------------------------------------------------------------------
 #' makeAwesomeIcon factory
-mkicon <- function(ico, col) makeAwesomeIcon(icon = ico, markerColor = col)
+mkicon <- function(ico, col) leaflet::makeAwesomeIcon(icon = ico, markerColor = col)
 
-trackIcons <- awesomeIconList(
+trackIcons <- leaflet::awesomeIconList(
   "cheloniidae-fam" = mkicon('align-center', 'black'),
   "chelonia-mydas" = mkicon('align-center', 'green'),
   "eretmochelys-imbricata" = mkicon('align-center', 'blue'),
@@ -56,7 +40,7 @@ trackIcons <- awesomeIconList(
   "caretta-caretta" = mkicon('align-center', 'yellow')
   )
 
-tagIcons <- awesomeIconList(
+tagIcons <- leaflet::awesomeIconList(
   "cheloniidae-fam" = mkicon('tag', 'black'),
   "chelonia-mydas" = mkicon('tag', 'green'),
   "eretmochelys-imbricata" = mkicon('tag', 'blue'),
@@ -64,7 +48,7 @@ tagIcons <- awesomeIconList(
   "caretta-caretta" = mkicon('tag', 'yellow')
   )
 
-nestIcons <- awesomeIconList(
+nestIcons <- leaflet::awesomeIconList(
   "cheloniidae-fam" = mkicon('baby-formula', 'black'),
   "chelonia-mydas" = mkicon('baby-formula', 'green'),
   "eretmochelys-imbricata" = mkicon('baby-formula', 'blue'),
@@ -72,24 +56,24 @@ nestIcons <- awesomeIconList(
   "caretta-caretta"  = mkicon('baby-formula', 'yellow')
   )
 
-leaflet(tracks, width = 800, height = 600) %>%
-  addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
-  addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-  setView(lng=115.0, lat=-21.45, zoom=12) %>%
-  addAwesomeMarkers(~longitude, ~latitude,
-                    data = filter(tracks, nest_type != "hatched-nest"),
+leaflet::leaflet(tracks, width = 800, height = 600) %>%
+  leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
+  leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
+  leaflet::setView(lng=115.0, lat=-21.45, zoom=12) %>%
+  leaflet::addAwesomeMarkers(~longitude, ~latitude,
+                    data = dplyr::filter(tracks, nest_type != "hatched-nest"),
                     icon = ~trackIcons[species],
                     label = ~paste("Track", date, nest_age, species, nest_type),
                     # popup = ~paste("Track", date, nest_age, species, nest_type),
                     group = "Tracks") %>%
-  addAwesomeMarkers(~longitude, ~latitude, data = animals,
+  leaflet::addAwesomeMarkers(~longitude, ~latitude, data = animals,
                     icon = ~tagIcons[species],
                     label = ~paste("Tag", date, species, name, "nesting:", nesting_event),
                     # popup = ~paste("Tag", date, species, name, "nesting:", nesting_event),
                     group = "Tags") %>%
   # addHeatmap(data=tags, lng = ~longitude, lat = ~latitude,
   #            blur = 20, max = 1, radius = 15) %>%
-  addAwesomeMarkers(~longitude, ~latitude,
+  leaflet::addAwesomeMarkers(~longitude, ~latitude,
                     data = nests,
                     icon = ~nestIcons[species],
                     label = ~paste("Nest", date, species,
@@ -99,12 +83,12 @@ leaflet(tracks, width = 800, height = 600) %>%
                                    "HS", as.numeric(hatching_success),
                                    "%, ES", as.numeric(emergence_success), "%"),
                     group = "Nests") %>%
-  addLayersControl(baseGroups = c("Aerial", "Place names"),
+  leaflet::addLayersControl(baseGroups = c("Aerial", "Place names"),
                    overlayGroups = c("Tracks", "Tags", "Nests"))
 
 
 ## ------------------------------------------------------------------------
-ggplot(animals, aes(x = date, y = name, color = nesting_event)) + 
+ggplot2::ggplot(animals, aes(x = date, y = name, color = nesting_event)) + 
   geom_point() + 
   geom_line(aes(date, name)) +
   scale_x_date(breaks = scales::pretty_breaks(),
@@ -115,8 +99,8 @@ ggplot(animals, aes(x = date, y = name, color = nesting_event)) +
  # + ggsave(paste0("data/nesting_history.pdf"), width = 7, height = 20)
 
 ## ------------------------------------------------------------------------
-nests_with_hs <- filter(nests, hatching_success >= 0, species == "natator-depressus")
-ggplot(nests_with_hs, aes(group=date, x=date)) + 
+nests_with_hs <- dplyr::filter(nests, hatching_success >= 0, species == "natator-depressus")
+ggplot2::ggplot(nests_with_hs, aes(group=date, x=date)) + 
   geom_boxplot(aes(y=as.numeric(hatching_success)), na.rm=TRUE, color="black") +
   geom_boxplot(aes(y=as.numeric(emergence_success)), na.rm=TRUE, color="gray") +
   scale_x_date(breaks = scales::pretty_breaks(),
@@ -129,8 +113,8 @@ ggplot(nests_with_hs, aes(group=date, x=date)) +
 
 ## ------------------------------------------------------------------------
 success_summary <- nests %>%
-  filter(hatching_success >= 0) %>% 
-  group_by(species) %>%
+  dplyr::filter(hatching_success >= 0) %>% 
+  dplyr::group_by(species) %>%
   dplyr::summarize(
     "count" = n(),
     "clutch_size_mean" = mean(clutch_size) %>% round(digits = 2),

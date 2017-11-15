@@ -1,4 +1,5 @@
 # Generate animal_encounters ("observed" by author)
+library(wastdr)
 q = list(taxon = "Cheloniidae", limit = 10, format = "json", observer = 1)
 animal_encounters <- get_wastd("animal-encounters", query = q)
 animals <- parse_animal_encounters(animal_encounters)

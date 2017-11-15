@@ -81,11 +81,10 @@ get_wastd <- function(serializer,
     if (res$status_code == 401) {
         stop(paste(
             "Authorization failed.\n",
-            "If you are DBCA staff, set your WAStD API token as system variable with",
-            "Sys.setenv(WASTD_APITOKEN=\"Token MY-WASTD-API-TOKEN\").\n",
+            "If you are DBCA staff, run wastdr_setup(api_token='...').\n",
             "You can find your API token under \"My Profile\" in WAStD.\n",
-            "External collaborators need to set their username and password,\n",
-            "see ?wastdr_setup."),
+            "External collaborators run wastdr_setup(api_un='username', api_pw='password').",
+            "See ?wastdr_setup or vignette('setup')."),
         call. = FALSE)
     }
 
