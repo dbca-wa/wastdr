@@ -16,27 +16,36 @@ we can now retrieve data using `get_wastd` to send `GET` requests to the `WAStD`
 API.
 
 
-```{r call_api, eval=FALSE}
+```{r}
 library(wastdr)
 library(dplyr)
+library(magrittr)
 library(leaflet)
 library(listviewer)
 library(DT)
 library(ggplot2)
+```
 
+```{r call_api, eval=FALSE}
 turtle_nest_encounters <- get_wastd('turtle-nest-encounters')
 listviewer::jsonedit(turtle_nest_encounters$content, width = 800, height = 600)
-
 tracks <- parse_turtle_nest_encounters(turtle_nest_encounters)
 ```
 
 For this vignette, we'll use the packaged example data.
 
-```{r}
-data("animal_encounters")
-data("turtle_nest_encounters_hatched")
-data("turtle_nest_encounters")
+```{r, eval=T}
+data(animal_encounters)
+data(turtle_nest_encounters_hatched)
+data(turtle_nest_encounters)
+head(animal_encounters)
+```
 
+```{r load_vignette_data, eval=FALSE}
+load(file = "vignettes/data.rda")
+```
+
+```{r inspect_data}
 listviewer::jsonedit(animal_encounters$content, width = 800, height = 600)
 # listviewer::jsonedit(turtle_nest_encounters_hatched$content)
 # listviewer::jsonedit(turtle_nest_encounters$content)

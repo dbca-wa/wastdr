@@ -122,13 +122,17 @@ Pull requests should eventually pass tests and checks (not introducing new ERROR
 
 ``` r
 # install.packages("devtools")
-# devtools::install_github("hadley/devtools")
+# devtools::install_github("hadley/devtools", force=T)
+# source("https://install-github.me/mangothecat/callr")
 # devtools::install_github("hadley/pkgdown")
 # devtools::install_github("klutometis/roxygen")
+require(devtools)
+require(pkgdown)
+require(covr)
 devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
 pkgdown::build_site()
 devtools::test()
-devtools::check(check_version = T, force_suggests = T, cran = T)
+devtools::check(check_version = T,  force_suggests = T, args = c('--as-cran','--timings'))
 covr::codecov()
 ```
 

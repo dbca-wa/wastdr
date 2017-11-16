@@ -23,17 +23,18 @@ This vignette explains how to authenticate to the WAStD API.
 ```{r, message=FALSE}
 require(wastdr)
 ```
+There are two audiences with two different authentication options.
 
-## Different strokes for different folks
-DBCA staff have access to [WAStD](https://strandings.dpaw.wa.gov.au).
+The first audience, DBCA staff, has access to 
+[WAStD](https://strandings.dpaw.wa.gov.au).
 On their profile page they will find their own API token.
 
-External collaborators will receive a username and password.
+The second audience, external collaborators, will be given a username and password.
 Using these credentials, they can access the 
 [WAStD API](https://strandings.dpaw.wa.gov.au/api/1/) 
 both through their browser and from other software like `wastdr`.
 
-# Setup
+# Configure credentials
 `wastdr::get_wastd()` accesses the `WAStD` API using:
 
 * the API URL, and 
@@ -59,6 +60,7 @@ This method overrides any other settings, but leads to verbose code with confide
 data (token or password) in plain text.
 
 ## Per session
+
 If `api_*` settings are not provided, `wastdr::get_wastd` defaults to 
 specifically named environment variables.
 
@@ -94,6 +96,7 @@ This method reduces verbosity, but still exposes sensitive data in the `wastdr_s
 The `wastdr::wastdr_settings()` expire with the R session.
 
 ## Per machine
+
 For a more permanent setup, the environment variables can be set in the user's
 `.Rprofile`.
 
@@ -114,3 +117,6 @@ Sys.setenv(WASTDR_API_URL="https://strandings.dpaw.wa.gov.au/api/1/")
 Sys.setenv(WASTDR_API_UN="my_username")
 Sys.setenv(WASTDR_API_PW="my_password")
 ```
+
+In the long term, this last method is the most elegant and persistent way of
+configuring `wastdr`.

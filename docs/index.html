@@ -163,14 +163,18 @@ tracks &lt;-<span class="st"> </span>wastdr::<span class="kw"><a href="reference
 <p>Send us your ideas and requests as <a href="https://github.com/parksandwildlife/wastdr/issues">issues</a> or submit a pull request.</p>
 <p>Pull requests should eventually pass tests and checks (not introducing new ERRORs, WARNINGs or NOTEs apart from the “New CRAN package” NOTE):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-<span class="co"># devtools::install_github("hadley/devtools")</span>
+<span class="co"># devtools::install_github("hadley/devtools", force=T)</span>
+<span class="co"># source("https://install-github.me/mangothecat/callr")</span>
 <span class="co"># devtools::install_github("hadley/pkgdown")</span>
 <span class="co"># devtools::install_github("klutometis/roxygen")</span>
-devtools::<span class="kw">document</span>(<span class="dt">roclets=</span><span class="kw">c</span>(<span class="st">'rd'</span>, <span class="st">'collate'</span>, <span class="st">'namespace'</span>, <span class="st">'vignette'</span>))
-pkgdown::<span class="kw">build_site</span>()
-devtools::<span class="kw">test</span>()
-devtools::<span class="kw">check</span>(<span class="dt">check_version =</span> T, <span class="dt">force_suggests =</span> T, <span class="dt">cran =</span> T)
-covr::<span class="kw">codecov</span>()</code></pre></div>
+<span class="kw">require</span>(devtools)
+<span class="kw">require</span>(pkgdown)
+<span class="kw">require</span>(covr)
+devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/document">document</a></span>(<span class="dt">roclets=</span><span class="kw">c</span>(<span class="st">'rd'</span>, <span class="st">'collate'</span>, <span class="st">'namespace'</span>, <span class="st">'vignette'</span>))
+pkgdown::<span class="kw"><a href="http://hadley.github.io/pkgdown/reference/build_site.html">build_site</a></span>()
+devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()
+devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/check">check</a></span>(<span class="dt">check_version =</span> T,  <span class="dt">force_suggests =</span> T, <span class="dt">args =</span> <span class="kw">c</span>(<span class="st">'--as-cran'</span>,<span class="st">'--timings'</span>))
+covr::<span class="kw"><a href="http://www.rdocumentation.org/packages/covr/topics/codecov">codecov</a></span>()</code></pre></div>
 <p>To enable local testing of the API as well as checking and upload of test coverage, add these two lines with the respective tokens to your .Rprofile:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.setenv</span>(<span class="dt">CODECOV_TOKEN =</span> <span class="st">"my-codecov-token"</span>)
 <span class="kw">Sys.setenv</span>(<span class="dt">MY_API_TOKEN =</span> <span class="st">"my-api-token"</span>)</code></pre></div>
