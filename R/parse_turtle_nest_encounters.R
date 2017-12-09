@@ -35,6 +35,8 @@ parse_turtle_nest_encounters <- function(wastd_api_response){
     . <- "Shut up Wesley"
     wastd_api_response$content %>% {
         tibble::tibble(
+            area = purrr::map_dbl(., c("properties", "area")),
+            site = purrr::map_dbl(., c("properties", "site")),
             datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08,
             longitude = purrr::map_dbl(., c("properties", "longitude")),
             latitude = purrr::map_dbl(., c("properties", "latitude")),
