@@ -62,6 +62,8 @@ get_wastd <- function(serializer,
                       api_pw = get_wastdr_api_pw(),
                       simplify = FALSE) {
 
+    . <- NULL # Silence R CMD CHECK warning
+
     ua <- httr::user_agent("http://github.com/parksandwildlife/turtle-scripts")
 
     url <- paste0(api_url, serializer)
@@ -142,6 +144,6 @@ get_wastd <- function(serializer,
 print.wastd_api_response <- function(x, ...) {
     cat("<WAStD API endpoint", x$serializer, ">\n",
         "Retrieved on ", x$response$headers$date, ">\n", sep = "")
-    utils::str(head(x$features))
+    utils::str(utils::head(x$features))
     invisible(x)
 }

@@ -4,10 +4,10 @@
 \alias{get_wastd}
 \title{Return GeoJSON features from a WAStD API endpoint as data.table or list}
 \usage{
-get_wastd(serializer, query = list(taxon = "Cheloniidae", limit = 10000,
-  format = "json"), api_url = get_wastdr_api_url(),
-  api_token = get_wastdr_api_token(), api_un = get_wastdr_api_un(),
-  api_pw = get_wastdr_api_pw(), simplify = FALSE)
+get_wastd(serializer, query = list(taxon = "Cheloniidae", format = "json"),
+  api_url = get_wastdr_api_url(), api_token = get_wastdr_api_token(),
+  api_un = get_wastdr_api_un(), api_pw = get_wastdr_api_pw(),
+  simplify = FALSE)
 }
 \arguments{
 \item{serializer}{(character) WAStD API serializer name (required)
@@ -25,7 +25,7 @@ Possible values as per
 }}
 
 \item{query}{(list) API query parameters for format, limit, filtering
-(default: list(taxon='Cheloniidae', limit=10000, format='json'))}
+(default: list(taxon='Cheloniidae', format='json'))}
 
 \item{api_url}{(character) The WAStD API URL,
 default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}
@@ -67,9 +67,6 @@ track_records <- get_wastd('turtle-nest-encounters')
 tag_records <- get_wastd('animal-encounters')
 
 nest_json <- get_wastd('turtle-nest-encounters',
-                       query=list(
-                         nest_type='hatched-nest',
-                         limit=10000,
-                         format='json'))
+                       query=list(nest_type='hatched-nest', format='json'))
 }
 }
