@@ -33,10 +33,10 @@
 parse_turtle_nest_encounters <- function(wastd_api_response){
     obs <- NULL  # Make R CMD check happy
     . <- "Shut up Wesley"
-    wastd_api_response$content %>% {
+    wastd_api_response$features %>% {
         tibble::tibble(
-            area = purrr::map_dbl(., c("properties", "area")),
-            site = purrr::map_dbl(., c("properties", "site")),
+            # area = purrr::map_dbl(., c("properties", "area")),
+            # site = purrr::map_dbl(., c("properties", "site")),
             datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08,
             longitude = purrr::map_dbl(., c("properties", "longitude")),
             latitude = purrr::map_dbl(., c("properties", "latitude")),

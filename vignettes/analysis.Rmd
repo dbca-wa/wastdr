@@ -26,20 +26,16 @@ library(ggplot2)
 
 # Load data
 ```{r, eval=F}
-track_records <- wastdr::get_wastd(
-  "turtle-nest-encounters", 
-  query = list(taxon = "Cheloniidae", 
-               limit = 3000, 
-               format = "json"))
+track_records <- wastdr::get_wastd("turtle-nest-encounters")
 
 listviewer::jsonedit(head(track_records$content))
 #' Filter a data.frame to records collected at THV after 19 Dec 2016
 #' TODO replace with filtering for THV 2016/2017 field trips at API
 filter_2017 <- . %>% dplyr::filter(date > dmy("17/11/2017"))
-tracks <- wastdr::parse_turtle_nest_encounters(track_records) # %>% filter_2017
+tracks <- wastdr::parse_turtle_nest_encounters(track_records) %>% filter_2017
 tracks
-# save(tracks19, file = "~/tracks19.Rda")
-# load("~/tracks19.Rda")
+save(tracks, file = "~/tracks.Rda")
+load("~/tracks.Rda")
 ```
 
 
@@ -47,41 +43,49 @@ tracks
 
 ```{r, eval=F}
 #' makeAwesomeIcon factory
-mkicon <- function(ico, col) makeAwesomeIcon(icon = ico, markerColor = col)
+mkicon <- function(ico, col) leaflet::makeAwesomeIcon(icon = ico, markerColor = col)
 
 trackIcons <- awesomeIconList(
   "cheloniidae-fam" = mkicon('align-center', 'black'),
   "chelonia-mydas" = mkicon('align-center', 'green'),
   "eretmochelys-imbricata" = mkicon('align-center', 'blue'),
-  "natator-depressus" = mkicon('align-center', 'red')
+  "natator-depressus" = mkicon('align-center', 'red'),
+  "corolla-corolla" = mkicon('align-center', 'yellow'),
+  "lepidochelys-olivacea" = mkicon('align-center', 'green'),
+  "caretta-caretta" = mkicon('align-center', 'brown')
   )
 
 tagIcons <- awesomeIconList(
   "cheloniidae-fam" = mkicon('tag', 'black'),
   "chelonia-mydas" = mkicon('tag', 'green'),
   "eretmochelys-imbricata" = mkicon('tag', 'blue'),
-  "natator-depressus" = mkicon('tag', 'red')
+  "natator-depressus" = mkicon('tag', 'red'),
+  "corolla-corolla" = mkicon('tag', 'yellow'),
+  "lepidochelys-olivacea" = mkicon('tag', 'green'),
+  "caretta-caretta" = mkicon('tag', 'brown')
   )
 
 nestIcons <- awesomeIconList(
   "cheloniidae-fam" = mkicon('baby-formula', 'black'),
   "chelonia-mydas" = mkicon('baby-formula', 'green'),
   "eretmochelys-imbricata" = mkicon('baby-formula', 'blue'),
-  "natator-depressus" = mkicon('baby-formula', 'red')
+  "natator-depressus" = mkicon('baby-formula', 'red'),
+  "corolla-corolla" = mkicon('baby-formula', 'yellow'),
+  "lepidochelys-olivacea" = mkicon('baby-formula', 'green'),
+  "caretta-caretta" = mkicon('baby-formula', 'brown')
   )
 
 leaflet(tracks) %>% 
   addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
   addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-  setView(lng=115.0, lat=-21.45, zoom=12) %>%
+  setView(lng=120, lat=-20, zoom=5) %>%
   addAwesomeMarkers(~longitude, ~latitude,
-                    data = dplyr::filter(tracks, nest_type != "hatched-nest"), 
-                    # data=tracks, 
+                    # data = dplyr::filter(tracks, nest_type != "hatched-nest"), 
+                    data=tracks, 
                     icon = ~trackIcons[species],
                     label = ~paste("Track", date, nest_age, species, nest_type),
                     popup = ~paste("Track", date, nest_age, species, nest_type),
                     group = "Tracks") %>%
- 
   addLayersControl(baseGroups = c("Aerial", "Place names"),
                    overlayGroups = c("Tracks"))
 ```
