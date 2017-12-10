@@ -57,7 +57,7 @@
 #' }
 get_wastd <- function(serializer,
                       query = list(taxon = "Cheloniidae",
-                                   limit = 10000,
+                                   limit = 1000000,
                                    format = "json"),
                       api_url = get_wastdr_api_url(),
                       api_token = get_wastdr_api_token(),
@@ -76,7 +76,6 @@ get_wastd <- function(serializer,
     }
 
     res <- httr::GET(url, auth, ua, query = query)
-    # %>% httr::stop_for_status()
 
     if (res$status_code == 401) {
         stop(paste(
@@ -99,20 +98,30 @@ get_wastd <- function(serializer,
         stop("The response did not return any content.", call. = FALSE)
     }
 
-    parsed <- jsonlite::fromJSON(text,
-                                 flatten = simplify,
-                                 simplifyVector = simplify)$features
+    res_parsed <- jsonlite::fromJSON(text, flatten = F, simplifyVector = F)
+    features <- res_parsed$features
+    next_url <- res_parsed$`next`
 
     if (httr::http_error(res)) {
         stop(sprintf("WAStD API request failed [%s]\n%s\n<%s>",
                      httr::status_code(res),
-                     parsed$message),
+                     res_parsed$message),
              call. = FALSE)
     }
 
+    # We assume all errors are now handled and remaining requests will work
+    while (!is.null(res_parsed$`next`)) {
+        message(paste("[wastdr::get_wastd] fetching", res_parsed$`next`, "..."))
+        res <- httr::GET(res_parsed$`next`)
+        text <- httr::content(res, as = "text", encoding = "UTF-8")
+        res_parsed <- jsonlite::fromJSON(text, flatten = F, simplifyVector = F)
+        features = c(features, res_parsed$features)
+    }
+    message("[wastdr::get_wastd] done fetching all data")
+
     structure(
         list(
-            content = parsed,
+            features = features,
             serializer = serializer,
             response = res
             ),
@@ -132,6 +141,6 @@ get_wastd <- function(serializer,
 print.wastd_api_response <- function(x, ...) {
     cat("<WAStD API endpoint", x$serializer, ">\n",
         "Retrieved on ", x$response$headers$date, ">\n", sep = "")
-    utils::str(x$content)
+    utils::str(head(x$features))
     invisible(x)
 }

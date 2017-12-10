@@ -30,8 +30,7 @@ track_records <- wastdr::get_wastd(
   "turtle-nest-encounters", 
   query = list(taxon = "Cheloniidae", 
                limit = 3000, 
-               format = "json",
-               area = 19))
+               format = "json"))
 
 listviewer::jsonedit(head(track_records$content))
 #' Filter a data.frame to records collected at THV after 19 Dec 2016
