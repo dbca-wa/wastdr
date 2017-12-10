@@ -20,7 +20,7 @@
 #'   \item tag-observations (tag observations during encounters)
 #'   }
 #' @param query (list) API query parameters for format, limit, filtering
-#'   (default: list(taxon='Cheloniidae', limit=10000, format='json'))
+#'   (default: list(taxon='Cheloniidae', format='json'))
 #' @param api_url (character) The WAStD API URL,
 #'   default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}
 #' @param api_token (character) The WAStD API token,
@@ -50,15 +50,12 @@
 #' tag_records <- get_wastd('animal-encounters')
 #'
 #' nest_json <- get_wastd('turtle-nest-encounters',
-#'                        query=list(
-#'                          nest_type='hatched-nest',
-#'                          limit=10000,
-#'                          format='json'))
+#'                        query=list(nest_type='hatched-nest', format='json'))
 #' }
 get_wastd <- function(serializer,
-                      query = list(taxon = "Cheloniidae",
-                                   limit = 1000000,
-                                   format = "json"),
+                      query = list(
+                          taxon = "Cheloniidae",
+                          format = "json"),
                       api_url = get_wastdr_api_url(),
                       api_token = get_wastdr_api_token(),
                       api_un = get_wastdr_api_un(),
@@ -76,13 +73,15 @@ get_wastd <- function(serializer,
     }
 
     res <- httr::GET(url, auth, ua, query = query)
+    message(paste("[wastdr::get_wastd] fetched", res$url))
 
     if (res$status_code == 401) {
         stop(paste(
             "Authorization failed.\n",
             "If you are DBCA staff, run wastdr_setup(api_token='...').\n",
             "You can find your API token under \"My Profile\" in WAStD.\n",
-            "External collaborators run wastdr_setup(api_un='username', api_pw='password').",
+            "External collaborators run ",
+            "wastdr::wastdr_setup(api_un='username', api_pw='password').",
             "See ?wastdr_setup or vignette('setup')."),
         call. = FALSE)
     }
@@ -110,14 +109,16 @@ get_wastd <- function(serializer,
     }
 
     # We assume all errors are now handled and remaining requests will work
-    while (!is.null(res_parsed$`next`)) {
-        message(paste("[wastdr::get_wastd] fetching", res_parsed$`next`, "..."))
-        res <- httr::GET(res_parsed$`next`)
-        text <- httr::content(res, as = "text", encoding = "UTF-8")
-        res_parsed <- jsonlite::fromJSON(text, flatten = F, simplifyVector = F)
-        features = c(features, res_parsed$features)
+    while (!is.null(next_url)) {
+        message(paste("[wastdr::get_wastd] fetching", next_url, "..."))
+        res_parsed <- httr::GET(next_url,auth, ua) %>%
+            httr::stop_for_status(.) %>%
+            httr::content(., as = "text", encoding = "UTF-8") %>%
+            jsonlite::fromJSON(., flatten = F, simplifyVector = F)
+        features = append(features, res_parsed$features)
+        next_url <- res_parsed$`next`
     }
-    message("[wastdr::get_wastd] done fetching all data")
+    message("[wastdr::get_wastd] done fetching all data.")
 
     structure(
         list(
