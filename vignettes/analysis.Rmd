@@ -25,23 +25,42 @@ library(ggplot2)
 ```
 
 # Load data
-```{r, eval=F}
-track_records <- wastdr::get_wastd("turtle-nest-encounters")
-
-listviewer::jsonedit(head(track_records$content))
-#' Filter a data.frame to records collected at THV after 19 Dec 2016
-#' TODO replace with filtering for THV 2016/2017 field trips at API
+```{r, echo=T}
 filter_2017 <- . %>% dplyr::filter(date > dmy("17/11/2017"))
-tracks <- wastdr::parse_turtle_nest_encounters(track_records) %>% filter_2017
-tracks
-save(tracks, file = "~/tracks.Rda")
-load("~/tracks.Rda")
+filter_west_pilbara <- . %>% dplyr::filter(
+    longitude > 117.0,
+    longitude < 117.3,
+    latitude <  -20.5,
+    latitude >  -20.7
+)
+
+if (file.exists("~/tracks.Rda")){
+    load("~/tracks.Rda")
+} else {
+    track_records <- wastdr::get_wastd("turtle-nest-encounters")
+    # listviewer::jsonedit(utils::head(track_records$content))
+    tracks <- parse_turtle_nest_encounters(track_records) 
+    save(tracks, file = "~/tracks.Rda")
+}
+```
+
+# Filter data
+To filter records to one area, we can either filter by area or site ID 
+(once enabled), or simply filter by a bounding box.
+
+In this example, we'll filter to an area surveyed by the West Pilbara Turtle 
+Program.
+
+```{r}
+tracks_wp <- tracks %>% filter_2017 %>% filter_west_pilbara
+DT::datatable(tracks_wp)
+save(tracks_wp, file = "~/tracks_wp.Rda")
 ```
 
 
 # Map
 
-```{r, eval=F}
+```{r, eval=T}
 #' makeAwesomeIcon factory
 mkicon <- function(ico, col) leaflet::makeAwesomeIcon(icon = ico, markerColor = col)
 
@@ -75,13 +94,12 @@ nestIcons <- awesomeIconList(
   "caretta-caretta" = mkicon('baby-formula', 'brown')
   )
 
-leaflet(tracks) %>% 
+leaflet(tracks_wp, width=800, height=600) %>% 
   addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
   addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-  setView(lng=120, lat=-20, zoom=5) %>%
+  setView(lng=117.15, lat=-20.6, zoom=14) %>%
   addAwesomeMarkers(~longitude, ~latitude,
-                    # data = dplyr::filter(tracks, nest_type != "hatched-nest"), 
-                    data=tracks, 
+                    data=tracks_wp, 
                     icon = ~trackIcons[species],
                     label = ~paste("Track", date, nest_age, species, nest_type),
                     popup = ~paste("Track", date, nest_age, species, nest_type),
