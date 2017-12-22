@@ -1,10 +1,10 @@
 ---
-title: "Producing insight from WAStD"
-author: "Florian Mayer"
-date: "`r Sys.Date()`"
+title: "Data analysis - Producing insight from WAStD"
+author: "Florian Mayer, Flatbacks WA"
+date: "`r Sys.time()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Data analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -23,17 +23,14 @@ library(listviewer)
 library(DT)
 library(ggplot2)
 ```
+# Data
+This section illustrates how to access data, and defines helper methods to 
+filter, map, summarise, and plot data.
 
-# Load data
-```{r, echo=T}
-filter_2017 <- . %>% dplyr::filter(date > dmy("17/11/2017"))
-filter_west_pilbara <- . %>% dplyr::filter(
-    longitude > 117.0,
-    longitude < 117.3,
-    latitude <  -20.5,
-    latitude >  -20.7
-)
+Once refined, these helper functions will become core `wastdr` functionality.
 
+## Load data
+```{r load_data, echo=T}
 if (file.exists("~/tracks.Rda")){
     load("~/tracks.Rda")
 } else {
@@ -44,21 +41,55 @@ if (file.exists("~/tracks.Rda")){
 }
 ```
 
-# Filter data
+## Filter data
 To filter records to one area, we can either filter by area or site ID 
-(once enabled), or simply filter by a bounding box.
+(once enabled), or simply filter by a bounding box. 
+Additionaly, we'll filter by date.
 
 In this example, we'll filter to an area surveyed by the West Pilbara Turtle 
 Program.
 
-```{r}
-tracks_wp <- tracks %>% filter_2017 %>% filter_west_pilbara
-DT::datatable(tracks_wp)
-save(tracks_wp, file = "~/tracks_wp.Rda")
+```{r filter_data}
+filter_2017 <- . %>% dplyr::filter(date > dmy("17/11/2017"))
+
+# Broome Cable Beach BCB
+filter_broome <- . %>% dplyr::filter(
+    longitude > 122.19749450683595,
+    longitude < 122.21878051757814,
+    latitude > -17.98003932552008,
+    latitude < -17.807533645104847)
+
+# Eighty Mile Beach
+filter_eighty_mile_beach <- . %>% dplyr::filter(
+    longitude > 119.44885253906251,
+    longitude < 121.563720703125,
+    latitude > -20.159098270646922,
+    latitude < -18.994608853186367)
+
+# Pt Hedland (bbox includes town, could contain training data)
+filter_port_hedland <- . %>% dplyr::filter(
+    longitude > 118.57269287109375,
+    longitude < 118.6458206176758,
+    latitude > -20.315974678018147,
+    latitude < -20.293354957050294)
+
+# West Pilbara (Wickam Yacht Club and Bell's Beach)
+filter_west_pilbara <- . %>% dplyr::filter(
+    longitude > 117.0, 
+    longitude < 117.3, 
+    latitude >  -20.7,
+    latitude <  -20.5) 
+
+# Thevenard Island
+filter_thevenard <- . %>% dplyr::filter(
+    longitude > 114.96437072753908,
+    longitude < 115.03363609313966,
+    latitude > -21.470242707163145,
+    latitude < -21.444920225158263)
 ```
 
 
-# Map
+## Map data
 
 ```{r, eval=T}
 #' makeAwesomeIcon factory
@@ -94,16 +125,111 @@ nestIcons <- awesomeIconList(
   "caretta-caretta" = mkicon('baby-formula', 'brown')
   )
 
-leaflet(tracks_wp, width=800, height=600) %>% 
-  addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
-  addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-  setView(lng=117.15, lat=-20.6, zoom=14) %>%
-  addAwesomeMarkers(~longitude, ~latitude,
-                    data=tracks_wp, 
-                    icon = ~trackIcons[species],
-                    label = ~paste("Track", date, nest_age, species, nest_type),
-                    popup = ~paste("Track", date, nest_age, species, nest_type),
-                    group = "Tracks") %>%
-  addLayersControl(baseGroups = c("Aerial", "Place names"),
-                   overlayGroups = c("Tracks"))
+tracks_map <- function(track_data) {
+    leaflet(track_data, width=800, height=600) %>% 
+      addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
+      addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
+      clearBounds() %>%
+      addAwesomeMarkers(
+          ~longitude, ~latitude,
+          data=track_data, 
+          icon = ~trackIcons[species],
+          label = ~paste(date, nest_age, species, nest_type),
+          popup = ~paste(date, nest_age, species, nest_type),
+          group = "Tracks") %>%
+      addLayersControl(
+          baseGroups = c("Aerial", "Place names"),
+          overlayGroups = c("Tracks"))
+}
+```
+
+
+## Summarise and plot data
+Data (all tracks or filtered subsets) are filtered to only fresh observations,
+then grouped and tallied by date, species and type.
+
+Daily summaries are shown in wide form as tables, and (using long form) as 
+timeseries plots.
+
+```{r data_wp_daily}
+daily_species_by_type <- . %>% 
+    filter(nest_age=="fresh") %>%
+    group_by(date, species, nest_type) %>% 
+    tally() %>%
+    ungroup()
+
+daily_summary <- . %>% 
+    daily_species_by_type %>% 
+    tidyr::spread(nest_type, n, fill=0) %>%
+    DT::datatable(.)
+
+tracks_ts <- . %>% 
+    daily_species_by_type %>% 
+    {ggplot(data=., aes(x = date, y = n, colour = nest_type)) + 
+    geom_point() + 
+    # geom_smooth(method = "auto") +
+    geom_line() +
+    scale_x_date(breaks = scales::pretty_breaks(),
+                 labels = scales::date_format("%d %b %Y")) +
+    xlab("Date") +
+    ylab("Number counted per day") +
+    ggtitle("Nesting activity") +
+    theme_light()}
+```
+
+# Nesting activity
+This chapter uses the data and helpers from the above section and provides some
+insight into the different regions.
+
+This section is by no means complete and can be extended as appropriate.
+
+## Overall
+```{r, fig.width=7, fig.height=5}
+tracks %>% tracks_map
+```
+
+## Broome Cable Beach 
+```{r, fig.width=7, fig.height=5}
+tracks_cbb <- tracks %>% filter_2017 %>% filter_broome
+tracks_cbb %>% tracks_map
+tracks_cbb %>% DT::datatable(.)
+tracks_cbb %>% daily_summary
+tracks_cbb %>% tracks_ts
+```
+
+## Eighty Mile Beach
+```{r, fig.width=7, fig.height=5}
+tracks_emb <- tracks %>% filter_2017 %>% filter_eighty_mile_beach
+tracks_emb %>% tracks_map
+tracks_emb %>% DT::datatable(.)
+tracks_emb %>% daily_summary
+tracks_emb %>% tracks_ts
+```
+
+## Port Hedland
+```{r, fig.width=7, fig.height=5}
+tracks_pth <- tracks %>% filter_2017 %>% filter_port_hedland
+tracks_pth %>% tracks_map
+tracks_pth %>% DT::datatable(.)
+tracks_pth %>% daily_summary
+tracks_pth %>% tracks_ts
+```
+
+## West Pilbara Turtle Program
+
+```{r, fig.width=7, fig.height=5}
+tracks_wp <- tracks %>% filter_2017 %>% filter_west_pilbara
+tracks_wp %>% tracks_map
+tracks_wp %>% DT::datatable(.)
+tracks_wp %>% daily_summary
+tracks_wp %>% tracks_ts
+```
+
+## Thevenard Island
+```{r, fig.width=7, fig.height=5}
+tracks_thv <- tracks %>% filter_2017 %>% filter_thevenard
+tracks_thv %>% tracks_map
+tracks_thv %>% DT::datatable(.)
+tracks_thv %>% daily_summary
+tracks_thv %>% tracks_ts
 ```
