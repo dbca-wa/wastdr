@@ -92,8 +92,6 @@ filter_thevenard <- . %>% dplyr::filter(
 ## Map data
 
 ```{r, eval=T}
-#' makeAwesomeIcon factory
-
 # 'red', 'darkred', 'lightred', 'orange', 'beige', 
 # 'green', 'darkgreen', 'lightgreen', 
 # 'blue', 'darkblue', 'lightblue', 'purple', 'darkpurple', 'pink', 'cadetblue', 
@@ -108,36 +106,45 @@ speciesCols <- list(
     "caretta-caretta" = "orange"
 )
 
-mkicon <- function(ico, col) {leaflet::makeAwesomeIcon(icon = ico, 
-                                                       markerColor = col)}
-
-mkIcon <- awesomeIconList(
-    "cheloniidae-fam" = mkicon('align-center', 'black'),
-    "chelonia-mydas" = mkicon('align-center', 'green'),
-    "eretmochelys-imbricata" = mkicon('align-center', 'blue'),
-    "natator-depressus" = mkicon('align-center', 'red'),
-    "corolla-corolla" = mkicon('align-center', 'yellow'),
-    "lepidochelys-olivacea" = mkicon('align-center', 'green'),
-    "caretta-caretta" = mkicon('align-center', 'brown')
+speciesText <- list(
+    "cheloniidae-fam" = "Unknown",
+    "chelonia-mydas" = "Green",
+    "eretmochelys-imbricata" = "Hawksbill",
+    "natator-depressus" = "Flatback",
+    "corolla-corolla" = "Hatchback",
+    "lepidochelys-olivacea" = "Olive Ridley",
+    "caretta-caretta" = "Loggerhead"
 )
+
+typeText <- list(
+    "hatched-nest" = "NH", 
+    "successful-crawl" = "N",
+    "track-not-assessed" = "T+?",
+    "track-unsure" = "N?",
+    "nest" = "N",
+    "false-crawl" = "T")
+
+mkIcon <- function(nest_type, species) {
+    leaflet::makeAwesomeIcon(
+        text = nest_type, #typeText[nest_type][[1]],
+        markerColor = speciesCols[[species]])
+}
 
 tracks_map <- function(track_data) {
     l <- leaflet(width=800, height=600) %>% 
         addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
         addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
         clearBounds()
-    
+
     tracks.df <- split(track_data, track_data$species)
+    
     names(tracks.df) %>%
         purrr::walk( function(df) {
             l <<- l %>%
                 addAwesomeMarkers(
-                    data=tracks.df[[df]],
-                    lng=~longitude, lat=~latitude,
-                    # icon = ~mkIcon[species],
-                    icon = ~leaflet::makeAwesomeIcon(
-                        icon = "align-center", 
-                        markerColor = speciesCols[[df]]),
+                    data = tracks.df[[df]],
+                    lng = ~longitude, lat=~latitude,
+                    icon = ~mkIcon(nest_type, df),
                     label=~paste(date, nest_age, species, nest_type),
                     popup=~paste(date, nest_age, species, nest_type),
                     group = df
