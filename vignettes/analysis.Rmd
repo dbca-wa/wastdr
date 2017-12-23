@@ -4,15 +4,15 @@ author: "Florian Mayer, Flatbacks WA"
 date: "`r Sys.time()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Data analysis}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+    %\VignetteIndexEntry{Data analysis}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
 ---
-
+  
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+collapse = TRUE,
+comment = "#>"
 )
 library(wastdr)
 library(dplyr)
@@ -31,13 +31,13 @@ Once refined, these helper functions will become core `wastdr` functionality.
 
 ## Load data
 ```{r load_data, echo=T}
-if (file.exists("~/tracks.Rda")){
-    load("~/tracks.Rda")
+  if (file.exists("~/tracks.Rda")){
+load("~/tracks.Rda")
 } else {
-    track_records <- wastdr::get_wastd("turtle-nest-encounters")
-    # listviewer::jsonedit(utils::head(track_records$content))
-    tracks <- parse_turtle_nest_encounters(track_records) 
-    save(tracks, file = "~/tracks.Rda")
+track_records <- wastdr::get_wastd("turtle-nest-encounters")
+# listviewer::jsonedit(utils::head(track_records$content))
+tracks <- parse_turtle_nest_encounters(track_records) 
+save(tracks, file = "~/tracks.Rda")
 }
 ```
 
@@ -93,53 +93,63 @@ filter_thevenard <- . %>% dplyr::filter(
 
 ```{r, eval=T}
 #' makeAwesomeIcon factory
-mkicon <- function(ico, col) leaflet::makeAwesomeIcon(icon = ico, markerColor = col)
 
-trackIcons <- awesomeIconList(
-  "cheloniidae-fam" = mkicon('align-center', 'black'),
-  "chelonia-mydas" = mkicon('align-center', 'green'),
-  "eretmochelys-imbricata" = mkicon('align-center', 'blue'),
-  "natator-depressus" = mkicon('align-center', 'red'),
-  "corolla-corolla" = mkicon('align-center', 'yellow'),
-  "lepidochelys-olivacea" = mkicon('align-center', 'green'),
-  "caretta-caretta" = mkicon('align-center', 'brown')
-  )
+# 'red', 'darkred', 'lightred', 'orange', 'beige', 
+# 'green', 'darkgreen', 'lightgreen', 
+# 'blue', 'darkblue', 'lightblue', 'purple', 'darkpurple', 'pink', 'cadetblue', 
+# 'white', 'gray', 'lightgray', 'black'
+speciesCols <- list(
+    "cheloniidae-fam" = "gray",
+    "chelonia-mydas" = "green",
+    "eretmochelys-imbricata" = "darkblue",
+    "natator-depressus" = "beige",
+    "corolla-corolla" = "pink",
+    "lepidochelys-olivacea" = "darkgreen",
+    "caretta-caretta" = "orange"
+)
 
-tagIcons <- awesomeIconList(
-  "cheloniidae-fam" = mkicon('tag', 'black'),
-  "chelonia-mydas" = mkicon('tag', 'green'),
-  "eretmochelys-imbricata" = mkicon('tag', 'blue'),
-  "natator-depressus" = mkicon('tag', 'red'),
-  "corolla-corolla" = mkicon('tag', 'yellow'),
-  "lepidochelys-olivacea" = mkicon('tag', 'green'),
-  "caretta-caretta" = mkicon('tag', 'brown')
-  )
+mkicon <- function(ico, col) {leaflet::makeAwesomeIcon(icon = ico, 
+                                                       markerColor = col)}
 
-nestIcons <- awesomeIconList(
-  "cheloniidae-fam" = mkicon('baby-formula', 'black'),
-  "chelonia-mydas" = mkicon('baby-formula', 'green'),
-  "eretmochelys-imbricata" = mkicon('baby-formula', 'blue'),
-  "natator-depressus" = mkicon('baby-formula', 'red'),
-  "corolla-corolla" = mkicon('baby-formula', 'yellow'),
-  "lepidochelys-olivacea" = mkicon('baby-formula', 'green'),
-  "caretta-caretta" = mkicon('baby-formula', 'brown')
-  )
+mkIcon <- awesomeIconList(
+    "cheloniidae-fam" = mkicon('align-center', 'black'),
+    "chelonia-mydas" = mkicon('align-center', 'green'),
+    "eretmochelys-imbricata" = mkicon('align-center', 'blue'),
+    "natator-depressus" = mkicon('align-center', 'red'),
+    "corolla-corolla" = mkicon('align-center', 'yellow'),
+    "lepidochelys-olivacea" = mkicon('align-center', 'green'),
+    "caretta-caretta" = mkicon('align-center', 'brown')
+)
 
 tracks_map <- function(track_data) {
-    leaflet(track_data, width=800, height=600) %>% 
-      addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
-      addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-      clearBounds() %>%
-      addAwesomeMarkers(
-          ~longitude, ~latitude,
-          data=track_data, 
-          icon = ~trackIcons[species],
-          label = ~paste(date, nest_age, species, nest_type),
-          popup = ~paste(date, nest_age, species, nest_type),
-          group = "Tracks") %>%
-      addLayersControl(
-          baseGroups = c("Aerial", "Place names"),
-          overlayGroups = c("Tracks"))
+    l <- leaflet(width=800, height=600) %>% 
+        addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
+        addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
+        clearBounds()
+    
+    tracks.df <- split(track_data, track_data$species)
+    names(tracks.df) %>%
+        purrr::walk( function(df) {
+            l <<- l %>%
+                addAwesomeMarkers(
+                    data=tracks.df[[df]],
+                    lng=~longitude, lat=~latitude,
+                    # icon = ~mkIcon[species],
+                    icon = ~leaflet::makeAwesomeIcon(
+                        icon = "align-center", 
+                        markerColor = speciesCols[[df]]),
+                    label=~paste(date, nest_age, species, nest_type),
+                    popup=~paste(date, nest_age, species, nest_type),
+                    group = df
+                )
+        })
+    
+    l %>%
+        addLayersControl(
+            baseGroups = c("Aerial", "Place names"),
+            overlayGroups = names(tracks.df),
+            options = layersControlOptions(collapsed = FALSE)
+        )
 }
 ```
 
@@ -166,15 +176,15 @@ daily_summary <- . %>%
 tracks_ts <- . %>% 
     daily_species_by_type %>% 
     {ggplot(data=., aes(x = date, y = n, colour = nest_type)) + 
-    geom_point() + 
-    # geom_smooth(method = "auto") +
-    geom_line() +
-    scale_x_date(breaks = scales::pretty_breaks(),
-                 labels = scales::date_format("%d %b %Y")) +
-    xlab("Date") +
-    ylab("Number counted per day") +
-    ggtitle("Nesting activity") +
-    theme_light()}
+            geom_point() + 
+            # geom_smooth(method = "auto") +
+            geom_line() +
+            scale_x_date(breaks = scales::pretty_breaks(),
+                         labels = scales::date_format("%d %b %Y")) +
+            xlab("Date") +
+            ylab("Number counted per day") +
+            ggtitle("Nesting activity") +
+            theme_light()}
 ```
 
 # Nesting activity
