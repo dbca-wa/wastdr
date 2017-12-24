@@ -31,7 +31,7 @@ Once refined, these helper functions will become core `wastdr` functionality.
 
 ## Load data
 ```{r load_data, echo=T}
-  if (file.exists("~/tracks.Rda")){
+if (file.exists("~/tracks.Rda")){
 load("~/tracks.Rda")
 } else {
 track_records <- wastdr::get_wastd("turtle-nest-encounters")
@@ -50,7 +50,50 @@ In this example, we'll filter to an area surveyed by the West Pilbara Turtle
 Program.
 
 ```{r filter_data}
-filter_2017 <- . %>% dplyr::filter(date > dmy("17/11/2017"))
+species_colours <- tibble::tibble(
+    species = c(
+    "cheloniidae-fam",
+    "chelonia-mydas",
+    "eretmochelys-imbricata",
+    "natator-depressus",
+    "corolla-corolla",
+    "lepidochelys-olivacea",
+    "caretta-caretta"    
+    ),
+    species_colours = c(
+    "gray",
+    "green",
+    "darkblue",
+    "beige",
+    "pink",
+    "darkgreen",
+    "orange"
+    )
+)
+
+nest_type_text <- tibble::tibble(
+    nest_type = c(
+        "hatched-nest", 
+        "successful-crawl",
+        "track-not-assessed",
+        "track-unsure",
+        "nest",
+        "false-crawl"),
+    nest_type_text = c(
+        "NH", 
+        "N",
+        "T+?",
+        "N?",
+        "N",
+        "T")
+)
+
+
+add_lookups <- . %>% 
+    left_join(species_colours, by="species") %>%
+    left_join(nest_type_text, by="nest_type")
+
+filter_2017 <- . %>% dplyr::filter(date > dmy("17/11/2017")) %>% add_lookups
 
 # Broome Cable Beach BCB
 filter_broome <- . %>% dplyr::filter(
@@ -92,51 +135,13 @@ filter_thevenard <- . %>% dplyr::filter(
 ## Map data
 
 ```{r, eval=T}
-# 'red', 'darkred', 'lightred', 'orange', 'beige', 
-# 'green', 'darkgreen', 'lightgreen', 
-# 'blue', 'darkblue', 'lightblue', 'purple', 'darkpurple', 'pink', 'cadetblue', 
-# 'white', 'gray', 'lightgray', 'black'
-speciesCols <- list(
-    "cheloniidae-fam" = "gray",
-    "chelonia-mydas" = "green",
-    "eretmochelys-imbricata" = "darkblue",
-    "natator-depressus" = "beige",
-    "corolla-corolla" = "pink",
-    "lepidochelys-olivacea" = "darkgreen",
-    "caretta-caretta" = "orange"
-)
-
-speciesText <- list(
-    "cheloniidae-fam" = "Unknown",
-    "chelonia-mydas" = "Green",
-    "eretmochelys-imbricata" = "Hawksbill",
-    "natator-depressus" = "Flatback",
-    "corolla-corolla" = "Hatchback",
-    "lepidochelys-olivacea" = "Olive Ridley",
-    "caretta-caretta" = "Loggerhead"
-)
-
-typeText <- list(
-    "hatched-nest" = "NH", 
-    "successful-crawl" = "N",
-    "track-not-assessed" = "T+?",
-    "track-unsure" = "N?",
-    "nest" = "N",
-    "false-crawl" = "T")
-
-mkIcon <- function(nest_type, species) {
-    leaflet::makeAwesomeIcon(
-        text = nest_type, #typeText[nest_type][[1]],
-        markerColor = speciesCols[[species]])
-}
-
 tracks_map <- function(track_data) {
     l <- leaflet(width=800, height=600) %>% 
         addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
         addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
         clearBounds()
 
-    tracks.df <- split(track_data, track_data$species)
+    tracks.df <-  track_data %>% split(track_data$species)
     
     names(tracks.df) %>%
         purrr::walk( function(df) {
@@ -144,7 +149,9 @@ tracks_map <- function(track_data) {
                 addAwesomeMarkers(
                     data = tracks.df[[df]],
                     lng = ~longitude, lat=~latitude,
-                    icon = ~mkIcon(nest_type, df),
+                    icon = leaflet::makeAwesomeIcon(
+                        text = ~nest_type_text,
+                        markerColor = ~species_colours),
                     label=~paste(date, nest_age, species, nest_type),
                     popup=~paste(date, nest_age, species, nest_type),
                     group = df
@@ -202,7 +209,7 @@ This section is by no means complete and can be extended as appropriate.
 
 ## Overall
 ```{r, fig.width=7, fig.height=5}
-tracks %>% tracks_map
+tracks %>% add_lookups %>% tracks_map
 ```
 
 ## Broome Cable Beach 
