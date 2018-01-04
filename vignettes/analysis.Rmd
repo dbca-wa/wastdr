@@ -29,13 +29,21 @@ filter, map, summarise, and plot data.
 
 Once refined, these helper functions will become core `wastdr` functionality.
 
+## Caveat
+* The data as shown is still pre-QA until this message disappears.
+* Usernames (hidden here for privacy, but in WAStD) are still hilariously wrong
+  after matching the usernames as submitted to the actual usernames in WAStD.
+
+
 ## Load data
 ```{r load_data, echo=T}
 if (file.exists("~/tracks.Rda")){
 load("~/tracks.Rda")
 } else {
 track_records <- wastdr::get_wastd("turtle-nest-encounters")
-# listviewer::jsonedit(utils::head(track_records$content))
+# save(track_records, file = "~/track_records.Rda")
+# load("~/track_records.Rda")
+# listviewer::jsonedit(utils::head(track_records$features))
 tracks <- parse_turtle_nest_encounters(track_records) 
 save(tracks, file = "~/tracks.Rda")
 }
