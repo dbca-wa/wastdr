@@ -26,8 +26,8 @@ get_num_field <- function(lol, field) lol %>%
     unlist %>%
     as.numeric
 
-get_chr_field <- function(lol, field) lol %>%
-    unlist %>%
-    purrr::possibly(magrittr::extract(., field), otherwise = NA)
-    unlist %>%
-    as.character
+# get_chr_field <- function(lol, field) lol %>%
+#     unlist %>%
+#     purrr::possibly(magrittr::extract(., field), otherwise = NA)
+#     unlist %>%
+#     as.character
