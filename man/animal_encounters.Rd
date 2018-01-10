@@ -6,7 +6,7 @@
 \title{AnimalEncounter WAStD API response}
 \format{An object of class \code{wastd_api_response} of length 3.}
 \source{
-https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&limit=10&format=json
+https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&format=json
 }
 \usage{
 animal_encounters
@@ -21,9 +21,5 @@ library(dplyr)
 data("animal_encounters")
 data("animals")
 fresh_animals <- parse_animal_encounters(animal_encounters)
-testthat::expect_equal(nrow(fresh_animals), nrow(animals))
-# Compare pickled and fresh animals excluding list columns (like obs)
-testthat::expect_equal(fresh_animals \%>\% dplyr::select(-obs),
-                       animals \%>\% dplyr::select(-obs))
 }
 \keyword{datasets}

@@ -1,7 +1,7 @@
 Package: wastdr
 Type: Package
 Title: WA Sea Turtle Database 'WAStD' API Wrapper
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: person(c("Florian", "W."), "Mayer", 
     email="Florian.Mayer@dbca.wa.gov.au", role=c("aut", "cre"))
 Author: Florian W. Mayer [aut, cre]
@@ -40,6 +40,7 @@ Suggests:
     rmarkdown,
     skimr,
     tidyverse,
+    tidyr,
     testthat
 License: MIT + file LICENSE
 Encoding: UTF-8

@@ -16,6 +16,7 @@ comment = "#>"
 )
 library(wastdr)
 library(dplyr)
+library(tidyr)
 library(magrittr)
 library(skimr)
 library(leaflet)
@@ -48,6 +49,7 @@ load("~/track_records.Rda")
 tracks <- parse_turtle_nest_encounters(track_records)
 save(tracks, file = "~/tracks.Rda")
 }
+head(tracks)
 ```
 
 ## Filter data

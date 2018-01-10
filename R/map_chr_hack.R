@@ -10,9 +10,9 @@
 #' @export
 #' @examples
 #' data(animal_encounters)
-#' nn <- map_chr_hack(animal_encounters$content, c("properties", "name"))
+#' nn <- map_chr_hack(animal_encounters$features, c("properties", "name"))
 #' testthat::expect_true(is.na(nn[[1]]))
-#' testthat::expect_equal(nn[[2]], animal_encounters$content[[2]]$properties$name)
+#' testthat::expect_equal(nn[[2]], animal_encounters$features[[2]]$properties$name)
 map_chr_hack <- function(.x, .f, ...) {
     map(.x, .f, ...) %>%
         purrr::map_if(is.null, ~ NA_character_) %>%

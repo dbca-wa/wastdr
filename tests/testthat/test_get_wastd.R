@@ -36,9 +36,9 @@ testthat::test_that("get_wastd fails if HTTP error is returned", {
 
 testthat::test_that("get_wastd works with correct API token", {
     # API token available?
-    token <- Sys.getenv("MY_API_TOKEN")
+    token <- Sys.getenv("WASTDR_API_TOKEN")
     if (token == "") skip(
-        "Environment variable MY_API_TOKEN not set, skipping...")
+        "Environment variable WASTDR_API_TOKEN not set, skipping...")
     wastdr_setup(api_token = token)
 
     # API accessible?

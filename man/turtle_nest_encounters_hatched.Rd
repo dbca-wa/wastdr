@@ -6,7 +6,7 @@
 \title{TurtleNestEncounter (hatched nests) WAStD API response}
 \format{An object of class \code{wastd_api_response} of length 3.}
 \source{
-https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=10&format=json&nest_type__exact=hatched-nest
+https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&format=json&nest_type__exact=hatched-nest
 }
 \usage{
 turtle_nest_encounters_hatched
@@ -20,9 +20,5 @@ library(dplyr)
 data(turtle_nest_encounters_hatched)
 data(nests)
 fresh_nests <- parse_turtle_nest_encounters(turtle_nest_encounters_hatched)
-testthat::expect_equal(nrow(fresh_nests), nrow(nests))
-# Compare pickled and fresh nests excluding list columns (like obs)
-testthat::expect_equal(fresh_nests \%>\% dplyr::select(-obs),
-                       nests \%>\% dplyr::select(-obs))
 }
 \keyword{datasets}
