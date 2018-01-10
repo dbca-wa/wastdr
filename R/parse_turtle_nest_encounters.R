@@ -35,8 +35,8 @@ parse_turtle_nest_encounters <- function(wastd_api_response){
     . <- "Shut up Wesley"
     wastd_api_response$features %>% {
         tibble::tibble(
-            # area = purrr::map(get_num_field, c("properties", "area")) %>% as.numeric,
-            # site = purrr::map(get_num_field, c("properties", "site")) %>% as.numeric,
+            # area = purrr::map(., c("properties", "area")), # TODO
+            # site = purrr::map(., c("properties", "site")), # TODO
             datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08,
             longitude = purrr::map_dbl(., c("properties", "longitude")),
             latitude = purrr::map_dbl(., c("properties", "latitude")),
@@ -51,6 +51,7 @@ parse_turtle_nest_encounters <- function(wastd_api_response){
             # comments = purrr::map_chr(., c("properties", "comments")),
             absolute_admin_url = purrr::map_chr(., c("properties", "absolute_admin_url")),
             obs = purrr::map(., c("properties", "observation_set")),
+            # nest_tag_label = obs %>% purrr::map(get_chr_field, "tag_label"), # TODO
             hatching_success = obs %>% purrr::map(get_num_field, "hatching_success") %>% as.numeric,
             emergence_success = obs %>% purrr::map(get_num_field, "emergence_success") %>% as.numeric,
             clutch_size = obs %>% purrr::map(get_num_field, "egg_count_calculated") %>% as.numeric,

@@ -17,6 +17,7 @@ comment = "#>"
 library(wastdr)
 library(dplyr)
 library(magrittr)
+library(skimr)
 library(leaflet)
 library(lubridate)
 library(listviewer)
@@ -44,7 +45,7 @@ track_records <- wastdr::get_wastd("turtle-nest-encounters")
 # save(track_records, file = "~/track_records.Rda")
 # load("~/track_records.Rda")
 # listviewer::jsonedit(utils::head(track_records$features))
-tracks <- parse_turtle_nest_encounters(track_records) 
+tracks <- parse_turtle_nest_encounters(track_records)
 save(tracks, file = "~/tracks.Rda")
 }
 ```

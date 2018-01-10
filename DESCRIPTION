@@ -3,14 +3,16 @@ Type: Package
 Title: WA Sea Turtle Database 'WAStD' API Wrapper
 Version: 0.1.0
 Authors@R: person(c("Florian", "W."), "Mayer", 
-    email="Florian.Mayer@dpaw.wa.gov.au", role=c("aut", "cre"))
+    email="Florian.Mayer@dbca.wa.gov.au", role=c("aut", "cre"))
 Author: Florian W. Mayer [aut, cre]
-Maintainer: Florian W. Mayer <Florian.Mayer@dpaw.wa.gov.au>
+Maintainer: Florian W. Mayer <Florian.Mayer@dbca.wa.gov.au>
 Description: The 'WA Sea Turtle Database' 'WAStD' is a 'Django' web app with a 
     'RESTful' 'API' returning 'GeoJSON' 'FeatureCollections'. 
     'wastdr' provides helpers to retrieve data from the 'API', and to turn the 
     received 'GeoJSON' into R 'tibbles'. 'wastdr' will grow alongside 
     implemented use cases of retrieving and analysing 'WAStD' data.
+    'wastdr' can be seen as working examples for converting nested lists into
+    two-dimensional tibbles.
 URL: https://github.com/parksandwildlife/wastdr
 BugReports: https://github.com/parksandwildlife/wastdr/issues
 Depends:
@@ -36,6 +38,7 @@ Suggests:
     listviewer,
     plyr,
     rmarkdown,
+    skimr,
     tidyverse,
     testthat
 License: MIT + file LICENSE
