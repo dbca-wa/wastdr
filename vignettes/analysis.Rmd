@@ -24,6 +24,8 @@ library(lubridate)
 library(listviewer)
 library(DT)
 library(ggplot2)
+wastdr::wastdr_setup()
+# wastdr_settings()
 ```
 # Data
 This section illustrates how to access data, and defines helper methods to 

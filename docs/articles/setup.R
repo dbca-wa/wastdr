@@ -8,13 +8,11 @@ knitr::opts_chunk$set(
 ## ---- message=FALSE------------------------------------------------------
 #  require(wastdr)
 
-## ------------------------------------------------------------------------
+## ----eval=F--------------------------------------------------------------
 #  wastdr::get_wastd('encounters',
-#                    api_url = "https://strandings.dpaw.wa.gov.au/api/1/",
 #                    api_token = "asdfqwer1234")
 #  
 #  wastdr::get_wastd('encounters',
-#                    api_url = "https://strandings.dpaw.wa.gov.au/api/1/",
 #                    api_un = "my_usernname",
 #                    api_pw = "my_password")
 
@@ -28,11 +26,9 @@ knitr::opts_chunk$set(
 #  wastdr::wastdr_settings()
 
 ## ------------------------------------------------------------------------
-#  Sys.setenv(WASTDR_API_URL="https://strandings.dpaw.wa.gov.au/api/1/")
 #  Sys.setenv(WASTDR_API_TOKEN="Token c1234")
 
 ## ------------------------------------------------------------------------
-#  Sys.setenv(WASTDR_API_URL="https://strandings.dpaw.wa.gov.au/api/1/")
 #  Sys.setenv(WASTDR_API_UN="my_username")
 #  Sys.setenv(WASTDR_API_PW="my_password")
 

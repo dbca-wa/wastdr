@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -67,6 +67,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
+    </li>
     <li>
       <a href="../articles/getting-wastd.html">Getting WAStD</a>
     </li>
@@ -129,9 +132,9 @@ into a tibble.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>animal_encounters</span>)
-<span class='no'>nn</span> <span class='kw'>&lt;-</span> <span class='fu'>map_chr_hack</span>(<span class='no'>animal_encounters</span>$<span class='no'>content</span>, <span class='fu'>c</span>(<span class='st'>"properties"</span>, <span class='st'>"name"</span>))
+<span class='no'>nn</span> <span class='kw'>&lt;-</span> <span class='fu'>map_chr_hack</span>(<span class='no'>animal_encounters</span>$<span class='no'>features</span>, <span class='fu'>c</span>(<span class='st'>"properties"</span>, <span class='st'>"name"</span>))
 <span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/testthat/topics/logical-expectations'>expect_true</a></span>(<span class='fu'>is.na</span>(<span class='no'>nn</span><span class='kw'>[[</span><span class='fl'>1</span>]]))
-<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/testthat/topics/equality-expectations'>expect_equal</a></span>(<span class='no'>nn</span><span class='kw'>[[</span><span class='fl'>2</span>]], <span class='no'>animal_encounters</span>$<span class='no'>content</span><span class='kw'>[[</span><span class='fl'>2</span>]]$<span class='no'>properties</span>$<span class='no'>name</span>)</div></pre>
+<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/testthat/topics/equality-expectations'>expect_equal</a></span>(<span class='no'>nn</span><span class='kw'>[[</span><span class='fl'>2</span>]], <span class='no'>animal_encounters</span>$<span class='no'>features</span><span class='kw'>[[</span><span class='fl'>2</span>]]$<span class='no'>properties</span>$<span class='no'>name</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -56,7 +56,7 @@ wastdr::wastdr_settings()
 #>   API Password:  my_password
 ```
 
-For a more permanent configuration method, see the vignette "Setup".
+For a more permanent configuration method using environment variables please see the vignette "Setup".
 
 Get WAStD
 ---------
@@ -134,7 +134,7 @@ pkgdown::build_reference()
 pkgdown::build_site()
 devtools::test()
 devtools::check(check_version = T,  force_suggests = T, args = c('--as-cran','--timings'))
-covr::codecov()
+covr::codecov(token=Sys.getenv("CODECOV_TOKEN"))
 ```
 
 To enable local testing of the API as well as checking and upload of test coverage, add these two lines with the respective tokens to your .Rprofile:

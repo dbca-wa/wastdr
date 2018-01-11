@@ -45,13 +45,11 @@ There are three ways to supply the required settings to `wastdr::get_wastd()`.
 ## Per function call
 Firstly, they can be supplied directly to `wastdr::get_wastd()`:
 
-```{r}
+```{r eval=F}
 wastdr::get_wastd('encounters', 
-                  api_url = "https://strandings.dpaw.wa.gov.au/api/1/",
                   api_token = "asdfqwer1234")
 
 wastdr::get_wastd('encounters',
-                  api_url = "https://strandings.dpaw.wa.gov.au/api/1/",
                   api_un = "my_usernname",
                   api_pw = "my_password")
 ```
@@ -103,7 +101,6 @@ For a more permanent setup, the environment variables can be set in the user's
 DBCA staff add to their `.Rprofile`:
 
 ```{r}
-Sys.setenv(WASTDR_API_URL="https://strandings.dpaw.wa.gov.au/api/1/")
 Sys.setenv(WASTDR_API_TOKEN="Token c1234")
 ```
 
@@ -113,7 +110,6 @@ to the actual API token.
 External collaborators add to their `.Rprofile`:
 
 ```{r}
-Sys.setenv(WASTDR_API_URL="https://strandings.dpaw.wa.gov.au/api/1/")
 Sys.setenv(WASTDR_API_UN="my_username")
 Sys.setenv(WASTDR_API_PW="my_password")
 ```
