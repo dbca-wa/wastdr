@@ -45,11 +45,16 @@ if (file.exists("~/tracks.Rda")){
     load("~/tracks.Rda")
 } else {
     track_records <- wastdr::get_wastd("turtle-nest-encounters")
-    save(track_records, file = "~/track_records.Rda")
-    load("~/track_records.Rda")
+    save_file <- Sys.getenv("WASTDR_SAVE_LOCALLY", unset = FALSE)
+    if (save_file==TRUE){
+        save(track_records, file = "~/track_records.Rda")
+        load("~/track_records.Rda")
+    }
     # listviewer::jsonedit(utils::head(track_records$features))
     tracks <- parse_turtle_nest_encounters(track_records)
-    save(tracks, file = "~/tracks.Rda")
+    if (save_file==TRUE){
+        save(tracks, file = "~/tracks.Rda")
+    }
 }
 ```
 
