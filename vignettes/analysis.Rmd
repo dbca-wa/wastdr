@@ -115,7 +115,9 @@ filter_broome <- . %>% dplyr::filter(area_name=="Cable Beach Broome")
 filter_eighty_mile_beach <- . %>% dplyr::filter(area_name=="Eighty Mile Beach Caravan Park")
 filter_anna_plains <- . %>% dplyr::filter(area_name=="Anna Plains")
 filter_port_hedland <- . %>% dplyr::filter(site_name=="Port Hedland Turtle Nesting Beaches")
-filter_west_pilbara <- . %>% dplyr::filter(area_name=="Karratha / Burrup")
+filter_west_pilbara <- . %>% dplyr::filter(area_name=="West Pilbara Turtle Program beaches Wickam")
+filter_delambre <- . %>% dplyr::filter(area_name=="Delambre Island")
+filter_rosemary <- . %>% dplyr::filter(area_name=="Rosemary Island")
 filter_thevenard <- . %>% dplyr::filter(area_name=="Thevenard Island")
 ```
 
@@ -197,7 +199,7 @@ This section is by no means complete and can be extended as appropriate.
 
 ## Overall
 ```{r, fig.width=7, fig.height=5}
-tracks %>% add_lookups %>% tracks_map
+tracks %>% filter_2017 %>% tracks_map
 ```
 
 ## Broome Cable Beach 
@@ -231,8 +233,8 @@ tracks_emb %>% daily_summary
 tracks_emb %>% tracks_ts
 ```
 
-
 ## Port Hedland
+
 ```{r, fig.width=7, fig.height=5}
 tracks_pth <- tracks %>% filter_2017 %>% filter_port_hedland
 tracks_pth %>% tracks_map
@@ -255,7 +257,29 @@ tracks_wp %>% daily_summary
 tracks_wp %>% tracks_ts
 ```
 
+## Delambre Island
+
+```{r, fig.width=7, fig.height=5}
+tracks_de <- tracks %>% filter_2017 %>% filter_delambre
+tracks_de %>% tracks_map
+tracks_de %>% DT::datatable(.)
+tracks_de %>% daily_summary
+tracks_de %>% tracks_ts
+```
+
+## Rosemary Island
+Data pending upload from tablets.
+
+```{r, fig.width=7, fig.height=5, eval=F}
+tracks_ri <- tracks %>% filter_2017 %>% filter_rosemary
+tracks_ri %>% tracks_map
+tracks_ri %>% DT::datatable(.)
+tracks_ri %>% daily_summary
+tracks_ri %>% tracks_ts
+```
+
 ## Thevenard Island
+
 ```{r, fig.width=7, fig.height=5}
 tracks_thv <- tracks %>% filter_2017 %>% filter_thevenard
 tracks_thv %>% tracks_map

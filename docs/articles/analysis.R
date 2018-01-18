@@ -21,11 +21,16 @@ if (file.exists("~/tracks.Rda")){
     load("~/tracks.Rda")
 } else {
     track_records <- wastdr::get_wastd("turtle-nest-encounters")
-    save(track_records, file = "~/track_records.Rda")
-    load("~/track_records.Rda")
+    save_file <- Sys.getenv("WASTDR_SAVE_LOCALLY", unset = FALSE)
+    if (save_file==TRUE){
+        save(track_records, file = "~/track_records.Rda")
+        load("~/track_records.Rda")
+    }
     # listviewer::jsonedit(utils::head(track_records$features))
     tracks <- parse_turtle_nest_encounters(track_records)
-    save(tracks, file = "~/tracks.Rda")
+    if (save_file==TRUE){
+        save(tracks, file = "~/tracks.Rda")
+    }
 }
 
 ## ----filter_data---------------------------------------------------------
@@ -77,7 +82,9 @@ filter_broome <- . %>% dplyr::filter(area_name=="Cable Beach Broome")
 filter_eighty_mile_beach <- . %>% dplyr::filter(area_name=="Eighty Mile Beach Caravan Park")
 filter_anna_plains <- . %>% dplyr::filter(area_name=="Anna Plains")
 filter_port_hedland <- . %>% dplyr::filter(site_name=="Port Hedland Turtle Nesting Beaches")
-filter_west_pilbara <- . %>% dplyr::filter(area_name=="Karratha / Burrup")
+filter_west_pilbara <- . %>% dplyr::filter(area_name=="West Pilbara Turtle Program beaches Wickam")
+filter_delambre <- . %>% dplyr::filter(area_name=="Delambre Island")
+filter_rosemary <- . %>% dplyr::filter(area_name=="Rosemary Island")
 filter_thevenard <- . %>% dplyr::filter(area_name=="Thevenard Island")
 
 ## ---- eval=T-------------------------------------------------------------
@@ -138,7 +145,7 @@ tracks_ts <- . %>%
             ggplot2::theme_light()}
 
 ## ---- fig.width=7, fig.height=5------------------------------------------
-tracks %>% add_lookups %>% tracks_map
+tracks %>% filter_2017 %>% tracks_map
 
 ## ---- fig.width=7, fig.height=5------------------------------------------
 tracks_cbb <- tracks %>% filter_2017 %>% filter_broome
@@ -182,6 +189,20 @@ tracks_wp %>% tracks_map
 tracks_wp %>% DT::datatable(.)
 tracks_wp %>% daily_summary
 tracks_wp %>% tracks_ts
+
+## ---- fig.width=7, fig.height=5------------------------------------------
+tracks_de <- tracks %>% filter_2017 %>% filter_delambre
+tracks_de %>% tracks_map
+tracks_de %>% DT::datatable(.)
+tracks_de %>% daily_summary
+tracks_de %>% tracks_ts
+
+## ---- fig.width=7, fig.height=5, eval=F----------------------------------
+#  tracks_ri <- tracks %>% filter_2017 %>% filter_rosemary
+#  tracks_ri %>% tracks_map
+#  tracks_ri %>% DT::datatable(.)
+#  tracks_ri %>% daily_summary
+#  tracks_ri %>% tracks_ts
 
 ## ---- fig.width=7, fig.height=5------------------------------------------
 tracks_thv <- tracks %>% filter_2017 %>% filter_thevenard

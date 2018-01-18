@@ -31,6 +31,7 @@ A \code{tbl_df} with columns:
   \item name <chr>
   \item habitat <chr>
   \item disturbance <chr>
+  \item comments <chr>
   \item absolute_admin_url <chr>
   \item obs <list>
   \item photos <list>
