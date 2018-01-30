@@ -24,7 +24,7 @@ Possible values as per
 \item tag-observations (tag observations during encounters)
 }}
 
-\item{query}{(list) API query parameters for format, limit, filtering
+\item{query}{(list) API query parameters for format and filtering
 (default: list(taxon='Cheloniidae', format='json'))}
 
 \item{api_url}{(character) The WAStD API URL,

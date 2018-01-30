@@ -19,7 +19,7 @@
 #'   \item nesttag-observations (sightings of nest tags)
 #'   \item tag-observations (tag observations during encounters)
 #'   }
-#' @param query (list) API query parameters for format, limit, filtering
+#' @param query (list) API query parameters for format and filtering
 #'   (default: list(taxon='Cheloniidae', format='json'))
 #' @param api_url (character) The WAStD API URL,
 #'   default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}
