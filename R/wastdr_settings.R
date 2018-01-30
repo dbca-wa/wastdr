@@ -52,24 +52,23 @@ print.wastdr_settings <- function(x, ...) {
 #' @examples
 #' # WAStD users with a DBCA account can access their WAStD authentication
 #' # token on their profile page on WAStD:
-#' wastdr_setup(api_url = "https://strandings.dpaw.wa.gov.au/api/1/",
-#'              api_token = "wastd_token")
+#' wastdr_setup(api_token = "wastd_token")
 #'
 #' # Non-DBCA users will have been given a WAStD username and password:
-#' wastdr_setup(api_url = "https://strandings.dpaw.wa.gov.au/api/1/",
-#'              api_un = "wastd_username",
+#' wastdr_setup(api_un = "wastd_username",
 #'              api_pw = "wastd_password")
 #'
 #' # Not specifying the default WAStD API URL will reset the WAStD URL to its
 #' # default "https://strandings.dpaw.wa.gov.au/api/1/":
 #' wastdr_setup(api_token = "c12345asdfqwer")
 wastdr_setup <- function(
-    api_url = "https://strandings.dpaw.wa.gov.au/api/1/",
+    api_url = get_wastdr_api_url(),
     api_token = NULL,
-    api_un = NULL,
-    api_pw = NULL) {
+    api_un = get_wastdr_api_un(),
+    api_pw = get_wastdr_api_pw()) {
 
     Sys.setenv("WASTDR_API_URL" = api_url)
+
     if (!is.null(api_token)) {
         Sys.setenv("WASTDR_API_TOKEN" = paste("Token", api_token))
     }
@@ -86,7 +85,10 @@ wastdr_setup <- function(
 #
 #' @export
 #' @rdname wastdr_settings
-get_wastdr_api_url <- function(){ Sys.getenv("WASTDR_API_URL") }
+get_wastdr_api_url <- function(){
+    Sys.getenv("WASTDR_API_URL",
+               unset = "https://strandings.dpaw.wa.gov.au/api/1/")
+}
 
 #' @export
 #' @rdname wastdr_settings

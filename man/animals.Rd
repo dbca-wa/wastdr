@@ -3,36 +3,44 @@
 \docType{data}
 \name{animals}
 \alias{animals}
-\title{10 example animal encounters (taggings, strandings and others)}
-\format{A \code{tbl_df} with columns:
-\itemize{
-  \item datetime (dttm)
-  \item longitude (dbl)
-  \item latitude (dbl)
-  \item crs (chr)
-  \item location_accuracy (dbl)
-  \item date (date)
-  \item species (chr)
-  \item health (chr)
-  \item sex (chr)
-  \item behaviour (chr)
-  \item habitat (chr)
-  \item activity (chr)
-  \item nesting_event (chr)
-  \item checked_for_injuries (chr)
-  \item scanned_for_pit_tags (chr)
-  \item checked_for_flipper_tags (chr)
-  \item cause_of_death (chr)
-  \item cause_of_death_confidence (chr)
-  \item absolute_admin_url (chr)
-  \item obs (list)
-  \item source (chr)
-  \item source_id (chr)
-  \item encounter_type (chr)
-  \item status (chr)
-}}
+\title{Example animal encounters (taggings, strandings and others)}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 164 rows and 32 columns.}
 \source{
-https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&limit=10&format=json
+https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&format=json
+
+\itemize{
+  \item area_name <chr>
+  \item area_type <chr>
+  \item area_id <int>
+  \item site_name <chr>
+  \item site_type <chr>
+  \item site_id <int>
+  \item datetime <dttm>
+  \item longitude <chr>
+  \item latitude <chr>
+  \item crs <chr>
+  \item location_accuracy <dbl>
+  \item date <date>
+  \item name <chr>
+  \item species <chr>
+  \item health <chr>
+  \item sex <chr>
+  \item behaviour <chr>
+  \item habitat <chr>
+  \item activity <chr>
+  \item nesting_event <chr>
+  \item checked_for_injuries <chr>
+  \item scanned_for_pit_tags <chr>
+  \item checked_for_flipper_tags <chr>
+  \item cause_of_death <chr>
+  \item cause_of_death_confidence <chr>
+  \item absolute_admin_url <chr>
+  \item obs <list>
+  \item source <chr>
+  \item source_id <chr>
+  \item encounter_type <chr>
+  \item status <chr>
+}
 }
 \usage{
 animals

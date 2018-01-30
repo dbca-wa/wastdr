@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -67,6 +67,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
+    </li>
     <li>
       <a href="../articles/getting-wastd.html">Getting WAStD</a>
     </li>
@@ -107,10 +110,10 @@
   <a href='https://CRAN.R-project.org/package=jsonlite'>https://CRAN.R-project.org/package=jsonlite</a>.</p>
     
 
-    <pre class="usage"><span class='fu'>get_wastd</span>(<span class='no'>serializer</span>, <span class='kw'>query</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>taxon</span> <span class='kw'>=</span> <span class='st'>"Cheloniidae"</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
-  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>), <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
-  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(), <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
-  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>(), <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_wastd</span>(<span class='no'>serializer</span>, <span class='kw'>query</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>taxon</span> <span class='kw'>=</span> <span class='st'>"Cheloniidae"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>),
+  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(), <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
+  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(), <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>(),
+  <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -133,7 +136,7 @@ Possible values as per
     <tr>
       <th>query</th>
       <td><p>(list) API query parameters for format, limit, filtering
-(default: list(taxon='Cheloniidae', limit=10000, format='json'))</p></td>
+(default: list(taxon='Cheloniidae', format='json'))</p></td>
     </tr>
     <tr>
       <th>api_url</th>
@@ -178,10 +181,7 @@ list of lists (default: FALSE)</p></td>
 <span class='no'>tag_records</span> <span class='kw'>&lt;-</span> <span class='fu'>get_wastd</span>(<span class='st'>'animal-encounters'</span>)
 
 <span class='no'>nest_json</span> <span class='kw'>&lt;-</span> <span class='fu'>get_wastd</span>(<span class='st'>'turtle-nest-encounters'</span>,
-                       <span class='kw'>query</span><span class='kw'>=</span><span class='fu'>list</span>(
-                         <span class='kw'>nest_type</span><span class='kw'>=</span><span class='st'>'hatched-nest'</span>,
-                         <span class='kw'>limit</span><span class='kw'>=</span><span class='fl'>10000</span>,
-                         <span class='kw'>format</span><span class='kw'>=</span><span class='st'>'json'</span>))
+                       <span class='kw'>query</span><span class='kw'>=</span><span class='fu'>list</span>(<span class='kw'>nest_type</span><span class='kw'>=</span><span class='st'>'hatched-nest'</span>, <span class='kw'>format</span><span class='kw'>=</span><span class='st'>'json'</span>))
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

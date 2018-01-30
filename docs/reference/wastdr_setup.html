@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -67,6 +67,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
+    </li>
     <li>
       <a href="../articles/getting-wastd.html">Getting WAStD</a>
     </li>
@@ -102,8 +105,8 @@
     <p>Configure default WAStD settings</p>
     
 
-    <pre class="usage"><span class='fu'>wastdr_setup</span>(<span class='kw'>api_url</span> <span class='kw'>=</span> <span class='st'>"https://strandings.dpaw.wa.gov.au/api/1/"</span>,
-  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>wastdr_setup</span>(<span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(), <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(), <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -136,12 +139,10 @@ functions default to use the default URL, but require an API key to work.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># WAStD users with a DBCA account can access their WAStD authentication</span>
 <span class='co'># token on their profile page on WAStD:</span>
-<span class='fu'>wastdr_setup</span>(<span class='kw'>api_url</span> <span class='kw'>=</span> <span class='st'>"https://strandings.dpaw.wa.gov.au/api/1/"</span>,
-             <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='st'>"wastd_token"</span>)
+<span class='fu'>wastdr_setup</span>(<span class='kw'>api_token</span> <span class='kw'>=</span> <span class='st'>"wastd_token"</span>)
 
 <span class='co'># Non-DBCA users will have been given a WAStD username and password:</span>
-<span class='fu'>wastdr_setup</span>(<span class='kw'>api_url</span> <span class='kw'>=</span> <span class='st'>"https://strandings.dpaw.wa.gov.au/api/1/"</span>,
-             <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='st'>"wastd_username"</span>,
+<span class='fu'>wastdr_setup</span>(<span class='kw'>api_un</span> <span class='kw'>=</span> <span class='st'>"wastd_username"</span>,
              <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='st'>"wastd_password"</span>)
 
 <span class='co'># Not specifying the default WAStD API URL will reset the WAStD URL to its</span>

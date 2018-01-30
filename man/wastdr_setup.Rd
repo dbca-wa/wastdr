@@ -4,8 +4,8 @@
 \alias{wastdr_setup}
 \title{Configure default WAStD settings}
 \usage{
-wastdr_setup(api_url = "https://strandings.dpaw.wa.gov.au/api/1/",
-  api_token = NULL, api_un = NULL, api_pw = NULL)
+wastdr_setup(api_url = get_wastdr_api_url(), api_token = NULL,
+  api_un = get_wastdr_api_un(), api_pw = get_wastdr_api_pw())
 }
 \arguments{
 \item{api_url}{A WAStD API URL (optional),
@@ -27,12 +27,10 @@ functions default to use the default URL, but require an API key to work.
 \examples{
 # WAStD users with a DBCA account can access their WAStD authentication
 # token on their profile page on WAStD:
-wastdr_setup(api_url = "https://strandings.dpaw.wa.gov.au/api/1/",
-             api_token = "wastd_token")
+wastdr_setup(api_token = "wastd_token")
 
 # Non-DBCA users will have been given a WAStD username and password:
-wastdr_setup(api_url = "https://strandings.dpaw.wa.gov.au/api/1/",
-             api_un = "wastd_username",
+wastdr_setup(api_un = "wastd_username",
              api_pw = "wastd_password")
 
 # Not specifying the default WAStD API URL will reset the WAStD URL to its

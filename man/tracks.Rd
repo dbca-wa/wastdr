@@ -3,22 +3,30 @@
 \docType{data}
 \name{tracks}
 \alias{tracks}
-\title{100 example turtle nest encounters (tracks and nests)}
+\title{Example turtle nest encounters (tracks and nests)}
 \format{A \code{tbl_df} with columns:
 \itemize{
-  \item datetime (dttm)
-  \item longitude (dbl)
-  \item latitude (dbl)
-  \item crs (chr)
-  \item location_accuracy (dbl)
-  \item date (date)
-  \item species (chr)
-  \item nest_age (chr)
-  \item nest_type (chr)
-  \item habitat (chr)
+  \item area_name <chr>
+  \item area_type <chr>
+  \item area_id <int>
+  \item site_name <chr>
+  \item site_type <chr>
+  \item site_id <int>
+  \item datetime <dttm>
+  \item longitude <dbl>
+  \item latitude <dbl>
+  \item crs <chr>
+  \item location_accuracy <dbl>
+  \item date <date>
+  \item species <chr>
+  \item nest_age <chr>
+  \item nest_type <chr>
+  \item name <chr>
+  \item habitat <chr>
   \item disturbance <chr>
   \item absolute_admin_url <chr>
   \item obs <list>
+  \item photos <list>
   \item hatching_success <dbl>
   \item emergence_success <dbl>
   \item clutch_size <dbl>
@@ -26,6 +34,8 @@
   \item source_id <chr>
   \item encounter_type <chr>
   \item status <chr>
+  \item observer <chr>
+  \item reporter <chr>
 }}
 \source{
 https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=100&format=json

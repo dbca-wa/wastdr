@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="/index.html">
+  <a href="index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -45,6 +45,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="articles/analysis.html">Data analysis - Producing insight from WAStD</a>
+    </li>
+    <li>
       <a href="articles/getting-wastd.html">Getting WAStD</a>
     </li>
     <li>
@@ -83,7 +86,7 @@
 <p>The <a href="https://strandings.dpaw.wa.gov.au/">WA Strandings Database WAStD</a> (<a href="https://github.com/parksandwildlife/wastd/">github</a>) provides a <a href="https://strandings.dpaw.wa.gov.au/api/1/">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Parks &amp; Wildlife. The WAStD API uses token and basic authentication, see vignette on details.</p>
 <p>The API returns GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. <a href="http://www.qgis.org/en/site/">Quantum GIS</a>.</p>
 <p>If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON) into a two-dimensional tablular structure.</p>
-<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="http://www.rdocumentation.org/packages/dplyr/topics/reexports">dplyr::tibble</a></code>.</p>
+<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="http://dplyr.tidyverse.org/reference/reexports.html">dplyr::tibble</a></code>.</p>
 <p>The secondary purpose of <code>wastdr</code> is to centralise a collection of commonly used analyses and visualisations of turtle data. As development progresses, example analyses and visualisationsn will be added to the vignette. Contributions and requests are welcome!</p>
 <p>Lastly, to facilitate collaboration with external stakeholders, <code>wastdr</code> contains some anonymized example data (raw GeoJSON and parsed <code>tibble</code>) of turtle taggings, turtle track counts, and turtle nests.</p>
 <div id="installation" class="section level2">
@@ -91,7 +94,7 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install <code>wastdr</code> from GitHub:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools::<span class="kw">install_github</span>(<span class="st">"parksandwildlife/wastdr"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"parksandwildlife/wastdr"</span>)</code></pre></div>
 <p>While the WAStD API is only accessible to a selected audience, and <code>wastdr</code> is under active development, it is not feasible to release <code>wastdr</code> on CRAN yet. Therefore, <code>wastdr</code> will be distributed via GitHub for the time being.</p>
 </div>
 <div id="setup" class="section level2">
@@ -99,24 +102,24 @@ devtools::<span class="kw">install_github</span>(<span class="st">"parksandwildl
 <a href="#setup" class="anchor"></a>Setup</h2>
 <p><code>wastdr</code> requires to be configured with the WAStD API URL and an access token or a username / password combination. <code>wastdr</code> functions expect these settings to be available as environment variables. For convenience, <code>wastdr_setup</code> sets the correct variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
 <p>DBCA staff can find their WAStD API Token at <a href="https://strandings.dpaw.wa.gov.au/">WAStD</a> under “My Profile” and run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr::<span class="kw"><a href="reference/wastdr_setup.html">wastdr_setup</a></span>(<span class="dt">api_token =</span> <span class="st">"c12345asdfqwer"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_setup">wastdr_setup</a></span>(<span class="dt">api_token =</span> <span class="st">"c12345asdfqwer"</span>)</code></pre></div>
 <p>External collaborator can use their allocated username and password:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr::<span class="kw"><a href="reference/wastdr_setup.html">wastdr_setup</a></span>(<span class="dt">api_un =</span> <span class="st">"my_username"</span>, <span class="dt">api_pw=</span><span class="st">"my_password"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_setup">wastdr_setup</a></span>(<span class="dt">api_un =</span> <span class="st">"my_username"</span>, <span class="dt">api_pw=</span><span class="st">"my_password"</span>)</code></pre></div>
 <p>Review the settings with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr::<span class="kw"><a href="reference/wastdr_settings.html">wastdr_settings</a></span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings">wastdr_settings</a></span>()
 <span class="co">#&gt; &lt;wastdr settings&gt;</span>
 <span class="co">#&gt;   API URL:  https://strandings.dpaw.wa.gov.au/api/1/ </span>
 <span class="co">#&gt;   API Token:  Token c12345asdfqwer </span>
 <span class="co">#&gt;   API Username:  my_username </span>
 <span class="co">#&gt;   API Password:  my_password</span></code></pre></div>
-<p>For a more permanent configuration method, see the vignette “Setup”.</p>
+<p>For a more permanent configuration method using environment variables please see the vignette “Setup”.</p>
 </div>
 <div id="get-wastd" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-wastd" class="anchor"></a>Get WAStD</h2>
 <p>Once set up, <code>wastdr</code> can load data from WAStD simply with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">turtle_nest_encounters &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_wastd.html">get_wastd</a></span>(<span class="st">'turtle-nest-encounters'</span>)
-listviewer::<span class="kw">jsonedit</span>(turtle_nest_encounters)
+listviewer<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/listviewer/topics/jsonedit">jsonedit</a></span>(turtle_nest_encounters)
 
 tracks &lt;-<span class="st"> </span><span class="kw"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>(turtle_nest_encounters)</code></pre></div>
 <p>Valid endpoints are listed in the base API URL of WAStD, e.g.:</p>
@@ -141,9 +144,9 @@ tracks &lt;-<span class="st"> </span><span class="kw"><a href="reference/parse_t
 <span class="co"># listviewer::jsonedit(turtle_nest_encounters_hatched$content)</span>
 <span class="co"># listviewer::jsonedit(turtle_nest_encounters$content)</span>
 
-animals &lt;-<span class="st"> </span>wastdr::<span class="kw"><a href="reference/parse_animal_encounters.html">parse_animal_encounters</a></span>(animal_encounters)
-nests &lt;-<span class="st"> </span>wastdr::<span class="kw"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>(turtle_nest_encounters_hatched)
-tracks &lt;-<span class="st"> </span>wastdr::<span class="kw"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>(turtle_nest_encounters)
+animals &lt;-<span class="st"> </span>wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/parse_animal_encounters">parse_animal_encounters</a></span>(animal_encounters)
+nests &lt;-<span class="st"> </span>wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/parse_turtle_nest_encounters">parse_turtle_nest_encounters</a></span>(turtle_nest_encounters_hatched)
+tracks &lt;-<span class="st"> </span>wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/parse_turtle_nest_encounters">parse_turtle_nest_encounters</a></span>(turtle_nest_encounters)
 
 <span class="co"># DT::datatable(animals)</span>
 <span class="co"># DT::datatable(nests)</span>
@@ -170,11 +173,11 @@ tracks &lt;-<span class="st"> </span>wastdr::<span class="kw"><a href="reference
 <span class="kw">require</span>(devtools)
 <span class="kw">require</span>(pkgdown)
 <span class="kw">require</span>(covr)
-devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/document">document</a></span>(<span class="dt">roclets=</span><span class="kw">c</span>(<span class="st">'rd'</span>, <span class="st">'collate'</span>, <span class="st">'namespace'</span>, <span class="st">'vignette'</span>))
-pkgdown::<span class="kw"><a href="http://hadley.github.io/pkgdown/reference/build_site.html">build_site</a></span>()
-devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()
-devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/check">check</a></span>(<span class="dt">check_version =</span> T,  <span class="dt">force_suggests =</span> T, <span class="dt">args =</span> <span class="kw">c</span>(<span class="st">'--as-cran'</span>,<span class="st">'--timings'</span>))
-covr::<span class="kw"><a href="http://www.rdocumentation.org/packages/covr/topics/codecov">codecov</a></span>()</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/document">document</a></span>(<span class="dt">roclets=</span><span class="kw">c</span>(<span class="st">'rd'</span>, <span class="st">'collate'</span>, <span class="st">'namespace'</span>, <span class="st">'vignette'</span>))
+pkgdown<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pkgdown/topics/build_site">build_site</a></span>()
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/check">check</a></span>(<span class="dt">check_version =</span> T,  <span class="dt">force_suggests =</span> T, <span class="dt">args =</span> <span class="kw">c</span>(<span class="st">'--as-cran'</span>,<span class="st">'--timings'</span>))
+covr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/covr/topics/codecov">codecov</a></span>(<span class="dt">token=</span><span class="kw">Sys.getenv</span>(<span class="st">"CODECOV_TOKEN"</span>))</code></pre></div>
 <p>To enable local testing of the API as well as checking and upload of test coverage, add these two lines with the respective tokens to your .Rprofile:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.setenv</span>(<span class="dt">CODECOV_TOKEN =</span> <span class="st">"my-codecov-token"</span>)
 <span class="kw">Sys.setenv</span>(<span class="dt">MY_API_TOKEN =</span> <span class="st">"my-api-token"</span>)</code></pre></div>

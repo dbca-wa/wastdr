@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -67,6 +67,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
+    </li>
     <li>
       <a href="../articles/getting-wastd.html">Getting WAStD</a>
     </li>
@@ -118,11 +121,7 @@
 <span class='fu'>library</span>(<span class='no'>dplyr</span>)
 <span class='fu'>data</span>(<span class='no'>turtle_nest_encounters</span>)
 <span class='fu'>data</span>(<span class='no'>tracks</span>)
-<span class='no'>fresh_tracks</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='parse_turtle_nest_encounters.html'>parse_turtle_nest_encounters</a></span>(<span class='no'>turtle_nest_encounters</span>)
-<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/testthat/topics/equality-expectations'>expect_equal</a></span>(<span class='fu'>nrow</span>(<span class='no'>fresh_tracks</span>), <span class='fu'>nrow</span>(<span class='no'>tracks</span>))
-<span class='co'># Compare pickled and fresh tracks excluding list columns (like obs)</span>
-<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/testthat/topics/equality-expectations'>expect_equal</a></span>(<span class='no'>fresh_tracks</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(-<span class='no'>obs</span>),
-                       <span class='no'>tracks</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(-<span class='no'>obs</span>))</div></pre>
+<span class='no'>fresh_tracks</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='parse_turtle_nest_encounters.html'>parse_turtle_nest_encounters</a></span>(<span class='no'>turtle_nest_encounters</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

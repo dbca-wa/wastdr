@@ -79,7 +79,7 @@ Review the settings with:
 wastdr::wastdr_settings()
 ```
 
-For a more permanent configuration method, see the vignette "Setup".
+For a more permanent configuration method using environment variables please see the vignette "Setup".
 
 ## Get WAStD
 Once set up, `wastdr` can load data from WAStD simply with:
@@ -151,7 +151,7 @@ devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
 pkgdown::build_site()
 devtools::test()
 devtools::check(check_version = T,  force_suggests = T, args = c('--as-cran','--timings'))
-covr::codecov()
+covr::codecov(token=Sys.getenv("CODECOV_TOKEN"))
 ```
 
 To enable local testing of the API as well as checking and upload of test 

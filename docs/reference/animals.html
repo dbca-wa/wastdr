@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>10 example animal encounters (taggings, strandings and others) — animals • wastdr</title>
+<title>Example animal encounters (taggings, strandings and others) — animals • wastdr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -67,6 +67,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
+    </li>
     <li>
       <a href="../articles/getting-wastd.html">Getting WAStD</a>
     </li>
@@ -95,7 +98,7 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>10 example animal encounters (taggings, strandings and others)</h1>
+    <h1>Example animal encounters (taggings, strandings and others)</h1>
     </div>
 
     
@@ -107,36 +110,43 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A <code>tbl_df</code> with columns:</p><ul>
-<li><p>datetime (dttm)</p></li>
-<li><p>longitude (dbl)</p></li>
-<li><p>latitude (dbl)</p></li>
-<li><p>crs (chr)</p></li>
-<li><p>location_accuracy (dbl)</p></li>
-<li><p>date (date)</p></li>
-<li><p>species (chr)</p></li>
-<li><p>health (chr)</p></li>
-<li><p>sex (chr)</p></li>
-<li><p>behaviour (chr)</p></li>
-<li><p>habitat (chr)</p></li>
-<li><p>activity (chr)</p></li>
-<li><p>nesting_event (chr)</p></li>
-<li><p>checked_for_injuries (chr)</p></li>
-<li><p>scanned_for_pit_tags (chr)</p></li>
-<li><p>checked_for_flipper_tags (chr)</p></li>
-<li><p>cause_of_death (chr)</p></li>
-<li><p>cause_of_death_confidence (chr)</p></li>
-<li><p>absolute_admin_url (chr)</p></li>
-<li><p>obs (list)</p></li>
-<li><p>source (chr)</p></li>
-<li><p>source_id (chr)</p></li>
-<li><p>encounter_type (chr)</p></li>
-<li><p>status (chr)</p></li>
-</ul>
+    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 164 rows and 32 columns.</p>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&amp;limit=10&amp;format=json</p>
+    <p>https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&amp;format=json</p><ul>
+<li><p>area_name &lt;chr&gt;</p></li>
+<li><p>area_type &lt;chr&gt;</p></li>
+<li><p>area_id &lt;int&gt;</p></li>
+<li><p>site_name &lt;chr&gt;</p></li>
+<li><p>site_type &lt;chr&gt;</p></li>
+<li><p>site_id &lt;int&gt;</p></li>
+<li><p>datetime &lt;dttm&gt;</p></li>
+<li><p>longitude &lt;chr&gt;</p></li>
+<li><p>latitude &lt;chr&gt;</p></li>
+<li><p>crs &lt;chr&gt;</p></li>
+<li><p>location_accuracy &lt;dbl&gt;</p></li>
+<li><p>date &lt;date&gt;</p></li>
+<li><p>name &lt;chr&gt;</p></li>
+<li><p>species &lt;chr&gt;</p></li>
+<li><p>health &lt;chr&gt;</p></li>
+<li><p>sex &lt;chr&gt;</p></li>
+<li><p>behaviour &lt;chr&gt;</p></li>
+<li><p>habitat &lt;chr&gt;</p></li>
+<li><p>activity &lt;chr&gt;</p></li>
+<li><p>nesting_event &lt;chr&gt;</p></li>
+<li><p>checked_for_injuries &lt;chr&gt;</p></li>
+<li><p>scanned_for_pit_tags &lt;chr&gt;</p></li>
+<li><p>checked_for_flipper_tags &lt;chr&gt;</p></li>
+<li><p>cause_of_death &lt;chr&gt;</p></li>
+<li><p>cause_of_death_confidence &lt;chr&gt;</p></li>
+<li><p>absolute_admin_url &lt;chr&gt;</p></li>
+<li><p>obs &lt;list&gt;</p></li>
+<li><p>source &lt;chr&gt;</p></li>
+<li><p>source_id &lt;chr&gt;</p></li>
+<li><p>encounter_type &lt;chr&gt;</p></li>
+<li><p>status &lt;chr&gt;</p></li>
+</ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

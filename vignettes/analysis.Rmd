@@ -16,12 +16,16 @@ comment = "#>"
 )
 library(wastdr)
 library(dplyr)
+library(tidyr)
 library(magrittr)
+library(skimr)
 library(leaflet)
 library(lubridate)
 library(listviewer)
 library(DT)
 library(ggplot2)
+wastdr::wastdr_setup()
+# wastdr_settings()
 ```
 # Data
 This section illustrates how to access data, and defines helper methods to 
@@ -29,15 +33,28 @@ filter, map, summarise, and plot data.
 
 Once refined, these helper functions will become core `wastdr` functionality.
 
+## Caveat
+* The data as shown is still pre-QA until this message disappears.
+* Usernames are still hilariously wrong after matching the usernames 
+  (as submitted) to the actual usernames in WAStD. See the field `commments` for
+  QA messages.
+
 ## Load data
 ```{r load_data, echo=T}
 if (file.exists("~/tracks.Rda")){
-load("~/tracks.Rda")
+    load("~/tracks.Rda")
 } else {
-track_records <- wastdr::get_wastd("turtle-nest-encounters")
-# listviewer::jsonedit(utils::head(track_records$content))
-tracks <- parse_turtle_nest_encounters(track_records) 
-save(tracks, file = "~/tracks.Rda")
+    track_records <- wastdr::get_wastd("turtle-nest-encounters")
+    save_file <- Sys.getenv("WASTDR_SAVE_LOCALLY", unset = FALSE)
+    if (save_file==TRUE){
+        save(track_records, file = "~/track_records.Rda")
+        load("~/track_records.Rda")
+    }
+    # listviewer::jsonedit(utils::head(track_records$features))
+    tracks <- parse_turtle_nest_encounters(track_records)
+    if (save_file==TRUE){
+        save(tracks, file = "~/tracks.Rda")
+    }
 }
 ```
 
@@ -94,41 +111,14 @@ add_lookups <- . %>%
     left_join(nest_type_text, by="nest_type")
 
 filter_2017 <- . %>% dplyr::filter(date > dmy("17/11/2017")) %>% add_lookups
-
-# Broome Cable Beach BCB
-filter_broome <- . %>% dplyr::filter(
-    longitude > 122.19749450683595,
-    longitude < 122.21878051757814,
-    latitude > -17.98003932552008,
-    latitude < -17.807533645104847)
-
-# Eighty Mile Beach
-filter_eighty_mile_beach <- . %>% dplyr::filter(
-    longitude > 119.44885253906251,
-    longitude < 121.563720703125,
-    latitude > -20.159098270646922,
-    latitude < -18.994608853186367)
-
-# Pt Hedland (bbox includes town, could contain training data)
-filter_port_hedland <- . %>% dplyr::filter(
-    longitude > 118.57269287109375,
-    longitude < 118.6458206176758,
-    latitude > -20.315974678018147,
-    latitude < -20.293354957050294)
-
-# West Pilbara (Wickam Yacht Club and Bell's Beach)
-filter_west_pilbara <- . %>% dplyr::filter(
-    longitude > 117.0, 
-    longitude < 117.3, 
-    latitude >  -20.7,
-    latitude <  -20.5) 
-
-# Thevenard Island
-filter_thevenard <- . %>% dplyr::filter(
-    longitude > 114.96437072753908,
-    longitude < 115.03363609313966,
-    latitude > -21.470242707163145,
-    latitude < -21.444920225158263)
+filter_broome <- . %>% dplyr::filter(area_name=="Cable Beach Broome")
+filter_eighty_mile_beach <- . %>% dplyr::filter(area_name=="Eighty Mile Beach Caravan Park")
+filter_anna_plains <- . %>% dplyr::filter(area_name=="Anna Plains")
+filter_port_hedland <- . %>% dplyr::filter(site_name=="Port Hedland Turtle Nesting Beaches")
+filter_west_pilbara <- . %>% dplyr::filter(area_name=="West Pilbara Turtle Program beaches Wickam")
+filter_delambre <- . %>% dplyr::filter(area_name=="Delambre Island")
+filter_rosemary <- . %>% dplyr::filter(area_name=="Rosemary Island")
+filter_thevenard <- . %>% dplyr::filter(area_name=="Thevenard Island")
 ```
 
 
@@ -152,8 +142,8 @@ tracks_map <- function(track_data) {
                     icon = leaflet::makeAwesomeIcon(
                         text = ~nest_type_text,
                         markerColor = ~species_colours),
-                    label=~paste(date, nest_age, species, nest_type),
-                    popup=~paste(date, nest_age, species, nest_type),
+                    label=~paste(date, nest_age, species, nest_type, name),
+                    popup=~paste(date, nest_age, species, nest_type, name),
                     group = df
                 )
         })
@@ -189,16 +179,16 @@ daily_summary <- . %>%
 
 tracks_ts <- . %>% 
     daily_species_by_type %>% 
-    {ggplot(data=., aes(x = date, y = n, colour = nest_type)) + 
-            geom_point() + 
-            # geom_smooth(method = "auto") +
-            geom_line() +
-            scale_x_date(breaks = scales::pretty_breaks(),
-                         labels = scales::date_format("%d %b %Y")) +
-            xlab("Date") +
-            ylab("Number counted per day") +
-            ggtitle("Nesting activity") +
-            theme_light()}
+    {ggplot2::ggplot(data=., aes(x = date, y = n, colour = nest_type)) + 
+            ggplot2::geom_point() + 
+            ggplot2::geom_smooth(method = "auto") +
+            # ggplot2::geom_line() +
+            ggplot2::scale_x_date(breaks = scales::pretty_breaks(),
+                                  labels = scales::date_format("%d %b %Y")) +
+            ggplot2::xlab("Date") +
+            ggplot2::ylab("Number counted per day") +
+            ggplot2::ggtitle("Nesting activity") +
+            ggplot2::theme_light()}
 ```
 
 # Nesting activity
@@ -209,7 +199,7 @@ This section is by no means complete and can be extended as appropriate.
 
 ## Overall
 ```{r, fig.width=7, fig.height=5}
-tracks %>% add_lookups %>% tracks_map
+tracks %>% filter_2017 %>% tracks_map
 ```
 
 ## Broome Cable Beach 
@@ -219,6 +209,19 @@ tracks_cbb %>% tracks_map
 tracks_cbb %>% DT::datatable(.)
 tracks_cbb %>% daily_summary
 tracks_cbb %>% tracks_ts
+
+named_nests_cbb <- tracks_cbb %>% filter(!(is.na(name)))
+named_nests_cbb %>% tracks_map
+named_nests_cbb %>% DT::datatable(.)
+```
+
+## Anna Plains
+```{r, fig.width=7, fig.height=5}
+tracks_ap <- tracks %>% filter_2017 %>% filter_anna_plains
+tracks_ap %>% tracks_map
+tracks_ap %>% DT::datatable(.)
+tracks_ap %>% daily_summary
+tracks_ap %>% tracks_ts
 ```
 
 ## Eighty Mile Beach
@@ -231,12 +234,17 @@ tracks_emb %>% tracks_ts
 ```
 
 ## Port Hedland
+
 ```{r, fig.width=7, fig.height=5}
 tracks_pth <- tracks %>% filter_2017 %>% filter_port_hedland
 tracks_pth %>% tracks_map
 tracks_pth %>% DT::datatable(.)
 tracks_pth %>% daily_summary
 tracks_pth %>% tracks_ts
+
+# named_nests_pth <- tracks_pth %>% filter(!(is.na(name)))
+# named_nests_pth %>% tracks_map
+# named_nests_pth %>% DT::datatable(.)
 ```
 
 ## West Pilbara Turtle Program
@@ -249,7 +257,29 @@ tracks_wp %>% daily_summary
 tracks_wp %>% tracks_ts
 ```
 
+## Delambre Island
+
+```{r, fig.width=7, fig.height=5}
+tracks_de <- tracks %>% filter_2017 %>% filter_delambre
+tracks_de %>% tracks_map
+tracks_de %>% DT::datatable(.)
+tracks_de %>% daily_summary
+tracks_de %>% tracks_ts
+```
+
+## Rosemary Island
+Data pending upload from tablets.
+
+```{r, fig.width=7, fig.height=5, eval=F}
+tracks_ri <- tracks %>% filter_2017 %>% filter_rosemary
+tracks_ri %>% tracks_map
+tracks_ri %>% DT::datatable(.)
+tracks_ri %>% daily_summary
+tracks_ri %>% tracks_ts
+```
+
 ## Thevenard Island
+
 ```{r, fig.width=7, fig.height=5}
 tracks_thv <- tracks %>% filter_2017 %>% filter_thevenard
 tracks_thv %>% tracks_map
