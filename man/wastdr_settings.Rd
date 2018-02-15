@@ -35,3 +35,4 @@ wastdr_settings()
 \code{\link{get_wastdr_api_un}}, and
 \code{\link{get_wastdr_api_pw}}.
 }
+\concept{wastr settings}

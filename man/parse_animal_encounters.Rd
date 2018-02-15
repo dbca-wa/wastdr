@@ -29,6 +29,7 @@ A \code{tbl_df} with columns:
   \item species <chr>
   \item health <chr>
   \item sex <chr>
+  \item maturity <chr>
   \item behaviour <chr>
   \item habitat <chr>
   \item activity <chr>

@@ -1,10 +1,10 @@
 
-[![Build Status](https://travis-ci.org/parksandwildlife/wastdr.svg?branch=master)](https://travis-ci.org/parksandwildlife/wastdr) [![Test coverage](https://codecov.io/gh/parksandwildlife/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/parksandwildlife/wastdr)
+[![Build Status](https://travis-ci.org/dbca-wa/wastdr.svg?branch=master)](https://travis-ci.org/dbca-wa/wastdr) [![Test coverage](https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/dbca-wa/wastdr)
 
 wastdr makes WA Strandings Data accessible in R
 ===============================================
 
-The [WA Strandings Database WAStD](https://strandings.dpaw.wa.gov.au/) ([github](https://github.com/parksandwildlife/wastd/)) provides a [RESTful API](https://strandings.dpaw.wa.gov.au/api/1/). WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Parks & Wildlife. The WAStD API uses token and basic authentication, see vignette on details.
+The [WA Strandings Database WAStD](https://strandings.dpaw.wa.gov.au/) ([github](https://github.com/dbca-wa/wastd/)) provides a [RESTful API](https://strandings.dpaw.wa.gov.au/api/1/). WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Parks & Wildlife. The WAStD API uses token and basic authentication, see vignette on details.
 
 The API returns GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. [Quantum GIS](http://www.qgis.org/en/site/).
 
@@ -23,7 +23,7 @@ Install `wastdr` from GitHub:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("parksandwildlife/wastdr")
+devtools::install_github("dbca-wa/wastdr")
 ```
 
 While the WAStD API is only accessible to a selected audience, and `wastdr` is under active development, it is not feasible to release `wastdr` on CRAN yet. Therefore, `wastdr` will be distributed via GitHub for the time being.
@@ -116,7 +116,7 @@ Contribute
 
 Every contribution, constructive feedback, or suggestion is welcome!
 
-Send us your ideas and requests as [issues](https://github.com/parksandwildlife/wastdr/issues) or submit a pull request.
+Send us your ideas and requests as [issues](https://github.com/dbca-wa/wastdr/issues) or submit a pull request.
 
 Pull requests should eventually pass tests and checks (not introducing new ERRORs, WARNINGs or NOTEs apart from the "New CRAN package" NOTE):
 
@@ -143,4 +143,4 @@ Sys.setenv(CODECOV_TOKEN = "my-codecov-token")
 Sys.setenv(MY_API_TOKEN = "my-api-token")
 ```
 
-The `wastdr` [webpage](https://parksandwildlife.github.io/wastdr/) is hosted on gh-pages and generated using [pkgdown](https://github.com/hadley/pkgdown).
+The `wastdr` [webpage](https://dbca-wa.github.io/wastdr/) is hosted on gh-pages and generated using [pkgdown](https://github.com/hadley/pkgdown).

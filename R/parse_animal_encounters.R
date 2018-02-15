@@ -21,6 +21,7 @@
 #'   \item species <chr>
 #'   \item health <chr>
 #'   \item sex <chr>
+#'   \item maturity <chr>
 #'   \item behaviour <chr>
 #'   \item habitat <chr>
 #'   \item activity <chr>
@@ -65,6 +66,7 @@ parse_animal_encounters <- function(wastd_api_response){
             species = purrr::map_chr(., c("properties", "species")),
             health = purrr::map_chr(., c("properties", "health")),
             sex = purrr::map_chr(., c("properties", "sex")),
+            maturity = purrr::map_chr(., c("properties", "maturity")),
             # behaviour = purrr::map_chr(., c("properties", "behaviour")),
             habitat = purrr::map_chr(., c("properties", "habitat")),
             activity = purrr::map_chr(., c("properties", "activity")),
