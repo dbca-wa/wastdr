@@ -1,6 +1,6 @@
 ---
 title: "Data analysis - Producing insight from WAStD"
-author: "Florian Mayer, Flatbacks WA"
+author: "Florian Mayer, North West Shelf Flatbacks WA"
 date: "`r Sys.time()`"
 output: rmarkdown::html_vignette
 vignette: >
