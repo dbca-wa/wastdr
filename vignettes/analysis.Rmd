@@ -25,7 +25,7 @@ library(listviewer)
 library(DT)
 library(ggplot2)
 wastdr::wastdr_setup()
-# wastdr_settings()
+# wastdr::wastdr_settings()
 ```
 # Data
 This section illustrates how to access data, and defines helper methods to 
@@ -52,7 +52,7 @@ if (file.exists("~/tracks.Rda")){
     }
     # listviewer::jsonedit(utils::head(track_records$features))
     tracks <- parse_turtle_nest_encounters(track_records)
-    if (save_file==TRUE){
+    if (save_file == TRUE){
         save(tracks, file = "~/tracks.Rda")
     }
 }

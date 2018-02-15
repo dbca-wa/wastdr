@@ -7,13 +7,13 @@ always_allow_html: yes
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.path = "README-")
 ```
 
-[![Build Status](https://travis-ci.org/parksandwildlife/wastdr.svg?branch=master)](https://travis-ci.org/parksandwildlife/wastdr)
-[![Test coverage](https://codecov.io/gh/parksandwildlife/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/parksandwildlife/wastdr)
+[![Build Status](https://travis-ci.org/dbca-wa/wastdr.svg?branch=master)](https://travis-ci.org/dbca-wa/wastdr)
+[![Test coverage](https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/dbca-wa/wastdr)
 
 # wastdr makes WA Strandings Data accessible in R
 
 The [WA Strandings Database WAStD](https://strandings.dpaw.wa.gov.au/) 
-([github](https://github.com/parksandwildlife/wastd/)) 
+([github](https://github.com/dbca-wa/wastd/)) 
 provides a [RESTful API](https://strandings.dpaw.wa.gov.au/api/1/). 
 WAStD contains data about turtle strandings, turtle taggings, turtle track 
 and nest encounters, and some ancillary data (areas, surveys, staff).
@@ -46,7 +46,7 @@ Install `wastdr` from GitHub:
 
 ```{r, eval=FALSE}
 # install.packages("devtools")
-devtools::install_github("parksandwildlife/wastdr")
+devtools::install_github("dbca-wa/wastdr")
 ```
 
 While the WAStD API is only accessible to a selected audience, and `wastdr` is
@@ -132,7 +132,7 @@ vignette("getting-wastd")
 # Contribute
 Every contribution, constructive feedback, or suggestion is welcome! 
 
-Send us your ideas and requests as [issues](https://github.com/parksandwildlife/wastdr/issues) 
+Send us your ideas and requests as [issues](https://github.com/dbca-wa/wastdr/issues) 
 or submit a pull request.
 
 Pull requests should eventually pass tests and checks (not introducing new 
@@ -162,5 +162,5 @@ Sys.setenv(CODECOV_TOKEN = "my-codecov-token")
 Sys.setenv(MY_API_TOKEN = "my-api-token")
 ```
 
-The `wastdr` [webpage](https://parksandwildlife.github.io/wastdr/) is hosted on
+The `wastdr` [webpage](https://dbca-wa.github.io/wastdr/) is hosted on
 gh-pages and generated using [pkgdown](https://github.com/hadley/pkgdown).
