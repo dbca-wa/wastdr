@@ -21,10 +21,10 @@
 #'  }
 #' }
 get_num_field <- function(lol, field) lol %>%
-    unlist %>%
+    unlist() %>%
     extract_possibly(field) %>%
-    unlist %>%
-    as.numeric
+    unlist() %>%
+    as.numeric()
 
 # get_chr_field <- function(lol, field) lol %>%
 #     unlist %>%

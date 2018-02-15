@@ -12,30 +12,33 @@
 #' @examples
 #' wastdr_settings()
 wastdr_settings <- function() {
-    ops <- list(api_url = Sys.getenv("WASTDR_API_URL", ""),
-                api_token = Sys.getenv("WASTDR_API_TOKEN", ""),
-                api_un = Sys.getenv("WASTDR_API_UN"),
-                api_pw = Sys.getenv("WASTDR_API_PW")
-                )
-    structure(ops, class = "wastdr_settings")
+  ops <- list(
+    api_url = Sys.getenv("WASTDR_API_URL", ""),
+    api_token = Sys.getenv("WASTDR_API_TOKEN", ""),
+    api_un = Sys.getenv("WASTDR_API_UN"),
+    api_pw = Sys.getenv("WASTDR_API_PW")
+  )
+  structure(ops, class = "wastdr_settings")
 }
 
 #' @export
 print.wastdr_settings <- function(x, ...) {
-    cat("<wastdr settings>", sep = "\n")
-    cat("  API URL: ", x$api_url, "\n")
-    cat("  API Token: ", x$api_token, "\n")
-    cat("  API Username: ", x$api_un, "\n")
-    cat("  API Password: ", x$api_pw, "\n")
+  cat("<wastdr settings>", sep = "\n")
+  cat("  API URL: ", x$api_url, "\n")
+  cat("  API Token: ", x$api_token, "\n")
+  cat("  API Username: ", x$api_un, "\n")
+  cat("  API Password: ", x$api_pw, "\n")
 
 
-    if (is.null(x$api_token) && is.null(x$api_un)) {
-        message(paste0("wastdr requires either an API token or a username and ",
-                       "password to authenticate requests to the WAStD API."))
-    }
+  if (is.null(x$api_token) && is.null(x$api_un)) {
+    message(paste0(
+      "wastdr requires either an API token or a username and ",
+      "password to authenticate requests to the WAStD API."
+    ))
+  }
 }
 
-#------------------------------------------------------------------------------#
+# ------------------------------------------------------------------------------#
 # Setters
 #
 #' Configure default WAStD settings
@@ -62,42 +65,48 @@ print.wastdr_settings <- function(x, ...) {
 #' # default "https://strandings.dpaw.wa.gov.au/api/1/":
 #' wastdr_setup(api_token = "c12345asdfqwer")
 wastdr_setup <- function(
-    api_url = get_wastdr_api_url(),
-    api_token = NULL,
-    api_un = get_wastdr_api_un(),
-    api_pw = get_wastdr_api_pw()) {
+                         api_url = get_wastdr_api_url(),
+                         api_token = NULL,
+                         api_un = get_wastdr_api_un(),
+                         api_pw = get_wastdr_api_pw()) {
+  Sys.setenv("WASTDR_API_URL" = api_url)
 
-    Sys.setenv("WASTDR_API_URL" = api_url)
-
-    if (!is.null(api_token)) {
-        Sys.setenv("WASTDR_API_TOKEN" = paste("Token", api_token))
-    }
-    if (!is.null(api_un)) {
-        Sys.setenv("WASTDR_API_UN" = api_un)
-    }
-    if (!is.null(api_pw)) {
-        Sys.setenv("WASTDR_API_PW" = api_pw)
-    }
+  if (!is.null(api_token)) {
+    Sys.setenv("WASTDR_API_TOKEN" = paste("Token", api_token))
+  }
+  if (!is.null(api_un)) {
+    Sys.setenv("WASTDR_API_UN" = api_un)
+  }
+  if (!is.null(api_pw)) {
+    Sys.setenv("WASTDR_API_PW" = api_pw)
+  }
 }
 
-#------------------------------------------------------------------------------#
+# ------------------------------------------------------------------------------#
 # Getters
 #
 #' @export
 #' @rdname wastdr_settings
-get_wastdr_api_url <- function(){
-    Sys.getenv("WASTDR_API_URL",
-               unset = "https://strandings.dpaw.wa.gov.au/api/1/")
+get_wastdr_api_url <- function() {
+  Sys.getenv("WASTDR_API_URL",
+    unset = "https://strandings.dpaw.wa.gov.au/api/1/"
+  )
 }
 
 #' @export
 #' @rdname wastdr_settings
-get_wastdr_api_token <- function(){ Sys.getenv("WASTDR_API_TOKEN") }
+get_wastdr_api_token <- function() {
+  Sys.getenv("WASTDR_API_TOKEN")
+}
 
 #' @export
 #' @rdname wastdr_settings
-get_wastdr_api_un <- function(){ Sys.getenv("WASTDR_API_UN") }
+get_wastdr_api_un <- function() {
+  Sys.getenv("WASTDR_API_UN")
+}
 
 #' @export
 #' @rdname wastdr_settings
-get_wastdr_api_pw <- function(){ Sys.getenv("WASTDR_API_PW") }
+get_wastdr_api_pw <- function() {
+  Sys.getenv("WASTDR_API_PW")
+}

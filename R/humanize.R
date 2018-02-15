@@ -9,9 +9,9 @@
 #'   humanize("chelonia-mydas")
 #'   humanize("natator-depressus")
 #'   humanize("successful-crawl")
-humanize <- function(urlsafe_string){
-    . <- ""
-    urlsafe_string %>%
-        stringr::str_to_title(.) %>%
-        stringr::str_replace_all("-", " ")
+humanize <- function(urlsafe_string) {
+  . <- ""
+  urlsafe_string %>%
+    stringr::str_to_title(.) %>%
+    stringr::str_replace_all("-", " ")
 }

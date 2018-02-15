@@ -7,7 +7,7 @@
 #' @examples
 #' httpdate_as_gmt08("2016-11-20T21:46:57.163000Z")
 httpdate_as_gmt08 <- function(datestring) {
-    datestring %>%
-        parse_date_time(orders = c("YmdHMSz", "adbYHMS")) %>%
-        with_tz(tzone="Australia/Perth")
+  datestring %>%
+    parse_date_time(orders = c("YmdHMSz", "adbYHMS")) %>%
+    with_tz(tzone = "Australia/Perth")
 }

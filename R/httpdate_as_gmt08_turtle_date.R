@@ -20,11 +20,8 @@
 #' httpdate_as_gmt08_turtle_date("2016-11-20T04:00:00Z") # noon AWST
 #' httpdate_as_gmt08_turtle_date("2016-11-21T03:59:59Z") # 1 sec before noon AWST
 httpdate_as_gmt08_turtle_date <- function(datestring) {
-    datestring %>%
-        httpdate_as_gmt08 %>%
-        -hours(12) %>%
-        as_date()
+  datestring %>%
+    httpdate_as_gmt08() %>%
+    -hours(12) %>%
+    as_date()
 }
-
-
-

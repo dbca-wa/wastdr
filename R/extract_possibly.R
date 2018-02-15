@@ -10,5 +10,3 @@
 #'   extract_possibly(lol, "field1")
 #'   extract_possibly(lol, "field8")
 extract_possibly <- purrr::possibly(magrittr::extract, otherwise = -1)
-
-
