@@ -63,9 +63,6 @@ To filter records to one area, we can either filter by area or site ID
 (once enabled), or simply filter by a bounding box. 
 Additionaly, we'll filter by date.
 
-In this example, we'll filter to an area surveyed by the West Pilbara Turtle 
-Program.
-
 ```{r filter_data}
 species_colours <- tibble::tibble(
     species = c(
@@ -126,7 +123,7 @@ filter_thevenard <- . %>% dplyr::filter(area_name=="Thevenard Island")
 
 ```{r, eval=T}
 tracks_map <- function(track_data) {
-    l <- leaflet(width=800, height=600) %>% 
+    l <- leaflet(width=1000, height=800) %>% 
         addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
         addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
         clearBounds()
@@ -240,7 +237,7 @@ tracks_pth <- tracks %>% filter_2017 %>% filter_port_hedland
 tracks_pth %>% tracks_map
 tracks_pth %>% DT::datatable(.)
 tracks_pth %>% daily_summary
-tracks_pth %>% tracks_ts
+tracks_pth %>% tracks_ts %>% ggsave(filename="~/pth_daily_tracks.png", device="png", width=9, height=5)
 
 # named_nests_pth <- tracks_pth %>% filter(!(is.na(name)))
 # named_nests_pth %>% tracks_map
