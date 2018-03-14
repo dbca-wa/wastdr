@@ -2,6 +2,7 @@
 
 S3method(print,wastd_api_response)
 S3method(print,wastdr_settings)
+export(add_nest_labels)
 export(extract_possibly)
 export(get_num_field)
 export(get_wastdr_api_pw)
