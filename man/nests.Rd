@@ -39,16 +39,24 @@
 }}
 \source{
 https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=10&format=json&nest_type=hatched-nest
+
+https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=100&format=json
 }
 \usage{
+nests
+
 nests
 }
 \description{
 A parsed \code{wastd_api_response} with 10 turtle nest encounters from
 \code{get_wastd("turtle-nest-encounters")}
+
+A parsed \code{wastd_api_response} with 100 turtle nest encounters from
+\code{get_wastd("turtle-nest-encounters")}
 }
 \examples{
   data("nests")
+  head(nests)
   head(nests)
 }
 \keyword{datasets}

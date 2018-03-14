@@ -42,7 +42,7 @@ wastdr::wastdr_setup(api_token = "c12345asdfqwer")
 External collaborator can use their allocated username and password:
 
 ``` r
-wastdr::wastdr_setup(api_un = "my_username", api_pw="my_password")
+wastdr::wastdr_setup(api_un = "my_username", api_pw = "my_password")
 ```
 
 Review the settings with:
@@ -64,7 +64,7 @@ Get WAStD
 Once set up, `wastdr` can load data from WAStD simply with:
 
 ``` r
-turtle_nest_encounters <- get_wastd('turtle-nest-encounters')
+turtle_nest_encounters <- get_wastd("turtle-nest-encounters")
 listviewer::jsonedit(turtle_nest_encounters)
 
 tracks <- parse_turtle_nest_encounters(turtle_nest_encounters)
@@ -96,6 +96,9 @@ data("turtle_nest_encounters")
 animals <- wastdr::parse_animal_encounters(animal_encounters)
 nests <- wastdr::parse_turtle_nest_encounters(turtle_nest_encounters_hatched)
 tracks <- wastdr::parse_turtle_nest_encounters(turtle_nest_encounters)
+#> Warning: All formats failed to parse. No formats found.
+
+#> Warning: All formats failed to parse. No formats found.
 
 # DT::datatable(animals)
 # DT::datatable(nests)
@@ -109,6 +112,7 @@ See the vignette for in-depth examples of transforming, analysing and visualisin
 
 ``` r
 vignette("getting-wastd")
+vignette("analysis")
 ```
 
 Contribute
@@ -129,11 +133,13 @@ Pull requests should eventually pass tests and checks (not introducing new ERROR
 require(devtools)
 require(pkgdown)
 require(covr)
-devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
+require(styler)
+styler:::style_pkg()
+devtools::document(roclets = c("rd", "collate", "namespace", "vignette"))
 pkgdown::build_site()
 devtools::test()
-devtools::check(check_version = T,  force_suggests = T, args = c('--as-cran','--timings'))
-covr::codecov(token=Sys.getenv("CODECOV_TOKEN"))
+devtools::check(check_version = T, force_suggests = T, args = c("--as-cran", "--timings"))
+covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
 ```
 
 To enable local testing of the API as well as checking and upload of test coverage, add these two lines with the respective tokens to your .Rprofile:

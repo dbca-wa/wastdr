@@ -19,6 +19,11 @@ A \code{tbl_df} with columns:
   \item site_name <chr>
   \item site_type <chr>
   \item site_id <int>
+  \item survey_id <int>
+  \item survey_start_time <dttm>
+  \item survey_end_time <dttm>
+  \item survey_start_comments <chr>
+  \item survey_end_comments <chr>
   \item datetime <dttm>
   \item longitude <dbl>
   \item latitude <dbl>

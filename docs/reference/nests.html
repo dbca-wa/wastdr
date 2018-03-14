@@ -106,10 +106,14 @@
 
     
     <p>A parsed <code>wastd_api_response</code> with 10 turtle nest encounters from
-<code><a href='get_wastd.html'>get_wastd("turtle-nest-encounters")</a></code></p>
+<code>get_wastd("turtle-nest-encounters")</code></p>
+<p>A parsed <code>wastd_api_response</code> with 100 turtle nest encounters from
+<code>get_wastd("turtle-nest-encounters")</code></p>
     
 
-    <pre class="usage"><span class='no'>nests</span></pre>
+    <pre class="usage"><span class='no'>nests</span>
+
+<span class='no'>nests</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
@@ -149,21 +153,44 @@
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&amp;limit=10&amp;format=json&amp;nest_type=hatched-nest</p>
+<p>https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&amp;limit=100&amp;format=json</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>  <span class='fu'>data</span>(<span class='st'>"nests"</span>)
-  <span class='fu'>head</span>(<span class='no'>nests</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 31
-#&gt;   area_name  area_type area_id site_name  site_type site_id datetime           
-#&gt;   &lt;chr&gt;      &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;int&gt; &lt;dttm&gt;             
-#&gt; 1 Perth Met… Locality       18 Kensingto… Site           33 2017-09-12 16:11:47
-#&gt; # ... with 24 more variables: longitude &lt;dbl&gt;, latitude &lt;dbl&gt;, crs &lt;chr&gt;,
-#&gt; #   location_accuracy &lt;int&gt;, date &lt;date&gt;, species &lt;chr&gt;, nest_age &lt;chr&gt;,
-#&gt; #   nest_type &lt;chr&gt;, name &lt;chr&gt;, habitat &lt;chr&gt;, disturbance &lt;chr&gt;,
-#&gt; #   comments &lt;chr&gt;, absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;, photos &lt;list&gt;,
-#&gt; #   hatching_success &lt;dbl&gt;, emergence_success &lt;dbl&gt;, clutch_size &lt;dbl&gt;,
-#&gt; #   source &lt;chr&gt;, source_id &lt;chr&gt;, encounter_type &lt;chr&gt;, status &lt;chr&gt;,
-#&gt; #   observer &lt;chr&gt;, reporter &lt;chr&gt;</div></pre>
+  <span class='fu'>head</span>(<span class='no'>nests</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 36
+#&gt;   area_name  area_type area_id site_name            site_type site_id survey_id
+#&gt;   &lt;chr&gt;      &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;                &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;
+#&gt; 1 Perth Met… Locality       18 &lt;NA&gt;                 &lt;NA&gt;           NA        NA
+#&gt; 2 Perth Met… Locality       18 &lt;NA&gt;                 &lt;NA&gt;           NA        NA
+#&gt; 3 Perth Met… Locality       18 Kensington DBCA Off… Site           33        NA
+#&gt; 4 Perth Met… Locality       18 Kensington DBCA Off… Site           33        NA
+#&gt; 5 Perth Met… Locality       18 &lt;NA&gt;                 &lt;NA&gt;           NA        NA
+#&gt; 6 Perth Met… Locality       18 &lt;NA&gt;                 &lt;NA&gt;           NA        NA
+#&gt; # ... with 29 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,
+#&gt; #   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,
+#&gt; #   longitude &lt;dbl&gt;, latitude &lt;dbl&gt;, crs &lt;chr&gt;, location_accuracy &lt;int&gt;,
+#&gt; #   date &lt;date&gt;, species &lt;chr&gt;, nest_age &lt;chr&gt;, nest_type &lt;chr&gt;, name &lt;chr&gt;,
+#&gt; #   habitat &lt;chr&gt;, disturbance &lt;chr&gt;, comments &lt;chr&gt;, absolute_admin_url &lt;chr&gt;,
+#&gt; #   obs &lt;list&gt;, photos &lt;list&gt;, hatching_success &lt;dbl&gt;, emergence_success &lt;dbl&gt;,
+#&gt; #   clutch_size &lt;dbl&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;, encounter_type &lt;chr&gt;,
+#&gt; #   status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;</div><div class='input'>  <span class='fu'>head</span>(<span class='no'>nests</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 36
+#&gt;   area_name  area_type area_id site_name            site_type site_id survey_id
+#&gt;   &lt;chr&gt;      &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;                &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;
+#&gt; 1 Perth Met… Locality       18 &lt;NA&gt;                 &lt;NA&gt;           NA        NA
+#&gt; 2 Perth Met… Locality       18 &lt;NA&gt;                 &lt;NA&gt;           NA        NA
+#&gt; 3 Perth Met… Locality       18 Kensington DBCA Off… Site           33        NA
+#&gt; 4 Perth Met… Locality       18 Kensington DBCA Off… Site           33        NA
+#&gt; 5 Perth Met… Locality       18 &lt;NA&gt;                 &lt;NA&gt;           NA        NA
+#&gt; 6 Perth Met… Locality       18 &lt;NA&gt;                 &lt;NA&gt;           NA        NA
+#&gt; # ... with 29 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,
+#&gt; #   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,
+#&gt; #   longitude &lt;dbl&gt;, latitude &lt;dbl&gt;, crs &lt;chr&gt;, location_accuracy &lt;int&gt;,
+#&gt; #   date &lt;date&gt;, species &lt;chr&gt;, nest_age &lt;chr&gt;, nest_type &lt;chr&gt;, name &lt;chr&gt;,
+#&gt; #   habitat &lt;chr&gt;, disturbance &lt;chr&gt;, comments &lt;chr&gt;, absolute_admin_url &lt;chr&gt;,
+#&gt; #   obs &lt;list&gt;, photos &lt;list&gt;, hatching_success &lt;dbl&gt;, emergence_success &lt;dbl&gt;,
+#&gt; #   clutch_size &lt;dbl&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;, encounter_type &lt;chr&gt;,
+#&gt; #   status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

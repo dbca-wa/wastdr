@@ -58,20 +58,6 @@
 "animals"
 
 
-#' TurtleNestEncounter (hatched nests) WAStD API response
-#'
-#' This API response is parsed into wastr's data "nests".
-#'
-#' @source https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&format=json&nest_type__exact=hatched-nest
-#' @examples
-#' # Prove that turtle_nest_encounters_hatched parses to nests
-#' library(dplyr)
-#' data(turtle_nest_encounters_hatched)
-#' data(nests)
-#' fresh_nests <- parse_turtle_nest_encounters(turtle_nest_encounters_hatched)
-"turtle_nest_encounters_hatched"
-
-
 #' Example turtle nest encounters (only nests, excluding tracks)
 #'
 #' A parsed \code{wastd_api_response} with 10 turtle nest encounters from
@@ -119,16 +105,16 @@
 
 #' TurtleNestEncounter (tracks and nests) WAStD API response
 #'
-#' This API response is parsed into wastr's data "tracks".
+#' This API response is parsed into wastr's data "nests".
 #'
 #' @source https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=100&format=json
 #' @examples
 #' # Prove that turtle_nest_encounters_hatched parses to nests
 #' library(dplyr)
-#' data(turtle_nest_encounters)
-#' data(tracks)
-#' fresh_tracks <- parse_turtle_nest_encounters(turtle_nest_encounters)
-"turtle_nest_encounters"
+#' data(tne)
+#' data(nests)
+#' parsed_nests <- parse_turtle_nest_encounters(tne)
+"tne"
 
 #' Example turtle nest encounters (tracks and nests)
 #'
@@ -170,5 +156,5 @@
 #' }
 #' @source https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=100&format=json
 #' @examples
-#'   head(tracks)
-"tracks"
+#'   head(nests)
+"nests"

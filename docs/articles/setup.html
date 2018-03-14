@@ -81,7 +81,7 @@
       <h1>Setup</h1>
                         <h4 class="author">Florian Mayer</h4>
             
-            <h4 class="date">2018-02-15</h4>
+            <h4 class="date">2018-03-14</h4>
           </div>
 
     
@@ -99,20 +99,20 @@
 <div id="configure-credentials" class="section level1">
 <h1 class="hasAnchor">
 <a href="#configure-credentials" class="anchor"></a>Configure credentials</h1>
-<p><code><a href="http://www.rdocumentation.org/packages/wastdr/topics/get_wastd">wastdr::get_wastd()</a></code> accesses the <code>WAStD</code> API using:</p>
+<p><code>wastdr::get_wastd()</code> accesses the <code>WAStD</code> API using:</p>
 <ul>
 <li>the API URL, and</li>
 <li>an access token <strong>or</strong> a username / password.</li>
 </ul>
-<p>There are three ways to supply the required settings to <code><a href="http://www.rdocumentation.org/packages/wastdr/topics/get_wastd">wastdr::get_wastd()</a></code>.</p>
+<p>There are three ways to supply the required settings to <code>wastdr::get_wastd()</code>.</p>
 <div id="per-function-call" class="section level2">
 <h2 class="hasAnchor">
 <a href="#per-function-call" class="anchor"></a>Per function call</h2>
-<p>Firstly, they can be supplied directly to <code><a href="http://www.rdocumentation.org/packages/wastdr/topics/get_wastd">wastdr::get_wastd()</a></code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr::<span class="kw"><a href="../reference/get_wastd.html">get_wastd</a></span>(<span class="st">'encounters'</span>, 
+<p>Firstly, they can be supplied directly to <code>wastdr::get_wastd()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr::<span class="kw">get_wastd</span>(<span class="st">'encounters'</span>, 
                   <span class="dt">api_token =</span> <span class="st">"asdfqwer1234"</span>)
 
-wastdr::<span class="kw"><a href="../reference/get_wastd.html">get_wastd</a></span>(<span class="st">'encounters'</span>,
+wastdr::<span class="kw">get_wastd</span>(<span class="st">'encounters'</span>,
                   <span class="dt">api_un =</span> <span class="st">"my_usernname"</span>,
                   <span class="dt">api_pw =</span> <span class="st">"my_password"</span>)</code></pre></div>
 <p>This method overrides any other settings, but leads to verbose code with confidential data (token or password) in plain text.</p>
@@ -120,7 +120,7 @@ wastdr::<span class="kw"><a href="../reference/get_wastd.html">get_wastd</a></sp
 <div id="per-session" class="section level2">
 <h2 class="hasAnchor">
 <a href="#per-session" class="anchor"></a>Per session</h2>
-<p>If <code>api_*</code> settings are not provided, <code><a href="http://www.rdocumentation.org/packages/wastdr/topics/get_wastd">wastdr::get_wastd</a></code> defaults to specifically named environment variables.</p>
+<p>If <code>api_*</code> settings are not provided, <code>wastdr::get_wastd</code> defaults to specifically named environment variables.</p>
 <p>For convenience, <code>wastdr_setup</code> sets these environment variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
 <p>If you are an employee of the Western Australian Department of Biodiversity, Conservation and Attractions (DBCA), formerly the Department of Parks and Wildlife, then you can find your valid WAStD API Token at <a href="https://strandings.dpaw.wa.gov.au/">WAStD</a> under “My Profile” and run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr::<span class="kw"><a href="../reference/wastdr_setup.html">wastdr_setup</a></span>(<span class="dt">api_token =</span> <span class="st">"c12345asdfqwer"</span>)</code></pre></div>
