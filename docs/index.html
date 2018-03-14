@@ -121,10 +121,9 @@ devtools::<span class="kw">install_github</span>(<span class="st">"dbca-wa/wastd
 <h2 class="hasAnchor">
 <a href="#get-wastd" class="anchor"></a>Get WAStD</h2>
 <p>Once set up, <code>wastdr</code> can load data from WAStD simply with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">turtle_nest_encounters &lt;-<span class="st"> </span><span class="kw">get_wastd</span>(<span class="st">"turtle-nest-encounters"</span>)
-listviewer::<span class="kw">jsonedit</span>(turtle_nest_encounters)
-
-tracks &lt;-<span class="st"> </span><span class="kw"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>(turtle_nest_encounters)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tne &lt;-<span class="st"> </span><span class="kw">get_wastd</span>(<span class="st">"turtle-nest-encounters"</span>)
+listviewer::<span class="kw">jsonedit</span>(tne)
+nests &lt;-<span class="st"> </span><span class="kw"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>(tne)</code></pre></div>
 <p>Valid endpoints are listed in the base API URL of WAStD, e.g.:</p>
 <ul>
 <li><code>encounters</code></li>
@@ -140,22 +139,15 @@ tracks &lt;-<span class="st"> </span><span class="kw"><a href="reference/parse_t
 <span class="co">#&gt; Loading required package: wastdr</span>
 
 <span class="kw">data</span>(<span class="st">"animal_encounters"</span>)
-<span class="kw">data</span>(<span class="st">"turtle_nest_encounters_hatched"</span>)
-<span class="kw">data</span>(<span class="st">"turtle_nest_encounters"</span>)
+<span class="kw">data</span>(<span class="st">"tne"</span>)
 
 <span class="co"># listviewer::jsonedit(animal_encounters$content)</span>
-<span class="co"># listviewer::jsonedit(turtle_nest_encounters_hatched$content)</span>
-<span class="co"># listviewer::jsonedit(turtle_nest_encounters$content)</span>
+<span class="co"># listviewer::jsonedit(tne$content)</span>
 
 animals &lt;-<span class="st"> </span>wastdr::<span class="kw"><a href="reference/parse_animal_encounters.html">parse_animal_encounters</a></span>(animal_encounters)
-nests &lt;-<span class="st"> </span>wastdr::<span class="kw"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>(turtle_nest_encounters_hatched)
-tracks &lt;-<span class="st"> </span>wastdr::<span class="kw"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>(turtle_nest_encounters)
-<span class="co">#&gt; Warning: All formats failed to parse. No formats found.</span>
-
-<span class="co">#&gt; Warning: All formats failed to parse. No formats found.</span>
+tracks &lt;-<span class="st"> </span>wastdr::<span class="kw"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>(tne)
 
 <span class="co"># DT::datatable(animals)</span>
-<span class="co"># DT::datatable(nests)</span>
 <span class="co"># DT::datatable(tracks)</span></code></pre></div>
 </div>
 <div id="learn-more" class="section level2">

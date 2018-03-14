@@ -36,7 +36,7 @@ For this vignette, we'll use the packaged example data.
 
 ```{r, eval=T}
 data(animal_encounters)
-data(nests)
+data(tne)
 ```
 
 ```{r load_vignette_data, eval=FALSE}
@@ -47,7 +47,7 @@ load(file = "vignettes/data.rda")
 listviewer::jsonedit(animal_encounters$features, width = 800, height = 600)
 
 animals <- parse_animal_encounters(animal_encounters)
-nests <- parse_turtle_nest_encounters(nests)
+nests <- parse_turtle_nest_encounters(tne)
 
 DT::datatable(animals)
 # DT::datatable(nests)

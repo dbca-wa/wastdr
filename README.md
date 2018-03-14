@@ -64,10 +64,9 @@ Get WAStD
 Once set up, `wastdr` can load data from WAStD simply with:
 
 ``` r
-turtle_nest_encounters <- get_wastd("turtle-nest-encounters")
-listviewer::jsonedit(turtle_nest_encounters)
-
-tracks <- parse_turtle_nest_encounters(turtle_nest_encounters)
+tne <- get_wastd("turtle-nest-encounters")
+listviewer::jsonedit(tne)
+nests <- parse_turtle_nest_encounters(tne)
 ```
 
 Valid endpoints are listed in the base API URL of WAStD, e.g.:
@@ -86,22 +85,15 @@ require(wastdr)
 #> Loading required package: wastdr
 
 data("animal_encounters")
-data("turtle_nest_encounters_hatched")
-data("turtle_nest_encounters")
+data("tne")
 
 # listviewer::jsonedit(animal_encounters$content)
-# listviewer::jsonedit(turtle_nest_encounters_hatched$content)
-# listviewer::jsonedit(turtle_nest_encounters$content)
+# listviewer::jsonedit(tne$content)
 
 animals <- wastdr::parse_animal_encounters(animal_encounters)
-nests <- wastdr::parse_turtle_nest_encounters(turtle_nest_encounters_hatched)
-tracks <- wastdr::parse_turtle_nest_encounters(turtle_nest_encounters)
-#> Warning: All formats failed to parse. No formats found.
-
-#> Warning: All formats failed to parse. No formats found.
+tracks <- wastdr::parse_turtle_nest_encounters(tne)
 
 # DT::datatable(animals)
-# DT::datatable(nests)
 # DT::datatable(tracks)
 ```
 
