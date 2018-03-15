@@ -25,9 +25,6 @@ get_wastdr_api_pw()
 \description{
 Get or set wastdr WAStD settings
 }
-\examples{
-wastdr_settings()
-}
 \seealso{
 \code{\link{wastdr_setup}},
 \code{\link{get_wastdr_api_url}},

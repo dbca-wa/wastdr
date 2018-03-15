@@ -9,8 +9,6 @@
 #' \code{\link{get_wastdr_api_un}}, and
 #' \code{\link{get_wastdr_api_pw}}.
 #' @family wastr settings
-#' @examples
-#' wastdr_settings()
 wastdr_settings <- function() {
   ops <- list(
     api_url = Sys.getenv("WASTDR_API_URL", ""),

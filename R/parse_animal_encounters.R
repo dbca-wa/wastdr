@@ -11,6 +11,11 @@
 #'   \item site_name <chr>
 #'   \item site_type <chr>
 #'   \item site_id <int>
+#'   \item survey_id <int>
+#'   \item survey_start_time <dttm>
+#'   \item survey_end_time <dttm>
+#'   \item survey_start_comments <chr>
+#'   \item survey_end_comments <chr>
 #'   \item datetime <dttm>
 #'   \item longitude <chr>
 #'   \item latitude <chr>
@@ -53,6 +58,11 @@ parse_animal_encounters <- function(wastd_api_response) {
       site_name = map_chr_hack(., c("properties", "site", "name")),
       site_type = map_chr_hack(., c("properties", "site", "area_type")),
       site_id = map_chr_hack(., c("properties", "site", "pk")) %>% as.integer(),
+      survey_id = map_chr_hack(., c("properties", "survey", "pk")) %>% as.integer(),
+      survey_start_time = map_chr_hack(., c("properties", "survey", "start_time")) %>% httpdate_as_gmt08(),
+      survey_end_time = map_chr_hack(., c("properties", "survey", "end_time")) %>% httpdate_as_gmt08(),
+      survey_start_comments = map_chr_hack(., c("properties", "survey", "start_comments")),
+      survey_end_comments = map_chr_hack(., c("properties", "survey", "end_comments")),
       datetime = purrr::map_chr(., c("properties", "when")) %>%
         httpdate_as_gmt08(),
       longitude = purrr::map_dbl(., c("properties", "longitude")),
