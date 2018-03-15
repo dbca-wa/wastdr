@@ -68,9 +68,10 @@ parse_surveys <- function(wastd_api_response) {
 #' @importFrom dplyr group_by tally ungroup
 #' @export
 surveys_per_site_name_and_date <- function(surveys) {
-  dplyr::group_by(date, site_name) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup()
+  surveys %>%
+    dplyr::group_by(date, site_name) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup()
 }
 
 #' Sum the hours surveyed per site_name and date from the output of \code{parse_surveys}.
@@ -80,11 +81,28 @@ surveys_per_site_name_and_date <- function(surveys) {
 #' @importFrom dplyr group_by tally ungroup mutate select
 #' @export
 survey_hours_per_site_name_and_date <- function(surveys) {
-  dplyr::group_by(date, site_name) %>%
-  tally(duration_hours) %>%
-  dplyr::ungroup() %>%
-  dplyr::mutate(hours_surveyed = round(n)) %>%
-  dplyr::select(-n)
+  surveys %>%
+    dplyr::group_by(date, site_name) %>%
+    tally(duration_hours) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(hours_surveyed = round(n)) %>%
+    dplyr::select(-n)
+}
+
+#' Sum the hours surveyed per person from the output of \code{parse_surveys}.
+#'
+#' @param surveys (tibble) The output of \code{parse_surveys}.
+#' @return A tibble with columns reporter, hours_surveyed, sorted by most to fewest hours.
+#' @importFrom dplyr group_by tally ungroup mutate select
+#' @export
+survey_hours_per_person <- function(surveys) {
+  surveys %>%
+    dplyr::group_by(reporter) %>%
+    tally(duration_hours) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(hours_surveyed = round(n)) %>%
+    dplyr::select(-n) %>%
+    dplyr::arrange(desc(hours_surveyed))
 }
 
 #' Create a datatable of survey counts from the output of \code{parse_surveys}.

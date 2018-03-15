@@ -12,7 +12,8 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
 collapse = TRUE,
-comment = "#>"
+comment = "#>",
+eval=T
 )
 library(wastdr)
 library(dplyr)
@@ -79,45 +80,6 @@ filter_thevenard <- . %>% dplyr::filter(area_name=="Thevenard Island")
 tracks <- tracks_all %>% filter_2017
 ```
 
-
-## Map data
-
-```{r, eval=T}
-tracks_map <- function(track_data) {
-    tracks <- track_data %>% add_nest_labels
-    
-    l <- leaflet::leaflet(width=1000, height=800) %>% 
-        addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
-        addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-        clearBounds()
-
-    tracks.df <-  tracks %>% split(tracks$species)
-    
-    names(tracks.df) %>%
-        purrr::walk( function(df) {
-            l <<- l %>%
-                addAwesomeMarkers(
-                    data = tracks.df[[df]],
-                    lng = ~longitude, lat=~latitude,
-                    icon = leaflet::makeAwesomeIcon(
-                        text = ~nest_type_text,
-                        markerColor = ~species_colours),
-                    label=~paste(date, nest_age, species, nest_type, name),
-                    popup=~paste(date, nest_age, species, nest_type, name),
-                    group = df
-                )
-        })
-    
-    l %>%
-        addLayersControl(
-            baseGroups = c("Aerial", "Place names"),
-            overlayGroups = names(tracks.df),
-            options = layersControlOptions(collapsed = FALSE)
-        )
-}
-```
-
-
 ## Summarise and plot data
 Data (all tracks or filtered subsets) are filtered to only fresh observations,
 then grouped and tallied by date, species and type.
@@ -167,13 +129,13 @@ This section is by no means complete and can be extended as appropriate.
 
 ## Overall
 ```{r, fig.width=7, fig.height=5}
-tracks %>% tracks_map
+tracks %>% map_tracks
 ```
 
 ## Broome Cable Beach 
 ```{r, fig.width=9, fig.height=5}
 tracks_cbb <- tracks %>% filter_broome
-tracks_cbb %>% tracks_map
+tracks_cbb %>% add_nest_labels %>%  map_tracks
 tracks_cbb %>% DT::datatable(.)
 tracks_cbb %>% daily_summary
 tracks_cbb %>% tracks_ts
@@ -188,12 +150,14 @@ surveys_cbb %>% plot_survey_count(place)
 surveys_cbb %>% list_survey_count(place)
 surveys_cbb %>% plot_survey_effort(place)
 surveys_cbb %>% list_survey_effort(place)
+
+surveys_cbb %>% survey_hours_per_person %>% DT::datatable(.)
 ```
 
 ## Anna Plains
 ```{r, fig.width=7, fig.height=5}
 tracks_ap <- tracks %>% filter_anna_plains
-tracks_ap %>% tracks_map
+tracks_ap %>% map_tracks
 tracks_ap %>% DT::datatable(.)
 tracks_ap %>% daily_summary
 tracks_ap %>% tracks_ts
@@ -202,7 +166,7 @@ tracks_ap %>% tracks_ts
 ## Eighty Mile Beach
 ```{r, fig.width=7, fig.height=5}
 tracks_emb <- tracks %>% filter_eighty_mile_beach
-tracks_emb %>% tracks_map
+tracks_emb %>% map_tracks
 tracks_emb %>% DT::datatable(.)
 tracks_emb %>% daily_summary
 tracks_emb %>% tracks_ts
@@ -214,12 +178,12 @@ tracks_emb %>% tracks_ts
 tracks_pth_cem <- tracks %>% filter_port_hedland_cemetery
 tracks_pth_ppo <- tracks %>% filter_port_hedland_prettypool
 
-tracks_pth_cem %>% tracks_map
+tracks_pth_cem %>% map_tracks
 tracks_pth_cem %>% DT::datatable(.)
 tracks_pth_cem %>% daily_summary
 tracks_pth_cem %>% tracks_ts %T>% ggsave(filename="~/pth_daily_tracks_cem.png", device="png", width=9, height=5)
 
-tracks_pth_ppo %>% tracks_map
+tracks_pth_ppo %>% map_tracks
 tracks_pth_ppo %>% DT::datatable(.)
 tracks_pth_ppo %>% daily_summary
 tracks_pth_ppo %>% tracks_ts %T>% ggsave(filename="~/pth_daily_tracks_ppo.png", device="png", width=9, height=5)
@@ -232,7 +196,7 @@ surveys_pth %>% plot_survey_effort(place)
 surveys_pth %>% list_survey_effort(place)
 
 # named_nests_pth <- tracks_pth %>% filter(!(is.na(name)))
-# named_nests_pth %>% tracks_map
+# named_nests_pth %>% map_tracks
 # named_nests_pth %>% DT::datatable(.)
 ```
 
@@ -240,7 +204,7 @@ surveys_pth %>% list_survey_effort(place)
 
 ```{r, fig.width=7, fig.height=5}
 tracks_wp <- tracks %>% filter_west_pilbara
-tracks_wp %>% tracks_map
+tracks_wp %>% map_tracks
 tracks_wp %>% DT::datatable(.)
 tracks_wp %>% daily_summary
 tracks_wp %>% tracks_ts
@@ -250,7 +214,7 @@ tracks_wp %>% tracks_ts
 
 ```{r, fig.width=7, fig.height=5}
 tracks_de <- tracks %>% filter_delambre
-tracks_de %>% tracks_map
+tracks_de %>% map_tracks
 tracks_de %>% DT::datatable(.)
 tracks_de %>% daily_summary
 tracks_de %>% tracks_ts
@@ -261,7 +225,7 @@ Data pending upload from tablets.
 
 ```{r, fig.width=7, fig.height=5, eval=F}
 tracks_ri <- tracks %>% filter_rosemary
-tracks_ri %>% tracks_map
+tracks_ri %>% map_tracks
 tracks_ri %>% DT::datatable(.)
 tracks_ri %>% daily_summary
 tracks_ri %>% tracks_ts
@@ -271,7 +235,7 @@ tracks_ri %>% tracks_ts
 
 ```{r, fig.width=7, fig.height=5}
 tracks_thv <- tracks %>% filter_thevenard
-tracks_thv %>% tracks_map
+tracks_thv %>% map_tracks
 tracks_thv %>% DT::datatable(.)
 tracks_thv %>% daily_summary
 tracks_thv %>% tracks_ts
