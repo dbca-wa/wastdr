@@ -17,72 +17,23 @@ wastdr::wastdr_setup()
 # wastdr::wastdr_settings()
 
 ## ----load_data, echo=T---------------------------------------------------
-if (file.exists("~/tracks.Rda")){
-    load("~/tracks.Rda")
+if (file.exists("tracks.Rda")){
+    load("tracks.Rda")
 } else {
     track_records <- wastdr::wastd_GET("turtle-nest-encounters")
-    save_file <- Sys.getenv("WASTDR_SAVE_LOCALLY", unset = FALSE)
-    if (save_file==TRUE){
-        save(track_records, file = "~/track_records.Rda")
-        load("~/track_records.Rda")
-    }
-    # listviewer::jsonedit(utils::head(track_records$features))
-    tracks <- wastdr::parse_turtle_nest_encounters(track_records)
-    if (save_file == TRUE){
-        save(tracks, file = "~/tracks.Rda")
-    }
+    tracks_all <- parse_turtle_nest_encounters(track_records)
+    surveys <- wastd_GET("surveys") %>% parse_surveys()
+    save(tracks_all, track_records, surveys, file = "tracks.Rda")
 }
 
 ## ----filter_data---------------------------------------------------------
-species_colours <- tibble::tibble(
-    species = c(
-    "cheloniidae-fam",
-    "chelonia-mydas",
-    "eretmochelys-imbricata",
-    "natator-depressus",
-    "corolla-corolla",
-    "lepidochelys-olivacea",
-    "caretta-caretta"    
-    ),
-    species_colours = c(
-    "gray",
-    "green",
-    "darkblue",
-    "beige",
-    "pink",
-    "darkgreen",
-    "orange"
-    )
-)
-
-nest_type_text <- tibble::tibble(
-    nest_type = c(
-        "hatched-nest", 
-        "successful-crawl",
-        "track-not-assessed",
-        "track-unsure",
-        "nest",
-        "false-crawl"),
-    nest_type_text = c(
-        "NH", 
-        "N",
-        "T+?",
-        "N?",
-        "N",
-        "T")
-)
-
-
-add_lookups <- . %>% 
-    left_join(species_colours, by="species") %>%
-    left_join(nest_type_text, by="nest_type")
-
 filter_2017 <- . %>% dplyr::filter(date > dmy("01/10/2017"), date < dmy("31/03/2018"))
 filter_broome <- . %>% dplyr::filter(area_name=="Cable Beach Broome")
+filter_port_hedland <- . %>% dplyr::filter(site_id %in% c(35, 45))
+filter_broome <- . %>% dplyr::filter(site_id %in% c(22, 23, 24))
 filter_cbb1 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 1")
 filter_cbb2 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 2")
 filter_cbb3 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 3")
-
 filter_eighty_mile_beach <- . %>% dplyr::filter(area_name=="Eighty Mile Beach Caravan Park")
 filter_anna_plains <- . %>% dplyr::filter(area_name=="Anna Plains")
 filter_port_hedland_cemetery <- . %>% dplyr::filter(site_name=="Port Hedland Cemetery Beach")
@@ -92,14 +43,18 @@ filter_delambre <- . %>% dplyr::filter(area_name=="Delambre Island")
 filter_rosemary <- . %>% dplyr::filter(area_name=="Rosemary Island")
 filter_thevenard <- . %>% dplyr::filter(area_name=="Thevenard Island")
 
+tracks <- tracks_all %>% filter_2017
+
 ## ---- eval=T-------------------------------------------------------------
 tracks_map <- function(track_data) {
-    l <- leaflet(width=1000, height=800) %>% 
+    tracks <- track_data %>% add_nest_labels
+    
+    l <- leaflet::leaflet(width=1000, height=800) %>% 
         addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
         addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
         clearBounds()
 
-    tracks.df <-  track_data %>% split(track_data$species)
+    tracks.df <-  tracks %>% split(tracks$species)
     
     names(tracks.df) %>%
         purrr::walk( function(df) {
@@ -158,10 +113,10 @@ tracks_ts <- . %>%
             ggplot2::theme_light()}
 
 ## ---- fig.width=7, fig.height=5------------------------------------------
-tracks %>% filter_2017 %>% tracks_map
+tracks %>% tracks_map
 
 ## ---- fig.width=7, fig.height=5------------------------------------------
-tracks_cbb <- tracks %>% filter_2017 %>% filter_broome
+tracks_cbb <- tracks %>% filter_broome
 tracks_cbb %>% tracks_map
 tracks_cbb %>% DT::datatable(.)
 tracks_cbb %>% daily_summary
@@ -171,64 +126,75 @@ named_nests_cbb <- tracks_cbb %>% filter(!(is.na(name)))
 named_nests_cbb %>% tracks_map
 named_nests_cbb %>% DT::datatable(.)
 
+ss <- surveys %>% filter_broome()
+place <- "Cable Beach Broome"
+ss %>% plot_survey_count(place)
+ss %>% list_survey_count(place)
+ss %>% plot_survey_effort(place)
+ss %>% list_survey_effort(place)
+
 ## ---- fig.width=7, fig.height=5------------------------------------------
-tracks_ap <- tracks %>% filter_2017 %>% filter_anna_plains
+tracks_ap <- tracks %>% filter_anna_plains
 tracks_ap %>% tracks_map
 tracks_ap %>% DT::datatable(.)
 tracks_ap %>% daily_summary
 tracks_ap %>% tracks_ts
 
 ## ---- fig.width=7, fig.height=5------------------------------------------
-tracks_emb <- tracks %>% filter_2017 %>% filter_eighty_mile_beach
+tracks_emb <- tracks %>% filter_eighty_mile_beach
 tracks_emb %>% tracks_map
 tracks_emb %>% DT::datatable(.)
 tracks_emb %>% daily_summary
 tracks_emb %>% tracks_ts
 
 ## ---- fig.width=9, fig.height=5------------------------------------------
-tracks_pth_cem <- tracks %>% filter_2017 %>% filter_port_hedland_cemetery
-tracks_pth_ppo <- tracks %>% filter_2017 %>% filter_port_hedland_prettypool
-
+tracks_pth_cem <- tracks %>% filter_port_hedland_cemetery
+tracks_pth_ppo <- tracks %>% filter_port_hedland_prettypool
 
 tracks_pth_cem %>% tracks_map
 tracks_pth_cem %>% DT::datatable(.)
 tracks_pth_cem %>% daily_summary
 tracks_pth_cem %>% tracks_ts %T>% ggsave(filename="~/pth_daily_tracks_cem.png", device="png", width=9, height=5)
 
-
 tracks_pth_ppo %>% tracks_map
 tracks_pth_ppo %>% DT::datatable(.)
 tracks_pth_ppo %>% daily_summary
 tracks_pth_ppo %>% tracks_ts %T>% ggsave(filename="~/pth_daily_tracks_ppo.png", device="png", width=9, height=5)
 
+ss <- surveys %>% filter_port_hedland()
+place <- "Port Hedland"
+ss %>% plot_survey_count(place)
+ss %>% list_survey_count(place)
+ss %>% plot_survey_effort(place)
+ss %>% list_survey_effort(place)
 
 # named_nests_pth <- tracks_pth %>% filter(!(is.na(name)))
 # named_nests_pth %>% tracks_map
 # named_nests_pth %>% DT::datatable(.)
 
 ## ---- fig.width=7, fig.height=5------------------------------------------
-tracks_wp <- tracks %>% filter_2017 %>% filter_west_pilbara
+tracks_wp <- tracks %>% filter_west_pilbara
 tracks_wp %>% tracks_map
 tracks_wp %>% DT::datatable(.)
 tracks_wp %>% daily_summary
 tracks_wp %>% tracks_ts
 
 ## ---- fig.width=7, fig.height=5------------------------------------------
-tracks_de <- tracks %>% filter_2017 %>% filter_delambre
+tracks_de <- tracks %>% filter_delambre
 tracks_de %>% tracks_map
 tracks_de %>% DT::datatable(.)
 tracks_de %>% daily_summary
 tracks_de %>% tracks_ts
 
 ## ---- fig.width=7, fig.height=5, eval=F----------------------------------
-#  tracks_ri <- tracks %>% filter_2017 %>% filter_rosemary
+#  tracks_ri <- tracks %>% filter_rosemary
 #  tracks_ri %>% tracks_map
 #  tracks_ri %>% DT::datatable(.)
 #  tracks_ri %>% daily_summary
 #  tracks_ri %>% tracks_ts
 
 ## ---- fig.width=7, fig.height=5------------------------------------------
-tracks_thv <- tracks %>% filter_2017 %>% filter_thevenard
+tracks_thv <- tracks %>% filter_thevenard
 tracks_thv %>% tracks_map
 tracks_thv %>% DT::datatable(.)
 tracks_thv %>% daily_summary

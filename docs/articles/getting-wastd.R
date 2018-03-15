@@ -8,7 +8,7 @@ library(DT)
 library(ggplot2)
 
 ## ----call_api, eval=FALSE------------------------------------------------
-#  tne <- wastd_GET('turtle-nest-encounters')
+#  tne <- wastd_GET("turtle-nest-encounters")
 #  listviewer::jsonedit(tne$content, width = 800, height = 600)
 #  tracks <- parse_turtle_nest_encounters(tne)
 
@@ -28,13 +28,7 @@ nests <- parse_turtle_nest_encounters(tne)
 DT::datatable(animals)
 # DT::datatable(nests)
 
-
 ## ----surveys, fig.height=5, fig.width=10, eval=FALSE---------------------
-#  survey_res <- wastd_GET("surveys")
-#  surveys <- survey_res %>% parse_surveys()
-#  
-#  surveys_pth <- surveys %>% dplyr::filter(site_id %in% c(35, 45))
-#  
-#  # survey_ts_plot <- . %>% dplyr::group_by(date, site_name) %>% dplyr::tally %>%
-#  # ggplot(., aes(date, n, fill=site_name)) + ggplot2::geom_tile() + theme_minimal() + labs(title="Surveys", fill="Site", y="Number of surveys", x="Date")
+#  surveys <- wastd_GET("surveys") %>% parse_surveys()
+#  DT::datatable(head(surveys))
 

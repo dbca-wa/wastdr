@@ -126,11 +126,21 @@
 <li><p>site_name &lt;chr&gt;</p></li>
 <li><p>site_type &lt;chr&gt;</p></li>
 <li><p>site_id &lt;int&gt;</p></li>
-<li><p>start_time &lt;dttm&gt;</p></li>
-<li><p>end_time &lt;dttm&gt;</p></li>
-<li><p>source &lt;chr&gt;</p></li>
-<li><p>source_id &lt;chr&gt;</p></li>
-<li><p>status &lt;chr&gt;</p></li>
+<li><p>reporter &lt;chr&gt;</p></li>
+<li><p>reporter_username &lt;chr&gt;</p></li>
+<li><p>reporter_id &lt;chr&gt;</p></li>
+<li><p>date &lt;dttm&gt; The "turtle date" of the survey.</p></li>
+<li><p>start_time &lt;dttm&gt; The actual start time of the survey.</p></li>
+<li><p>end_time &lt;dttm&gt; The actual, automatically guessed (if 6h later), or human guessed end time.</p></li>
+<li><p>start_comments &lt;chr&gt; Comments at start plus QA messages from username guessing</p></li>
+<li><p>end_comments &lt;chr&gt; Comments at end plus QA messages from username guessing. A mismatch
+        of original usernames can indicate an incorrectly picked Site Visit End point.</p></li>
+<li><p>source &lt;chr&gt; Where this record was born.</p></li>
+<li><p>source_id &lt;chr&gt; The ODK record UID of the Site Visit Start.</p></li>
+<li><p>end_source_id &lt;chr&gt; The ODK record UID of the Site Visit End.</p></li>
+<li><p>status &lt;chr&gt; The QA status of the Survey. "Proofread" or "Curated" indicate human QA edits.</p></li>
+<li><p>device_id &lt;chr&gt; The unique ID of the device the Site Visit Start was captured on.</p></li>
+<li><p>end_device_id &lt;chr&gt; The unique ID of the device the Site Visit End was captured on.</p></li>
 </ul>
 
     

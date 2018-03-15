@@ -2,3 +2,4 @@
 *.R
 rsconnect
 tracks.Rda
+*.png

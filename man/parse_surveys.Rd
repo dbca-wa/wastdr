@@ -16,11 +16,21 @@ A \code{tbl_df} with columns:
   \item site_name <chr>
   \item site_type <chr>
   \item site_id <int>
-  \item start_time <dttm>
-  \item end_time <dttm>
-  \item source <chr>
-  \item source_id <chr>
-  \item status <chr>
+  \item reporter <chr>
+  \item reporter_username <chr>
+  \item reporter_id <chr>
+  \item date <dttm> The "turtle date" of the survey.
+  \item start_time <dttm> The actual start time of the survey.
+  \item end_time <dttm> The actual, automatically guessed (if 6h later), or human guessed end time.
+  \item start_comments <chr> Comments at start plus QA messages from username guessing
+  \item end_comments <chr> Comments at end plus QA messages from username guessing. A mismatch
+        of original usernames can indicate an incorrectly picked Site Visit End point.
+  \item source <chr> Where this record was born.
+  \item source_id <chr> The ODK record UID of the Site Visit Start.
+  \item end_source_id <chr> The ODK record UID of the Site Visit End.
+  \item status <chr> The QA status of the Survey. "Proofread" or "Curated" indicate human QA edits.
+  \item device_id <chr> The unique ID of the device the Site Visit Start was captured on.
+  \item end_device_id <chr> The unique ID of the device the Site Visit End was captured on.
 }
 }
 \description{

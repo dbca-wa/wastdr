@@ -46,7 +46,8 @@ if (file.exists("tracks.Rda")){
 } else {
     track_records <- wastdr::wastd_GET("turtle-nest-encounters")
     tracks_all <- parse_turtle_nest_encounters(track_records)
-    save(tracks_all, track_records, file = "tracks.Rda")
+    surveys <- wastd_GET("surveys") %>% parse_surveys()
+    save(tracks_all, track_records, surveys, file = "tracks.Rda")
 }
 ```
 
@@ -55,14 +56,19 @@ To filter records to one area, we can either filter by area or site ID
 (once enabled), or simply filter by a bounding box. 
 Additionaly, we'll filter by date.
 
+Site names and IDs are only correct at the time of writing. As they could change, please
+double-check the correct spelling of your own place names and their IDs in WAStD.
+
 ```{r filter_data}
 filter_2017 <- . %>% dplyr::filter(date > dmy("01/10/2017"), date < dmy("31/03/2018"))
 filter_broome <- . %>% dplyr::filter(area_name=="Cable Beach Broome")
+filter_broome_sites <- . %>% dplyr::filter(site_id %in% c(22, 23, 24))
 filter_cbb1 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 1")
 filter_cbb2 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 2")
 filter_cbb3 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 3")
 filter_eighty_mile_beach <- . %>% dplyr::filter(area_name=="Eighty Mile Beach Caravan Park")
 filter_anna_plains <- . %>% dplyr::filter(area_name=="Anna Plains")
+filter_port_hedland_sites <- . %>% dplyr::filter(site_id %in% c(35, 45))
 filter_port_hedland_cemetery <- . %>% dplyr::filter(site_name=="Port Hedland Cemetery Beach")
 filter_port_hedland_prettypool <- . %>% dplyr::filter(site_name=="Port Hedland Pretty Pool Beach")
 filter_west_pilbara <- . %>% dplyr::filter(area_name=="West Pilbara Turtle Program beaches Wickam")
@@ -165,16 +171,23 @@ tracks %>% tracks_map
 ```
 
 ## Broome Cable Beach 
-```{r, fig.width=7, fig.height=5}
+```{r, fig.width=9, fig.height=5}
 tracks_cbb <- tracks %>% filter_broome
 tracks_cbb %>% tracks_map
 tracks_cbb %>% DT::datatable(.)
 tracks_cbb %>% daily_summary
 tracks_cbb %>% tracks_ts
 
-named_nests_cbb <- tracks_cbb %>% filter(!(is.na(name)))
-named_nests_cbb %>% tracks_map
-named_nests_cbb %>% DT::datatable(.)
+# named_nests_cbb <- tracks_cbb %>% filter(!(is.na(name)))
+# named_nests_cbb %>% tracks_map
+# named_nests_cbb %>% DT::datatable(.)
+
+surveys_cbb <- surveys %>% filter_broome_sites
+place <- "Cable Beach Broome"
+surveys_cbb %>% plot_survey_count(place)
+surveys_cbb %>% list_survey_count(place)
+surveys_cbb %>% plot_survey_effort(place)
+surveys_cbb %>% list_survey_effort(place)
 ```
 
 ## Anna Plains
@@ -201,18 +214,22 @@ tracks_emb %>% tracks_ts
 tracks_pth_cem <- tracks %>% filter_port_hedland_cemetery
 tracks_pth_ppo <- tracks %>% filter_port_hedland_prettypool
 
-
 tracks_pth_cem %>% tracks_map
 tracks_pth_cem %>% DT::datatable(.)
 tracks_pth_cem %>% daily_summary
 tracks_pth_cem %>% tracks_ts %T>% ggsave(filename="~/pth_daily_tracks_cem.png", device="png", width=9, height=5)
-
 
 tracks_pth_ppo %>% tracks_map
 tracks_pth_ppo %>% DT::datatable(.)
 tracks_pth_ppo %>% daily_summary
 tracks_pth_ppo %>% tracks_ts %T>% ggsave(filename="~/pth_daily_tracks_ppo.png", device="png", width=9, height=5)
 
+surveys_pth <- surveys %>% filter_port_hedland_sites
+place <- "Port Hedland"
+surveys_pth %>% plot_survey_count(place)
+surveys_pth %>% list_survey_count(place)
+surveys_pth %>% plot_survey_effort(place)
+surveys_pth %>% list_survey_effort(place)
 
 # named_nests_pth <- tracks_pth %>% filter(!(is.na(name)))
 # named_nests_pth %>% tracks_map
