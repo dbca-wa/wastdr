@@ -14,7 +14,7 @@ upsert_geojson <- function(gj_featurecollection,
                            api_un = wastdr::get_wastdr_api_un(),
                            api_pw = wastdr::get_wastdr_api_pw(),
                            chunksize = 1000,
-                           verbose = TRUE) {
+                           verbose = FALSE) {
   . <- NULL
   if (verbose) message("[upsert_geojson] Updating ", api_url, serializer, "...")
   props <- purrr::map(gj_featurecollection[["features"]], "properties")
@@ -26,7 +26,13 @@ upsert_geojson <- function(gj_featurecollection,
     message("[upsert_geojson] Processing feature ", start, " to ", end)
     props[start:end] %>%
       purrr::map(., purrr::flatten) %>%
-      wastd_POST(., serializer = serializer, api_url = api_url, verbose = verbose)
+      wastd_POST(.,
+                 serializer = serializer,
+                 api_url = api_url,
+                 api_token = api_token,
+                 api_un = api_un,
+                 api_pw = api_pw,
+                 verbose = verbose)
   }
   message("[upsert_geojson] Finished. ", len, " records updated.")
 }
