@@ -3,7 +3,7 @@
 #' @param data (JSON) A list of lists (JSON) to post to WAStD.
 #' @template param-serializer
 #' @template param-auth
-#' @param verbose Whether to show debug messages.
+#' @template param-verbose
 #' @template return-wastd-api-response
 #' @importFrom httr add_headers authenticate user_agent POST content
 #' @export

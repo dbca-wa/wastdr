@@ -91,9 +91,6 @@ data("tne")
 # listviewer::jsonedit(tne$content)
 
 animals <- wastdr::parse_animal_encounters(animal_encounters)
-#> Warning: All formats failed to parse. No formats found.
-
-#> Warning: All formats failed to parse. No formats found.
 tracks <- wastdr::parse_turtle_nest_encounters(tne)
 
 # DT::datatable(animals)

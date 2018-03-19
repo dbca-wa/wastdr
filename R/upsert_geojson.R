@@ -1,6 +1,18 @@
+#' Upsert GeoJSON into WAStD API endpoints
+#'
+#' @param gj_featurecollection (list) A GeoJSON featurecollection as list
+#' @template param-serializer
+#' @template param-auth
+#' @param chunksize (int) The number of features to upload simultaneously, default: 1000.
+#' @template param-verbose
+#' @importFrom purrr map
+#' @export
 upsert_geojson <- function(gj_featurecollection,
                            serializer = "names",
                            api_url = wastdr::get_wastdr_api_url(),
+                           api_token = wastdr::get_wastdr_api_token(),
+                           api_un = wastdr::get_wastdr_api_un(),
+                           api_pw = wastdr::get_wastdr_api_pw(),
                            chunksize = 1000,
                            verbose = TRUE) {
   . <- NULL
