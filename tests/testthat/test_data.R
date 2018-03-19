@@ -19,6 +19,8 @@ testthat::test_that("wastd_api_response prints", {
 
   data("nests")
   capture.output(print(nests))
+
+  testthat::expect_equal(1, 1)
 })
 
 

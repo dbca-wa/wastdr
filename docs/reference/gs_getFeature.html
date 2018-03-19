@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Example animal encounters (taggings, strandings and others) — animals • wastdr</title>
+<title>Return a GeoJSON Featurecollection from an OGC WFS 2.0.0 endpoint — gs_getFeature • wastdr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -101,70 +101,42 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Example animal encounters (taggings, strandings and others)</h1>
+    <h1>Return a GeoJSON Featurecollection from an OGC WFS 2.0.0 endpoint</h1>
     </div>
 
     
-    <p>A parsed <code>wastd_api_response</code> with 10 animal encounters from
-<code>get_wastd("animal-encounters")</code></p>
+    <p>Defaults to DBCA's KMI GeoServer offering public WACensus views</p>
     
 
-    <pre class="usage"><span class='no'>animals</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 10 rows and 38 columns.</p>
+    <pre class="usage"><span class='fu'>gs_getFeature</span>(<span class='kw'>layer_name</span> <span class='kw'>=</span> <span class='st'>"public:herbie_hbvsupra_public"</span>,
+  <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows"</span>)</pre>
     
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>layer_name</th>
+      <td><p>The GeoServer layer name, default: "public:herbie_hbvsupra_public"</p></td>
+    </tr>
+    <tr>
+      <th>url</th>
+      <td><p>The GeoServer URL, default: "https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows"</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&amp;format=json</p><ul>
-<li><p>area_name &lt;chr&gt;</p></li>
-<li><p>area_type &lt;chr&gt;</p></li>
-<li><p>area_id &lt;int&gt;</p></li>
-<li><p>site_name &lt;chr&gt;</p></li>
-<li><p>site_type &lt;chr&gt;</p></li>
-<li><p>site_id &lt;int&gt;</p></li>
-<li><p>datetime &lt;dttm&gt;</p></li>
-<li><p>longitude &lt;chr&gt;</p></li>
-<li><p>latitude &lt;chr&gt;</p></li>
-<li><p>crs &lt;chr&gt;</p></li>
-<li><p>location_accuracy &lt;dbl&gt;</p></li>
-<li><p>date &lt;date&gt;</p></li>
-<li><p>name &lt;chr&gt;</p></li>
-<li><p>species &lt;chr&gt;</p></li>
-<li><p>health &lt;chr&gt;</p></li>
-<li><p>sex &lt;chr&gt;</p></li>
-<li><p>behaviour &lt;chr&gt;</p></li>
-<li><p>habitat &lt;chr&gt;</p></li>
-<li><p>activity &lt;chr&gt;</p></li>
-<li><p>nesting_event &lt;chr&gt;</p></li>
-<li><p>checked_for_injuries &lt;chr&gt;</p></li>
-<li><p>scanned_for_pit_tags &lt;chr&gt;</p></li>
-<li><p>checked_for_flipper_tags &lt;chr&gt;</p></li>
-<li><p>cause_of_death &lt;chr&gt;</p></li>
-<li><p>cause_of_death_confidence &lt;chr&gt;</p></li>
-<li><p>absolute_admin_url &lt;chr&gt;</p></li>
-<li><p>obs &lt;list&gt;</p></li>
-<li><p>source &lt;chr&gt;</p></li>
-<li><p>source_id &lt;chr&gt;</p></li>
-<li><p>encounter_type &lt;chr&gt;</p></li>
-<li><p>status &lt;chr&gt;</p></li>
-</ul>
+    <p>The httr::content of a GET request to the WFS GetFeature endpoint</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>  <span class='fu'>head</span>(<span class='no'>animals</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

@@ -8,3 +8,4 @@
 ^data-raw$
 ^docs$
 vignettes/rsconnect/*
+man-roxygen

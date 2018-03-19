@@ -2,52 +2,21 @@
 #'
 #' @description Call the WAStD API serializer's list view with given GET parameters,
 #'   parse the response as text into a GeoJSON FeatureCollection.
-#'   Parse the FeatureCollection using jsonlite::fromJSON and return its features
-#'   as nested data.frame (simplify=TRUE) or as list of lists (simplify=FALSE).
+#'   Parse the FeatureCollection using jsonlite::fromJSON and return its features as list of lists.
 #'   TODO: use pagination, see the vignette on paging at
 #'   \url{https://CRAN.R-project.org/package=jsonlite}.
-#' @param serializer (character) WAStD API serializer name (required)
-#'   Possible values as per
-#'   \code{https://strandings.dpaw.wa.gov.au/api/1/?format=corejson} are:
-#'   \itemize{
-#'   \item encounters (all encounters, but only core fields)
-#'   \item animal-encounters (strandings, tagging)
-#'   \item turtle-nest-encounters (tracks and nests)
-#'   \item logger-encounters (temp and other loggers)
-#'   \item areas (polygons of known areas)
-#'   \item media-attachments (photos, data sheets etc)
-#'   \item nesttag-observations (sightings of nest tags)
-#'   \item tag-observations (tag observations during encounters)
-#'   }
-#' @param query (list) API query parameters for format and filtering, default: list().
-#' @param format (string) The desired return format, default: "json". WAStD returns GeoJSON.
-#' @param api_url (character) The WAStD API URL,
-#'   default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}
-#' @param api_token (character) The WAStD API token,
-#'   default \code{\link{get_wastdr_api_token}}, see \code{\link{wastdr_setup}}
-#' @param api_un (character) A WAStD API username,
-#'   default \code{\link{get_wastdr_api_un}}, see \code{\link{wastdr_setup}}
-#' @param api_pw (character) A WAStD API password,
-#'   default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}
+#' @template param-serializer
+#' @param query (list) A list of GET parameters, default: list().
+#' @param format (chr) The desired API output format, default: "json".
+#' @template param-auth
+#' @template return-wastd-api-response
 #' @importFrom httr add_headers http_error http_type status_code user_agent
 #' @importFrom jsonlite fromJSON
-#'
-#' @return An S3 object of class 'wastd_api_response' containing:
-#'
-#'   content: The retrieved GeoJSON features as data.table or list
-#'
-#'   serializer: The called serializer, e.g. 'animal-encounters'
-#'
-#'   response: The API HTTP response with all metadata
 #' @export
-#'
 #' @examples \dontrun{
 #' track_records <- wastd_GET('turtle-nest-encounters')
-#'
 #' tag_records <- wastd_GET('animal-encounters')
-#'
-#' nest_json <- wastd_GET('turtle-nest-encounters',
-#'                        query=list(nest_type='hatched-nest', format='json'))
+#' nest_json <- wastd_GET('turtle-nest-encounters', query=list(nest_type='hatched-nest'))
 #' }
 wastd_GET <- function(serializer,
                       query = list(),
@@ -56,7 +25,7 @@ wastd_GET <- function(serializer,
                       api_token = get_wastdr_api_token(),
                       api_un = get_wastdr_api_un(),
                       api_pw = get_wastdr_api_pw()) {
-  . <- NULL # Silence R CMD CHECK warning
+  . <- NULL
 
   ua <- httr::user_agent("http://github.com/parksandwildlife/turtle-scripts")
 
@@ -143,10 +112,12 @@ wastd_GET <- function(serializer,
 #' @importFrom utils str
 #' @export
 print.wastd_api_response <- function(x, ...) {
-  cat("<WAStD API endpoint", x$serializer, ">\n",
-    "Retrieved on ", x$response$headers$date, ">\n",
+  cat("<WAStD API response ", x$serializer, ">\n",
+    "URL ", x$response$url, "\n",
+    "Date ", x$response$headers$date, "\n",
+    "Status ", x$response$status_code, "\n",
     sep = ""
   )
-  utils::str(utils::head(x$features))
+  # utils::str(utils::head(x$features))
   invisible(x)
 }

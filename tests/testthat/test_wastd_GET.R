@@ -6,15 +6,12 @@ testthat::test_that("wastd_GET won't work unauthenticated", {
 })
 
 
-wastd_api_works <- function() {
-  ua <- httr::user_agent("http://github.com/parksandwildlife/turtle-scripts")
+check_wastd_api <- function() {
+  ua <- httr::user_agent("http://github.com/dbca-wa/wastdr")
   res <- httr::GET(
-    get_wastdr_api_url(), ua,
-    httr::add_headers(
-      c(Authorization = get_wastdr_api_token())
-    )
+    get_wastdr_api_url(), ua, httr::add_headers(c(Authorization = get_wastdr_api_token()))
   )
-  res$status_code == 200
+  if (res$status_code != 200) skip("API not available")
 }
 
 testthat::test_that("wastd_GET returns something", {
@@ -24,42 +21,21 @@ testthat::test_that("wastd_GET returns something", {
 })
 
 testthat::test_that("wastd_GET fails if no valid JSON is returned", {
-  testthat::expect_error(
-    wastd_GET("", api_url = "http://httpstat.us/200", query = list())
-  )
+  testthat::expect_error(wastd_GET("", api_url = "http://httpstat.us/200", query = list()))
 })
 
 testthat::test_that("wastd_GET fails if HTTP error is returned", {
-  testthat::expect_error(
-    wastd_GET("", api_url = "http://httpstat.us/401", query = list())
-  )
-  testthat::expect_error(
-    wastd_GET("", api_url = "http://httpstat.us/500", query = list())
-  )
-  testthat::expect_error(
-    wastd_GET("", api_url = "http://httpstat.us/404", query = list())
-  )
+  testthat::expect_error(wastd_GET("", api_url = "http://httpstat.us/401", query = list()))
+  testthat::expect_error(wastd_GET("", api_url = "http://httpstat.us/500", query = list()))
+  testthat::expect_error(wastd_GET("", api_url = "http://httpstat.us/404", query = list()))
 })
 
 testthat::test_that("wastd_GET works with correct API token", {
-  # API token available?
-  token <- Sys.getenv("WASTDR_API_TOKEN")
-  if (token == "") {
-    skip(
-      "Environment variable WASTDR_API_TOKEN not set, skipping..."
-    )
-  }
-  wastdr_setup(api_token = token)
-
-  # API accessible?
-  if (wastd_api_works() == FALSE) {
-    skip(
-      "WAStD API is not accessible from here, skipping..."
-    )
-  }
-
+  if (get_wastdr_api_token() == "") skip("Environment variable WASTDR_API_TOKEN not set, skipping...")
+  check_wastd_api()
   ae <- wastd_GET("animal-encounters",
-    query = list(limit = 3, format = "json")
+    query = list(observer = 4, format = "json"),
+    api_token = get_wastdr_api_token()
   )
   capture.output(print(ae))
   testthat::expect_equal(ae$response$status_code, 200)

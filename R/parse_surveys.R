@@ -32,6 +32,9 @@
 parse_surveys <- function(wastd_api_response) {
   obs <- NULL
   . <- NULL
+  start_time <- NULL
+  end_time <- NULL
+  duration_minutes <- NULL
   wastd_api_response$features %>%
     {
       tibble::tibble(
@@ -68,6 +71,7 @@ parse_surveys <- function(wastd_api_response) {
 #' @importFrom dplyr group_by tally ungroup
 #' @export
 surveys_per_site_name_and_date <- function(surveys) {
+  site_name <- NULL
   surveys %>%
     dplyr::group_by(date, site_name) %>%
     dplyr::tally() %>%
@@ -81,6 +85,9 @@ surveys_per_site_name_and_date <- function(surveys) {
 #' @importFrom dplyr group_by tally ungroup mutate select
 #' @export
 survey_hours_per_site_name_and_date <- function(surveys) {
+  site_name <- NULL
+  duration_hours <- NULL
+  n <- NULL
   surveys %>%
     dplyr::group_by(date, site_name) %>%
     tally(duration_hours) %>%
@@ -96,6 +103,12 @@ survey_hours_per_site_name_and_date <- function(surveys) {
 #' @importFrom dplyr group_by tally ungroup mutate select
 #' @export
 survey_hours_per_person <- function(surveys) {
+  reporter <- NULL
+  duration_hours <- NULL
+  hours_surveyed <- NULL
+  n <- NULL
+  desc <- NULL
+
   surveys %>%
     dplyr::group_by(reporter) %>%
     tally(duration_hours) %>%
@@ -112,6 +125,7 @@ survey_hours_per_person <- function(surveys) {
 #' @importFrom DT datatable
 #' @export
 list_survey_count <- function(surveys, placename) {
+  . <- NULL
   surveys %>%
     surveys_per_site_name_and_date() %>%
     DT::datatable(., caption = paste("Survey Count", placename))
@@ -123,14 +137,18 @@ list_survey_count <- function(surveys, placename) {
 #' @param placename (string) The place name, used in labels.
 #' @export
 plot_survey_count <- function(surveys, placename) {
+  . <- NULL
+  aes <- NULL
+  site_name <- NULL
+  n <- NULL
   surveys %>%
     surveys_per_site_name_and_date() %>%
     ggplot2::ggplot(., aes(date, site_name, fill = n)) +
     ggplot2::geom_raster() +
-    ggplot2::scale_x_date(
-      breaks = scales::pretty_breaks(),
-      labels = scales::date_format("%d %b %Y")
-    ) +
+    # ggplot2::scale_x_date(
+    #   breaks = scales::pretty_breaks,
+    #   labels = scales::date_format("%d %b %Y")
+    # ) +
     ggplot2::theme_light() +
     ggplot2::ggtitle(paste("Survey Count", placename)) +
     ggplot2::labs(x = "Turtle date", y = "", fill = "Number of surveys") +
@@ -149,6 +167,7 @@ plot_survey_count <- function(surveys, placename) {
 #' @param placename (string) The place name, used in labels.
 #' @export
 list_survey_effort <- function(surveys, placename) {
+  . <- NULL
   surveys %>%
     survey_hours_per_site_name_and_date() %>%
     DT::datatable(., caption = paste("Survey Effort [hours]", placename))
@@ -160,6 +179,11 @@ list_survey_effort <- function(surveys, placename) {
 #' @param placename (string) The place name, used in labels.
 #' @export
 plot_survey_effort <- function(surveys, placename) {
+  . <- NULL
+  aes <- NULL
+  site_name <- NULL
+  n <- NULL
+  hours_surveyed <- NULL
   surveys %>%
     survey_hours_per_site_name_and_date() %>%
     ggplot2::ggplot(., aes(date, site_name, fill = hours_surveyed)) +

@@ -21,9 +21,10 @@ wastdr::wastdr_setup()
 if (file.exists("tracks.Rda")){
     load("tracks.Rda")
 } else {
-    track_records <- wastdr::wastd_GET("turtle-nest-encounters")
+    q = list(when__year__in = "2017,2018")
+    track_records <- wastdr::wastd_GET("turtle-nest-encounters", query=q)
     tracks_all <- parse_turtle_nest_encounters(track_records)
-    surveys <- wastd_GET("surveys") %>% parse_surveys()
+    surveys <- wastd_GET("surveys", query=q) %>% parse_surveys()
     save(tracks_all, track_records, surveys, file = "tracks.Rda")
 }
 
@@ -79,14 +80,9 @@ tracks_ts <- . %>%
             ggplot2::ggtitle("Nesting activity") +
             ggplot2::theme_light()}
 
-## ---- fig.width=7, fig.height=5------------------------------------------
-tracks %>% map_tracks
-
-## ---- fig.width=9, fig.height=5------------------------------------------
+## ---- fig.width=9, fig.height=5, eval=T----------------------------------
 tracks_cbb <- tracks %>% filter_broome
-tracks_cbb %>% add_nest_labels %>%  map_tracks
-tracks_cbb %>% DT::datatable(.)
-tracks_cbb %>% daily_summary
+tracks_cbb %>% add_nest_labels %>% map_tracks
 tracks_cbb %>% tracks_ts
 
 # named_nests_cbb <- tracks_cbb %>% filter(!(is.na(name)))
@@ -100,72 +96,24 @@ surveys_cbb %>% list_survey_count(place)
 surveys_cbb %>% plot_survey_effort(place)
 surveys_cbb %>% list_survey_effort(place)
 
-surveys_cbb %>% survey_hours_per_person
+surveys_cbb %>% survey_hours_per_person %>% DT::datatable(.)
 
-## ---- fig.width=7, fig.height=5------------------------------------------
-tracks_ap <- tracks %>% filter_anna_plains
-tracks_ap %>% map_tracks
-tracks_ap %>% DT::datatable(.)
-tracks_ap %>% daily_summary
-tracks_ap %>% tracks_ts
+## ---- fig.width=9, fig.height=5, eval=T----------------------------------
+tracks_pth_cem <- tracks %>% filter_port_hedland_cemetery()
+tracks_pth_ppo <- tracks %>% filter_port_hedland_prettypool()
 
-## ---- fig.width=7, fig.height=5------------------------------------------
-tracks_emb <- tracks %>% filter_eighty_mile_beach
-tracks_emb %>% map_tracks
-tracks_emb %>% DT::datatable(.)
-tracks_emb %>% daily_summary
-tracks_emb %>% tracks_ts
+tracks_pth_cem %>% add_nest_labels() %>% map_tracks()
+tracks_pth_cem %>% tracks_ts() %T>% 
+  ggsave(filename = "~/pth_daily_tracks_cem.png", device = "png", width = 9, height = 5)
 
-## ---- fig.width=9, fig.height=5------------------------------------------
-tracks_pth_cem <- tracks %>% filter_port_hedland_cemetery
-tracks_pth_ppo <- tracks %>% filter_port_hedland_prettypool
+tracks_pth_ppo %>% add_nest_labels() %>% map_tracks()
+tracks_pth_ppo %>% tracks_ts() %T>% 
+  ggsave(filename = "~/pth_daily_tracks_ppo.png", device = "png", width = 9, height = 5)
 
-tracks_pth_cem %>% map_tracks
-tracks_pth_cem %>% DT::datatable(.)
-tracks_pth_cem %>% daily_summary
-tracks_pth_cem %>% tracks_ts %T>% ggsave(filename="~/pth_daily_tracks_cem.png", device="png", width=9, height=5)
-
-tracks_pth_ppo %>% map_tracks
-tracks_pth_ppo %>% DT::datatable(.)
-tracks_pth_ppo %>% daily_summary
-tracks_pth_ppo %>% tracks_ts %T>% ggsave(filename="~/pth_daily_tracks_ppo.png", device="png", width=9, height=5)
-
-surveys_pth <- surveys %>% filter_port_hedland_sites
+surveys_pth <- surveys %>% filter_port_hedland_sites()
 place <- "Port Hedland"
 surveys_pth %>% plot_survey_count(place)
 surveys_pth %>% list_survey_count(place)
 surveys_pth %>% plot_survey_effort(place)
 surveys_pth %>% list_survey_effort(place)
-
-# named_nests_pth <- tracks_pth %>% filter(!(is.na(name)))
-# named_nests_pth %>% map_tracks
-# named_nests_pth %>% DT::datatable(.)
-
-## ---- fig.width=7, fig.height=5------------------------------------------
-tracks_wp <- tracks %>% filter_west_pilbara
-tracks_wp %>% map_tracks
-tracks_wp %>% DT::datatable(.)
-tracks_wp %>% daily_summary
-tracks_wp %>% tracks_ts
-
-## ---- fig.width=7, fig.height=5------------------------------------------
-tracks_de <- tracks %>% filter_delambre
-tracks_de %>% map_tracks
-tracks_de %>% DT::datatable(.)
-tracks_de %>% daily_summary
-tracks_de %>% tracks_ts
-
-## ---- fig.width=7, fig.height=5, eval=F----------------------------------
-#  tracks_ri <- tracks %>% filter_rosemary
-#  tracks_ri %>% map_tracks
-#  tracks_ri %>% DT::datatable(.)
-#  tracks_ri %>% daily_summary
-#  tracks_ri %>% tracks_ts
-
-## ---- fig.width=7, fig.height=5------------------------------------------
-tracks_thv <- tracks %>% filter_thevenard
-tracks_thv %>% map_tracks
-tracks_thv %>% DT::datatable(.)
-tracks_thv %>% daily_summary
-tracks_thv %>% tracks_ts
 

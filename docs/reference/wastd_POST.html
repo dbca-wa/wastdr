@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return GeoJSON features from a WAStD API endpoint as data.table or list — wastd_GET • wastdr</title>
+<title>Send a POST request to WAStD's API — wastd_POST • wastdr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -101,24 +101,25 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return GeoJSON features from a WAStD API endpoint as data.table or list</h1>
+    <h1>Send a POST request to WAStD's API</h1>
     </div>
 
     
-    <p>Call the WAStD API serializer's list view with given GET parameters,
-  parse the response as text into a GeoJSON FeatureCollection.
-  Parse the FeatureCollection using jsonlite::fromJSON and return its features as list of lists.
-  TODO: use pagination, see the vignette on paging at
-  <a href='https://CRAN.R-project.org/package=jsonlite'>https://CRAN.R-project.org/package=jsonlite</a>.</p>
+    <p>Send a POST request to WAStD's API</p>
     
 
-    <pre class="usage"><span class='fu'>wastd_GET</span>(<span class='no'>serializer</span>, <span class='kw'>query</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>,
-  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(), <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
-  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(), <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>())</pre>
+    <pre class="usage"><span class='fu'>wastd_POST</span>(<span class='no'>data</span>, <span class='no'>serializer</span>, <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings'>get_wastdr_api_url</a></span>(),
+  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings'>get_wastdr_api_token</a></span>(),
+  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings'>get_wastdr_api_un</a></span>(),
+  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings'>get_wastdr_api_pw</a></span>(), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>(JSON) A list of lists (JSON) to post to WAStD.</p></td>
+    </tr>
     <tr>
       <th>serializer</th>
       <td><p>(character) WAStD API serializer name (required)
@@ -134,14 +135,6 @@ Possible values as per
 <li><p>tag-observations (tag observations during encounters)</p></li>
 <li><p>taxa (WACensus taxa)</p></li>
 </ul></td>
-    </tr>
-    <tr>
-      <th>query</th>
-      <td><p>(list) A list of GET parameters, default: list().</p></td>
-    </tr>
-    <tr>
-      <th>format</th>
-      <td><p>(chr) The desired API output format, default: "json".</p></td>
     </tr>
     <tr>
       <th>api_url</th>
@@ -163,6 +156,10 @@ default <code><a href='wastdr_settings.html'>get_wastdr_api_un</a></code>, see <
       <td><p>(character) A WAStD API password,
 default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
     </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Whether to show debug messages.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -175,9 +172,15 @@ default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>track_records</span> <span class='kw'>&lt;-</span> <span class='fu'>wastd_GET</span>(<span class='st'>'turtle-nest-encounters'</span>)
-<span class='no'>tag_records</span> <span class='kw'>&lt;-</span> <span class='fu'>wastd_GET</span>(<span class='st'>'animal-encounters'</span>)
-<span class='no'>nest_json</span> <span class='kw'>&lt;-</span> <span class='fu'>wastd_GET</span>(<span class='st'>'turtle-nest-encounters'</span>, <span class='kw'>query</span><span class='kw'>=</span><span class='fu'>list</span>(<span class='kw'>nest_type</span><span class='kw'>=</span><span class='st'>'hatched-nest'</span>))
+<span class='co'># One by one</span>
+<span class='no'>gj</span> <span class='kw'>&lt;-</span> <span class='st'>"public:herbie_hbvnames_public"</span> <span class='kw'>%&gt;%</span> <span class='no'>kmi_getFeature</span>
+<span class='no'>props</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='no'>gj</span><span class='kw'>[[</span><span class='st'>"features"</span>]], <span class='st'>"properties"</span>)
+<span class='fu'>wastd_POST</span>(<span class='no'>props</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>serializer</span> <span class='kw'>=</span> <span class='st'>"names"</span>)
+
+ <span class='co'># All in batch</span>
+<span class='st'>"public:herbie_hbvnames_public"</span> <span class='kw'>%&gt;%</span>
+  <span class='no'>kmi_getFeature</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>wastd_upsert_geojson</span>(<span class='kw'>serializer</span> <span class='kw'>=</span> <span class='st'>"names"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

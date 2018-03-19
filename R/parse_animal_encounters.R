@@ -1,6 +1,5 @@
 #' Parse a \code{wastd_api_response} of \code{animal-encounters} to tbl_df
 #'
-#'
 #' @param wastd_api_response A \code{wastd_api_response} of
 #' \code{animal-encounters}, e.g. \code{get_wastd("animal-encounters")}
 #' @return A \code{tbl_df} with columns:
@@ -63,17 +62,12 @@ parse_animal_encounters <- function(wastd_api_response) {
       survey_end_time = map_chr_hack(., c("properties", "survey", "end_time")) %>% httpdate_as_gmt08(),
       survey_start_comments = map_chr_hack(., c("properties", "survey", "start_comments")),
       survey_end_comments = map_chr_hack(., c("properties", "survey", "end_comments")),
-      datetime = purrr::map_chr(., c("properties", "when")) %>%
-        httpdate_as_gmt08(),
+      datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08(),
       longitude = purrr::map_dbl(., c("properties", "longitude")),
       latitude = purrr::map_dbl(., c("properties", "latitude")),
       crs = purrr::map_chr(., c("properties", "crs")),
-      location_accuracy = purrr::map_chr(
-        ., c("properties", "location_accuracy")
-      ) %>% as.integer(),
-      date = purrr::map_chr(
-        ., c("properties", "when")
-      ) %>% httpdate_as_gmt08_turtle_date(),
+      location_accuracy = purrr::map_chr(., c("properties", "location_accuracy")) %>% as.integer(),
+      date = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08_turtle_date(),
       name = map_chr_hack(., c("properties", "name")),
       species = purrr::map_chr(., c("properties", "species")),
       health = purrr::map_chr(., c("properties", "health")),
@@ -83,30 +77,16 @@ parse_animal_encounters <- function(wastd_api_response) {
       habitat = purrr::map_chr(., c("properties", "habitat")),
       activity = purrr::map_chr(., c("properties", "activity")),
       nesting_event = purrr::map_chr(., c("properties", "nesting_event")),
-      checked_for_injuries = purrr::map_chr(
-        ., c("properties", "checked_for_injuries")
-      ),
-      scanned_for_pit_tags = purrr::map_chr(
-        ., c("properties", "scanned_for_pit_tags")
-      ),
-      checked_for_flipper_tags = purrr::map_chr(
-        ., c("properties", "checked_for_flipper_tags")
-      ),
-      cause_of_death = purrr::map_chr(
-        ., c("properties", "cause_of_death")
-      ),
-      cause_of_death_confidence = purrr::map_chr(
-        ., c("properties", "cause_of_death_confidence")
-      ),
-      absolute_admin_url = purrr::map_chr(
-        ., c("properties", "absolute_admin_url")
-      ),
+      checked_for_injuries = purrr::map_chr(., c("properties", "checked_for_injuries")),
+      scanned_for_pit_tags = purrr::map_chr(., c("properties", "scanned_for_pit_tags")),
+      checked_for_flipper_tags = purrr::map_chr(., c("properties", "checked_for_flipper_tags")),
+      cause_of_death = purrr::map_chr(., c("properties", "cause_of_death")),
+      cause_of_death_confidence = purrr::map_chr(., c("properties", "cause_of_death_confidence")),
+      absolute_admin_url = purrr::map_chr(., c("properties", "absolute_admin_url")),
       obs = purrr::map(., c("properties", "observation_set")),
       source = purrr::map_chr(., c("properties", "source")),
       source_id = purrr::map_chr(., "id"),
-      encounter_type = purrr::map_chr(
-        ., c("properties", "encounter_type")
-      ),
+      encounter_type = purrr::map_chr(., c("properties", "encounter_type")),
       status = purrr::map_chr(., c("properties", "status")),
       observer = map_chr_hack(., c("properties", "observer", "name")),
       reporter = map_chr_hack(., c("properties", "reporter", "name"))
