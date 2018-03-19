@@ -5,6 +5,7 @@
 #' @param url The GeoServer URL, default: "https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows"
 #' @return The httr::content of a GET request to the WFS GetFeature endpoint
 #' @importFrom httr content GET user_agent
+#' @export
 gs_getFeature <- function(layer_name = "public:herbie_hbvsupra_public",
                           url = "https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows") {
   . <- NULL
