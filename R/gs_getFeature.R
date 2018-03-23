@@ -19,5 +19,5 @@ gs_getFeature <- function(
     typeName = layer_name,
     outputFormat = "application/json"
   )
-  url %>% httr::GET(ua, query = query) %>% httr::content(.)
+  url %>% httr::GET(ua, query = query) %>% httr::content(., encoding = "utf-8")
 }
