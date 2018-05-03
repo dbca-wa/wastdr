@@ -151,7 +151,6 @@ devtools::check(check_version = T, force_suggests = T, args = c("--as-cran", "--
 covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
 pkgdown::build_news()
 pkgdown::build_site()
-
 ```
 
 To enable local testing of the API as well as checking and upload of test 
