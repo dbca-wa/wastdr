@@ -9,7 +9,7 @@ wastdr_setup(api_url = get_wastdr_api_url(), api_token = NULL,
 }
 \arguments{
 \item{api_url}{A WAStD API URL (optional),
-default: "https://strandings.dpaw.wa.gov.au/api/1/"}
+default: "https://tsc.dbca.wa.gov.au/api/1/"}
 
 \item{api_token}{A CKAN API token (character)}
 
@@ -34,6 +34,6 @@ wastdr_setup(api_un = "wastd_username",
              api_pw = "wastd_password")
 
 # Not specifying the default WAStD API URL will reset the WAStD URL to its
-# default "https://strandings.dpaw.wa.gov.au/api/1/":
+# default "https://tsc.dbca.wa.gov.au/api/1/":
 wastdr_setup(api_token = "c12345asdfqwer")
 }

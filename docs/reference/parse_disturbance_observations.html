@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Upsert GeoJSON into WAStD API endpoints — upsert_geojson • wastdr</title>
+<title>Parse a <code>wastd_api_response</code> of <code>disturbance-observations</code> to tbl_df — parse_disturbance_observations • wastdr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -101,71 +101,61 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Upsert GeoJSON into WAStD API endpoints</h1>
+    <h1>Parse a <code>wastd_api_response</code> of <code>disturbance-observations</code> to tbl_df</h1>
     </div>
 
     
-    <p>Upsert GeoJSON into WAStD API endpoints</p>
+    <p>Parse a <code>wastd_api_response</code> of <code>disturbance-observations</code> to tbl_df</p>
     
 
-    <pre class="usage"><span class='fu'>upsert_geojson</span>(<span class='no'>gj_featurecollection</span>, <span class='kw'>serializer</span> <span class='kw'>=</span> <span class='st'>"names"</span>,
-  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings'>get_wastdr_api_url</a></span>(),
-  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings'>get_wastdr_api_token</a></span>(),
-  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings'>get_wastdr_api_un</a></span>(),
-  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings'>get_wastdr_api_pw</a></span>(), <span class='kw'>chunksize</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>parse_disturbance_observations</span>(<span class='no'>wastd_api_response</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>gj_featurecollection</th>
-      <td><p>(list) A GeoJSON featurecollection as list</p></td>
-    </tr>
-    <tr>
-      <th>serializer</th>
-      <td><p>(character) WAStD API serializer name (required)
-Possible values as per
-<code>https://strandings.dpaw.wa.gov.au/api/1/?format=corejson</code> are:</p><ul>
-<li><p>encounters (all encounters, but only core fields)</p></li>
-<li><p>animal-encounters (strandings, tagging)</p></li>
-<li><p>turtle-nest-encounters (tracks and nests)</p></li>
-<li><p>logger-encounters (temp and other loggers)</p></li>
-<li><p>areas (polygons of known areas)</p></li>
-<li><p>media-attachments (photos, data sheets etc)</p></li>
-<li><p>nesttag-observations (sightings of nest tags)</p></li>
-<li><p>tag-observations (tag observations during encounters)</p></li>
-<li><p>taxa (WACensus taxa)</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>api_url</th>
-      <td><p>(character) The WAStD API URL,
-default <code><a href='wastdr_settings.html'>get_wastdr_api_url</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
-    </tr>
-    <tr>
-      <th>api_token</th>
-      <td><p>(character) The WAStD API token,
-default <code><a href='wastdr_settings.html'>get_wastdr_api_token</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
-    </tr>
-    <tr>
-      <th>api_un</th>
-      <td><p>(character) A WAStD API username,
-default <code><a href='wastdr_settings.html'>get_wastdr_api_un</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
-    </tr>
-    <tr>
-      <th>api_pw</th>
-      <td><p>(character) A WAStD API password,
-default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
-    </tr>
-    <tr>
-      <th>chunksize</th>
-      <td><p>(int) The number of features to upload simultaneously, default: 1000.</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Whether to show debug messages.</p></td>
+      <th>wastd_api_response</th>
+      <td><p>A <code>wastd_api_response</code> of
+<code>disturbance-observations</code>, e.g. <code><a href='wastd_GET.html'>wastd_GET("disturbance-observations")</a></code></p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A <code>tbl_df</code> with columns:</p><ul>
+<li><p>area_name &lt;chr&gt;</p></li>
+<li><p>area_type &lt;chr&gt;</p></li>
+<li><p>area_id &lt;int&gt;</p></li>
+<li><p>site_name &lt;chr&gt;</p></li>
+<li><p>site_type &lt;chr&gt;</p></li>
+<li><p>site_id &lt;int&gt;</p></li>
+<li><p>survey_id &lt;int&gt;</p></li>
+<li><p>survey_start_time &lt;dttm&gt;</p></li>
+<li><p>survey_end_time &lt;dttm&gt;</p></li>
+<li><p>survey_start_comments &lt;chr&gt;</p></li>
+<li><p>survey_end_comments &lt;chr&gt;</p></li>
+<li><p>encounter_id &lt;chr&gt;</p></li>
+<li><p>datetime &lt;dttm&gt;</p></li>
+<li><p>longitude &lt;dbl&gt;</p></li>
+<li><p>latitude &lt;dbl&gt;</p></li>
+<li><p>crs &lt;chr&gt;</p></li>
+<li><p>location_accuracy &lt;dbl&gt;</p></li>
+<li><p>date &lt;date&gt;</p></li>
+<li><p>comments &lt;chr&gt;</p></li>
+<li><p>absolute_admin_url &lt;chr&gt;</p></li>
+<li><p>photos &lt;list&gt;</p></li>
+<li><p>source &lt;chr&gt;</p></li>
+<li><p>source_id &lt;chr&gt;</p></li>
+<li><p>encounter_type &lt;chr&gt;</p></li>
+<li><p>status &lt;chr&gt;</p></li>
+<li><p>observer &lt;chr&gt;</p></li>
+<li><p>reporter &lt;chr&gt;</p></li>
+<li><p>disturbance_cause &lt;chr&gt;</p></li>
+<li><p>disturbance_cause_confidence &lt;chr&gt;</p></li>
+<li><p>disturbance_severity &lt;chr&gt;</p></li>
+<li><p>disturbance_comments &lt;chr&gt;</p></li>
+</ul>
+
     
 
   </div>
@@ -173,7 +163,9 @@ default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

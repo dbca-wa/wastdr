@@ -86,10 +86,10 @@
 <div id="wastdr-makes-wa-strandings-data-accessible-in-r" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#wastdr-makes-wa-strandings-data-accessible-in-r" class="anchor"></a>wastdr makes WA Strandings Data accessible in R</h1></div>
-<p>The <a href="https://strandings.dpaw.wa.gov.au/">WA Strandings Database WAStD</a> (<a href="https://github.com/dbca-wa/wastd/">github</a>) provides a <a href="https://strandings.dpaw.wa.gov.au/api/1/">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Parks &amp; Wildlife. The WAStD API uses token and basic authentication, see vignette on details.</p>
+<p>The <a href="https://tsc.dbca.wa.gov.au/">WA Strandings Database WAStD</a> (<a href="https://github.com/dbca-wa/wastd/">github</a>) provides a <a href="https://tsc.dbca.wa.gov.au/api/1/">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Parks &amp; Wildlife. The WAStD API uses token and basic authentication, see vignette on details.</p>
 <p>The API returns GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. <a href="http://www.qgis.org/en/site/">Quantum GIS</a>.</p>
 <p>If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON) into a two-dimensional tablular structure.</p>
-<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="http://dplyr.tidyverse.org/reference/reexports.html">dplyr::tibble</a></code>.</p>
+<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="http://www.rdocumentation.org/packages/dplyr/topics/reexports">dplyr::tibble</a></code>.</p>
 <p>The secondary purpose of <code>wastdr</code> is to centralise a collection of commonly used analyses and visualisations of turtle data. As development progresses, example analyses and visualisationsn will be added to the vignette. Contributions and requests are welcome!</p>
 <p>Lastly, to facilitate collaboration with external stakeholders, <code>wastdr</code> contains some anonymized example data (raw GeoJSON and parsed <code>tibble</code>) of turtle taggings, turtle track counts, and turtle nests.</p>
 <div id="installation" class="section level2">
@@ -104,14 +104,14 @@ devtools::<span class="kw">install_github</span>(<span class="st">"dbca-wa/wastd
 <h2 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h2>
 <p><code>wastdr</code> requires to be configured with the WAStD API URL and an access token or a username / password combination. <code>wastdr</code> functions expect these settings to be available as environment variables. For convenience, <code>wastdr_setup</code> sets the correct variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
-<p>DBCA staff can find their WAStD API Token at <a href="https://strandings.dpaw.wa.gov.au/">WAStD</a> under “My Profile” and run:</p>
+<p>DBCA staff can find their WAStD API Token at <a href="https://tsc.dbca.wa.gov.au/">WAStD</a> under “My Profile” and run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr::<span class="kw"><a href="reference/wastdr_setup.html">wastdr_setup</a></span>(<span class="dt">api_token =</span> <span class="st">"c12345asdfqwer"</span>)</code></pre></div>
 <p>External collaborator can use their allocated username and password:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr::<span class="kw"><a href="reference/wastdr_setup.html">wastdr_setup</a></span>(<span class="dt">api_un =</span> <span class="st">"my_username"</span>, <span class="dt">api_pw =</span> <span class="st">"my_password"</span>)</code></pre></div>
 <p>Review the settings with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr::<span class="kw"><a href="reference/wastdr_settings.html">wastdr_settings</a></span>()
 <span class="co">#&gt; &lt;wastdr settings&gt;</span>
-<span class="co">#&gt;   API URL:  https://strandings.dpaw.wa.gov.au/api/1/ </span>
+<span class="co">#&gt;   API URL:  https://tsc.dbca.wa.gov.au/api/1/ </span>
 <span class="co">#&gt;   API Token:  Token c12345asdfqwer </span>
 <span class="co">#&gt;   API Username:  my_username </span>
 <span class="co">#&gt;   API Password:  my_password</span></code></pre></div>
@@ -129,6 +129,7 @@ nests &lt;-<span class="st"> </span><span class="kw"><a href="reference/parse_tu
 <li><code>encounters</code></li>
 <li><code>animal-encounters</code></li>
 <li><code>turtle-nest-encounters</code></li>
+<li><code>disturbance-observations</code></li>
 </ul>
 </div>
 <div id="or-have-a-pickle" class="section level2">
@@ -175,6 +176,7 @@ tracks &lt;-<span class="st"> </span>wastdr::<span class="kw"><a href="reference
 <span class="kw">require</span>(styler)
 styler:::<span class="kw"><a href="http://www.rdocumentation.org/packages/styler/topics/style_pkg">style_pkg</a></span>()
 devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/document">document</a></span>(<span class="dt">roclets =</span> <span class="kw">c</span>(<span class="st">"rd"</span>, <span class="st">"collate"</span>, <span class="st">"namespace"</span>, <span class="st">"vignette"</span>))
+pkgdown::<span class="kw"><a href="http://www.rdocumentation.org/packages/pkgdown/topics/build_news">build_news</a></span>()
 pkgdown::<span class="kw"><a href="http://www.rdocumentation.org/packages/pkgdown/topics/build_site">build_site</a></span>()
 devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()
 devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/check">check</a></span>(<span class="dt">check_version =</span> T, <span class="dt">force_suggests =</span> T, <span class="dt">args =</span> <span class="kw">c</span>(<span class="st">"--as-cran"</span>, <span class="st">"--timings"</span>))

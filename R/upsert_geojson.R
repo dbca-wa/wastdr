@@ -27,12 +27,13 @@ upsert_geojson <- function(gj_featurecollection,
     props[start:end] %>%
       purrr::map(., purrr::flatten) %>%
       wastd_POST(.,
-                 serializer = serializer,
-                 api_url = api_url,
-                 api_token = api_token,
-                 api_un = api_un,
-                 api_pw = api_pw,
-                 verbose = verbose)
+        serializer = serializer,
+        api_url = api_url,
+        api_token = api_token,
+        api_un = api_un,
+        api_pw = api_pw,
+        verbose = verbose
+      )
   }
   message("[upsert_geojson] Finished. ", len, " records updated.")
 }

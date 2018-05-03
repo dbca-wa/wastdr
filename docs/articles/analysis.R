@@ -21,7 +21,7 @@ wastdr::wastdr_setup()
 if (file.exists("tracks.Rda")){
     load("tracks.Rda")
 } else {
-    q = list(when__year__in = "2017,2018")
+    q = list(when__year__in = "2018")
     track_records <- wastdr::wastd_GET("turtle-nest-encounters", query=q)
     tracks_all <- parse_turtle_nest_encounters(track_records)
     surveys <- wastd_GET("surveys", query=q) %>% parse_surveys()

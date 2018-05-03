@@ -4,7 +4,7 @@
 wastdr makes WA Strandings Data accessible in R
 ===============================================
 
-The [WA Strandings Database WAStD](https://strandings.dpaw.wa.gov.au/) ([github](https://github.com/dbca-wa/wastd/)) provides a [RESTful API](https://strandings.dpaw.wa.gov.au/api/1/). WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Parks & Wildlife. The WAStD API uses token and basic authentication, see vignette on details.
+The [WA Strandings Database WAStD](https://tsc.dbca.wa.gov.au/) ([github](https://github.com/dbca-wa/wastd/)) provides a [RESTful API](https://tsc.dbca.wa.gov.au/api/1/). WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Parks & Wildlife. The WAStD API uses token and basic authentication, see vignette on details.
 
 The API returns GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. [Quantum GIS](http://www.qgis.org/en/site/).
 
@@ -33,7 +33,7 @@ Setup
 
 `wastdr` requires to be configured with the WAStD API URL and an access token or a username / password combination. `wastdr` functions expect these settings to be available as environment variables. For convenience, `wastdr_setup` sets the correct variables, while `wastdr_settings` retrieves the currently set values.
 
-DBCA staff can find their WAStD API Token at [WAStD](https://strandings.dpaw.wa.gov.au/) under "My Profile" and run:
+DBCA staff can find their WAStD API Token at [WAStD](https://tsc.dbca.wa.gov.au/) under "My Profile" and run:
 
 ``` r
 wastdr::wastdr_setup(api_token = "c12345asdfqwer")
@@ -50,7 +50,7 @@ Review the settings with:
 ``` r
 wastdr::wastdr_settings()
 #> <wastdr settings>
-#>   API URL:  https://strandings.dpaw.wa.gov.au/api/1/ 
+#>   API URL:  https://tsc.dbca.wa.gov.au/api/1/ 
 #>   API Token:  Token c12345asdfqwer 
 #>   API Username:  my_username 
 #>   API Password:  my_password
@@ -74,6 +74,7 @@ Valid endpoints are listed in the base API URL of WAStD, e.g.:
 -   `encounters`
 -   `animal-encounters`
 -   `turtle-nest-encounters`
+-   `disturbance-observations`
 
 ...or have a pickle
 -------------------
@@ -128,6 +129,7 @@ require(covr)
 require(styler)
 styler:::style_pkg()
 devtools::document(roclets = c("rd", "collate", "namespace", "vignette"))
+pkgdown::build_news()
 pkgdown::build_site()
 devtools::test()
 devtools::check(check_version = T, force_suggests = T, args = c("--as-cran", "--timings"))

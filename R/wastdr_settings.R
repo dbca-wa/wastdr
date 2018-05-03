@@ -43,7 +43,7 @@ print.wastdr_settings <- function(x, ...) {
 #'
 #' @export
 #' @param api_url A WAStD API URL (optional),
-#'   default: "https://strandings.dpaw.wa.gov.au/api/1/"
+#'   default: "https://tsc.dbca.wa.gov.au/api/1/"
 #' @param api_token A CKAN API token (character)
 #' @param api_un Alternatively, a CKAN API username (character)
 #' @param api_pw The password to the CKAN username (character)
@@ -60,7 +60,7 @@ print.wastdr_settings <- function(x, ...) {
 #'              api_pw = "wastd_password")
 #'
 #' # Not specifying the default WAStD API URL will reset the WAStD URL to its
-#' # default "https://strandings.dpaw.wa.gov.au/api/1/":
+#' # default "https://tsc.dbca.wa.gov.au/api/1/":
 #' wastdr_setup(api_token = "c12345asdfqwer")
 wastdr_setup <- function(
                          api_url = get_wastdr_api_url(),
@@ -87,7 +87,7 @@ wastdr_setup <- function(
 #' @rdname wastdr_settings
 get_wastdr_api_url <- function() {
   Sys.getenv("WASTDR_API_URL",
-    unset = "https://strandings.dpaw.wa.gov.au/api/1/"
+    unset = "https://tsc.dbca.wa.gov.au/api/1/"
   )
 }
 

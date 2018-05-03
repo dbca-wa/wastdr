@@ -3,6 +3,10 @@
 ## Check notes
 None.
 
+## 0.1.6
+* `parse_disturbance_observations` added. 
+  Coming soon: tests, usage examples in vignettes and test data. Promise.
+
 ## 0.1.5
 * `upsert_geojson` added.
 
