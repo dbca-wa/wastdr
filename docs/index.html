@@ -89,7 +89,7 @@
 <p>The <a href="https://tsc.dbca.wa.gov.au/">WA Strandings Database WAStD</a> (<a href="https://github.com/dbca-wa/wastd/">github</a>) provides a <a href="https://tsc.dbca.wa.gov.au/api/1/">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Parks &amp; Wildlife. The WAStD API uses token and basic authentication, see vignette on details.</p>
 <p>The API returns GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. <a href="http://www.qgis.org/en/site/">Quantum GIS</a>.</p>
 <p>If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON) into a two-dimensional tablular structure.</p>
-<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="http://dplyr.tidyverse.org/reference/reexports.html">dplyr::tibble</a></code>.</p>
+<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="http://www.rdocumentation.org/packages/dplyr/topics/reexports">dplyr::tibble</a></code>.</p>
 <p>The secondary purpose of <code>wastdr</code> is to centralise a collection of commonly used analyses and visualisations of turtle data. As development progresses, example analyses and visualisationsn will be added to the vignette. Contributions and requests are welcome!</p>
 <p>Lastly, to facilitate collaboration with external stakeholders, <code>wastdr</code> contains some anonymized example data (raw GeoJSON and parsed <code>tibble</code>) of turtle taggings, turtle track counts, and turtle nests.</p>
 <div id="installation" class="section level2">
@@ -111,7 +111,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <p>Review the settings with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings">wastdr_settings</a></span>()
 <span class="co">#&gt; &lt;wastdr settings&gt;</span>
-<span class="co">#&gt;   API URL:  https://strandings.dpaw.wa.gov.au/api/1/ </span>
+<span class="co">#&gt;   API URL:  https://tsc.dbca.wa.gov.au/api/1/ </span>
 <span class="co">#&gt;   API Token:  Token c12345asdfqwer </span>
 <span class="co">#&gt;   API Username:  my_username </span>
 <span class="co">#&gt;   API Password:  my_password</span></code></pre></div>

@@ -50,7 +50,7 @@ Review the settings with:
 ``` r
 wastdr::wastdr_settings()
 #> <wastdr settings>
-#>   API URL:  https://strandings.dpaw.wa.gov.au/api/1/ 
+#>   API URL:  https://tsc.dbca.wa.gov.au/api/1/ 
 #>   API Token:  Token c12345asdfqwer 
 #>   API Username:  my_username 
 #>   API Password:  my_password

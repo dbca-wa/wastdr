@@ -3,6 +3,9 @@
 ## Check notes
 None.
 
+## 0.1.8
+* Cut down on size of vignette "analysis"
+
 ## 0.1.7
 * patch release: fix `parse_surveys`: hours/minutes were minutes/seconds.
 

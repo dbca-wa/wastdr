@@ -21,7 +21,7 @@ wastdr::wastdr_setup()
 if (file.exists("tracks.Rda")){
     load("tracks.Rda")
 } else {
-    q = list(when__year__in = "2018")
+    q = list(observer=4)
     track_records <- wastdr::wastd_GET("turtle-nest-encounters", query=q)
     tracks_all <- parse_turtle_nest_encounters(track_records)
     surveys <- wastd_GET("surveys", query=q) %>% parse_surveys()
@@ -81,39 +81,11 @@ tracks_ts <- . %>%
             ggplot2::theme_light()}
 
 ## ---- fig.width=9, fig.height=5, eval=T----------------------------------
-tracks_cbb <- tracks %>% filter_broome
-tracks_cbb %>% add_nest_labels %>% map_tracks
-tracks_cbb %>% tracks_ts
+tracks %>% add_nest_labels %>% map_tracks
+tracks %>% tracks_ts
 
-# named_nests_cbb <- tracks_cbb %>% filter(!(is.na(name)))
-# named_nests_cbb %>% tracks_map
-# named_nests_cbb %>% DT::datatable(.)
-
-surveys_cbb <- surveys %>% filter_broome_sites
-place <- "Cable Beach Broome"
-surveys_cbb %>% plot_survey_count(place)
-surveys_cbb %>% list_survey_count(place)
-surveys_cbb %>% plot_survey_effort(place)
-surveys_cbb %>% list_survey_effort(place)
-
-surveys_cbb %>% survey_hours_per_person %>% DT::datatable(.)
-
-## ---- fig.width=9, fig.height=5, eval=T----------------------------------
-tracks_pth_cem <- tracks %>% filter_port_hedland_cemetery()
-tracks_pth_ppo <- tracks %>% filter_port_hedland_prettypool()
-
-tracks_pth_cem %>% add_nest_labels() %>% map_tracks()
-tracks_pth_cem %>% tracks_ts() %T>% 
-  ggsave(filename = "~/pth_daily_tracks_cem.png", device = "png", width = 9, height = 5)
-
-tracks_pth_ppo %>% add_nest_labels() %>% map_tracks()
-tracks_pth_ppo %>% tracks_ts() %T>% 
-  ggsave(filename = "~/pth_daily_tracks_ppo.png", device = "png", width = 9, height = 5)
-
-surveys_pth <- surveys %>% filter_port_hedland_sites()
-place <- "Port Hedland"
-surveys_pth %>% plot_survey_count(place)
-surveys_pth %>% list_survey_count(place)
-surveys_pth %>% plot_survey_effort(place)
-surveys_pth %>% list_survey_effort(place)
+place <- "Example place"
+surveys %>% plot_survey_count(place)
+surveys %>% list_survey_count(place)
+surveys %>% survey_hours_per_person %>% DT::datatable(.)
 
