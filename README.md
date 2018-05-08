@@ -50,7 +50,7 @@ Review the settings with:
 ``` r
 wastdr::wastdr_settings()
 #> <wastdr settings>
-#>   API URL:  https://tsc.dbca.wa.gov.au/api/1/ 
+#>   API URL:  https://strandings.dpaw.wa.gov.au/api/1/ 
 #>   API Token:  Token c12345asdfqwer 
 #>   API Username:  my_username 
 #>   API Password:  my_password
@@ -129,11 +129,11 @@ require(covr)
 require(styler)
 styler:::style_pkg()
 devtools::document(roclets = c("rd", "collate", "namespace", "vignette"))
-pkgdown::build_news()
-pkgdown::build_site()
 devtools::test()
 devtools::check(check_version = T, force_suggests = T, args = c("--as-cran", "--timings"))
 covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
+pkgdown::build_news()
+pkgdown::build_site()
 ```
 
 To enable local testing of the API as well as checking and upload of test coverage, add these two lines with the respective tokens to your .Rprofile:
