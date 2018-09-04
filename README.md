@@ -8,11 +8,11 @@ The [WA Strandings Database WAStD](https://tsc.dbca.wa.gov.au/) ([github](https:
 
 The API returns GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. [Quantum GIS](http://www.qgis.org/en/site/).
 
-If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON) into a two-dimensional tablular structure.
+If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON properties) into a two-dimensional tablular structure. This requires knowledge about the structure and content of the nested data from WAStD.
 
 The main purpose of `wastdr` is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a [tidy](http://vita.had.co.nz/papers/tidy-data.html) `dplyr::tibble`.
 
-The secondary purpose of `wastdr` is to centralise a collection of commonly used analyses and visualisations of turtle data. As development progresses, example analyses and visualisationsn will be added to the vignette. Contributions and requests are welcome!
+The secondary purpose of `wastdr` is to centralise a collection of commonly used analyses and visualisations of turtle data. As development progresses, example analyses and visualisations will be added to the vignette. Contributions and requests are welcome!
 
 Lastly, to facilitate collaboration with external stakeholders, `wastdr` contains some anonymized example data (raw GeoJSON and parsed `tibble`) of turtle taggings, turtle track counts, and turtle nests.
 
@@ -36,7 +36,7 @@ Setup
 DBCA staff can find their WAStD API Token at [WAStD](https://tsc.dbca.wa.gov.au/) under "My Profile" and run:
 
 ``` r
-wastdr::wastdr_setup(api_token = "c12345asdfqwer")
+wastdr::wastdr_setup(api_token = "my_token")
 ```
 
 External collaborator can use their allocated username and password:
@@ -51,7 +51,7 @@ Review the settings with:
 wastdr::wastdr_settings()
 #> <wastdr settings>
 #>   API URL:  https://tsc.dbca.wa.gov.au/api/1/ 
-#>   API Token:  Token c12345asdfqwer 
+#>   API Token:  Token my_token 
 #>   API Username:  my_username 
 #>   API Password:  my_password
 ```
@@ -123,10 +123,6 @@ Pull requests should eventually pass tests and checks (not introducing new ERROR
 # source("https://install-github.me/mangothecat/callr")
 # devtools::install_github("hadley/pkgdown")
 # devtools::install_github("klutometis/roxygen")
-require(devtools)
-require(pkgdown)
-require(covr)
-require(styler)
 styler:::style_pkg()
 devtools::document(roclets = c("rd", "collate", "namespace", "vignette"))
 devtools::test()

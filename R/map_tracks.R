@@ -24,13 +24,13 @@ map_tracks <- function(tracks) {
       l <<- l %>%
         addAwesomeMarkers(
           data = tracks.df[[df]],
-          lng = ~ longitude, lat = ~ latitude,
+          lng = ~longitude, lat = ~latitude,
           icon = leaflet::makeAwesomeIcon(
-            text = ~ nest_type_text,
-            markerColor = ~ species_colours
+            text = ~nest_type_text,
+            markerColor = ~species_colours
           ),
-          label = ~ paste(date, nest_age, species, nest_type, name),
-          popup = ~ paste(date, nest_age, species, nest_type, name),
+          label = ~paste(date, nest_age, species, nest_type, name),
+          popup = ~paste(date, nest_age, species, nest_type, name),
           group = df
         )
     })

@@ -59,7 +59,7 @@ parse_surveys <- function(wastd_api_response) {
       )
     } %>%
     dplyr::mutate(
-      duration_minutes = (interval(start_time, end_time) %>% as.period() %>% as.numeric() %>% round())/60,
+      duration_minutes = (interval(start_time, end_time) %>% as.period() %>% as.numeric() %>% round()) / 60,
       duration_hours = duration_minutes / 60
     )
 }

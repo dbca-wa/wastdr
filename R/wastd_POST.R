@@ -25,7 +25,7 @@ wastd_POST <- function(data,
                        api_token = wastdr::get_wastdr_api_token(),
                        api_un = wastdr::get_wastdr_api_un(),
                        api_pw = wastdr::get_wastdr_api_pw(),
-                       verbose=FALSE) {
+                       verbose = FALSE) {
   . <- NULL
   ua <- httr::user_agent("http://github.com/parksandwildlife/turtle-scripts")
   if (!is.null(api_token)) {

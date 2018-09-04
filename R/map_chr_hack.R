@@ -14,6 +14,6 @@
 #' testthat::expect_equal(nn[[2]], animal_encounters$features[[2]]$properties$name)
 map_chr_hack <- function(.x, .f, ...) {
   map(.x, .f, ...) %>%
-    purrr::map_if(is.null, ~ NA_character_) %>%
+    purrr::map_if(is.null, ~NA_character_) %>%
     purrr::flatten_chr()
 }
