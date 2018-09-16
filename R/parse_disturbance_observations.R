@@ -52,7 +52,7 @@ parse_disturbance_observations <- function(wastd_api_response) {
       site_name = map_chr_hack(., c("properties", "encounter", "properties", "site", "name")),
       site_type = map_chr_hack(., c("properties", "encounter", "properties", "site", "area_type")),
       site_id = map_chr_hack(., c("properties", "encounter", "properties", "site", "pk")) %>% as.integer(),
-      survey_id = map_chr_hack(., c("properties", "encounter", "properties", "survey", "pk")) %>% as.integer(),
+      survey_id = map_chr_hack(., c("properties", "encounter", "properties", "survey", "id")) %>% as.integer(),
       survey_start_time = map_chr_hack(., c("properties", "encounter", "properties", "survey", "start_time")) %>% httpdate_as_gmt08(),
       survey_end_time = map_chr_hack(., c("properties", "encounter", "properties", "survey", "end_time")) %>% httpdate_as_gmt08(),
       survey_start_comments = map_chr_hack(., c("properties", "encounter", "properties", "survey", "start_comments")),

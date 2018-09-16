@@ -59,7 +59,7 @@ parse_surveys <- function(wastd_api_response) {
       )
     } %>%
     dplyr::mutate(
-      duration_minutes = (interval(start_time, end_time) %>% as.period() %>% as.numeric() %>% round())/60,
+      duration_minutes = (interval(start_time, end_time) %>% as.period() %>% as.numeric() %>% round()) / 60,
       duration_hours = duration_minutes / 60
     )
 }
@@ -149,7 +149,7 @@ plot_survey_count <- function(surveys, placename) {
     #   breaks = scales::pretty_breaks,
     #   labels = scales::date_format("%d %b %Y")
     # ) +
-    ggplot2::theme_light() +
+    ggplot2::theme_classic() +
     ggplot2::ggtitle(paste("Survey Count", placename)) +
     ggplot2::labs(x = "Turtle date", y = "", fill = "Number of surveys") +
     ggplot2::ggsave(
@@ -192,7 +192,7 @@ plot_survey_effort <- function(surveys, placename) {
       breaks = scales::pretty_breaks(),
       labels = scales::date_format("%d %b %Y")
     ) +
-    ggplot2::theme_light() +
+    ggplot2::theme_classic() +
     ggplot2::ggtitle(paste("Survey Effort", placename)) +
     ggplot2::labs(x = "Turtle date", y = "", fill = "Hours surveyed") +
     ggplot2::ggsave(
