@@ -24,8 +24,9 @@ The API returns GeoJSON, which can be loaded directly into any standard-complian
 GIS environments, e.g. [Quantum GIS](http://www.qgis.org/en/site/).
 
 If the data consumer however wishes to analyse data in a statistical package like
-R, the data need to be transformed from a nested list of lists (GeoJSON) into a
-two-dimensional tablular structure.
+R, the data need to be transformed from a nested list of lists (GeoJSON properties) 
+into a two-dimensional tablular structure. This requires knowledge about the 
+structure and content of the nested data from WAStD.
 
 The main purpose of `wastdr` is to facilitate reading, parsing and using WAStD data
 by providing helpers to access the API and flatten the API outputs into a 
@@ -33,7 +34,7 @@ by providing helpers to access the API and flatten the API outputs into a
 
 The secondary purpose of `wastdr` is to centralise a collection of commonly used
 analyses and visualisations of turtle data.
-As development progresses, example analyses and visualisationsn will be added to 
+As development progresses, example analyses and visualisations will be added to 
 the vignette. Contributions and requests are welcome!
 
 Lastly, to facilitate collaboration with external stakeholders, `wastdr` contains
@@ -64,7 +65,7 @@ DBCA staff can find their WAStD API Token at [WAStD](https://tsc.dbca.wa.gov.au/
 under "My Profile" and run:
 
 ```{r}
-wastdr::wastdr_setup(api_token = "c12345asdfqwer")
+wastdr::wastdr_setup(api_token = "my_token")
 ```
 
 External collaborator can use their allocated username and password:
