@@ -2,6 +2,7 @@
 % Please edit documentation in R/wastdr_settings.R
 \name{wastdr_settings}
 \alias{wastdr_settings}
+\alias{get_wastd_url}
 \alias{get_wastdr_api_url}
 \alias{get_wastdr_api_token}
 \alias{get_wastdr_api_un}
@@ -9,6 +10,8 @@
 \title{Get or set wastdr WAStD settings}
 \usage{
 wastdr_settings()
+
+get_wastd_url()
 
 get_wastdr_api_url()
 
@@ -27,6 +30,7 @@ Get or set wastdr WAStD settings
 }
 \seealso{
 \code{\link{wastdr_setup}},
+\code{\link{get_wastd_url}},
 \code{\link{get_wastdr_api_url}},
 \code{\link{get_wastdr_api_token}},
 \code{\link{get_wastdr_api_un}}, and

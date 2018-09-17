@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">wastdr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.9</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.10</span>
       </span>
     </div>
 
@@ -62,9 +62,6 @@
     </li>
     <li>
       <a href="articles/getting-wastd.html">Getting WAStD</a>
-    </li>
-    <li>
-      <a href="articles/rsconnect/documents/analysis.html">UNKNOWN TITLE</a>
     </li>
     <li>
       <a href="articles/setup.html">Setup</a>
@@ -126,6 +123,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"dbca-wa/wastd
 <p>Review the settings with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr::<span class="kw"><a href="reference/wastdr_settings.html">wastdr_settings</a></span>()
 <span class="co">#&gt; &lt;wastdr settings&gt;</span>
+<span class="co">#&gt;   WAStD URL:  https://tsc.dbca.wa.gov.au </span>
 <span class="co">#&gt;   API URL:  https://tsc.dbca.wa.gov.au/api/1/ </span>
 <span class="co">#&gt;   API Token:  Token my_token </span>
 <span class="co">#&gt;   API Username:  my_username </span>
@@ -188,7 +186,7 @@ tracks &lt;-<span class="st"> </span>wastdr::<span class="kw"><a href="reference
 styler:::<span class="kw">style_pkg</span>()
 devtools::<span class="kw">document</span>(<span class="dt">roclets =</span> <span class="kw">c</span>(<span class="st">"rd"</span>, <span class="st">"collate"</span>, <span class="st">"namespace"</span>, <span class="st">"vignette"</span>))
 devtools::<span class="kw">test</span>()
-devtools::<span class="kw">check</span>(<span class="dt">check_version =</span> T, <span class="dt">force_suggests =</span> T, <span class="dt">args =</span> <span class="kw">c</span>(<span class="st">"--as-cran"</span>, <span class="st">"--timings"</span>))
+devtools::<span class="kw">check</span>(<span class="dt">force_suggests =</span> T, <span class="dt">args =</span> <span class="kw">c</span>(<span class="st">"--as-cran"</span>, <span class="st">"--timings"</span>))
 covr::<span class="kw">codecov</span>(<span class="dt">token =</span> <span class="kw">Sys.getenv</span>(<span class="st">"CODECOV_TOKEN"</span>))
 pkgdown::<span class="kw">build_news</span>()
 pkgdown::<span class="kw">build_site</span>()</code></pre></div>

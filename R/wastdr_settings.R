@@ -4,6 +4,7 @@
 #' @return \code{wastdr_settings} prints your base url and WAStD API key.
 #' \code{ckanr_setup} sets your production and test settings, while
 #' @seealso \code{\link{wastdr_setup}},
+#' \code{\link{get_wastd_url}},
 #' \code{\link{get_wastdr_api_url}},
 #' \code{\link{get_wastdr_api_token}},
 #' \code{\link{get_wastdr_api_un}}, and
@@ -11,6 +12,7 @@
 #' @family wastr settings
 wastdr_settings <- function() {
   ops <- list(
+    wastd_url = Sys.getenv("WASTD_URL"),
     api_url = Sys.getenv("WASTDR_API_URL", ""),
     api_token = Sys.getenv("WASTDR_API_TOKEN", ""),
     api_un = Sys.getenv("WASTDR_API_UN"),
@@ -22,6 +24,7 @@ wastdr_settings <- function() {
 #' @export
 print.wastdr_settings <- function(x, ...) {
   cat("<wastdr settings>", sep = "\n")
+  cat("  WAStD URL: ", x$wastd_url, "\n")
   cat("  API URL: ", x$api_url, "\n")
   cat("  API Token: ", x$api_token, "\n")
   cat("  API Username: ", x$api_un, "\n")
@@ -42,6 +45,8 @@ print.wastdr_settings <- function(x, ...) {
 #' Configure default WAStD settings
 #'
 #' @export
+#' @param wastd_url A WAStD URL (optional),
+#'   default: "https://tsc.dbca.wa.gov.au"
 #' @param api_url A WAStD API URL (optional),
 #'   default: "https://tsc.dbca.wa.gov.au/api/1/"
 #' @param api_token A CKAN API token (character)
@@ -63,10 +68,12 @@ print.wastdr_settings <- function(x, ...) {
 #' # default "https://tsc.dbca.wa.gov.au/api/1/":
 #' wastdr_setup(api_token = "c12345asdfqwer")
 wastdr_setup <- function(
+                         wastd_url = get_wastd_url(),
                          api_url = get_wastdr_api_url(),
                          api_token = NULL,
                          api_un = get_wastdr_api_un(),
                          api_pw = get_wastdr_api_pw()) {
+  Sys.setenv("WASTD_URL" = wastd_url)
   Sys.setenv("WASTDR_API_URL" = api_url)
 
   if (!is.null(api_token)) {
@@ -83,6 +90,15 @@ wastdr_setup <- function(
 # ------------------------------------------------------------------------------#
 # Getters
 #
+#' @export
+#' @rdname wastdr_settings
+get_wastd_url <- function() {
+  Sys.getenv("WASTD_URL",
+    unset = "https://tsc.dbca.wa.gov.au"
+  )
+}
+
+
 #' @export
 #' @rdname wastdr_settings
 get_wastdr_api_url <- function() {

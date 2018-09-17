@@ -1,3 +1,7 @@
+# wastdr 0.1.10
+## Minor changes
+* `map_tracks` popup formatted, including a link to record in WAStD.
+
 # wastdr 0.1.9
 ## Minor changes
 * Change example plot theme from `theme_light()` to `theme_classic()`.

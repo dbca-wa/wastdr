@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.9</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.10</span>
       </span>
     </div>
 
@@ -88,9 +88,6 @@
     </li>
     <li>
       <a href="../articles/getting-wastd.html">Getting WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/rsconnect/documents/analysis.html">UNKNOWN TITLE</a>
     </li>
     <li>
       <a href="../articles/setup.html">Setup</a>
@@ -132,12 +129,18 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>wastdr_setup</span>(<span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(), <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>wastdr_setup</span>(<span class='kw'>wastd_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastd_url</a></span>(),
+  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(), <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(), <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>wastd_url</th>
+      <td><p>A WAStD URL (optional),
+default: "https://tsc.dbca.wa.gov.au"</p></td>
+    </tr>
     <tr>
       <th>api_url</th>
       <td><p>A WAStD API URL (optional),

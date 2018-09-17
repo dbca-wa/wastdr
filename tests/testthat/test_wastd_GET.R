@@ -15,7 +15,8 @@ check_wastd_api <- function() {
 }
 
 testthat::test_that("wastd_GET returns something", {
-  res <- wastd_GET("", api_url = "http://echo.jsontest.com/", query = list())
+  check_wastd_api()
+  res <- wastd_GET("", query = list())
   testthat::expect_equal(res$response$status_code, 200)
   testthat::expect_s3_class(res, "wastd_api_response")
 })

@@ -4,10 +4,12 @@
 \alias{map_tracks}
 \title{Map TurtleNestEncounters interactively.}
 \usage{
-map_tracks(tracks)
+map_tracks(tracks, fmt = "\%d/\%m/\%Y \%H:\%M")
 }
 \arguments{
 \item{tracks}{The output of \code{parse_turtle_nest_encounters} and \code{add_nest_labels}.}
+
+\item{fmt}{The desired date format, default: "d/m/Y H:M"}
 }
 \value{
 A leaflet map

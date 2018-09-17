@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.9</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.10</span>
       </span>
     </div>
 
@@ -88,9 +88,6 @@
     </li>
     <li>
       <a href="../articles/getting-wastd.html">Getting WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/rsconnect/documents/analysis.html">UNKNOWN TITLE</a>
     </li>
     <li>
       <a href="../articles/setup.html">Setup</a>
@@ -132,7 +129,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>map_tracks</span>(<span class='no'>tracks</span>)</pre>
+    <pre class="usage"><span class='fu'>map_tracks</span>(<span class='no'>tracks</span>, <span class='kw'>fmt</span> <span class='kw'>=</span> <span class='st'>"%d/%m/%Y %H:%M"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,6 +137,10 @@
     <tr>
       <th>tracks</th>
       <td><p>The output of <code>parse_turtle_nest_encounters</code> and <code>add_nest_labels</code>.</p></td>
+    </tr>
+    <tr>
+      <th>fmt</th>
+      <td><p>The desired date format, default: "d/m/Y H:M"</p></td>
     </tr>
     </table>
     

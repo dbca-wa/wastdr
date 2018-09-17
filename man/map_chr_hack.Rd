@@ -20,11 +20,6 @@ Map given function, handle null as NA and flatten_chr()
 Use this function to extract elements with NAs from a list of lists
 into a tibble.
 }
-\examples{
-data(animal_encounters)
-nn <- map_chr_hack(animal_encounters$features, c("properties", "name"))
-testthat::expect_equal(nn[[2]], animal_encounters$features[[2]]$properties$name)
-}
 \author{
 Jennifer Bryan https://github.com/jennybc/
 }
