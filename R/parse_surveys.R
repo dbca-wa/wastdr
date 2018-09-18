@@ -66,12 +66,13 @@ parse_surveys <- function(wastd_api_response) {
         # transect, start_photo, end_photo, start_location, end_location, team
       )
     } %>%
-    dplyr::mutate(
-      duration_minutes = (lubridate::interval(start_time, end_time) %>%
-                              lubridate::as.period() %>% as.numeric() %>%
-                              round()) / 60,
-      duration_hours = duration_minutes / 60
-    )
+      dplyr::mutate(
+          duration_minutes = (
+              lubridate::interval(start_time, end_time) %>%
+                  lubridate::as.period() %>% as.numeric()
+          ) / 60 %>% round(),
+          duration_hours = duration_minutes / 60 %>% round()
+      )
 }
 
 #' Count number of surveys per site_name and date from the output of \code{parse_surveys}.
