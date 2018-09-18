@@ -1,3 +1,8 @@
+# wastdr 0.1.11
+## Minor changes
+* `parse_surveys` now includes WAStD survey ID and absolute admin URL. The
+  latter can be used to construct a direct link to update a survey in WAStD.
+
 # wastdr 0.1.10
 ## Minor changes
 * `map_tracks` popup formatted, including a link to record in WAStD.

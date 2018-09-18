@@ -23,6 +23,9 @@
 #'   \item status <chr> The QA status of the Survey. "Proofread" or "Curated" indicate human QA edits.
 #'   \item device_id <chr> The unique ID of the device the Site Visit Start was captured on.
 #'   \item end_device_id <chr> The unique ID of the device the Site Visit End was captured on.
+#'   \item status <chr> QA status of the survey.
+#'   \item id <int> WAStD ID of the survey.
+#'   \item absolute_admin_url <chr> The absolute URL path to edit the survey in WAStD. Append this to the base `WASTD_URL`.
 #' }
 #' @export
 #' @import magrittr
@@ -54,7 +57,10 @@ parse_surveys <- function(wastd_api_response) {
         end_source_id = map_chr_hack(., c("properties", "end_source_id")),
         device_id = map_chr_hack(., c("properties", "device_id")),
         end_device_id = map_chr_hack(., c("properties", "end_device_id")),
-        status = map_chr_hack(., c("properties", "status"))
+        status = map_chr_hack(., c("properties", "status")),
+        id = map_chr_hack(., "id"),
+        is_production = map_chr_hack(c("properties", "production")) %>% as.logical(),
+        absolute_admin_url = purrr::map_chr(., c("properties", "absolute_admin_url"))
         # transect, start_photo, end_photo, start_location, end_location, team
       )
     } %>%
