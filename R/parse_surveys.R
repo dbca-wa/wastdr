@@ -60,7 +60,7 @@ parse_surveys <- function(wastd_api_response) {
         status = map_chr_hack(., c("properties", "status")),
         id = map_chr_hack(., "id"),
         is_production = map_chr_hack(c("properties", "production")) %>% as.logical(),
-        absolute_admin_url = purrr::map_chr(., c("properties", "absolute_admin_url"))
+        absolute_admin_url = purrr::map_chr_hack(., c("properties", "absolute_admin_url"))
         # transect, start_photo, end_photo, start_location, end_location, team
       )
     } %>%
