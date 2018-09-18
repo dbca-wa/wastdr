@@ -38,6 +38,8 @@ parse_surveys <- function(wastd_api_response) {
   start_time <- NULL
   end_time <- NULL
   duration_minutes <- NULL
+  require(magrittr)
+
   wastd_api_response$features %>%
     {
       tibble::tibble(
@@ -58,14 +60,16 @@ parse_surveys <- function(wastd_api_response) {
         device_id = map_chr_hack(., c("properties", "device_id")),
         end_device_id = map_chr_hack(., c("properties", "end_device_id")),
         status = map_chr_hack(., c("properties", "status")),
-        id = map_chr_hack(., "id"),
-        is_production = map_chr_hack(c("properties", "production")) %>% as.logical(),
-        absolute_admin_url = purrr::map_chr_hack(., c("properties", "absolute_admin_url"))
+        id = purrr::map_int(., "id"),
+        is_production = map_chr_hack(., c("properties", "production")) %>% as.logical(),
+        absolute_admin_url = map_chr_hack(., c("properties", "absolute_admin_url"))
         # transect, start_photo, end_photo, start_location, end_location, team
       )
     } %>%
     dplyr::mutate(
-      duration_minutes = (interval(start_time, end_time) %>% as.period() %>% as.numeric() %>% round()) / 60,
+      duration_minutes = (lubridate::interval(start_time, end_time) %>%
+                              lubridate::as.period() %>% as.numeric() %>%
+                              round()) / 60,
       duration_hours = duration_minutes / 60
     )
 }
