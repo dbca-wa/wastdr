@@ -29,7 +29,7 @@ wastd_GET <- function(serializer,
 
   ua <- httr::user_agent("http://github.com/parksandwildlife/turtle-scripts")
 
-  url <- paste0(api_url, serializer)
+  url <- glue::glue(api_url, serializer)
 
   query <- c(query, list(format = format))
 
@@ -40,10 +40,10 @@ wastd_GET <- function(serializer,
   }
 
   res <- httr::GET(url, auth, ua, query = query)
-  message(paste("[wastdr::get_wastd] fetched", res$url))
+  message(glue::glue("[wastdr::get_wastd] fetched {res$url}"))
 
   if (res$status_code == 401) {
-    stop(paste(
+    stop(glue::glue(
       "Authorization failed.\n",
       "If you are DBCA staff, run wastdr_setup(api_token='...').\n",
       "You can find your API token under \"My Profile\" in WAStD.\n",
@@ -56,7 +56,7 @@ wastd_GET <- function(serializer,
   }
 
   if (httr::http_type(res) != "application/json") {
-    stop(paste("API did not return JSON.\nIs", url, "a valid endpoint?"),
+    stop(glue::glue("API did not return JSON.\nIs {url} a valid endpoint?"),
       call. = FALSE
     )
   }
@@ -72,10 +72,10 @@ wastd_GET <- function(serializer,
   next_url <- res_parsed$`next`
 
   if (httr::http_error(res)) {
-    stop(sprintf(
-      "WAStD API request failed [%s]\n%s\n<%s>",
-      httr::status_code(res),
-      res_parsed$message
+    stop(
+        glue::glue(
+            "WAStD API request failed [{httr::status_code(res)}]\n",
+            "{res_parsed$message",
     ),
     call. = FALSE
     )
@@ -83,7 +83,7 @@ wastd_GET <- function(serializer,
 
   # We assume all errors are now handled and remaining requests will work
   while (!is.null(next_url)) {
-    message(paste("[wastdr::get_wastd] fetching", next_url, "..."))
+    message(glue::glue("[wastdr::get_wastd] fetching {next_url}..."))
     res_parsed <- httr::GET(next_url, auth, ua) %>%
       httr::stop_for_status(.) %>%
       httr::content(., as = "text", encoding = "UTF-8") %>%

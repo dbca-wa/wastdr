@@ -4,12 +4,12 @@
 \alias{list_survey_effort}
 \title{Create a datatable from the surveyed hours from the output of \code{parse_surveys}.}
 \usage{
-list_survey_effort(surveys, placename)
+list_survey_effort(surveys, placename = "")
 }
 \arguments{
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
 
-\item{placename}{(string) The place name, used in labels.}
+\item{placename}{(string) The place name, used in labels. Default: ""}
 }
 \description{
 Create a datatable from the surveyed hours from the output of \code{parse_surveys}.

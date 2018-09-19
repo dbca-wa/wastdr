@@ -38,7 +38,6 @@ parse_surveys <- function(wastd_api_response) {
   start_time <- NULL
   end_time <- NULL
   duration_minutes <- NULL
-  require(magrittr)
 
   wastd_api_response$features %>%
     {
@@ -132,22 +131,23 @@ survey_hours_per_person <- function(surveys) {
 #' Create a datatable of survey counts from the output of \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
-#' @param placename (string) The place name, used in labels.
+#' @param placename (string) The place name, used in labels. Default: ""
 #' @importFrom DT datatable
 #' @export
-list_survey_count <- function(surveys, placename) {
+list_survey_count <- function(surveys, placename="") {
   . <- NULL
   surveys %>%
     surveys_per_site_name_and_date() %>%
-    DT::datatable(., caption = paste("Survey Count", placename))
+    DT::datatable(., caption = glue::glue("Survey Count {placename}"))
 }
 
 #' Plot the surveyed hours from the output of \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
-#' @param placename (string) The place name, used in labels.
+#' @param placename (string) The place name, used in labels. Default: ""
+#' @param prefix (string) A prefix for the filename. Default: ""
 #' @export
-plot_survey_count <- function(surveys, placename) {
+plot_survey_count <- function(surveys, placename="", prefix="") {
   . <- NULL
   aes <- NULL
   site_name <- NULL
@@ -161,35 +161,33 @@ plot_survey_count <- function(surveys, placename) {
     #   labels = scales::date_format("%d %b %Y")
     # ) +
     ggplot2::theme_classic() +
-    ggplot2::ggtitle(paste("Survey Count", placename)) +
+    ggplot2::ggtitle(glue::glue("Survey Count {placename}")) +
     ggplot2::labs(x = "Turtle date", y = "", fill = "Number of surveys") +
     ggplot2::ggsave(
-      filename = paste0(
-        "survey_count_",
-        stringr::str_replace_all(placename, " ", "_"),
-        ".png"
-      ), width = 9, height = 5
+      filename = glue::glue("{prefix}_survey_count_{urlize(placename)}.png"),
+      width = 9, height = 5
     )
 }
 
 #' Create a datatable from the surveyed hours from the output of \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
-#' @param placename (string) The place name, used in labels.
+#' @param placename (string) The place name, used in labels. Default: ""
 #' @export
-list_survey_effort <- function(surveys, placename) {
+list_survey_effort <- function(surveys, placename="") {
   . <- NULL
   surveys %>%
     survey_hours_per_site_name_and_date() %>%
-    DT::datatable(., caption = paste("Survey Effort [hours]", placename))
+    DT::datatable(., caption = glue::glue("Survey Effort [h] {placename}"))
 }
 
 #' Plot the surveyed hours from the output of \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
 #' @param placename (string) The place name, used in labels.
+#' @param prefix (string) A prefix for the filename. Default: ""
 #' @export
-plot_survey_effort <- function(surveys, placename) {
+plot_survey_effort <- function(surveys, placename="", prefix="") {
   . <- NULL
   aes <- NULL
   site_name <- NULL
@@ -204,13 +202,10 @@ plot_survey_effort <- function(surveys, placename) {
       labels = scales::date_format("%d %b %Y")
     ) +
     ggplot2::theme_classic() +
-    ggplot2::ggtitle(paste("Survey Effort", placename)) +
+      ggplot2::ggtitle(glue::glue("Survey Effort {placename}")) +
     ggplot2::labs(x = "Turtle date", y = "", fill = "Hours surveyed") +
     ggplot2::ggsave(
-      filename = paste0(
-        "survey_effort_",
-        stringr::str_replace_all(placename, " ", "_"),
-        ".png"
-      ), width = 9, height = 5
+        filename = glue::glue("{prefix}_survey_effort_{urlize(placename)}.png"),
+        width = 9, height = 5
     )
 }

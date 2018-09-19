@@ -50,6 +50,7 @@ Review the settings with:
 ``` r
 wastdr::wastdr_settings()
 #> <wastdr settings>
+#>   WAStD URL:  https://tsc.dbca.wa.gov.au 
 #>   API URL:  https://tsc.dbca.wa.gov.au/api/1/ 
 #>   API Token:  Token my_token 
 #>   API Username:  my_username 

@@ -1,3 +1,10 @@
+# wastdr 0.1.12
+## Minor changes
+* Survey helpers writing files accept an optional prefix for the filename they
+  save the outputs to" `plot_survey_effort`, `plot_survey_count`.
+* Survey helpers: placename and prefix are optional.
+* Usage of `paste` replaced by `glue`.
+
 # wastdr 0.1.11
 ## Minor changes
 * `parse_surveys` now includes WAStD survey ID and absolute admin URL. The
