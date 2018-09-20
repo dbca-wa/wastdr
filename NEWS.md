@@ -1,5 +1,9 @@
+# wastdr 0.1.14
+## Minor changes
+* Add map_nests to create a map of tagged nests from WAStD "nesttag-observations".
+
 # wastdr 0.1.13
-# Minor changes
+## Minor changes
 * Added `map_dist` to map disturbance observations.
 * Added `parse_nesttag_observations` for WAStD "nesttag-observations".
 

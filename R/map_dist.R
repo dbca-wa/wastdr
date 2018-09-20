@@ -13,7 +13,6 @@
 map_dist <- function(dist,
                      fmt = "%d/%m/%Y %H:%M") {
   . <- NULL
-  wastd_url <- get_wastd_url()
 
   pal <- leaflet::colorFactor(
     palette = "viridis",
@@ -21,7 +20,7 @@ map_dist <- function(dist,
   )
 
   layersControlOptions <- NULL
-  l <- leaflet(width = 800, height = 600) %>%
+  l <- leaflet::leaflet(width = 800, height = 600) %>%
     addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
     clearBounds()
@@ -46,7 +45,7 @@ map_dist <- function(dist,
           "<p>Survey {survey_id} at {site_name} ",
           "{format(survey_start_time, fmt)}-{format(survey_end_time, fmt)} AWST</p>",
           '<p><a class="btn btn-xs btn-primary" target="_" rel="nofollow" ',
-          'href="{wastd_url}{absolute_admin_url}">Edit on WAStD</a></p>'
+          'href="{get_wastd_url()}{absolute_admin_url}">Edit on WAStD</a></p>'
         ),
 
         group = df
