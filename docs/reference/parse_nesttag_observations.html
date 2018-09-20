@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AnimalEncounter WAStD API response — animal_encounters • wastdr</title>
+<title>Parse a <code>wastd_api_response</code> of <code>nesttag_observations</code> to tbl_df — parse_nesttag_observations • wastdr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -101,42 +101,70 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>AnimalEncounter WAStD API response</h1>
+    <h1>Parse a <code>wastd_api_response</code> of <code>nesttag_observations</code> to tbl_df</h1>
     </div>
 
     
-    <p>This API response is parsed into wastr's data "tags"</p>
+    <p>Parse a <code>wastd_api_response</code> of <code>nesttag_observations</code> to tbl_df</p>
     
 
-    <pre class="usage"><span class='no'>animal_encounters</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>wastd_api_response</code> of length 3.</p>
+    <pre class="usage"><span class='fu'>parse_nesttag_observations</span>(<span class='no'>wastd_api_response</span>)</pre>
     
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>wastd_api_response</th>
+      <td><p>A <code>wastd_api_response</code> of
+<code>nesttag_observations</code>, e.g. <code><a href='wastd_GET.html'>wastd_GET("nesttag_observations")</a></code></p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&amp;format=json</p>
+    <p>A <code>tbl_df</code> with columns:</p><ul>
+<li><p>area_name &lt;chr&gt;</p></li>
+<li><p>area_type &lt;chr&gt;</p></li>
+<li><p>area_id &lt;int&gt;</p></li>
+<li><p>site_name &lt;chr&gt;</p></li>
+<li><p>site_type &lt;chr&gt;</p></li>
+<li><p>site_id &lt;int&gt;</p></li>
+<li><p>survey_id &lt;int&gt;</p></li>
+<li><p>survey_start_time &lt;dttm&gt;</p></li>
+<li><p>survey_end_time &lt;dttm&gt;</p></li>
+<li><p>survey_start_comments &lt;chr&gt;</p></li>
+<li><p>survey_end_comments &lt;chr&gt;</p></li>
+<li><p>datetime &lt;dttm&gt;</p></li>
+<li><p>date &lt;date&gt;</p></li>
+<li><p>longitude &lt;dbl&gt;</p></li>
+<li><p>latitude &lt;dbl&gt;</p></li>
+<li><p>crs &lt;chr&gt;</p></li>
+<li><p>location_accuracy &lt;dbl&gt;</p></li>
+<li><p>source &lt;chr&gt;</p></li>
+<li><p>source_id &lt;chr&gt;</p></li>
+<li><p>encounter_id &lt;chr&gt;</p></li>
+<li><p>absolute_admin_url &lt;chr&gt;</p></li>
+<li><p>observer &lt;chr&gt;</p></li>
+<li><p>reporter &lt;chr&gt;</p></li>
+<li><p>status &lt;chr&gt;</p></li>
+<li><p>photos &lt;list&gt;</p></li>
+<li><p>encounter_comments &lt;chr&gt;</p></li>
+<li><p>tag_status &lt;chr&gt;</p></li>
+<li><p>flipper_tag_id &lt;chr&gt;</p></li>
+<li><p>date_nest_laid &lt;chr&gt;</p></li>
+<li><p>tag_label &lt;chr&gt;</p></li>
+</ul>
+
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Prove that animal_encounters parses to animals</span>
-
-<span class='fu'>library</span>(<span class='no'>dplyr</span>)
-<span class='fu'>data</span>(<span class='st'>"animal_encounters"</span>)
-<span class='fu'>data</span>(<span class='st'>"animals"</span>)
-<span class='no'>fresh_animals</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='parse_animal_encounters.html'>parse_animal_encounters</a></span>(<span class='no'>animal_encounters</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

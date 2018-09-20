@@ -73,11 +73,11 @@ wastd_GET <- function(serializer,
 
   if (httr::http_error(res)) {
     stop(
-        glue::glue(
-            "WAStD API request failed [{httr::status_code(res)}]\n",
-            "{res_parsed$message",
-    ),
-    call. = FALSE
+      glue::glue(
+        "WAStD API request failed [{httr::status_code(res)}]\n",
+        "{res_parsed$message",
+      ),
+      call. = FALSE
     )
   }
 

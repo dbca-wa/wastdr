@@ -1,3 +1,8 @@
+# wastdr 0.1.13
+# Minor changes
+* Added `map_dist` to map disturbance observations.
+* Added `parse_nesttag_observations` for WAStD "nesttag-observations".
+
 # wastdr 0.1.12
 ## Minor changes
 * Survey helpers writing files accept an optional prefix for the filename they

@@ -65,13 +65,14 @@ parse_surveys <- function(wastd_api_response) {
         # transect, start_photo, end_photo, start_location, end_location, team
       )
     } %>%
-      dplyr::mutate(
-          duration_minutes = (
-              lubridate::interval(start_time, end_time) %>%
-                  lubridate::as.period() %>% as.numeric()
-          ) / 60 %>% round(),
-          duration_hours = duration_minutes / 60 %>% round()
-      )
+    dplyr::mutate(
+      duration_minutes = (
+        lubridate::interval(start_time, end_time) %>%
+          lubridate::as.period() %>%
+          as.numeric()
+      ) / 60 %>% round(),
+      duration_hours = duration_minutes / 60 %>% round()
+    )
 }
 
 #' Count number of surveys per site_name and date from the output of \code{parse_surveys}.
@@ -134,7 +135,7 @@ survey_hours_per_person <- function(surveys) {
 #' @param placename (string) The place name, used in labels. Default: ""
 #' @importFrom DT datatable
 #' @export
-list_survey_count <- function(surveys, placename="") {
+list_survey_count <- function(surveys, placename = "") {
   . <- NULL
   surveys %>%
     surveys_per_site_name_and_date() %>%
@@ -147,7 +148,7 @@ list_survey_count <- function(surveys, placename="") {
 #' @param placename (string) The place name, used in labels. Default: ""
 #' @param prefix (string) A prefix for the filename. Default: ""
 #' @export
-plot_survey_count <- function(surveys, placename="", prefix="") {
+plot_survey_count <- function(surveys, placename = "", prefix = "") {
   . <- NULL
   aes <- NULL
   site_name <- NULL
@@ -174,7 +175,7 @@ plot_survey_count <- function(surveys, placename="", prefix="") {
 #' @param surveys (tibble) The output of \code{parse_surveys}.
 #' @param placename (string) The place name, used in labels. Default: ""
 #' @export
-list_survey_effort <- function(surveys, placename="") {
+list_survey_effort <- function(surveys, placename = "") {
   . <- NULL
   surveys %>%
     survey_hours_per_site_name_and_date() %>%
@@ -187,7 +188,7 @@ list_survey_effort <- function(surveys, placename="") {
 #' @param placename (string) The place name, used in labels.
 #' @param prefix (string) A prefix for the filename. Default: ""
 #' @export
-plot_survey_effort <- function(surveys, placename="", prefix="") {
+plot_survey_effort <- function(surveys, placename = "", prefix = "") {
   . <- NULL
   aes <- NULL
   site_name <- NULL
@@ -202,10 +203,10 @@ plot_survey_effort <- function(surveys, placename="", prefix="") {
       labels = scales::date_format("%d %b %Y")
     ) +
     ggplot2::theme_classic() +
-      ggplot2::ggtitle(glue::glue("Survey Effort {placename}")) +
+    ggplot2::ggtitle(glue::glue("Survey Effort {placename}")) +
     ggplot2::labs(x = "Turtle date", y = "", fill = "Hours surveyed") +
     ggplot2::ggsave(
-        filename = glue::glue("{prefix}_survey_effort_{urlize(placename)}.png"),
-        width = 9, height = 5
+      filename = glue::glue("{prefix}_survey_effort_{urlize(placename)}.png"),
+      width = 9, height = 5
     )
 }
