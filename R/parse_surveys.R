@@ -54,7 +54,7 @@ parse_surveys <- function(wastd_api_response) {
         start_comments = map_chr_hack(., c("properties", "start_comments")),
         end_comments = map_chr_hack(., c("properties", "end_comments")),
         source = purrr::map_chr(., c("properties", "source")),
-        source_id = purrr::map_chr(., c("properties", "source_id")),
+        source_id = map_chr_hack(., c("properties", "source_id")),
         end_source_id = map_chr_hack(., c("properties", "end_source_id")),
         device_id = map_chr_hack(., c("properties", "device_id")),
         end_device_id = map_chr_hack(., c("properties", "end_device_id")),

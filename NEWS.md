@@ -1,3 +1,8 @@
+# wastdr 0.1.15
+## Bug fixes
+* `parse_surveys` can now handle surveys without a `source_id`. These surveys
+  are e.g. those which were reconstructed by WAStD.
+
 # wastdr 0.1.14
 ## Minor changes
 * Add map_nests to create a map of tagged nests from WAStD "nesttag-observations".

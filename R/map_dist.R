@@ -21,20 +21,21 @@ map_dist <- function(dist,
 
   layersControlOptions <- NULL
   l <- leaflet::leaflet(width = 800, height = 600) %>%
-    addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
-    addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-    clearBounds()
+    leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
+    leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
+    leaflet::clearBounds()
 
   dist.df <- dist %>% split(dist$disturbance_cause)
 
   names(dist.df) %>%
     purrr::walk(function(df) {
-      l <<- l %>% addAwesomeMarkers(
+      l <<- l %>% leaflet::addAwesomeMarkers(
         data = dist.df[[df]],
         lng = ~longitude, lat = ~latitude,
         icon = leaflet::makeAwesomeIcon(
           text = ~stringr::str_sub(disturbance_cause, 0, 1),
-          markerColor = ~pal(disturbance_cause)
+          markerColor = "red",
+          iconColor = ~pal(disturbance_cause)
         ),
         label = ~glue::glue(
           "{format(datetime, fmt)} {humanize(disturbance_cause)}"
@@ -53,9 +54,9 @@ map_dist <- function(dist,
     })
 
   l %>%
-    addLayersControl(
+    leaflet::addLayersControl(
       baseGroups = c("Aerial", "Place names"),
       overlayGroups = names(dist.df),
-      options = layersControlOptions(collapsed = FALSE)
+      options = leaflet::layersControlOptions(collapsed = FALSE)
     )
 }
