@@ -4,12 +4,12 @@
 \alias{list_survey_count}
 \title{Create a datatable of survey counts from the output of \code{parse_surveys}.}
 \usage{
-list_survey_count(surveys, placename)
+list_survey_count(surveys, placename = "")
 }
 \arguments{
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
 
-\item{placename}{(string) The place name, used in labels.}
+\item{placename}{(string) The place name, used in labels. Default: ""}
 }
 \description{
 Create a datatable of survey counts from the output of \code{parse_surveys}.

@@ -10,3 +10,4 @@
 ^docs$
 vignettes/rsconnect/*
 man-roxygen
+^\.httr-oauth$

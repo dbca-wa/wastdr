@@ -32,7 +32,7 @@ print.wastdr_settings <- function(x, ...) {
 
 
   if (is.null(x$api_token) && is.null(x$api_un)) {
-    message(paste0(
+    message(glue::glue(
       "wastdr requires either an API token or a username and ",
       "password to authenticate requests to the WAStD API."
     ))
@@ -77,7 +77,7 @@ wastdr_setup <- function(
   Sys.setenv("WASTDR_API_URL" = api_url)
 
   if (!is.null(api_token)) {
-    Sys.setenv("WASTDR_API_TOKEN" = paste("Token", api_token))
+    Sys.setenv("WASTDR_API_TOKEN" = glue::glue("Token {api_token}"))
   }
   if (!is.null(api_un)) {
     Sys.setenv("WASTDR_API_UN" = api_un)

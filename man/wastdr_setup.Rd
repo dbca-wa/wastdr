@@ -4,9 +4,9 @@
 \alias{wastdr_setup}
 \title{Configure default WAStD settings}
 \usage{
-wastdr_setup(wastd_url = get_wastd_url(),
-  api_url = get_wastdr_api_url(), api_token = NULL,
-  api_un = get_wastdr_api_un(), api_pw = get_wastdr_api_pw())
+wastdr_setup(wastd_url = get_wastd_url(), api_url = get_wastdr_api_url(),
+  api_token = NULL, api_un = get_wastdr_api_un(),
+  api_pw = get_wastdr_api_pw())
 }
 \arguments{
 \item{wastd_url}{A WAStD URL (optional),

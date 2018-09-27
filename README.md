@@ -50,6 +50,7 @@ Review the settings with:
 ``` r
 wastdr::wastdr_settings()
 #> <wastdr settings>
+#>   WAStD URL:  https://tsc.dbca.wa.gov.au 
 #>   API URL:  https://tsc.dbca.wa.gov.au/api/1/ 
 #>   API Token:  Token my_token 
 #>   API Username:  my_username 
@@ -126,7 +127,7 @@ Pull requests should eventually pass tests and checks (not introducing new ERROR
 styler:::style_pkg()
 devtools::document(roclets = c("rd", "collate", "namespace", "vignette"))
 devtools::test()
-devtools::check(check_version = T, force_suggests = T, args = c("--as-cran", "--timings"))
+devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))
 covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
 pkgdown::build_news()
 pkgdown::build_site()

@@ -18,28 +18,13 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
-<!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
-
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
-
-
-<meta property="og:title" content="Example turtle nest encounters (only nests, excluding tracks) — nests" />
-
-<meta property="og:description" content="A parsed wastd_api_response with 10 turtle nest encounters from
-get_wastd(&quot;turtle-nest-encounters&quot;)
-A parsed wastd_api_response with 100 turtle nest encounters from
-get_wastd(&quot;turtle-nest-encounters&quot;)" />
-<meta name="twitter:card" content="summary" />
-
-
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -62,12 +47,8 @@ get_wastd(&quot;turtle-nest-encounters&quot;)" />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.10</span>
-      </span>
+      <a class="navbar-brand" href="../index.html">wastdr</a>
     </div>
-
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -98,7 +79,7 @@ get_wastd(&quot;turtle-nest-encounters&quot;)" />
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -110,7 +91,6 @@ get_wastd(&quot;turtle-nest-encounters&quot;)" />
   </a>
 </li>
       </ul>
-      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -118,22 +98,18 @@ get_wastd(&quot;turtle-nest-encounters&quot;)" />
       
       </header>
 
-<div class="row">
+      <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Example turtle nest encounters (only nests, excluding tracks)</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>nests.Rd</code></div>
     </div>
 
-    <div class="ref-description">
     
     <p>A parsed <code>wastd_api_response</code> with 10 turtle nest encounters from
 <code>get_wastd("turtle-nest-encounters")</code></p>
 <p>A parsed <code>wastd_api_response</code> with 100 turtle nest encounters from
 <code>get_wastd("turtle-nest-encounters")</code></p>
     
-    </div>
 
     <pre class="usage"><span class='no'>nests</span>
 
@@ -182,39 +158,8 @@ get_wastd(&quot;turtle-nest-encounters&quot;)" />
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>  <span class='fu'>data</span>(<span class='st'>"nests"</span>)
-  <span class='fu'>head</span>(<span class='no'>nests</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 36
-#&gt;   area_name area_type area_id site_name site_type site_id survey_id
-#&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;
-#&gt; 1 Perth Me… Locality       18 &lt;NA&gt;      &lt;NA&gt;           NA        NA
-#&gt; 2 Perth Me… Locality       18 &lt;NA&gt;      &lt;NA&gt;           NA        NA
-#&gt; 3 Perth Me… Locality       18 Kensingt… Site           33        NA
-#&gt; 4 Perth Me… Locality       18 Kensingt… Site           33        NA
-#&gt; 5 Perth Me… Locality       18 &lt;NA&gt;      &lt;NA&gt;           NA        NA
-#&gt; 6 Perth Me… Locality       18 &lt;NA&gt;      &lt;NA&gt;           NA        NA
-#&gt; # ... with 29 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,
-#&gt; #   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,
-#&gt; #   longitude &lt;dbl&gt;, latitude &lt;dbl&gt;, crs &lt;chr&gt;, location_accuracy &lt;int&gt;,
-#&gt; #   date &lt;date&gt;, species &lt;chr&gt;, nest_age &lt;chr&gt;, nest_type &lt;chr&gt;, name &lt;chr&gt;,
-#&gt; #   habitat &lt;chr&gt;, disturbance &lt;chr&gt;, comments &lt;chr&gt;, absolute_admin_url &lt;chr&gt;,
-#&gt; #   obs &lt;list&gt;, photos &lt;list&gt;, hatching_success &lt;dbl&gt;, emergence_success &lt;dbl&gt;,
-#&gt; #   clutch_size &lt;dbl&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;, encounter_type &lt;chr&gt;,
-#&gt; #   status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;</div><div class='input'>  <span class='fu'>head</span>(<span class='no'>nests</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 36
-#&gt;   area_name area_type area_id site_name site_type site_id survey_id
-#&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;
-#&gt; 1 Perth Me… Locality       18 &lt;NA&gt;      &lt;NA&gt;           NA        NA
-#&gt; 2 Perth Me… Locality       18 &lt;NA&gt;      &lt;NA&gt;           NA        NA
-#&gt; 3 Perth Me… Locality       18 Kensingt… Site           33        NA
-#&gt; 4 Perth Me… Locality       18 Kensingt… Site           33        NA
-#&gt; 5 Perth Me… Locality       18 &lt;NA&gt;      &lt;NA&gt;           NA        NA
-#&gt; 6 Perth Me… Locality       18 &lt;NA&gt;      &lt;NA&gt;           NA        NA
-#&gt; # ... with 29 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,
-#&gt; #   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,
-#&gt; #   longitude &lt;dbl&gt;, latitude &lt;dbl&gt;, crs &lt;chr&gt;, location_accuracy &lt;int&gt;,
-#&gt; #   date &lt;date&gt;, species &lt;chr&gt;, nest_age &lt;chr&gt;, nest_type &lt;chr&gt;, name &lt;chr&gt;,
-#&gt; #   habitat &lt;chr&gt;, disturbance &lt;chr&gt;, comments &lt;chr&gt;, absolute_admin_url &lt;chr&gt;,
-#&gt; #   obs &lt;list&gt;, photos &lt;list&gt;, hatching_success &lt;dbl&gt;, emergence_success &lt;dbl&gt;,
-#&gt; #   clutch_size &lt;dbl&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;, encounter_type &lt;chr&gt;,
-#&gt; #   status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;</div></pre>
+  <span class='fu'>head</span>(<span class='no'>nests</span>)
+  <span class='fu'>head</span>(<span class='no'>nests</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -236,14 +181,11 @@ get_wastd(&quot;turtle-nest-encounters&quot;)" />
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
-  
-
   </body>
 </html>
-

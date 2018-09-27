@@ -4,12 +4,14 @@
 \alias{plot_survey_count}
 \title{Plot the surveyed hours from the output of \code{parse_surveys}.}
 \usage{
-plot_survey_count(surveys, placename)
+plot_survey_count(surveys, placename = "", prefix = "")
 }
 \arguments{
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
 
-\item{placename}{(string) The place name, used in labels.}
+\item{placename}{(string) The place name, used in labels. Default: ""}
+
+\item{prefix}{(string) A prefix for the filename. Default: ""}
 }
 \description{
 Plot the surveyed hours from the output of \code{parse_surveys}.

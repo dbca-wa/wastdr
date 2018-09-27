@@ -23,6 +23,9 @@
 #'   \item status <chr> The QA status of the Survey. "Proofread" or "Curated" indicate human QA edits.
 #'   \item device_id <chr> The unique ID of the device the Site Visit Start was captured on.
 #'   \item end_device_id <chr> The unique ID of the device the Site Visit End was captured on.
+#'   \item status <chr> QA status of the survey.
+#'   \item id <int> WAStD ID of the survey.
+#'   \item absolute_admin_url <chr> The absolute URL path to edit the survey in WAStD. Append this to the base `WASTD_URL`.
 #' }
 #' @export
 #' @import magrittr
@@ -35,6 +38,7 @@ parse_surveys <- function(wastd_api_response) {
   start_time <- NULL
   end_time <- NULL
   duration_minutes <- NULL
+
   wastd_api_response$features %>%
     {
       tibble::tibble(
@@ -50,17 +54,24 @@ parse_surveys <- function(wastd_api_response) {
         start_comments = map_chr_hack(., c("properties", "start_comments")),
         end_comments = map_chr_hack(., c("properties", "end_comments")),
         source = purrr::map_chr(., c("properties", "source")),
-        source_id = purrr::map_chr(., c("properties", "source_id")),
+        source_id = map_chr_hack(., c("properties", "source_id")),
         end_source_id = map_chr_hack(., c("properties", "end_source_id")),
         device_id = map_chr_hack(., c("properties", "device_id")),
         end_device_id = map_chr_hack(., c("properties", "end_device_id")),
-        status = map_chr_hack(., c("properties", "status"))
+        status = map_chr_hack(., c("properties", "status")),
+        id = purrr::map_int(., "id"),
+        is_production = map_chr_hack(., c("properties", "production")) %>% as.logical(),
+        absolute_admin_url = map_chr_hack(., c("properties", "absolute_admin_url"))
         # transect, start_photo, end_photo, start_location, end_location, team
       )
     } %>%
     dplyr::mutate(
-      duration_minutes = (interval(start_time, end_time) %>% as.period() %>% as.numeric() %>% round()) / 60,
-      duration_hours = duration_minutes / 60
+      duration_minutes = (
+        lubridate::interval(start_time, end_time) %>%
+          lubridate::as.period() %>%
+          as.numeric()
+      ) / 60 %>% round(),
+      duration_hours = duration_minutes / 60 %>% round()
     )
 }
 
@@ -121,22 +132,23 @@ survey_hours_per_person <- function(surveys) {
 #' Create a datatable of survey counts from the output of \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
-#' @param placename (string) The place name, used in labels.
+#' @param placename (string) The place name, used in labels. Default: ""
 #' @importFrom DT datatable
 #' @export
-list_survey_count <- function(surveys, placename) {
+list_survey_count <- function(surveys, placename = "") {
   . <- NULL
   surveys %>%
     surveys_per_site_name_and_date() %>%
-    DT::datatable(., caption = paste("Survey Count", placename))
+    DT::datatable(., caption = glue::glue("Survey Count {placename}"))
 }
 
 #' Plot the surveyed hours from the output of \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
-#' @param placename (string) The place name, used in labels.
+#' @param placename (string) The place name, used in labels. Default: ""
+#' @param prefix (string) A prefix for the filename. Default: ""
 #' @export
-plot_survey_count <- function(surveys, placename) {
+plot_survey_count <- function(surveys, placename = "", prefix = "") {
   . <- NULL
   aes <- NULL
   site_name <- NULL
@@ -150,35 +162,33 @@ plot_survey_count <- function(surveys, placename) {
     #   labels = scales::date_format("%d %b %Y")
     # ) +
     ggplot2::theme_classic() +
-    ggplot2::ggtitle(paste("Survey Count", placename)) +
+    ggplot2::ggtitle(glue::glue("Survey Count {placename}")) +
     ggplot2::labs(x = "Turtle date", y = "", fill = "Number of surveys") +
     ggplot2::ggsave(
-      filename = paste0(
-        "survey_count_",
-        stringr::str_replace_all(placename, " ", "_"),
-        ".png"
-      ), width = 9, height = 5
+      filename = glue::glue("{prefix}_survey_count_{urlize(placename)}.png"),
+      width = 9, height = 5
     )
 }
 
 #' Create a datatable from the surveyed hours from the output of \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
-#' @param placename (string) The place name, used in labels.
+#' @param placename (string) The place name, used in labels. Default: ""
 #' @export
-list_survey_effort <- function(surveys, placename) {
+list_survey_effort <- function(surveys, placename = "") {
   . <- NULL
   surveys %>%
     survey_hours_per_site_name_and_date() %>%
-    DT::datatable(., caption = paste("Survey Effort [hours]", placename))
+    DT::datatable(., caption = glue::glue("Survey Effort [h] {placename}"))
 }
 
 #' Plot the surveyed hours from the output of \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
 #' @param placename (string) The place name, used in labels.
+#' @param prefix (string) A prefix for the filename. Default: ""
 #' @export
-plot_survey_effort <- function(surveys, placename) {
+plot_survey_effort <- function(surveys, placename = "", prefix = "") {
   . <- NULL
   aes <- NULL
   site_name <- NULL
@@ -193,13 +203,10 @@ plot_survey_effort <- function(surveys, placename) {
       labels = scales::date_format("%d %b %Y")
     ) +
     ggplot2::theme_classic() +
-    ggplot2::ggtitle(paste("Survey Effort", placename)) +
+    ggplot2::ggtitle(glue::glue("Survey Effort {placename}")) +
     ggplot2::labs(x = "Turtle date", y = "", fill = "Hours surveyed") +
     ggplot2::ggsave(
-      filename = paste0(
-        "survey_effort_",
-        stringr::str_replace_all(placename, " ", "_"),
-        ".png"
-      ), width = 9, height = 5
+      filename = glue::glue("{prefix}_survey_effort_{urlize(placename)}.png"),
+      width = 9, height = 5
     )
 }

@@ -31,6 +31,9 @@ A \code{tbl_df} with columns:
   \item status <chr> The QA status of the Survey. "Proofread" or "Curated" indicate human QA edits.
   \item device_id <chr> The unique ID of the device the Site Visit Start was captured on.
   \item end_device_id <chr> The unique ID of the device the Site Visit End was captured on.
+  \item status <chr> QA status of the survey.
+  \item id <int> WAStD ID of the survey.
+  \item absolute_admin_url <chr> The absolute URL path to edit the survey in WAStD. Append this to the base `WASTD_URL`.
 }
 }
 \description{

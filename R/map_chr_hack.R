@@ -10,6 +10,6 @@
 #' @export
 map_chr_hack <- function(.x, .f, ...) {
   map(.x, .f, ...) %>%
-    purrr::map_if(is.null, ~ NA_character_) %>%
+    purrr::map_if(is.null, ~NA_character_) %>%
     purrr::flatten_chr()
 }
