@@ -41,8 +41,8 @@ map_tracks <- function(tracks,
             '<p>Seen on {format(datetime, fmt)} AWST by {observer}',
             '<p>Survey {survey_id} at {site_name} ',
             '{format(survey_start_time, fmt)}-{format(survey_end_time, fmt)} AWST</p>',
-            '<p><button class="btn btn-xs btn-primary" href="{wastd_url}{absolute_admin_url}">',
-            'Edit on WAStD</button></p>'
+            '<p><a class="btn btn-xs btn-primary" target="_" rel="nofollow" ',
+            'href="{wastd_url}{absolute_admin_url}">Edit on WAStD</a></p>'
           ),
           group = df
         )
