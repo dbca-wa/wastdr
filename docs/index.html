@@ -17,6 +17,7 @@
     implemented use cases of retrieving and analysing 'WAStD' data.
     'wastdr' can be seen as working examples for converting nested lists into
     two-dimensional 'tibbles'.">
+<meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -94,12 +95,13 @@
 
     
     
-
-<div id="wastdr-makes-wa-strandings-data-accessible-in-r" class="section level1">
+<div id="wastdr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#wastdr-makes-wa-strandings-data-accessible-in-r" class="anchor"></a>wastdr makes WA Strandings Data accessible in R</h1></div>
-<p>The <a href="https://tsc.dbca.wa.gov.au/">WA Strandings Database WAStD</a> (<a href="https://github.com/dbca-wa/wastd/">github</a>) provides a <a href="https://tsc.dbca.wa.gov.au/api/1/">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Parks &amp; Wildlife. The WAStD API uses token and basic authentication, see vignette on details.</p>
-<p>The API returns GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. <a href="http://www.qgis.org/en/site/">Quantum GIS</a>.</p>
+<a href="#wastdr" class="anchor"></a>wastdr <img src="reference/figures/logo.png" align="right">
+</h1></div>
+
+<p>The <a href="https://tsc.dbca.wa.gov.au/">WA Strandings Database WAStD</a> (<a href="https://github.com/dbca-wa/wastd/">github</a>) provides a <a href="https://tsc.dbca.wa.gov.au/api/1/">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Biodiversity, Conservation and Attractions. The WAStD API uses token and basic authentication, see vignette on details.</p>
+<p>The API returns spatially explicit data as GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. <a href="http://www.qgis.org/en/site/">Quantum GIS</a>.</p>
 <p>If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON properties) into a two-dimensional tablular structure. This requires knowledge about the structure and content of the nested data from WAStD.</p>
 <p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="http://dplyr.tidyverse.org/reference/reexports.html">dplyr::tibble</a></code>.</p>
 <p>The secondary purpose of <code>wastdr</code> is to centralise a collection of commonly used analyses and visualisations of turtle data. As development progresses, example analyses and visualisations will be added to the vignette. Contributions and requests are welcome!</p>

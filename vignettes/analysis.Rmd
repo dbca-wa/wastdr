@@ -63,21 +63,6 @@ double-check the correct spelling of your own place names and their IDs in WAStD
 
 ```{r filter_data}
 filter_2017 <- . %>% dplyr::filter(date > dmy("01/10/2017"), date < dmy("31/03/2018"))
-filter_broome <- . %>% dplyr::filter(area_name=="Cable Beach Broome")
-filter_broome_sites <- . %>% dplyr::filter(site_id %in% c(22, 23, 24))
-filter_cbb1 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 1")
-filter_cbb2 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 2")
-filter_cbb3 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 3")
-filter_eighty_mile_beach <- . %>% dplyr::filter(area_name=="Eighty Mile Beach Caravan Park")
-filter_anna_plains <- . %>% dplyr::filter(area_name=="Anna Plains")
-filter_port_hedland_sites <- . %>% dplyr::filter(site_id %in% c(35, 45))
-filter_port_hedland_cemetery <- . %>% dplyr::filter(site_name=="Port Hedland Cemetery Beach")
-filter_port_hedland_prettypool <- . %>% dplyr::filter(site_name=="Port Hedland Pretty Pool Beach")
-filter_west_pilbara <- . %>% dplyr::filter(area_name=="West Pilbara Turtle Program beaches Wickam")
-filter_delambre <- . %>% dplyr::filter(area_name=="Delambre Island")
-filter_rosemary <- . %>% dplyr::filter(area_name=="Rosemary Island")
-filter_thevenard <- . %>% dplyr::filter(area_name=="Thevenard Island")
-
 tracks <- tracks_all %>% filter_2017
 ```
 
@@ -88,7 +73,7 @@ then grouped and tallied by date, species and type.
 Daily summaries are shown in wide form as tables, and (using long form) as 
 timeseries plots.
 
-```{r data_wp_daily}
+```{r helpers}
 species_by_type <- . %>% 
   filter(nest_age=="fresh") %>%
   group_by(species, nest_type) %>% 
