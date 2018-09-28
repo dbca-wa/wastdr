@@ -62,8 +62,7 @@ Site names and IDs are only correct at the time of writing. As they could change
 double-check the correct spelling of your own place names and their IDs in WAStD.
 
 ```{r filter_data}
-filter_2017 <- . %>% dplyr::filter(date > dmy("01/10/2017"), date < dmy("31/03/2018"))
-tracks <- tracks_all %>% filter_2017
+tracks <- tracks_all %>% dplyr::filter(season==2017)
 ```
 
 ## Summarise and plot data

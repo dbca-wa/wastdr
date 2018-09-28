@@ -77,16 +77,16 @@ parse_surveys <- function(wastd_api_response) {
     )
 }
 
-#' Count number of surveys per site_name and date from the output of \code{parse_surveys}.
+#' Count number of surveys per season, turtle date and site_name from the output of \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
-#' @return A tibble with columns date, site_name, n (number of surveys)
+#' @return A tibble with columns season, turtle_date, site_name, n (number of surveys)
 #' @importFrom dplyr group_by tally ungroup
 #' @export
 surveys_per_site_name_and_date <- function(surveys) {
   site_name <- NULL
   surveys %>%
-    dplyr::group_by(date, site_name) %>%
+    dplyr::group_by(season, turtle_date, site_name) %>%
     dplyr::tally() %>%
     dplyr::ungroup()
 }
@@ -94,7 +94,7 @@ surveys_per_site_name_and_date <- function(surveys) {
 #' Sum the hours surveyed per site_name and date from the output of \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
-#' @return A tibble with columns date, site_name, hours_surveyed
+#' @return A tibble with columns season, turtle_date, site_name, hours_surveyed
 #' @importFrom dplyr group_by tally ungroup mutate select
 #' @export
 survey_hours_per_site_name_and_date <- function(surveys) {
@@ -102,17 +102,17 @@ survey_hours_per_site_name_and_date <- function(surveys) {
   duration_hours <- NULL
   n <- NULL
   surveys %>%
-    dplyr::group_by(date, site_name) %>%
+    dplyr::group_by(season, turtle_date, site_name) %>%
     tally(duration_hours) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(hours_surveyed = round(n)) %>%
     dplyr::select(-n)
 }
 
-#' Sum the hours surveyed per person from the output of \code{parse_surveys}.
+#' Sum the hours surveyed per person by season from the output of \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
-#' @return A tibble with columns reporter, hours_surveyed, sorted by most to fewest hours.
+#' @return A tibble with columns reporter, season, hours_surveyed, sorted by most to fewest hours.
 #' @importFrom dplyr group_by tally ungroup mutate select
 #' @export
 survey_hours_per_person <- function(surveys) {
@@ -123,7 +123,7 @@ survey_hours_per_person <- function(surveys) {
   desc <- NULL
 
   surveys %>%
-    dplyr::group_by(reporter) %>%
+    dplyr::group_by(reporter, season) %>%
     tally(duration_hours) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(hours_surveyed = round(n)) %>%
@@ -157,8 +157,9 @@ plot_survey_count <- function(surveys, placename = "", prefix = "") {
   n <- NULL
   surveys %>%
     surveys_per_site_name_and_date() %>%
-    ggplot2::ggplot(., aes(date, site_name, fill = n)) +
+    ggplot2::ggplot(., aes(turtle_date, site_name, fill = n)) +
     ggplot2::geom_raster() +
+      ggplot2::facet_grid(rows = vars(season)) +
     # ggplot2::scale_x_date(
     #   breaks = scales::pretty_breaks,
     #   labels = scales::date_format("%d %b %Y")
@@ -168,7 +169,7 @@ plot_survey_count <- function(surveys, placename = "", prefix = "") {
     ggplot2::labs(x = "Turtle date", y = "", fill = "Number of surveys") +
     ggplot2::ggsave(
       filename = glue::glue("{prefix}_survey_count_{urlize(placename)}.png"),
-      width = 9, height = 5
+      width = 10, height = 5
     )
 }
 
@@ -198,8 +199,9 @@ plot_survey_effort <- function(surveys, placename = "", prefix = "") {
   hours_surveyed <- NULL
   surveys %>%
     survey_hours_per_site_name_and_date() %>%
-    ggplot2::ggplot(., aes(date, site_name, fill = hours_surveyed)) +
+    ggplot2::ggplot(., aes(turtle_date, site_name, fill = hours_surveyed)) +
     ggplot2::geom_raster() +
+    ggplot2::facet_grid(rows = vars(season)) +
     ggplot2::scale_x_date(
       breaks = scales::pretty_breaks(),
       labels = scales::date_format("%d %b %Y")
@@ -209,6 +211,6 @@ plot_survey_effort <- function(surveys, placename = "", prefix = "") {
     ggplot2::labs(x = "Turtle date", y = "", fill = "Hours surveyed") +
     ggplot2::ggsave(
       filename = glue::glue("{prefix}_survey_effort_{urlize(placename)}.png"),
-      width = 9, height = 5
+      width = 10, height = 5
     )
 }
