@@ -17,9 +17,10 @@
 #' # These datetimes are turtle season 2017:
 #' httpdate_as_season("2017-06-30T15:59:59Z") == 2016
 #' httpdate_as_season("2017-06-30T16:00:00Z") == 2017
+#' httpdate_as_season("2017-08-30T06:38:43Z")
 httpdate_as_season <- function(datestring) {
   datestring %>%
     httpdate_as_gmt08() %>%
-    -months(6) %>%
-    lubridate::year()
+    -days(180) %>%
+    lubridate::isoyear()
 }
