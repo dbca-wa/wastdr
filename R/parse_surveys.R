@@ -85,6 +85,8 @@ parse_surveys <- function(wastd_api_response) {
 #' @export
 surveys_per_site_name_and_date <- function(surveys) {
   site_name <- NULL
+  season <- NULL
+  turtle_date <- NULL
   surveys %>%
     dplyr::group_by(season, turtle_date, site_name) %>%
     dplyr::tally() %>%
@@ -98,9 +100,13 @@ surveys_per_site_name_and_date <- function(surveys) {
 #' @importFrom dplyr group_by tally ungroup mutate select
 #' @export
 survey_hours_per_site_name_and_date <- function(surveys) {
+  days <- NULL
+  season <- NULL
+  turtle_date <- NULL
   site_name <- NULL
   duration_hours <- NULL
   n <- NULL
+
   surveys %>%
     dplyr::group_by(season, turtle_date, site_name) %>%
     tally(duration_hours) %>%
@@ -117,6 +123,7 @@ survey_hours_per_site_name_and_date <- function(surveys) {
 #' @export
 survey_hours_per_person <- function(surveys) {
   reporter <- NULL
+  season <- NULL
   duration_hours <- NULL
   hours_surveyed <- NULL
   n <- NULL
@@ -154,12 +161,13 @@ plot_survey_count <- function(surveys, placename = "", prefix = "") {
   . <- NULL
   aes <- NULL
   site_name <- NULL
+  turtle_date <- NULL
   n <- NULL
   surveys %>%
     surveys_per_site_name_and_date() %>%
     ggplot2::ggplot(., aes(turtle_date, site_name, fill = n)) +
     ggplot2::geom_raster() +
-      ggplot2::facet_grid(rows = vars(season)) +
+      ggplot2::facet_grid(rows = gplot2::vars(season)) +
     # ggplot2::scale_x_date(
     #   breaks = scales::pretty_breaks,
     #   labels = scales::date_format("%d %b %Y")
@@ -195,13 +203,15 @@ plot_survey_effort <- function(surveys, placename = "", prefix = "") {
   . <- NULL
   aes <- NULL
   site_name <- NULL
+  turtle_date <- NULL
+  season <- NULL
   n <- NULL
   hours_surveyed <- NULL
   surveys %>%
     survey_hours_per_site_name_and_date() %>%
     ggplot2::ggplot(., aes(turtle_date, site_name, fill = hours_surveyed)) +
     ggplot2::geom_raster() +
-    ggplot2::facet_grid(rows = vars(season)) +
+    ggplot2::facet_grid(rows = gplot2::vars(season)) +
     ggplot2::scale_x_date(
       breaks = scales::pretty_breaks(),
       labels = scales::date_format("%d %b %Y")
