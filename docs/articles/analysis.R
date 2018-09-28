@@ -1,9 +1,5 @@
 ## ----setup, include = FALSE----------------------------------------------
-knitr::opts_chunk$set(
-collapse = TRUE,
-comment = "#>",
-eval=T
-)
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(wastdr)
 library(dplyr)
 library(tidyr)
@@ -29,35 +25,19 @@ if (file.exists("tracks.Rda")){
 }
 
 ## ----filter_data---------------------------------------------------------
-filter_2017 <- . %>% dplyr::filter(date > dmy("01/10/2017"), date < dmy("31/03/2018"))
-filter_broome <- . %>% dplyr::filter(area_name=="Cable Beach Broome")
-filter_broome_sites <- . %>% dplyr::filter(site_id %in% c(22, 23, 24))
-filter_cbb1 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 1")
-filter_cbb2 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 2")
-filter_cbb3 <- . %>% dplyr::filter(site_name=="Cable Beach Broome Sector 3")
-filter_eighty_mile_beach <- . %>% dplyr::filter(area_name=="Eighty Mile Beach Caravan Park")
-filter_anna_plains <- . %>% dplyr::filter(area_name=="Anna Plains")
-filter_port_hedland_sites <- . %>% dplyr::filter(site_id %in% c(35, 45))
-filter_port_hedland_cemetery <- . %>% dplyr::filter(site_name=="Port Hedland Cemetery Beach")
-filter_port_hedland_prettypool <- . %>% dplyr::filter(site_name=="Port Hedland Pretty Pool Beach")
-filter_west_pilbara <- . %>% dplyr::filter(area_name=="West Pilbara Turtle Program beaches Wickam")
-filter_delambre <- . %>% dplyr::filter(area_name=="Delambre Island")
-filter_rosemary <- . %>% dplyr::filter(area_name=="Rosemary Island")
-filter_thevenard <- . %>% dplyr::filter(area_name=="Thevenard Island")
+tracks <- tracks_all %>% dplyr::filter(season==2017)
 
-tracks <- tracks_all %>% filter_2017
-
-## ----data_wp_daily-------------------------------------------------------
+## ----helpers-------------------------------------------------------------
 species_by_type <- . %>% 
   filter(nest_age=="fresh") %>%
-  group_by(species, nest_type) %>% 
+  group_by(season, species, nest_type) %>% 
   tally() %>%
   ungroup() %>% 
   tidyr::spread(nest_type, n, fill=0)
 
 daily_species_by_type <- . %>% 
     filter(nest_age=="fresh") %>%
-    group_by(date, species, nest_type) %>% 
+    group_by(season, turtle_date, species, nest_type) %>% 
     tally() %>%
     ungroup()
 
@@ -68,17 +48,18 @@ daily_summary <- . %>%
 
 tracks_ts <- . %>% 
     daily_species_by_type %>% 
-    {ggplot2::ggplot(data=., aes(x = date, y = n, colour = nest_type)) + 
+    {ggplot2::ggplot(data=., aes(x = turtle_date, y = n, colour = nest_type)) + 
             ggplot2::geom_point() + 
             ggplot2::geom_smooth(method = "auto") +
             # ggplot2::geom_line() +
+            ggplot2::facet_grid(rows = vars(season)) +
             ggplot2::scale_x_date(breaks = scales::pretty_breaks(),
                                   labels = scales::date_format("%d %b %Y")) +
             ggplot2::scale_y_continuous(limits = c(0, NA)) +
-            ggplot2::xlab("Date") +
+            ggplot2::xlab("Turtle Date") +
             ggplot2::ylab("Number counted per day") +
             ggplot2::ggtitle("Nesting activity") +
-            ggplot2::theme_light()}
+            ggplot2::theme_classic()}
 
 ## ---- fig.width=9, fig.height=5, eval=T----------------------------------
 tracks %>% add_nest_labels %>% map_tracks

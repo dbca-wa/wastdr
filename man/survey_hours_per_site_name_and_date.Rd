@@ -10,7 +10,7 @@ survey_hours_per_site_name_and_date(surveys)
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
 }
 \value{
-A tibble with columns date, site_name, hours_surveyed
+A tibble with columns season, turtle_date, site_name, hours_surveyed
 }
 \description{
 Sum the hours surveyed per site_name and date from the output of \code{parse_surveys}.

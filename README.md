@@ -1,12 +1,12 @@
 
+wastdr <img src="man/figures/logo.png" align="right" />
+=======================================================
+
 [![Build Status](https://travis-ci.org/dbca-wa/wastdr.svg?branch=master)](https://travis-ci.org/dbca-wa/wastdr) [![Test coverage](https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/dbca-wa/wastdr)
 
-wastdr makes WA Strandings Data accessible in R
-===============================================
+The [WA Strandings Database WAStD](https://tsc.dbca.wa.gov.au/) ([github](https://github.com/dbca-wa/wastd/)) provides a [RESTful API](https://tsc.dbca.wa.gov.au/api/1/). WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Biodiversity, Conservation and Attractions. The WAStD API uses token and basic authentication, see vignette on details.
 
-The [WA Strandings Database WAStD](https://tsc.dbca.wa.gov.au/) ([github](https://github.com/dbca-wa/wastd/)) provides a [RESTful API](https://tsc.dbca.wa.gov.au/api/1/). WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Parks & Wildlife. The WAStD API uses token and basic authentication, see vignette on details.
-
-The API returns GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. [Quantum GIS](http://www.qgis.org/en/site/).
+The API returns spatially explicit data as GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. [Quantum GIS](http://www.qgis.org/en/site/).
 
 If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON properties) into a two-dimensional tablular structure. This requires knowledge about the structure and content of the nested data from WAStD.
 

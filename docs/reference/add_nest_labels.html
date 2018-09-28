@@ -18,30 +18,13 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
-<!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
-
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
-
-
-<meta property="og:title" content="Add labels for species and nest/track type to parsed <code>turtle-nest-encounters</code>. — add_nest_labels" />
-
-<meta property="og:description" content="Adds two columns, two new columns, species_colours and nest_type_text,
-to parsed turtle-nest-encounters containing WAStD species and
-nest_type. The new columns can be used to create leaflet markers with
-leaflet::makeAwesomeIcon(text = ~nest_type_text, markerColor = ~species_colours)." />
-
-<meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
-
-
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -64,12 +47,8 @@ leaflet::makeAwesomeIcon(text = ~nest_type_text, markerColor = ~species_colours)
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.16</span>
-      </span>
+      <a class="navbar-brand" href="../index.html">wastdr</a>
     </div>
-
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -100,7 +79,7 @@ leaflet::makeAwesomeIcon(text = ~nest_type_text, markerColor = ~species_colours)
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -112,7 +91,6 @@ leaflet::makeAwesomeIcon(text = ~nest_type_text, markerColor = ~species_colours)
   </a>
 </li>
       </ul>
-      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -120,26 +98,22 @@ leaflet::makeAwesomeIcon(text = ~nest_type_text, markerColor = ~species_colours)
       
       </header>
 
-<div class="row">
+      <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Add labels for species and nest/track type to parsed <code>turtle-nest-encounters</code>.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/add_nest_labels.R'><code>R/add_nest_labels.R</code></a></small>
-    <div class="hidden name"><code>add_nest_labels.Rd</code></div>
     </div>
 
-    <div class="ref-description">
     
     <p>Adds two columns, two new columns, <code>species_colours</code> and <code>nest_type_text</code>,
 to parsed <code>turtle-nest-encounters</code> containing <code>WAStD</code> <code>species</code> and
 <code>nest_type</code>. The new columns can be used to create <code>leaflet</code> markers with
 <code><a href='http://www.rdocumentation.org/packages/leaflet/topics/makeAwesomeIcon'>leaflet::makeAwesomeIcon(text = ~nest_type_text, markerColor = ~species_colours)</a></code>.</p>
     
-    </div>
 
     <pre class="usage"><span class='fu'>add_nest_labels</span>(<span class='no'>nests</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -171,14 +145,11 @@ to parsed <code>turtle-nest-encounters</code> containing <code>WAStD</code> <cod
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
-  
-
   </body>
 </html>
-

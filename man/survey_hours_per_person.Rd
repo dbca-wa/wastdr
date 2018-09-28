@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_surveys.R
 \name{survey_hours_per_person}
 \alias{survey_hours_per_person}
-\title{Sum the hours surveyed per person from the output of \code{parse_surveys}.}
+\title{Sum the hours surveyed per person by season from the output of \code{parse_surveys}.}
 \usage{
 survey_hours_per_person(surveys)
 }
@@ -10,8 +10,8 @@ survey_hours_per_person(surveys)
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
 }
 \value{
-A tibble with columns reporter, hours_surveyed, sorted by most to fewest hours.
+A tibble with columns reporter, season, hours_surveyed, sorted by most to fewest hours.
 }
 \description{
-Sum the hours surveyed per person from the output of \code{parse_surveys}.
+Sum the hours surveyed per person by season from the output of \code{parse_surveys}.
 }

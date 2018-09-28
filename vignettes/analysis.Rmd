@@ -10,11 +10,7 @@ vignette: >
 ---
   
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-collapse = TRUE,
-comment = "#>",
-eval=T
-)
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(wastdr)
 library(dplyr)
 library(tidyr)
@@ -75,14 +71,14 @@ timeseries plots.
 ```{r helpers}
 species_by_type <- . %>% 
   filter(nest_age=="fresh") %>%
-  group_by(species, nest_type) %>% 
+  group_by(season, species, nest_type) %>% 
   tally() %>%
   ungroup() %>% 
   tidyr::spread(nest_type, n, fill=0)
 
 daily_species_by_type <- . %>% 
     filter(nest_age=="fresh") %>%
-    group_by(date, species, nest_type) %>% 
+    group_by(season, turtle_date, species, nest_type) %>% 
     tally() %>%
     ungroup()
 
@@ -93,17 +89,18 @@ daily_summary <- . %>%
 
 tracks_ts <- . %>% 
     daily_species_by_type %>% 
-    {ggplot2::ggplot(data=., aes(x = date, y = n, colour = nest_type)) + 
+    {ggplot2::ggplot(data=., aes(x = turtle_date, y = n, colour = nest_type)) + 
             ggplot2::geom_point() + 
             ggplot2::geom_smooth(method = "auto") +
             # ggplot2::geom_line() +
+            ggplot2::facet_grid(rows = vars(season)) +
             ggplot2::scale_x_date(breaks = scales::pretty_breaks(),
                                   labels = scales::date_format("%d %b %Y")) +
             ggplot2::scale_y_continuous(limits = c(0, NA)) +
-            ggplot2::xlab("Date") +
+            ggplot2::xlab("Turtle Date") +
             ggplot2::ylab("Number counted per day") +
             ggplot2::ggtitle("Nesting activity") +
-            ggplot2::theme_light()}
+            ggplot2::theme_classic()}
 ```
 
 # Nesting activity
