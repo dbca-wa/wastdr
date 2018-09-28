@@ -1,3 +1,20 @@
+# wastdr 0.1.16
+## Major changes
+* All `parse_` functions changed the column `date` to the more descriptive `turtle_date`, 
+  as in the date (ymd) of "the night before". 
+  Using `turtle_date` groups turtle tagging (nightfall to sunrise) and tracks
+  (made same night but observed the next morning) under the same date.
+  This change requires code depending on the column `date` to be updated to `turtle_date`.
+
+## Minor changes
+* All `parse_` functions now include `season`, as in the earlier year of the fiscal year. This
+  cleanly groups the (Australian) summer nesters (nesting Oct-Mar) under the same season number.
+  E.g., any observations made between 01/07/2017 and 30/06/2018 (AWST for the sticklers) will come
+  up as season `2017`.
+  Note, the season for (Australian) winter nesters can be grouped by the calendar year, which can
+  itself be derived trivially from the `datetime` as `dplyr::mutate(year = lubridate::year(datetime))`.
+  The same goes for the calendar week, `dplyr::mutate(week = lubridate::isoweek(datetime))`.
+
 # wastdr 0.1.15
 ## Bug fixes
 * `parse_surveys` can now handle surveys without a `source_id`. These surveys

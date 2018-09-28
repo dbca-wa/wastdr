@@ -22,7 +22,8 @@
 #'   \item latitude <dbl>
 #'   \item crs <chr>
 #'   \item location_accuracy <dbl>
-#'   \item date <date>
+#'   \item turtle_date <date>
+#'   \item season <int>
 #'   \item comments <chr>
 #'   \item absolute_admin_url <chr>
 #'   \item photos <list>
@@ -63,7 +64,8 @@ parse_disturbance_observations <- function(wastd_api_response) {
       latitude = purrr::map_dbl(., c("properties", "encounter", "properties", "latitude")),
       crs = purrr::map_chr(., c("properties", "encounter", "properties", "crs")),
       location_accuracy = purrr::map_chr(., c("properties", "encounter", "properties", "location_accuracy")) %>% as.integer(),
-      date = purrr::map_chr(., c("properties", "encounter", "properties", "when")) %>% httpdate_as_gmt08_turtle_date(),
+      turtle_date = purrr::map_chr(., c("properties", "encounter", "properties", "when")) %>% httpdate_as_gmt08_turtle_date(),
+      season = purrr::map_chr(., c("properties", "encounter", "properties", "when")) %>% httpdate_as_season(),
       comments = map_chr_hack(., c("properties", "encounter", "properties", "comments")),
       absolute_admin_url = purrr::map_chr(., c("properties", "encounter", "properties", "absolute_admin_url")),
       photos = purrr::map(., c("properties", "encounter", "properties", "photographs")),

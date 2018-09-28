@@ -20,7 +20,8 @@
 #'   \item latitude <chr>
 #'   \item crs <chr>
 #'   \item location_accuracy <dbl>
-#'   \item date <date>
+#'   \item turtle_date <date>
+#'   \item season <int>
 #'   \item name <chr>
 #'   \item species <chr>
 #'   \item health <chr>
@@ -48,7 +49,7 @@
 #' @importFrom purrr map map_chr map_dbl
 parse_animal_encounters <- function(wastd_api_response) {
   obs <- NULL # Make R CMD check happy
-  . <- "Shut up Wesley"
+  . <- NULL
   wastd_api_response$features %>% {
     tibble::tibble(
       area_name = map_chr_hack(., c("properties", "area", "name")),
@@ -67,7 +68,8 @@ parse_animal_encounters <- function(wastd_api_response) {
       latitude = purrr::map_dbl(., c("properties", "latitude")),
       crs = purrr::map_chr(., c("properties", "crs")),
       location_accuracy = purrr::map_chr(., c("properties", "location_accuracy")) %>% as.integer(),
-      date = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08_turtle_date(),
+      turtle_date = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08_turtle_date(),
+      season = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_season(),
       name = map_chr_hack(., c("properties", "name")),
       species = purrr::map_chr(., c("properties", "species")),
       health = purrr::map_chr(., c("properties", "health")),

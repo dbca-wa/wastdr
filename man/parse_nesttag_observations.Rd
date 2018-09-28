@@ -25,7 +25,8 @@ A \code{tbl_df} with columns:
   \item survey_start_comments <chr>
   \item survey_end_comments <chr>
   \item datetime <dttm>
-  \item date <date>
+  \item turtle_date <date>
+  \item season <int>
   \item longitude <dbl>
   \item latitude <dbl>
   \item crs <chr>

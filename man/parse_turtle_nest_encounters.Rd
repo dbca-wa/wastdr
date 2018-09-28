@@ -29,7 +29,8 @@ A \code{tbl_df} with columns:
   \item latitude <dbl>
   \item crs <chr>
   \item location_accuracy <dbl>
-  \item date <date>
+  \item turtle_date <date>
+  \item season <int>
   \item species <chr>
   \item nest_age <chr>
   \item nest_type <chr>

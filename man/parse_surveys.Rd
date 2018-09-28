@@ -19,7 +19,8 @@ A \code{tbl_df} with columns:
   \item reporter <chr>
   \item reporter_username <chr>
   \item reporter_id <chr>
-  \item date <dttm> The "turtle date" of the survey.
+  \item turtle_date <dttm> The "turtle date" of the survey.
+  \item season <int> The "turtle season" of the survey, rolling over with Fiscal Year.
   \item start_time <dttm> The actual start time of the survey.
   \item end_time <dttm> The actual, automatically guessed (if 6h later), or human guessed end time.
   \item start_comments <chr> Comments at start plus QA messages from username guessing
