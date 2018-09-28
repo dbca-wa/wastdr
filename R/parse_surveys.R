@@ -167,7 +167,7 @@ plot_survey_count <- function(surveys, placename = "", prefix = "") {
     surveys_per_site_name_and_date() %>%
     ggplot2::ggplot(., aes(turtle_date, site_name, fill = n)) +
     ggplot2::geom_raster() +
-      ggplot2::facet_grid(rows = gplot2::vars(season)) +
+      ggplot2::facet_grid(rows = ggplot2::vars(season)) +
     # ggplot2::scale_x_date(
     #   breaks = scales::pretty_breaks,
     #   labels = scales::date_format("%d %b %Y")
@@ -211,7 +211,7 @@ plot_survey_effort <- function(surveys, placename = "", prefix = "") {
     survey_hours_per_site_name_and_date() %>%
     ggplot2::ggplot(., aes(turtle_date, site_name, fill = hours_surveyed)) +
     ggplot2::geom_raster() +
-    ggplot2::facet_grid(rows = gplot2::vars(season)) +
+    ggplot2::facet_grid(rows = ggplot2::vars(season)) +
     ggplot2::scale_x_date(
       breaks = scales::pretty_breaks(),
       labels = scales::date_format("%d %b %Y")
