@@ -106,6 +106,22 @@
     </div>
 
     <div class="contents">
+    <div id="wastdr-0-1-17" class="section level1">
+<h1 class="hasAnchor">
+<a href="#wastdr-0-1-17" class="anchor"></a>wastdr 0.1.17</h1>
+<div id="minor-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
+<ul>
+<li>Added <code>datetime_as_season</code>, <code>datetime_as_isoweek</code>, <code>datetime_as_turtledate</code>. This speeds up the parsers by re-using the costly string-to-date conversion from <code>datetime</code>.</li>
+<li><p>Added <code>isoweek</code> to parsers. The parsers now provide for each record:</p></li>
+<li>timezone-aware datetime (actual time of observation),</li>
+<li>“turtle date” (nesting night start date),</li>
+<li>season start year,</li>
+<li><p>week number.</p></li>
+</ul>
+</div>
+</div>
     <div id="wastdr-0-1-16" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-16" class="anchor"></a>wastdr 0.1.16</h1>
@@ -116,9 +132,9 @@
 <li>All <code>parse_</code> functions changed the column <code>date</code> to the more descriptive <code>turtle_date</code>, as in the date (ymd) of “the night before”. Using <code>turtle_date</code> groups turtle tagging (nightfall to sunrise) and tracks (made same night but observed the next morning) under the same date. This change requires code depending on the column <code>date</code> to be updated to <code>turtle_date</code>.</li>
 </ul>
 </div>
-<div id="minor-changes" class="section level2">
+<div id="minor-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>All <code>parse_</code> functions now include <code>season</code>, as in the earlier year of the fiscal year. This cleanly groups the (Australian) summer nesters (nesting Oct-Mar) under the same season number. E.g., any observations made between 01/07/2017 and 30/06/2018 (AWST for the sticklers) will come up as season <code>2017</code>. Note, the season for (Australian) winter nesters can be grouped by the calendar year, which can itself be derived trivially from the <code>datetime</code> as <code><a href="http://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate(year = lubridate::year(datetime))</a></code>. The same goes for the calendar week, <code><a href="http://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate(week = lubridate::isoweek(datetime))</a></code>.</li>
 </ul>
@@ -139,9 +155,9 @@
     <div id="wastdr-0-1-14" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-14" class="anchor"></a>wastdr 0.1.14</h1>
-<div id="minor-changes-1" class="section level2">
+<div id="minor-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Add map_nests to create a map of tagged nests from WAStD “nesttag-observations”.</li>
 </ul>
@@ -150,9 +166,9 @@
     <div id="wastdr-0-1-13" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-13" class="anchor"></a>wastdr 0.1.13</h1>
-<div id="minor-changes-2" class="section level2">
+<div id="minor-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Added <code>map_dist</code> to map disturbance observations.</li>
 <li>Added <code>parse_nesttag_observations</code> for WAStD “nesttag-observations”.</li>
@@ -162,9 +178,9 @@
     <div id="wastdr-0-1-12" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-12" class="anchor"></a>wastdr 0.1.12</h1>
-<div id="minor-changes-3" class="section level2">
+<div id="minor-changes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-4" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Survey helpers writing files accept an optional prefix for the filename they save the outputs to" <code>plot_survey_effort</code>, <code>plot_survey_count</code>.</li>
 <li>Survey helpers: placename and prefix are optional.</li>
@@ -175,9 +191,9 @@
     <div id="wastdr-0-1-11" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-11" class="anchor"></a>wastdr 0.1.11</h1>
-<div id="minor-changes-4" class="section level2">
+<div id="minor-changes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-4" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-5" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>
 <code>parse_surveys</code> now includes WAStD survey ID and absolute admin URL. The latter can be used to construct a direct link to update a survey in WAStD.</li>
@@ -187,9 +203,9 @@
     <div id="wastdr-0-1-10" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-10" class="anchor"></a>wastdr 0.1.10</h1>
-<div id="minor-changes-5" class="section level2">
+<div id="minor-changes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-5" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-6" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>
 <code>map_tracks</code> popup formatted, including a link to record in WAStD.</li>
@@ -199,9 +215,9 @@
     <div id="wastdr-0-1-9" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-9" class="anchor"></a>wastdr 0.1.9</h1>
-<div id="minor-changes-6" class="section level2">
+<div id="minor-changes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-6" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-7" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Change example plot theme from <code>theme_light()</code> to <code>theme_classic()</code>.</li>
 </ul>
@@ -217,9 +233,9 @@
     <div id="wastdr-0-1-8" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-8" class="anchor"></a>wastdr 0.1.8</h1>
-<div id="minor-changes-7" class="section level2">
+<div id="minor-changes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-7" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-8" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Cut down on size of vignette “analysis”</li>
 </ul>
@@ -239,9 +255,9 @@
     <div id="wastdr-0-1-6" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-6" class="anchor"></a>wastdr 0.1.6</h1>
-<div id="minor-changes-8" class="section level2">
+<div id="minor-changes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-8" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-9" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>
 <code>parse_disturbance_observations</code> added.</li>
@@ -251,9 +267,9 @@
     <div id="wastdr-0-1-5" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-5" class="anchor"></a>wastdr 0.1.5</h1>
-<div id="minor-changes-9" class="section level2">
+<div id="minor-changes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-9" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-10" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>
 <code>upsert_geojson</code> added.</li>
@@ -263,9 +279,9 @@
     <div id="wastdr-0-1-4" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-4" class="anchor"></a>wastdr 0.1.4</h1>
-<div id="minor-changes-10" class="section level2">
+<div id="minor-changes-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-10" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-11" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>AnimalEncounters and TurtleNestEncounters now include survey information.</li>
 <li>Surveys: <code>parse_survey</code>, plus some data viz for Surveys, see vignette “Analysis”.</li>
@@ -278,9 +294,9 @@
     <div id="wastdr-0-1-3" class="section level1">
 <h1 class="hasAnchor">
 <a href="#wastdr-0-1-3" class="anchor"></a>wastdr 0.1.3</h1>
-<div id="minor-changes-11" class="section level2">
+<div id="minor-changes-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-11" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-12" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>AnimalEncounters: add <code>maturity</code>
 </li>
@@ -294,6 +310,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#wastdr-0-1-17">0.1.17</a></li>
         <li><a href="#wastdr-0-1-16">0.1.16</a></li>
         <li><a href="#wastdr-0-1-15">0.1.15</a></li>
         <li><a href="#wastdr-0-1-14">0.1.14</a></li>

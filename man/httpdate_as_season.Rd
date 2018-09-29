@@ -2,7 +2,7 @@
 % Please edit documentation in R/httpdate_as_season.R
 \name{httpdate_as_season}
 \alias{httpdate_as_season}
-\title{Calculate the "turtle season" (FY) from a given datetime}
+\title{Calculate the "turtle season" (FY) from a given UTC HTTP datestring}
 \usage{
 httpdate_as_season(datestring)
 }
@@ -11,22 +11,20 @@ httpdate_as_season(datestring)
 e.g. '2016-11-20T21:46:57.163000Z' with time zone included}
 }
 \value{
-A POSIXct date
+The season as int, e.g. 2017
 }
 \description{
-Calculate the "turtle season" (FY) from a given datetime
+Calculate the "turtle season" (FY) from a given UTC HTTP datestring
 }
 \details{
 Return the earliest year of the season start.
-
-
-In practice, the turtle date is the date component (year, month, day) of the
-datetime minus 12 hours.
-
-This date convention is widely used in the turtle research community.
+E.g. any date in the fiscal year 2017/18 will be season 2017.
+Care has to be taken to calculate the offset through days rather than months,
+which can result in invalid dates such as Feb 30 or June 31.
 }
 \examples{
 # These datetimes are turtle season 2017:
-httpdate_as_season("2017-06-30T15:59:59Z") == 2016
-httpdate_as_season("2017-06-30T16:00:00Z") == 2017
+httpdate_as_season("2017-06-30T15:59:59Z") # 2016
+httpdate_as_season("2017-06-30T16:00:00Z") # 2017
+httpdate_as_season("2017-08-30T06:38:43Z") # 2017
 }

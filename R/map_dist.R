@@ -31,16 +31,16 @@ map_dist <- function(dist,
     purrr::walk(function(df) {
       l <<- l %>% leaflet::addAwesomeMarkers(
         data = dist.df[[df]],
-        lng = ~ longitude, lat = ~ latitude,
+        lng = ~longitude, lat = ~latitude,
         icon = leaflet::makeAwesomeIcon(
-          text = ~ stringr::str_sub(disturbance_cause, 0, 1),
+          text = ~stringr::str_sub(disturbance_cause, 0, 1),
           markerColor = "red",
-          iconColor = ~ pal(disturbance_cause)
+          iconColor = ~pal(disturbance_cause)
         ),
-        label = ~ glue::glue(
+        label = ~glue::glue(
           "{format(datetime, fmt)} {humanize(disturbance_cause)}"
         ),
-        popup = ~ glue::glue(
+        popup = ~glue::glue(
           "<h3>{humanize(disturbance_cause)}</h3>",
           "<p>Seen on {format(datetime, fmt)} AWST by {observer}",
           "<p>Survey {survey_id} at {site_name} ",

@@ -27,6 +27,7 @@ A \code{tbl_df} with columns:
   \item datetime <dttm>
   \item turtle_date <date>
   \item season <int>
+  \item week <int>
   \item longitude <dbl>
   \item latitude <dbl>
   \item crs <chr>

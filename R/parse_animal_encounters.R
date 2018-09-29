@@ -16,12 +16,13 @@
 #'   \item survey_start_comments <chr>
 #'   \item survey_end_comments <chr>
 #'   \item datetime <dttm>
+#'   \item turtle_date <date>
+#'   \item season <int>
+#'   \item week <int>
 #'   \item longitude <chr>
 #'   \item latitude <chr>
 #'   \item crs <chr>
 #'   \item location_accuracy <dbl>
-#'   \item turtle_date <date>
-#'   \item season <int>
 #'   \item name <chr>
 #'   \item species <chr>
 #'   \item health <chr>
@@ -64,12 +65,15 @@ parse_animal_encounters <- function(wastd_api_response) {
       survey_start_comments = map_chr_hack(., c("properties", "survey", "start_comments")),
       survey_end_comments = map_chr_hack(., c("properties", "survey", "end_comments")),
       datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08(),
+      # turtle_date = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08_turtle_date(),
+      turtle_date = datetime %>% datetime_as_turtle_date(),
+      # season = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_season(),
+      season = datetime %>% datetime_as_season(),
+      week = datetime %>% datetime_as_isoweek(),
       longitude = purrr::map_dbl(., c("properties", "longitude")),
       latitude = purrr::map_dbl(., c("properties", "latitude")),
       crs = purrr::map_chr(., c("properties", "crs")),
       location_accuracy = purrr::map_chr(., c("properties", "location_accuracy")) %>% as.integer(),
-      turtle_date = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08_turtle_date(),
-      season = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_season(),
       name = map_chr_hack(., c("properties", "name")),
       species = purrr::map_chr(., c("properties", "species")),
       health = purrr::map_chr(., c("properties", "health")),

@@ -27,16 +27,16 @@ map_tracks <- function(tracks,
       l <<- l %>%
         addAwesomeMarkers(
           data = tracks.df[[df]],
-          lng = ~ longitude, lat = ~ latitude,
+          lng = ~longitude, lat = ~latitude,
           icon = leaflet::makeAwesomeIcon(
-            text = ~ nest_type_text,
-            markerColor = ~ species_colours
+            text = ~nest_type_text,
+            markerColor = ~species_colours
           ),
-          label = ~ glue::glue(
+          label = ~glue::glue(
             '{format(datetime, "%d/%m/%Y %H:%M")} {humanize(nest_age)}',
             " {humanize(species)} {humanize(nest_type)} {name}"
           ),
-          popup = ~ glue::glue(
+          popup = ~glue::glue(
             "<h3>{humanize(nest_age)} {humanize(species)} {humanize(nest_type)} {name}</h3>",
             "<p>Seen on {format(datetime, fmt)} AWST by {observer}",
             "<p>Survey {survey_id} at {site_name} ",

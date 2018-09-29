@@ -25,12 +25,13 @@ A \code{tbl_df} with columns:
   \item survey_start_comments <chr>
   \item survey_end_comments <chr>
   \item datetime <dttm>
+  \item turtle_date <date>
+  \item season <int>
+  \item week <int>
   \item longitude <chr>
   \item latitude <chr>
   \item crs <chr>
   \item location_accuracy <dbl>
-  \item turtle_date <date>
-  \item season <int>
   \item name <chr>
   \item species <chr>
   \item health <chr>

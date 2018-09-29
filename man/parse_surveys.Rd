@@ -19,13 +19,14 @@ A \code{tbl_df} with columns:
   \item reporter <chr>
   \item reporter_username <chr>
   \item reporter_id <chr>
-  \item turtle_date <dttm> The "turtle date" of the survey.
-  \item season <int> The "turtle season" of the survey, rolling over with Fiscal Year.
   \item start_time <dttm> The actual start time of the survey.
   \item end_time <dttm> The actual, automatically guessed (if 6h later), or human guessed end time.
   \item start_comments <chr> Comments at start plus QA messages from username guessing
   \item end_comments <chr> Comments at end plus QA messages from username guessing. A mismatch
         of original usernames can indicate an incorrectly picked Site Visit End point.
+  \item turtle_date <dttm> The "turtle date" of the survey.
+  \item week <int> The isoweek of the survey.
+  \item season <int> The "turtle season" of the survey, rolling over with Fiscal Year.
   \item source <chr> Where this record was born.
   \item source_id <chr> The ODK record UID of the Site Visit Start.
   \item end_source_id <chr> The ODK record UID of the Site Visit End.

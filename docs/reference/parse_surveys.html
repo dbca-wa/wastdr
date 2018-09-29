@@ -129,13 +129,14 @@
 <li><p>reporter &lt;chr&gt;</p></li>
 <li><p>reporter_username &lt;chr&gt;</p></li>
 <li><p>reporter_id &lt;chr&gt;</p></li>
-<li><p>turtle_date &lt;dttm&gt; The "turtle date" of the survey.</p></li>
-<li><p>season &lt;int&gt; The "turtle season" of the survey, rolling over with Fiscal Year.</p></li>
 <li><p>start_time &lt;dttm&gt; The actual start time of the survey.</p></li>
 <li><p>end_time &lt;dttm&gt; The actual, automatically guessed (if 6h later), or human guessed end time.</p></li>
 <li><p>start_comments &lt;chr&gt; Comments at start plus QA messages from username guessing</p></li>
 <li><p>end_comments &lt;chr&gt; Comments at end plus QA messages from username guessing. A mismatch
         of original usernames can indicate an incorrectly picked Site Visit End point.</p></li>
+<li><p>turtle_date &lt;dttm&gt; The "turtle date" of the survey.</p></li>
+<li><p>week &lt;int&gt; The isoweek of the survey.</p></li>
+<li><p>season &lt;int&gt; The "turtle season" of the survey, rolling over with Fiscal Year.</p></li>
 <li><p>source &lt;chr&gt; Where this record was born.</p></li>
 <li><p>source_id &lt;chr&gt; The ODK record UID of the Site Visit Start.</p></li>
 <li><p>end_source_id &lt;chr&gt; The ODK record UID of the Site Visit End.</p></li>

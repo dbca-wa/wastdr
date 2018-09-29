@@ -11,13 +11,14 @@
 #'   \item reporter <chr>
 #'   \item reporter_username <chr>
 #'   \item reporter_id <chr>
-#'   \item turtle_date <dttm> The "turtle date" of the survey.
-#'   \item season <int> The "turtle season" of the survey, rolling over with Fiscal Year.
 #'   \item start_time <dttm> The actual start time of the survey.
 #'   \item end_time <dttm> The actual, automatically guessed (if 6h later), or human guessed end time.
 #'   \item start_comments <chr> Comments at start plus QA messages from username guessing
 #'   \item end_comments <chr> Comments at end plus QA messages from username guessing. A mismatch
 #'         of original usernames can indicate an incorrectly picked Site Visit End point.
+#'   \item turtle_date <dttm> The "turtle date" of the survey.
+#'   \item week <int> The isoweek of the survey.
+#'   \item season <int> The "turtle season" of the survey, rolling over with Fiscal Year.
 #'   \item source <chr> Where this record was born.
 #'   \item source_id <chr> The ODK record UID of the Site Visit Start.
 #'   \item end_source_id <chr> The ODK record UID of the Site Visit End.
@@ -49,12 +50,15 @@ parse_surveys <- function(wastd_api_response) {
         reporter = map_chr_hack(., c("properties", "reporter", "name")),
         reporter_username = map_chr_hack(., c("properties", "reporter", "username")),
         reporter_id = map_chr_hack(., c("properties", "reporter", "pk")),
-        turtle_date = purrr::map_chr(., c("properties", "start_time")) %>% httpdate_as_gmt08_turtle_date(),
-        season = purrr::map_chr(., c("properties", "start_time")) %>% httpdate_as_season(),
         start_time = purrr::map_chr(., c("properties", "start_time")) %>% httpdate_as_gmt08(),
         end_time = map_chr_hack(., c("properties", "end_time")) %>% httpdate_as_gmt08(),
         start_comments = map_chr_hack(., c("properties", "start_comments")),
         end_comments = map_chr_hack(., c("properties", "end_comments")),
+
+        turtle_date = start_time %>% datetime_as_turtle_date(),
+        season = start_time %>% datetime_as_season(),
+        week = start_time %>% datetime_as_isoweek(),
+
         source = purrr::map_chr(., c("properties", "source")),
         source_id = map_chr_hack(., c("properties", "source_id")),
         end_source_id = map_chr_hack(., c("properties", "end_source_id")),
@@ -167,7 +171,7 @@ plot_survey_count <- function(surveys, placename = "", prefix = "") {
     surveys_per_site_name_and_date() %>%
     ggplot2::ggplot(., aes(turtle_date, site_name, fill = n)) +
     ggplot2::geom_raster() +
-      ggplot2::facet_grid(rows = ggplot2::vars(season)) +
+    ggplot2::facet_grid(rows = ggplot2::vars(season)) +
     # ggplot2::scale_x_date(
     #   breaks = scales::pretty_breaks,
     #   labels = scales::date_format("%d %b %Y")
