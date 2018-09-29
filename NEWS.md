@@ -1,3 +1,15 @@
+# wastdr 0.1.17
+## Minor changes
+* Added `datetime_as_season`, `datetime_as_isoweek`, `datetime_as_turtledate`.
+  This speeds up the parsers by re-using the costly string-to-date conversion 
+  from `datetime`.
+* Added `isoweek` to parsers. The parsers now provide for each record:
+  
+  * timezone-aware datetime (actual time of observation),
+  * "turtle date" (nesting night start date),
+  * season start year,
+  * week number.
+
 # wastdr 0.1.16
 ## Major changes
 * All `parse_` functions changed the column `date` to the more descriptive `turtle_date`, 

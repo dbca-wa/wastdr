@@ -19,6 +19,7 @@
 #'   \item datetime <dttm>
 #'   \item turtle_date <date>
 #'   \item season <int>
+#'   \item week <int>
 #'   \item longitude <dbl>
 #'   \item latitude <dbl>
 #'   \item crs <chr>
@@ -61,8 +62,10 @@ parse_nesttag_observations <- function(wastd_api_response) {
       survey_end_comments = map_chr_hack(., c("properties", "encounter", "properties", "survey", "end_comments")),
 
       datetime = purrr::map_chr(., c("properties", "encounter", "properties", "when")) %>% httpdate_as_gmt08(),
-      turtle_date = purrr::map_chr(., c("properties", "encounter", "properties", "when")) %>% httpdate_as_gmt08_turtle_date(),
-      season = purrr::map_chr(., c("properties", "encounter", "properties", "when")) %>% httpdate_as_season(),
+      turtle_date = datetime %>% datetime_as_turtle_date(),
+      season = datetime %>% datetime_as_season(),
+      week = datetime %>% datetime_as_isoweek(),
+
       longitude = purrr::map_dbl(., c("properties", "encounter", "properties", "longitude")),
       latitude = purrr::map_dbl(., c("properties", "encounter", "properties", "latitude")),
       crs = purrr::map_chr(., c("properties", "encounter", "properties", "crs")),
