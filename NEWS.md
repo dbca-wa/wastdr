@@ -1,3 +1,9 @@
+# wastdr 0.1.18
+## Minor changes
+* Added `clutch_size_fresh` to `parse_turtle_nest_encounters` as the number of
+  eggs directly observed during a nesting/tagging event as opposed to `clutch_size`,
+  which is reconstructed from egg remnants after a hatched nest excavation.
+
 # wastdr 0.1.17
 ## Minor changes
 * Added `datetime_as_season`, `datetime_as_isoweek`, `datetime_as_turtledate`.

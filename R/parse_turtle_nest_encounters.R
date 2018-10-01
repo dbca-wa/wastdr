@@ -36,7 +36,8 @@
 #'   \item photos <list>
 #'   \item hatching_success <dbl>
 #'   \item emergence_success <dbl>
-#'   \item clutch_size <dbl>
+#'   \item clutch_size <dbl> The calculated clutch size reconstructed from excavated eggs.
+#'   \item clutch_size_fresh <dbl> The directly observed clutch size during tagging.
 #'   \item source <chr>
 #'   \item source_id <chr>
 #'   \item encounter_type <chr>
@@ -93,6 +94,7 @@ parse_turtle_nest_encounters <- function(wastd_api_response) {
       hatching_success = obs %>% purrr::map(get_num_field, "hatching_success") %>% as.numeric(),
       emergence_success = obs %>% purrr::map(get_num_field, "emergence_success") %>% as.numeric(),
       clutch_size = obs %>% purrr::map(get_num_field, "egg_count_calculated") %>% as.numeric(),
+      clutch_size_fresh = obs %>% purrr::map(get_num_field, "egg_count") %>% as.numeric(),
 
       source = purrr::map_chr(., c("properties", "source")),
       source_id = purrr::map_chr(., c("properties", "source_id")),
