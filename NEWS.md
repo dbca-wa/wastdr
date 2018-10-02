@@ -1,3 +1,8 @@
+# wastdr 0.1.19
+## Major changes
+* All `parse_` functions return `iso_week` and `season_week` instead of `week`.
+  `season_week` is a useful grouper in combination with `season`.
+
 # wastdr 0.1.18
 ## Minor changes
 * Added `clutch_size_fresh` to `parse_turtle_nest_encounters` as the number of

@@ -17,7 +17,8 @@
 #'   \item end_comments <chr> Comments at end plus QA messages from username guessing. A mismatch
 #'         of original usernames can indicate an incorrectly picked Site Visit End point.
 #'   \item turtle_date <dttm> The "turtle date" of the survey.
-#'   \item week <int> The isoweek of the survey.
+#'   \item season_week <int> The number of completed weeks since fiscal year start
+#'   \item iso_week <int> The number of completed weeks since calendar year start
 #'   \item season <int> The "turtle season" of the survey, rolling over with Fiscal Year.
 #'   \item source <chr> Where this record was born.
 #'   \item source_id <chr> The ODK record UID of the Site Visit Start.
@@ -57,8 +58,8 @@ parse_surveys <- function(wastd_api_response) {
 
         turtle_date = start_time %>% datetime_as_turtle_date(),
         season = start_time %>% datetime_as_season(),
-        week = start_time %>% datetime_as_isoweek(),
-
+        season_week = datetime %>% datetime_as_seasonweek(),
+        iso_week = datetime %>% datetime_as_isoweek(),
         source = purrr::map_chr(., c("properties", "source")),
         source_id = map_chr_hack(., c("properties", "source_id")),
         end_source_id = map_chr_hack(., c("properties", "end_source_id")),
@@ -134,7 +135,7 @@ survey_hours_per_person <- function(surveys) {
   desc <- NULL
 
   surveys %>%
-    dplyr::group_by(reporter, season) %>%
+    dplyr::group_by(season, reporter) %>%
     tally(duration_hours) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(hours_surveyed = round(n)) %>%

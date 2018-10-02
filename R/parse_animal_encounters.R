@@ -18,7 +18,8 @@
 #'   \item datetime <dttm>
 #'   \item turtle_date <date>
 #'   \item season <int>
-#'   \item week <int>
+#'   \item season_week <int> The number of completed weeks since fiscal year start
+#'   \item iso_week <int> The number of completed weeks since calendar year start
 #'   \item longitude <chr>
 #'   \item latitude <chr>
 #'   \item crs <chr>
@@ -69,7 +70,8 @@ parse_animal_encounters <- function(wastd_api_response) {
       turtle_date = datetime %>% datetime_as_turtle_date(),
       # season = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_season(),
       season = datetime %>% datetime_as_season(),
-      week = datetime %>% datetime_as_isoweek(),
+      season_week = datetime %>% datetime_as_seasonweek(),
+      iso_week = datetime %>% datetime_as_isoweek(),
       longitude = purrr::map_dbl(., c("properties", "longitude")),
       latitude = purrr::map_dbl(., c("properties", "latitude")),
       crs = purrr::map_chr(., c("properties", "crs")),
