@@ -58,8 +58,8 @@ parse_surveys <- function(wastd_api_response) {
 
         turtle_date = start_time %>% datetime_as_turtle_date(),
         season = start_time %>% datetime_as_season(),
-        season_week = datetime %>% datetime_as_seasonweek(),
-        iso_week = datetime %>% datetime_as_isoweek(),
+        season_week = start_time %>% datetime_as_seasonweek(),
+        iso_week = start_time %>% datetime_as_isoweek(),
         source = purrr::map_chr(., c("properties", "source")),
         source_id = map_chr_hack(., c("properties", "source_id")),
         end_source_id = map_chr_hack(., c("properties", "end_source_id")),
