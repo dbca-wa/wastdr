@@ -77,8 +77,8 @@ parse_surveys <- function(wastd_api_response) {
         lubridate::interval(start_time, end_time) %>%
           lubridate::as.period() %>%
           as.numeric()
-      ) / 60 %>% round(),
-      duration_hours = duration_minutes / 60 %>% round()
+      ) / 60 %>% round(digits = 2),
+      duration_hours = duration_minutes / 60 %>% round(digits = 2)
     )
 }
 
@@ -182,7 +182,7 @@ plot_survey_count <- function(surveys, placename = "", prefix = "") {
     ggplot2::labs(x = "Turtle date", y = "", fill = "Number of surveys") +
     ggplot2::ggsave(
       filename = glue::glue("{prefix}_survey_count_{urlize(placename)}.png"),
-      width = 10, height = 5
+      width = 10, height = 6
     )
 }
 
@@ -226,6 +226,6 @@ plot_survey_effort <- function(surveys, placename = "", prefix = "") {
     ggplot2::labs(x = "Turtle date", y = "", fill = "Hours surveyed") +
     ggplot2::ggsave(
       filename = glue::glue("{prefix}_survey_effort_{urlize(placename)}.png"),
-      width = 10, height = 5
+      width = 10, height = 6
     )
 }
