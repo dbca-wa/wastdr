@@ -174,7 +174,7 @@ default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'># One by one</span>
 <span class='no'>gj</span> <span class='kw'>&lt;-</span> <span class='st'>"public:herbie_hbvnames_public"</span> <span class='kw'>%&gt;%</span> <span class='no'>kmi_getFeature</span>
-<span class='no'>props</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='no'>gj</span><span class='kw'>[[</span><span class='st'>"features"</span>]], <span class='st'>"properties"</span>)
+<span class='no'>props</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span>(<span class='no'>gj</span><span class='kw'>[[</span><span class='st'>"features"</span>]], <span class='st'>"properties"</span>)
 <span class='fu'>wastd_POST</span>(<span class='no'>props</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>serializer</span> <span class='kw'>=</span> <span class='st'>"names"</span>)
 
  <span class='co'># All in batch</span>

@@ -136,10 +136,10 @@
 <span class='fu'>require</span>(<span class='no'>magrittr</span>)
 <span class='no'>nest_json</span> <span class='kw'>&lt;-</span> <span class='fu'>get_wastd</span>(<span class='st'>"turtle-nest-encounters"</span>)
 <span class='no'>nest_hs</span> <span class='kw'>&lt;-</span> <span class='no'>nest_json</span>$<span class='no'>content</span> <span class='kw'>%&gt;%</span> {
-  <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></span>(
-    <span class='kw'>obs</span> <span class='kw'>=</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='no'>.</span>, <span class='fu'>c</span>(<span class='st'>"properties"</span>, <span class='st'>"observation_set"</span>)),
+  <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(
+    <span class='kw'>obs</span> <span class='kw'>=</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span>(<span class='no'>.</span>, <span class='fu'>c</span>(<span class='st'>"properties"</span>, <span class='st'>"observation_set"</span>)),
     <span class='kw'>hatching_success</span> <span class='kw'>=</span> <span class='no'>obs</span> <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='no'>get_num_field</span>, <span class='st'>"hatching_success"</span>) <span class='kw'>%&gt;%</span> <span class='no'>as.numeric</span>)
+      <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span>(<span class='no'>get_num_field</span>, <span class='st'>"hatching_success"</span>) <span class='kw'>%&gt;%</span> <span class='no'>as.numeric</span>)
  }
 <span class='co'># }</span></pre>
   </div>

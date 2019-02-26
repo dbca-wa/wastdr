@@ -41,11 +41,26 @@ Once refined, these helper functions will become core `wastdr` functionality.
 if (file.exists("tracks.Rda")){
     load("tracks.Rda")
 } else {
-    q = list(observer=4)
+    q = list(observer=4, format = "json")
     track_records <- wastdr::wastd_GET("turtle-nest-encounters", query=q)
-    tracks_all <- parse_turtle_nest_encounters(track_records)
-    surveys <- wastd_GET("surveys", query=q) %>% parse_surveys()
-    save(tracks_all, track_records, surveys, file = "tracks.Rda")
+    tracks <- parse_turtle_nest_encounters(track_records)
+    disturbance_records <- wastdr::wastd_GET("disturbance-observations", query=q)
+    disturbance <- disturbance_records %>% wastdr::parse_disturbance_observations()
+    survey_records <- wastdr::wastd_GET("surveys", query=list(reporter=4, format = "json"))
+    surveys <- survey_records %>% parse_surveys()
+    nest_records <- wastdr::wastd_GET("nesttag-observations", query=q)
+    nests <- nest_records %>% wastdr::parse_nesttag_observations()
+    save(
+      track_records, 
+      tracks, 
+      survey_records, 
+      surveys, 
+      disturbance_records, 
+      disturbance, 
+      nest_records, 
+      nests, 
+      file = "tracks.Rda"
+    )
 }
 ```
 
@@ -58,64 +73,104 @@ Site names and IDs are only correct at the time of writing. As they could change
 double-check the correct spelling of your own place names and their IDs in WAStD.
 
 ```{r filter_data}
-tracks <- tracks_all %>% dplyr::filter(season==2017)
+tracks_2017 <- tracks %>% dplyr::filter(season==2017)
 ```
 
-## Summarise and plot data
-Data (all tracks or filtered subsets) are filtered to only fresh observations,
-then grouped and tallied by date, species and type.
+# Turtle Tracks and Nests
+This section demonstrates the summary and visualisation utilities for tracks.
 
-Daily summaries are shown in wide form as tables, and (using long form) as 
-timeseries plots.
+The data shown here will make absolutely no sense, as it contains training and dummmy data.
 
-```{r helpers}
-species_by_type <- . %>% 
-  filter(nest_age=="fresh") %>%
-  group_by(season, species, nest_type) %>% 
-  tally() %>%
-  ungroup() %>% 
-  tidyr::spread(nest_type, n, fill=0)
+## Maps
+Each track on the map has a popup with a link to the actual record on WAStD.
+Accessing and editing the record is restricted to authorised DBCA staff members.
 
-daily_species_by_type <- . %>% 
-    filter(nest_age=="fresh") %>%
-    group_by(season, turtle_date, species, nest_type) %>% 
-    tally() %>%
-    ungroup()
+Map markers can be grouped or not. 
 
-daily_summary <- . %>% 
-    daily_species_by_type %>% 
-    tidyr::spread(nest_type, n, fill=0) %>%
-    DT::datatable(.)
+Non-grouped markers show the actual location more accurately, but can overlap to
+the point where it is not possible to open the popups. 
 
-tracks_ts <- . %>% 
-    daily_species_by_type %>% 
-    {ggplot2::ggplot(data=., aes(x = turtle_date, y = n, colour = nest_type)) + 
-            ggplot2::geom_point() + 
-            ggplot2::geom_smooth(method = "auto") +
-            # ggplot2::geom_line() +
-            ggplot2::facet_grid(rows = vars(season)) +
-            ggplot2::scale_x_date(breaks = scales::pretty_breaks(),
-                                  labels = scales::date_format("%d %b %Y")) +
-            ggplot2::scale_y_continuous(limits = c(0, NA)) +
-            ggplot2::xlab("Turtle Date") +
-            ggplot2::ylab("Number counted per day") +
-            ggplot2::ggtitle("Nesting activity") +
-            ggplot2::theme_classic()}
+Grouped markers in densely populated locations will expand to prevent the overlap of
+markers and popups.
+
+Use "Place names" where the aerial imagery is not available at the zoom level required
+for the grouped markers to expand.
+```{r tracks_maps}
+tracks %>% add_nest_labels() %>% map_tracks()
+tracks %>% add_nest_labels() %>% map_tracks(cluster=T)
 ```
 
-# Nesting activity
-This chapter uses the data and helpers from the above section and provides some
-insight into the different regions.
 
-This section is by no means complete and can be extended as appropriate.
+## Nesting success - tracks with nest vs the rest
+Overview tables are available for the most common summaries at the most common
+groupings (season, week, day / area, site).
 
-## Example analyses
-```{r, fig.width=9, fig.height=5, eval=T}
-tracks %>% add_nest_labels %>% map_tracks
-tracks %>% tracks_ts
+```{r tracks_ns}
+tracks %>% nesting_type_by_season_species()
+tracks %>% nesting_type_by_area_season_species()
+tracks %>% nesting_type_by_site_season_species()
+tracks %>% nesting_type_by_season_week_species()
+tracks %>% nesting_type_by_season_day_species()
 
-place <- "Example place"
-surveys %>% plot_survey_count(place)
-surveys %>% list_survey_count(place)
-surveys %>% survey_hours_per_person %>% DT::datatable(.)
+# Track success by day and species
+tracks %>% track_success()
+
+# Track success by species
+tracks %>% track_success() %>% track_success_by_species()
+
+tracks %>% track_success %>% 
+  ggplot_track_success_by_date("natator-depressus", placename="Test place", prefix="TEST")
+
+tracks %>% track_success %>% 
+  ggplot_track_successrate_by_date("natator-depressus", placename="Test place", prefix="TEST")
 ```
+
+## Nest excavations: Hatching and emergence success
+
+```{r tracks_hses}
+tracks %>% hatching_emergence_success()
+tracks %>% hatching_emergence_success_area()
+tracks %>% hatching_emergence_success_site()
+```
+
+## Tagged nests
+```{r taggee_nests}
+nests %>% map_nests()
+```
+
+
+## Disturbed nests
+```{r dist_nests}
+tracks %>% dplyr::filter(disturbance == "present") %>% add_nest_labels() %>% map_tracks()
+tracks %>% dplyr::filter(disturbance == "present") %>% add_nest_labels() %>% map_tracks(cluster=T)
+```
+
+
+# Disturbances and predation
+```{r}
+disturbance %>% disturbance_by_season()
+disturbance %>% map_dist()
+disturbance %>% map_dist(cluster=T)
+```
+
+
+# Surveys
+```{r surveys}
+surveys %>% survey_count()
+surveys %>% surveys_per_site_name_and_date()
+surveys %>% survey_hours_per_site_name_and_date()
+surveys %>% survey_hours_per_person()
+surveys %>% list_survey_count()
+surveys %>% plot_survey_count()
+surveys %>% list_survey_effort()
+surveys %>% plot_survey_effort()
+surveys %>% survey_hours_heatmap(placename = "All the places", prefix = "TEST")
+surveys %>% survey_count_heatmap(placename = "All the places", prefix = "TEST")
+surveys %>% survey_season_stats()
+surveys %>% survey_season_site_stats()
+surveys %>% survey_show_detail() %>% DT::datatable(escape = F)
+```
+
+# QA
+
+Coming soon.

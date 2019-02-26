@@ -108,7 +108,8 @@
     <p>Map TurtleNestEncounters interactively.</p>
     
 
-    <pre class="usage"><span class='fu'>map_tracks</span>(<span class='no'>tracks</span>, <span class='kw'>fmt</span> <span class='kw'>=</span> <span class='st'>"%d/%m/%Y %H:%M"</span>)</pre>
+    <pre class="usage"><span class='fu'>map_tracks</span>(<span class='no'>tracks</span>, <span class='kw'>wastd_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings'>get_wastd_url</a></span>(),
+  <span class='kw'>fmt</span> <span class='kw'>=</span> <span class='st'>"%d/%m/%Y %H:%M"</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -118,8 +119,20 @@
       <td><p>The output of <code>parse_turtle_nest_encounters</code> and <code>add_nest_labels</code>.</p></td>
     </tr>
     <tr>
+      <th>wastd_url</th>
+      <td><p>The base URL for WAStD, default: <code><a href='wastdr_settings.html'>get_wastd_url()</a></code></p></td>
+    </tr>
+    <tr>
       <th>fmt</th>
       <td><p>The desired date format, default: "d/m/Y H:M"</p></td>
+    </tr>
+    <tr>
+      <th>cluster</th>
+      <td><p>If TRUE, cluster map markers. Default: FALSE.
+Note: In some places, the aerial background layer does not provide imagery
+at sufficient zoom levels, and therefore restricts the map zoom at levels
+where the cluster markers don't expand. Switch to "Place names" to let
+cluster markers expand.</p></td>
     </tr>
     </table>
     

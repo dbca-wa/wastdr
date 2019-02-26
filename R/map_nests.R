@@ -4,17 +4,27 @@
 #' The maps auto-zooms to the extent of data given.
 #'
 #' @param data The output of \code{parse_nesttag_observations}.
-#' @param fmt The desired date format, default: "d/m/Y H:M"
+#' @template param-wastd_url
+#' @template param-fmt
+#' @template param-cluster
 #' @return A leaflet map
 #' @importFrom purrr walk
 #' @importFrom glue glue
 #' @importFrom leaflet leaflet addAwesomeMarkers addLayersControl addProviderTiles clearBounds
 #' @export
 map_nests <- function(data,
-                      fmt = "%d/%m/%Y %H:%M") {
+                      wastd_url = wastdr::get_wastd_url(),
+                      fmt = "%d/%m/%Y %H:%M",
+                      cluster = FALSE) {
   . <- NULL
   layersControlOptions <- NULL
-  wastd_url <- get_wastd_url()
+  markerClusterOptions <- NULL
+
+  if (cluster == TRUE) {
+    co <- markerClusterOptions()
+  } else {
+    co <- NULL
+  }
   pal <- leaflet::colorFactor(palette = "RdYlBu", domain = data$tag_status)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
@@ -38,10 +48,11 @@ map_nests <- function(data,
         "<p>{humanize(tag_status)} on {format(datetime, fmt)} AWST by {observer}",
         "<p>Survey {survey_id} at {site_name} ",
         "{format(survey_start_time, fmt)}-{format(survey_end_time, fmt)} AWST</p>",
-        '<p><a class="btn btn-xs btn-primary" target="_" rel="nofollow" ',
+        '<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow" ',
         'href="{wastd_url}{absolute_admin_url}">Edit on WAStD</a></p>'
       ),
-      group = "Nests"
+      group = "Nests",
+      clusterOptions = co
     ) %>%
     leaflet::addLayersControl(
       baseGroups = c("Aerial", "Place names"),

@@ -1,39 +1,68 @@
 
-wastdr <img src="man/figures/logo.png" align="right" />
-=======================================================
+# wastdr <img src="man/figures/logo.png" align="right" />
 
-[![Build Status](https://travis-ci.org/dbca-wa/wastdr.svg?branch=master)](https://travis-ci.org/dbca-wa/wastdr) [![Test coverage](https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/dbca-wa/wastdr)
+[![Build
+Status](https://travis-ci.org/dbca-wa/wastdr.svg?branch=master)](https://travis-ci.org/dbca-wa/wastdr)
+[![Test
+coverage](https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/dbca-wa/wastdr)
 
-The [WA Strandings Database WAStD](https://tsc.dbca.wa.gov.au/) ([github](https://github.com/dbca-wa/wastd/)) provides a [RESTful API](https://tsc.dbca.wa.gov.au/api/1/). WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Biodiversity, Conservation and Attractions. The WAStD API uses token and basic authentication, see vignette on details.
+The [WA Strandings Database WAStD](https://tsc.dbca.wa.gov.au/)
+([github](https://github.com/dbca-wa/wastd/)) provides a [RESTful
+API](https://tsc.dbca.wa.gov.au/api/1/). WAStD contains data about
+turtle strandings, turtle taggings, turtle track and nest encounters,
+and some ancillary data (areas, surveys, staff). WAStD is accessible to
+authenticated staff of the WA Department of Biodiversity, Conservation
+and Attractions. The WAStD API uses token and basic authentication, see
+vignette on details.
 
-The API returns spatially explicit data as GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. [Quantum GIS](http://www.qgis.org/en/site/).
+The API returns spatially explicit data as GeoJSON, which can be loaded
+directly into any standard-compliant GIS environments, e.g. [Quantum
+GIS](http://www.qgis.org/en/site/).
 
-If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON properties) into a two-dimensional tablular structure. This requires knowledge about the structure and content of the nested data from WAStD.
+If the data consumer however wishes to analyse data in a statistical
+package like R, the data need to be transformed from a nested list of
+lists (GeoJSON properties) into a two-dimensional tablular structure.
+This requires knowledge about the structure and content of the nested
+data from WAStD.
 
-The main purpose of `wastdr` is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a [tidy](http://vita.had.co.nz/papers/tidy-data.html) `dplyr::tibble`.
+The main purpose of `wastdr` is to facilitate reading, parsing and using
+WAStD data by providing helpers to access the API and flatten the API
+outputs into a [tidy](http://vita.had.co.nz/papers/tidy-data.html)
+`dplyr::tibble`.
 
-The secondary purpose of `wastdr` is to centralise a collection of commonly used analyses and visualisations of turtle data. As development progresses, example analyses and visualisations will be added to the vignette. Contributions and requests are welcome!
+The secondary purpose of `wastdr` is to centralise a collection of
+commonly used analyses and visualisations of turtle data. As development
+progresses, example analyses and visualisations will be added to the
+vignette. Contributions and requests are welcome\!
 
-Lastly, to facilitate collaboration with external stakeholders, `wastdr` contains some anonymized example data (raw GeoJSON and parsed `tibble`) of turtle taggings, turtle track counts, and turtle nests.
+Lastly, to facilitate collaboration with external stakeholders, `wastdr`
+contains some anonymized example data (raw GeoJSON and parsed `tibble`)
+of turtle taggings, turtle track counts, and turtle nests.
 
-Installation
-------------
+## Installation
 
 Install `wastdr` from GitHub:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("dbca-wa/wastdr")
+remotes::install_github("dbca-wa/wastdr")
 ```
 
-While the WAStD API is only accessible to a selected audience, and `wastdr` is under active development, it is not feasible to release `wastdr` on CRAN yet. Therefore, `wastdr` will be distributed via GitHub for the time being.
+While the WAStD API is only accessible to a selected audience, and
+`wastdr` is under active development, it is not feasible to release
+`wastdr` on CRAN yet. Therefore, `wastdr` will be distributed via GitHub
+for the time being.
 
-Setup
------
+## Setup
 
-`wastdr` requires to be configured with the WAStD API URL and an access token or a username / password combination. `wastdr` functions expect these settings to be available as environment variables. For convenience, `wastdr_setup` sets the correct variables, while `wastdr_settings` retrieves the currently set values.
+`wastdr` requires to be configured with the WAStD API URL and an access
+token or a username / password combination. `wastdr` functions expect
+these settings to be available as environment variables. For
+convenience, `wastdr_setup` sets the correct variables, while
+`wastdr_settings` retrieves the currently set values.
 
-DBCA staff can find their WAStD API Token at [WAStD](https://tsc.dbca.wa.gov.au/) under "My Profile" and run:
+DBCA staff can find their WAStD API Token at
+[WAStD](https://tsc.dbca.wa.gov.au/) under “My Profile” and run:
 
 ``` r
 wastdr::wastdr_setup(api_token = "my_token")
@@ -57,10 +86,10 @@ wastdr::wastdr_settings()
 #>   API Password:  my_password
 ```
 
-For a more permanent configuration method using environment variables please see the vignette "Setup".
+For a more permanent configuration method using environment variables
+please see the vignette “Setup”.
 
-Get WAStD
----------
+## Get WAStD
 
 Once set up, `wastdr` can load data from WAStD simply with:
 
@@ -72,15 +101,15 @@ nests <- parse_turtle_nest_encounters(tne)
 
 Valid endpoints are listed in the base API URL of WAStD, e.g.:
 
--   `encounters`
--   `animal-encounters`
--   `turtle-nest-encounters`
--   `disturbance-observations`
+  - `encounters`
+  - `animal-encounters`
+  - `turtle-nest-encounters`
+  - `disturbance-observations`
 
-...or have a pickle
--------------------
+## …or have a pickle
 
-If you don't have access to the WAStD API, you can still get a feel for the data by using the pickled example data:
+If you don’t have access to the WAStD API, you can still get a feel for
+the data by using the pickled example data:
 
 ``` r
 require(wastdr)
@@ -99,24 +128,26 @@ tracks <- wastdr::parse_turtle_nest_encounters(tne)
 # DT::datatable(tracks)
 ```
 
-Learn more
-----------
+## Learn more
 
-See the vignette for in-depth examples of transforming, analysing and visualising data.
+See the vignette for in-depth examples of transforming, analysing and
+visualising data.
 
 ``` r
 vignette("getting-wastd")
 vignette("analysis")
 ```
 
-Contribute
-==========
+# Contribute
 
-Every contribution, constructive feedback, or suggestion is welcome!
+Every contribution, constructive feedback, or suggestion is welcome\!
 
-Send us your ideas and requests as [issues](https://github.com/dbca-wa/wastdr/issues) or submit a pull request.
+Send us your ideas and requests as
+[issues](https://github.com/dbca-wa/wastdr/issues) or submit a pull
+request.
 
-Pull requests should eventually pass tests and checks (not introducing new ERRORs, WARNINGs or NOTEs apart from the "New CRAN package" NOTE):
+Pull requests should eventually pass tests and checks (not introducing
+new ERRORs, WARNINGs or NOTEs apart from the “New CRAN package” NOTE):
 
 ``` r
 # install.packages("devtools")
@@ -133,11 +164,15 @@ pkgdown::build_news()
 pkgdown::build_site()
 ```
 
-To enable local testing of the API as well as checking and upload of test coverage, add these two lines with the respective tokens to your .Rprofile:
+To enable local testing of the API as well as checking and upload of
+test coverage, add these two lines with the respective tokens to your
+.Rprofile:
 
 ``` r
 Sys.setenv(CODECOV_TOKEN = "my-codecov-token")
 Sys.setenv(MY_API_TOKEN = "my-api-token")
 ```
 
-The `wastdr` [webpage](https://dbca-wa.github.io/wastdr/) is hosted on gh-pages and generated using [pkgdown](https://github.com/hadley/pkgdown).
+The `wastdr` [webpage](https://dbca-wa.github.io/wastdr/) is hosted on
+gh-pages and generated using
+[pkgdown](https://github.com/hadley/pkgdown).

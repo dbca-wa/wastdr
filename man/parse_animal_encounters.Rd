@@ -27,7 +27,8 @@ A \code{tbl_df} with columns:
   \item datetime <dttm>
   \item turtle_date <date>
   \item season <int>
-  \item week <int>
+  \item season_week <int> The number of completed weeks since fiscal year start
+  \item iso_week <int> The number of completed weeks since calendar year start
   \item longitude <chr>
   \item latitude <chr>
   \item crs <chr>

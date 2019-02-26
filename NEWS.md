@@ -1,3 +1,31 @@
+# wastdr 0.1.20
+## Major changes
+## Minor changes
+* `map_tracks()`, `map_nests()`, `map_dist()` accept new parameters: `wastd_url`
+  (default `get_wastd_url()`), and cluster (whether to cluster markers).
+* `parse_surveys()` now includes an HTML link to the admin `change_url` in the
+  data curation portal.
+* Filters added: 
+  * \code{exclude_training_surveys}
+  * \code{filter_surveys_requiring_qa}
+  * \code{filter_surveys_missing_end}
+  * \code{exclude_training_species}
+  * \code{filter_missing_survey}
+  * \code{filter_missing_site}
+* Summaries added: 
+  * \code{disturbance_by_season}
+  * \code{surveys_per_site_name_and_date}
+  * \code{survey_hours_per_site_name_and_date}
+  * \code{survey_hours_per_person}
+  * \code{list_survey_count}
+  * \code{list_survey_effort}
+* Plots added:
+  * \code{plot_survey_count}
+  * \code{plot_survey_effort}
+  * \code{ggplot_track_success_by_date}
+  * \code{ggplot_track_successrate_by_date}
+* Some refactoring of documentation templates.
+
 # wastdr 0.1.19
 ## Major changes
 * All `parse_` functions return `iso_week` and `season_week` instead of `week`.

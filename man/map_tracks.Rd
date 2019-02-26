@@ -4,12 +4,21 @@
 \alias{map_tracks}
 \title{Map TurtleNestEncounters interactively.}
 \usage{
-map_tracks(tracks, fmt = "\%d/\%m/\%Y \%H:\%M")
+map_tracks(tracks, wastd_url = wastdr::get_wastd_url(),
+  fmt = "\%d/\%m/\%Y \%H:\%M", cluster = FALSE)
 }
 \arguments{
 \item{tracks}{The output of \code{parse_turtle_nest_encounters} and \code{add_nest_labels}.}
 
+\item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
+
 \item{fmt}{The desired date format, default: "d/m/Y H:M"}
+
+\item{cluster}{If TRUE, cluster map markers. Default: FALSE.
+Note: In some places, the aerial background layer does not provide imagery
+at sufficient zoom levels, and therefore restricts the map zoom at levels
+where the cluster markers don't expand. Switch to "Place names" to let
+cluster markers expand.}
 }
 \value{
 A leaflet map

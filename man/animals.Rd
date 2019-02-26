@@ -4,7 +4,7 @@
 \name{animals}
 \alias{animals}
 \title{Example animal encounters (taggings, strandings and others)}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 3 rows and 40 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 3 rows and 41 columns.}
 \source{
 https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&format=json
 

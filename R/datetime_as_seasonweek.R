@@ -17,5 +17,5 @@
 #' datetime_as_seasonweek(httpdate_as_gmt08("2017-11-01T22:00:00Z")) # 18
 #' datetime_as_seasonweek(httpdate_as_gmt08("2018-11-01T22:00:00Z")) # 18
 datetime_as_seasonweek <- function(datetime) {
-     (lubridate::isoweek(datetime) + 26) %% 52
+  (lubridate::isoweek(datetime) + 26) %% 52
 }

@@ -82,108 +82,87 @@
     
     
 <div class="contents">
-<div id="wastdr" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#wastdr" class="anchor"></a>wastdr <img src="reference/figures/logo.png" align="right">
+<section id="wastdr" class="level1"><div class="page-header"><h1>wastdr <img src="reference/figures/logo.png" align="right">
 </h1></div>
 
 <p>The <a href="https://tsc.dbca.wa.gov.au/">WA Strandings Database WAStD</a> (<a href="https://github.com/dbca-wa/wastd/">github</a>) provides a <a href="https://tsc.dbca.wa.gov.au/api/1/">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Biodiversity, Conservation and Attractions. The WAStD API uses token and basic authentication, see vignette on details.</p>
 <p>The API returns spatially explicit data as GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. <a href="http://www.qgis.org/en/site/">Quantum GIS</a>.</p>
 <p>If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON properties) into a two-dimensional tablular structure. This requires knowledge about the structure and content of the nested data from WAStD.</p>
-<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="http://dplyr.tidyverse.org/reference/reexports.html">dplyr::tibble</a></code>.</p>
+<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="https://dplyr.tidyverse.org/reference/reexports.html">dplyr::tibble</a></code>.</p>
 <p>The secondary purpose of <code>wastdr</code> is to centralise a collection of commonly used analyses and visualisations of turtle data. As development progresses, example analyses and visualisations will be added to the vignette. Contributions and requests are welcome!</p>
 <p>Lastly, to facilitate collaboration with external stakeholders, <code>wastdr</code> contains some anonymized example data (raw GeoJSON and parsed <code>tibble</code>) of turtle taggings, turtle track counts, and turtle nests.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<section id="installation" class="level2"><h2>Installation</h2>
 <p>Install <code>wastdr</code> from GitHub:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"dbca-wa/wastdr"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"dbca-wa/wastdr"</span>)</a></code></pre></div>
 <p>While the WAStD API is only accessible to a selected audience, and <code>wastdr</code> is under active development, it is not feasible to release <code>wastdr</code> on CRAN yet. Therefore, <code>wastdr</code> will be distributed via GitHub for the time being.</p>
-</div>
-<div id="setup" class="section level2">
-<h2 class="hasAnchor">
-<a href="#setup" class="anchor"></a>Setup</h2>
+</section><section id="setup" class="level2"><h2>Setup</h2>
 <p><code>wastdr</code> requires to be configured with the WAStD API URL and an access token or a username / password combination. <code>wastdr</code> functions expect these settings to be available as environment variables. For convenience, <code>wastdr_setup</code> sets the correct variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
 <p>DBCA staff can find their WAStD API Token at <a href="https://tsc.dbca.wa.gov.au/">WAStD</a> under “My Profile” and run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_setup">wastdr_setup</a></span>(<span class="dt">api_token =</span> <span class="st">"my_token"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_setup">wastdr_setup</a></span>(<span class="dt">api_token =</span> <span class="st">"my_token"</span>)</a></code></pre></div>
 <p>External collaborator can use their allocated username and password:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_setup">wastdr_setup</a></span>(<span class="dt">api_un =</span> <span class="st">"my_username"</span>, <span class="dt">api_pw =</span> <span class="st">"my_password"</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_setup">wastdr_setup</a></span>(<span class="dt">api_un =</span> <span class="st">"my_username"</span>, <span class="dt">api_pw =</span> <span class="st">"my_password"</span>)</a></code></pre></div>
 <p>Review the settings with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings">wastdr_settings</a></span>()
-<span class="co">#&gt; &lt;wastdr settings&gt;</span>
-<span class="co">#&gt;   WAStD URL:  https://tsc.dbca.wa.gov.au </span>
-<span class="co">#&gt;   API URL:  https://tsc.dbca.wa.gov.au/api/1/ </span>
-<span class="co">#&gt;   API Token:  Token my_token </span>
-<span class="co">#&gt;   API Username:  my_username </span>
-<span class="co">#&gt;   API Password:  my_password</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings">wastdr_settings</a></span>()</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; &lt;wastdr settings&gt;</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;   WAStD URL:  https://tsc.dbca.wa.gov.au </span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;   API URL:  https://tsc.dbca.wa.gov.au/api/1/ </span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt;   API Token:  Token my_token </span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt;   API Username:  my_username </span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt;   API Password:  my_password</span></a></code></pre></div>
 <p>For a more permanent configuration method using environment variables please see the vignette “Setup”.</p>
-</div>
-<div id="get-wastd" class="section level2">
-<h2 class="hasAnchor">
-<a href="#get-wastd" class="anchor"></a>Get WAStD</h2>
+</section><section id="get-wastd" class="level2"><h2>Get WAStD</h2>
 <p>Once set up, <code>wastdr</code> can load data from WAStD simply with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tne &lt;-<span class="st"> </span><span class="kw">get_wastd</span>(<span class="st">"turtle-nest-encounters"</span>)
-listviewer<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/listviewer/topics/jsonedit">jsonedit</a></span>(tne)
-nests &lt;-<span class="st"> </span><span class="kw"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>(tne)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">tne &lt;-<span class="st"> </span><span class="kw">get_wastd</span>(<span class="st">"turtle-nest-encounters"</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">listviewer<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/listviewer/topics/jsonedit">jsonedit</a></span>(tne)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">nests &lt;-<span class="st"> </span><span class="kw"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>(tne)</a></code></pre></div>
 <p>Valid endpoints are listed in the base API URL of WAStD, e.g.:</p>
 <ul>
 <li><code>encounters</code></li>
 <li><code>animal-encounters</code></li>
 <li><code>turtle-nest-encounters</code></li>
 <li><code>disturbance-observations</code></li>
-</ul>
-</div>
-<div id="or-have-a-pickle" class="section level2">
-<h2 class="hasAnchor">
-<a href="#or-have-a-pickle" class="anchor"></a>…or have a pickle</h2>
+</ul></section><section id="or-have-a-pickle" class="level2"><h2>…or have a pickle</h2>
 <p>If you don’t have access to the WAStD API, you can still get a feel for the data by using the pickled example data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(wastdr)
-<span class="co">#&gt; Loading required package: wastdr</span>
-
-<span class="kw">data</span>(<span class="st">"animal_encounters"</span>)
-<span class="kw">data</span>(<span class="st">"tne"</span>)
-
-<span class="co"># listviewer::jsonedit(animal_encounters$content)</span>
-<span class="co"># listviewer::jsonedit(tne$content)</span>
-
-animals &lt;-<span class="st"> </span>wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/parse_animal_encounters">parse_animal_encounters</a></span>(animal_encounters)
-tracks &lt;-<span class="st"> </span>wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/parse_turtle_nest_encounters">parse_turtle_nest_encounters</a></span>(tne)
-
-<span class="co"># DT::datatable(animals)</span>
-<span class="co"># DT::datatable(tracks)</span></code></pre></div>
-</div>
-<div id="learn-more" class="section level2">
-<h2 class="hasAnchor">
-<a href="#learn-more" class="anchor"></a>Learn more</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">require</span>(wastdr)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; Loading required package: wastdr</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">data</span>(<span class="st">"animal_encounters"</span>)</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw">data</span>(<span class="st">"tne"</span>)</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co"># listviewer::jsonedit(animal_encounters$content)</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co"># listviewer::jsonedit(tne$content)</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">animals &lt;-<span class="st"> </span>wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/parse_animal_encounters">parse_animal_encounters</a></span>(animal_encounters)</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">tracks &lt;-<span class="st"> </span>wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/parse_turtle_nest_encounters">parse_turtle_nest_encounters</a></span>(tne)</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co"># DT::datatable(animals)</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co"># DT::datatable(tracks)</span></a></code></pre></div>
+</section><section id="learn-more" class="level2"><h2>Learn more</h2>
 <p>See the vignette for in-depth examples of transforming, analysing and visualising data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vignette</span>(<span class="st">"getting-wastd"</span>)
-<span class="kw">vignette</span>(<span class="st">"analysis"</span>)</code></pre></div>
-</div>
-</div>
-<div id="contribute" class="section level1">
-<h1 class="hasAnchor">
-<a href="#contribute" class="anchor"></a>Contribute</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">vignette</span>(<span class="st">"getting-wastd"</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">vignette</span>(<span class="st">"analysis"</span>)</a></code></pre></div>
+</section></section><section id="contribute" class="level1"><h1>Contribute</h1>
 <p>Every contribution, constructive feedback, or suggestion is welcome!</p>
 <p>Send us your ideas and requests as <a href="https://github.com/dbca-wa/wastdr/issues">issues</a> or submit a pull request.</p>
 <p>Pull requests should eventually pass tests and checks (not introducing new ERRORs, WARNINGs or NOTEs apart from the “New CRAN package” NOTE):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-<span class="co"># devtools::install_github("hadley/devtools", force=T)</span>
-<span class="co"># source("https://install-github.me/mangothecat/callr")</span>
-<span class="co"># devtools::install_github("hadley/pkgdown")</span>
-<span class="co"># devtools::install_github("klutometis/roxygen")</span>
-styler<span class="op">:::</span><span class="kw">style_pkg</span>()
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/document">document</a></span>(<span class="dt">roclets =</span> <span class="kw">c</span>(<span class="st">"rd"</span>, <span class="st">"collate"</span>, <span class="st">"namespace"</span>, <span class="st">"vignette"</span>))
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/check">check</a></span>(<span class="dt">force_suggests =</span> T, <span class="dt">args =</span> <span class="kw">c</span>(<span class="st">"--as-cran"</span>, <span class="st">"--timings"</span>))
-covr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/covr/topics/codecov">codecov</a></span>(<span class="dt">token =</span> <span class="kw">Sys.getenv</span>(<span class="st">"CODECOV_TOKEN"</span>))
-pkgdown<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pkgdown/topics/build_news">build_news</a></span>()
-pkgdown<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pkgdown/topics/build_site">build_site</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co"># devtools::install_github("hadley/devtools", force=T)</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co"># source("https://install-github.me/mangothecat/callr")</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co"># devtools::install_github("hadley/pkgdown")</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co"># devtools::install_github("klutometis/roxygen")</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">styler<span class="op">:::</span><span class="kw">style_pkg</span>()</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/document">document</a></span>(<span class="dt">roclets =</span> <span class="kw">c</span>(<span class="st">"rd"</span>, <span class="st">"collate"</span>, <span class="st">"namespace"</span>, <span class="st">"vignette"</span>))</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/check">check</a></span>(<span class="dt">force_suggests =</span> T, <span class="dt">args =</span> <span class="kw">c</span>(<span class="st">"--as-cran"</span>, <span class="st">"--timings"</span>))</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">covr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/covr/topics/codecov">codecov</a></span>(<span class="dt">token =</span> <span class="kw">Sys.getenv</span>(<span class="st">"CODECOV_TOKEN"</span>))</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">pkgdown<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pkgdown/topics/build_news">build_news</a></span>()</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">pkgdown<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pkgdown/topics/build_site">build_site</a></span>()</a></code></pre></div>
 <p>To enable local testing of the API as well as checking and upload of test coverage, add these two lines with the respective tokens to your .Rprofile:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.setenv</span>(<span class="dt">CODECOV_TOKEN =</span> <span class="st">"my-codecov-token"</span>)
-<span class="kw">Sys.setenv</span>(<span class="dt">MY_API_TOKEN =</span> <span class="st">"my-api-token"</span>)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">Sys.setenv</span>(<span class="dt">CODECOV_TOKEN =</span> <span class="st">"my-codecov-token"</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">Sys.setenv</span>(<span class="dt">MY_API_TOKEN =</span> <span class="st">"my-api-token"</span>)</a></code></pre></div>
 <p>The <code>wastdr</code> <a href="https://dbca-wa.github.io/wastdr/">webpage</a> is hosted on gh-pages and generated using <a href="https://github.com/hadley/pkgdown">pkgdown</a>.</p>
-</div>
+</section>
 </div>
   </div>
 

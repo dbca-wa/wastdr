@@ -17,56 +17,83 @@ wastdr::wastdr_setup()
 if (file.exists("tracks.Rda")){
     load("tracks.Rda")
 } else {
-    q = list(observer=4)
+    q = list(observer=4, format = "json")
     track_records <- wastdr::wastd_GET("turtle-nest-encounters", query=q)
-    tracks_all <- parse_turtle_nest_encounters(track_records)
-    surveys <- wastd_GET("surveys", query=q) %>% parse_surveys()
-    save(tracks_all, track_records, surveys, file = "tracks.Rda")
+    tracks <- parse_turtle_nest_encounters(track_records)
+    disturbance_records <- wastdr::wastd_GET("disturbance-observations", query=q)
+    disturbance <- disturbance_records %>% wastdr::parse_disturbance_observations()
+    survey_records <- wastdr::wastd_GET("surveys", query=list(reporter=4, format = "json"))
+    surveys <- survey_records %>% parse_surveys()
+    nest_records <- wastdr::wastd_GET("nesttag-observations", query=q)
+    nests <- nest_records %>% wastdr::parse_nesttag_observations()
+    save(
+      track_records, 
+      tracks, 
+      survey_records, 
+      surveys, 
+      disturbance_records, 
+      disturbance, 
+      nest_records, 
+      nests, 
+      file = "tracks.Rda"
+    )
 }
 
 ## ----filter_data---------------------------------------------------------
-tracks <- tracks_all %>% dplyr::filter(season==2017)
+tracks_2017 <- tracks %>% dplyr::filter(season==2017)
 
-## ----helpers-------------------------------------------------------------
-species_by_type <- . %>% 
-  filter(nest_age=="fresh") %>%
-  group_by(season, species, nest_type) %>% 
-  tally() %>%
-  ungroup() %>% 
-  tidyr::spread(nest_type, n, fill=0)
+## ----tracks_maps---------------------------------------------------------
+tracks %>% add_nest_labels() %>% map_tracks()
+tracks %>% add_nest_labels() %>% map_tracks(cluster=T)
 
-daily_species_by_type <- . %>% 
-    filter(nest_age=="fresh") %>%
-    group_by(season, turtle_date, species, nest_type) %>% 
-    tally() %>%
-    ungroup()
+## ----tracks_ns-----------------------------------------------------------
+tracks %>% nesting_type_by_season_species()
+tracks %>% nesting_type_by_area_season_species()
+tracks %>% nesting_type_by_site_season_species()
+tracks %>% nesting_type_by_season_week_species()
+tracks %>% nesting_type_by_season_day_species()
 
-daily_summary <- . %>% 
-    daily_species_by_type %>% 
-    tidyr::spread(nest_type, n, fill=0) %>%
-    DT::datatable(.)
+# Track success by day and species
+tracks %>% track_success()
 
-tracks_ts <- . %>% 
-    daily_species_by_type %>% 
-    {ggplot2::ggplot(data=., aes(x = turtle_date, y = n, colour = nest_type)) + 
-            ggplot2::geom_point() + 
-            ggplot2::geom_smooth(method = "auto") +
-            # ggplot2::geom_line() +
-            ggplot2::facet_grid(rows = vars(season)) +
-            ggplot2::scale_x_date(breaks = scales::pretty_breaks(),
-                                  labels = scales::date_format("%d %b %Y")) +
-            ggplot2::scale_y_continuous(limits = c(0, NA)) +
-            ggplot2::xlab("Turtle Date") +
-            ggplot2::ylab("Number counted per day") +
-            ggplot2::ggtitle("Nesting activity") +
-            ggplot2::theme_classic()}
+# Track success by species
+tracks %>% track_success() %>% track_success_by_species()
 
-## ---- fig.width=9, fig.height=5, eval=T----------------------------------
-tracks %>% add_nest_labels %>% map_tracks
-tracks %>% tracks_ts
+tracks %>% track_success %>% 
+  ggplot_track_success_by_date("natator-depressus", placename="Test place", prefix="TEST")
 
-place <- "Example place"
-surveys %>% plot_survey_count(place)
-surveys %>% list_survey_count(place)
-surveys %>% survey_hours_per_person %>% DT::datatable(.)
+tracks %>% track_success %>% 
+  ggplot_track_successrate_by_date("natator-depressus", placename="Test place", prefix="TEST")
+
+## ----tracks_hses---------------------------------------------------------
+tracks %>% hatching_emergence_success()
+tracks %>% hatching_emergence_success_area()
+tracks %>% hatching_emergence_success_site()
+
+## ----taggee_nests--------------------------------------------------------
+nests %>% map_nests()
+
+## ----dist_nests----------------------------------------------------------
+tracks %>% dplyr::filter(disturbance == "present") %>% add_nest_labels() %>% map_tracks()
+tracks %>% dplyr::filter(disturbance == "present") %>% add_nest_labels() %>% map_tracks(cluster=T)
+
+## ------------------------------------------------------------------------
+disturbance %>% disturbance_by_season()
+disturbance %>% map_dist()
+disturbance %>% map_dist(cluster=T)
+
+## ----surveys-------------------------------------------------------------
+surveys %>% survey_count()
+surveys %>% surveys_per_site_name_and_date()
+surveys %>% survey_hours_per_site_name_and_date()
+surveys %>% survey_hours_per_person()
+surveys %>% list_survey_count()
+surveys %>% plot_survey_count()
+surveys %>% list_survey_effort()
+surveys %>% plot_survey_effort()
+surveys %>% survey_hours_heatmap(placename = "All the places", prefix = "TEST")
+surveys %>% survey_count_heatmap(placename = "All the places", prefix = "TEST")
+surveys %>% survey_season_stats()
+surveys %>% survey_season_site_stats()
+surveys %>% survey_show_detail() %>% DT::datatable(escape = F)
 

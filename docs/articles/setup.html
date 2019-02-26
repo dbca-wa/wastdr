@@ -81,69 +81,55 @@
       <h1>Setup</h1>
                         <h4 class="author">Florian Mayer</h4>
             
-            <h4 class="date">2018-10-02</h4>
+            <h4 class="date">2019-02-26</h4>
           </div>
 
     
     
 <div class="contents">
-<div id="authentication" class="section level1">
-<h1 class="hasAnchor">
-<a href="#authentication" class="anchor"></a>Authentication</h1>
+<section id="authentication" class="level1"><h1>Authentication</h1>
 <p>This vignette explains how to authenticate to the WAStD API.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(wastdr)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">require</span>(wastdr)</a></code></pre></div>
 <p>There are two audiences with two different authentication options.</p>
 <p>The first audience, DBCA staff, has access to <a href="https://strandings.dpaw.wa.gov.au">WAStD</a>. On their profile page they will find their own API token.</p>
 <p>The second audience, external collaborators, will be given a username and password. Using these credentials, they can access the <a href="https://strandings.dpaw.wa.gov.au/api/1/">WAStD API</a> both through their browser and from other software like <code>wastdr</code>.</p>
-</div>
-<div id="configure-credentials" class="section level1">
-<h1 class="hasAnchor">
-<a href="#configure-credentials" class="anchor"></a>Configure credentials</h1>
+</section><section id="configure-credentials" class="level1"><h1>Configure credentials</h1>
 <p><code>wastdr::get_wastd()</code> accesses the <code>WAStD</code> API using:</p>
 <ul>
 <li>the API URL, and</li>
 <li>an access token <strong>or</strong> a username / password.</li>
 </ul>
 <p>There are three ways to supply the required settings to <code>wastdr::get_wastd()</code>.</p>
-<div id="per-function-call" class="section level2">
-<h2 class="hasAnchor">
-<a href="#per-function-call" class="anchor"></a>Per function call</h2>
+<section id="per-function-call" class="level2"><h2>Per function call</h2>
 <p>Firstly, they can be supplied directly to <code>wastdr::get_wastd()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr<span class="op">::</span><span class="kw">get_wastd</span>(<span class="st">'encounters'</span>, 
-                  <span class="dt">api_token =</span> <span class="st">"asdfqwer1234"</span>)
-
-wastdr<span class="op">::</span><span class="kw">get_wastd</span>(<span class="st">'encounters'</span>,
-                  <span class="dt">api_un =</span> <span class="st">"my_usernname"</span>,
-                  <span class="dt">api_pw =</span> <span class="st">"my_password"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">wastdr<span class="op">::</span><span class="kw">get_wastd</span>(<span class="st">'encounters'</span>, </a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">                  <span class="dt">api_token =</span> <span class="st">"asdfqwer1234"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">wastdr<span class="op">::</span><span class="kw">get_wastd</span>(<span class="st">'encounters'</span>,</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">                  <span class="dt">api_un =</span> <span class="st">"my_usernname"</span>,</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">                  <span class="dt">api_pw =</span> <span class="st">"my_password"</span>)</a></code></pre></div>
 <p>This method overrides any other settings, but leads to verbose code with confidential data (token or password) in plain text.</p>
-</div>
-<div id="per-session" class="section level2">
-<h2 class="hasAnchor">
-<a href="#per-session" class="anchor"></a>Per session</h2>
+</section><section id="per-session" class="level2"><h2>Per session</h2>
 <p>If <code>api_*</code> settings are not provided, <code>wastdr::get_wastd</code> defaults to specifically named environment variables.</p>
 <p>For convenience, <code>wastdr_setup</code> sets these environment variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
 <p>If you are an employee of the Western Australian Department of Biodiversity, Conservation and Attractions (DBCA), formerly the Department of Parks and Wildlife, then you can find your valid WAStD API Token at <a href="https://strandings.dpaw.wa.gov.au/">WAStD</a> under “My Profile” and run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_setup">wastdr_setup</a></span>(<span class="dt">api_token =</span> <span class="st">"c12345asdfqwer"</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_setup">wastdr_setup</a></span>(<span class="dt">api_token =</span> <span class="st">"c12345asdfqwer"</span>)</a></code></pre></div>
 <p>If you are an external collaborator, you will have given a username and password to access the WAStD API.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_setup">wastdr_setup</a></span>(<span class="dt">api_un =</span> <span class="st">"my_username"</span>, <span class="dt">api_pw =</span> <span class="st">"my_password"</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_setup">wastdr_setup</a></span>(<span class="dt">api_un =</span> <span class="st">"my_username"</span>, <span class="dt">api_pw =</span> <span class="st">"my_password"</span>)</a></code></pre></div>
 <p>Review the settings with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings">wastdr_settings</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">wastdr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings">wastdr_settings</a></span>()</a></code></pre></div>
 <p><code>wastdr_setup</code> defaults <code>api_url</code> to the currently only existing API url.</p>
 <p>This method reduces verbosity, but still exposes sensitive data in the <code>wastdr_setup</code> call. The <code><a href="http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings">wastdr::wastdr_settings()</a></code> expire with the R session.</p>
-</div>
-<div id="per-machine" class="section level2">
-<h2 class="hasAnchor">
-<a href="#per-machine" class="anchor"></a>Per machine</h2>
+</section><section id="per-machine" class="level2"><h2>Per machine</h2>
 <p>For a more permanent setup, the environment variables can be set in the user’s <code>.Rprofile</code>.</p>
 <p>DBCA staff add to their <code>.Rprofile</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.setenv</span>(<span class="dt">WASTDR_API_TOKEN=</span><span class="st">"Token c1234"</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">Sys.setenv</span>(<span class="dt">WASTDR_API_TOKEN=</span><span class="st">"Token c1234"</span>)</a></code></pre></div>
 <p>Note that the API token contains the word <code>Token</code> and a whitespace in addition to the actual API token.</p>
 <p>External collaborators add to their <code>.Rprofile</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.setenv</span>(<span class="dt">WASTDR_API_UN=</span><span class="st">"my_username"</span>)
-<span class="kw">Sys.setenv</span>(<span class="dt">WASTDR_API_PW=</span><span class="st">"my_password"</span>)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">Sys.setenv</span>(<span class="dt">WASTDR_API_UN=</span><span class="st">"my_username"</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">Sys.setenv</span>(<span class="dt">WASTDR_API_PW=</span><span class="st">"my_password"</span>)</a></code></pre></div>
 <p>In the long term, this last method is the most elegant and persistent way of configuring <code>wastdr</code>.</p>
-</div>
-</div>
+</section></section>
 </div>
   </div>
 

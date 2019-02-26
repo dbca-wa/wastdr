@@ -4,12 +4,21 @@
 \alias{map_dist}
 \title{Map Disturbance observations interactively.}
 \usage{
-map_dist(dist, fmt = "\%d/\%m/\%Y \%H:\%M")
+map_dist(dist, wastd_url = wastdr::get_wastd_url(),
+  fmt = "\%d/\%m/\%Y \%H:\%M", cluster = FALSE)
 }
 \arguments{
-\item{dist}{The output of \code{wastdr::parse_disturbance_observations()}.}
+\item{dist}{The output of \code{parse_disturbance_observations()}.}
+
+\item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
 
 \item{fmt}{The desired date format, default: "d/m/Y H:M"}
+
+\item{cluster}{If TRUE, cluster map markers. Default: FALSE.
+Note: In some places, the aerial background layer does not provide imagery
+at sufficient zoom levels, and therefore restricts the map zoom at levels
+where the cluster markers don't expand. Switch to "Place names" to let
+cluster markers expand.}
 }
 \value{
 A leaflet map

@@ -103,7 +103,7 @@
     <div class="page-header">
       <h1>
         Reference
-        <small>version&nbsp;0.1.19</small>
+        <small>version&nbsp;0.1.20</small>
       </h1>
     </div>
 
@@ -155,9 +155,33 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="datetime_as_seasonweek.html">datetime_as_seasonweek</a></code> </p>
+          </td>
+          <td><p>Calculate the isoweek from a given datetime</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="datetime_as_turtle_date.html">datetime_as_turtle_date</a></code> </p>
           </td>
           <td><p>Calculate the "turtle date" from a given datetime</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="disturbance_by_season.html">disturbance_by_season</a></code> </p>
+          </td>
+          <td><p>Summarise disturbance by season and cause</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="exclude_training_species.html">exclude_training_species</a></code> </p>
+          </td>
+          <td><p>Exclude records with <code>species</code> "corolla-corolla".</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="exclude_training_surveys.html">exclude_training_surveys</a></code> </p>
+          </td>
+          <td><p>Exclude training surveys</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -167,15 +191,75 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="fdate_as_tdate.html">fdate_as_tdate</a></code> </p>
+          </td>
+          <td><p>Days since fiscal year start as true date</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="filter_missing_site.html">filter_missing_site</a></code> </p>
+          </td>
+          <td><p>Filter records with missing <code>site_id</code></p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="filter_missing_survey.html">filter_missing_survey</a></code> </p>
+          </td>
+          <td><p>Filter records with missing <code>survey_id</code></p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="filter_surveys_missing_end.html">filter_surveys_missing_end</a></code> </p>
+          </td>
+          <td><p>Filter surveys with a missing <code>end_source_id</code></p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="filter_surveys_requiring_qa.html">filter_surveys_requiring_qa</a></code> </p>
+          </td>
+          <td><p>Filter surveys with "NEEDS QA" in <code>start_comments</code> or <code>end_comments</code></p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="get_num_field.html">get_num_field</a></code> </p>
           </td>
           <td><p>From a list of unnamed lists, or the data.frame equivalent, extract a field or -1</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="ggplot_track_success_by_date.html">ggplot_track_success_by_date</a></code> </p>
+          </td>
+          <td><p>Plot the track success (absolute numbers) of a given species as time series</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ggplot_track_successrate_by_date.html">ggplot_track_successrate_by_date</a></code> </p>
+          </td>
+          <td><p>Plot the track success rate (relative numbers) of a given species as time series</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="gs_getFeature.html">gs_getFeature</a></code> </p>
           </td>
           <td><p>Return a GeoJSON Featurecollection from an OGC WFS 2.0.0 endpoint</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="hatching_emergence_success_area.html">hatching_emergence_success_area</a></code> </p>
+          </td>
+          <td><p>Sumarizes HS and ES for tracks of type `hatched-nest`, grouped by `area_name`.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="hatching_emergence_success.html">hatching_emergence_success</a></code> </p>
+          </td>
+          <td><p>Sumarizes HS and ES for tracks of type `hatched-nest`.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="hatching_emergence_success_site.html">hatching_emergence_success_site</a></code> </p>
+          </td>
+          <td><p>Sumarizes HS and ES for tracks of type `hatched-nest`, grouped by `site_name`.</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -239,6 +323,36 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="nesting_type_by_area_season_species.html">nesting_type_by_area_season_species</a></code> </p>
+          </td>
+          <td><p>Pivot table of nesting type by area, season and species</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="nesting_type_by_season_day_species.html">nesting_type_by_season_day_species</a></code> </p>
+          </td>
+          <td><p>Pivot table of nesting type by season, turtle date and species</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="nesting_type_by_season_species.html">nesting_type_by_season_species</a></code> </p>
+          </td>
+          <td><p>Pivot table of nesting type by season and species</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="nesting_type_by_season_week_species.html">nesting_type_by_season_week_species</a></code> </p>
+          </td>
+          <td><p>Pivot table of nesting type by season, season_week, iso_week, and species</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="nesting_type_by_site_season_species.html">nesting_type_by_site_season_species</a></code> </p>
+          </td>
+          <td><p>Pivot table of nesting type by site, season and species</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="nests.html">nests</a></code> </p>
           </td>
           <td><p>Example turtle nest encounters (only nests, excluding tracks)</p></td>
@@ -293,6 +407,36 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="summarise_hatching_and_emergence_success.html">summarise_hatching_and_emergence_success</a></code> </p>
+          </td>
+          <td><p>Utility to summarise a tibble of tracks with nest excavtion data.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="survey_count_heatmap.html">survey_count_heatmap</a></code> </p>
+          </td>
+          <td><p>Plot the survey count from the output of <code>parse_surveys</code> as heatmap.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="survey_count.html">survey_count</a></code> </p>
+          </td>
+          <td><p>Return the number of surveys for a given site_id and season.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="survey_ground_covered.html">survey_ground_covered</a></code> </p>
+          </td>
+          <td><p>Return the number of surveys for a given site_id and season.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="survey_hours_heatmap.html">survey_hours_heatmap</a></code> </p>
+          </td>
+          <td><p>Plot the surveyed hours from the output of <code>parse_surveys</code> as heatmap.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="survey_hours_per_person.html">survey_hours_per_person</a></code> </p>
           </td>
           <td><p>Sum the hours surveyed per person by season from the output of <code>parse_surveys</code>.</p></td>
@@ -305,15 +449,57 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="survey_season_site_stats.html">survey_season_site_stats</a></code> </p>
+          </td>
+          <td><p>Generate a season by site summary from the output of <code>parse_surveys</code>.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="survey_season_stats.html">survey_season_stats</a></code> </p>
+          </td>
+          <td><p>Generate a season summary from the output of <code>parse_surveys</code>.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="survey_show_detail.html">survey_show_detail</a></code> </p>
+          </td>
+          <td><p>Select main survey attributes.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="surveys_per_site_name_and_date.html">surveys_per_site_name_and_date</a></code> </p>
           </td>
           <td><p>Count number of surveys per season, turtle date and site_name from the output of <code>parse_surveys</code>.</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="tdate_as_fdate.html">tdate_as_fdate</a></code> </p>
+          </td>
+          <td><p>True date as days since fiscal year start</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="tne.html">tne</a></code> </p>
           </td>
           <td><p>TurtleNestEncounter (tracks and nests) WAStD API response</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="tracks_ts.html">tracks_ts</a></code> </p>
+          </td>
+          <td><p>Plot of nesting_type_by_season_day_species over time</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="track_success_by_species.html">track_success_by_species</a></code> </p>
+          </td>
+          <td><p>The nesting success grouped by season and species</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="track_success.html">track_success</a></code> </p>
+          </td>
+          <td><p>Calculate nesting success as number of tracks with nests vs other tracks</p></td>
         </tr><tr>
           <!--  -->
           <td>

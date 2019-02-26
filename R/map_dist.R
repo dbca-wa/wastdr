@@ -3,16 +3,28 @@
 #' @details Creates a Leaflet map with an interactive legend offering to toggle each disturbance class
 #' separately. The maps auto-zooms to the extent of data given.
 #'
-#' @param dist The output of \code{wastdr::parse_disturbance_observations()}.
-#' @param fmt The desired date format, default: "d/m/Y H:M"
+#' @param dist The output of \code{parse_disturbance_observations()}.
+#' @template param-wastd_url
+#' @template param-fmt
+#' @template param-cluster
 #' @return A leaflet map
 #' @importFrom purrr walk
 #' @importFrom glue glue
 #' @importFrom leaflet leaflet addAwesomeMarkers addLayersControl addProviderTiles clearBounds
 #' @export
 map_dist <- function(dist,
-                     fmt = "%d/%m/%Y %H:%M") {
+                     wastd_url = wastdr::get_wastd_url(),
+                     fmt = "%d/%m/%Y %H:%M",
+                     cluster = FALSE) {
   . <- NULL
+  layersControlOptions <- NULL
+  markerClusterOptions <- NULL
+
+  if (cluster == TRUE) {
+    co <- markerClusterOptions()
+  } else {
+    co <- NULL
+  }
 
   pal <- leaflet::colorFactor(
     palette = "viridis",
@@ -45,11 +57,12 @@ map_dist <- function(dist,
           "<p>Seen on {format(datetime, fmt)} AWST by {observer}",
           "<p>Survey {survey_id} at {site_name} ",
           "{format(survey_start_time, fmt)}-{format(survey_end_time, fmt)} AWST</p>",
-          '<p><a class="btn btn-xs btn-primary" target="_" rel="nofollow" ',
-          'href="{get_wastd_url()}{absolute_admin_url}">Edit on WAStD</a></p>'
+          '<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow" ',
+          'href="{wastd_url}{absolute_admin_url}">Edit on WAStD</a></p>'
         ),
 
-        group = df
+        group = df,
+        clusterOptions = co
       )
     })
 

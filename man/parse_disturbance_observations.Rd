@@ -32,6 +32,8 @@ A \code{tbl_df} with columns:
   \item location_accuracy <dbl>
   \item turtle_date <date>
   \item season <int>
+  \item season_week <int> The number of completed weeks since fiscal year start
+  \item iso_week <int> The number of completed weeks since calendar year start
   \item comments <chr>
   \item absolute_admin_url <chr>
   \item photos <list>
