@@ -1,8 +1,7 @@
 #' Parse a \code{wastd_api_response} of \code{animal-encounters} to tbl_df
 #'
 #'
-#' @param wastd_api_response A \code{wastd_api_response} of
-#' \code{animal-encounters}, e.g. \code{get_wastd("animal-encounters")}
+#' @param wastd_api_response A \code{wastd_api_response} of \code{animal-encounters}, e.g. \code{get_wastd("animal-encounters")}
 #' @template param-wastd_url
 #' @return A \code{tbl_df} with columns:
 #' \itemize{
@@ -34,7 +33,6 @@
 #'   \item absolute_admin_url <chr> The absolute URL path to edit the survey in WAStD. Append this to the base `WASTD_URL`.
 #'   \item start_photo_url <chr> The URL of the start photo, if given. Requires DBCA SSO when viewed.
 #'   \item end_photo_url <chr> The URL of the end photo, if given. Requires DBCA SSO when viewed.
-#'
 #' }
 #' @export
 #' @import magrittr

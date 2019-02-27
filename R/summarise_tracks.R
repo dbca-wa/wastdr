@@ -120,10 +120,10 @@ track_success_by_species <- function(track_success) {
 #' @template param-prefix
 #' @export
 ggplot_track_success_by_date <- function(
-  data,
-  speciesname,
-  placename = "",
-  prefix = "") {
+                                         data,
+                                         speciesname,
+                                         placename = "",
+                                         prefix = "") {
   . <- NULL
   species <- NULL
   aes <- NULL
@@ -156,10 +156,10 @@ ggplot_track_success_by_date <- function(
 #' @template param-prefix
 #' @export
 ggplot_track_successrate_by_date <- function(
-  data,
-  speciesname,
-  placename = "",
-  prefix = "") {
+                                             data,
+                                             speciesname,
+                                             placename = "",
+                                             prefix = "") {
   . <- NULL
   species <- NULL
   aes <- NULL

@@ -27,7 +27,8 @@ tracks_ts <- function(data,
         ggplot2::geom_bar(
           data = surveys,
           ggplot2::aes(x = tdate_as_fdate(turtle_date)),
-          show.legend = F) +
+          show.legend = F
+        ) +
         ggalt::geom_lollipop(
           data = .,
           ggplot2::aes(x = tdate_as_fdate(turtle_date), y = n, colour = nest_type),

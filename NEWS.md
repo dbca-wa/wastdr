@@ -1,3 +1,8 @@
+# wastdr 0.1.21
+## Major changes
+## Minor changes
+* Added `parse_area` for WAStD Areas.
+
 # wastdr 0.1.20
 ## Major changes
 ## Minor changes

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parse a <code>wastd_api_response</code> of <code>animal-encounters</code> to tbl_df — parse_surveys • wastdr</title>
+<title>Parse a <code>wastd_api_response</code> of <code>area</code> to tbl_df — parse_surveys • wastdr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -101,11 +101,12 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parse a <code>wastd_api_response</code> of <code>animal-encounters</code> to tbl_df</h1>
+    <h1>Parse a <code>wastd_api_response</code> of <code>area</code> to tbl_df</h1>
     </div>
 
     
-    <p>Parse a <code>wastd_api_response</code> of <code>animal-encounters</code> to tbl_df</p>
+    <p>Parse a <code>wastd_api_response</code> of <code>area</code> to tbl_df</p>
+<p>Parse a <code>wastd_api_response</code> of <code>animal-encounters</code> to tbl_df</p>
     
 
     <pre class="usage"><span class='fu'>parse_surveys</span>(<span class='no'>wastd_api_response</span>, <span class='kw'>wastd_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/wastdr/topics/wastdr_settings'>get_wastd_url</a></span>())</pre>
@@ -116,7 +117,15 @@
     <tr>
       <th>wastd_api_response</th>
       <td><p>A <code>wastd_api_response</code> of
-<code>animal-encounters</code>, e.g. <code>get_wastd("animal-encounters")</code></p></td>
+<code>area</code>, e.g. <code>get_wastd("area")</code></p></td>
+    </tr>
+    <tr>
+      <th>wastd_url</th>
+      <td><p>The base URL for WAStD, default: <code><a href='wastdr_settings.html'>get_wastd_url()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>wastd_api_response</th>
+      <td><p>A <code>wastd_api_response</code> of <code>animal-encounters</code>, e.g. <code>get_wastd("animal-encounters")</code></p></td>
     </tr>
     <tr>
       <th>wastd_url</th>
@@ -127,6 +136,15 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>tbl_df</code> with columns:</p><ul>
+<li><p>area_name &lt;chr&gt;</p></li>
+<li><p>area_type &lt;chr&gt;</p></li>
+<li><p>area_id &lt;int&gt;</p></li>
+<li><p>northern_extent &lt;num&gt;</p></li>
+<li><p>length_surveyed_m &lt;int&gt;</p></li>
+<li><p>length_survey_roundtrip_m &lt;int&gt;</p></li>
+</ul>
+
+<p>A <code>tbl_df</code> with columns:</p><ul>
 <li><p>site_name &lt;chr&gt;</p></li>
 <li><p>site_type &lt;chr&gt;</p></li>
 <li><p>site_id &lt;int&gt;</p></li>
