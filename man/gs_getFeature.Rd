@@ -4,8 +4,10 @@
 \alias{gs_getFeature}
 \title{Return a GeoJSON Featurecollection from an OGC WFS 2.0.0 endpoint}
 \usage{
-gs_getFeature(layer_name = "public:herbie_hbvsupra_public",
-  url = "https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows")
+gs_getFeature(
+  layer_name = "public:herbie_hbvsupra_public",
+  url = "https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows"
+)
 }
 \arguments{
 \item{layer_name}{The GeoServer layer name, default: "public:herbie_hbvsupra_public"}

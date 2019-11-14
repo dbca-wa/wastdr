@@ -13,9 +13,9 @@ extract_possibly(...)
 Wrap magrittr::extract to return field value or -1
 }
 \examples{
-  lol <- list(field1=1, field2=2, field3=3, field4=4, field5=5)
-  extract_possibly(lol, "field1")
-  extract_possibly(lol, "field8")
+lol <- list(field1 = 1, field2 = 2, field3 = 3, field4 = 4, field5 = 5)
+extract_possibly(lol, "field1")
+extract_possibly(lol, "field8")
 }
 \seealso{
 \url{https://rdrr.io/cran/purrr/man/safely.html}

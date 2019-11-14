@@ -6,8 +6,8 @@
 #' @importFrom stringr str_to_lower str_replace_all
 #' @export
 #' @examples
-#'   urlize("file name 1")
-#'   urlize("Natator depressus")
+#' urlize("file name 1")
+#' urlize("Natator depressus")
 urlize <- function(human_string) {
   . <- ""
   human_string %>%

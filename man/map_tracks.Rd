@@ -4,8 +4,12 @@
 \alias{map_tracks}
 \title{Map TurtleNestEncounters interactively.}
 \usage{
-map_tracks(tracks, wastd_url = wastdr::get_wastd_url(),
-  fmt = "\%d/\%m/\%Y \%H:\%M", cluster = FALSE)
+map_tracks(
+  tracks,
+  wastd_url = wastdr::get_wastd_url(),
+  fmt = "\%d/\%m/\%Y \%H:\%M",
+  cluster = FALSE
+)
 }
 \arguments{
 \item{tracks}{The output of \code{parse_turtle_nest_encounters} and \code{add_nest_labels}.}

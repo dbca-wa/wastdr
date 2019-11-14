@@ -16,7 +16,7 @@ a Human Readable Title Cased String
 Convert between url-safe dash-separated-names and Human Readable Title Case
 }
 \examples{
-  humanize("chelonia-mydas")
-  humanize("natator-depressus")
-  humanize("successful-crawl")
+humanize("chelonia-mydas")
+humanize("natator-depressus")
+humanize("successful-crawl")
 }

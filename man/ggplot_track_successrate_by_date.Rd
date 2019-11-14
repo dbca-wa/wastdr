@@ -4,8 +4,12 @@
 \alias{ggplot_track_successrate_by_date}
 \title{Plot the track success rate (relative numbers) of a given species as time series}
 \usage{
-ggplot_track_successrate_by_date(data, speciesname, placename = "",
-  prefix = "")
+ggplot_track_successrate_by_date(
+  data,
+  speciesname,
+  placename = "",
+  prefix = ""
+)
 }
 \arguments{
 \item{data}{The output of \code{parse_turtle_nest_encounters()}}

@@ -4,9 +4,15 @@
 \alias{wastd_GET}
 \title{Return GeoJSON features from a WAStD API endpoint as data.table or list}
 \usage{
-wastd_GET(serializer, query = list(), format = "json",
-  api_url = get_wastdr_api_url(), api_token = get_wastdr_api_token(),
-  api_un = get_wastdr_api_un(), api_pw = get_wastdr_api_pw())
+wastd_GET(
+  serializer,
+  query = list(),
+  format = "json",
+  api_url = get_wastdr_api_url(),
+  api_token = get_wastdr_api_token(),
+  api_un = get_wastdr_api_un(),
+  api_pw = get_wastdr_api_pw()
+)
 }
 \arguments{
 \item{serializer}{(character) WAStD API serializer name (required)
@@ -58,8 +64,8 @@ Call the WAStD API serializer's list view with given GET parameters,
 }
 \examples{
 \dontrun{
-track_records <- wastd_GET('turtle-nest-encounters')
-tag_records <- wastd_GET('animal-encounters')
-nest_json <- wastd_GET('turtle-nest-encounters', query=list(nest_type='hatched-nest'))
+track_records <- wastd_GET("turtle-nest-encounters")
+tag_records <- wastd_GET("animal-encounters")
+nest_json <- wastd_GET("turtle-nest-encounters", query = list(nest_type = "hatched-nest"))
 }
 }

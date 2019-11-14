@@ -21,5 +21,7 @@
 #' # 1 sec before noon AWST is turtle date "2016-11-19":
 #' datetime_as_turtle_date(httpdate_as_gmt08_turtle_date("2016-11-21T03:59:59Z"))
 datetime_as_turtle_date <- function(datetime) {
-  datetime %>% -lubridate::hours(12) %>% lubridate::as_date()
+  datetime %>%
+    -lubridate::hours(12) %>%
+    lubridate::as_date()
 }

@@ -13,10 +13,11 @@
 #' @importFrom httr add_headers http_error http_type status_code user_agent
 #' @importFrom jsonlite fromJSON
 #' @export
-#' @examples \dontrun{
-#' track_records <- wastd_GET('turtle-nest-encounters')
-#' tag_records <- wastd_GET('animal-encounters')
-#' nest_json <- wastd_GET('turtle-nest-encounters', query=list(nest_type='hatched-nest'))
+#' @examples
+#' \dontrun{
+#' track_records <- wastd_GET("turtle-nest-encounters")
+#' tag_records <- wastd_GET("animal-encounters")
+#' nest_json <- wastd_GET("turtle-nest-encounters", query = list(nest_type = "hatched-nest"))
 #' }
 wastd_GET <- function(serializer,
                       query = list(),

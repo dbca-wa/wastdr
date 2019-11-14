@@ -4,8 +4,12 @@
 \alias{map_nests}
 \title{Map tagged Turtle Nests interactively.}
 \usage{
-map_nests(data, wastd_url = wastdr::get_wastd_url(),
-  fmt = "\%d/\%m/\%Y \%H:\%M", cluster = FALSE)
+map_nests(
+  data,
+  wastd_url = wastdr::get_wastd_url(),
+  fmt = "\%d/\%m/\%Y \%H:\%M",
+  cluster = FALSE
+)
 }
 \arguments{
 \item{data}{The output of \code{parse_nesttag_observations}.}

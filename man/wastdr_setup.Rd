@@ -4,9 +4,13 @@
 \alias{wastdr_setup}
 \title{Configure default WAStD settings}
 \usage{
-wastdr_setup(wastd_url = get_wastd_url(), api_url = get_wastdr_api_url(),
-  api_token = NULL, api_un = get_wastdr_api_un(),
-  api_pw = get_wastdr_api_pw())
+wastdr_setup(
+  wastd_url = get_wastd_url(),
+  api_url = get_wastdr_api_url(),
+  api_token = NULL,
+  api_un = get_wastdr_api_un(),
+  api_pw = get_wastdr_api_pw()
+)
 }
 \arguments{
 \item{wastd_url}{A WAStD URL (optional),
@@ -34,8 +38,10 @@ functions default to use the default URL, but require an API key to work.
 wastdr_setup(api_token = "wastd_token")
 
 # Non-DBCA users will have been given a WAStD username and password:
-wastdr_setup(api_un = "wastd_username",
-             api_pw = "wastd_password")
+wastdr_setup(
+  api_un = "wastd_username",
+  api_pw = "wastd_password"
+)
 
 # Not specifying the default WAStD API URL will reset the WAStD URL to its
 # default "https://tsc.dbca.wa.gov.au/api/1/":

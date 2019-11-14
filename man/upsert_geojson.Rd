@@ -4,11 +4,16 @@
 \alias{upsert_geojson}
 \title{Upsert GeoJSON into WAStD API endpoints}
 \usage{
-upsert_geojson(gj_featurecollection, serializer = "names",
+upsert_geojson(
+  gj_featurecollection,
+  serializer = "names",
   api_url = wastdr::get_wastdr_api_url(),
   api_token = wastdr::get_wastdr_api_token(),
   api_un = wastdr::get_wastdr_api_un(),
-  api_pw = wastdr::get_wastdr_api_pw(), chunksize = 1000, verbose = FALSE)
+  api_pw = wastdr::get_wastdr_api_pw(),
+  chunksize = 1000,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{gj_featurecollection}{(list) A GeoJSON featurecollection as list}

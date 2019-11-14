@@ -37,13 +37,13 @@ map_nests <- function(data,
       icon = leaflet::makeAwesomeIcon(
         icon = "tag",
         text = ~tag_label,
-        markerColor = ~pal(tag_status)
+        markerColor = ~ pal(tag_status)
       ),
-      label = ~glue::glue(
+      label = ~ glue::glue(
         '{format(datetime, "%d/%m/%Y %H:%M")} {tag_status} ',
         "{flipper_tag_id} {date_nest_laid} {tag_label}"
       ),
-      popup = ~glue::glue(
+      popup = ~ glue::glue(
         "<h3>{flipper_tag_id} {date_nest_laid} {tag_label}</h3>",
         "<p>{humanize(tag_status)} on {format(datetime, fmt)} AWST by {observer}",
         "<p>Survey {survey_id} at {site_name} ",

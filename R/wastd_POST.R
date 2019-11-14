@@ -7,16 +7,17 @@
 #' @template return-wastd-api-response
 #' @importFrom httr add_headers authenticate user_agent POST content
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #'
 #' # One by one
-#' gj <- "public:herbie_hbvnames_public" %>% kmi_getFeature
+#' gj <- "public:herbie_hbvnames_public" %>% kmi_getFeature()
 #' props <- purrr::map(gj[["features"]], "properties")
 #' wastd_POST(props[[1]], serializer = "names")
 #'
-#'  # All in batch
+#' # All in batch
 #' "public:herbie_hbvnames_public" %>%
-#'   kmi_getFeature %>%
+#'   kmi_getFeature() %>%
 #'   wastd_upsert_geojson(serializer = "names", verbose = T)
 #' }
 wastd_POST <- function(data,

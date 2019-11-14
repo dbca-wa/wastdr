@@ -4,10 +4,15 @@
 \alias{wastd_POST}
 \title{Send a POST request to WAStD's API}
 \usage{
-wastd_POST(data, serializer, api_url = wastdr::get_wastdr_api_url(),
+wastd_POST(
+  data,
+  serializer,
+  api_url = wastdr::get_wastdr_api_url(),
   api_token = wastdr::get_wastdr_api_token(),
   api_un = wastdr::get_wastdr_api_un(),
-  api_pw = wastdr::get_wastdr_api_pw(), verbose = FALSE)
+  api_pw = wastdr::get_wastdr_api_pw(),
+  verbose = FALSE
+)
 }
 \arguments{
 \item{data}{(JSON) A list of lists (JSON) to post to WAStD.}
@@ -57,13 +62,13 @@ Send a POST request to WAStD's API
 \dontrun{
 
 # One by one
-gj <- "public:herbie_hbvnames_public" \%>\% kmi_getFeature
+gj <- "public:herbie_hbvnames_public" %>% kmi_getFeature()
 props <- purrr::map(gj[["features"]], "properties")
 wastd_POST(props[[1]], serializer = "names")
 
- # All in batch
-"public:herbie_hbvnames_public" \%>\%
-  kmi_getFeature \%>\%
+# All in batch
+"public:herbie_hbvnames_public" %>%
+  kmi_getFeature() %>%
   wastd_upsert_geojson(serializer = "names", verbose = T)
 }
 }

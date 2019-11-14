@@ -5,7 +5,9 @@
 #' @template param-season
 #' @export
 survey_count <- function(surveys, site_id, season) {
-  surveys %>% dplyr::filter(site_id == site_id, season == season) %>% nrow()
+  surveys %>%
+    dplyr::filter(site_id == site_id, season == season) %>%
+    nrow()
 }
 
 #' Return the number of surveys for a given site_id and season.

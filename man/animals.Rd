@@ -50,6 +50,6 @@ A parsed \code{wastd_api_response} with 10 animal encounters from
 \code{get_wastd("animal-encounters")}
 }
 \examples{
-  head(animals)
+head(animals)
 }
 \keyword{datasets}

@@ -54,7 +54,7 @@
 #'   \item status <chr>
 #' }
 #' @examples
-#'   head(animals)
+#' head(animals)
 "animals"
 
 
@@ -98,8 +98,8 @@
 #' }
 #' @source https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=10&format=json&nest_type=hatched-nest
 #' @examples
-#'   data("nests")
-#'   head(nests)
+#' data("nests")
+#' head(nests)
 "nests"
 
 
@@ -156,5 +156,7 @@
 #' }
 #' @source https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=100&format=json
 #' @examples
-#'   head(nests)
+#' head(nests)
 "nests"
+
+utils::globalVariables(".")

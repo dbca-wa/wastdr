@@ -55,8 +55,8 @@ A parsed \code{wastd_api_response} with 100 turtle nest encounters from
 \code{get_wastd("turtle-nest-encounters")}
 }
 \examples{
-  data("nests")
-  head(nests)
-  head(nests)
+data("nests")
+head(nests)
+head(nests)
 }
 \keyword{datasets}

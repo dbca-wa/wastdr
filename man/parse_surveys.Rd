@@ -5,13 +5,10 @@
 \title{Parse a \code{wastd_api_response} of \code{area} to tbl_df}
 \usage{
 parse_surveys(wastd_api_response, wastd_url = wastdr::get_wastd_url())
+
+parse_surveys(wastd_api_response, wastd_url = wastdr::get_wastd_url())
 }
 \arguments{
-\item{wastd_api_response}{A \code{wastd_api_response} of
-\code{area}, e.g. \code{get_wastd("area")}}
-
-\item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
-
 \item{wastd_api_response}{A \code{wastd_api_response} of \code{animal-encounters}, e.g. \code{get_wastd("animal-encounters")}}
 
 \item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}

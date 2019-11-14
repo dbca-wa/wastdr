@@ -61,8 +61,10 @@ print.wastdr_settings <- function(x, ...) {
 #' wastdr_setup(api_token = "wastd_token")
 #'
 #' # Non-DBCA users will have been given a WAStD username and password:
-#' wastdr_setup(api_un = "wastd_username",
-#'              api_pw = "wastd_password")
+#' wastdr_setup(
+#'   api_un = "wastd_username",
+#'   api_pw = "wastd_password"
+#' )
 #'
 #' # Not specifying the default WAStD API URL will reset the WAStD URL to its
 #' # default "https://tsc.dbca.wa.gov.au/api/1/":

@@ -16,6 +16,6 @@ A url-safe-string
 Convert between url-safe dash-separated-names and Human Readable Title Case
 }
 \examples{
-  urlize("file name 1")
-  urlize("Natator depressus")
+urlize("file name 1")
+urlize("Natator depressus")
 }

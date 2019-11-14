@@ -4,8 +4,12 @@
 \alias{map_dist}
 \title{Map Disturbance observations interactively.}
 \usage{
-map_dist(dist, wastd_url = wastdr::get_wastd_url(),
-  fmt = "\%d/\%m/\%Y \%H:\%M", cluster = FALSE)
+map_dist(
+  dist,
+  wastd_url = wastdr::get_wastd_url(),
+  fmt = "\%d/\%m/\%Y \%H:\%M",
+  cluster = FALSE
+)
 }
 \arguments{
 \item{dist}{The output of \code{parse_disturbance_observations()}.}

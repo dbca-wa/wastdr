@@ -6,9 +6,9 @@
 #' @importFrom stringr str_to_title str_replace_all
 #' @export
 #' @examples
-#'   humanize("chelonia-mydas")
-#'   humanize("natator-depressus")
-#'   humanize("successful-crawl")
+#' humanize("chelonia-mydas")
+#' humanize("natator-depressus")
+#' humanize("successful-crawl")
 humanize <- function(urlsafe_string) {
   . <- ""
   urlsafe_string %>%

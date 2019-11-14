@@ -1,7 +1,7 @@
 Package: wastdr
 Type: Package
 Title: WA Sea Turtle Database 'WAStD' API Wrapper
-Version: 0.1.21
+Version: 0.1.22
 Authors@R: person(c("Florian", "W."), "Mayer", 
     email="Florian.Mayer@dbca.wa.gov.au", role=c("aut", "cre"))
 Author: Florian W. Mayer [aut, cre]
@@ -16,38 +16,38 @@ Description: The 'WA Sea Turtle Database' 'WAStD' is a 'Django' web app with a
 URL: https://github.com/dbca-wa/wastdr
 BugReports: https://github.com/dbca-wa/wastdr/issues
 Depends:
-    R (>= 3.1.0)
+    R (>= 3.5.0)
 Imports:
-    DT,
-    dplyr,
-    ggTimeSeries,
-    ggalt,
-    ggplot2,
-    glue,
-    httr,
-    jsonlite,
-    leaflet,
-    lubridate,
-    magrittr,
-    proj4,
-    purrr,
-    scales,
-    stringr,
-    tibble
+    DT (>= 0.10),
+    dplyr (>= 0.8.3),
+    ggTimeSeries (>= 1.0.1),
+    ggalt (>= 0.4.0),
+    ggplot2 (>= 3.2.1),
+    glue (>= 1.3.1),
+    httr (>= 1.4.1),
+    jsonlite (>= 1.6),
+    leaflet (>= 2.0.2),
+    lubridate (>= 1.7.4),
+    magrittr (>= 1.5),
+    proj4 (>= 1.0.8.1),
+    purrr (>= 0.3.3),
+    scales (>= 1.0.0),
+    stringr (>= 1.4.0),
+    tibble (>= 2.1.3)
 Suggests:
-    ckanr,
-    Hmisc,
-    htmlTable,
-    knitr,
-    listviewer,
-    plyr,
-    rmarkdown,
-    skimr,
-    tidyverse,
-    tidyr,
-    testthat
+    ckanr (>= 0.4.0),
+    Hmisc (>= 4.3.0),
+    htmlTable (>= 1.13.2),
+    knitr (>= 1.26),
+    listviewer (>= 3.0.0),
+    plyr (>= 1.8.4),
+    rmarkdown (>= 1.17),
+    skimr (>= 1.0.7),
+    tidyverse (>= 1.2.1),
+    tidyr (>= 1.0.0),
+    testthat (>= 2.3.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 7.0.0
 VignetteBuilder: knitr

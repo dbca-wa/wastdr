@@ -1,3 +1,7 @@
+# wastdr 0.1.22
+## Minor changes
+* Add `parse_taxon-conservationlisting` and `parse_community-conservationlisting`.
+
 # wastdr 0.1.21
 ## Major changes
 ## Minor changes
