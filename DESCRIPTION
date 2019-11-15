@@ -16,7 +16,7 @@ Description: The 'WA Sea Turtle Database' 'WAStD' is a 'Django' web app with a
 URL: https://github.com/dbca-wa/wastdr
 BugReports: https://github.com/dbca-wa/wastdr/issues
 Depends:
-    R (>= 3.5.0)
+    R (>= 3.4.0)
 Imports:
     DT (>= 0.10),
     dplyr (>= 0.8.3),
