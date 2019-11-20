@@ -41,12 +41,16 @@ nest_type_text <- tibble::tibble(
 
 #' Add labels for species and nest/track type to parsed \code{turtle-nest-encounters}.
 #'
-#' @description Adds two columns, two new columns, \code{species_colours} and \code{nest_type_text},
-#' to parsed \code{turtle-nest-encounters} containing \code{WAStD} \code{species} and
-#' \code{nest_type}. The new columns can be used to create \code{leaflet} markers with
-#' \code{leaflet::makeAwesomeIcon(text = ~nest_type_text, markerColor = ~species_colours)}.
-#' @param nests (tibble) A dataframe or tibble of parsed \code{turtle-nest-encounters}.
-#' @return The dataframe with two new columns, \code{species_colours} and \code{nest_type_text}.
+#' @description Adds two columns, two new columns, \code{species_colours} and
+#' \code{nest_type_text}, to parsed \code{turtle-nest-encounters} containing
+#' \code{WAStD} \code{species} and \code{nest_type}. The new columns can be used
+#' to create \code{leaflet} markers with
+#' \code{leaflet::makeAwesomeIcon(
+#'   text = ~nest_type_text, markerColor = ~species_colours)}.
+#' @param nests (tibble) A dataframe or tibble of parsed
+#'   \code{turtle-nest-encounters}.
+#' @return The dataframe with two new columns, \code{species_colours} and
+#'   \code{nest_type_text}.
 #' @export
 add_nest_labels <- function(nests) {
   nests %>%

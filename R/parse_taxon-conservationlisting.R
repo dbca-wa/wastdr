@@ -23,8 +23,8 @@
 #'         effective from (GMT+08).
 #'   \item effective_to <dttm> The date on which this Conservation Listing was
 #'         effective_to (GMT+08).
-#'   \item last_reviewed_on <dttm> The date on which this Conservation Listing was
-#'         last reviewed on (GMT+08).
+#'   \item last_reviewed_on <dttm> The date on which this Conservation Listing
+#'         was last reviewed on (GMT+08).
 #'   \item review_due <dttm> The date on which this Conservation Listing will be
 #'         due for reviewed (GMT+08).
 #'   \item comments <chr> Any comments. Worth a read!
@@ -38,8 +38,9 @@
 #' }
 #' @export
 #' @import magrittr
-parse_taxon_conservationlisting <- function(wastd_api_response,
-                                            wastd_url = wastdr::get_wastd_url()) {
+parse_taxon_conservationlisting <- function(
+  wastd_api_response,
+  wastd_url = wastdr::get_wastd_url()) {
   wastd_api_response$features %>% {
     tibble::tibble(
       id = purrr::map_int(., "id"),
@@ -48,11 +49,20 @@ parse_taxon_conservationlisting <- function(wastd_api_response,
       source_id = purrr::map_chr(., "source_id"),
       scope = purrr::map_int(., "scope"),
       status = purrr::map_int(., "status"),
-      proposed_on = purrr::map_chr(., "proposed_on", .default = NA) %>% wastdr::httpdate_as_gmt08(),
-      effective_from = purrr::map_chr(., "effective_from", .default = NA) %>% wastdr::httpdate_as_gmt08(),
-      effective_to = purrr::map_chr(., "effective_to", .default = NA) %>% wastdr::httpdate_as_gmt08(),
-      last_reviewed_on = purrr::map_chr(., "last_reviewed_on", .default = NA) %>% wastdr::httpdate_as_gmt08(),
-      review_due = purrr::map_chr(., "review_due", .default = NA) %>% wastdr::httpdate_as_gmt08(),
+      proposed_on = purrr::map_chr(
+        ., "proposed_on", .default = NA) %>%
+        wastdr::httpdate_as_gmt08(),
+      effective_from = purrr::map_chr(
+        ., "effective_from", .default = NA) %>%
+        wastdr::httpdate_as_gmt08(),
+      effective_to = purrr::map_chr(
+        ., "effective_to", .default = NA) %>%
+        wastdr::httpdate_as_gmt08(),
+      last_reviewed_on = purrr::map_chr(
+        ., "last_reviewed_on", .default = NA) %>%
+        wastdr::httpdate_as_gmt08(),
+      review_due = purrr::map_chr(., "review_due", .default = NA) %>%
+        wastdr::httpdate_as_gmt08(),
       comments = purrr::map_chr(., "comments", .default = NA),
       category_cache = purrr::map_chr(., "category_cache", .default = NA),
       criteria_cache = purrr::map_chr(., "criteria_cache", .default = NA),

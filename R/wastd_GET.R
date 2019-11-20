@@ -1,10 +1,9 @@
 #' Return GeoJSON features from a WAStD API endpoint as data.table or list
 #'
-#' @description Call the WAStD API serializer's list view with given GET parameters,
-#'   parse the response as text into a GeoJSON FeatureCollection.
-#'   Parse the FeatureCollection using jsonlite::fromJSON and return its features as list of lists.
-#'   TODO: use pagination, see the vignette on paging at
-#'   \url{https://CRAN.R-project.org/package=jsonlite}.
+#' @description Call the WAStD API serializer's list view with given GET
+#'   parameters, parse the response's features into a nested list.
+#'   This function requires the WAStD API to return the results in a key
+#'   `features` as is the standard for a GeoJSON FeatureCollection.
 #' @template param-serializer
 #' @param query (list) A list of GET parameters, default: list().
 #' @param format (chr) The desired API output format, default: "json".
@@ -17,7 +16,8 @@
 #' \dontrun{
 #' track_records <- wastd_GET("turtle-nest-encounters")
 #' tag_records <- wastd_GET("animal-encounters")
-#' nest_json <- wastd_GET("turtle-nest-encounters", query = list(nest_type = "hatched-nest"))
+#' hatched_nest_records <- wastd_GET("turtle-nest-encounters",
+#'                        query = list(nest_type = "hatched-nest"))
 #' }
 wastd_GET <- function(serializer,
                       query = list(),
@@ -58,7 +58,7 @@ wastd_GET <- function(serializer,
 
   if (httr::http_type(res) != "application/json") {
     stop(glue::glue("API did not return JSON.\nIs {url} a valid endpoint?"),
-      call. = FALSE
+         call. = FALSE
     )
   }
 
@@ -98,7 +98,9 @@ wastd_GET <- function(serializer,
     list(
       features = features,
       serializer = serializer,
-      response = res
+      url = res_parsed$url,
+      date = x$res_parsed$headers$date,
+      status_code = x$res_parsed$status_code
     ),
     class = "wastd_api_response"
   )
@@ -113,11 +115,11 @@ wastd_GET <- function(serializer,
 #' @importFrom utils str
 #' @export
 print.wastd_api_response <- function(x, ...) {
-  cat("<WAStD API response ", x$serializer, ">\n",
-    "URL ", x$response$url, "\n",
-    "Date ", x$response$headers$date, "\n",
-    "Status ", x$response$status_code, "\n",
-    sep = ""
+  glue::glue(
+    "<WAStD API response {x$serializer}>\n",
+    "URL {x$url}\n",
+    "Date {x$date}\n",
+    "Status {x$status_code}\n"
   )
   # utils::str(utils::head(x$features))
   invisible(x)

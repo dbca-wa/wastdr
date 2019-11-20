@@ -1,3 +1,10 @@
+# wastdr 0.1.23
+## Major changes
+* `wastd_GET` drops `response`, keeps `url`, `date`, and `status_code`.
+  Results now always expected from WAStD in key `features`, not `results`.
+
+## Minor changes
+
 # wastdr 0.1.22
 ## Minor changes
 * Add `parse_taxon-conservationlisting` and `parse_community-conservationlisting`.

@@ -56,11 +56,10 @@ An S3 object of class 'wastd_api_response' containing:
   response: The API HTTP response with all metadata
 }
 \description{
-Call the WAStD API serializer's list view with given GET parameters,
-  parse the response as text into a GeoJSON FeatureCollection.
-  Parse the FeatureCollection using jsonlite::fromJSON and return its features as list of lists.
-  TODO: use pagination, see the vignette on paging at
-  \url{https://CRAN.R-project.org/package=jsonlite}.
+Call the WAStD API serializer's list view with given GET
+  parameters, parse the response's features into a nested list.
+  This function requires the WAStD API to return the results in a key
+  `features` as is the standard for a GeoJSON FeatureCollection.
 }
 \examples{
 \dontrun{

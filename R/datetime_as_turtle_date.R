@@ -1,9 +1,11 @@
 #' Calculate the "turtle date" from a given datetime
 #'
-#' @details Return the actual date for afternoon and evening datetimes (noon to midnight)
-#' or the date of the previous day for morning datetimes (midnight to noon).
-#' The turtle date keeps observations made between sunset and sunrise, as well as
-#' "morning after" together by assigning the date of the start of observations.
+#' @details Return the actual date for afternoon and evening datetimes
+#' (noon to midnight) or the date of the previous day for morning datetimes
+#' (midnight to noon).
+#' The turtle date keeps observations made between sunset and sunrise,
+#' as well as the "morning after" together by assigning the date of the start
+#' of observations.
 #'
 #' In practice, the turtle date is the date component (year, month, day) of the
 #' datetime minus 12 hours.
