@@ -83,10 +83,12 @@ wastd_GET <- function(serializer,
   }
 
   # We assume all errors are now handled and remaining requests will work
+  # TODO honour limit and offset if given in query
   while (!is.null(next_url)) {
     message(glue::glue("[wastdr::get_wastd] fetching {next_url}..."))
-    res_parsed <- httr::GET(next_url, auth, ua) %>%
-      httr::stop_for_status(.) %>%
+    res <- httr::GET(next_url, auth, ua) %>%
+      httr::stop_for_status(.)
+    res_parsed <- res %>%
       httr::content(., as = "text", encoding = "UTF-8") %>%
       jsonlite::fromJSON(., flatten = F, simplifyVector = F)
     features <- append(features, res_parsed$features)
@@ -98,9 +100,9 @@ wastd_GET <- function(serializer,
     list(
       features = features,
       serializer = serializer,
-      url = res_parsed$url,
-      date = x$res_parsed$headers$date,
-      status_code = x$res_parsed$status_code
+      url = res$url,
+      date = res$headers$date,
+      status_code = res$status_code
     ),
     class = "wastd_api_response"
   )
@@ -115,11 +117,12 @@ wastd_GET <- function(serializer,
 #' @importFrom utils str
 #' @export
 print.wastd_api_response <- function(x, ...) {
-  glue::glue(
-    "<WAStD API response {x$serializer}>\n",
-    "URL {x$url}\n",
-    "Date {x$date}\n",
-    "Status {x$status_code}\n"
+  paste(
+    "<WAStD API response", x$serializer, ">",
+    "\nURL:", x$url,
+    "\nDate:", x$date,
+    "\nStatus:", x$status_code,
+    "\nFeatures:", length(x$features)
   )
   # utils::str(utils::head(x$features))
   invisible(x)
