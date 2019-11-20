@@ -1,4 +1,4 @@
-context("wastd_GET")
+testthat::context("wastd_GET")
 
 testthat::test_that("wastd_GET won't work unauthenticated", {
   wastdr_setup(api_token = "this-is-an-invalid-token")
@@ -19,7 +19,7 @@ check_wastd_api <- function() {
 testthat::test_that("wastd_GET returns something", {
   check_wastd_api()
   res <- wastd_GET("", query = list())
-  testthat::expect_equal(res$response$status_code, 200)
+  testthat::expect_equal(res$status_code, 200)
   testthat::expect_s3_class(res, "wastd_api_response")
 })
 
@@ -41,5 +41,5 @@ testthat::test_that("wastd_GET works with correct API token", {
     api_token = get_wastdr_api_token()
   )
   capture.output(print(ae))
-  testthat::expect_equal(ae$response$status_code, 200)
+  testthat::expect_equal(ae$status_code, 200)
 })
