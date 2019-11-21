@@ -68,6 +68,10 @@ parse_animal_encounters <- function(wastd_api_response) {
       survey_start_comments = map_chr_hack(., c("properties", "survey", "start_comments")),
       survey_end_comments = map_chr_hack(., c("properties", "survey", "end_comments")),
       datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08(),
+      calendar_date_awst = datetime %>%
+        lubridate::with_tz("Australia/Perth") %>%
+        lubridate::floor_date(unit = "day") %>%
+        as.character(),
       # turtle_date = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08_turtle_date(),
       turtle_date = datetime %>% datetime_as_turtle_date(),
       # season = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_season(),

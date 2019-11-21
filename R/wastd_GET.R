@@ -17,7 +17,8 @@
 #' track_records <- wastd_GET("turtle-nest-encounters")
 #' tag_records <- wastd_GET("animal-encounters")
 #' hatched_nest_records <- wastd_GET("turtle-nest-encounters",
-#'                        query = list(nest_type = "hatched-nest"))
+#'   query = list(nest_type = "hatched-nest")
+#' )
 #' }
 wastd_GET <- function(serializer,
                       query = list(),
@@ -49,7 +50,7 @@ wastd_GET <- function(serializer,
       "If you are DBCA staff, run wastdr_setup(api_token='...').\n",
       "You can find your API token under \"My Profile\" in WAStD.\n",
       "External collaborators run ",
-      "wastdr::wastdr_setup(api_un='username', api_pw='password').",
+      "wastdr::wastdr_setup(api_un='username', api_pw='password').\n",
       "See ?wastdr_setup or vignette('setup')."
     ),
     call. = FALSE
@@ -58,7 +59,7 @@ wastd_GET <- function(serializer,
 
   if (httr::http_type(res) != "application/json") {
     stop(glue::glue("API did not return JSON.\nIs {url} a valid endpoint?"),
-         call. = FALSE
+      call. = FALSE
     )
   }
 
@@ -117,13 +118,13 @@ wastd_GET <- function(serializer,
 #' @importFrom utils str
 #' @export
 print.wastd_api_response <- function(x, ...) {
-  paste(
-    "<WAStD API response", x$serializer, ">",
-    "\nURL:", x$url,
-    "\nDate:", x$date,
-    "\nStatus:", x$status_code,
-    "\nFeatures:", length(x$features)
-  )
+  print(glue::glue(
+    "<WAStD API response {x$serializer}>\n",
+    "URL: {x$url}\n",
+    "Date: {x$date}\n",
+    "Status: {x$status_code}\n",
+    "Features: {length(x$features)}\n"
+  ))
   # utils::str(utils::head(x$features))
   invisible(x)
 }

@@ -65,6 +65,10 @@ parse_nesttag_observations <- function(wastd_api_response) {
       survey_end_comments = map_chr_hack(., c("properties", "encounter", "properties", "survey", "end_comments")),
 
       datetime = purrr::map_chr(., c("properties", "encounter", "properties", "when")) %>% httpdate_as_gmt08(),
+      calendar_date_awst = datetime %>%
+        lubridate::with_tz("Australia/Perth") %>%
+        lubridate::floor_date(unit = "day") %>%
+        as.character(),
       turtle_date = datetime %>% datetime_as_turtle_date(),
       season = datetime %>% datetime_as_season(),
       season_week = datetime %>% datetime_as_seasonweek(),

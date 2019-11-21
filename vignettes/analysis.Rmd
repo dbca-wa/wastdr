@@ -41,26 +41,55 @@ Once refined, these helper functions will become core `wastdr` functionality.
 if (file.exists("tracks.Rda")){
     load("tracks.Rda")
 } else {
-    q = list(observer=4, format = "json")
-    track_records <- wastdr::wastd_GET("turtle-nest-encounters", query=q)
-    tracks <- parse_turtle_nest_encounters(track_records)
-    disturbance_records <- wastdr::wastd_GET("disturbance-observations", query=q)
-    disturbance <- disturbance_records %>% wastdr::parse_disturbance_observations()
-    survey_records <- wastdr::wastd_GET("surveys", query=list(reporter=4, format = "json"))
-    surveys <- survey_records %>% parse_surveys()
-    nest_records <- wastdr::wastd_GET("nesttag-observations", query=q)
-    nests <- nest_records %>% wastdr::parse_nesttag_observations()
-    save(
-      track_records, 
-      tracks, 
-      survey_records, 
-      surveys, 
-      disturbance_records, 
-      disturbance, 
-      nest_records, 
-      nests, 
-      file = "tracks.Rda"
-    )
+library(magrittr)
+  wastd_url <- wastdr::get_wastd_url()
+  q <- list(taxon = "Cheloniidae", format = "json")
+  
+  animal_records <- wastdr::wastd_GET("animal-encounters", query = q)
+  animals <- animal_records %>%  
+    wastdr::parse_animal_encounters()
+  
+  track_records <- wastdr::wastd_GET("turtle-nest-encounters")
+  tracks_all <- track_records %>% 
+    wastdr::parse_turtle_nest_encounters()
+  
+  disturbance_records <- wastdr::wastd_GET("disturbance-observations")
+  disturbance <- disturbance_records %>% 
+    wastdr::parse_disturbance_observations()
+    
+  survey_records <- wastdr::wastd_GET("surveys")
+  surveys <- survey_records %>% 
+    wastdr::parse_surveys() 
+  
+  nest_records <- wastdr::wastd_GET("nesttag-observations")
+  nests_all <- nest_records %>% 
+    wastdr::parse_nesttag_observations() 
+  
+  area_records <- wastdr::wastd_GET("area")
+  areas <- area_records %>% wastd_parse() %>% 
+    tidyr::unnest_wider("centroid") %>%
+    tidyr::unnest_wider("coordinates") %>%
+    dplyr::rename(longitude = `...1`, latitude = `...2`)
+  areas_sf <- area_records$features %>% 
+    geojsonio::as.json() %>% 
+    geojsonsf::geojson_sf()
+  
+  save(
+    animal_records,
+    animals,
+    track_records,
+    tracks_all,
+    disturbance_records,
+    disturbance,
+    survey_records,
+    surveys,
+    nest_records,
+    nests_all,
+    area_records,
+    areas,
+    areas_sf,
+    file = "tracks.Rda"
+  )
 }
 ```
 
@@ -73,7 +102,7 @@ Site names and IDs are only correct at the time of writing. As they could change
 double-check the correct spelling of your own place names and their IDs in WAStD.
 
 ```{r filter_data}
-tracks_2017 <- tracks %>% dplyr::filter(season==2017)
+tracks_2017 <- tracks_all %>% dplyr::filter(season==2017)
 ```
 
 # Turtle Tracks and Nests
@@ -96,8 +125,8 @@ markers and popups.
 Use "Place names" where the aerial imagery is not available at the zoom level required
 for the grouped markers to expand.
 ```{r tracks_maps}
-tracks %>% add_nest_labels() %>% map_tracks()
-tracks %>% add_nest_labels() %>% map_tracks(cluster=T)
+tracks_all %>% add_nest_labels() %>% map_tracks()
+tracks_all %>% add_nest_labels() %>% map_tracks(cluster=T)
 ```
 
 
@@ -106,49 +135,51 @@ Overview tables are available for the most common summaries at the most common
 groupings (season, week, day / area, site).
 
 ```{r tracks_ns}
-tracks %>% nesting_type_by_season_species()
-tracks %>% nesting_type_by_area_season_species()
-tracks %>% nesting_type_by_site_season_species()
-tracks %>% nesting_type_by_season_week_species()
-tracks %>% nesting_type_by_season_day_species()
+tracks_all %>% nesting_type_by_season_species() %>% knitr::kable()
+tracks_all %>% nesting_type_by_area_season_species() %>% knitr::kable()
+tracks_all %>% nesting_type_by_site_season_species() %>% knitr::kable()
+tracks_all %>% nesting_type_by_season_week_species() %>% knitr::kable()
+tracks_all %>% nesting_type_by_season_day_species() %>% knitr::kable()
 
 # Track success by day and species
-tracks %>% track_success()
+tracks_all %>% track_success() %>% knitr::kable()
 
 # Track success by species
-tracks %>% track_success() %>% track_success_by_species()
+tracks_all %>% track_success() %>% track_success_by_species() %>% knitr::kable()
 
-tracks %>% track_success %>% 
-  ggplot_track_success_by_date("natator-depressus", placename="Test place", prefix="TEST")
+tracks_all %>% track_success %>% 
+  ggplot_track_success_by_date(
+    "natator-depressus", placename="Test place", prefix="TEST")
 
-tracks %>% track_success %>% 
-  ggplot_track_successrate_by_date("natator-depressus", placename="Test place", prefix="TEST")
+tracks_all %>% track_success %>% 
+  ggplot_track_successrate_by_date(
+    "natator-depressus", placename="Test place", prefix="TEST")
 ```
 
 ## Nest excavations: Hatching and emergence success
 
 ```{r tracks_hses}
-tracks %>% hatching_emergence_success()
-tracks %>% hatching_emergence_success_area()
-tracks %>% hatching_emergence_success_site()
+tracks_all %>% hatching_emergence_success() %>% knitr::kable()
+tracks_all %>% hatching_emergence_success_area() %>% knitr::kable()
+tracks_all %>% hatching_emergence_success_site() %>% knitr::kable()
 ```
 
 ## Tagged nests
 ```{r taggee_nests}
-nests %>% map_nests()
+nests_all %>% map_nests()
 ```
 
 
 ## Disturbed nests
 ```{r dist_nests}
-tracks %>% dplyr::filter(disturbance == "present") %>% add_nest_labels() %>% map_tracks()
-tracks %>% dplyr::filter(disturbance == "present") %>% add_nest_labels() %>% map_tracks(cluster=T)
+tracks_all %>% dplyr::filter(disturbance == "present") %>% add_nest_labels() %>% map_tracks()
+tracks_all %>% dplyr::filter(disturbance == "present") %>% add_nest_labels() %>% map_tracks(cluster=T)
 ```
 
 
 # Disturbances and predation
 ```{r}
-disturbance %>% disturbance_by_season()
+disturbance %>% disturbance_by_season() %>% knitr::kable()
 disturbance %>% map_dist()
 disturbance %>% map_dist(cluster=T)
 ```
@@ -157,17 +188,17 @@ disturbance %>% map_dist(cluster=T)
 # Surveys
 ```{r surveys}
 surveys %>% survey_count()
-surveys %>% surveys_per_site_name_and_date()
-surveys %>% survey_hours_per_site_name_and_date()
-surveys %>% survey_hours_per_person()
+surveys %>% surveys_per_site_name_and_date() %>% knitr::kable()
+surveys %>% survey_hours_per_site_name_and_date() %>% knitr::kable()
+surveys %>% survey_hours_per_person() %>% knitr::kable()
 surveys %>% list_survey_count()
 surveys %>% plot_survey_count()
 surveys %>% list_survey_effort()
 surveys %>% plot_survey_effort()
 surveys %>% survey_hours_heatmap(placename = "All the places", prefix = "TEST")
 surveys %>% survey_count_heatmap(placename = "All the places", prefix = "TEST")
-surveys %>% survey_season_stats()
-surveys %>% survey_season_site_stats()
+surveys %>% survey_season_stats() %>% knitr::kable()
+surveys %>% survey_season_site_stats() %>% knitr::kable()
 surveys %>% survey_show_detail() %>% DT::datatable(escape = F)
 ```
 

@@ -18,6 +18,7 @@
 #'   \item survey_end_comments <chr>
 #'   \item encounter_id <chr>
 #'   \item datetime <dttm>
+#'   \item calendar_date_awst <chr> The calendar date as character
 #'   \item longitude <dbl>
 #'   \item latitude <dbl>
 #'   \item crs <chr>
@@ -64,6 +65,10 @@ parse_disturbance_observations <- function(wastd_api_response) {
       survey_end_comments = map_chr_hack(., c("properties", "encounter", "properties", "survey", "end_comments")),
       encounter_id = purrr::map_chr(., c("properties", "encounter", "id")),
       datetime = purrr::map_chr(., c("properties", "encounter", "properties", "when")) %>% httpdate_as_gmt08(),
+      calendar_date_awst = datetime %>%
+        lubridate::with_tz("Australia/Perth") %>%
+        lubridate::floor_date(unit = "day") %>%
+        as.character(),
       turtle_date = datetime %>% datetime_as_turtle_date(),
       season = datetime %>% datetime_as_season(),
       season_week = datetime %>% datetime_as_seasonweek(),
@@ -99,3 +104,5 @@ disturbance_by_season <- . %>%
   dplyr::group_by(season, disturbance_cause) %>%
   dplyr::tally() %>%
   dplyr::arrange(-season, -n)
+
+# usethis::edit_file("tests/testthat/test-parse_disturbance_observations.R")

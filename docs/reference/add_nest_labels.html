@@ -43,10 +43,12 @@
 
 
 <meta property="og:title" content="Add labels for species and nest/track type to parsed <code>turtle-nest-encounters</code>. — add_nest_labels" />
-<meta property="og:description" content="Adds two columns, two new columns, species_colours and nest_type_text,
-to parsed turtle-nest-encounters containing WAStD species and
-nest_type. The new columns can be used to create leaflet markers with
-leaflet::makeAwesomeIcon(text = ~nest_type_text, markerColor = ~species_colours)." />
+<meta property="og:description" content="Adds two columns, two new columns, species_colours and
+nest_type_text, to parsed turtle-nest-encounters containing
+WAStD species and nest_type. The new columns can be used
+to create leaflet markers with
+leaflet::makeAwesomeIcon(
+  text = ~nest_type_text, markerColor = ~species_colours)." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -80,7 +82,7 @@ leaflet::makeAwesomeIcon(text = ~nest_type_text, markerColor = ~species_colours)
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.22</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.23</span>
       </span>
     </div>
 
@@ -143,10 +145,12 @@ leaflet::makeAwesomeIcon(text = ~nest_type_text, markerColor = ~species_colours)
     </div>
 
     <div class="ref-description">
-    <p>Adds two columns, two new columns, <code>species_colours</code> and <code>nest_type_text</code>,
-to parsed <code>turtle-nest-encounters</code> containing <code>WAStD</code> <code>species</code> and
-<code>nest_type</code>. The new columns can be used to create <code>leaflet</code> markers with
-<code><a href='https://rdrr.io/pkg/leaflet/man/makeAwesomeIcon.html'>leaflet::makeAwesomeIcon(text = ~nest_type_text, markerColor = ~species_colours)</a></code>.</p>
+    <p>Adds two columns, two new columns, <code>species_colours</code> and
+<code>nest_type_text</code>, to parsed <code>turtle-nest-encounters</code> containing
+<code>WAStD</code> <code>species</code> and <code>nest_type</code>. The new columns can be used
+to create <code>leaflet</code> markers with
+<code><a href='https://rdrr.io/pkg/leaflet/man/makeAwesomeIcon.html'>leaflet::makeAwesomeIcon(
+  text = ~nest_type_text, markerColor = ~species_colours)</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>add_nest_labels</span>(<span class='no'>nests</span>)</pre>
@@ -156,13 +160,15 @@ to parsed <code>turtle-nest-encounters</code> containing <code>WAStD</code> <cod
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>nests</th>
-      <td><p>(tibble) A dataframe or tibble of parsed <code>turtle-nest-encounters</code>.</p></td>
+      <td><p>(tibble) A dataframe or tibble of parsed
+<code>turtle-nest-encounters</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The dataframe with two new columns, <code>species_colours</code> and <code>nest_type_text</code>.</p>
+    <p>The dataframe with two new columns, <code>species_colours</code> and
+  <code>nest_type_text</code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -1,8 +1,10 @@
 testthat::context("wastd_GET")
 
 testthat::test_that("wastd_GET won't work unauthenticated", {
+  a <- Sys.getenv("WASTDR_API_TOKEN")
   wastdr_setup(api_token = "this-is-an-invalid-token")
   testthat::expect_error(wastd_GET("animal-encounters"))
+  wastdr_setup(api_token = a)
 })
 
 

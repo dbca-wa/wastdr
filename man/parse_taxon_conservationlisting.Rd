@@ -35,8 +35,8 @@ A \code{tbl_df} with columns:
         effective from (GMT+08).
   \item effective_to <dttm> The date on which this Conservation Listing was
         effective_to (GMT+08).
-  \item last_reviewed_on <dttm> The date on which this Conservation Listing was
-        last reviewed on (GMT+08).
+  \item last_reviewed_on <dttm> The date on which this Conservation Listing
+        was last reviewed on (GMT+08).
   \item review_due <dttm> The date on which this Conservation Listing will be
         due for reviewed (GMT+08).
   \item comments <chr> Any comments. Worth a read!

@@ -26,6 +26,7 @@ A \code{tbl_df} with columns:
   \item survey_end_comments <chr>
   \item encounter_id <chr>
   \item datetime <dttm>
+  \item calendar_date_awst <chr> The calendar date as character
   \item longitude <dbl>
   \item latitude <dbl>
   \item crs <chr>

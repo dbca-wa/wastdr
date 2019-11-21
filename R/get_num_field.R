@@ -13,11 +13,13 @@
 #' \dontrun{
 #' require(magrittr)
 #' nest_json <- get_wastd("turtle-nest-encounters")
-#' nest_hs <- nest_json$content %>% {
+#' nest_hs <- nest_json$features %>% {
 #'   tibble::tibble(
 #'     obs = purrr::map(., c("properties", "observation_set")),
 #'     hatching_success = obs %>%
-#'       purrr::map(get_num_field, "hatching_success") %>% as.numeric)
+#'       purrr::map(get_num_field, "hatching_success") %>%
+#'       as.numeric
+#'   )
 #'  }
 #' }
 get_num_field <- function(lol, field) lol %>%

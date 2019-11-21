@@ -2,6 +2,8 @@
 ## Major changes
 * `wastd_GET` drops `response`, keeps `url`, `date`, and `status_code`.
   Results now always expected from WAStD in key `features`, not `results`.
+* Turtle parsing functions add now additional calendar date in AWST for clarity.
+* Generic `wastd_parse` function parses any TSC API response.
 
 ## Minor changes
 

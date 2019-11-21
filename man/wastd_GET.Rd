@@ -65,6 +65,8 @@ Call the WAStD API serializer's list view with given GET
 \dontrun{
 track_records <- wastd_GET("turtle-nest-encounters")
 tag_records <- wastd_GET("animal-encounters")
-nest_json <- wastd_GET("turtle-nest-encounters", query = list(nest_type = "hatched-nest"))
+hatched_nest_records <- wastd_GET("turtle-nest-encounters",
+  query = list(nest_type = "hatched-nest")
+)
 }
 }
