@@ -10,7 +10,7 @@ vignette: >
 ---
   
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval=F)
 library(wastdr)
 library(dplyr)
 library(tidyr)
@@ -25,16 +25,6 @@ wastdr::wastdr_setup()
 # wastdr::wastdr_settings()
 ```
 # Data
-This section illustrates how to access data, and defines helper methods to 
-filter, map, summarise, and plot data.
-
-Once refined, these helper functions will become core `wastdr` functionality.
-
-## Caveat
-* The data as shown is still pre-QA until this message disappears.
-* Usernames are still hilariously wrong after matching the usernames 
-  (as submitted) to the actual usernames in WAStD. See the field `commments` for
-  QA messages.
 
 ## Load data
 ```{r load_data, echo=T}
