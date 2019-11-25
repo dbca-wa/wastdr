@@ -21,6 +21,6 @@ From a \code{wastd_api_response}, turn the key \code{payload}
   (default: "features") into a \code{tibble:tibble}, and
   \code{tidyr::unnest_wider} the tibble into columns equivalent to the fields
   of the WAStD API serializer.
-  If GeoJSON is found, the keys `geometry` (including `coordinates`) and
-  `properties` are unnested.
+  If GeoJSON is found, the keys `geometry` (including `coordinates`) will
+  remain unchanged, but the key `properties` will be unnested.
 }

@@ -4,7 +4,7 @@
 \name{tne}
 \alias{tne}
 \title{TurtleNestEncounter (tracks and nests) WAStD API response}
-\format{An object of class \code{wastd_api_response} of length 3.}
+\format{An object of class \code{wastd_api_response} of length 5.}
 \source{
 https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=100&format=json
 }

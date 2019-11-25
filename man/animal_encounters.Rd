@@ -4,7 +4,7 @@
 \name{animal_encounters}
 \alias{animal_encounters}
 \title{AnimalEncounter WAStD API response}
-\format{An object of class \code{wastd_api_response} of length 3.}
+\format{An object of class \code{wastd_api_response} of length 5.}
 \source{
 https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&format=json
 }

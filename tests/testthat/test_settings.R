@@ -20,8 +20,7 @@ testthat::test_that("wastdr_settings can set and get any api_url", {
 
 testthat::test_that("ckanr_settings can set and get any api token", {
   wastdr_setup(api_token = at)
-  token_string <- paste("Token", at)
-  testthat::expect_equal(token_string, get_wastdr_api_token())
+  testthat::expect_equal(at, get_wastdr_api_token())
 })
 
 testthat::test_that("ckanr_settings can set and get any api username", {

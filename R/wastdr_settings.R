@@ -49,7 +49,7 @@ print.wastdr_settings <- function(x, ...) {
 #'   default: "https://tsc.dbca.wa.gov.au"
 #' @param api_url A WAStD API URL (optional),
 #'   default: "https://tsc.dbca.wa.gov.au/api/1/"
-#' @param api_token A CKAN API token (character)
+#' @param api_token A CKAN API token, leading with "Token " (character)
 #' @param api_un Alternatively, a CKAN API username (character)
 #' @param api_pw The password to the CKAN username (character)
 #' @details
@@ -79,7 +79,7 @@ wastdr_setup <- function(
   Sys.setenv("WASTDR_API_URL" = api_url)
 
   if (!is.null(api_token)) {
-    Sys.setenv("WASTDR_API_TOKEN" = glue::glue("Token {api_token}"))
+    Sys.setenv("WASTDR_API_TOKEN" = api_token)
   }
   if (!is.null(api_un)) {
     Sys.setenv("WASTDR_API_UN" = api_un)

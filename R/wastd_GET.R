@@ -77,14 +77,13 @@ wastd_GET <- function(serializer,
     stop(
       glue::glue(
         "WAStD API request failed [{httr::status_code(res)}]\n",
-        "{res_parsed$message",
+        "{res_parsed$message}",
       ),
       call. = FALSE
     )
   }
 
   # We assume all errors are now handled and remaining requests will work
-  # TODO honour limit and offset if given in query
   while (!is.null(next_url)) {
     message(glue::glue("[wastdr::get_wastd] fetching {next_url}..."))
     res <- httr::GET(next_url, auth, ua) %>%
@@ -119,7 +118,7 @@ wastd_GET <- function(serializer,
 #' @export
 print.wastd_api_response <- function(x, ...) {
   print(glue::glue(
-    "<WAStD API response {x$serializer}>\n",
+    "<WAStD API response \"{x$serializer}\">\n",
     "URL: {x$url}\n",
     "Date: {x$date}\n",
     "Status: {x$status_code}\n",

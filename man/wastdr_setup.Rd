@@ -19,7 +19,7 @@ default: "https://tsc.dbca.wa.gov.au"}
 \item{api_url}{A WAStD API URL (optional),
 default: "https://tsc.dbca.wa.gov.au/api/1/"}
 
-\item{api_token}{A CKAN API token (character)}
+\item{api_token}{A CKAN API token, leading with "Token " (character)}
 
 \item{api_un}{Alternatively, a CKAN API username (character)}
 
