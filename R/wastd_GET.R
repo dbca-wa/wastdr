@@ -47,10 +47,10 @@ wastd_GET <- function(serializer,
   if (res$status_code == 401) {
     stop(glue::glue(
       "Authorization failed.\n",
-      "If you are DBCA staff, run wastdr_setup(api_token='...').\n",
+      "If you are DBCA staff, run wastdr_setup(api_token='Token XXX').\n",
       "You can find your API token under \"My Profile\" in WAStD.\n",
       "External collaborators run ",
-      "wastdr::wastdr_setup(api_un='username', api_pw='password').\n",
+      "wastdr::wastdr_setup(api_un='XXX', api_pw='XXX').\n",
       "See ?wastdr_setup or vignette('setup')."
     ),
     call. = FALSE

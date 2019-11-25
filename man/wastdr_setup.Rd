@@ -45,5 +45,5 @@ wastdr_setup(
 
 # Not specifying the default WAStD API URL will reset the WAStD URL to its
 # default "https://tsc.dbca.wa.gov.au/api/1/":
-wastdr_setup(api_token = "c12345asdfqwer")
+\dontrun{wastdr_setup(api_token = "c12345asdfqwer")}
 }
