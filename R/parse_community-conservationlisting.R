@@ -8,7 +8,7 @@
 #' @return A \code{tbl_df} with columns:
 #' \itemize{
 #'   \item id <int> The TSC ID of the Conservation Listing
-#'   \item community <int> The TSC Community code.
+#'   \item community <chr> The alphanumieric TSC Community code.
 #'   \item source <int> The TSC ID for the Source of the Conservation Listing.
 #'   \item source_id <chr> The original ID of the source as chr. Most sources
 #'         will be an integer, uuid, or any other unique ID.
@@ -43,7 +43,7 @@ parse_community_conservationlisting <- function(wastd_api_response,
   wastd_api_response$features %>% {
     tibble::tibble(
       id = purrr::map_int(., "id"),
-      community = purrr::map_int(., "community"),
+      community = purrr::map_chr(., "community"),
       source = purrr::map_int(., "source"),
       source_id = purrr::map_chr(., "source_id"),
       scope = purrr::map_int(., "scope"),

@@ -20,3 +20,17 @@ The given list of lists is unlisted,
   another call to unlist deduplicates, and finally the result is cast to
   numeric.
 }
+\examples{
+\dontrun{
+require(magrittr)
+nest_json <- get_wastd("turtle-nest-encounters")
+nest_hs <- nest_json$features \%>\% {
+  tibble::tibble(
+    obs = purrr::map(., c("properties", "observation_set")),
+    hatching_success = obs \%>\%
+      purrr::map(get_num_field, "hatching_success") \%>\%
+      as.numeric
+  )
+ }
+}
+}

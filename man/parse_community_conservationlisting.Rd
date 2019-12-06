@@ -20,7 +20,7 @@ e.g. \code{get_wastd("community-conservationlisting")}.}
 A \code{tbl_df} with columns:
 \itemize{
   \item id <int> The TSC ID of the Conservation Listing
-  \item community <int> The TSC Community code.
+  \item community <chr> The alphanumieric TSC Community code.
   \item source <int> The TSC ID for the Source of the Conservation Listing.
   \item source_id <chr> The original ID of the source as chr. Most sources
         will be an integer, uuid, or any other unique ID.
