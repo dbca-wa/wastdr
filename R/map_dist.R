@@ -21,7 +21,7 @@ map_dist <- function(dist,
   markerClusterOptions <- NULL
 
   if (cluster == TRUE) {
-    co <- markerClusterOptions()
+    co <- leaflet::markerClusterOptions()
   } else {
     co <- NULL
   }
