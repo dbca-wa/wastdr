@@ -21,7 +21,7 @@ map_tracks <- function(tracks,
   markerClusterOptions <- NULL
 
   if (cluster == TRUE) {
-    co <- markerClusterOptions()
+    co <- leaflet::markerClusterOptions()
   } else {
     co <- NULL
   }
@@ -63,7 +63,7 @@ map_tracks <- function(tracks,
     addLayersControl(
       baseGroups = c("Aerial", "Place names"),
       overlayGroups = names(tracks.df),
-      options = layersControlOptions(collapsed = FALSE)
+      options = leaflet::layersControlOptions(collapsed = FALSE)
     )
 }
 
@@ -91,7 +91,7 @@ map_tracks_odkc <- function(tracks,
   markerClusterOptions <- NULL
 
   if (cluster == TRUE) {
-    co <- markerClusterOptions()
+    co <- leaflet::markerClusterOptions()
   } else {
     co <- NULL
   }
@@ -129,6 +129,6 @@ map_tracks_odkc <- function(tracks,
     addLayersControl(
       baseGroups = c("Aerial", "Place names"),
       overlayGroups = names(tracks.df),
-      options = layersControlOptions(collapsed = FALSE)
+      options = leaflet::layersControlOptions(collapsed = FALSE)
     )
 }

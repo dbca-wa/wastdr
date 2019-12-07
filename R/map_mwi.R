@@ -22,7 +22,7 @@ map_mwi_odkc <- function(data,
     markerClusterOptions <- NULL
 
     if (cluster == TRUE) {
-        co <- markerClusterOptions()
+        co <- leaflet::markerClusterOptions()
     } else {
         co <- NULL
     }
@@ -53,6 +53,6 @@ map_mwi_odkc <- function(data,
         addLayersControl(
             baseGroups = c("Aerial", "Place names"),
             overlayGroups = c("Marine Wildlife Incidents"),
-            options = layersControlOptions(collapsed = FALSE)
+            options = leaflet::layersControlOptions(collapsed = FALSE)
         )
 }
