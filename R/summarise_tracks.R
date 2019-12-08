@@ -47,7 +47,7 @@ nesting_type_by_season_week_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
-nesting_type_by_season_site_week_species <- . %>%
+nesting_type_by_season_week_site_species <- . %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
     season, season_week, iso_week, site_name, species, nest_type) %>%
