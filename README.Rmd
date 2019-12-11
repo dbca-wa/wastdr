@@ -144,8 +144,10 @@ ERRORs, WARNINGs or NOTEs apart from the "New CRAN package" NOTE):
 # devtools::install_github("klutometis/roxygen")
 styler:::style_pkg()
 devtools::document(roclets = c("rd", "collate", "namespace", "vignette"))
+devtools::build()
 devtools::test()
-devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))
+# devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))
+goodpractice::goodpractice(quiet = F)
 covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
 pkgdown::build_site()
 ```

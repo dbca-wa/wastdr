@@ -78,6 +78,7 @@ map_tracks <- function(tracks,
 #' @template param-tracks
 #' @template param-wastd_url
 #' @template param-fmt
+#' @param tz The lubridate timezone, default: "Australia/Perth
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
@@ -113,7 +114,7 @@ map_tracks_odkc <- function(tracks,
             markerColor = ~species_colours
           ),
           label = ~ glue::glue(
-            '{lubridate::with_tz(observation_start_time, tz)} {humanize(nest_age)}',
+            "{lubridate::with_tz(observation_start_time, tz)} {humanize(nest_age)}",
             " {humanize(species)} {humanize(nest_type)}"
           ),
           popup = ~ glue::glue(

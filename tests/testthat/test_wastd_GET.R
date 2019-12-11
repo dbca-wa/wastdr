@@ -57,3 +57,4 @@ testthat::test_that("wastd_GET works with correct API token", {
   capture.output(print(ae))
   testthat::expect_equal(ae$status_code, 200)
 })
+

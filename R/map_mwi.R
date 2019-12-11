@@ -17,42 +17,42 @@ map_mwi_odkc <- function(data,
                          fmt = "%d/%m/%Y %H:%M",
                          tz = "Australia/Perth",
                          cluster = FALSE) {
-    . <- NULL
-    layersControlOptions <- NULL
-    markerClusterOptions <- NULL
+  . <- NULL
+  layersControlOptions <- NULL
+  markerClusterOptions <- NULL
 
-    if (cluster == TRUE) {
-        co <- leaflet::markerClusterOptions()
-    } else {
-        co <- NULL
-    }
-    leaflet(width = 800, height = 600) %>%
-        addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
-        addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-        clearBounds() %>%
-        addAwesomeMarkers(
-            data = data,
-            lng = ~observed_at_longitude, lat = ~observed_at_latitude,
-            icon = leaflet::makeAwesomeIcon(
-                text = "MWI",
-                markerColor = "red"
-            ),
-            label = ~ glue::glue(
-                '{lubridate::with_tz(observation_start_time, tz)} {humanize(health)}',
-                " {humanize(maturity)} {humanize(sex)} {humanize(species)}"
-            ),
-            popup = ~ glue::glue(
-                "<h3>{humanize(health)} {humanize(maturity)} ",
-                "{humanize(sex)} {humanize(species)}</h3>",
-                "<p>Seen on {lubridate::with_tz(observation_start_time, tz)} by {reporter}",
-                "<p>Cause of death: {humanize(cause_of_death)}</p>"
-            ),
-            group = df,
-            clusterOptions = co
-        ) %>%
-        addLayersControl(
-            baseGroups = c("Aerial", "Place names"),
-            overlayGroups = c("Marine Wildlife Incidents"),
-            options = leaflet::layersControlOptions(collapsed = FALSE)
-        )
+  if (cluster == TRUE) {
+    co <- leaflet::markerClusterOptions()
+  } else {
+    co <- NULL
+  }
+  leaflet(width = 800, height = 600) %>%
+    addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
+    addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
+    clearBounds() %>%
+    addAwesomeMarkers(
+      data = data,
+      lng = ~observed_at_longitude, lat = ~observed_at_latitude,
+      icon = leaflet::makeAwesomeIcon(
+        text = "MWI",
+        markerColor = "red"
+      ),
+      label = ~ glue::glue(
+        "{lubridate::with_tz(observation_start_time, tz)} {humanize(health)}",
+        " {humanize(maturity)} {humanize(sex)} {humanize(species)}"
+      ),
+      popup = ~ glue::glue(
+        "<h3>{humanize(health)} {humanize(maturity)} ",
+        "{humanize(sex)} {humanize(species)}</h3>",
+        "<p>Seen on {lubridate::with_tz(observation_start_time, tz)} by {reporter}",
+        "<p>Cause of death: {humanize(cause_of_death)}</p>"
+      ),
+      group = df,
+      clusterOptions = co
+    ) %>%
+    addLayersControl(
+      baseGroups = c("Aerial", "Place names"),
+      overlayGroups = c("Marine Wildlife Incidents"),
+      options = leaflet::layersControlOptions(collapsed = FALSE)
+    )
 }

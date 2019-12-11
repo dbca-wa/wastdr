@@ -26,7 +26,7 @@ nesting_type_by_area_season_species <- . %>%
 #' @export
 nesting_type_by_site_season_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(season, area_name, site_name, species, nest_type) %>%
+  dplyr::group_by(area_name, site_name, season, species, nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
@@ -50,7 +50,8 @@ nesting_type_by_season_week_species <- . %>%
 nesting_type_by_season_week_site_species <- . %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
-    season, season_week, iso_week, site_name, species, nest_type) %>%
+    season, season_week, iso_week, site_name, species, nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)

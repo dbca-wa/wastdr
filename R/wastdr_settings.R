@@ -68,7 +68,9 @@ print.wastdr_settings <- function(x, ...) {
 #'
 #' # Not specifying the default WAStD API URL will reset the WAStD URL to its
 #' # default "https://tsc.dbca.wa.gov.au/api/1/":
-#' \dontrun{wastdr_setup(api_token = "c12345asdfqwer")}
+#' \dontrun{
+#' wastdr_setup(api_token = "c12345asdfqwer")
+#' }
 wastdr_setup <- function(
                          wastd_url = get_wastd_url(),
                          api_url = get_wastdr_api_url(),

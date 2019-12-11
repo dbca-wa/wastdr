@@ -3,6 +3,7 @@
 S3method(print,wastd_api_response)
 S3method(print,wastdr_settings)
 export(add_nest_labels)
+export(chr2int)
 export(datetime_as_isoweek)
 export(datetime_as_season)
 export(datetime_as_seasonweek)

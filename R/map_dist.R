@@ -90,10 +90,10 @@ map_dist <- function(dist,
 #' @importFrom leaflet leaflet addAwesomeMarkers addLayersControl addProviderTiles clearBounds
 #' @export
 map_dist_odkc <- function(dist,
-                     wastd_url = wastdr::get_wastd_url(),
-                     fmt = "%d/%m/%Y %H:%M",
-                     tz = "Australia/Perth",
-                     cluster = FALSE) {
+                          wastd_url = wastdr::get_wastd_url(),
+                          fmt = "%d/%m/%Y %H:%M",
+                          tz = "Australia/Perth",
+                          cluster = FALSE) {
   . <- NULL
   layersControlOptions <- NULL
   markerClusterOptions <- NULL
@@ -147,4 +147,3 @@ map_dist_odkc <- function(dist,
       options = leaflet::layersControlOptions(collapsed = FALSE)
     )
 }
-
