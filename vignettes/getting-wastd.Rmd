@@ -40,7 +40,7 @@ data(tne)
 ```
 
 ```{r load_vignette_data, eval=FALSE}
-load(file = "vignettes/data.rda")
+# load(file = "vignettes/data.rda")
 ```
 
 ```{r inspect_data}

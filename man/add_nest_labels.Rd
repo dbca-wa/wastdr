@@ -2,7 +2,8 @@
 % Please edit documentation in R/add_nest_labels.R
 \name{add_nest_labels}
 \alias{add_nest_labels}
-\title{Add labels for species and nest/track type to parsed \code{turtle-nest-encounters}.}
+\title{Add labels for species and nest/track type to parsed
+\code{turtle-nest-encounters}.}
 \usage{
 add_nest_labels(nests)
 }

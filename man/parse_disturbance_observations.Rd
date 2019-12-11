@@ -2,13 +2,15 @@
 % Please edit documentation in R/parse_disturbance_observations.R
 \name{parse_disturbance_observations}
 \alias{parse_disturbance_observations}
-\title{Parse a \code{wastd_api_response} of \code{disturbance-observations} to tbl_df}
+\title{Parse a \code{wastd_api_response} of \code{disturbance-observations} to
+tbl_df.}
 \usage{
 parse_disturbance_observations(wastd_api_response)
 }
 \arguments{
 \item{wastd_api_response}{A \code{wastd_api_response} of
-\code{disturbance-observations}, e.g. \code{wastd_GET("disturbance-observations")}}
+\code{disturbance-observations}, e.g.
+\code{wastd_GET("disturbance-observations")}}
 }
 \value{
 A \code{tbl_df} with columns:
@@ -33,8 +35,8 @@ A \code{tbl_df} with columns:
   \item location_accuracy <dbl>
   \item turtle_date <date>
   \item season <int>
-  \item season_week <int> The number of completed weeks since fiscal year start
-  \item iso_week <int> The number of completed weeks since calendar year start
+  \item season_week <int> Number of completed weeks since fiscal year start
+  \item iso_week <int> Number of completed weeks since calendar year start
   \item comments <chr>
   \item absolute_admin_url <chr>
   \item photos <list>
@@ -51,5 +53,6 @@ A \code{tbl_df} with columns:
 }
 }
 \description{
-Parse a \code{wastd_api_response} of \code{disturbance-observations} to tbl_df
+Parse a \code{wastd_api_response} of \code{disturbance-observations} to
+tbl_df.
 }

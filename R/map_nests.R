@@ -8,9 +8,6 @@
 #' @template param-fmt
 #' @template param-cluster
 #' @return A leaflet map
-#' @importFrom purrr walk
-#' @importFrom glue glue
-#' @importFrom leaflet leaflet addAwesomeMarkers addLayersControl addProviderTiles clearBounds
 #' @export
 map_nests <- function(data,
                       wastd_url = wastdr::get_wastd_url(),
@@ -45,9 +42,11 @@ map_nests <- function(data,
       ),
       popup = ~ glue::glue(
         "<h3>{flipper_tag_id} {date_nest_laid} {tag_label}</h3>",
-        "<p>{humanize(tag_status)} on {format(datetime, fmt)} AWST by {observer}",
+        "<p>{humanize(tag_status)} on {format(datetime, fmt)} AWST",
+        " by {observer}",
         "<p>Survey {survey_id} at {site_name} ",
-        "{format(survey_start_time, fmt)}-{format(survey_end_time, fmt)} AWST</p>",
+        "{format(survey_start_time, fmt)}-{format(survey_end_time, fmt)} AWST",
+        "</p>",
         '<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow" ',
         'href="{wastd_url}{absolute_admin_url}">Edit on WAStD</a></p>'
       ),

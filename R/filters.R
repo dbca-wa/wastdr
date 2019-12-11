@@ -15,24 +15,27 @@ filter_missing_survey <- . %>% dplyr::filter(is.na(survey_id))
 #' @export
 filter_missing_site <- . %>% dplyr::filter(is.na(site_id))
 
-#' Exclude training surveys
+#' Exclude training surveys.
 #'
 #' @param value The output of \code{parse_surveys}
 #' @export
 exclude_training_surveys <- . %>% dplyr::filter(is_production == TRUE)
 
-#' Filter surveys with "NEEDS QA" in \code{start_comments} or \code{end_comments}
+#' Filter surveys with "NEEDS QA" in \code{start_comments} or
+#' \code{end_comments}.
 #'
 #' @param value The output of \code{parse_surveys}
 #' @export
 filter_surveys_requiring_qa <- . %>%
-  dplyr::filter(grepl("NEEDS QA", start_comments) | grepl("NEEDS QA", end_comments)) %>%
+  dplyr::filter(
+    grepl("NEEDS QA", start_comments) | grepl("NEEDS QA", end_comments)
+  ) %>%
   dplyr::select(
     change_url, turtle_date, site_name, reporter, reporter_username,
     start_comments, end_comments
   )
 
-#' Filter surveys with a missing \code{end_source_id}
+#' Filter surveys with a missing \code{end_source_id}.
 #'
 #' @param value The output of \code{parse_surveys}
 #' @export

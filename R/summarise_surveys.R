@@ -22,10 +22,12 @@ survey_ground_covered <- function(surveys, site_id, km_per_survey, season) {
 }
 
 
-#' Count number of surveys per season, turtle date and site_name from the output of \code{parse_surveys}.
+#' Count number of surveys per season, turtle date and site_name from the output
+#' of \code{parse_surveys}.
 #'
 #' @template param-surveys
-#' @return A tibble with columns season, turtle_date, site_name, n (number of surveys)
+#' @return A tibble with columns season, turtle_date, site_name, n
+#' (number of surveys)
 #' @importFrom dplyr group_by tally ungroup
 #' @export
 surveys_per_site_name_and_date <- function(surveys) {
@@ -38,7 +40,8 @@ surveys_per_site_name_and_date <- function(surveys) {
     dplyr::ungroup()
 }
 
-#' Sum the hours surveyed per site_name and date from the output of \code{parse_surveys}.
+#' Sum the hours surveyed per site_name and date from the output of
+#' \code{parse_surveys}.
 #'
 #' @template param-surveys
 #' @return A tibble with columns season, turtle_date, site_name, hours_surveyed
@@ -60,10 +63,12 @@ survey_hours_per_site_name_and_date <- function(surveys) {
     dplyr::select(-n)
 }
 
-#' Sum the hours surveyed per person by season from the output of \code{parse_surveys}.
+#' Sum the hours surveyed per person by season from the output of
+#' \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
-#' @return A tibble with columns reporter, season, hours_surveyed, sorted by most to fewest hours.
+#' @return A tibble with columns reporter, season, hours_surveyed,
+#' sorted by most to fewest hours.
 #' @importFrom dplyr group_by tally ungroup mutate select
 #' @export
 survey_hours_per_person <- function(surveys) {
@@ -128,7 +133,8 @@ plot_survey_count <- function(surveys, placename = "", prefix = "") {
     )
 }
 
-#' Create a datatable from the surveyed hours from the output of \code{parse_surveys}.
+#' Create a datatable from the surveyed hours from the output of
+#' \code{parse_surveys}.
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
 #' @param placename (string) The place name, used in labels. Default: ""
@@ -191,7 +197,9 @@ survey_hours_heatmap <- function(surveys, placename = "", prefix = "") {
     ggplot2::xlab(NULL) + ggplot2::ylab(NULL) +
     ggplot2::theme_classic() +
     ggplot2::ggsave(
-      glue::glue("{prefix}_survey_hours_heatmap_{wastdr::urlize(placename)}.png"),
+      glue::glue(
+        "{prefix}_survey_hours_heatmap_{wastdr::urlize(placename)}.png"
+        ),
       width = 10, height = 6
     )
 }
@@ -215,7 +223,9 @@ survey_count_heatmap <- function(surveys, placename = "", prefix = "") {
     ggplot2::xlab(NULL) + ggplot2::ylab(NULL) +
     ggplot2::theme_classic() +
     ggplot2::ggsave(
-      glue::glue("{prefix}_survey_count_heatmap_{wastdr::urlize(placename)}.png"),
+      glue::glue(
+        "{prefix}_survey_count_heatmap_{wastdr::urlize(placename)}.png"
+        ),
       width = 10, height = 6
     )
 }
@@ -242,7 +252,8 @@ survey_season_stats <- function(surveys) {
     dplyr::summarise(
       first_day = min(turtle_date),
       last_day = max(turtle_date),
-      season_length_days = as.numeric(lubridate::interval(first_day, last_day)) / (3600 * 24),
+      season_length_days = as.numeric(
+        lubridate::interval(first_day, last_day)) / (3600 * 24),
       number_surveys = n(),
       hours_surveyed = round(sum(duration_hours))
     )
@@ -272,7 +283,8 @@ survey_season_site_stats <- function(surveys) {
     dplyr::summarise(
       first_day = min(turtle_date),
       last_day = max(turtle_date),
-      season_length_days = as.numeric(lubridate::interval(first_day, last_day)) / (3600 * 24),
+      season_length_days = as.numeric(
+        lubridate::interval(first_day, last_day)) / (3600 * 24),
       number_surveys = n(),
       hours_surveyed = round(sum(duration_hours))
     )

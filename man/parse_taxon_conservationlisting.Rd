@@ -2,7 +2,8 @@
 % Please edit documentation in R/parse_taxon-conservationlisting.R
 \name{parse_taxon_conservationlisting}
 \alias{parse_taxon_conservationlisting}
-\title{Parse a \code{wastd_api_response} of \code{taxon-conservationlisting} to tbl_df}
+\title{Parse a \code{wastd_api_response} of \code{taxon-conservationlisting} to
+tbl_df.}
 \usage{
 parse_taxon_conservationlisting(
   wastd_api_response,
@@ -50,5 +51,6 @@ A \code{tbl_df} with columns:
 }
 }
 \description{
-Parse a \code{wastd_api_response} of \code{taxon-conservationlisting} to tbl_df
+Parse a \code{wastd_api_response} of \code{taxon-conservationlisting} to
+tbl_df.
 }

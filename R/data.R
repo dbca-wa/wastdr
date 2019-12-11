@@ -1,8 +1,9 @@
 #' AnimalEncounter WAStD API response
 #'
 #' This API response is parsed into wastr's data "tags"
-#'
+# nolint start
 #' @source https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&format=json
+# nolint end
 #' @examples
 #' # Prove that animal_encounters parses to animals
 #'
@@ -17,8 +18,9 @@
 #'
 #' A parsed \code{wastd_api_response} with 10 animal encounters from
 #' \code{get_wastd("animal-encounters")}
-#'
+# nolint start
 #' @source https://strandings.dpaw.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&format=json
+# nolint end
 #'
 #' \itemize{
 #'   \item area_name <chr>
@@ -96,7 +98,9 @@
 #'   \item observer <chr>
 #'   \item reporter <chr>
 #' }
+# nolint start
 #' @source https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=10&format=json&nest_type=hatched-nest
+# nolint end
 #' @examples
 #' data("nests")
 #' head(nests)
@@ -106,8 +110,9 @@
 #' TurtleNestEncounter (tracks and nests) WAStD API response
 #'
 #' This API response is parsed into wastr's data "nests".
-#'
+# nolint start
 #' @source https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=100&format=json
+# nolint end
 #' @examples
 #' # Prove that turtle_nest_encounters_hatched parses to nests
 #' library(dplyr)
@@ -154,7 +159,9 @@
 #'   \item observer <chr>
 #'   \item reporter <chr>
 #' }
+# nolint start
 #' @source https://strandings.dpaw.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&limit=100&format=json
+# nolint end
 #' @examples
 #' head(nests)
 "nests"

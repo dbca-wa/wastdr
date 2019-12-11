@@ -13,17 +13,20 @@ map_mwi_odkc(
 )
 }
 \arguments{
+\item{data}{The output of \code{ruODK::get_submissions} run on ODK form
+Marine Wildlife Incident 0.6}
+
 \item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
 
 \item{fmt}{The desired date format, default: "d/m/Y H:M"}
+
+\item{tz}{The lubridate timezone, default: "Australia/Perth}
 
 \item{cluster}{If TRUE, cluster map markers. Default: FALSE.
 Note: In some places, the aerial background layer does not provide imagery
 at sufficient zoom levels, and therefore restricts the map zoom at levels
 where the cluster markers don't expand. Switch to "Place names" to let
 cluster markers expand.}
-
-\item{tracks}{The output of \code{parse_turtle_nest_encounters} and \code{add_nest_labels}.}
 }
 \value{
 A leaflet map

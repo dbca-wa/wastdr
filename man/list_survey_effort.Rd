@@ -2,7 +2,8 @@
 % Please edit documentation in R/summarise_surveys.R
 \name{list_survey_effort}
 \alias{list_survey_effort}
-\title{Create a datatable from the surveyed hours from the output of \code{parse_surveys}.}
+\title{Create a datatable from the surveyed hours from the output of
+\code{parse_surveys}.}
 \usage{
 list_survey_effort(surveys, placename = "")
 }
@@ -12,5 +13,6 @@ list_survey_effort(surveys, placename = "")
 \item{placename}{(string) The place name, used in labels. Default: ""}
 }
 \description{
-Create a datatable from the surveyed hours from the output of \code{parse_surveys}.
+Create a datatable from the surveyed hours from the output of
+\code{parse_surveys}.
 }

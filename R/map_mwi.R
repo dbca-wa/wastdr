@@ -6,9 +6,11 @@
 #' This map function uses data from ODK Central / ruODK using form
 #' "Marine Wildlife Incident 0.6".
 #'
-#' @template param-tracks
+#' @param data The output of \code{ruODK::get_submissions} run on ODK form
+#'   Marine Wildlife Incident 0.6
 #' @template param-wastd_url
 #' @template param-fmt
+#' @template param-tz
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
@@ -26,13 +28,14 @@ map_mwi_odkc <- function(data,
   } else {
     co <- NULL
   }
-  leaflet(width = 800, height = 600) %>%
-    addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
-    addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-    clearBounds() %>%
-    addAwesomeMarkers(
+  leaflet::leaflet(width = 800, height = 600) %>%
+    leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
+    leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
+    leaflet::clearBounds() %>%
+    leaflet::addAwesomeMarkers(
       data = data,
-      lng = ~observed_at_longitude, lat = ~observed_at_latitude,
+      lng = ~observed_at_longitude,
+      lat = ~observed_at_latitude,
       icon = leaflet::makeAwesomeIcon(
         text = "MWI",
         markerColor = "red"
@@ -44,13 +47,14 @@ map_mwi_odkc <- function(data,
       popup = ~ glue::glue(
         "<h3>{humanize(health)} {humanize(maturity)} ",
         "{humanize(sex)} {humanize(species)}</h3>",
-        "<p>Seen on {lubridate::with_tz(observation_start_time, tz)} by {reporter}",
+        "<p>Seen on {lubridate::with_tz(observation_start_time, tz)}",
+        " by {reporter}",
         "<p>Cause of death: {humanize(cause_of_death)}</p>"
       ),
-      group = df,
+      group = "Marine Wildlife Incidents",
       clusterOptions = co
     ) %>%
-    addLayersControl(
+    leaflet::addLayersControl(
       baseGroups = c("Aerial", "Place names"),
       overlayGroups = c("Marine Wildlife Incidents"),
       options = leaflet::layersControlOptions(collapsed = FALSE)

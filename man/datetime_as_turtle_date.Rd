@@ -30,8 +30,12 @@ This date convention is widely used in the turtle research community.
 }
 \examples{
 # noon AWST is turtle date "2016-11-20":
-datetime_as_turtle_date(httpdate_as_gmt08("2016-11-20T04:00:00Z"))
+datetime_as_turtle_date(
+  httpdate_as_gmt08("2016-11-20T04:00:00Z")
+)
 
 # 1 sec before noon AWST is turtle date "2016-11-19":
-datetime_as_turtle_date(httpdate_as_gmt08_turtle_date("2016-11-21T03:59:59Z"))
+datetime_as_turtle_date(
+  httpdate_as_gmt08_turtle_date("2016-11-21T03:59:59Z")
+)
 }

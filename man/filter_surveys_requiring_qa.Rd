@@ -2,7 +2,8 @@
 % Please edit documentation in R/filters.R
 \name{filter_surveys_requiring_qa}
 \alias{filter_surveys_requiring_qa}
-\title{Filter surveys with "NEEDS QA" in \code{start_comments} or \code{end_comments}}
+\title{Filter surveys with "NEEDS QA" in \code{start_comments} or
+\code{end_comments}.}
 \usage{
 filter_surveys_requiring_qa(value)
 }
@@ -10,5 +11,6 @@ filter_surveys_requiring_qa(value)
 \item{value}{The output of \code{parse_surveys}}
 }
 \description{
-Filter surveys with "NEEDS QA" in \code{start_comments} or \code{end_comments}
+Filter surveys with "NEEDS QA" in \code{start_comments} or
+\code{end_comments}.
 }

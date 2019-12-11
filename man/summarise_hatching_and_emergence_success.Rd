@@ -13,7 +13,7 @@ summarise_hatching_and_emergence_success(value)
 Calculates:
 \itemize{
 \item count The count of nests
-\item clutch_size_fresh Mean observed clutch size during nesting event (if given)
+\item clutch_size_fresh Mean observed clutch size during nesting event
 \item clutch_size_mean Mean of reconstructed clutch size
 \item clutch_size_sd SD of reconstructed clutch size
 \item clutch_size_min Min of reconstructed clutch size

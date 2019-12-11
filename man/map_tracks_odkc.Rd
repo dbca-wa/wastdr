@@ -19,6 +19,8 @@ map_tracks_odkc(
 
 \item{fmt}{The desired date format, default: "d/m/Y H:M"}
 
+\item{tz}{The lubridate timezone, default: "Australia/Perth}
+
 \item{cluster}{If TRUE, cluster map markers. Default: FALSE.
 Note: In some places, the aerial background layer does not provide imagery
 at sufficient zoom levels, and therefore restricts the map zoom at levels

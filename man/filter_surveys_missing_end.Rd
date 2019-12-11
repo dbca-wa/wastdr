@@ -2,7 +2,7 @@
 % Please edit documentation in R/filters.R
 \name{filter_surveys_missing_end}
 \alias{filter_surveys_missing_end}
-\title{Filter surveys with a missing \code{end_source_id}}
+\title{Filter surveys with a missing \code{end_source_id}.}
 \usage{
 filter_surveys_missing_end(value)
 }
@@ -10,5 +10,5 @@ filter_surveys_missing_end(value)
 \item{value}{The output of \code{parse_surveys}}
 }
 \description{
-Filter surveys with a missing \code{end_source_id}
+Filter surveys with a missing \code{end_source_id}.
 }

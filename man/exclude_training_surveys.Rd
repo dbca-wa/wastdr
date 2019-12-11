@@ -2,7 +2,7 @@
 % Please edit documentation in R/filters.R
 \name{exclude_training_surveys}
 \alias{exclude_training_surveys}
-\title{Exclude training surveys}
+\title{Exclude training surveys.}
 \usage{
 exclude_training_surveys(value)
 }
@@ -10,5 +10,5 @@ exclude_training_surveys(value)
 \item{value}{The output of \code{parse_surveys}}
 }
 \description{
-Exclude training surveys
+Exclude training surveys.
 }

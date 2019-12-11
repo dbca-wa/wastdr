@@ -2,7 +2,8 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{ggplot_track_successrate_by_date}
 \alias{ggplot_track_successrate_by_date}
-\title{Plot the track success rate (relative numbers) of a given species as time series}
+\title{Plot the track success rate (relative numbers) of a given species as time
+series.}
 \usage{
 ggplot_track_successrate_by_date(
   data,
@@ -21,5 +22,6 @@ ggplot_track_successrate_by_date(
 \item{prefix}{(string) A prefix for the filename. Default: ""}
 }
 \description{
-Plot the track success rate (relative numbers) of a given species as time series
+Plot the track success rate (relative numbers) of a given species as time
+series.
 }

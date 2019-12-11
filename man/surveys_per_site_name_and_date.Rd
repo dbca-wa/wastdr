@@ -2,7 +2,8 @@
 % Please edit documentation in R/summarise_surveys.R
 \name{surveys_per_site_name_and_date}
 \alias{surveys_per_site_name_and_date}
-\title{Count number of surveys per season, turtle date and site_name from the output of \code{parse_surveys}.}
+\title{Count number of surveys per season, turtle date and site_name from the output
+of \code{parse_surveys}.}
 \usage{
 surveys_per_site_name_and_date(surveys)
 }
@@ -10,8 +11,10 @@ surveys_per_site_name_and_date(surveys)
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
 }
 \value{
-A tibble with columns season, turtle_date, site_name, n (number of surveys)
+A tibble with columns season, turtle_date, site_name, n
+(number of surveys)
 }
 \description{
-Count number of surveys per season, turtle date and site_name from the output of \code{parse_surveys}.
+Count number of surveys per season, turtle date and site_name from the output
+of \code{parse_surveys}.
 }

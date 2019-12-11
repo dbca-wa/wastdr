@@ -31,6 +31,7 @@ A leaflet map
 Map TurtleNestEncounters interactively.
 }
 \details{
-Creates a Leaflet map with an interactive legend offering to toggle each species
-separately. The maps auto-zooms to the extent of data given.
+Creates a Leaflet map with an interactive legend offering to
+toggle each species separately.
+The maps auto-zooms to the extent of data given.
 }

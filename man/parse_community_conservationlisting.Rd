@@ -2,7 +2,8 @@
 % Please edit documentation in R/parse_community-conservationlisting.R
 \name{parse_community_conservationlisting}
 \alias{parse_community_conservationlisting}
-\title{Parse a \code{wastd_api_response} of \code{community-conservationlisting} to tbl_df}
+\title{Parse a \code{wastd_api_response} of \code{community-conservationlisting} to
+tbl_df.}
 \usage{
 parse_community_conservationlisting(
   wastd_api_response,
@@ -35,8 +36,8 @@ A \code{tbl_df} with columns:
         effective from (GMT+08).
   \item effective_to <dttm> The date on which this Conservation Listing was
         effective_to (GMT+08).
-  \item last_reviewed_on <dttm> The date on which this Conservation Listing was
-        last reviewed on (GMT+08).
+  \item last_reviewed_on <dttm> The date on which this Conservation Listing
+        was last reviewed on (GMT+08).
   \item review_due <dttm> The date on which this Conservation Listing will be
         due for reviewed (GMT+08).
   \item comments <chr> Any comments. Worth a read!
@@ -50,5 +51,6 @@ A \code{tbl_df} with columns:
 }
 }
 \description{
-Parse a \code{wastd_api_response} of \code{community-conservationlisting} to tbl_df
+Parse a \code{wastd_api_response} of \code{community-conservationlisting} to
+tbl_df.
 }

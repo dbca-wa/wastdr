@@ -2,7 +2,8 @@
 #'
 #'
 #' @param wastd_api_response A \code{wastd_api_response} of
-#' \code{turtle-nest-encounters}, e.g. \code{wastd_GET("turtle-nest-encounters")}
+#' \code{turtle-nest-encounters}, e.g.
+#' \code{wastd_GET("turtle-nest-encounters")}
 #' @return A \code{tbl_df} with columns:
 #' \itemize{
 #'   \item area_name <chr>
@@ -19,8 +20,8 @@
 #'   \item datetime <dttm>
 #'   \item turtle_date <date>
 #'   \item season <int>
-#'   \item season_week <int> The number of completed weeks since fiscal year start
-#'   \item iso_week <int> The number of completed weeks since calendar year start
+#'   \item season_week <int> Number of completed weeks since fiscal year start
+#'   \item iso_week <int> Number of completed weeks since calendar year start
 #'   \item longitude <dbl>
 #'   \item latitude <dbl>
 #'   \item crs <chr>
@@ -37,8 +38,10 @@
 #'   \item photos <list>
 #'   \item hatching_success <dbl>
 #'   \item emergence_success <dbl>
-#'   \item clutch_size <dbl> The calculated clutch size reconstructed from excavated eggs.
-#'   \item clutch_size_fresh <dbl> The directly observed clutch size during tagging.
+#'   \item clutch_size <dbl> The calculated clutch size reconstructed from
+#'   excavated eggs.
+#'   \item clutch_size_fresh <dbl> The directly observed clutch size during
+#'   tagging.
 #'   \item source <chr>
 #'   \item source_id <chr>
 #'   \item encounter_type <chr>
@@ -66,10 +69,19 @@ parse_turtle_nest_encounters <- function(wastd_api_response) {
       site_id = map_chr_hack(., c("properties", "site", "pk")) %>% as.integer(),
 
       survey_id = map_chr_hack(., c("properties", "survey", "id")) %>% as.integer(),
-      survey_start_time = map_chr_hack(., c("properties", "survey", "start_time")) %>% httpdate_as_gmt08(),
-      survey_end_time = map_chr_hack(., c("properties", "survey", "end_time")) %>% httpdate_as_gmt08(),
-      survey_start_comments = map_chr_hack(., c("properties", "survey", "start_comments")),
-      survey_end_comments = map_chr_hack(., c("properties", "survey", "end_comments")),
+      survey_start_time = map_chr_hack(.,
+                                       c("properties", "survey", "start_time")) %>% httpdate_as_gmt08(),
+      survey_end_time = map_chr_hack(.,
+                                     c("properties", "survey", "end_time")) %>% httpdate_as_gmt08(),
+      survey_start_comments = map_chr_hack(.,
+                                           c(
+                                             "properties",
+                                             "survey",
+                                             "start_comments"
+                                           )),
+      survey_end_comments = map_chr_hack(., c(
+        "properties", "survey", "end_comments"
+      )),
 
       datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08(),
       calendar_date_awst = datetime %>%

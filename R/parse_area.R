@@ -25,12 +25,12 @@ parse_surveys <- function(
 
   wastd_api_response$features %>% {
     tibble::tibble(
-      area_name = map_chr_hack(., c("properties", "name")),
-      area_type = map_chr_hack(., c("properties", "area_type")),
-      area_id = map_chr_hack(., c("properties", "pk")) %>% as.integer(),
-      northern_extent = map_chr_hack(., c("properties", "northern_extent")) %>% as.numeric(),
-      length_surveyed_m = map_chr_hack(., c("properties", "length_surveyed_m")) %>% as.integer(),
-      length_survey_roundtrip_m = map_chr_hack(., c("properties", "length_survey_roundtrip_m")) %>% as.integer()
+      area_name = purrr::map_chr(., c("properties", "name"), .default = NA),
+      area_type = purrr::map_chr(., c("properties", "area_type"), .default = NA),
+      area_id = purrr::map_chr(., c("properties", "pk"), .default = NA_real_),
+      northern_extent = purrr::map_dbl(., c("properties", "northern_extent"), .default = NA_real_),
+      length_surveyed_m = purrr::map_dbl(., c("properties", "length_surveyed_m"), .default = NA),
+      length_survey_roundtrip_m = purrr::map_dbl(., c("properties", "length_survey_roundtrip_m"), .default = NA_real_)
     )
   }
 }

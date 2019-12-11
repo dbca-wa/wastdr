@@ -18,8 +18,8 @@
 #'   \item datetime <dttm>
 #'   \item turtle_date <date>
 #'   \item season <int>
-#'   \item season_week <int> The number of completed weeks since fiscal year start
-#'   \item iso_week <int> The number of completed weeks since calendar year start
+#'   \item season_week <int> Number of completed weeks since fiscal year start
+#'   \item iso_week <int> Number of completed weeks since calendar year start
 #'   \item longitude <chr>
 #'   \item latitude <chr>
 #'   \item crs <chr>
@@ -51,59 +51,128 @@
 #' @importFrom purrr map map_chr map_dbl
 parse_animal_encounters <- function(wastd_api_response) {
   obs <- NULL # Make R CMD check happy
-  . <- NULL
   datetime <- NULL
 
   wastd_api_response$features %>% {
     tibble::tibble(
-      area_name = map_chr_hack(., c("properties", "area", "name")),
-      area_type = map_chr_hack(., c("properties", "area", "area_type")),
-      area_id = map_chr_hack(., c("properties", "area", "pk")) %>% as.integer(),
-      site_name = map_chr_hack(., c("properties", "site", "name")),
-      site_type = map_chr_hack(., c("properties", "site", "area_type")),
-      site_id = map_chr_hack(., c("properties", "site", "pk")) %>% as.integer(),
-      survey_id = map_chr_hack(., c("properties", "survey", "id")) %>% as.integer(),
-      survey_start_time = map_chr_hack(., c("properties", "survey", "start_time")) %>% httpdate_as_gmt08(),
-      survey_end_time = map_chr_hack(., c("properties", "survey", "end_time")) %>% httpdate_as_gmt08(),
-      survey_start_comments = map_chr_hack(., c("properties", "survey", "start_comments")),
-      survey_end_comments = map_chr_hack(., c("properties", "survey", "end_comments")),
-      datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08(),
+      area_name = purrr::map_chr(.,
+                                 c("properties", "area", "name"),
+                                 .default = NA),
+      area_type = purrr::map_chr(.,
+                                 c("properties", "area", "area_type"),
+                                 .default = NA),
+      area_id = purrr::map_int(.,
+                               c("properties", "area", "pk"),
+                               .default = NA_integer_),
+      site_name = purrr::map_chr(.,
+                                 c("properties", "site", "name"),
+                                 .default = NA),
+      site_type = purrr::map_chr(.,
+                                 c("properties", "site", "area_type"),
+                                 .default = NA),
+      site_id = purrr::map_int(.,
+                               c("properties", "site", "pk"),
+                               .default = NA_integer_),
+      survey_id = purrr::map_int(.,
+                                 c("properties", "survey", "id"),
+                                 .default = NA_integer_),
+      survey_start_time = purrr::map_chr(.,
+                                         c("properties",
+                                           "survey",
+                                           "start_time"),
+                                         .default = NA) %>%
+        httpdate_as_gmt08(),
+      survey_end_time = purrr::map_chr(.,
+                                       c("properties", "survey", "end_time"),
+                                       .default = NA) %>%
+        httpdate_as_gmt08(),
+      survey_start_comments = purrr::map_chr(.,
+                                             c(
+                                               "properties",
+                                               "survey",
+                                               "start_comments"
+                                             ),
+                                             .default = NA),
+      survey_end_comments = purrr::map_chr(.,
+                                           c(
+                                             "properties",
+                                             "survey",
+                                             "end_comments"
+                                           ),
+                                           .default = NA),
+      datetime = purrr::map_chr(.,
+                                c("properties", "when"),
+                                .default = NA) %>%
+        httpdate_as_gmt08(),
       calendar_date_awst = datetime %>%
         lubridate::with_tz("Australia/Perth") %>%
         lubridate::floor_date(unit = "day") %>%
         as.character(),
-      # turtle_date = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08_turtle_date(),
       turtle_date = datetime %>% datetime_as_turtle_date(),
-      # season = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_season(),
       season = datetime %>% datetime_as_season(),
       season_week = datetime %>% datetime_as_seasonweek(),
       iso_week = datetime %>% datetime_as_isoweek(),
-      longitude = purrr::map_dbl(., c("properties", "longitude")),
-      latitude = purrr::map_dbl(., c("properties", "latitude")),
-      crs = purrr::map_chr(., c("properties", "crs")),
-      location_accuracy = purrr::map_chr(., c("properties", "location_accuracy")) %>% as.integer(),
-      name = map_chr_hack(., c("properties", "name")),
-      species = purrr::map_chr(., c("properties", "species")),
-      health = purrr::map_chr(., c("properties", "health")),
-      sex = purrr::map_chr(., c("properties", "sex")),
-      maturity = purrr::map_chr(., c("properties", "maturity")),
+      longitude = purrr::map_dbl(., c("properties", "longitude"), .default=NA_real_),
+      latitude = purrr::map_dbl(., c("properties", "latitude"), .default=NA_real_),
+      crs = purrr::map_chr(., c("properties", "crs"), .default=NA),
+      location_accuracy = purrr::map_chr(.,
+                                         c("properties", "location_accuracy"),
+                                         .default = NA) %>% as.numeric(),
+      name = purrr::map_chr(., c("properties", "name"), .default = NA),
+      species = purrr::map_chr(., c("properties", "species"), .default = NA),
+      health = purrr::map_chr(., c("properties", "health"), .default = NA),
+      sex = purrr::map_chr(., c("properties", "sex"), .default = NA),
+      maturity = purrr::map_chr(., c("properties", "maturity"), .default = NA),
       # behaviour = purrr::map_chr(., c("properties", "behaviour")),
-      habitat = purrr::map_chr(., c("properties", "habitat")),
-      activity = purrr::map_chr(., c("properties", "activity")),
-      nesting_event = purrr::map_chr(., c("properties", "nesting_event")),
-      checked_for_injuries = purrr::map_chr(., c("properties", "checked_for_injuries")),
-      scanned_for_pit_tags = purrr::map_chr(., c("properties", "scanned_for_pit_tags")),
-      checked_for_flipper_tags = purrr::map_chr(., c("properties", "checked_for_flipper_tags")),
-      cause_of_death = purrr::map_chr(., c("properties", "cause_of_death")),
-      cause_of_death_confidence = purrr::map_chr(., c("properties", "cause_of_death_confidence")),
-      absolute_admin_url = purrr::map_chr(., c("properties", "absolute_admin_url")),
-      obs = purrr::map(., c("properties", "observation_set")),
-      source = purrr::map_chr(., c("properties", "source")),
-      source_id = purrr::map_chr(., "id"),
-      encounter_type = purrr::map_chr(., c("properties", "encounter_type")),
-      status = purrr::map_chr(., c("properties", "status")),
-      observer = map_chr_hack(., c("properties", "observer", "name")),
-      reporter = map_chr_hack(., c("properties", "reporter", "name"))
+      habitat = purrr::map_chr(., c("properties", "habitat"), .default = NA),
+      activity = purrr::map_chr(., c("properties", "activity"), .default = NA),
+      nesting_event = purrr::map_chr(.,
+                                     c("properties", "nesting_event"),
+                                     .default = NA),
+      checked_for_injuries = purrr::map_chr(.,
+                                            c(
+                                              "properties",
+                                              "checked_for_injuries"
+                                            ),
+                                            .default = NA),
+      scanned_for_pit_tags = purrr::map_chr(.,
+                                            c(
+                                              "properties",
+                                              "scanned_for_pit_tags"
+                                            ),
+                                            .default = NA),
+      checked_for_flipper_tags = purrr::map_chr(.,
+                                                c(
+                                                  "properties",
+                                                  "checked_for_flipper_tags"
+                                                ),
+                                                .default = NA),
+      cause_of_death = purrr::map_chr(.,
+                                      c("properties",
+                                        "cause_of_death"),
+                                      .default = NA),
+      cause_of_death_confidence = purrr::map_chr(
+        .,
+        c("properties",
+          "cause_of_death_confidence"),
+        .default = NA
+      ),
+      absolute_admin_url = purrr::map_chr(.,
+                                          c("properties", "absolute_admin_url"),
+                                          .default = NA),
+      obs = purrr::map(., c("properties", "observation_set"), .default = NA),
+      source = purrr::map_chr(., c("properties", "source"), .default = NA),
+      source_id = purrr::map_chr(., "id", .default = NA),
+      encounter_type = purrr::map_chr(.,
+                                      c("properties", "encounter_type"),
+                                      .default = NA),
+      status = purrr::map_chr(., c("properties", "status"), .default = NA),
+      observer = purrr::map_chr(.,
+                                c("properties", "observer", "name"),
+                                .default = NA),
+      reporter = purrr::map_chr(.,
+                                c("properties", "reporter", "name"),
+                                .default = NA)
     )
   }
 }

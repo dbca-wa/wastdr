@@ -10,9 +10,11 @@ gs_getFeature(
 )
 }
 \arguments{
-\item{layer_name}{The GeoServer layer name, default: "public:herbie_hbvsupra_public"}
+\item{layer_name}{The GeoServer layer name,
+default: "public:herbie_hbvsupra_public"}
 
-\item{url}{The GeoServer URL, default: "https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows"}
+\item{url}{The GeoServer URL,
+default: "https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows"}
 }
 \value{
 The httr::content of a GET request to the WFS GetFeature endpoint

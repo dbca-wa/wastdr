@@ -2,7 +2,8 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{hatching_emergence_success_site}
 \alias{hatching_emergence_success_site}
-\title{Sumarizes HS and ES for tracks of type `hatched-nest`, grouped by `site_name`.}
+\title{Sumarizes HS and ES for tracks of type `hatched-nest`,
+grouped by `site_name`.}
 \usage{
 hatching_emergence_success_site(value)
 }
@@ -10,5 +11,6 @@ hatching_emergence_success_site(value)
 \item{value}{The output of \code{parse_turtle_nest_encounters()}}
 }
 \description{
-Sumarizes HS and ES for tracks of type `hatched-nest`, grouped by `site_name`.
+Sumarizes HS and ES for tracks of type `hatched-nest`,
+grouped by `site_name`.
 }

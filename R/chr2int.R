@@ -5,8 +5,6 @@
 #'
 #' @return One list containing just the integer numbers
 #' @export
-#'
-#' @examples
 chr2int <- function(data) {
   data %>%
     data.table::tstrsplit(",", type.convert = T) %>%

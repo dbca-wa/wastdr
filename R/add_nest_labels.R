@@ -39,7 +39,8 @@ nest_type_text <- tibble::tibble(
 )
 
 
-#' Add labels for species and nest/track type to parsed \code{turtle-nest-encounters}.
+#' Add labels for species and nest/track type to parsed
+#' \code{turtle-nest-encounters}.
 #'
 #' @description Adds two columns, two new columns, \code{species_colours} and
 #' \code{nest_type_text}, to parsed \code{turtle-nest-encounters} containing

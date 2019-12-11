@@ -32,7 +32,7 @@ print.wastdr_settings <- function(x, ...) {
 
 
   if (is.null(x$api_token) && is.null(x$api_un)) {
-    message(glue::glue(
+    rlang::warn(glue::glue(
       "wastdr requires either an API token or a username and ",
       "password to authenticate requests to the WAStD API."
     ))

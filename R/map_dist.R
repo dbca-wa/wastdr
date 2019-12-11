@@ -1,22 +1,19 @@
 #' Map Disturbance observations interactively.
 #'
-#' @details Creates a Leaflet map with an interactive legend offering to toggle each disturbance class
-#' separately. The maps auto-zooms to the extent of data given.
+#' @details Creates a Leaflet map with an interactive legend offering to toggle
+#' each disturbance class separately.
+#' The maps auto-zooms to the extent of data given.
 #'
 #' @param dist The output of \code{parse_disturbance_observations()}.
 #' @template param-wastd_url
 #' @template param-fmt
 #' @template param-cluster
 #' @return A leaflet map
-#' @importFrom purrr walk
-#' @importFrom glue glue
-#' @importFrom leaflet leaflet addAwesomeMarkers addLayersControl addProviderTiles clearBounds
 #' @export
 map_dist <- function(dist,
                      wastd_url = wastdr::get_wastd_url(),
                      fmt = "%d/%m/%Y %H:%M",
                      cluster = FALSE) {
-  . <- NULL
   layersControlOptions <- NULL
   markerClusterOptions <- NULL
 
@@ -56,7 +53,8 @@ map_dist <- function(dist,
           "<h3>{humanize(disturbance_cause)}</h3>",
           "<p>Seen on {format(datetime, fmt)} AWST by {observer}",
           "<p>Survey {survey_id} at {site_name} ",
-          "{format(survey_start_time, fmt)}-{format(survey_end_time, fmt)} AWST</p>",
+          "{format(survey_start_time, fmt)}-",
+          "{format(survey_end_time, fmt)} AWST</p>",
           '<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow" ',
           'href="{wastd_url}{absolute_admin_url}">Edit on WAStD</a></p>'
         ),
@@ -83,18 +81,15 @@ map_dist <- function(dist,
 #' @param dist The output of \code{parse_disturbance_observations()}.
 #' @template param-wastd_url
 #' @template param-fmt
+#' @template param-tz
 #' @template param-cluster
 #' @return A leaflet map
-#' @importFrom purrr walk
-#' @importFrom glue glue
-#' @importFrom leaflet leaflet addAwesomeMarkers addLayersControl addProviderTiles clearBounds
 #' @export
 map_dist_odkc <- function(dist,
                           wastd_url = wastdr::get_wastd_url(),
                           fmt = "%d/%m/%Y %H:%M",
                           tz = "Australia/Perth",
                           cluster = FALSE) {
-  . <- NULL
   layersControlOptions <- NULL
   markerClusterOptions <- NULL
 
@@ -128,11 +123,13 @@ map_dist_odkc <- function(dist,
           iconColor = ~ pal(disturbance_cause)
         ),
         label = ~ glue::glue(
-          "{lubridate::with_tz(observation_start_time, tz)} {humanize(disturbance_cause)}"
+          "{lubridate::with_tz(observation_start_time, tz)} ",
+          "{humanize(disturbance_cause)}"
         ),
         popup = ~ glue::glue(
           "<h3>{humanize(disturbance_cause)}</h3>",
-          "<p>Seen on {lubridate::with_tz(observation_start_time, tz)} AWST by {reporter}"
+          "<p>Seen on {lubridate::with_tz(observation_start_time, tz)} ",
+          "AWST by {reporter}"
         ),
 
         group = df,

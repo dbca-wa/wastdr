@@ -1,8 +1,10 @@
-#' Parse a \code{wastd_api_response} of \code{disturbance-observations} to tbl_df
+#' Parse a \code{wastd_api_response} of \code{disturbance-observations} to
+#' tbl_df.
 #'
 #'
 #' @param wastd_api_response A \code{wastd_api_response} of
-#' \code{disturbance-observations}, e.g. \code{wastd_GET("disturbance-observations")}
+#' \code{disturbance-observations}, e.g.
+#' \code{wastd_GET("disturbance-observations")}
 #' @return A \code{tbl_df} with columns:
 #' \itemize{
 #'   \item area_name <chr>
@@ -25,8 +27,8 @@
 #'   \item location_accuracy <dbl>
 #'   \item turtle_date <date>
 #'   \item season <int>
-#'   \item season_week <int> The number of completed weeks since fiscal year start
-#'   \item iso_week <int> The number of completed weeks since calendar year start
+#'   \item season_week <int> Number of completed weeks since fiscal year start
+#'   \item iso_week <int> Number of completed weeks since calendar year start
 #'   \item comments <chr>
 #'   \item absolute_admin_url <chr>
 #'   \item photos <list>
@@ -52,19 +54,88 @@ parse_disturbance_observations <- function(wastd_api_response) {
 
   wastd_api_response$features %>% {
     tibble::tibble(
-      area_name = map_chr_hack(., c("properties", "encounter", "properties", "area", "name")),
-      area_type = map_chr_hack(., c("properties", "encounter", "properties", "area", "area_type")),
-      area_id = map_chr_hack(., c("properties", "encounter", "properties", "area", "pk")) %>% as.integer(),
-      site_name = map_chr_hack(., c("properties", "encounter", "properties", "site", "name")),
-      site_type = map_chr_hack(., c("properties", "encounter", "properties", "site", "area_type")),
-      site_id = map_chr_hack(., c("properties", "encounter", "properties", "site", "pk")) %>% as.integer(),
-      survey_id = map_chr_hack(., c("properties", "encounter", "properties", "survey", "id")) %>% as.integer(),
-      survey_start_time = map_chr_hack(., c("properties", "encounter", "properties", "survey", "start_time")) %>% httpdate_as_gmt08(),
-      survey_end_time = map_chr_hack(., c("properties", "encounter", "properties", "survey", "end_time")) %>% httpdate_as_gmt08(),
-      survey_start_comments = map_chr_hack(., c("properties", "encounter", "properties", "survey", "start_comments")),
-      survey_end_comments = map_chr_hack(., c("properties", "encounter", "properties", "survey", "end_comments")),
+      area_name = map_chr_hack(
+        .,
+        c("properties", "encounter", "properties", "area", "name")
+      ),
+      area_type = map_chr_hack(
+        .,
+        c(
+          "properties",
+          "encounter",
+          "properties",
+          "area",
+          "area_type"
+        )
+      ),
+      area_id = map_chr_hack(., c(
+        "properties", "encounter", "properties", "area", "pk"
+      )) %>% as.integer(),
+      site_name = map_chr_hack(
+        .,
+        c("properties", "encounter", "properties", "site", "name")
+      ),
+      site_type = map_chr_hack(
+        .,
+        c(
+          "properties",
+          "encounter",
+          "properties",
+          "site",
+          "area_type"
+        )
+      ),
+      site_id = map_chr_hack(., c(
+        "properties", "encounter", "properties", "site", "pk"
+      )) %>% as.integer(),
+      survey_id = map_chr_hack(
+        .,
+        c("properties", "encounter", "properties", "survey", "id")
+      ) %>% as.integer(),
+      survey_start_time = map_chr_hack(
+        .,
+        c(
+          "properties",
+          "encounter",
+          "properties",
+          "survey",
+          "start_time"
+        )
+      ) %>% httpdate_as_gmt08(),
+      survey_end_time = map_chr_hack(
+        .,
+        c(
+          "properties",
+          "encounter",
+          "properties",
+          "survey",
+          "end_time"
+        )
+      ) %>% httpdate_as_gmt08(),
+      survey_start_comments = map_chr_hack(
+        .,
+        c(
+          "properties",
+          "encounter",
+          "properties",
+          "survey",
+          "start_comments"
+        )
+      ),
+      survey_end_comments = map_chr_hack(
+        .,
+        c(
+          "properties",
+          "encounter",
+          "properties",
+          "survey",
+          "end_comments"
+        )
+      ),
       encounter_id = purrr::map_chr(., c("properties", "encounter", "id")),
-      datetime = purrr::map_chr(., c("properties", "encounter", "properties", "when")) %>% httpdate_as_gmt08(),
+      datetime = purrr::map_chr(., c(
+        "properties", "encounter", "properties", "when"
+      )) %>% httpdate_as_gmt08(),
       calendar_date_awst = datetime %>%
         lubridate::with_tz("Australia/Perth") %>%
         lubridate::floor_date(unit = "day") %>%
@@ -73,23 +144,85 @@ parse_disturbance_observations <- function(wastd_api_response) {
       season = datetime %>% datetime_as_season(),
       season_week = datetime %>% datetime_as_seasonweek(),
       iso_week = datetime %>% datetime_as_isoweek(),
-      longitude = purrr::map_dbl(., c("properties", "encounter", "properties", "longitude")),
-      latitude = purrr::map_dbl(., c("properties", "encounter", "properties", "latitude")),
-      crs = purrr::map_chr(., c("properties", "encounter", "properties", "crs")),
-      location_accuracy = purrr::map_chr(., c("properties", "encounter", "properties", "location_accuracy")) %>% as.integer(),
-      comments = map_chr_hack(., c("properties", "encounter", "properties", "comments")),
-      absolute_admin_url = purrr::map_chr(., c("properties", "encounter", "properties", "absolute_admin_url")),
-      photos = purrr::map(., c("properties", "encounter", "properties", "photographs")),
-      source = purrr::map_chr(., c("properties", "encounter", "properties", "source")),
-      # source_id = purrr::map_chr(., c("properties", "encounter", "properties", "source_id")),
-      encounter_type = purrr::map_chr(., c("properties", "encounter", "properties", "encounter_type")),
-      status = purrr::map_chr(., c("properties", "encounter", "properties", "status")),
-      observer = map_chr_hack(., c("properties", "encounter", "properties", "observer", "name")),
-      reporter = map_chr_hack(., c("properties", "encounter", "properties", "reporter", "name")),
-      disturbance_cause = purrr::map_chr(., c("properties", "disturbance_cause")),
-      disturbance_cause_confidence = purrr::map_chr(., c("properties", "disturbance_cause_confidence")),
-      disturbance_severity = purrr::map_chr(., c("properties", "disturbance_severity")),
-      disturbance_comments = map_chr_hack(., c("properties", "comments"))
+      longitude = purrr::map_dbl(., c(
+        "properties", "encounter", "properties", "longitude"
+      )),
+      latitude = purrr::map_dbl(., c(
+        "properties", "encounter", "properties", "latitude"
+      )),
+      crs = purrr::map_chr(., c(
+        "properties", "encounter", "properties", "crs"
+      )),
+      location_accuracy = purrr::map_chr(
+        .,
+        c(
+          "properties",
+          "encounter",
+          "properties",
+          "location_accuracy"
+        )
+      ) %>% as.integer(),
+      comments = map_chr_hack(., c(
+        "properties", "encounter", "properties", "comments"
+      )),
+      absolute_admin_url = purrr::map_chr(
+        .,
+        c(
+          "properties",
+          "encounter",
+          "properties",
+          "absolute_admin_url"
+        )
+      ),
+      photos = purrr::map(
+        .,
+        c("properties", "encounter", "properties", "photographs")
+      ),
+      source = purrr::map_chr(., c(
+        "properties", "encounter", "properties", "source"
+      )),
+      # source_id = purrr::map_chr(.,
+      # ("properties", "encounter", "properties", "source_id")),
+      encounter_type = purrr::map_chr(
+        .,
+        c("properties", "encounter", "properties", "encounter_type")
+      ),
+      status = purrr::map_chr(., c(
+        "properties", "encounter", "properties", "status"
+      )),
+      observer = map_chr_hack(
+        .,
+        c(
+          "properties",
+          "encounter",
+          "properties",
+          "observer",
+          "name"
+        )
+      ),
+      reporter = map_chr_hack(
+        .,
+        c(
+          "properties",
+          "encounter",
+          "properties",
+          "reporter",
+          "name"
+        )
+      ),
+      disturbance_cause = purrr::map_chr(.,
+                                         c("properties", "disturbance_cause"),
+                                         .default=NA),
+      disturbance_cause_confidence = purrr::map_chr(.,
+                                                    c(
+        "properties", "disturbance_cause_confidence"
+      ), .default=NA),
+      disturbance_severity = purrr::map_chr(., c(
+        "properties", "disturbance_severity"
+      ), .default=NA),
+      disturbance_comments = purrr::map_chr(.,
+                                            c("properties", "comments"),
+                                            .default = NA)
     )
   }
 }

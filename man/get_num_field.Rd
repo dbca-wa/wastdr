@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_num_field.R
 \name{get_num_field}
 \alias{get_num_field}
-\title{From a list of unnamed lists, or the data.frame equivalent, extract a field or -1}
+\title{From a list of unnamed lists, or the data.frame equivalent, extract a field
+or -1.}
 \usage{
 get_num_field(lol, field)
 }
@@ -19,18 +20,4 @@ The given list of lists is unlisted,
   \code{\link{extract_possibly}} extracts the value of the field or -1,
   another call to unlist deduplicates, and finally the result is cast to
   numeric.
-}
-\examples{
-\dontrun{
-require(magrittr)
-nest_json <- get_wastd("turtle-nest-encounters")
-nest_hs <- nest_json$features \%>\% {
-  tibble::tibble(
-    obs = purrr::map(., c("properties", "observation_set")),
-    hatching_success = obs \%>\%
-      purrr::map(get_num_field, "hatching_success") \%>\%
-      as.numeric
-  )
- }
-}
 }

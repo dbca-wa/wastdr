@@ -51,7 +51,7 @@ nesting_type_by_season_week_site_species <- . %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
     season, season_week, iso_week, site_name, species, nest_type
-  ) %>%
+    ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
@@ -82,12 +82,14 @@ track_success <- function(tracks) {
   successful <- NULL
 
   all_tracks_by_date <- tracks %>%
-    dplyr::filter(nest_type %in% c(
-      "successful-crawl",
-      "false-crawl",
-      "track-unsure",
-      "track-not-assessed"
-    )) %>%
+    dplyr::filter(
+      nest_type %in% c(
+        "successful-crawl",
+        "false-crawl",
+        "track-unsure",
+        "track-not-assessed"
+      )
+    ) %>%
     dplyr::group_by(season, turtle_date, species) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
@@ -101,7 +103,8 @@ track_success <- function(tracks) {
     dplyr::rename(successful = n)
 
   all_tracks_by_date %>%
-    dplyr::left_join(successful_tracks_by_date, by = c("turtle_date", "species", "season")) %>%
+    dplyr::left_join(successful_tracks_by_date,
+                     by = c("turtle_date", "species", "season")) %>%
     dplyr::mutate(
       successful = ifelse(is.na(successful), 0, successful),
       track_success = 100 * successful / all
@@ -132,8 +135,7 @@ track_success_by_species <- function(track_success) {
 #' @template param-placename
 #' @template param-prefix
 #' @export
-ggplot_track_success_by_date <- function(
-                                         data,
+ggplot_track_success_by_date <- function(data,
                                          speciesname,
                                          placename = "",
                                          prefix = "") {
@@ -149,27 +151,42 @@ ggplot_track_success_by_date <- function(
     dplyr::filter(species == speciesname) %>%
     ggplot2::ggplot(aes(x = tdate_as_fdate(turtle_date))) +
     ggplot2::facet_grid(rows = vars(season), scales = "free_x") +
-    ggplot2::geom_bar(aes(y = all), stat = "identity", color = "black", fill = "grey") +
-    ggplot2::geom_bar(aes(y = successful), stat = "identity", color = "black", fill = "green") +
-    ggplot2::ggtitle(paste("Nesting effort of", speciesname %>% humanize()),
-      subtitle = "Number of all (grey) and successful (green) tracks"
-    ) +
+    ggplot2::geom_bar(aes(y = all),
+                      stat = "identity",
+                      color = "black",
+                      fill = "grey") +
+    ggplot2::geom_bar(aes(y = successful),
+                      stat = "identity",
+                      color = "black",
+                      fill = "green") +
+    ggplot2::ggtitle(
+      paste("Nesting effort of", speciesname %>% humanize()),
+      subtitle = "Number of all (grey) and successful (green) tracks") +
     ggplot2::labs(x = "Date", y = "Number of all and successful tracks") +
-    ggplot2::scale_x_continuous(labels = function(x) fdate_as_tdate(x)) +
+    ggplot2::scale_x_continuous(
+      labels = function(x)
+        fdate_as_tdate(x)
+    ) +
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
     ggplot2::theme_classic() +
-    ggplot2::ggsave(glue::glue("{prefix}_track_effort_{wastdr::urlize(placename)}_{speciesname}.png"), width = 10, height = 6)
+    ggplot2::ggsave(
+      glue::glue(
+        "{prefix}_track_effort_{wastdr::urlize(placename)}_{speciesname}.png"
+      ),
+      width = 10,
+      height = 6
+    )
 }
 
-#' Plot the track success rate (relative numbers) of a given species as time series
+#' Plot the track success rate (relative numbers) of a given species as time
+#' series.
 #'
 #' @param data The output of \code{parse_turtle_nest_encounters()}
 #' @param speciesname The species name, e.g. "natator-depressus"
 #' @template param-placename
 #' @template param-prefix
 #' @export
-ggplot_track_successrate_by_date <- function(
-                                             data,
+ggplot_track_successrate_by_date <- function(data,
                                              speciesname,
                                              placename = "",
                                              prefix = "") {
@@ -184,15 +201,29 @@ ggplot_track_successrate_by_date <- function(
     dplyr::filter(species == speciesname) %>%
     ggplot2::ggplot(aes(x = tdate_as_fdate(turtle_date))) +
     ggplot2::facet_grid(rows = vars(season), scales = "free_x") +
-    ggplot2::geom_bar(aes(y = track_success), stat = "identity", color = "black", fill = "grey") +
-    ggplot2::ggtitle(paste("Nesting success of", speciesname %>% humanize()),
-      subtitle = "Fraction of successful over total nesting crawls"
+    ggplot2::geom_bar(
+      aes(y = track_success),
+      stat = "identity",
+      color = "black",
+      fill = "grey"
     ) +
+    ggplot2::ggtitle(
+      paste("Nesting success of", speciesname %>% humanize()),
+      subtitle = "Fraction of successful over total nesting crawls") +
     ggplot2::labs(x = "Date", y = "Fraction of tracks with nest") +
-    ggplot2::scale_x_continuous(labels = function(x) fdate_as_tdate(x)) +
+    ggplot2::scale_x_continuous(
+      labels = function(x)
+        fdate_as_tdate(x)
+    ) +
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
     ggplot2::theme_classic() +
-    ggplot2::ggsave(glue::glue("{prefix}_track_success_{wastdr::urlize(placename)}_{speciesname}.png"), width = 10, height = 6)
+    ggplot2::ggsave(
+      glue::glue(
+        "{prefix}_track_success_{wastdr::urlize(placename)}_{speciesname}.png"
+      ),
+      width = 10,
+      height = 6
+    )
 }
 
 #------------------------------------------------------------------------------#
@@ -203,7 +234,7 @@ ggplot_track_successrate_by_date <- function(
 #' Calculates:
 #' \itemize{
 #' \item count The count of nests
-#' \item clutch_size_fresh Mean observed clutch size during nesting event (if given)
+#' \item clutch_size_fresh Mean observed clutch size during nesting event
 #' \item clutch_size_mean Mean of reconstructed clutch size
 #' \item clutch_size_sd SD of reconstructed clutch size
 #' \item clutch_size_min Min of reconstructed clutch size
@@ -243,7 +274,8 @@ hatching_emergence_success <- . %>%
   dplyr::group_by(season, species) %>%
   summarise_hatching_and_emergence_success(.)
 
-#' Sumarizes HS and ES for tracks of type `hatched-nest`, grouped by `area_name`.
+#' Sumarizes HS and ES for tracks of type `hatched-nest`,
+#' grouped by `area_name`.
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -253,7 +285,8 @@ hatching_emergence_success_area <- . %>%
   dplyr::group_by(area_name, season, species) %>%
   summarise_hatching_and_emergence_success(.)
 
-#' Sumarizes HS and ES for tracks of type `hatched-nest`, grouped by `site_name`.
+#' Sumarizes HS and ES for tracks of type `hatched-nest`,
+#' grouped by `site_name`.
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
