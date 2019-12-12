@@ -31,7 +31,7 @@
 #' @export
 #'
 #' @examples
-download_and_save_odkc <-
+download_odkc_turtledata_2019 <-
   function(datafile = here::here("wa-turtle-programs", "data_odkc.rda"),
            extrafile = here::here("wa-turtle-programs", "data_odkc_extra.rda"),
            local_dir = here::here("wa-turtle-programs", "media"),
@@ -325,15 +325,15 @@ download_and_save_odkc <-
       wastdr::add_dates()
 
     svs <- dplyr::bind_rows(svs_prod, svs_extra) %>%
-      wastdr::join_tsc_sites(sites, areas, prefix = "location") %>%
+      wastdr::join_tsc_sites(sites, areas, prefix = "location_") %>%
       wastdr::add_dates_svs()
 
     sve <- dplyr::bind_rows(sve_prod, sve_extra) %>%
-      add_sites(prefix = "location") %>%
+    wastdr::join_tsc_sites(prefix = "location_") %>%
       wastdr::add_dates_sve()
 
     dist <- dplyr::bind_rows(dist_prod, dist_extra) %>%
-      wastdr::join_tsc_sites(sites, areas, prefix = "location") %>%
+      wastdr::join_tsc_sites(sites, areas, prefix = "location_") %>%
       wastdr::add_dates()
 
     tracks <- dplyr::bind_rows(tracks_prod, tracks_extra) %>%
