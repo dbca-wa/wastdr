@@ -134,7 +134,8 @@ nesting_type_by_season_calendarday_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, calendar_date_awst, species, nest_type) %>%
   dplyr::tally() %>%
-  dplyr::ungroup()
+  dplyr::ungroup() %>%
+  tidyr::spread(nest_type, n, fill = 0)
 
 
 #' Pivot table of nesting type by season, calendardate, and track age, and species.
@@ -145,8 +146,8 @@ nesting_type_by_season_calendarday_age_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, calendar_date_awst, species, nest_age, nest_type) %>%
   dplyr::tally() %>%
-  dplyr::ungroup()
-
+  dplyr::ungroup() %>%
+  tidyr::spread(nest_type, n, fill = 0)
 
 
 #------------------------------------------------------------------------------#
