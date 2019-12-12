@@ -76,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.23</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.27</span>
       </span>
     </div>
 
@@ -154,9 +154,28 @@
       <tr>
         
         <td>
+          <p><code><a href="add_dates.html">add_dates()</a></code> </p>
+        </td>
+        <td><p>Add turtle dates to a dataframe with datetime col `observation_start_time`.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_dates_sve.html">add_dates_sve()</a></code> </p>
+        </td>
+        <td><p>Add turtle dates to a dataframe with datetime col `survey_end_time`.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_dates_svs.html">add_dates_svs()</a></code> </p>
+        </td>
+        <td><p>Add turtle dates to a dataframe with datetime col `survey_start_time`.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="add_nest_labels.html">add_nest_labels()</a></code> </p>
         </td>
-        <td><p>Add labels for species and nest/track type to parsed <code>turtle-nest-encounters</code>.</p></td>
+        <td><p>Add labels for species and nest/track type to parsed
+<code>turtle-nest-encounters</code>.</p></td>
       </tr><tr>
         
         <td>
@@ -169,6 +188,12 @@
           <p><code><a href="animals.html">animals</a></code> </p>
         </td>
         <td><p>Example animal encounters (taggings, strandings and others)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="chr2int.html">chr2int()</a></code> </p>
+        </td>
+        <td><p>Return multiple lists of int as chr as one list of int and discard NA.</p></td>
       </tr><tr>
         
         <td>
@@ -202,6 +227,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="download_and_save_odkc.html">download_and_save_odkc()</a></code> </p>
+        </td>
+        <td><p>Download and save Turtle data from ODK Central.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="exclude_training_species.html">exclude_training_species()</a></code> </p>
         </td>
         <td><p>Exclude records with <code>species</code> "corolla-corolla".</p></td>
@@ -210,7 +241,7 @@
         <td>
           <p><code><a href="exclude_training_surveys.html">exclude_training_surveys()</a></code> </p>
         </td>
-        <td><p>Exclude training surveys</p></td>
+        <td><p>Exclude training surveys.</p></td>
       </tr><tr>
         
         <td>
@@ -226,6 +257,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="filter_disturbance.html">filter_disturbance()</a></code> </p>
+        </td>
+        <td><p>Filter disturbance data to disturbances.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="filter_missing_site.html">filter_missing_site()</a></code> </p>
         </td>
         <td><p>Filter records with missing <code>site_id</code></p></td>
@@ -238,21 +275,35 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="filter_predation.html">filter_predation()</a></code> </p>
+        </td>
+        <td><p>Filter disturbance data to predator presences.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="filter_surveys_missing_end.html">filter_surveys_missing_end()</a></code> </p>
         </td>
-        <td><p>Filter surveys with a missing <code>end_source_id</code></p></td>
+        <td><p>Filter surveys with a missing <code>end_source_id</code>.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="filter_surveys_requiring_qa.html">filter_surveys_requiring_qa()</a></code> </p>
         </td>
-        <td><p>Filter surveys with "NEEDS QA" in <code>start_comments</code> or <code>end_comments</code></p></td>
+        <td><p>Filter surveys with "NEEDS QA" in <code>start_comments</code> or
+<code>end_comments</code>.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_wastd_season.html">filter_wastd_season()</a></code> </p>
+        </td>
+        <td><p>Filter a dataframe of tracks, disturbance, incidents, or surveys to season</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="get_num_field.html">get_num_field()</a></code> </p>
         </td>
-        <td><p>From a list of unnamed lists, or the data.frame equivalent, extract a field or -1</p></td>
+        <td><p>From a list of unnamed lists, or the data.frame equivalent, extract a field
+or -1.</p></td>
       </tr><tr>
         
         <td>
@@ -264,7 +315,8 @@
         <td>
           <p><code><a href="ggplot_track_successrate_by_date.html">ggplot_track_successrate_by_date()</a></code> </p>
         </td>
-        <td><p>Plot the track success rate (relative numbers) of a given species as time series</p></td>
+        <td><p>Plot the track success rate (relative numbers) of a given species as time
+series.</p></td>
       </tr><tr>
         
         <td>
@@ -282,13 +334,15 @@
         <td>
           <p><code><a href="hatching_emergence_success_area.html">hatching_emergence_success_area()</a></code> </p>
         </td>
-        <td><p>Sumarizes HS and ES for tracks of type `hatched-nest`, grouped by `area_name`.</p></td>
+        <td><p>Sumarizes HS and ES for tracks of type `hatched-nest`,
+grouped by `area_name`.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="hatching_emergence_success_site.html">hatching_emergence_success_site()</a></code> </p>
         </td>
-        <td><p>Sumarizes HS and ES for tracks of type `hatched-nest`, grouped by `site_name`.</p></td>
+        <td><p>Sumarizes HS and ES for tracks of type `hatched-nest`,
+grouped by `site_name`.</p></td>
       </tr><tr>
         
         <td>
@@ -316,6 +370,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="join_tsc_sites.html">join_tsc_sites()</a></code> </p>
+        </td>
+        <td><p>Join a dataframe with lat/lon to sf objects of sites and areas.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="list_survey_count.html">list_survey_count()</a></code> </p>
         </td>
         <td><p>Create a datatable of survey counts from the output of <code>parse_surveys</code>.</p></td>
@@ -324,7 +384,8 @@
         <td>
           <p><code><a href="list_survey_effort.html">list_survey_effort()</a></code> </p>
         </td>
-        <td><p>Create a datatable from the surveyed hours from the output of <code>parse_surveys</code>.</p></td>
+        <td><p>Create a datatable from the surveyed hours from the output of
+<code>parse_surveys</code>.</p></td>
       </tr><tr>
         
         <td>
@@ -340,6 +401,18 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="map_dist_odkc.html">map_dist_odkc()</a></code> </p>
+        </td>
+        <td><p>Map Disturbance observations interactively from ODK Central data.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="map_mwi_odkc.html">map_mwi_odkc()</a></code> </p>
+        </td>
+        <td><p>Map Marine Wildlife Incident 0.6 parsed with ruODK from ODK Central.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="map_nests.html">map_nests()</a></code> </p>
         </td>
         <td><p>Map tagged Turtle Nests interactively.</p></td>
@@ -352,21 +425,63 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="map_tracks_odkc.html">map_tracks_odkc()</a></code> </p>
+        </td>
+        <td><p>Map tracks directly from ODK data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nesting_type_by_area_season_age_species.html">nesting_type_by_area_season_age_species()</a></code> </p>
+        </td>
+        <td><p>Pivot table of nesting type by area, season, track age, and species.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="nesting_type_by_area_season_species.html">nesting_type_by_area_season_species()</a></code> </p>
         </td>
-        <td><p>Pivot table of nesting type by area, season and species</p></td>
+        <td><p>Pivot table of nesting type by area, season, and species.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nesting_type_by_season_age_species.html">nesting_type_by_season_age_species()</a></code> </p>
+        </td>
+        <td><p>Pivot table of nesting type by season, track age and species.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nesting_type_by_season_calendarday_age_species.html">nesting_type_by_season_calendarday_age_species()</a></code> </p>
+        </td>
+        <td><p>Pivot table of nesting type by season, calendardate, and track age, and species.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nesting_type_by_season_calendarday_species.html">nesting_type_by_season_calendarday_species()</a></code> </p>
+        </td>
+        <td><p>Pivot table of nesting type by season, calendardate, and species.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="nesting_type_by_season_day_species.html">nesting_type_by_season_day_species()</a></code> </p>
         </td>
-        <td><p>Pivot table of nesting type by season, turtle date and species</p></td>
+        <td><p>Pivot table of nesting type by season, turtle date. and species.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="nesting_type_by_season_species.html">nesting_type_by_season_species()</a></code> </p>
         </td>
-        <td><p>Pivot table of nesting type by season and species</p></td>
+        <td><p>Pivot table of nesting type by season and species.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nesting_type_by_season_week_age_species.html">nesting_type_by_season_week_age_species()</a></code> </p>
+        </td>
+        <td><p>Pivot table of nesting type by season, season_week, iso_week, track age, and species.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nesting_type_by_season_week_site_species.html">nesting_type_by_season_week_site_species()</a></code> </p>
+        </td>
+        <td><p>Pivot table of nesting type by season, season_week, iso_week, and species.</p></td>
       </tr><tr>
         
         <td>
@@ -376,9 +491,15 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="nesting_type_by_site_season_age_species.html">nesting_type_by_site_season_age_species()</a></code> </p>
+        </td>
+        <td><p>Pivot table of nesting type by site, season, track age, and species.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="nesting_type_by_site_season_species.html">nesting_type_by_site_season_species()</a></code> </p>
         </td>
-        <td><p>Pivot table of nesting type by site, season and species</p></td>
+        <td><p>Pivot table of nesting type by site, season, and species.</p></td>
       </tr><tr>
         
         <td>
@@ -396,13 +517,15 @@
         <td>
           <p><code><a href="parse_community_conservationlisting.html">parse_community_conservationlisting()</a></code> </p>
         </td>
-        <td><p>Parse a <code>wastd_api_response</code> of <code>community-conservationlisting</code> to tbl_df</p></td>
+        <td><p>Parse a <code>wastd_api_response</code> of <code>community-conservationlisting</code> to
+tbl_df.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="parse_disturbance_observations.html">parse_disturbance_observations()</a></code> </p>
         </td>
-        <td><p>Parse a <code>wastd_api_response</code> of <code>disturbance-observations</code> to tbl_df</p></td>
+        <td><p>Parse a <code>wastd_api_response</code> of <code>disturbance-observations</code> to
+tbl_df.</p></td>
       </tr><tr>
         
         <td>
@@ -420,7 +543,8 @@
         <td>
           <p><code><a href="parse_taxon_conservationlisting.html">parse_taxon_conservationlisting()</a></code> </p>
         </td>
-        <td><p>Parse a <code>wastd_api_response</code> of <code>taxon-conservationlisting</code> to tbl_df</p></td>
+        <td><p>Parse a <code>wastd_api_response</code> of <code>taxon-conservationlisting</code> to
+tbl_df.</p></td>
       </tr><tr>
         
         <td>
@@ -445,6 +569,12 @@
           <p><code><a href="print.wastd_api_response.html">print(<i>&lt;wastd_api_response&gt;</i>)</a></code> </p>
         </td>
         <td><p>S3 print method for 'wastd_api_response'.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="sf_as_tbl.html">sf_as_tbl()</a></code> </p>
+        </td>
+        <td><p>Convert a SimpleFeatures object to a non-spatial dataframe.</p></td>
       </tr><tr>
         
         <td>
@@ -480,13 +610,15 @@
         <td>
           <p><code><a href="survey_hours_per_person.html">survey_hours_per_person()</a></code> </p>
         </td>
-        <td><p>Sum the hours surveyed per person by season from the output of <code>parse_surveys</code>.</p></td>
+        <td><p>Sum the hours surveyed per person by season from the output of
+<code>parse_surveys</code>.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="survey_hours_per_site_name_and_date.html">survey_hours_per_site_name_and_date()</a></code> </p>
         </td>
-        <td><p>Sum the hours surveyed per site_name and date from the output of <code>parse_surveys</code>.</p></td>
+        <td><p>Sum the hours surveyed per site_name and date from the output of
+<code>parse_surveys</code>.</p></td>
       </tr><tr>
         
         <td>
@@ -510,7 +642,8 @@
         <td>
           <p><code><a href="surveys_per_site_name_and_date.html">surveys_per_site_name_and_date()</a></code> </p>
         </td>
-        <td><p>Count number of surveys per season, turtle date and site_name from the output of <code>parse_surveys</code>.</p></td>
+        <td><p>Count number of surveys per season, turtle date and site_name from the output
+of <code>parse_surveys</code>.</p></td>
       </tr><tr>
         
         <td>

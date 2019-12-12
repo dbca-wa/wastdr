@@ -1,3 +1,10 @@
+# wastdr 0.1.27
+## Major changes
+* Add ODK Central data wrangling.
+* Bump to `R>=3.5`.
+
+## Minor changes
+
 # wastdr 0.1.23
 ## Major changes
 * `wastd_GET` drops `response`, keeps `url`, `date`, and `status_code`.

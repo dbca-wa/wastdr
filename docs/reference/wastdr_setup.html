@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.23</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.27</span>
       </span>
     </div>
 
@@ -166,7 +166,7 @@ default: "https://tsc.dbca.wa.gov.au/api/1/"</p></td>
     </tr>
     <tr>
       <th>api_token</th>
-      <td><p>A CKAN API token (character)</p></td>
+      <td><p>A CKAN API token, leading with "Token " (character)</p></td>
     </tr>
     <tr>
       <th>api_un</th>
@@ -196,7 +196,9 @@ functions default to use the default URL, but require an API key to work.</p>
 
 <span class='co'># Not specifying the default WAStD API URL will reset the WAStD URL to its</span>
 <span class='co'># default "https://tsc.dbca.wa.gov.au/api/1/":</span>
-<span class='fu'>wastdr_setup</span>(<span class='kw'>api_token</span> <span class='kw'>=</span> <span class='st'>"c12345asdfqwer"</span>)</div></pre>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>wastdr_setup</span>(<span class='kw'>api_token</span> <span class='kw'>=</span> <span class='st'>"c12345asdfqwer"</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

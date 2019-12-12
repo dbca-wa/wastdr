@@ -15,3 +15,7 @@ One list containing just the integer numbers
 \description{
 Return multiple lists of int as chr as one list of int and discard NA.
 }
+\examples{
+list("NA,2,234,NA", "NA", "NA,NA,1") \%>\% chr2int()
+list("NA,2,234,NA", "NA", "5,NA,NA,1") \%>\% chr2int()
+}

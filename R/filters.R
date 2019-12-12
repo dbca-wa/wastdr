@@ -50,3 +50,13 @@ filter_nosite <- . %>% dplyr::filter(is.na(site_id))
 filter_nosurvey <- . %>% dplyr::filter(is.na(survey_id))
 filter_realspecies <- . %>% dplyr::filter(species != "corolla-corolla")
 filter_realsurveys <- . %>% dplyr::filter(is_production == TRUE)
+
+#' Filter a dataframe of tracks, disturbance, incidents, or surveys to season
+#'
+#' @param data A dataframe of tracks, disturbance, incidents, or surveys
+#'  containing a column "season" (int) with the season start year, e.g. 2019.
+#' @param season_start_year The desired season's start year, e.g. 2019.
+#' @return The dataframe filtered to rows from the desired season.
+filter_wastd_season <- function(data, season_start_year){
+  dplyr::filter(data, season == season_start_year)
+}

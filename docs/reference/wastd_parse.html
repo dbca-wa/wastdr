@@ -47,8 +47,8 @@
   (default: &quot;features&quot;) into a tibble:tibble, and
   tidyr::unnest_wider the tibble into columns equivalent to the fields
   of the WAStD API serializer.
-  If GeoJSON is found, the keys `geometry` (including `coordinates`) and
-  `properties` are unnested." />
+  If GeoJSON is found, the keys `geometry` (including `coordinates`) will
+  remain unchanged, but the key `properties` will be unnested." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.23</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.27</span>
       </span>
     </div>
 
@@ -149,8 +149,8 @@
   (default: "features") into a <code>tibble:tibble</code>, and
   <code><a href='https://tidyr.tidyverse.org/reference/hoist.html'>tidyr::unnest_wider</a></code> the tibble into columns equivalent to the fields
   of the WAStD API serializer.
-  If GeoJSON is found, the keys `geometry` (including `coordinates`) and
-  `properties` are unnested.</p>
+  If GeoJSON is found, the keys `geometry` (including `coordinates`) will
+  remain unchanged, but the key `properties` will be unnested.</p>
     </div>
 
     <pre class="usage"><span class='fu'>wastd_parse</span>(<span class='no'>wastd_api_response</span>, <span class='kw'>payload</span> <span class='kw'>=</span> <span class='st'>"features"</span>)</pre>

@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.23</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.27</span>
       </span>
     </div>
 
@@ -160,17 +160,19 @@ e.g. '2016-11-20T21:46:57.163000Z' with time zone included</p></td>
     <p>A POSIXct date</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Return the actual date for afternoon and evening datetimes (noon to midnight)
-or the date of the previous day for morning datetimes (midnight to noon).
-The turtle date keeps observations made between sunset and sunrise, as well as
-"morning after" together by assigning the date of the start of observations.</p>
+    <p>Return the actual date for afternoon and evening datetimes
+(noon to midnight) or the date of the previous day for morning datetimes
+(midnight to noon).
+The turtle date keeps observations made between sunset and sunrise,
+as well as on the "morning after" together by assigning the date of the start
+of observations.</p>
 <p>In practice, the turtle date is the date component (year, month, day) of the
 datetime minus 12 hours.</p>
 <p>This date convention is widely used in the turtle research community.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># These datetimes are turtle date 2016-11-20:</span>
-<span class='fu'>httpdate_as_gmt08_turtle_date</span>(<span class='st'>"2016-11-20T04:00:00Z"</span>) <span class='co'># noon AWST</span></div><div class='output co'>#&gt; [1] "2016-11-20"</div><div class='input'><span class='fu'>httpdate_as_gmt08_turtle_date</span>(<span class='st'>"2016-11-21T03:59:59Z"</span>) <span class='co'># 1 sec before noon AWST</span></div><div class='output co'>#&gt; [1] "2016-11-20"</div></pre>
+<span class='fu'>httpdate_as_gmt08_turtle_date</span>(<span class='st'>"2016-11-20T04:00:00Z"</span>) <span class='co'># noon AWST</span></div><div class='output co'>#&gt; [1] "2016-11-20"</div><div class='input'><span class='fu'>httpdate_as_gmt08_turtle_date</span>(<span class='st'>"2016-11-21T03:59:59Z"</span>) <span class='co'># noon AWST - 1 sec</span></div><div class='output co'>#&gt; [1] "2016-11-20"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

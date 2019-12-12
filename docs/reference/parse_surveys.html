@@ -78,7 +78,7 @@ Parse a wastd_api_response of animal-encounters to tbl_df" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.23</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.27</span>
       </span>
     </div>
 
@@ -154,7 +154,8 @@ Parse a wastd_api_response of animal-encounters to tbl_df" />
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>wastd_api_response</th>
-      <td><p>A <code>wastd_api_response</code> of <code>animal-encounters</code>, e.g. <code>get_wastd("animal-encounters")</code></p></td>
+      <td><p>A <code>wastd_api_response</code> of
+<code>animal-encounters</code>, e.g. <code>get_wastd("animal-encounters")</code></p></td>
     </tr>
     <tr>
       <th>wastd_url</th>
@@ -181,27 +182,40 @@ Parse a wastd_api_response of animal-encounters to tbl_df" />
 <li><p>reporter_username &lt;chr&gt;</p></li>
 <li><p>reporter_id &lt;chr&gt;</p></li>
 <li><p>start_time &lt;dttm&gt; The actual start time of the survey.</p></li>
-<li><p>end_time &lt;dttm&gt; The actual, automatically guessed (if 6h later), or human guessed end time.</p></li>
-<li><p>start_comments &lt;chr&gt; Comments at start plus QA messages from username guessing</p></li>
-<li><p>end_comments &lt;chr&gt; Comments at end plus QA messages from username guessing. A mismatch
-        of original usernames can indicate an incorrectly picked Site Visit End point.</p></li>
+<li><p>end_time &lt;dttm&gt; The actual, automatically guessed (if 6h later), or
+  human guessed end time.</p></li>
+<li><p>start_comments &lt;chr&gt; Comments at start plus QA messages from username
+  guessing</p></li>
+<li><p>end_comments &lt;chr&gt; Comments at end plus QA messages from username
+  guessing. A mismatch
+        of original usernames can indicate an incorrectly picked Site Visit
+        End point.</p></li>
 <li><p>turtle_date &lt;dttm&gt; The "turtle date" of the survey.</p></li>
-<li><p>season_week &lt;int&gt; The number of completed weeks since fiscal year start</p></li>
-<li><p>iso_week &lt;int&gt; The number of completed weeks since calendar year start</p></li>
-<li><p>season &lt;int&gt; The "turtle season" of the survey, rolling over with Fiscal Year.</p></li>
+<li><p>season_week &lt;int&gt; The number of completed weeks since fiscal year
+  start</p></li>
+<li><p>iso_week &lt;int&gt; The number of completed weeks since calendar year
+  start</p></li>
+<li><p>season &lt;int&gt; The "turtle season" of the survey, rolling over with
+  Fiscal Year.</p></li>
 <li><p>source &lt;chr&gt; Where this record was born.</p></li>
 <li><p>source_id &lt;chr&gt; The ODK record UID of the Site Visit Start.</p></li>
 <li><p>end_source_id &lt;chr&gt; The ODK record UID of the Site Visit End.</p></li>
-<li><p>status &lt;chr&gt; The QA status of the Survey. "Proofread" or "Curated" indicate human QA edits.</p></li>
-<li><p>device_id &lt;chr&gt; The unique ID of the device the Site Visit Start was captured on.</p></li>
-<li><p>end_device_id &lt;chr&gt; The unique ID of the device the Site Visit End was captured on.</p></li>
+<li><p>status &lt;chr&gt; The QA status of the Survey. "Proofread" or "Curated"
+  indicate human QA edits.</p></li>
+<li><p>device_id &lt;chr&gt; The unique ID of the device the Site Visit Start was
+  captured on.</p></li>
+<li><p>end_device_id &lt;chr&gt; The unique ID of the device the Site Visit End
+  was captured on.</p></li>
 <li><p>status &lt;chr&gt; QA status of the survey.</p></li>
 <li><p>id &lt;int&gt; WAStD ID of the survey.</p></li>
 <li><p>is_production &lt;bool&gt; Whether this survey is a real (production) or
     a training survey.</p></li>
-<li><p>absolute_admin_url &lt;chr&gt; The absolute URL path to edit the survey in WAStD. Append this to the base `WASTD_URL`.</p></li>
-<li><p>start_photo_url &lt;chr&gt; The URL of the start photo, if given. Requires DBCA SSO when viewed.</p></li>
-<li><p>end_photo_url &lt;chr&gt; The URL of the end photo, if given. Requires DBCA SSO when viewed.</p></li>
+<li><p>absolute_admin_url &lt;chr&gt; The absolute URL path to edit the survey in
+  WAStD. Append this to the base `WASTD_URL`.</p></li>
+<li><p>start_photo_url &lt;chr&gt; The URL of the start photo, if given.
+  Requires DBCA SSO when viewed.</p></li>
+<li><p>end_photo_url &lt;chr&gt; The URL of the end photo, if given.
+  Requires DBCA SSO when viewed.</p></li>
 </ul>
 
 

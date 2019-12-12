@@ -1,4 +1,15 @@
-#' Pivot table of nesting type by season and species
+#' Convert a SimpleFeatures object to a non-spatial dataframe.
+#'
+#' @param sf_obj A SimpleFeatures object
+#'
+#' @return The SimpleFeatures object with geometry set to NULL.
+#' @export
+sf_as_tbl <- function(sf_obj){
+  sf::st_geometry(sf_obj) <- NULL
+  sf_obj
+}
+
+#' Pivot table of nesting type by season and species.
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -9,7 +20,18 @@ nesting_type_by_season_species <- . %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
 
-#' Pivot table of nesting type by area, season and species
+#' Pivot table of nesting type by season, track age and species.
+#'
+#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @export
+nesting_type_by_season_age_species <- . %>%
+  # dplyr::filter(nest_age == "fresh") %>%
+  dplyr::group_by(season, species, nest_age, nest_type) %>%
+  dplyr::tally() %>%
+  dplyr::ungroup() %>%
+  tidyr::spread(nest_type, n, fill = 0)
+
+#' Pivot table of nesting type by area, season, and species.
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -20,13 +42,37 @@ nesting_type_by_area_season_species <- . %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
 
-#' Pivot table of nesting type by site, season and species
+#' Pivot table of nesting type by area, season, track age, and species.
+#'
+#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @export
+nesting_type_by_area_season_age_species <- . %>%
+  # dplyr::filter(nest_age == "fresh") %>%
+  dplyr::group_by(area_name, season, species, nest_age, nest_type) %>%
+  dplyr::tally() %>%
+  dplyr::ungroup() %>%
+  tidyr::spread(nest_type, n, fill = 0)
+
+
+#' Pivot table of nesting type by site, season, and species.
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
 nesting_type_by_site_season_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(area_name, site_name, season, species, nest_type) %>%
+  dplyr::tally() %>%
+  dplyr::ungroup() %>%
+  tidyr::spread(nest_type, n, fill = 0)
+
+
+#' Pivot table of nesting type by site, season, track age, and species.
+#'
+#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @export
+nesting_type_by_site_season_age_species <- . %>%
+  # dplyr::filter(nest_age == "fresh") %>%
+  dplyr::group_by(area_name, site_name, season, species, nest_age, nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
@@ -43,7 +89,20 @@ nesting_type_by_season_week_species <- . %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
 
-#' Pivot table of nesting type by season, season_week, iso_week, and species
+
+#' Pivot table of nesting type by season, season_week, iso_week, track age, and species.
+#'
+#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @export
+nesting_type_by_season_week_age_species <- . %>%
+  dplyr::filter(nest_age == "fresh") %>%
+  dplyr::group_by(season, season_week, iso_week, species, nest_age, nest_type) %>%
+  dplyr::tally() %>%
+  dplyr::ungroup() %>%
+  tidyr::spread(nest_type, n, fill = 0)
+
+
+#' Pivot table of nesting type by season, season_week, iso_week, and species.
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -56,7 +115,7 @@ nesting_type_by_season_week_site_species <- . %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
 
-#' Pivot table of nesting type by season, turtle date and species
+#' Pivot table of nesting type by season, turtle date. and species.
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -65,6 +124,30 @@ nesting_type_by_season_day_species <- . %>%
   dplyr::group_by(season, turtle_date, species, nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup()
+
+
+#' Pivot table of nesting type by season, calendardate, and species.
+#'
+#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @export
+nesting_type_by_season_calendarday_species <- . %>%
+  # dplyr::filter(nest_age == "fresh") %>%
+  dplyr::group_by(season, calendar_date_awst, species, nest_type) %>%
+  dplyr::tally() %>%
+  dplyr::ungroup()
+
+
+#' Pivot table of nesting type by season, calendardate, and track age, and species.
+#'
+#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @export
+nesting_type_by_season_calendarday_age_species <- . %>%
+  # dplyr::filter(nest_age == "fresh") %>%
+  dplyr::group_by(season, calendar_date_awst, species, nest_age, nest_type) %>%
+  dplyr::tally() %>%
+  dplyr::ungroup()
+
+
 
 #------------------------------------------------------------------------------#
 # Nesting success - tracks with nest vs tracks without and rest

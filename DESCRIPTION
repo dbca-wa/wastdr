@@ -1,7 +1,7 @@
 Package: wastdr
 Type: Package
 Title: WA Sea Turtle Database 'WAStD' API Wrapper
-Version: 0.1.26
+Version: 0.1.27
 Authors@R: person(c("Florian", "W."), "Mayer", 
     email="Florian.Mayer@dbca.wa.gov.au", role=c("aut", "cre"))
 Author: Florian W. Mayer [aut, cre]
@@ -20,6 +20,8 @@ Depends:
 Imports:
     DT (>= 0.10),
     dplyr (>= 0.8.3),
+    geojsonio,
+    geojsonsf,
     ggTimeSeries (>= 1.0.1),
     ggalt (>= 0.4.0),
     ggplot2 (>= 3.2.1),
@@ -32,6 +34,8 @@ Imports:
     lubridate (>= 1.7.4),
     magrittr (>= 1.5),
     purrr (>= 0.3.3),
+    ruODK,
+    sf,
     scales (>= 1.0.0),
     stringr (>= 1.4.0),
     tibble (>= 2.1.3),

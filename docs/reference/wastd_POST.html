@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.23</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.27</span>
       </span>
     </div>
 
@@ -213,13 +213,13 @@ default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 
 <span class='co'># One by one</span>
-<span class='no'>gj</span> <span class='kw'>&lt;-</span> <span class='st'>"public:herbie_hbvnames_public"</span>
+<span class='no'>gj</span> <span class='kw'>&lt;-</span> <span class='st'>"public:herbie_hbvnames_public"</span> <span class='kw'>%&gt;%</span> <span class='fu'>kmi_getFeature</span>()
 <span class='no'>props</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span>(<span class='no'>gj</span><span class='kw'>[[</span><span class='st'>"features"</span>]], <span class='st'>"properties"</span>)
 <span class='fu'>wastd_POST</span>(<span class='no'>props</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>serializer</span> <span class='kw'>=</span> <span class='st'>"names"</span>)
 
 <span class='co'># All in batch</span>
-<span class='st'>"public:herbie_hbvnames_public"</span>
-  <span class='fu'>kmi_getFeature</span>()
+<span class='st'>"public:herbie_hbvnames_public"</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>kmi_getFeature</span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>wastd_upsert_geojson</span>(<span class='kw'>serializer</span> <span class='kw'>=</span> <span class='st'>"names"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>)
 }</div></pre>
   </div>

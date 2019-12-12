@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.23</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.27</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@
       <h1>Setup</h1>
                         <h4 class="author">Florian Mayer</h4>
             
-            <h4 class="date">2019-11-21</h4>
+            <h4 class="date">2019-12-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/setup.Rmd"><code>vignettes/setup.Rmd</code></a></small>
       <div class="hidden name"><code>setup.Rmd</code></div>
@@ -115,53 +115,58 @@
 <p>There are two audiences with two different authentication options.</p>
 <p>The first audience, DBCA staff, has access to <a href="https://strandings.dpaw.wa.gov.au">WAStD</a>. On their profile page they will find their own API token.</p>
 <p>The second audience, external collaborators, will be given a username and password. Using these credentials, they can access the <a href="https://strandings.dpaw.wa.gov.au/api/1/">WAStD API</a> both through their browser and from other software like <code>wastdr</code>.</p>
-</div>
-<div id="configure-credentials" class="section level1">
-<h1 class="hasAnchor">
-<a href="#configure-credentials" class="anchor"></a>Configure credentials</h1>
 <p><code>wastdr::get_wastd()</code> accesses the <code>WAStD</code> API using:</p>
 <ul>
 <li>the API URL, and</li>
 <li>an access token <strong>or</strong> a username / password.</li>
 </ul>
 <p>There are three ways to supply the required settings to <code>wastdr::get_wastd()</code>.</p>
-<div id="per-function-call" class="section level2">
+<div id="best-practice--renviron" class="section level2">
 <h2 class="hasAnchor">
-<a href="#per-function-call" class="anchor"></a>Per function call</h2>
-<p>Firstly, they can be supplied directly to <code>wastdr::get_wastd()</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">wastdr<span class="op">::</span><span class="kw">get_wastd</span>(<span class="st">'encounters'</span>, </a>
-<a class="sourceLine" id="cb2-2" title="2">                  <span class="dt">api_token =</span> <span class="st">"asdfqwer1234"</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3"></a>
-<a class="sourceLine" id="cb2-4" title="4">wastdr<span class="op">::</span><span class="kw">get_wastd</span>(<span class="st">'encounters'</span>,</a>
-<a class="sourceLine" id="cb2-5" title="5">                  <span class="dt">api_un =</span> <span class="st">"my_usernname"</span>,</a>
-<a class="sourceLine" id="cb2-6" title="6">                  <span class="dt">api_pw =</span> <span class="st">"my_password"</span>)</a></code></pre></div>
-<p>This method overrides any other settings, but leads to verbose code with confidential data (token or password) in plain text.</p>
+<a href="#best-practice--renviron" class="anchor"></a>Best practice: <code>.Renviron</code>
+</h2>
+<p>For a permanent setup, the environment variables can be set in the user’s <code>.Renviron</code>.</p>
+<p>DBCA staff add to their <code>.Renviron</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">WASTDR_API_URL=<span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span></a>
+<a class="sourceLine" id="cb2-2" title="2">WASTDR_API_UN=<span class="st">"XXX"</span></a>
+<a class="sourceLine" id="cb2-3" title="3">WASTDR_API_PW=<span class="st">"XXX"</span></a></code></pre></div>
+<p>Note that the API token contains the word <code>Token</code> and a whitespace in addition to the actual API token.</p>
+<p>External collaborators add to their <code>.Renviron</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">WASTDR_API_URL=<span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span></a>
+<a class="sourceLine" id="cb3-2" title="2">WASTDR_API_UN=<span class="st">"XXX"</span></a>
+<a class="sourceLine" id="cb3-3" title="3">WASTDR_API_PW=<span class="st">"XXX"</span></a></code></pre></div>
+<p>In the long term, this last method is the most elegant and persistent way of configuring <code>wastdr</code>.</p>
 </div>
 <div id="per-session" class="section level2">
 <h2 class="hasAnchor">
 <a href="#per-session" class="anchor"></a>Per session</h2>
 <p>If <code>api_*</code> settings are not provided, <code>wastdr::get_wastd</code> defaults to specifically named environment variables.</p>
 <p>For convenience, <code>wastdr_setup</code> sets these environment variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
-<p>If you are an employee of the Western Australian Department of Biodiversity, Conservation and Attractions (DBCA), formerly the Department of Parks and Wildlife, then you can find your valid WAStD API Token at <a href="https://strandings.dpaw.wa.gov.au/">WAStD</a> under “My Profile” and run:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastdr_setup.html">wastdr_setup</a></span>(<span class="dt">api_token =</span> <span class="st">"c12345asdfqwer"</span>)</a></code></pre></div>
-<p>If you are an external collaborator, you will have given a username and password to access the WAStD API.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastdr_setup.html">wastdr_setup</a></span>(<span class="dt">api_un =</span> <span class="st">"my_username"</span>, <span class="dt">api_pw =</span> <span class="st">"my_password"</span>)</a></code></pre></div>
+<p>If these variables haven’t been provided through e.g. <code>.Renviron</code>, you may set them on a per session basis:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastdr_setup.html">wastdr_setup</a></span>(<span class="dt">api_token =</span> <span class="st">"Token XXX"</span>)</a></code></pre></div>
+<p>Alternatively you may use your username and password.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastdr_setup.html">wastdr_setup</a></span>(<span class="dt">api_un =</span> <span class="st">"XXX"</span>, <span class="dt">api_pw =</span> <span class="st">"XXX"</span>)</a></code></pre></div>
 <p>Review the settings with:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastdr_settings.html">wastdr_settings</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastdr_settings.html">wastdr_settings</a></span>()</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="co">#&gt; &lt;wastdr settings&gt;</span></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt;   WAStD URL:  https://tsc.dbca.wa.gov.au </span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt;   API URL:  https://tsc.dbca.wa.gov.au/api/1/ </span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt;   API Token: see wastdr::get_wastdr_api_token()</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt;   API Username:  FlorianM </span></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt;   API Password: see wastdr::get_wastdr_api_pw()</span></a></code></pre></div>
 <p><code>wastdr_setup</code> defaults <code>api_url</code> to the currently only existing API url.</p>
-<p>This method reduces verbosity, but still exposes sensitive data in the <code>wastdr_setup</code> call. The <code><a href="../reference/wastdr_settings.html">wastdr::wastdr_settings()</a></code> expire with the R session.</p>
 </div>
-<div id="per-machine" class="section level2">
+<div id="per-function-call" class="section level2">
 <h2 class="hasAnchor">
-<a href="#per-machine" class="anchor"></a>Per machine</h2>
-<p>For a more permanent setup, the environment variables can be set in the user’s <code>.Rprofile</code>.</p>
-<p>DBCA staff add to their <code>.Rprofile</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="dt">WASTDR_API_TOKEN=</span><span class="st">"Token c1234"</span>)</a></code></pre></div>
-<p>Note that the API token contains the word <code>Token</code> and a whitespace in addition to the actual API token.</p>
-<p>External collaborators add to their <code>.Rprofile</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="dt">WASTDR_API_UN=</span><span class="st">"my_username"</span>)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="dt">WASTDR_API_PW=</span><span class="st">"my_password"</span>)</a></code></pre></div>
-<p>In the long term, this last method is the most elegant and persistent way of configuring <code>wastdr</code>.</p>
+<a href="#per-function-call" class="anchor"></a>Per function call</h2>
+<p>Crendentials can be supplied directly to functions:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastd_GET.html">wastd_GET</a></span>(<span class="st">'encounters'</span>, </a>
+<a class="sourceLine" id="cb7-2" title="2">                  <span class="dt">api_token =</span> <span class="st">"Token XXX"</span>)</a>
+<a class="sourceLine" id="cb7-3" title="3"></a>
+<a class="sourceLine" id="cb7-4" title="4">wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastd_GET.html">wastd_GET</a></span>(<span class="st">'encounters'</span>,</a>
+<a class="sourceLine" id="cb7-5" title="5">                  <span class="dt">api_un =</span> <span class="st">"XXX"</span>,</a>
+<a class="sourceLine" id="cb7-6" title="6">                  <span class="dt">api_pw =</span> <span class="st">"XXX"</span>)</a></code></pre></div>
+<p>This method overrides any other settings, but leads to verbose code with confidential data (token or password) in plain text.</p>
 </div>
 </div>
   </div>
@@ -172,12 +177,11 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#authentication">Authentication</a></li>
-      <li>
-<a href="#configure-credentials">Configure credentials</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#per-function-call">Per function call</a></li>
+<li>
+<a href="#authentication">Authentication</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#best-practice--renviron">Best practice: <code>.Renviron</code></a></li>
       <li><a href="#per-session">Per session</a></li>
-      <li><a href="#per-machine">Per machine</a></li>
+      <li><a href="#per-function-call">Per function call</a></li>
       </ul>
 </li>
       </ul>

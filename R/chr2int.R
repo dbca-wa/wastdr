@@ -5,12 +5,18 @@
 #'
 #' @return One list containing just the integer numbers
 #' @export
+#' @examples
+#' list("NA,2,234,NA", "NA", "NA,NA,1") %>% chr2int()
+#' list("NA,2,234,NA", "NA", "5,NA,NA,1") %>% chr2int()
 chr2int <- function(data) {
-  data %>%
-    data.table::tstrsplit(",", type.convert = T) %>%
-    unlist() %>%
-    purrr::discard(., is.na) %>%
-    purrr::map(as.integer)
+  suppressWarnings(
+    data %>%
+      data.table::tstrsplit(",", type.convert = T) %>%
+      t() %>%
+      unlist() %>%
+      purrr::discard(., is.na) %>%
+      purrr::map(as.integer)
+  )
 }
 
 
