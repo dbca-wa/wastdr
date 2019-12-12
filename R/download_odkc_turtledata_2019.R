@@ -329,7 +329,7 @@ download_odkc_turtledata_2019 <-
       wastdr::add_dates_svs()
 
     sve <- dplyr::bind_rows(sve_prod, sve_extra) %>%
-    wastdr::join_tsc_sites(prefix = "location_") %>%
+      wastdr::join_tsc_sites(sites, areas, prefix = "location_") %>%
       wastdr::add_dates_sve()
 
     dist <- dplyr::bind_rows(dist_prod, dist_extra) %>%
