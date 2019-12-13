@@ -5,12 +5,15 @@
 #' The maps auto-zooms to the extent of data given.
 #'
 #' @template param-tracks
+#' @param sites An sf object of sites with `site_name` and polygon geom, e.g.
+#'  `turtleviewer::turtledata$sites`.
 #' @template param-wastd_url
 #' @template param-fmt
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
 map_tracks <- function(tracks,
+                       sites = NULL,
                        wastd_url = wastdr::get_wastd_url(),
                        fmt = "%d/%m/%Y %H:%M",
                        cluster = FALSE) {
@@ -28,6 +31,7 @@ map_tracks <- function(tracks,
     leaflet::clearBounds()
 
   tracks.df <- tracks %>% split(tracks$species)
+  overlay_names <- names(tracks.df)
 
   names(tracks.df) %>%
     purrr::walk(function(df) {
@@ -58,12 +62,29 @@ map_tracks <- function(tracks,
         )
     })
 
-  l %>%
-    leaflet::addLayersControl(
-      baseGroups = c("Aerial", "Place names"),
-      overlayGroups = names(tracks.df),
-      options = leaflet::layersControlOptions(collapsed = FALSE)
-    )
+  if (!is.null(sites)) {
+    l %>%
+      leaflet::addPolygons(
+        data=sites,
+        group="Sites",
+        weight = 1,
+        fillOpacity = 0.5,
+        fillColor = "blue",
+        label = ~ site_name
+      ) %>%
+      leaflet::addLayersControl(
+        baseGroups = c("Aerial", "Place names"),
+        overlayGroups = c("Sites", overlay_names),
+        options = leaflet::layersControlOptions(collapsed = FALSE)
+      )
+  } else {
+    l %>%
+      leaflet::addLayersControl(
+        baseGroups = c("Aerial", "Place names"),
+        overlayGroups = c("Sites", overlay_names),
+        options = leaflet::layersControlOptions(collapsed = FALSE)
+      )
+  }
 }
 
 #' Map tracks directly from ODK data
