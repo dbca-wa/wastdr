@@ -96,6 +96,8 @@ map_tracks <- function(tracks,
 #' "Turtle Track or Nest 1.0".
 #'
 #' @template param-tracks
+#' @param sites An sf object of sites with `site_name` and polygon geom, e.g.
+#'  `turtleviewer::turtledata$sites`.
 #' @template param-wastd_url
 #' @template param-fmt
 #' @template param-tz
@@ -103,6 +105,7 @@ map_tracks <- function(tracks,
 #' @return A leaflet map
 #' @export
 map_tracks_odkc <- function(tracks,
+                            sites = NULL,
                             wastd_url = wastdr::get_wastd_url(),
                             fmt = "%d/%m/%Y %H:%M",
                             tz = "Australia/Perth",
@@ -122,6 +125,7 @@ map_tracks_odkc <- function(tracks,
     leaflet::clearBounds()
 
   tracks.df <- tracks %>% split(tracks$species)
+  overlay_names <- names(tracks.df)
 
   names(tracks.df) %>%
     purrr::walk(function(df) {
@@ -149,10 +153,27 @@ map_tracks_odkc <- function(tracks,
         )
     })
 
-  l %>%
-    leaflet::addLayersControl(
-      baseGroups = c("Aerial", "Place names"),
-      overlayGroups = names(tracks.df),
-      options = leaflet::layersControlOptions(collapsed = FALSE)
-    )
+  if (!is.null(sites)) {
+    l %>%
+      leaflet::addPolygons(
+        data=sites,
+        group="Sites",
+        weight = 1,
+        fillOpacity = 0.5,
+        fillColor = "blue",
+        label = ~ site_name
+      ) %>%
+      leaflet::addLayersControl(
+        baseGroups = c("Aerial", "Place names"),
+        overlayGroups = c("Sites", overlay_names),
+        options = leaflet::layersControlOptions(collapsed = FALSE)
+      )
+  } else {
+    l %>%
+      leaflet::addLayersControl(
+        baseGroups = c("Aerial", "Place names"),
+        overlayGroups = c("Sites", overlay_names),
+        options = leaflet::layersControlOptions(collapsed = FALSE)
+      )
+  }
 }
