@@ -29,8 +29,6 @@
 #'   * sites An sf object of known TSC sites.
 #'   * areas An sf object of known TSC localities.
 #' @export
-#'
-#' @examples
 download_odkc_turtledata_2019 <-
   function(datafile = here::here("wa-turtle-programs", "data_odkc.rda"),
            extrafile = here::here("wa-turtle-programs", "data_odkc_extra.rda"),

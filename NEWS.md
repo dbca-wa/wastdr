@@ -1,3 +1,7 @@
+# wastdr 0.1.28
+## Minor changes
+* Add disturbed nests and sites, both optional, to `map_dist`.
+
 # wastdr 0.1.27
 ## Major changes
 * Add ODK Central data wrangling.

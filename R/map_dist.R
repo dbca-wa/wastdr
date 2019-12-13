@@ -249,21 +249,27 @@ map_dist_odkc <- function(dist,
   }
 
   if (!is.null(sites)) {
-    l %>%
+   l %>%
       leaflet::addPolygons(
         data=sites,
-        stroke = FALSE,
+        group="Sites",
         weight = 1,
         fillOpacity = 0.5,
         fillColor = "blue",
         label = ~ site_name
+      ) %>%
+      leaflet::addLayersControl(
+        baseGroups = c("Aerial", "Place names"),
+        overlayGroups = c("Sites", overlay_names),
+        options = leaflet::layersControlOptions(collapsed = FALSE)
+      )
+  } else {
+    l %>%
+      leaflet::addLayersControl(
+        baseGroups = c("Aerial", "Place names"),
+        overlayGroups = c("Sites", overlay_names),
+        options = leaflet::layersControlOptions(collapsed = FALSE)
       )
   }
 
-  l %>%
-    leaflet::addLayersControl(
-      baseGroups = c("Aerial", "Place names"),
-      overlayGroups = overlay_names,
-      options = leaflet::layersControlOptions(collapsed = FALSE)
-    )
 }
