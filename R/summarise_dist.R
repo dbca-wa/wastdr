@@ -43,3 +43,14 @@ filter_predation <-
         )
       )
   }
+
+
+#' Summarise disturbance by season and cause
+#'
+#' @param value The ouput of \code{wastd_GET("disturbance-observations") %>%
+#'   parse_disturbance_observations()}
+#' @export
+disturbance_by_season <- . %>%
+  dplyr::group_by(season, disturbance_cause) %>%
+  dplyr::tally() %>%
+  dplyr::arrange(-season, -n)
