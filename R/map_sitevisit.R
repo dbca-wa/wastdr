@@ -75,7 +75,7 @@ map_sv_odkc <- function(svs,
                 " End {reporter} {site_name}"
             ),
             popup = ~ glue::glue(
-                "<h3>Site Visit Start</h3>",
+                "<h3>Site Visit End</h3>",
                 "<p>End {lubridate::with_tz(survey_end_time, tz)} AWST</p>",
                 "<p>Device ID{device_id}</p>",
                 "<p>By {reporter}</p>",
