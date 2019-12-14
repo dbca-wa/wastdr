@@ -1,3 +1,8 @@
+# wastdr 0.1.29
+## Minor changes
+* Add `map_sv_odkc` to map Site Visit Start/End over TSC Sites. 
+  Extremely helpful to QA TSC sites and survey methodology.
+
 # wastdr 0.1.28
 ## Minor changes
 * Add disturbed nests and sites, both optional, to `map_dist`.
