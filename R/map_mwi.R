@@ -6,8 +6,10 @@
 #' This map function uses data from ODK Central / ruODK using form
 #' "Marine Wildlife Incident 0.6".
 #'
-#' @param data The output of \code{ruODK::get_submissions} run on ODK form
-#'   Marine Wildlife Incident 0.6
+#' @param data The output of `turtleviewer::turtledata$mwi` from ODK form
+#'   `Marine Wildlife Incident 0.6`.
+#' @param sites An sf object of sites with `site_name` and polygon geom, e.g.
+#'  `turtleviewer::turtledata$sites`.
 #' @template param-wastd_url
 #' @template param-fmt
 #' @template param-tz
@@ -15,6 +17,7 @@
 #' @return A leaflet map
 #' @export
 map_mwi_odkc <- function(data,
+                         sites = NULL,
                          wastd_url = wastdr::get_wastd_url(),
                          fmt = "%d/%m/%Y %H:%M",
                          tz = "Australia/Perth",
@@ -28,7 +31,7 @@ map_mwi_odkc <- function(data,
   } else {
     co <- NULL
   }
-  leaflet::leaflet(width = 800, height = 600) %>%
+  l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
     leaflet::clearBounds() %>%
@@ -53,10 +56,33 @@ map_mwi_odkc <- function(data,
       ),
       group = "Marine Wildlife Incidents",
       clusterOptions = co
-    ) %>%
-    leaflet::addLayersControl(
-      baseGroups = c("Aerial", "Place names"),
-      overlayGroups = c("Marine Wildlife Incidents"),
-      options = leaflet::layersControlOptions(collapsed = FALSE)
     )
+
+  if (!is.null(sites)) {
+    l %>%
+      leaflet::addPolygons(
+        data=sites,
+        group="Sites",
+        weight = 1,
+        fillOpacity = 0.5,
+        fillColor = "blue",
+        label = ~ site_name
+      ) %>%
+      leaflet::addLayersControl(
+        baseGroups = c("Aerial", "Place names"),
+        overlayGroups = c("Sites", "Marine Wildlife Incidents"),
+        options = leaflet::layersControlOptions(collapsed = FALSE)
+      )
+  } else {
+    l %>%
+      leaflet::addLayersControl(
+        baseGroups = c("Aerial", "Place names"),
+        overlayGroups = c("Marine Wildlife Incidents"),
+        options = leaflet::layersControlOptions(collapsed = FALSE)
+      )
+    l
+  }
+
+
+
 }

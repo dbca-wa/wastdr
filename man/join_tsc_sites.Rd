@@ -4,14 +4,12 @@
 \alias{join_tsc_sites}
 \title{Join a dataframe with lat/lon to sf objects of sites and areas.}
 \usage{
-join_tsc_sites(data, sites, areas, prefix = "observed_at_")
+join_tsc_sites(data, sites, prefix = "observed_at_")
 }
 \arguments{
 \item{data}{A dataframe with an optionally prefixed latitude and longitude}
 
 \item{sites}{An sf object of TSC sites}
-
-\item{areas}{An sf object of TSC localities}
 
 \item{prefix}{An optional prefix to the longitude/latitude field names,
 default: "observed_at_".}

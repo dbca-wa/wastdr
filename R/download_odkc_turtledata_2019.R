@@ -305,51 +305,51 @@ download_odkc_turtledata_2019 <-
       geojsonio::as.json() %>%
       geojsonsf::geojson_sf()
 
-    sites <- areas_sf %>%
-      dplyr::filter(area_type == "Site") %>%
-      dplyr::transmute(site_id = pk, site_name = name)
-
     areas <- areas_sf %>%
       dplyr::filter(area_type == "Locality") %>%
       dplyr::transmute(area_id = pk, area_name = name)
 
+    sites <- areas_sf %>%
+      dplyr::filter(area_type == "Site") %>%
+      dplyr::transmute(site_id = pk, site_name = name) %>%
+      sf::st_join(areas)
 
     mwi <- dplyr::bind_rows(mwi_prod, mwi_extra) %>%
-      wastdr::join_tsc_sites(sites, areas) %>%
+      wastdr::join_tsc_sites(sites) %>%
       wastdr::add_dates()
 
     mwi_dmg <- mwi_dmg_prod %>%
-      wastdr::join_tsc_sites(sites, areas) %>%
+      wastdr::join_tsc_sites(sites) %>%
       wastdr::add_dates()
 
     svs <- dplyr::bind_rows(svs_prod, svs_extra) %>%
-      wastdr::join_tsc_sites(sites, areas, prefix = "location_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "location_") %>%
       wastdr::add_dates_svs()
 
     sve <- dplyr::bind_rows(sve_prod, sve_extra) %>%
-      wastdr::join_tsc_sites(sites, areas, prefix = "location_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "location_") %>%
       wastdr::add_dates_sve()
 
     dist <- dplyr::bind_rows(dist_prod, dist_extra) %>%
-      wastdr::join_tsc_sites(sites, areas, prefix = "location_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "location_") %>%
       wastdr::add_dates()
 
     tracks <- dplyr::bind_rows(tracks_prod, tracks_extra) %>%
-      wastdr::join_tsc_sites(sites, areas) %>%
+      wastdr::join_tsc_sites(sites) %>%
       wastdr::add_dates()
 
     tracks_dist <-
       dplyr::bind_rows(tracks_dist_prod, tracks_dist_extra) %>%
-      wastdr::join_tsc_sites(sites, areas) %>%
+      wastdr::join_tsc_sites(sites) %>%
       wastdr::add_dates()
 
     tracks_log <- tracks_log_prod %>%
-      wastdr::join_tsc_sites(sites, areas) %>%
+      wastdr::join_tsc_sites(sites) %>%
       wastdr::add_dates()
 
     tracks_fan_outlier <-
       tracks_fan_outlier_prod %>%
-      wastdr::join_tsc_sites(sites, areas) %>%
+      wastdr::join_tsc_sites(sites) %>%
       wastdr::add_dates()
 
     turtledata <- list(

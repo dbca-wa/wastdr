@@ -6,6 +6,7 @@
 \usage{
 map_mwi_odkc(
   data,
+  sites = NULL,
   wastd_url = wastdr::get_wastd_url(),
   fmt = "\%d/\%m/\%Y \%H:\%M",
   tz = "Australia/Perth",
@@ -13,8 +14,11 @@ map_mwi_odkc(
 )
 }
 \arguments{
-\item{data}{The output of \code{ruODK::get_submissions} run on ODK form
-Marine Wildlife Incident 0.6}
+\item{data}{The output of `turtleviewer::turtledata$mwi` from ODK form
+`Marine Wildlife Incident 0.6`.}
+
+\item{sites}{An sf object of sites with `site_name` and polygon geom, e.g.
+`turtleviewer::turtledata$sites`.}
 
 \item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
 
