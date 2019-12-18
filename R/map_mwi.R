@@ -32,19 +32,26 @@ map_mwi_odkc <- function(data,
   markerClusterOptions <- NULL
   co <- if (cluster == TRUE)  leaflet::markerClusterOptions() else NULL
 
-  leaflet::leaflet(width = 800, height = 600) %>%
+  l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-    leaflet::clearBounds() %>%
-    {
-      if (!is.null(data) && nrow(data) > 0)
-        leaflet::addAwesomeMarkers(
-          .,
-          data = data,
+    leaflet::clearBounds()
+
+
+  if (!is.null(data) && nrow(data) > 0) {
+    pal_mwi <- leaflet::colorFactor(palette = "viridis", domain = data$taxon)
+    data.df <- data %>% split(data$taxon)
+    overlay_names <- names(data.df)
+
+    names(data.df) %>%
+      purrr::walk(function(df) {
+        l <<- l %>% leaflet::addAwesomeMarkers(
+          data = data.df[[df]],
           lng = ~ observed_at_longitude,
           lat = ~ observed_at_latitude,
-          icon = leaflet::makeAwesomeIcon(text = "MWI",
-                                          markerColor = "red"),
+          icon = leaflet::makeAwesomeIcon(icon = "warning-sign",
+                                          markerColor = "red",
+                                          iconColor = ~ pal_mwi(taxon)),
           label = ~ glue::glue(
             "{lubridate::with_tz(observation_start_time, tz)} {humanize(health)}",
             " {humanize(maturity)} {humanize(sex)} {humanize(species)}"
@@ -73,34 +80,34 @@ map_mwi_odkc <- function(data,
             '<img height="150px;" alt="Photo Habitat 3" src="{ifelse(!is.na({photo_habitat_3}), photo_habitat_3, "") }"></img><br/>',
             '<img height="150px;" alt="Photo Habitat 4" src="{ifelse(!is.na({photo_habitat_4}), photo_habitat_4, "") }"></img><br/>'
           ),
-          group = "Marine Wildlife Incidents",
+          group = df,
           clusterOptions = co
         )
-      else
-        .
-    } %>%
-    {
-      if (!is.null(sites))
-        leaflet::addPolygons(
-          .,
-          data = sites,
-          group = "Sites",
-          weight = 1,
-          fillOpacity = 0.5,
-          fillColor = "blue",
-          label = ~ site_name
-        ) %>%
-        leaflet::addLayersControl(
-          baseGroups = c("Aerial", "Place names"),
-          overlayGroups = c("Sites", "Marine Wildlife Incidents"),
-          options = leaflet::layersControlOptions(collapsed = FALSE)
-        )
-      else
-        .
-    } %>%
+      })
+  }
+
+  l %>% {
+    if (!is.null(sites))
+      leaflet::addPolygons(
+        .,
+        data = sites,
+        group = "Sites",
+        weight = 1,
+        fillOpacity = 0.5,
+        fillColor = "blue",
+        label = ~ site_name
+      )
+    else
+      .
+  } %>%
     leaflet::addLayersControl(
       baseGroups = c("Aerial", "Place names"),
-      overlayGroups = c("Marine Wildlife Incidents"),
+      overlayGroups = (
+        if (!is.null(sites))
+          c("Sites", overlay_names)
+        else
+          overlay_names
+      ),
       options = leaflet::layersControlOptions(collapsed = FALSE)
     )
 }

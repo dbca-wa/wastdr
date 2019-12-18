@@ -15,7 +15,9 @@ repos:
 env: _R_CHECK_CRAN_INCOMING_=FALSE
 
 before_install:
-  - sudo apt-get -y install libproj-dev libgdal-dev
+  - sudo apt-get -y install libproj-dev libgdal-dev libnode-dev
+  - Rscript -e 'install.packages("V8")'
+  # https://github.com/ropensci/geojsonio/issues/65
 
 r_github_packages:
     - jimhester/covr
