@@ -16,7 +16,6 @@ map_dist <- function(dist,
                      wastd_url = wastdr::get_wastd_url(),
                      fmt = "%d/%m/%Y %H:%M",
                      cluster = FALSE) {
-
   # ---------------------------------------------------------------------------#
   # Options
   #
@@ -29,10 +28,8 @@ map_dist <- function(dist,
     co <- NULL
   }
 
-  pal <- leaflet::colorFactor(
-    palette = "viridis",
-    domain = dist$disturbance_cause
-  )
+  pal <- leaflet::colorFactor(palette = "viridis",
+                              domain = dist$disturbance_cause)
 
 
   # ---------------------------------------------------------------------------#
@@ -54,15 +51,14 @@ map_dist <- function(dist,
     purrr::walk(function(df) {
       l <<- l %>% leaflet::addAwesomeMarkers(
         data = dist.df[[df]],
-        lng = ~longitude, lat = ~latitude,
+        lng = ~ longitude,
+        lat = ~ latitude,
         icon = leaflet::makeAwesomeIcon(
           text = ~ stringr::str_sub(disturbance_cause, 0, 1),
           markerColor = "orange",
           iconColor = ~ pal(disturbance_cause)
         ),
-        label = ~ glue::glue(
-          "{format(datetime, fmt)} {humanize(disturbance_cause)}"
-        ),
+        label = ~ glue::glue("{format(datetime, fmt)} {humanize(disturbance_cause)}"),
         popup = ~ glue::glue(
           "<h3>{humanize(disturbance_cause)}</h3>",
           "<p>Seen on {format(datetime, fmt)} AWST by {observer}",
@@ -81,7 +77,7 @@ map_dist <- function(dist,
   # ---------------------------------------------------------------------------#
   # Dist nests by dist cause
   #
-  if (!is.null(tracks)){
+  if (!is.null(tracks)) {
 
   }
 
@@ -110,8 +106,17 @@ map_dist <- function(dist,
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
+#' @examples
+#' \dontrun{
+#' library(turtleviewer)
+#' data("turtledata", package="turtleviewer")
+#' map_dist_odkc(
+#'   turtledata$dist,
+#'   tracks=turtledata$tracks_dist,
+#'   sites=turtledata$sites)
+#' }
 map_dist_odkc <- function(dist,
-                          tracks=NULL,
+                          tracks = NULL,
                           sites = NULL,
                           wastd_url = wastdr::get_wastd_url(),
                           fmt = "%d/%m/%Y %H:%M",
@@ -119,19 +124,9 @@ map_dist_odkc <- function(dist,
                           cluster = FALSE) {
   layersControlOptions <- NULL
   markerClusterOptions <- NULL
-
-  if (cluster == TRUE) {
-    co <- leaflet::markerClusterOptions()
-  } else {
-    co <- NULL
-  }
-
-  pal <- leaflet::colorFactor(
-    palette = "viridis",
-    domain = dist$disturbance_cause
-  )
-
-  layersControlOptions <- NULL
+  co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
+  pal <- leaflet::colorFactor(palette = "viridis",
+                              domain = dist$disturbance_cause)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
@@ -142,13 +137,14 @@ map_dist_odkc <- function(dist,
   # Disturbances by cause
   #
   dist.df <- dist %>% split(dist$disturbance_cause)
-  overlay_names <- names(dist.df)
+  overlay_names <- names(dist.df) %>% purrr::map_chr(humanize)
 
   names(dist.df) %>%
     purrr::walk(function(df) {
       l <<- l %>% leaflet::addAwesomeMarkers(
         data = dist.df[[df]],
-        lng = ~location_longitude, lat = ~location_latitude,
+        lng = ~ location_longitude,
+        lat = ~ location_latitude,
         icon = leaflet::makeAwesomeIcon(
           text = ~ stringr::str_sub(disturbance_cause, 0, 1),
           markerColor = "orange",
@@ -160,11 +156,15 @@ map_dist_odkc <- function(dist,
         ),
         popup = ~ glue::glue(
           "<h3>Signs of {humanize(disturbance_cause)}</h3>",
-          "<p>Seen on {lubridate::with_tz(observation_start_time, tz)} ",
-          "AWST by {reporter}"
+          '<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ',
+          '{lubridate::with_tz(observation_start_time, tz)} AWST</br>',
+          '<span class="glyphicon glyphicon-user" aria-hidden="true"></span> {reporter}<br/>',
+          '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> ',
+          'Confidence: {humanize(disturbance_cause_confidence)}. {comments}<br/>',
+          '<img height="150px;" alt="Photo" src="{ifelse(!is.na({photo_disturbance}), photo_disturbance, "")}"></img><br/>'
         ),
 
-        group = df,
+        group = humanize(df),
         clusterOptions = co
       )
     })
@@ -172,21 +172,21 @@ map_dist_odkc <- function(dist,
   # ---------------------------------------------------------------------------#
   # Dist nests by dist cause
   #
-  if (!is.null(tracks)){
-
-    pal_tracks <- leaflet::colorFactor(
-      palette = "viridis",
-      domain = tracks$disturbance_cause
-    )
+  if (!is.null(tracks)) {
+    pal_tracks <- leaflet::colorFactor(palette = "viridis",
+                                       domain = tracks$disturbance_cause)
 
     dist.tr <- tracks %>% split(tracks$disturbance_cause)
-    overlay_names <- unique(c(overlay_names, names(dist.tr)))
+    overlay_names <- c(overlay_names, names(dist.tr)) %>%
+      unique() %>%
+      purrr::map_chr(humanize)
 
     names(dist.tr) %>%
       purrr::walk(function(df) {
         l <<- l %>% leaflet::addAwesomeMarkers(
           data = dist.tr[[df]],
-          lng = ~observed_at_longitude, lat = ~observed_at_latitude,
+          lng = ~ observed_at_longitude,
+          lat = ~ observed_at_latitude,
           icon = leaflet::makeAwesomeIcon(
             text = ~ stringr::str_sub(disturbance_cause, 0, 1),
             markerColor = "red",
@@ -198,78 +198,41 @@ map_dist_odkc <- function(dist,
           ),
           popup = ~ glue::glue(
             "<h3>Nest disturbed by {humanize(disturbance_cause)}</h3>",
-            "<p>Seen on {lubridate::with_tz(observation_start_time, tz)} ",
-            "AWST by {reporter}"
+            '<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>',
+            '{lubridate::with_tz(observation_start_time, tz)} AWST</br>',
+            '<span class="glyphicon glyphicon-user" aria-hidden="true"></span> {reporter}<br/>',
+            '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> ',
+            'Confidence: {disturbance_cause_confidence}. {comments}<br/>',
+            '<img height="150px;" alt="Photo" src="{ifelse(!is.na({photo_disturbance}), photo_disturbance, "")}"></img><br/>'
           ),
 
-          group = df,
+          group = humanize(df),
           clusterOptions = co
         )
       })
-
-    # [1] "id"                              "submissions_id"
-    # [3] "photo_disturbance"               "disturbance_cause"
-    # [5] "disturbance_cause_confidence"    "disturbance_severity"
-    # [7] "comments"                        "odata_context.x"
-    # [9] "observation_start_time"          "reporter"
-    # [11] "device_id"                       "observation_end_time"
-    # [13] "submission_date"                 "submitter_id"
-    # [15] "submitter_name"                  "instance_id"
-    # [17] "nest_age"                        "species"
-    # [19] "nest_type"                       "observed_at_longitude"
-    # [21] "observed_at_latitude"            "observed_at_altitude"
-    # [23] "habitat"                         "disturbance"
-    # [25] "nest_tagged"                     "logger_found"
-    # [27] "eggs_counted"                    "hatchlings_measured"
-    # [29] "fan_angles_measured"             "bearing_to_water_manual"
-    # [31] "leftmost_track_manual"           "rightmost_track_manual"
-    # [33] "no_tracks_main_group"            "no_tracks_main_group_min"
-    # [35] "no_tracks_main_group_max"        "outlier_tracks_present"
-    # [37] "hatchling_path_to_sea"           "hatchling_emergence_time_known"
-    # [39] "cloud_cover_at_emergence_known"  "light_sources_present"
-    # [41] "photo_hatchling_tracks_seawards" "photo_hatchling_tracks_relief"
-    # [43] "path_to_sea_comments"            "photo_nest_1"
-    # [45] "photo_nest_2"                    "photo_nest_3"
-    # [47] "photo_track_1"                   "tail_pokes"
-    # [49] "photo_track_2"                   "max_track_width_rear"
-    # [51] "max_track_width_front"           "carapace_drag_width"
-    # [53] "step_length"                     "status"
-    # [55] "date_nest_laid"                  "tag_label"
-    # [57] "tag_comments"                    "photo_tag"
-    # [59] "flipper_tag_id"                  "hatchling_emergence_time"
-    # [61] "hatchling_emergence_time_source" "odata_context.y"
-    # [63] "species_colours"                 "nest_type_text"
-    # [65] "geometry"                        "site_id"
-    # [67] "site_name"                       "area_id"
-    # [69] "area_name"                       "datetime"
-    # [71] "calendar_date_awst"              "turtle_date"
-    # [73] "season"                          "season_week"
-    # [75] "iso_week"
-
   }
 
-  if (!is.null(sites)) {
-   l %>%
-      leaflet::addPolygons(
-        data=sites,
-        group="Sites",
-        weight = 1,
-        fillOpacity = 0.5,
-        fillColor = "blue",
-        label = ~ site_name
-      ) %>%
-      leaflet::addLayersControl(
-        baseGroups = c("Aerial", "Place names"),
-        overlayGroups = c("Sites", overlay_names),
-        options = leaflet::layersControlOptions(collapsed = FALSE)
-      )
-  } else {
-    l %>%
-      leaflet::addLayersControl(
-        baseGroups = c("Aerial", "Place names"),
-        overlayGroups = c("Sites", overlay_names),
-        options = leaflet::layersControlOptions(collapsed = FALSE)
-      )
-  }
+  l %>%
+    {
+      if (!is.null(sites))
+        leaflet::addPolygons(
+          .,
+          data = sites,
+          group = "Sites",
+          weight = 1,
+          fillOpacity = 0.5,
+          fillColor = "blue",
+          label = ~ site_name
+        )
+    } %>%
+    leaflet::addLayersControl(
+      baseGroups = c("Aerial", "Place names"),
+      overlayGroups = (
+        if (!is.null(sites))
+          c("Sites", overlay_names)
+        else
+          overlay_names),
+      options = leaflet::layersControlOptions(collapsed = FALSE)
+    )
 
 }

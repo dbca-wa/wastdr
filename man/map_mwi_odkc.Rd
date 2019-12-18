@@ -45,3 +45,10 @@ each species separately. The maps auto-zooms to the extent of data given.
 This map function uses data from ODK Central / ruODK using form
 "Marine Wildlife Incident 0.6".
 }
+\examples{
+\dontrun{
+library(turtleviewer)
+data("turtledata", package="turtleviewer")
+map_mwi_odkc(turtledata$mwi, sites=turtledata$sites)
+}
+}

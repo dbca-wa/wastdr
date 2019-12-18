@@ -44,3 +44,10 @@ each species separately. The maps auto-zooms to the extent of data given.
 This map function uses data from ODK Central / ruODK using form
 "Turtle Track or Nest 1.0".
 }
+\examples{
+\dontrun{
+library(turtleviewer)
+data("turtledata", package="turtleviewer")
+map_tracks_odkc(turtledata$tracks, sites=turtledata$sites, cluster=T)
+}
+}

@@ -46,3 +46,13 @@ Creates a Leaflet map with an interactive legend offering to toggle
 each disturbance class separately. The maps auto-zooms to the extent of data
 given.
 }
+\examples{
+\dontrun{
+library(turtleviewer)
+data("turtledata", package="turtleviewer")
+map_dist_odkc(
+  turtledata$dist,
+  tracks=turtledata$tracks_dist,
+  sites=turtledata$sites)
+}
+}
