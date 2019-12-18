@@ -60,7 +60,7 @@ map_mwi_odkc <- function(data,
             'Cause of death: {humanize(cause_of_death)} ({humanize(cause_of_death_confidence)})',
 
             '<h5>Animal</h5>',
-            'Activity: {activity}; behaviour: {behaviour}',
+            'Activity: {activity}; behaviour: {behaviour} <br/>',
 
             '<img height="150px;" alt="Photo carapace top" src="{ifelse(!is.na({photo_carapace_top}), photo_carapace_top, "")}"></img><br/>',
             '<img height="150px;" alt="Photo head top" src="{ifelse(!is.na({photo_head_top}), photo_head_top, "")}"></img><br/>',

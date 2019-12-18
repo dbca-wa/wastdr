@@ -1,3 +1,7 @@
+# wastdr 0.1.31
+* Refactor maps: humanize layer names (tracks: species, dist: causes), make
+  map_mwi robust against null records.
+
 # wastdr 0.1.29
 ## Minor changes
 * Add `map_sv_odkc` to map Site Visit Start/End over TSC Sites. 
