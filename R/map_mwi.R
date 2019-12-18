@@ -21,6 +21,7 @@
 #' library(turtleviewer)
 #' data("turtledata", package="turtleviewer")
 #' map_mwi_odkc(turtledata$mwi, sites=turtledata$sites)
+#' map_mwi_odkc(data=NULL, sites=turtledata$sites)
 #' }
 map_mwi_odkc <- function(data,
                          sites = NULL,
@@ -31,6 +32,7 @@ map_mwi_odkc <- function(data,
   layersControlOptions <- NULL
   markerClusterOptions <- NULL
   co <- if (cluster == TRUE)  leaflet::markerClusterOptions() else NULL
+  overlay_names <- c()
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%

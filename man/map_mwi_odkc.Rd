@@ -50,5 +50,6 @@ This map function uses data from ODK Central / ruODK using form
 library(turtleviewer)
 data("turtledata", package="turtleviewer")
 map_mwi_odkc(turtledata$mwi, sites=turtledata$sites)
+map_mwi_odkc(sites=turtledata$sites)
 }
 }
