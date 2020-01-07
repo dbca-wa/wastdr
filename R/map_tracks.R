@@ -16,7 +16,8 @@ map_tracks <- function(tracks,
                        sites = NULL,
                        wastd_url = wastdr::get_wastd_url(),
                        fmt = "%d/%m/%Y %H:%M",
-                       cluster = FALSE) {
+                       cluster = FALSE,
+                       ts = FALSE) {
   layersControlOptions <- NULL
   markerClusterOptions <- NULL
 
@@ -25,6 +26,7 @@ map_tracks <- function(tracks,
   } else {
     co <- NULL
   }
+
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
@@ -61,6 +63,26 @@ map_tracks <- function(tracks,
           clusterOptions = co
         )
     })
+
+  if (ts == TRUE) {
+    l <- l %>%
+      leaftime::addTimeline(
+        data = tracks_as_geojson(tracks),
+        sliderOpts = leaftime::sliderOptions(
+          formatOutput = htmlwidgets::JS(
+            "function(date) {return new Date(date).toDateString()}"
+          ),
+        ),
+        timelineOpts = leaftime::timelineOptions(
+          styleOptions = leaftime::styleOptions(
+            radius = 10,
+            stroke = FALSE,
+            fillColor = "yellow",
+            fillOpacity = .4
+          )
+        )
+      )
+  }
 
   if (!is.null(sites)) {
     l %>%
@@ -115,7 +137,8 @@ map_tracks_odkc <- function(tracks,
                             wastd_url = wastdr::get_wastd_url(),
                             fmt = "%d/%m/%Y %H:%M",
                             tz = "Australia/Perth",
-                            cluster = FALSE) {
+                            cluster = FALSE,
+                            ts = FALSE) {
   . <- NULL
   layersControlOptions <- NULL
   markerClusterOptions <- NULL
@@ -166,6 +189,27 @@ map_tracks_odkc <- function(tracks,
           clusterOptions = co
         )
     })
+
+  if (ts == TRUE) {
+    l <- l %>%
+      leaftime::addTimeline(
+        data = tracks_as_geojson(tracks),
+        sliderOpts = leaftime::sliderOptions(
+          formatOutput = htmlwidgets::JS(
+            "function(date) {return new Date(date).toDateString()}"
+          ),
+        ),
+        timelineOpts = leaftime::timelineOptions(
+          styleOptions = leaftime::styleOptions(
+            radius = 10,
+            stroke = FALSE,
+            fillColor = "yellow",
+            fillOpacity = .4
+          )
+        )
+      )
+  }
+
 
   l %>%
     {

@@ -9,7 +9,8 @@ map_tracks(
   sites = NULL,
   wastd_url = wastdr::get_wastd_url(),
   fmt = "\%d/\%m/\%Y \%H:\%M",
-  cluster = FALSE
+  cluster = FALSE,
+  ts = FALSE
 )
 }
 \arguments{

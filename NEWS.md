@@ -1,3 +1,6 @@
+# wastdr 0.1.33
+* Add opt-in timelines to maps.
+
 # wastdr 0.1.31
 * Refactor maps: humanize layer names (tracks: species, dist: causes), make
   map_mwi robust against null records.
