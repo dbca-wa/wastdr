@@ -10,7 +10,8 @@ map_tracks_odkc(
   wastd_url = wastdr::get_wastd_url(),
   fmt = "\%d/\%m/\%Y \%H:\%M",
   tz = "Australia/Perth",
-  cluster = FALSE
+  cluster = FALSE,
+  ts = FALSE
 )
 }
 \arguments{

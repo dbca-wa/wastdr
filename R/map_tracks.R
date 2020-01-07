@@ -147,7 +147,24 @@ map_tracks_odkc <- function(tracks,
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-    leaflet::clearBounds()
+    leaflet::clearBounds() %>%
+    leaftime::addTimeline(
+      group = "Time series",
+      data = tracks_as_geojson(tracks),
+      sliderOpts = leaftime::sliderOptions(
+        formatOutput = htmlwidgets::JS(
+          "function(date) {return new Date(date).toDateString()}"
+        ),
+      ),
+      timelineOpts = leaftime::timelineOptions(
+        styleOptions = leaftime::styleOptions(
+          radius = 10,
+          stroke = FALSE,
+          fillColor = "yellow",
+          fillOpacity = .4
+        )
+      )
+    )
 
   tracks.df <- tracks %>% split(tracks$species)
   overlay_names <- names(tracks.df) %>% purrr::map_chr(humanize)
@@ -190,27 +207,6 @@ map_tracks_odkc <- function(tracks,
         )
     })
 
-  if (ts == TRUE) {
-    l <- l %>%
-      leaftime::addTimeline(
-        data = tracks_as_geojson(tracks),
-        sliderOpts = leaftime::sliderOptions(
-          formatOutput = htmlwidgets::JS(
-            "function(date) {return new Date(date).toDateString()}"
-          ),
-        ),
-        timelineOpts = leaftime::timelineOptions(
-          styleOptions = leaftime::styleOptions(
-            radius = 10,
-            stroke = FALSE,
-            fillColor = "yellow",
-            fillOpacity = .4
-          )
-        )
-      )
-  }
-
-
   l %>%
     {
       if (!is.null(sites))
@@ -227,9 +223,9 @@ map_tracks_odkc <- function(tracks,
     leaflet::addLayersControl(
       baseGroups = c("Aerial", "Place names"),
       overlayGroups = (if (!is.null(sites))
-        c("Sites", overlay_names)
+        c("Sites", "Time series", overlay_names)
         else
-          overlay_names),
+        c("Time series", overlay_names)),
       options = leaflet::layersControlOptions(collapsed = FALSE)
     )
 }
