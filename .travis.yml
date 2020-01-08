@@ -16,7 +16,7 @@ env: _R_CHECK_CRAN_INCOMING_=FALSE
 # sudo add-apt-repository -y ppa:jeroen/jq
 
 before_install:
-  - sudo apt-get -y install libproj-dev libgdal-dev libnode-dev libjq-dev libudunits2-dev
+  - sudo apt-get -y install libproj-dev libgdal-dev libnode-dev libjq-dev libudunits2-dev libprotobuf-dev
   - Rscript -e 'install.packages("V8")'
   # https://github.com/ropensci/geojsonio/issues/65
 
