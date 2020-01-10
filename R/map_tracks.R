@@ -25,7 +25,6 @@ map_tracks <- function(tracks,
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-    leaflet::clearBounds() %>%
     {
       if (ts == TRUE)
         leaftime::addTimeline(.,
@@ -45,7 +44,8 @@ map_tracks <- function(tracks,
                                 )
                               )
         )
-    }
+    } %>%
+    leaflet::clearBounds()
 
   tracks.df <- tracks %>% split(tracks$species)
   overlay_names <- names(tracks.df)
@@ -139,7 +139,6 @@ map_tracks_odkc <- function(tracks,
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-    leaflet::clearBounds() %>%
     {
       if (ts == TRUE)
         leaftime::addTimeline(.,
@@ -159,8 +158,8 @@ map_tracks_odkc <- function(tracks,
                                 )
                               )
         )
-    }
-
+    } %>%
+    leaflet::clearBounds()
 
   tracks.df <- tracks %>% split(tracks$species)
   overlay_names <- names(tracks.df) %>% purrr::map_chr(humanize)
