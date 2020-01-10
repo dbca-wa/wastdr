@@ -17,11 +17,7 @@ map_nests <- function(data,
   layersControlOptions <- NULL
   markerClusterOptions <- NULL
 
-  if (cluster == TRUE) {
-    co <- markerClusterOptions()
-  } else {
-    co <- NULL
-  }
+  co <- if(cluster==TRUE) leaflet::markerClusterOptions() else NULL
   pal <- leaflet::colorFactor(palette = "RdYlBu", domain = data$tag_status)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%

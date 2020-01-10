@@ -20,15 +20,37 @@ map_tracks <- function(tracks,
                        ts = FALSE) {
   layersControlOptions <- NULL
   markerClusterOptions <- NULL
-  co <- ifelse(cluster==TRUE, leaflet::markerClusterOptions(), NULL)
+  co <- if(cluster==TRUE) leaflet::markerClusterOptions() else NULL
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-    leaflet::clearBounds()
+    leaflet::clearBounds() %>%
+    {
+      if (ts == TRUE)
+        leaftime::addTimeline(.,
+                              group = "Time series",
+                              data = tracks_as_geojson(tracks),
+                              sliderOpts = leaftime::sliderOptions(
+                                formatOutput = htmlwidgets::JS(
+                                  "function(date) {return new Date(date).toDateString()}"
+                                ),
+                              ),
+                              timelineOpts = leaftime::timelineOptions(
+                                styleOptions = leaftime::styleOptions(
+                                  radius = 10,
+                                  stroke = FALSE,
+                                  fillColor = "yellow",
+                                  fillOpacity = .4
+                                )
+                              )
+        )
+    }
 
   tracks.df <- tracks %>% split(tracks$species)
   overlay_names <- names(tracks.df)
+  if (ts == TRUE) overlay_names <- c("Time series", overlay_names)
+  if (!is.null(sites)) overlay_names <- c("Sites", overlay_names)
 
   names(tracks.df) %>%
     purrr::walk(function(df) {
@@ -59,49 +81,24 @@ map_tracks <- function(tracks,
         )
     })
 
-  # if (ts == TRUE) {
-  #   l <- l %>%
-  #     leaftime::addTimeline(
-  #       data = tracks_as_geojson(tracks),
-  #       sliderOpts = leaftime::sliderOptions(
-  #         formatOutput = htmlwidgets::JS(
-  #           "function(date) {return new Date(date).toDateString()}"
-  #         ),
-  #       ),
-  #       timelineOpts = leaftime::timelineOptions(
-  #         styleOptions = leaftime::styleOptions(
-  #           radius = 10,
-  #           stroke = FALSE,
-  #           fillColor = "yellow",
-  #           fillOpacity = .4
-  #         )
-  #       )
-  #     )
-  # }
-
-  if (!is.null(sites)) {
-    l %>%
-      leaflet::addPolygons(
-        data=sites,
-        group="Sites",
-        weight = 1,
-        fillOpacity = 0.5,
-        fillColor = "blue",
-        label = ~ site_name
-      ) %>%
-      leaflet::addLayersControl(
-        baseGroups = c("Aerial", "Place names"),
-        overlayGroups = c("Sites", overlay_names),
-        options = leaflet::layersControlOptions(collapsed = FALSE)
-      )
-  } else {
-    l %>%
-      leaflet::addLayersControl(
-        baseGroups = c("Aerial", "Place names"),
-        overlayGroups = c("Sites", overlay_names),
-        options = leaflet::layersControlOptions(collapsed = FALSE)
-      )
-  }
+  l %>%
+    {
+      if (!is.null(sites))
+        leaflet::addPolygons(
+          .,
+          data = sites,
+          group = "Sites",
+          weight = 1,
+          fillOpacity = 0.5,
+          fillColor = "blue",
+          label = ~ site_name
+        )
+    } %>%
+    leaflet::addLayersControl(
+      baseGroups = c("Aerial", "Place names"),
+      overlayGroups = overlay_names,
+      options = leaflet::layersControlOptions(collapsed = FALSE)
+    )
 }
 
 #' Map tracks directly from ODK data
@@ -137,7 +134,7 @@ map_tracks_odkc <- function(tracks,
   . <- NULL
   layersControlOptions <- NULL
   markerClusterOptions <- NULL
-  co <- ifelse(cluster==TRUE, leaflet::markerClusterOptions(), NULL)
+  co <- if(cluster==TRUE) leaflet::markerClusterOptions() else NULL
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
@@ -146,21 +143,21 @@ map_tracks_odkc <- function(tracks,
     {
       if (ts == TRUE)
         leaftime::addTimeline(.,
-          group = "Time series",
-          data = tracks_as_geojson(tracks),
-          sliderOpts = leaftime::sliderOptions(
-            formatOutput = htmlwidgets::JS(
-              "function(date) {return new Date(date).toDateString()}"
-            ),
-          ),
-          timelineOpts = leaftime::timelineOptions(
-            styleOptions = leaftime::styleOptions(
-              radius = 10,
-              stroke = FALSE,
-              fillColor = "yellow",
-              fillOpacity = .4
-            )
-          )
+                              group = "Time series",
+                              data = tracks_as_geojson(tracks),
+                              sliderOpts = leaftime::sliderOptions(
+                                formatOutput = htmlwidgets::JS(
+                                  "function(date) {return new Date(date).toDateString()}"
+                                ),
+                              ),
+                              timelineOpts = leaftime::timelineOptions(
+                                styleOptions = leaftime::styleOptions(
+                                  radius = 10,
+                                  stroke = FALSE,
+                                  fillColor = "yellow",
+                                  fillOpacity = .4
+                                )
+                              )
         )
     }
 
