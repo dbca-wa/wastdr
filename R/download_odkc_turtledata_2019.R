@@ -10,6 +10,7 @@
 #' @param uat The ODKC UAT server,
 #' default: "https://odkcentral-uat.dbca.wa.gov.au".
 #' @param tz The local timezone, default: "Australia/Perth".
+#' @template param-verbose
 #'
 #' @return A list of tibbles and sf objects:
 #'

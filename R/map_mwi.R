@@ -29,9 +29,7 @@ map_mwi_odkc <- function(data,
                          fmt = "%d/%m/%Y %H:%M",
                          tz = "Australia/Perth",
                          cluster = FALSE) {
-  layersControlOptions <- NULL
-  markerClusterOptions <- NULL
-  co <- if (cluster == TRUE)  leaflet::markerClusterOptions() else NULL
+  co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
   overlay_names <- c()
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
@@ -44,6 +42,7 @@ map_mwi_odkc <- function(data,
     pal_mwi <- leaflet::colorFactor(palette = "viridis", domain = data$taxon)
     data.df <- data %>% split(data$taxon)
     overlay_names <- names(data.df)
+    if (!is.null(sites)) overlay_names <- c("Sites", overlay_names)
 
     names(data.df) %>%
       purrr::walk(function(df) {
@@ -104,12 +103,7 @@ map_mwi_odkc <- function(data,
   } %>%
     leaflet::addLayersControl(
       baseGroups = c("Aerial", "Place names"),
-      overlayGroups = (
-        if (!is.null(sites))
-          c("Sites", overlay_names)
-        else
-          overlay_names
-      ),
+      overlayGroups = overlay_names,
       options = leaflet::layersControlOptions(collapsed = FALSE)
     )
 }

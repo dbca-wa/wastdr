@@ -19,18 +19,9 @@ map_dist <- function(dist,
   # ---------------------------------------------------------------------------#
   # Options
   #
-  layersControlOptions <- NULL
-  markerClusterOptions <- NULL
-
-  if (cluster == TRUE) {
-    co <- leaflet::markerClusterOptions()
-  } else {
-    co <- NULL
-  }
-
+  co <- if(cluster==TRUE) leaflet::markerClusterOptions() else NULL
   pal <- leaflet::colorFactor(palette = "viridis",
                               domain = dist$disturbance_cause)
-
 
   # ---------------------------------------------------------------------------#
   # Base map
@@ -77,10 +68,6 @@ map_dist <- function(dist,
   # ---------------------------------------------------------------------------#
   # Dist nests by dist cause
   #
-  if (!is.null(tracks)) {
-
-  }
-
   l %>%
     leaflet::addLayersControl(
       baseGroups = c("Aerial", "Place names"),
@@ -122,8 +109,6 @@ map_dist_odkc <- function(dist,
                           fmt = "%d/%m/%Y %H:%M",
                           tz = "Australia/Perth",
                           cluster = FALSE) {
-  layersControlOptions <- NULL
-  markerClusterOptions <- NULL
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
   pal <- leaflet::colorFactor(palette = "viridis",
                               domain = dist$disturbance_cause)
@@ -180,6 +165,7 @@ map_dist_odkc <- function(dist,
     overlay_names <- c(overlay_names, names(dist.tr)) %>%
       unique() %>%
       purrr::map_chr(humanize)
+    if (!is.null(sites)) overlay_names <- c("Sites", overlay_names)
 
     names(dist.tr) %>%
       purrr::walk(function(df) {
@@ -227,11 +213,7 @@ map_dist_odkc <- function(dist,
     } %>%
     leaflet::addLayersControl(
       baseGroups = c("Aerial", "Place names"),
-      overlayGroups = (
-        if (!is.null(sites))
-          c("Sites", overlay_names)
-        else
-          overlay_names),
+      overlayGroups = overlay_names,
       options = leaflet::layersControlOptions(collapsed = FALSE)
     )
 

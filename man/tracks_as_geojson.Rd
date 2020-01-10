@@ -6,6 +6,9 @@
 \usage{
 tracks_as_geojson(tracks)
 }
+\arguments{
+\item{tracks}{The output of \code{parse_turtle_nest_encounters} and \code{add_nest_labels}.}
+}
 \description{
 Turns calendar_date_awst (required) into start and end (start + 1 day) dates,
 converts dataframe to GeoJSON string.

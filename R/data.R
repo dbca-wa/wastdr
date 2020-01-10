@@ -166,4 +166,16 @@
 #' head(nests)
 "nests"
 
-utils::globalVariables(".")
+utils::globalVariables(c(".",
+                         "area_type",
+                         "pk",
+                         "name",
+                         "health",
+                         "disturbance_cause",
+                         "season",
+                         "calendar_date_awst",
+                         "start",
+                         "layersControlOptions",
+                         "markerClusterOptions"
+
+                         ))

@@ -10,6 +10,7 @@
 #' @template param-wastd_url
 #' @template param-fmt
 #' @template param-cluster
+#' @param ts Whether to render the data as additional timeseries (warning: slow)
 #' @return A leaflet map
 #' @export
 map_tracks <- function(tracks,
@@ -18,13 +19,12 @@ map_tracks <- function(tracks,
                        fmt = "%d/%m/%Y %H:%M",
                        cluster = FALSE,
                        ts = FALSE) {
-  layersControlOptions <- NULL
-  markerClusterOptions <- NULL
   co <- if(cluster==TRUE) leaflet::markerClusterOptions() else NULL
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
+    leaflet::clearBounds(.) %>%
     {
       if (ts == TRUE)
         leaftime::addTimeline(.,
@@ -44,8 +44,8 @@ map_tracks <- function(tracks,
                                 )
                               )
         )
-    } %>%
-    leaflet::clearBounds()
+      else invisible(.)
+    }
 
   tracks.df <- tracks %>% split(tracks$species)
   overlay_names <- names(tracks.df)
@@ -116,6 +116,7 @@ map_tracks <- function(tracks,
 #' @template param-fmt
 #' @template param-tz
 #' @template param-cluster
+#' @param ts Whether to render the data as additional timeseries (warning: slow)
 #' @return A leaflet map
 #' @export
 #' @examples
@@ -131,14 +132,12 @@ map_tracks_odkc <- function(tracks,
                             tz = "Australia/Perth",
                             cluster = FALSE,
                             ts = FALSE) {
-  . <- NULL
-  layersControlOptions <- NULL
-  markerClusterOptions <- NULL
   co <- if(cluster==TRUE) leaflet::markerClusterOptions() else NULL
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
+    leaflet::clearBounds(.) %>%
     {
       if (ts == TRUE)
         leaftime::addTimeline(.,
@@ -158,8 +157,8 @@ map_tracks_odkc <- function(tracks,
                                 )
                               )
         )
-    } %>%
-    leaflet::clearBounds()
+      else invisible(.)
+    }
 
   tracks.df <- tracks %>% split(tracks$species)
   overlay_names <- names(tracks.df) %>% purrr::map_chr(humanize)

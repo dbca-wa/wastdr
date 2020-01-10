@@ -13,10 +13,6 @@ map_nests <- function(data,
                       wastd_url = wastdr::get_wastd_url(),
                       fmt = "%d/%m/%Y %H:%M",
                       cluster = FALSE) {
-  . <- NULL
-  layersControlOptions <- NULL
-  markerClusterOptions <- NULL
-
   co <- if(cluster==TRUE) leaflet::markerClusterOptions() else NULL
   pal <- leaflet::colorFactor(palette = "RdYlBu", domain = data$tag_status)
 
