@@ -13,8 +13,6 @@
 #'   * iso_week
 #' @export
 add_dates <- function(data){
-    observation_start_time <- NULL
-    datetime <- NULL
     data %>%
         dplyr::mutate(
             datetime = observation_start_time %>%

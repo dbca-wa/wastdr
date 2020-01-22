@@ -31,4 +31,7 @@ NULL
 
 
 # CMD check silencer
-utils::globalVariables(".")
+utils::globalVariables(c(".",
+                         "obs",
+                         "datetime",
+                         "observation_start_time"))

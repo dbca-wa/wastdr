@@ -19,7 +19,7 @@ wastd_parse <- function(wastd_api_response, payload = "features") {
     tidyr::unnest_wider(".", names_repair = "universal") %>%
     janitor::clean_names()
 
-  if (names(out) == c("type", "geometry", "properties")) {
+  if ("geometry" %in% names(out)) {
     out <- out %>%
       # tidyr::unnest_wider("geometry", names_repair = "universal") %>%
       # tidyr::unnest_wider("coordinates", names_repair = "universal") %>%

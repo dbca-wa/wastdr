@@ -54,34 +54,30 @@
 #' @importFrom tibble tibble
 #' @importFrom purrr map map_chr map_dbl
 parse_turtle_nest_encounters <- function(wastd_api_response) {
-  obs <- NULL # Make R CMD check happy
-  . <- NULL
-  datetime <- NULL
-
   wastd_api_response$features %>% {
     tibble::tibble(
-      area_name = map_chr_hack(., c("properties", "area", "name")),
-      area_type = map_chr_hack(., c("properties", "area", "area_type")),
-      area_id = map_chr_hack(., c("properties", "area", "pk")) %>% as.integer(),
+      area_name = purrr::map_chr(., c("properties", "area", "name"), .default = NA),
+      area_type = purrr::map_chr(., c("properties", "area", "area_type"), .default = NA),
+      area_id = purrr::map_chr(., c("properties", "area", "pk"), .default = NA) %>% as.integer(),
 
-      site_name = map_chr_hack(., c("properties", "site", "name")),
-      site_type = map_chr_hack(., c("properties", "site", "area_type")),
-      site_id = map_chr_hack(., c("properties", "site", "pk")) %>% as.integer(),
+      site_name = purrr::map_chr(., c("properties", "site", "name"), .default = NA),
+      site_type = purrr::map_chr(., c("properties", "site", "area_type"), .default = NA),
+      site_id = purrr::map_chr(., c("properties", "site", "pk"), .default = NA) %>% as.integer(),
 
-      survey_id = map_chr_hack(., c("properties", "survey", "id")) %>% as.integer(),
-      survey_start_time = map_chr_hack(.,
-                                       c("properties", "survey", "start_time")) %>% httpdate_as_gmt08(),
-      survey_end_time = map_chr_hack(.,
-                                     c("properties", "survey", "end_time")) %>% httpdate_as_gmt08(),
-      survey_start_comments = map_chr_hack(.,
+      survey_id = purrr::map_chr(., c("properties", "survey", "id"), .default = NA) %>% as.integer(),
+      survey_start_time = purrr::map_chr(.,
+                                       c("properties", "survey", "start_time"), .default = NA) %>% httpdate_as_gmt08(),
+      survey_end_time = purrr::map_chr(.,
+                                     c("properties", "survey", "end_time"), .default = NA) %>% httpdate_as_gmt08(),
+      survey_start_comments = purrr::map_chr(.,
                                            c(
                                              "properties",
                                              "survey",
                                              "start_comments"
-                                           )),
-      survey_end_comments = map_chr_hack(., c(
+                                           ), .default = NA),
+      survey_end_comments = purrr::map_chr(., c(
         "properties", "survey", "end_comments"
-      )),
+      ), .default = NA),
 
       datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08(),
       calendar_date_awst = datetime %>%
