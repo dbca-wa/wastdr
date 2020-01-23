@@ -47,8 +47,9 @@ download_odkc_turtledata_2019 <-
 
     # SV start
     ruODK::ru_setup(
-      pid = 1, fid = "build_Site-Visit-Start-0-3_1559789550", url =
-        prod
+      pid = 1,
+      fid = "build_Site-Visit-Start-0-3_1559789550",
+      url = prod
     )
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     svs_prod <-
@@ -73,8 +74,9 @@ download_odkc_turtledata_2019 <-
 
     # MWI
     ruODK::ru_setup(
-      pid = 1, fid = "build_Marine-Wildlife-Incident-0-6_1559789189", url =
-        prod
+      pid = 1,
+      fid = "build_Marine-Wildlife-Incident-0-6_1559789189",
+      url = prod
     )
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     ft <- ruODK::odata_service_get()
@@ -96,19 +98,20 @@ download_odkc_turtledata_2019 <-
       ) %>%
       dplyr::left_join(mwi_prod, by = c("submissions_id" = "id"))
 
-    mwi_tag <- ft$url[[3]] %>%
+    mwi_tag_prod <- ft$url[[3]] %>%
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
         wkt = T,
         local_dir = local_dir
-      ) # %>%
-    # dplyr::left_join(mwi, by = c("submissions_id" = "id"))
+      ) %>%
+    dplyr::left_join(mwi_prod, by = c("submissions_id" = "id"))
 
     # Dist
     ruODK::ru_setup(
-      pid = 1, fid = "build_Predator-or-Disturbance-1-1_1559789410", url =
-        prod
+      pid = 1,
+      fid = "build_Predator-or-Disturbance-1-1_1559789410",
+      url = prod
     )
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     dist_prod <-
@@ -120,8 +123,9 @@ download_odkc_turtledata_2019 <-
 
     # Tracks
     ruODK::ru_setup(
-      pid = 1, fid = "build_Turtle-Track-or-Nest-1-0_1559789920", url =
-        prod
+      pid = 1,
+      fid = "build_Turtle-Track-or-Nest-1-0_1559789920",
+      url = prod
     )
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     ft <- ruODK::odata_service_get()
@@ -133,8 +137,8 @@ download_odkc_turtledata_2019 <-
         wkt = T,
         local_dir = local_dir
       ) %>%
-      wastdr::exclude_training_species() %>%
-      wastdr::add_nest_labels()
+      wastdr::exclude_training_species_odkc() %>%
+      wastdr::add_nest_labels_odkc()
 
     tracks_dist_prod <- ft$url[2] %>%
       ruODK::odata_submission_get(
@@ -145,15 +149,14 @@ download_odkc_turtledata_2019 <-
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
-    # None of the following were captured in UAT, so we name them wihtout _prod:
-    tracks_egg <- ft$url[3] %>%
+    tracks_egg_prod <- ft$url[3] %>%
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
         wkt = T,
         local_dir = local_dir
-      ) # %>%
-    # dplyr::left_join(tracks, by = c("submissions_id" = "id"))
+      ) %>%
+    dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
     tracks_log_prod <- ft$url[4] %>%
       ruODK::odata_submission_get(
@@ -164,14 +167,14 @@ download_odkc_turtledata_2019 <-
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
-    tracks_hatch <- ft$url[5] %>%
+    tracks_hatch_prod <- ft$url[5] %>%
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
         wkt = T,
         local_dir = local_dir
-      ) # %>%
-    # dplyr::left_join(tracks, by = c("submissions_id" = "id"))
+      ) %>%
+    dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
     tracks_fan_outlier_prod <- ft$url[6] %>%
       ruODK::odata_submission_get(
@@ -181,6 +184,7 @@ download_odkc_turtledata_2019 <-
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
+    # NONE YET - TODO ADD ONCE DATA
     tracks_light <- ft$url[7] %>%
       ruODK::odata_submission_get(
         table = .,
@@ -207,7 +211,7 @@ download_odkc_turtledata_2019 <-
         local_dir = local_dir
       )
     svs_extra <-
-      dplyr::anti_join(svs_uat, svs_prod, by = "instance_id")
+      dplyr::anti_join(svs_uat, svs_prod, by = "meta_instance_id")
 
     # SV end
     ruODK::ru_setup(
@@ -223,7 +227,7 @@ download_odkc_turtledata_2019 <-
         local_dir = local_dir
       )
     sve_extra <-
-      dplyr::anti_join(sve_uat, sve_prod, by = "instance_id")
+      dplyr::anti_join(sve_uat, sve_prod, by = "meta_instance_id")
 
     # MWI
     ruODK::ru_setup(
@@ -239,7 +243,7 @@ download_odkc_turtledata_2019 <-
         local_dir = local_dir
       )
     mwi_extra <-
-      dplyr::anti_join(mwi_uat, mwi_prod, by = "instance_id")
+      dplyr::anti_join(mwi_uat, mwi_prod, by = "meta_instance_id")
 
     # Dist
     ruODK::ru_setup(
@@ -255,7 +259,7 @@ download_odkc_turtledata_2019 <-
         local_dir = local_dir
       )
     dist_extra <-
-      dplyr::anti_join(dist_uat, dist_prod, by = "instance_id")
+      dplyr::anti_join(dist_uat, dist_prod, by = "meta_instance_id")
 
     # Tracks
     ruODK::ru_setup(
@@ -265,7 +269,6 @@ download_odkc_turtledata_2019 <-
     )
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     ft <- ruODK::odata_service_get()
-    ft %>% knitr::kable(.)
     tracks_uat <- ft$url[1] %>%
       ruODK::odata_submission_get(
         table = .,
@@ -273,10 +276,10 @@ download_odkc_turtledata_2019 <-
         wkt = T,
         local_dir = local_dir
       ) %>%
-      wastdr::exclude_training_species() %>%
-      wastdr::add_nest_labels()
+      wastdr::exclude_training_species_odkc() %>%
+      wastdr::add_nest_labels_odkc()
     tracks_extra <-
-      dplyr::anti_join(tracks_uat, tracks_prod, by = "instance_id")
+      dplyr::anti_join(tracks_uat, tracks_prod, by = "meta_instance_id")
 
     tracks_dist_uat <- ft$url[2] %>%
       ruODK::odata_submission_get(
@@ -286,8 +289,8 @@ download_odkc_turtledata_2019 <-
         local_dir = local_dir
       ) %>%
       dplyr::left_join(tracks_uat, by = c("submissions_id" = "id"))
-    tracks_dist_extra <-
-      dplyr::anti_join(tracks_dist_uat, tracks_dist_prod, by = "instance_id")
+    tracks_dist_extra <- tracks_dist_uat %>%
+      dplyr::anti_join(tracks_dist_prod, by = "meta_instance_id")
 
     save(
       svs_extra,
@@ -316,52 +319,68 @@ download_odkc_turtledata_2019 <-
       sf::st_join(areas)
 
     mwi <- dplyr::bind_rows(mwi_prod, mwi_extra) %>%
-      wastdr::join_tsc_sites(sites) %>%
+      wastdr::join_tsc_sites(sites, prefix="incident_observed_at_") %>%
       wastdr::add_dates()
 
     mwi_dmg <- mwi_dmg_prod %>%
-      wastdr::join_tsc_sites(sites) %>%
+      wastdr::join_tsc_sites(sites, prefix="incident_observed_at_") %>%
+      wastdr::add_dates()
+
+    mwi_tag <- mwi_tag_prod %>%
+      wastdr::join_tsc_sites(sites, prefix="incident_observed_at_") %>%
       wastdr::add_dates()
 
     svs <- dplyr::bind_rows(svs_prod, svs_extra) %>%
-      wastdr::join_tsc_sites(sites, prefix = "location_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
       wastdr::add_dates_svs()
 
     sve <- dplyr::bind_rows(sve_prod, sve_extra) %>%
-      wastdr::join_tsc_sites(sites, prefix = "location_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
       wastdr::add_dates_sve()
 
     dist <- dplyr::bind_rows(dist_prod, dist_extra) %>%
-      wastdr::join_tsc_sites(sites, prefix = "location_") %>%
+      wastdr::join_tsc_sites(sites,
+                             prefix = "disturbanceobservation_location_") %>%
       wastdr::add_dates()
 
     tracks <- dplyr::bind_rows(tracks_prod, tracks_extra) %>%
-      wastdr::join_tsc_sites(sites) %>%
+      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
       wastdr::add_dates()
 
     tracks_dist <-
       dplyr::bind_rows(tracks_dist_prod, tracks_dist_extra) %>%
-      wastdr::join_tsc_sites(sites) %>%
+      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
       wastdr::add_dates()
 
     tracks_log <- tracks_log_prod %>%
-      wastdr::join_tsc_sites(sites) %>%
+      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
+      wastdr::add_dates()
+
+    tracks_egg <- tracks_egg_prod %>%
+      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
+      wastdr::add_dates()
+
+    tracks_hatch <- tracks_hatch_prod %>%
+      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
       wastdr::add_dates()
 
     tracks_fan_outlier <-
       tracks_fan_outlier_prod %>%
-      wastdr::join_tsc_sites(sites) %>%
+      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
       wastdr::add_dates()
 
     turtledata <- list(
       downloaded_on = Sys.time(),
       tracks = tracks,
       tracks_dist = tracks_dist,
+      tracks_egg = tracks_egg,
       tracks_log = tracks_log,
+      tracks_hatch = tracks_hatch,
       tracks_fan_outlier = tracks_fan_outlier,
       dist = dist,
       mwi = mwi,
       mwi_dmg = mwi_dmg,
+      mwi_tag = mwi_tag,
       svs = svs,
       sve = sve,
       sites = sites,

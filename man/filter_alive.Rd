@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_mwi.R
 \name{filter_alive}
 \alias{filter_alive}
-\title{Filter strandings to live rescues.}
+\title{Filter strandings to live rescues}
 \usage{
 filter_alive(data)
 }
@@ -14,5 +14,5 @@ filter_alive(data)
 The dataframe with rows matching live outcomes.
 }
 \description{
-Filter strandings to live rescues.
+Filter strandings to live rescues
 }

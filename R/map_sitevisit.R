@@ -40,7 +40,8 @@ map_sv_odkc <- function(svs,
         # Site Visit Start
         leaflet::addAwesomeMarkers(
         data = svs,
-        lng = ~location_longitude, lat = ~location_latitude,
+        lng = ~site_visit_location_longitude,
+        lat = ~site_visit_location_latitude,
         icon = leaflet::makeAwesomeIcon(
             text = "SVS",
             markerColor = "green",
@@ -54,8 +55,8 @@ map_sv_odkc <- function(svs,
             "<h3>Site Visit Start</h3>",
             "<p>Start {lubridate::with_tz(survey_start_time, tz)} AWST</p>",
             "<p>Device ID{device_id}</p>",
-            "<p>By {reporter} with {team}</p>",
-            "<p>Comments: {comments}</p>"
+            "<p>By {reporter} with {site_visit_team}</p>",
+            "<p>Comments: {site_visit_comments}</p>"
         ),
 
         group = "Site Visit Start",
@@ -64,7 +65,8 @@ map_sv_odkc <- function(svs,
         # Site Visit End
         leaflet::addAwesomeMarkers(
             data = sve,
-            lng = ~location_longitude, lat = ~location_latitude,
+            lng = ~site_visit_location_longitude,
+            lat = ~site_visit_location_latitude,
             icon = leaflet::makeAwesomeIcon(
                 text = "SVE",
                 markerColor = "red",
@@ -79,7 +81,7 @@ map_sv_odkc <- function(svs,
                 "<p>End {lubridate::with_tz(survey_end_time, tz)} AWST</p>",
                 "<p>Device ID{device_id}</p>",
                 "<p>By {reporter}</p>",
-                "<p>Comments: {comments}</p>"
+                "<p>Comments: {site_visit_comments}</p>"
             ),
 
             group = "Site Visit End",

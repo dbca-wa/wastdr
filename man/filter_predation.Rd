@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_dist.R
 \name{filter_predation}
 \alias{filter_predation}
-\title{Filter disturbance data to predator presences.}
+\title{Filter disturbance data to predator presences}
 \usage{
 filter_predation(data)
 }
@@ -13,5 +13,5 @@ filter_predation(data)
 The dataframe with rows matching predator presences.
 }
 \description{
-Filter disturbance data to predator presences.
+Filter disturbance data to predator presences
 }

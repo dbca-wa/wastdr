@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_mwi.R
 \name{filter_dead}
 \alias{filter_dead}
-\title{Filter strandings to mortalities.}
+\title{Filter strandings to mortalities}
 \usage{
 filter_dead(data)
 }
@@ -14,5 +14,5 @@ filter_dead(data)
 The dataframe with rows matching mortal outcomes.
 }
 \description{
-Filter strandings to mortalities.
+Filter strandings to mortalities
 }

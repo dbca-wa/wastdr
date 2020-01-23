@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_dist.R
 \name{filter_disturbance}
 \alias{filter_disturbance}
-\title{Filter disturbance data to disturbances.}
+\title{Filter disturbance data to disturbances}
 \usage{
 filter_disturbance(data)
 }
@@ -13,5 +13,5 @@ filter_disturbance(data)
 The dataframe with rows matching disturbance causes.
 }
 \description{
-Filter disturbance data to disturbances.
+Filter disturbance data to disturbances
 }

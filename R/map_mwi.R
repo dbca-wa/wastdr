@@ -1,13 +1,10 @@
-#' Map Marine Wildlife Incident 0.6 parsed with ruODK from ODK Central.
+#' Map Marine Wildlife Incident 0.6
 #'
 #' @details Creates a Leaflet map with an interactive legend offering to toggle
 #' each species separately. The maps auto-zooms to the extent of data given.
 #'
-#' This map function uses data from ODK Central / ruODK using form
-#' "Marine Wildlife Incident 0.6".
 #'
-#' @param data The output of `turtleviewer::turtledata$mwi` from ODK form
-#'   `Marine Wildlife Incident 0.6`.
+#' @param data AnimalEncounters from WAStD.
 #' @param sites An sf object of sites with `site_name` and polygon geom, e.g.
 #'  `turtleviewer::turtledata$sites`.
 #' @template param-wastd_url
@@ -16,14 +13,7 @@
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
-#' @examples
-#' \dontrun{
-#' library(turtleviewer)
-#' data("turtledata", package="turtleviewer")
-#' map_mwi_odkc(turtledata$mwi, sites=turtledata$sites)
-#' map_mwi_odkc(data=NULL, sites=turtledata$sites)
-#' }
-map_mwi_odkc <- function(data,
+map_mwi <- function(data,
                          sites = NULL,
                          wastd_url = wastdr::get_wastd_url(),
                          fmt = "%d/%m/%Y %H:%M",

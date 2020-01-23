@@ -4,6 +4,13 @@
 #' @export
 exclude_training_species <- . %>% dplyr::filter(species != "corolla-corolla")
 
+#' Exclude ODKC records with \code{species} "corolla-corolla".
+#'
+#' @param value The output of \code{parse_disturbance_observations()}.
+#' @export
+#' @family odkc
+exclude_training_species_odkc <- . %>% dplyr::filter(details_species != "corolla-corolla")
+
 #' Filter records with missing \code{survey_id}
 #'
 #' @param value The output of \code{\link{parse_surveys}}
