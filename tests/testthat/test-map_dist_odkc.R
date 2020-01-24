@@ -1,5 +1,5 @@
 test_that("map_dist_odkc returns a leaflet htmlwidget", {
-    data("odkc")
+    data(odkc)
 
     themap <- map_dist_odkc(
       odkc$dist,

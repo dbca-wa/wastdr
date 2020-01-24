@@ -15,7 +15,7 @@ usethis::use_data(nests, compress = "xz", overwrite = TRUE)
 
 # TODO generate odkc data
 library(turtleviewer)
-turtledata <- data(turtledata, package="turtleviewer")
+data(turtledata, package="turtleviewer")
 odkc <- list(
     tracks = head(turtledata$tracks),
     tracks_dist = head(turtledata$tracks_dist),
