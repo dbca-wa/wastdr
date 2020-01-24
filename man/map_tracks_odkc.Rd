@@ -49,8 +49,7 @@ This map function uses data from ODK Central / ruODK using form
 }
 \examples{
 \dontrun{
-library(turtleviewer)
-data("turtledata", package="turtleviewer")
-map_tracks_odkc(turtledata$tracks, sites=turtledata$sites, cluster=TRUE)
+data("odkc")
+map_tracks_odkc(odkc$tracks, sites=odkc$sites, cluster=TRUE)
 }
 }

@@ -1,17 +1,16 @@
 test_that("map_tracks_odkc returns a leaflet htmlwidget", {
-    library(turtleviewer)
-    data("turtledata", package="turtleviewer")
+    data("odkc")
 
     themap <- map_tracks_odkc(
-        turtledata$tracks,
-        sites=turtledata$sites,
+        odkc$tracks,
+        sites=odkc$sites,
         cluster=FALSE)
 
     testthat::expect_equal(class(themap), c("leaflet", "htmlwidget"))
 
     themap2 <- map_tracks_odkc(
-        turtledata$tracks,
-        sites=turtledata$sites,
+        odkc$tracks,
+        sites=odkc$sites,
         cluster=TRUE)
     testthat::expect_equal(class(themap2), c("leaflet", "htmlwidget"))
 })

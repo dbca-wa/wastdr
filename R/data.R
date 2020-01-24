@@ -166,16 +166,5 @@
 #' head(nests)
 "nests"
 
-utils::globalVariables(c(".",
-                         "area_type",
-                         "pk",
-                         "name",
-                         "health",
-                         "disturbance_cause",
-                         "season",
-                         "calendar_date_awst",
-                         "start",
-                         "layersControlOptions",
-                         "markerClusterOptions"
-
-                         ))
+#' Turtle Nesting Census data, first few records of each dataset, all sites
+"odkc"

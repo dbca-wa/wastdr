@@ -18,10 +18,9 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' library(turtleviewer)
-#' data("turtledata", package="turtleviewer")
-#' map_mwi_odkc(turtledata$mwi, sites=turtledata$sites)
-#' map_mwi_odkc(data=NULL, sites=turtledata$sites)
+#' data("odkc")
+#' map_mwi_odkc(odkc$mwi, sites=odkc$sites)
+#' map_mwi_odkc(data=NULL, sites=odkc$sites)
 #' }
 map_mwi_odkc <- function(data,
                          sites = NULL,

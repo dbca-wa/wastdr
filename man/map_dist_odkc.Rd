@@ -48,11 +48,10 @@ given.
 }
 \examples{
 \dontrun{
-library(turtleviewer)
-data("turtledata", package="turtleviewer")
+data("odkc")
 map_dist_odkc(
-  turtledata$dist,
-  tracks=turtledata$tracks_dist,
-  sites=turtledata$sites)
+  odkc$dist,
+  tracks=odkc$tracks_dist,
+  sites=odkc$sites)
 }
 }

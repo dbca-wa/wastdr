@@ -18,9 +18,8 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' library(turtleviewer)
-#' data("turtledata", package="turtleviewer")
-#' map_tracks_odkc(turtledata$tracks, sites=turtledata$sites, cluster=TRUE)
+#' data("odkc")
+#' map_tracks_odkc(odkc$tracks, sites=odkc$sites, cluster=TRUE)
 #' }
 map_tracks_odkc <- function(tracks,
                             sites = NULL,

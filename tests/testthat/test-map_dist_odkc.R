@@ -1,11 +1,10 @@
 test_that("map_dist_odkc returns a leaflet htmlwidget", {
-    library(turtleviewer)
-    data("turtledata", package="turtleviewer")
+    data("odkc")
 
     themap <- map_dist_odkc(
-      turtledata$dist,
-      tracks=turtledata$tracks_dist,
-      sites=turtledata$sites)
+      odkc$dist,
+      tracks=odkc$tracks_dist,
+      sites=odkc$sites)
 
     testthat::expect_equal(class(themap), c("leaflet", "htmlwidget"))
 

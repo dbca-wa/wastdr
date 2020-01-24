@@ -32,6 +32,20 @@ NULL
 
 # CMD check silencer
 utils::globalVariables(c(".",
-                         "obs",
+                         "area_type",
+                         "calendar_date_awst",
                          "datetime",
-                         "observation_start_time"))
+                         "disturbance_cause",
+                         "disturbanceobservation_disturbance_cause",
+                         "health",
+                         "layersControlOptions",
+                         "markerClusterOptions",
+                         "name",
+                         "obs",
+                         "observation_start_time",
+                         "pk",
+                         "season",
+                         "status_health",
+                         "start",
+                         "when"
+                         ))
