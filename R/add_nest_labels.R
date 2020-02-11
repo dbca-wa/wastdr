@@ -56,7 +56,7 @@ nest_type_text <- tibble::tibble(
 add_nest_labels <- function(nests) {
   nests %>%
     dplyr::left_join(species_colours, by = "species") %>%
-    dplyr::left_join(nest_type_text, by = "details_nest_type")
+    dplyr::left_join(nest_type_text, by = "nest_type")
 }
 
 #' Add labels for species and nest/track type to parsed
