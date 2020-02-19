@@ -92,7 +92,7 @@ map_tracks <- function(tracks,
           fillOpacity = 0.5,
           fillColor = "blue",
           label = ~ site_name
-        )
+        ) else .
     } %>%
     leaflet::addLayersControl(
       baseGroups = c("Aerial", "Place names"),

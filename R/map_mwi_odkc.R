@@ -87,7 +87,7 @@ map_mwi_odkc <- function(data,
     }
 
     l %>% {
-        if (!is.null(sites))
+        if (!is.null(sites) && nrow(sites) > 0)
             leaflet::addPolygons(
                 .,
                 data = sites,
