@@ -4,7 +4,7 @@
 \alias{wastd_parse}
 \title{Parse a \code{wastd_api_response} into a tibble}
 \usage{
-wastd_parse(wastd_api_response, payload = "features")
+wastd_parse(wastd_api_response, payload = "data")
 }
 \arguments{
 \item{wastd_api_response}{A \code{wastd_api_response} from WAStD}

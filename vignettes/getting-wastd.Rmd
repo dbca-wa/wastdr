@@ -12,9 +12,14 @@ vignette: >
 ## Get WAStD
 
 After setting up `wastdr`'s authentication in vignette "Setup", 
-we can now retrieve data using `get_wastd` to send `GET` requests to the `WAStD` 
-API.
+we can now retrieve data using `wastdr::wastd_GET()` to send `GET` 
+requests to the `WAStD` API.
 
+This vignette shows examples of retrieving and parsing data from all 
+existing WAStD API endpoints. The intent of this vignette is to serve as a 
+starting point
+
+See vignette "get-tsc" for examples of the Threatened Species and Communities side. 
 
 ```{r}
 library(wastdr)
@@ -25,6 +30,41 @@ library(listviewer)
 library(DT)
 library(ggplot2)
 ```
+
+
+
+# Encounters
+```{r}
+# Encounters from 2016 onwards (this includes disturbances, animal and turtle 
+# nest encounters but not their specific details)
+# https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?when__year__gte=2016
+
+```
+
+## Filtering the results
+See examples of filter parameters and possibl efilter values on:
+
+* [https://tsc.dbca.wa.gov.au/api/1/animal-encounters/](https://tsc.dbca.wa.gov.au/api/1/animal-encounters/)
+* []()
+* []()
+
+## AnimalEncounters
+```{r}
+# AnimalEncounters of Turtles from 2016 onwards
+# https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&when__year__gte=2016
+```
+
+## TurtleNestEncounters
+
+```{r}
+# https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&when__year__gte=2016
+```
+
+
+## LineTransectEncounters
+
+## LoggerEncounters
+
 
 ```{r call_api, eval=FALSE}
 tne <- wastd_GET("turtle-nest-encounters")

@@ -5,11 +5,9 @@
 #' @template param-auth
 #' @template param-verbose
 #' @template return-wastd-api-response
-#' @importFrom httr add_headers authenticate user_agent POST content
 #' @export
 #' @examples
 #' \dontrun{
-#'
 #' # One by one
 #' gj <- "public:herbie_hbvnames_public" %>% kmi_getFeature()
 #' props <- purrr::map(gj[["features"]], "properties")
@@ -26,24 +24,56 @@ wastd_POST <- function(data,
                        api_token = wastdr::get_wastdr_api_token(),
                        api_un = wastdr::get_wastdr_api_un(),
                        api_pw = wastdr::get_wastdr_api_pw(),
-                       verbose = FALSE) {
-  . <- NULL
-  ua <- httr::user_agent("http://github.com/parksandwildlife/turtle-scripts")
-  if (!is.null(api_token)) {
-    auth <- httr::add_headers(c(Authorization = api_token))
-  } else {
-    auth <- httr::authenticate(api_un, api_pw, type = "basic")
-  }
+                       verbose = wastdr::get_wastdr_verbose()) {
+  ua <- httr::user_agent("http://github.com/dbca-wa/wastdr")
   url <- paste0(api_url, serializer, "/")
-  if (verbose == TRUE) message("[wastd_POST] url ", url)
-  res <- httr::POST(url, auth, ua, encode = "json", body = data) %>% httr::stop_for_status(.)
 
-  if (verbose == TRUE) message("[wastd_POST] status ", res$status)
+  if (is.null(api_token))
+    auth <- ttr::authenticate(api_un, api_pw, type = "basic")
+  else
+    auth <- httr::add_headers(c(Authorization = api_token))
+  if (is.null(auth)) wastdr_msg_warn("No authentication set!")
+
+  if (verbose == TRUE) wastdr_msg_info(glue::glue("[wastd_POST] {url}"))
+
+  res <- httr::POST(url, auth, ua, encode = "json", body = data) %>%
+    httr::warn_for_status(.)
+
+  if (res$status_code == 401) {
+    stop(glue::glue(
+      "Authorization failed.\n",
+      "If you are DBCA staff, run wastdr_setup(api_token='Token XXX').\n",
+      "You can find your API token under \"My Profile\" in WAStD.\n",
+      "External collaborators run ",
+      "wastdr::wastdr_setup(api_un='XXX', api_pw='XXX').\n",
+      "See ?wastdr_setup or vignette('setup')."
+    ),
+    call. = FALSE
+    )
+  }
+
+  if (httr::http_type(res) != "application/json")
+    wastdr_msg_abort(
+      glue::glue("API did not return JSON.\nIs {url} a valid endpoint?")
+    )
+  text <- httr::content(res, as = "text", encoding = "UTF-8")
+
+  if (identical(text, "")) {
+    stop("The response did not return any content.", call. = FALSE)
+  }
+
+  res_parsed <- jsonlite::fromJSON(text, flatten = F, simplifyVector = F)
+
+  if (verbose == TRUE)
+    wastdr_msg_success(glue::glue("[wastd_POST] {res$status}"))
+
   structure(
     list(
-      features = data,
+      data = res_parsed,
       serializer = serializer,
-      response = res
+      url = res$url,
+      date = res$headers$date,
+      status_code = res$status_code
     ),
     class = "wastd_api_response"
   )

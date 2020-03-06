@@ -44,11 +44,7 @@
 #' @importFrom tibble tibble
 #' @importFrom purrr map map_chr map_dbl
 parse_nesttag_observations <- function(wastd_api_response) {
-  obs <- NULL # Make R CMD check happy
-  . <- NULL
-  datetime <- NULL
-
-  wastd_api_response$features %>% {
+  wastd_api_response$data %>% {
     tibble::tibble(
       area_name = map_chr_hack(
         .,

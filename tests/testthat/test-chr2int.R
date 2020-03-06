@@ -1,19 +1,18 @@
-testthat::context("test-chr2int.R")
-testthat::test_that("chr2int works", {
-  testthat::expect_equal(chr2int("NA,NA"), list())
-  testthat::expect_equal(chr2int(list("NA,NA", "NA")), list())
+test_that("chr2int works", {
+  expect_equal(chr2int("NA,NA"), list())
+  expect_equal(chr2int(list("NA,NA", "NA")), list())
 
-  testthat::expect_equal(
+  expect_equal(
     list(a = "NA,2,234,NA", b = "NA", c = "NA,NA,1") %>% chr2int(),
     list(2, 234, 1)
   )
 
-  testthat::expect_equal(
+  expect_equal(
     list("NA,2,234,NA", "NA", "NA,NA,1") %>% chr2int(),
     list(2, 234, 1)
   )
 
-  testthat::expect_equal(
+  expect_equal(
     list("NA,2,234,NA", "NA", "NA,NA,1") %>% chr2int(),
     list(2, 234, 1)
   )
@@ -35,7 +34,7 @@ testthat::test_that("chr2int works", {
     list(1),
     list(2,3,4)
   )
-  # testthat::expect_equal(output_col, reference_col)
+  # expect_equal(output_col, reference_col)
 
   })
 # usethis::use_r("chr2int")

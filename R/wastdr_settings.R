@@ -12,11 +12,12 @@
 #' @family wastr settings
 wastdr_settings <- function() {
   ops <- list(
-    wastd_url = Sys.getenv("WASTD_URL"),
-    api_url = Sys.getenv("WASTDR_API_URL", ""),
-    api_token = Sys.getenv("WASTDR_API_TOKEN", ""),
-    api_un = Sys.getenv("WASTDR_API_UN"),
-    api_pw = Sys.getenv("WASTDR_API_PW")
+    wastd_url = get_wastd_url(),
+    api_url = get_wastdr_api_url(),
+    api_token = get_wastdr_api_token(),
+    api_un = get_wastdr_api_un(),
+    api_pw = get_wastdr_api_pw(),
+    wastdr_verbose = get_wastdr_verbose()
   )
   structure(ops, class = "wastdr_settings")
 }
@@ -24,18 +25,21 @@ wastdr_settings <- function() {
 #' @export
 print.wastdr_settings <- function(x, ...) {
   cat("<wastdr settings>", sep = "\n")
-  cat("  WAStD URL: ", x$wastd_url, "\n")
-  cat("  API URL: ", x$api_url, "\n")
-  cat("  API Token: see wastdr::get_wastdr_api_token()\n")
+  cat("  WAStD URL:    ", x$wastd_url, "\n")
+  cat("  API URL:      ", x$api_url, "\n")
+  cat("  API Token:     see wastdr::get_wastdr_api_token()\n")
   cat("  API Username: ", x$api_un, "\n")
-  cat("  API Password: see wastdr::get_wastdr_api_pw()\n")
+  cat("  API Password:  see wastdr::get_wastdr_api_pw()\n")
+  cat("  Verbose:      ", x$wastdr_verbose , "\n")
 
 
   if (is.null(x$api_token) && is.null(x$api_un)) {
-    rlang::warn(glue::glue(
-      "wastdr requires either an API token or a username and ",
-      "password to authenticate requests to the WAStD API."
-    ))
+    wastdr_msg_warn(
+      glue::glue(
+        "wastdr requires either an API token or a username and ",
+        "password to authenticate requests to the WAStD API."
+      )
+    )
   }
 }
 
@@ -71,8 +75,7 @@ print.wastdr_settings <- function(x, ...) {
 #' \dontrun{
 #' wastdr_setup(api_token = "c12345asdfqwer")
 #' }
-wastdr_setup <- function(
-                         wastd_url = get_wastd_url(),
+wastdr_setup <- function(wastd_url = get_wastd_url(),
                          api_url = get_wastdr_api_url(),
                          api_token = NULL,
                          api_un = get_wastdr_api_un(),
@@ -98,8 +101,7 @@ wastdr_setup <- function(
 #' @rdname wastdr_settings
 get_wastd_url <- function() {
   Sys.getenv("WASTD_URL",
-    unset = "https://tsc.dbca.wa.gov.au"
-  )
+             unset = "https://tsc.dbca.wa.gov.au")
 }
 
 
@@ -107,8 +109,7 @@ get_wastd_url <- function() {
 #' @rdname wastdr_settings
 get_wastdr_api_url <- function() {
   Sys.getenv("WASTDR_API_URL",
-    unset = "https://tsc.dbca.wa.gov.au/api/1/"
-  )
+             unset = "https://tsc.dbca.wa.gov.au/api/1/")
 }
 
 #' @export
@@ -128,3 +129,10 @@ get_wastdr_api_un <- function() {
 get_wastdr_api_pw <- function() {
   Sys.getenv("WASTDR_API_PW")
 }
+
+#' @export
+#' @rdname wastdr_settings
+get_wastdr_verbose <- function() {
+  Sys.getenv("WASTDR_VERBOSE", FALSE)
+}
+

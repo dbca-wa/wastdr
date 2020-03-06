@@ -12,7 +12,7 @@
 #' @return A tibble with one row per record and columns corresponding to each
 #'   record's fields.
 #' @export
-wastd_parse <- function(wastd_api_response, payload = "features") {
+wastd_parse <- function(wastd_api_response, payload = "data") {
   out <- wastd_api_response %>%
     magrittr::extract2(payload) %>%
     tibble::tibble() %>%

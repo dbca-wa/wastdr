@@ -4,13 +4,22 @@
 #'   parameters, parse the response's features into a nested list.
 #'   This function requires the WAStD API to return the results in a key
 #'   `features` as is the standard for a GeoJSON FeatureCollection.
+#'
 #' @template param-serializer
-#' @param query (list) A list of GET parameters, default: list().
-#' @param format (chr) The desired API output format, default: "json".
+#' @param query <list> A list of GET parameters, default: list().
+#'   The \code{format} is specified in a separate top-level param.
+#' @param format <chr> The desired API output format, default: "json".
+#' @param max_records <int> The maximum number of records retrieved.
+#'   If left at default (NULL), all records are returned.
+#'   Default: NULL.
+#' @param chunk_size <int> The number of records to retrieve in each paginated
+#'   response. A specified but smaller \code{limit} will override
+#'   \code{chunk_size}.
+#'   Adjust \code{chunk_size} down if getting timeouts from the API.
+#'   Default: 1000.
 #' @template param-auth
+#' @template param-verbose
 #' @template return-wastd-api-response
-#' @importFrom httr add_headers http_error http_type status_code user_agent
-#' @importFrom jsonlite fromJSON
 #' @export
 #' @examples
 #' \dontrun{
@@ -23,82 +32,111 @@
 wastd_GET <- function(serializer,
                       query = list(),
                       format = "json",
+                      max_records = NULL,
+                      chunk_size = 1000,
                       api_url = get_wastdr_api_url(),
                       api_token = get_wastdr_api_token(),
                       api_un = get_wastdr_api_un(),
-                      api_pw = get_wastdr_api_pw()) {
-  . <- NULL
-
-  ua <- httr::user_agent("http://github.com/parksandwildlife/turtle-scripts")
-
+                      api_pw = get_wastdr_api_pw(),
+                      verbose = wastdr::get_wastdr_verbose()) {
+  # Prep and gate checks
+  ua <- httr::user_agent("http://github.com/dbca-wa/wastdr")
   url <- glue::glue(api_url, serializer)
-
-  query <- c(query, list(format = format))
-
-  if (!is.null(api_token)) {
-    auth <- httr::add_headers(c(Authorization = api_token))
-  } else {
+  limit <- ifelse(
+    is.null(max_records),
+    chunk_size,
+    min(max_records, chunk_size)
+  )
+  query <- c(query, list(format = format, limit = limit))
+  if (is.null(api_token)) {
+    if (verbose == TRUE) wastdr_msg_info("No API token found, using BasicAuth.")
     auth <- httr::authenticate(api_un, api_pw, type = "basic")
+  } else {
+    auth <- httr::add_headers(c(Authorization = api_token))
   }
 
+  # First batch of results and error handling
+  if (verbose == TRUE) wastdr_msg_info(glue::glue("Fetching {url}"))
   res <- httr::GET(url, auth, ua, query = query)
-  message(glue::glue("[wastdr::get_wastd] fetched {res$url}"))
 
   if (res$status_code == 401) {
-    stop(glue::glue(
-      "Authorization failed.\n",
-      "If you are DBCA staff, run wastdr_setup(api_token='Token XXX').\n",
-      "You can find your API token under \"My Profile\" in WAStD.\n",
-      "External collaborators run ",
-      "wastdr::wastdr_setup(api_un='XXX', api_pw='XXX').\n",
-      "See ?wastdr_setup or vignette('setup')."
-    ),
-    call. = FALSE
+    wastdr_msg_abort(
+      glue::glue(
+        "Authorization failed.\n",
+        "If you are DBCA staff, run wastdr_setup(api_token='Token XXX').\n",
+        "You can find your API token under \"My Profile\" in WAStD.\n",
+        "External collaborators run ",
+        "wastdr::wastdr_setup(api_un='XXX', api_pw='XXX').\n",
+        "See ?wastdr_setup or vignette('setup', package='wastdr')."
+      )
     )
   }
 
-  if (httr::http_type(res) != "application/json") {
-    stop(glue::glue("API did not return JSON.\nIs {url} a valid endpoint?"),
-      call. = FALSE
-    )
-  }
+  res_parsed <- res %>%
+    httr::content(as = "text", encoding = "UTF-8") %>%
+    {
+      if (identical(., "")) {
+        wastdr_msg_warn("The response did not return any content.")
+      } else {
+        .
+      }
+    } %>%
+    {
+      if (format == "json") {
+        jsonlite::fromJSON(., flatten = F, simplifyVector = F)
+      } else {
+        .
+      }
+    }
 
-  text <- httr::content(res, as = "text", encoding = "UTF-8")
-
-  if (identical(text, "")) {
-    stop("The response did not return any content.", call. = FALSE)
-  }
-
-  res_parsed <- jsonlite::fromJSON(text, flatten = F, simplifyVector = F)
-  features <- res_parsed$features
+  # GeoJSON serializer returns records as "features"
+  # OffsetLimitPagination serializer returns records as "results"
+  data_key <-
+    ifelse("features" %in% names(res_parsed), "features", "results")
+  features <- res_parsed[[data_key]]
   next_url <- res_parsed$`next`
+  total_count <- length(features)
 
   if (httr::http_error(res)) {
-    stop(
+    wastdr::wastdr_msg_warn(
       glue::glue(
-        "WAStD API request failed [{httr::status_code(res)}]\n",
-        "{res_parsed$message}",
-      ),
-      call. = FALSE
+        "WAStD API request failed ",
+        "[{httr::status_code(res)}]\n{res_parsed$message}"
+      )
     )
   }
 
-  # We assume all errors are now handled and remaining requests will work
-  while (!is.null(next_url)) {
-    message(glue::glue("[wastdr::get_wastd] fetching {next_url}..."))
-    res <- httr::GET(next_url, auth, ua) %>%
-      httr::stop_for_status(.)
-    res_parsed <- res %>%
-      httr::content(., as = "text", encoding = "UTF-8") %>%
-      jsonlite::fromJSON(., flatten = F, simplifyVector = F)
-    features <- append(features, res_parsed$features)
-    next_url <- res_parsed$`next`
+  # Unless we already have reached our desired max_records in the first page of
+  # results, loop over paginated response until we either hit the end of the
+  # server side data (next_url is Null) or our max_records.
+  if (get_more(total_count, max_records) == TRUE) {
+    while (!is.null(next_url) &&
+      get_more(total_count, max_records) == TRUE) {
+      wastdr::wastdr_msg_info(glue::glue("Fetching {next_url}"))
+      next_res <- httr::GET(next_url, auth, ua) %>%
+        httr::warn_for_status(.) %>%
+        httr::content(., as = "text", encoding = "UTF-8") %>%
+        {
+          if (format == "json") {
+            jsonlite::fromJSON(., flatten = F, simplifyVector = F)
+          } else {
+            .
+          }
+        }
+
+      features <- append(features, next_res[[data_key]])
+      next_url <- next_res$`next`
+      total_count <- length(features)
+    }
   }
-  message("[wastdr::get_wastd] done fetching all data.")
+
+  if (verbose == TRUE) {
+    wastdr::wastdr_msg_success(glue::glue("Done fetching {url}"))
+  }
 
   structure(
     list(
-      features = features,
+      data = features,
       serializer = serializer,
       url = res$url,
       date = res$headers$date,
@@ -114,16 +152,18 @@ wastd_GET <- function(serializer,
 #' @param x An object of class `wastd_api_response` as returned by
 #'   \code{\link{wastd_GET}}.
 #' @param ... Extra parameters for `print`
-#' @importFrom utils str
 #' @export
 print.wastd_api_response <- function(x, ...) {
-  print(glue::glue(
-    "<WAStD API response \"{x$serializer}\">\n",
-    "URL: {x$url}\n",
-    "Date: {x$date}\n",
-    "Status: {x$status_code}\n",
-    "Features: {length(x$features)}\n"
-  ))
-  # utils::str(utils::head(x$features))
+  print(
+    glue::glue(
+      "<WAStD API response \"{x$serializer}\">\n",
+      "URL: {x$url}\n",
+      "Date: {x$date}\n",
+      "Status: {x$status_code}\n",
+      "Data: {length(x$data)}\n"
+    )
+  )
   invisible(x)
 }
+
+# usethis::use_test("wastd_GET") # nolint

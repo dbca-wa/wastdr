@@ -11,7 +11,7 @@ wastd_POST(
   api_token = wastdr::get_wastdr_api_token(),
   api_un = wastdr::get_wastdr_api_un(),
   api_pw = wastdr::get_wastdr_api_pw(),
-  verbose = FALSE
+  verbose = wastdr::get_wastdr_verbose()
 )
 }
 \arguments{
@@ -44,7 +44,8 @@ default \code{\link{get_wastdr_api_un}}, see \code{\link{wastdr_setup}}}
 \item{api_pw}{(character) A WAStD API password,
 default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
 
-\item{verbose}{Whether to show debug messages.}
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
 }
 \value{
 An S3 object of class 'wastd_api_response' containing:
@@ -60,7 +61,6 @@ Send a POST request to WAStD's API
 }
 \examples{
 \dontrun{
-
 # One by one
 gj <- "public:herbie_hbvnames_public" \%>\% kmi_getFeature()
 props <- purrr::map(gj[["features"]], "properties")

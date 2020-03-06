@@ -1,3 +1,6 @@
+# wastdr 0.2.0
+* Refactor `wastd_GET` and `wastd_POST`, add examples to man, tests, vignettes.
+
 # wastdr 0.1.33
 * Add opt-in timelines to maps.
 

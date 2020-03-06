@@ -1,29 +1,29 @@
 test_that("map_dist_odkc returns a leaflet htmlwidget", {
-    data(odkc)
+    data(odkc_data)
     themap <- map_dist_odkc(
-      odkc$dist, tracks=odkc$tracks_dist, sites=odkc$sites
+      odkc_data$dist, tracks=odkc_data$tracks_dist, sites=odkc_data$sites
     )
     testthat::expect_equal(class(themap), c("leaflet", "htmlwidget"))
 })
 
 test_that("map_dist_odkc works without sites", {
-  data(odkc)
-  themap <- map_dist_odkc(odkc$dist, tracks=odkc$tracks_dist)
+  data(odkc_data)
+  themap <- map_dist_odkc(odkc_data$dist, tracks=odkc_data$tracks_dist)
   testthat::expect_equal(class(themap), c("leaflet", "htmlwidget"))
 })
 
 
 test_that("map_dist_odkc works without tracks", {
-  data(odkc)
-  themap <- map_dist_odkc(odkc$dist)
+  data(odkc_data)
+  themap <- map_dist_odkc(odkc_data$dist)
   testthat::expect_equal(class(themap), c("leaflet", "htmlwidget"))
 })
 
 
 test_that("map_dist_odkc returns a leaflet htmlwidget", {
-  data(odkc)
+  data(odkc_data)
   themap <- map_dist_odkc(
-   NULL, tracks=odkc$tracks_dist, sites=odkc$sites
+   NULL, tracks=odkc_data$tracks_dist, sites=odkc_data$sites
   )
   testthat::expect_equal(class(themap), c("leaflet", "htmlwidget"))
 })

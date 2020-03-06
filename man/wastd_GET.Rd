@@ -8,10 +8,13 @@ wastd_GET(
   serializer,
   query = list(),
   format = "json",
+  max_records = NULL,
+  chunk_size = 1000,
   api_url = get_wastdr_api_url(),
   api_token = get_wastdr_api_token(),
   api_un = get_wastdr_api_un(),
-  api_pw = get_wastdr_api_pw()
+  api_pw = get_wastdr_api_pw(),
+  verbose = wastdr::get_wastdr_verbose()
 )
 }
 \arguments{
@@ -30,9 +33,20 @@ Possible values as per
 \item taxa (WACensus taxa)
 }}
 
-\item{query}{(list) A list of GET parameters, default: list().}
+\item{query}{<list> A list of GET parameters, default: list().
+The \code{format} is specified in a separate top-level param.}
 
-\item{format}{(chr) The desired API output format, default: "json".}
+\item{format}{<chr> The desired API output format, default: "json".}
+
+\item{max_records}{<int> The maximum number of records retrieved.
+If left at default (NULL), all records are returned.
+Default: NULL.}
+
+\item{chunk_size}{<int> The number of records to retrieve in each paginated
+response. A specified but smaller \code{limit} will override
+\code{chunk_size}.
+Adjust \code{chunk_size} down if getting timeouts from the API.
+Default: 1000.}
 
 \item{api_url}{(character) The WAStD API URL,
 default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}
@@ -45,6 +59,9 @@ default \code{\link{get_wastdr_api_un}}, see \code{\link{wastdr_setup}}}
 
 \item{api_pw}{(character) A WAStD API password,
 default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
+
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
 }
 \value{
 An S3 object of class 'wastd_api_response' containing:

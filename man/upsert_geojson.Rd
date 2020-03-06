@@ -47,7 +47,8 @@ default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
 
 \item{chunksize}{(int) The number of features to upload simultaneously, default: 1000.}
 
-\item{verbose}{Whether to show debug messages.}
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
 }
 \description{
 Upsert GeoJSON into WAStD API endpoints

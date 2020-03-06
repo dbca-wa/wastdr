@@ -42,8 +42,8 @@
 parse_community_conservationlisting <- function(
   wastd_api_response,
   wastd_url = wastdr::get_wastd_url()
-  ) {
-  wastd_api_response$features %>% {
+) {
+  wastd_api_response$data %>% {
     tibble::tibble(
       id = purrr::map_int(., "id"),
       community = purrr::map_chr(., "community"),

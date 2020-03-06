@@ -31,7 +31,8 @@ default: "https://odkcentral-uat.dbca.wa.gov.au".}
 
 \item{tz}{The local timezone, default: "Australia/Perth".}
 
-\item{verbose}{Whether to show debug messages.}
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
 }
 \value{
 A list of tibbles and sf objects:

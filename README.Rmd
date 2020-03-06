@@ -48,7 +48,7 @@ Install `wastdr` from GitHub:
 
 ```{r, eval=FALSE}
 # install.packages("devtools")
-remotes::install_github("dbca-wa/wastdr")
+remotes::install_github("dbca-wa/wastdr", dependencies=TRUE, build_vignettes = TRUE)
 ```
 
 While the WAStD API is only accessible to a selected audience, and `wastdr` is

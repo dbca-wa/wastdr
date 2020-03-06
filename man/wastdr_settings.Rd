@@ -7,6 +7,7 @@
 \alias{get_wastdr_api_token}
 \alias{get_wastdr_api_un}
 \alias{get_wastdr_api_pw}
+\alias{get_wastdr_verbose}
 \title{Get or set wastdr WAStD settings}
 \usage{
 wastdr_settings()
@@ -20,6 +21,8 @@ get_wastdr_api_token()
 get_wastdr_api_un()
 
 get_wastdr_api_pw()
+
+get_wastdr_verbose()
 }
 \value{
 \code{wastdr_settings} prints your base url and WAStD API key.

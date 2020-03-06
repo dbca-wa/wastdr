@@ -48,11 +48,7 @@
 #' @importFrom tibble tibble
 #' @importFrom purrr map map_chr map_dbl
 parse_disturbance_observations <- function(wastd_api_response) {
-  obs <- NULL # Silence spurious R CMD check warning
-  . <- NULL
-  datetime <- NULL
-
-  wastd_api_response$features %>% {
+  wastd_api_response$data %>% {
     tibble::tibble(
       area_name = map_chr_hack(
         .,

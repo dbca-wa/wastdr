@@ -54,7 +54,7 @@
 #' @importFrom tibble tibble
 #' @importFrom purrr map map_chr map_dbl
 parse_turtle_nest_encounters <- function(wastd_api_response) {
-  wastd_api_response$features %>% {
+  wastd_api_response$data %>% {
     tibble::tibble(
       area_name = purrr::map_chr(., c("properties", "area", "name"), .default = NA),
       area_type = purrr::map_chr(., c("properties", "area", "area_type"), .default = NA),
@@ -66,15 +66,21 @@ parse_turtle_nest_encounters <- function(wastd_api_response) {
 
       survey_id = purrr::map_chr(., c("properties", "survey", "id"), .default = NA) %>% as.integer(),
       survey_start_time = purrr::map_chr(.,
-                                       c("properties", "survey", "start_time"), .default = NA) %>% httpdate_as_gmt08(),
+        c("properties", "survey", "start_time"),
+        .default = NA
+      ) %>% httpdate_as_gmt08(),
       survey_end_time = purrr::map_chr(.,
-                                     c("properties", "survey", "end_time"), .default = NA) %>% httpdate_as_gmt08(),
+        c("properties", "survey", "end_time"),
+        .default = NA
+      ) %>% httpdate_as_gmt08(),
       survey_start_comments = purrr::map_chr(.,
-                                           c(
-                                             "properties",
-                                             "survey",
-                                             "start_comments"
-                                           ), .default = NA),
+        c(
+          "properties",
+          "survey",
+          "start_comments"
+        ),
+        .default = NA
+      ),
       survey_end_comments = purrr::map_chr(., c(
         "properties", "survey", "end_comments"
       ), .default = NA),

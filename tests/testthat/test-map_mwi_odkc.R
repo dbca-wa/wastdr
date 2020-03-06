@@ -1,9 +1,9 @@
 test_that("map_dist_odkc returns a leaflet htmlwidget", {
-    data("odkc")
+    data("odkc_data")
 
     themap <- map_mwi_odkc(
-        odkc$mwi,
-        sites=odkc$sites)
+        odkc_data$mwi,
+        sites=odkc_data$sites)
 
     testthat::expect_equal(class(themap), c("leaflet", "htmlwidget"))
 

@@ -1,6 +1,6 @@
 test_that("tracks_as_geojson produces a geojson geofeaturecollection", {
-    data(nests)
-    nests_gj <- tracks_as_geojson(nests)
+    data(wastd_data)
+    nests_gj <- tracks_as_geojson(wastd_data$tracks)
 
     testthat::expect_equal(
         class(nests_gj),

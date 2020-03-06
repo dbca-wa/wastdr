@@ -1,5 +1,3 @@
-context("datetime_as_isoweek")
-
 test_that("datetime_as_isoweek returns numeric", {
   dd <- datetime_as_isoweek(httpdate_as_gmt08("2017-06-30T15:59:59Z"))
   testthat::expect_equal(class(dd), "numeric")

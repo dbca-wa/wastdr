@@ -56,13 +56,8 @@
 parse_surveys <- function(
   wastd_api_response,
   wastd_url = wastdr::get_wastd_url()
-  ) {
-  obs <- NULL
-  start_time <- NULL
-  end_time <- NULL
-  duration_minutes <- NULL
-
-  wastd_api_response$features %>%
+) {
+  wastd_api_response$data %>%
     {
       tibble::tibble(
         site_name = map_chr_hack(., c("properties", "site", "name")),

@@ -1,5 +1,3 @@
-context("datetime_as_season")
-
 test_that("datetime_as_season returns numeric", {
   dd <- datetime_as_season(httpdate_as_gmt08("2017-06-30T16:00:00Z"))
   testthat::expect_equal(class(dd), "numeric")
