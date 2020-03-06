@@ -3,7 +3,7 @@ r:
   - release
   - devel
 
-sudo: false
+os: linux
 
 cache: packages
 
