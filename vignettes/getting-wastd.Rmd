@@ -48,6 +48,12 @@ See examples of filter parameters and possibl efilter values on:
 * []()
 * []()
 
+This section will be expanded to show how to filter the data, e.g.
+
+* All data from an area (marine protected area, location, study site)
+* All data collected or recorded by a certain person
+* All data with specific properties, e.g. only certain stranding types, taxonomic groups etc.
+
 ## AnimalEncounters
 ```{r}
 # AnimalEncounters of Turtles from 2016 onwards
@@ -66,43 +72,4 @@ See examples of filter parameters and possibl efilter values on:
 ## LoggerEncounters
 
 
-```{r call_api, eval=FALSE}
-tne <- wastd_GET("turtle-nest-encounters")
-listviewer::jsonedit(tne$content, width = 800, height = 600)
-tracks <- parse_turtle_nest_encounters(tne)
-```
-
-For this vignette, we'll use the packaged example data.
-
-```{r, eval=T}
-data(animal_encounters)
-data(tne)
-```
-
-```{r load_vignette_data, eval=FALSE}
-# load(file = "vignettes/data.rda")
-```
-
-```{r inspect_data}
-listviewer::jsonedit(animal_encounters$features, width = 800, height = 600)
-
-animals <- parse_animal_encounters(animal_encounters)
-nests <- parse_turtle_nest_encounters(tne)
-
-DT::datatable(animals)
-# DT::datatable(nests)
-```
-
-```{r surveys, fig.height=5, fig.width=10, eval=FALSE}
-surveys <- wastd_GET("surveys") %>% parse_surveys()
-DT::datatable(head(surveys))
-```
-
-
-## Filtering data
-This section will be expanded to show how to filter the data, e.g.
-
-* All data from an area (marine protected area, location, study site)
-* All data collected or recorded by a certain person
-* All data with specific properties, e.g. only certain stranding types, taxonomic groups etc.
 

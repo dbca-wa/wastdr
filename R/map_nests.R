@@ -14,7 +14,7 @@ map_nests <- function(data,
                       fmt = "%d/%m/%Y %H:%M",
                       cluster = FALSE) {
   co <- if(cluster==TRUE) leaflet::markerClusterOptions() else NULL
-  pal <- leaflet::colorFactor(palette = "RdYlBu", domain = data$tag_status)
+  pal <- leaflet::colorFactor(palette = "RdYlBu", domain = data$status)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
@@ -22,25 +22,34 @@ map_nests <- function(data,
     leaflet::clearBounds() %>%
     leaflet::addAwesomeMarkers(
       data = data,
-      lng = ~longitude, lat = ~latitude,
+      lng = ~encounter_longitude,
+      lat = ~encounter_latitude,
       icon = leaflet::makeAwesomeIcon(
         icon = "tag",
         text = ~tag_label,
-        markerColor = ~ pal(tag_status)
+        markerColor = ~ pal(status)
       ),
       label = ~ glue::glue(
-        '{format(datetime, "%d/%m/%Y %H:%M")} {tag_status} ',
+        '{datetime} {status} ',
         "{flipper_tag_id} {date_nest_laid} {tag_label}"
       ),
       popup = ~ glue::glue(
         "<h3>{flipper_tag_id} {date_nest_laid} {tag_label}</h3>",
-        "<p>{humanize(tag_status)} on {format(datetime, fmt)} AWST",
-        " by {observer}",
-        "<p>Survey {survey_id} at {site_name} ",
-        "{format(survey_start_time, fmt)}-{format(survey_end_time, fmt)} AWST",
+        '<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ',
+        '{datetime} AWST</br>',
+        '<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> ',
+        "{humanize(status)}<br/>",
+        '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>',
+        '{encounter_observer_name}<br/>',
+        '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> ',
+        '{encounter_comments}<br/>',
+
+        "Survey {encounter_survey_id} at {encounter_site_name}<br/>",
+        "{encounter_survey_start_time}-",
+        "{encounter_survey_end_time} AWST",
         "</p>",
         '<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow" ',
-        'href="{wastd_url}{absolute_admin_url}">Edit on WAStD</a></p>'
+        'href="{wastd_url}{encounter_absolute_admin_url}">Edit on WAStD</a></p>'
       ),
       group = "Nests",
       clusterOptions = co
