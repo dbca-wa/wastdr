@@ -186,12 +186,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="check_wastd_api.html">check_wastd_api()</a></code> </p>
-        </td>
-        <td><p>Check whether API token is set and WAStD is online, else abort</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="chr2int.html">chr2int()</a></code> </p>
         </td>
         <td><p>Return multiple lists of int as chr as one list of int and discard NA.</p></td>
@@ -737,7 +731,14 @@ tbl_df.</p></td>
         <td>
           <p><code><a href="skip_test_if_offline.html">skip_test_if_offline()</a></code> </p>
         </td>
-        <td><p>Check whether API token is set and WAStD is online, else skip test</p></td>
+        <td><p>#' Check whether API token is set and WAStD is online, else abort
+#' @export
+check_wastd_api &lt;- function() 
+    res &lt;- wastd_GET("")
+    if (res$status_code != 200)
+        wastdr_msg_abort("WAStD is offline or authentication is missing.")
+
+Check whether API token is set and WAStD is online, else skip test</p></td>
       </tr><tr>
         
         <td>
