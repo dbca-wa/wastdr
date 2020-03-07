@@ -20,16 +20,14 @@ jobs:
     # https://github.com/ropensci/geojsonio/issues/65
     before_cache: Rscript -e 'remotes::install_cran(c("pkgdown", "V8"))'
     before_install:
-      - sudo apt-get -y install libproj-dev libgdal-dev libnode-dev libjq-dev \
-        libudunits2-dev libprotobuf-dev protobuf-compiler
+      - sudo apt-get -y install libproj-dev libgdal-dev libnode-dev libjq-dev libudunits2-dev libprotobuf-dev protobuf-compiler
     deploy:
       provider: script
-      script: Rscript -e 'pkgdown::deploy_site_github()'
+      script: Rscript -e 'devtools::install(); pkgdown::deploy_site_github()'
       skip_cleanup: true
     after_success:
       - Rscript -e 'covr::codecov()'
   - r: devel
     before_cache: Rscript -e 'remotes::install_cran("V8")'
     before_install:
-      - sudo apt-get -y install libproj-dev libgdal-dev libnode-dev libjq-dev \
-        libudunits2-dev libprotobuf-dev protobuf-compiler
+      - sudo apt-get -y install libproj-dev libgdal-dev libnode-dev libjq-dev libudunits2-dev libprotobuf-dev protobuf-compiler
