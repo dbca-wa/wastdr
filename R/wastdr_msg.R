@@ -69,3 +69,5 @@ wastdr_msg_abort <- function(message) {
     x <- clisymbols::symbol$cross
     rlang::abort(crayon::red(glue::glue("{x} {message}\n")))
 }
+
+# usethis::use_test("wastdr_msg")

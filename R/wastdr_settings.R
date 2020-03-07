@@ -31,16 +31,6 @@ print.wastdr_settings <- function(x, ...) {
   cat("  API Username: ", x$api_un, "\n")
   cat("  API Password:  see wastdr::get_wastdr_api_pw()\n")
   cat("  Verbose:      ", x$wastdr_verbose , "\n")
-
-
-  if (is.null(x$api_token) && is.null(x$api_un)) {
-    wastdr_msg_warn(
-      glue::glue(
-        "wastdr requires either an API token or a username and ",
-        "password to authenticate requests to the WAStD API."
-      )
-    )
-  }
 }
 
 # ------------------------------------------------------------------------------#

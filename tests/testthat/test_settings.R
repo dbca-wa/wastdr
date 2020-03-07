@@ -8,7 +8,7 @@ old_at <- Sys.getenv("WASTDR_API_TOKEN")
 old_un <- Sys.getenv("WASTDR_API_UN")
 old_pw <- Sys.getenv("WASTDR_API_PW")
 
-testthat::test_that("wastdr_settings can set and get default api_url", {
+test_that("wastdr_settings can set and get default api_url", {
   wastdr_setup()
   testthat::expect_equal(get_wastdr_api_url(), au)
   s <- wastdr_settings()
