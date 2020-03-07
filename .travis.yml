@@ -23,7 +23,7 @@ jobs:
       - sudo apt-get -y install libproj-dev libgdal-dev libnode-dev libjq-dev libudunits2-dev libprotobuf-dev protobuf-compiler
     deploy:
       provider: script
-      script: Rscript -e 'devtools::install(); pkgdown::deploy_site_github()'
+      script: Rscript -e 'install.packages("devtools"); devtools::install(); pkgdown::deploy_site_github()'
       skip_cleanup: true
     after_success:
       - Rscript -e 'covr::codecov()'
