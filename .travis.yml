@@ -1,10 +1,5 @@
 language: r
-r:
-  - release
-  - devel
-
 os: linux
-
 cache: packages
 
 repos:
@@ -12,18 +7,29 @@ repos:
   ropensci: http://packages.ropensci.org
 
 env: _R_CHECK_CRAN_INCOMING_=FALSE
-# sudo add-apt-repository -y ppa:jeroen/jq
 
-before_install:
-  - sudo apt-get -y install libproj-dev libgdal-dev libnode-dev libjq-dev libudunits2-dev libprotobuf-dev protobuf-compiler
-  - Rscript -e 'install.packages("V8")'
-  # https://github.com/ropensci/geojsonio/issues/65
-
-r_github_packages:
-    - jimhester/covr
+cache: packages
 
 r_packages:
   - covr
 
-after_success:
-    - Rscript -e 'library(covr);codecov()'
+r_github_packages:
+    - jimhester/covr
+
+jobs:
+  include:
+  - r: release
+    # https://github.com/ropensci/geojsonio/issues/65
+    before_cache: Rscript -e 'remotes::install_cran(c("pkgdown", "V8"))'
+    before_install:
+      - sudo apt-get -y install libproj-dev libgdal-dev libnode-dev libjq-dev libudunits2-dev libprotobuf-dev protobuf-compiler
+    deploy:
+      provider: script
+      script: Rscript -e 'pkgdown::deploy_site_github()'
+      skip_cleanup: true
+    after_success:
+      - Rscript -e 'covr::codecov()'
+  - r: devel
+    before_cache: Rscript -e 'remotes::install_cran("V8")'
+    before_install:
+      - sudo apt-get -y install libproj-dev libgdal-dev libnode-dev libjq-dev libudunits2-dev libprotobuf-dev protobuf-compiler

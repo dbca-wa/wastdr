@@ -63,3 +63,5 @@ test_that("wastd_data contains expected tibbles", {
     expect_equal(class(wastd_data$nest_dist), c("tbl_df", "tbl", "data.frame"))
 })
 
+# wastd_area_raw is tested in usethis::use_test("parse_area_sf")
+

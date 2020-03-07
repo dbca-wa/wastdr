@@ -16,7 +16,7 @@ and Attractions. The WAStD API uses token and basic authentication, see
 vignette on details.
 
 The API returns spatially explicit data as GeoJSON, which can be loaded
-directly into any standard-compliant GIS environments, e.g. [Quantum
+directly into any standard-compliant GIS environments, e.g. [Quantum
 GIS](http://www.qgis.org/en/site/).
 
 If the data consumer however wishes to analyse data in a statistical
@@ -30,7 +30,7 @@ WAStD data by providing helpers to access the API and flatten the API
 outputs into a [tidy](http://vita.had.co.nz/papers/tidy-data.html)
 `dplyr::tibble`.
 
-The secondary purpose of `wastdr` is to centralise a collection of
+The secondary purpose of `wastdr` is to centralize a collection of
 commonly used analyses and visualisations of turtle data. As development
 progresses, example analyses and visualisations will be added to the
 vignette. Contributions and requests are welcome\!
@@ -45,7 +45,12 @@ Install `wastdr` from GitHub:
 
 ``` r
 # install.packages("devtools")
-remotes::install_github("dbca-wa/wastdr")
+remotes::install_github(
+    "dbca-wa/wastdr",
+    dependencies = TRUE,
+    upgrade = "always",
+    build_vignettes = TRUE
+)
 ```
 
 While the WAStD API is only accessible to a selected audience, and
@@ -62,16 +67,22 @@ convenience, `wastdr_setup` sets the correct variables, while
 `wastdr_settings` retrieves the currently set values.
 
 DBCA staff can find their WAStD API Token at
-[WAStD](https://tsc.dbca.wa.gov.au/) under “My Profile” and run:
+[WAStD](https://tsc.dbca.wa.gov.au/) under “My Profile” and add to their
+`.Renviron`:
 
 ``` r
-wastdr::wastdr_setup(api_token = "my_token")
+WASTDR_API_URL="https://tsc.dbca.wa.gov.au/api/1/"
+WASTDR_API_TOKEN="Token XXX"
+WASTDR_VERBOSE=TRUE
 ```
 
 External collaborator can use their allocated username and password:
 
 ``` r
-wastdr::wastdr_setup(api_un = "my_username", api_pw = "my_password")
+WASTDR_API_URL="https://tsc.dbca.wa.gov.au/api/1/"
+WASTDR_API_UN="..."
+WASTDR_API_PW="..."
+WASTDR_VERBOSE=TRUE
 ```
 
 Review the settings with:
@@ -79,11 +90,12 @@ Review the settings with:
 ``` r
 wastdr::wastdr_settings()
 #> <wastdr settings>
-#>   WAStD URL:  https://tsc.dbca.wa.gov.au 
-#>   API URL:  https://tsc.dbca.wa.gov.au/api/1/ 
-#>   API Token:  Token my_token 
-#>   API Username:  my_username 
-#>   API Password:  my_password
+#>   WAStD URL:     https://tsc.dbca.wa.gov.au 
+#>   API URL:       https://tsc.dbca.wa.gov.au/api/1/ 
+#>   API Token:     see wastdr::get_wastdr_api_token()
+#>   API Username:  FlorianM 
+#>   API Password:  see wastdr::get_wastdr_api_pw()
+#>   Verbose:       TRUE
 ```
 
 For a more permanent configuration method using environment variables
@@ -94,9 +106,9 @@ please see the vignette “Setup”.
 Once set up, `wastdr` can load data from WAStD simply with:
 
 ``` r
-tne <- get_wastd("turtle-nest-encounters")
-listviewer::jsonedit(tne)
-nests <- parse_turtle_nest_encounters(tne)
+tracks <- "turtle-nest-encounters" %>% 
+    wastd_GET(max_records = 10) %>%  
+    parse_turtle_nest_encounters()
 ```
 
 Valid endpoints are listed in the base API URL of WAStD, e.g.:
@@ -115,23 +127,24 @@ the data by using the pickled example data:
 require(wastdr)
 #> Loading required package: wastdr
 
-data("animal_encounters")
-data("tne")
+data("wastd_data")
+data("odkc_data")
 
-# listviewer::jsonedit(animal_encounters$content)
-# listviewer::jsonedit(tne$content)
-
-animals <- wastdr::parse_animal_encounters(animal_encounters)
-tracks <- wastdr::parse_turtle_nest_encounters(tne)
-
-# DT::datatable(animals)
-# DT::datatable(tracks)
+DT::datatable(wastd_data$animals)
 ```
+
+![](README-unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+DT::datatable(wastd_data$tracks)
+```
+
+![](README-unnamed-chunk-7-2.png)<!-- -->
 
 ## Learn more
 
-See the vignette for in-depth examples of transforming, analysing and
-visualising data.
+See the vignette for built-in helpers to transform, analyze and
+visualize WAStD data.
 
 ``` r
 vignette("getting-wastd")
@@ -150,17 +163,15 @@ Pull requests should eventually pass tests and checks (not introducing
 new ERRORs, WARNINGs or NOTEs apart from the “New CRAN package” NOTE):
 
 ``` r
-# install.packages("devtools")
-# devtools::install_github("hadley/devtools", force=T)
-# source("https://install-github.me/mangothecat/callr")
-# devtools::install_github("hadley/pkgdown")
-# devtools::install_github("klutometis/roxygen")
 styler:::style_pkg()
+spelling::spell_check_package()
+spelling::update_wordlist()
 devtools::document(roclets = c("rd", "collate", "namespace", "vignette"))
+devtools::build()
 devtools::test()
-devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))
+# devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))
+goodpractice::goodpractice(quiet = F)
 covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
-pkgdown::build_news()
 pkgdown::build_site()
 ```
 

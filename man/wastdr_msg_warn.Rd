@@ -13,7 +13,9 @@ wastdr_msg_warn(message)
 \lifecycle{stable}
 }
 \examples{
+\dontrun{
 wastdr_msg_warn("This is a warning.")
+}
 }
 \seealso{
 Other helpers: 

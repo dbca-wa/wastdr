@@ -3,14 +3,14 @@
 \docType{data}
 \name{wastd_data}
 \alias{wastd_data}
-\title{Turtle Nesting Census data from WAStD
-Names are hidden, first 10 records of encounters, all sites.}
+\title{Turtle Nesting Census data from WAStD}
 \format{An object of class \code{wastd_data} of length 13.}
 \usage{
 wastd_data
 }
 \description{
-Turtle Nesting Census data from WAStD
-Names are hidden, first 10 records of encounters, all sites.
+The output of \code{\link{download_wastd_turtledata}}, but
+observer and reporter names are hidden, tibbles are filtered down to the
+first 10 records, however all areas and sites are included.
 }
 \keyword{datasets}

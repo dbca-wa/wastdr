@@ -54,7 +54,9 @@ wastdr_msg_noop <- function(message) {
 #' @export
 #' @family helpers
 #' @examples
+#' \dontrun{
 #' wastdr_msg_warn("This is a warning.")
+#' }
 wastdr_msg_warn <- function(message) {
     x <- clisymbols::symbol$warning
     rlang::warn(crayon::yellow(glue::glue("{x} {message}\n")))
@@ -70,7 +72,9 @@ wastdr_msg_warn <- function(message) {
 #' @export
 #' @family helpers
 #' @examples
+#' \dontrun{
 #' wastdr_msg_abort("This is an error, abort.")
+#' }
 wastdr_msg_abort <- function(message) {
     x <- clisymbols::symbol$cross
     rlang::abort(crayon::red(glue::glue("{x} {message}\n")))

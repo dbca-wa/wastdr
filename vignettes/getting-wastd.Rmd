@@ -42,7 +42,7 @@ library(ggplot2)
 ```
 
 ## Filtering the results
-See examples of filter parameters and possibl efilter values on:
+See examples of filter parameters and possible filter values on:
 
 * [https://tsc.dbca.wa.gov.au/api/1/animal-encounters/](https://tsc.dbca.wa.gov.au/api/1/animal-encounters/)
 * []()

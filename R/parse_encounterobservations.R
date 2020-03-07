@@ -69,3 +69,5 @@ parse_encounterobservations <- function(wastd_api_response) {
         ) %>%
         wastdr::add_dates()
 }
+
+# usethis::use_test("parse_encounterobservations")

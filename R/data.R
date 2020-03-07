@@ -3,7 +3,10 @@
 "odkc_data"
 
 #' Turtle Nesting Census data from WAStD
-#' Names are hidden, first 10 records of encounters, all sites.
+#'
+#' The output of \code{\link{download_wastd_turtledata}}, but
+#' observer and reporter names are hidden, tibbles are filtered down to the
+#' first 10 records, however all areas and sites are included.
 "wastd_data"
 
 #' WAStD AnimalEncounters, unparsed, test data captured by author
@@ -17,5 +20,11 @@
 
 #' WAStD TurtleNestEncounters, parsed, test data captured by author
 "wastd_tne"
+
+#' WAStD Areas, unparsed
+"wastd_area_raw"
+
+#' WAStD Surveys, unparsed, test data captured by author
+"wastd_surveys_raw"
 
 # usethis::use_test("data")

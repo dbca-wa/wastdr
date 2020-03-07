@@ -13,7 +13,9 @@ wastdr_msg_abort(message)
 \lifecycle{stable}
 }
 \examples{
+\dontrun{
 wastdr_msg_abort("This is an error, abort.")
+}
 }
 \seealso{
 Other helpers: 

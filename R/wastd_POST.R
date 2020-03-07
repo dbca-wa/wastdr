@@ -29,7 +29,7 @@ wastd_POST <- function(data,
   url <- paste0(api_url, serializer, "/")
 
   if (is.null(api_token))
-    auth <- ttr::authenticate(api_un, api_pw, type = "basic")
+    auth <- httr::authenticate(api_un, api_pw, type = "basic")
   else
     auth <- httr::add_headers(c(Authorization = api_token))
   if (is.null(auth)) wastdr_msg_warn("No authentication set!")

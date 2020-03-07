@@ -33,7 +33,7 @@ The main purpose of `wastdr` is to facilitate reading, parsing and using WAStD d
 by providing helpers to access the API and flatten the API outputs into a 
 [tidy](http://vita.had.co.nz/papers/tidy-data.html) `dplyr::tibble`.
 
-The secondary purpose of `wastdr` is to centralise a collection of commonly used
+The secondary purpose of `wastdr` is to centralize a collection of commonly used
 analyses and visualisations of turtle data.
 As development progresses, example analyses and visualisations will be added to 
 the vignette. Contributions and requests are welcome!
@@ -48,7 +48,12 @@ Install `wastdr` from GitHub:
 
 ```{r, eval=FALSE}
 # install.packages("devtools")
-remotes::install_github("dbca-wa/wastdr", dependencies=TRUE, build_vignettes = TRUE)
+remotes::install_github(
+    "dbca-wa/wastdr",
+    dependencies = TRUE,
+    upgrade = "always",
+    build_vignettes = TRUE
+)
 ```
 
 While the WAStD API is only accessible to a selected audience, and `wastdr` is
@@ -63,16 +68,21 @@ For convenience, `wastdr_setup` sets the correct variables, while
 `wastdr_settings` retrieves the currently set values.
 
 DBCA staff can find their WAStD API Token at [WAStD](https://tsc.dbca.wa.gov.au/) 
-under "My Profile" and run:
+under "My Profile" and add to their `.Renviron`:
 
-```{r}
-wastdr::wastdr_setup(api_token = "my_token")
+```{r, eval=F}
+WASTDR_API_URL="https://tsc.dbca.wa.gov.au/api/1/"
+WASTDR_API_TOKEN="Token XXX"
+WASTDR_VERBOSE=TRUE
 ```
 
 External collaborator can use their allocated username and password:
 
-```{r}
-wastdr::wastdr_setup(api_un = "my_username", api_pw = "my_password")
+```{r, eval=F}
+WASTDR_API_URL="https://tsc.dbca.wa.gov.au/api/1/"
+WASTDR_API_UN="..."
+WASTDR_API_PW="..."
+WASTDR_VERBOSE=TRUE
 ```
 
 Review the settings with:
@@ -81,15 +91,16 @@ Review the settings with:
 wastdr::wastdr_settings()
 ```
 
-For a more permanent configuration method using environment variables please see the vignette "Setup".
+For a more permanent configuration method using environment variables 
+please see the vignette "Setup".
 
 ## Get WAStD
 Once set up, `wastdr` can load data from WAStD simply with:
 
 ```{r, eval=FALSE}
-tne <- get_wastd("turtle-nest-encounters")
-listviewer::jsonedit(tne)
-nests <- parse_turtle_nest_encounters(tne)
+tracks <- "turtle-nest-encounters" %>% 
+    wastd_GET(max_records = 10) %>%  
+    parse_turtle_nest_encounters()
 ```
 
 Valid endpoints are listed in the base API URL of WAStD, e.g.:
@@ -106,21 +117,16 @@ by using the pickled example data:
 ```{r}
 require(wastdr)
 
-data("animal_encounters")
-data("tne")
+data("wastd_data")
+data("odkc_data")
 
-# listviewer::jsonedit(animal_encounters$content)
-# listviewer::jsonedit(tne$content)
-
-animals <- wastdr::parse_animal_encounters(animal_encounters)
-tracks <- wastdr::parse_turtle_nest_encounters(tne)
-
-# DT::datatable(animals)
-# DT::datatable(tracks)
+DT::datatable(wastd_data$animals)
+DT::datatable(wastd_data$tracks)
 ```
 
 ## Learn more
-See the vignette for in-depth examples of transforming, analysing and visualising data.
+See the vignette for built-in helpers to transform, analyze and visualize 
+WAStD data.
 
 ```{r, eval=FALSE}
 vignette("getting-wastd")
@@ -130,26 +136,22 @@ vignette("analysis")
 # Contribute
 Every contribution, constructive feedback, or suggestion is welcome! 
 
-Send us your ideas and requests as [issues](https://github.com/dbca-wa/wastdr/issues) 
-or submit a pull request.
+Send us your ideas and requests as 
+[issues](https://github.com/dbca-wa/wastdr/issues) or submit a pull request.
 
 Pull requests should eventually pass tests and checks (not introducing new 
 ERRORs, WARNINGs or NOTEs apart from the "New CRAN package" NOTE):
 
 ```{r, eval=FALSE}
-# install.packages("devtools")
-# devtools::install_github("hadley/devtools", force=T)
-# source("https://install-github.me/mangothecat/callr")
-# devtools::install_github("hadley/pkgdown")
-# devtools::install_github("klutometis/roxygen")
 styler:::style_pkg()
+spelling::spell_check_package()
+spelling::update_wordlist()
 devtools::document(roclets = c("rd", "collate", "namespace", "vignette"))
 devtools::build()
 devtools::test()
 # devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))
 goodpractice::goodpractice(quiet = F)
 covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
-pkgdown::build_site()
 ```
 
 To enable local testing of the API as well as checking and upload of test 

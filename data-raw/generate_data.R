@@ -25,6 +25,15 @@ wastd_tne <- parse_turtle_nest_encounters(wastd_tne_raw)
 usethis::use_data(wastd_tne_raw, compress = "xz", overwrite = TRUE)
 usethis::use_data(wastd_tne, compress = "xz", overwrite = TRUE)
 
+# Area > tests parse_area, parse_area_sf, filter to sites
+wastd_area_raw <- wastdr::wastd_GET("area")
+usethis::use_data(wastd_area_raw, compress = "xz", overwrite = TRUE)
+
+# Surveys > test parse_surveys
+wastd_surveys_raw <- wastdr::wastd_GET(
+    "surveys", query = list(reporter=4), max_records = 10)
+usethis::use_data(wastd_surveys_raw, compress = "xz", overwrite = TRUE)
+
 # TODO generate odkc data
 library(turtleviewer)
 data(turtledata, package="turtleviewer")
@@ -60,3 +69,4 @@ wastd_data$nest_fans <- wastd_data$nest_fans %>% sanitize_names()
 wastd_data$nest_fan_outliers <- wastd_data$nest_fan_outliers %>% sanitize_names()
 wastd_data$nest_lightsources <- wastd_data$nest_lightsources %>% sanitize_names()
 usethis::use_data(wastd_data, compress="xz", overwrite=TRUE)
+
