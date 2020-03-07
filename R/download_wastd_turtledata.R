@@ -59,7 +59,8 @@ download_wastd_turtledata <- function(
         wastdr_msg_info("Downloading TurtleNestEncounters...")
     tracks <- "turtle-nest-encounters" %>%
         wastdr::wastd_GET(max_records = max_records) %>%
-        wastdr::parse_turtle_nest_encounters()
+        wastdr::parse_turtle_nest_encounters() %>%
+        wastdr::add_nest_labels()
 
     if (verbose == TRUE)
         wastdr_msg_info("Downloading nest disturbances...")

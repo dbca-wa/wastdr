@@ -76,7 +76,7 @@ WASTDR_API_TOKEN="Token XXX"
 WASTDR_VERBOSE=TRUE
 ```
 
-External collaborator can use their allocated username and password:
+External collaborators can use their allocated username and password:
 
 ```{r, eval=F}
 WASTDR_API_URL="https://tsc.dbca.wa.gov.au/api/1/"
@@ -120,8 +120,10 @@ require(wastdr)
 data("wastd_data")
 data("odkc_data")
 
-DT::datatable(wastd_data$animals)
-DT::datatable(wastd_data$tracks)
+wastd_data$animals
+wastd_data$tracks
+
+wastd_data$tracks %>% map_tracks(sites = wastd_data$sites)
 ```
 
 ## Learn more

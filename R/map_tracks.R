@@ -48,7 +48,7 @@ map_tracks <- function(tracks,
     }
 
   tracks.df <- tracks %>% split(tracks$species)
-  overlay_names <- names(tracks.df)
+  overlay_names <- humanize(names(tracks.df))
   if (ts == TRUE) overlay_names <- c("Time series", overlay_names)
   if (!is.null(sites)) overlay_names <- c("Sites", overlay_names)
 
@@ -76,7 +76,7 @@ map_tracks <- function(tracks,
             '<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow" ',
             'href="{wastd_url}{absolute_admin_url}">Edit on WAStD</a></p>'
           ),
-          group = df,
+          group = humanize(df),
           clusterOptions = co
         )
     })
