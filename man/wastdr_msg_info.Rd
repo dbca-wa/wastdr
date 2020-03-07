@@ -10,7 +10,7 @@ wastdr_msg_info(message)
 \item{message}{<chr> A message to print}
 }
 \description{
-\lifecycle{stable}
+Print a blue info message with an info symbol.
 }
 \examples{
 wastdr_msg_info("This is an info message.")

@@ -1,7 +1,5 @@
 #' Print a blue info message with an info symbol.
 #'
-#' \lifecycle{stable}
-#'
 #' @param message <chr> A message to print
 #' @return NULL
 #' @export
@@ -14,8 +12,6 @@ wastdr_msg_info <- function(message) {
 }
 
 #' Print a green success message with a tick symbol.
-#'
-#' \lifecycle{stable}
 #'
 #' @param message <chr> A message to print
 #' @return NULL
@@ -31,8 +27,6 @@ wastdr_msg_success <- function(message) {
 
 #' Print a green noop message with a filled circle symbol.
 #'
-#' \lifecycle{stable}
-#'
 #' @param message <chr> A message to print
 #' @return NULL
 #' @export
@@ -46,8 +40,6 @@ wastdr_msg_noop <- function(message) {
 
 
 #' rlang::warn() with a yellow warning message with a warning symbol.
-#'
-#' \lifecycle{stable}
 #'
 #' @param message <chr> A message to print
 #' @return NULL
@@ -64,8 +56,6 @@ wastdr_msg_warn <- function(message) {
 
 
 #' rlang::abort() with a red error message with a cross symbol.
-#'
-#' \lifecycle{stable}
 #'
 #' @param message <chr> A message to print
 #' @return NULL

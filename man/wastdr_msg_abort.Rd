@@ -10,7 +10,7 @@ wastdr_msg_abort(message)
 \item{message}{<chr> A message to print}
 }
 \description{
-\lifecycle{stable}
+rlang::abort() with a red error message with a cross symbol.
 }
 \examples{
 \dontrun{

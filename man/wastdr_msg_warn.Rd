@@ -10,7 +10,7 @@ wastdr_msg_warn(message)
 \item{message}{<chr> A message to print}
 }
 \description{
-\lifecycle{stable}
+rlang::warn() with a yellow warning message with a warning symbol.
 }
 \examples{
 \dontrun{

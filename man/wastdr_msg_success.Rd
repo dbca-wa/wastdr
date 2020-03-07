@@ -10,7 +10,7 @@ wastdr_msg_success(message)
 \item{message}{<chr> A message to print}
 }
 \description{
-\lifecycle{stable}
+Print a green success message with a tick symbol.
 }
 \examples{
 wastdr_msg_success("This is a success message.")

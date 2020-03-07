@@ -10,7 +10,7 @@ wastdr_msg_noop(message)
 \item{message}{<chr> A message to print}
 }
 \description{
-\lifecycle{stable}
+Print a green noop message with a filled circle symbol.
 }
 \examples{
 wastdr_msg_noop("This is a noop message.")
