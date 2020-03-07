@@ -13,19 +13,13 @@ test_that("wastd_GET parses GeoJSON properties", {
     expect_false("properties" %in% names(com))
 })
 
-test_that("wastd_GET accepts basicauth but WAStD spits it out", {
-    expect_error(
-        res <- wastd_GET("area", api_token = NULL)
-        # expect_equal(res$status_code, 200)
-    )
+test_that("wastd_GET warns and fails with NULL api_token", {
+    testthat::expect_warning(res <- wastd_GET("area", api_token = NULL))
 })
 
 
-test_that("wastd_GET won't work unauthenticated", {
-    at <- Sys.getenv("WASTDR_API_TOKEN")
-    wastdr_setup(api_token = "this-is-an-invalid-token")
-    expect_error(wastd_GET("area"))
-    wastdr_setup(api_token = at)
+test_that("wastd_GET warns and fails with incorrect api_token", {
+    expect_warning(wastd_GET("area", api_token = "this-is-an-invalid-token"))
 })
 
 test_that("wastd_GET returns something", {
@@ -37,13 +31,13 @@ test_that("wastd_GET returns something", {
 
 
 test_that("wastd_GET fails if HTTP error is returned", {
-    expect_error(
+    expect_warning(
         wastd_GET("", api_url = "http://httpstat.us/401", query = list())
     )
-    expect_error(
+    expect_warning(
         wastd_GET("", api_url = "http://httpstat.us/500", query = list())
     )
-    expect_error(
+    expect_warning(
         wastd_GET("", api_url = "http://httpstat.us/404", query = list())
     )
 })

@@ -60,7 +60,7 @@ wastd_GET <- function(serializer,
   res <- httr::GET(url, auth, ua, query = query)
 
   if (res$status_code == 401) {
-    wastdr_msg_abort(
+    wastdr_msg_warn(
       glue::glue(
         "Authorization failed.\n",
         "If you are DBCA staff, run wastdr_setup(api_token='Token XXX').\n",
@@ -68,6 +68,18 @@ wastd_GET <- function(serializer,
         "External collaborators run ",
         "wastdr::wastdr_setup(api_un='XXX', api_pw='XXX').\n",
         "See ?wastdr_setup or vignette('setup', package='wastdr')."
+      )
+    )
+    return(
+      structure(
+        list(
+          data = NULL,
+          serializer = serializer,
+          url = res$url,
+          date = res$headers$date,
+          status_code = res$status_code
+        ),
+        class = "wastd_api_response"
       )
     )
   }
@@ -101,7 +113,7 @@ wastd_GET <- function(serializer,
     wastdr::wastdr_msg_warn(
       glue::glue(
         "WAStD API request failed ",
-        "[{httr::status_code(res)}]\n{res_parsed$message}"
+        "[{httr::status_code(res)}]\n{res_parsed$message %||% ''}"
       )
     )
   }
