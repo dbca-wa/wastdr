@@ -24,7 +24,7 @@ jobs:
     deploy:
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github()'
-      cleanup: false
+      cleanup: true
     after_success:
       - Rscript -e 'covr::codecov()'
   - r: devel
