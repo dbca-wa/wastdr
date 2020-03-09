@@ -1,10 +1,21 @@
 
 # wastdr <img src="man/figures/logo.png" align="right" />
 
+<!-- badges: start -->
+
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![GitHub
+issues](https://img.shields.io/github/issues/dbca-wa/wastdr.svg?style=popout)](https://github.com/dbca-wa/wastdr/issues/)
+[![Last-changedate](https://img.shields.io/github/last-commit/dbca-wa/wastdr.svg)](https://github.com/dbca-wa/wastdr/commits/master)
 [![Build
 Status](https://travis-ci.org/dbca-wa/wastdr.svg?branch=master)](https://travis-ci.org/dbca-wa/wastdr)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/dbca-wa/wastdr?branch=master&svg=true)](https://ci.appveyor.com/project/dbca-wa/wastdr)
 [![Test
 coverage](https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/dbca-wa/wastdr)
+<!-- badges: end -->
 
 The [WA Strandings Database WAStD](https://tsc.dbca.wa.gov.au/)
 ([github](https://github.com/dbca-wa/wastd/)) provides a [RESTful
@@ -98,8 +109,7 @@ wastdr::wastdr_settings()
 #>   Verbose:       TRUE
 ```
 
-For a more permanent configuration method using environment variables
-please see the vignette “Setup”.
+For other configuration methods please see the vignette “Setup”.
 
 ## Get WAStD
 
@@ -116,7 +126,7 @@ Valid endpoints are listed in the base API URL of WAStD, e.g.:
   - `encounters`
   - `animal-encounters`
   - `turtle-nest-encounters`
-  - `disturbance-observations`
+  - `turte-nest-disturbance-observations`
 
 ## …or have a pickle
 
@@ -184,7 +194,13 @@ wastd_data$tracks
 wastd_data$tracks %>% map_tracks(sites = wastd_data$sites)
 ```
 
-![](README-unnamed-chunk-7-1.png)<!-- -->
+![](man/figures/README-unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+odkc_data$tracks %>% map_tracks_odkc(sites = odkc_data$sites)
+```
+
+![](man/figures/README-unnamed-chunk-7-2.png)<!-- -->
 
 ## Learn more
 
