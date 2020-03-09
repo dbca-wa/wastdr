@@ -15,11 +15,12 @@ Exclude ODKC records with \code{species} "corolla-corolla".
 \seealso{
 Other odkc: 
 \code{\link{add_nest_labels_odkc}()},
-\code{\link{disturbance_by_season_odkc}()},
 \code{\link{filter_alive_odkc}()},
 \code{\link{filter_dead_odkc}()},
 \code{\link{filter_disturbance_odkc}()},
 \code{\link{filter_predation_odkc}()},
+\code{\link{general_disturbance_by_season_odkc}()},
+\code{\link{nest_disturbance_by_season_odkc}()},
 \code{\link{nesting_type_by_area_season_age_species_odkc}()},
 \code{\link{nesting_type_by_area_season_species_odkc}()},
 \code{\link{nesting_type_by_season_age_species_odkc}()},

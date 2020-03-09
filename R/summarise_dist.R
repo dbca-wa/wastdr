@@ -93,25 +93,60 @@ filter_predation_odkc <-
   }
 
 
-#' Summarise disturbance by season and cause
+#' Summarise WAStD disturbance by season and cause
 #'
-#' @param value The ouput of \code{wastd_GET("disturbance-observations") %>%
-#'   parse_disturbance_observations()}
+#' @param value The ouput of
+#'   \code{
+#'   \link{wastdr::wastd_GET}("turtle-nest-disturbance-observations") %>%
+#'   \link{wastdr::parse_encounterobservations}()
+#'   } or \code{data("wastd_data"); wastd_data$nest_dist}
+#'
 #' @export
+#' @family wastd
+#' @examples
+#' data("wastd_data")
+#' wastd_data$nest_dist %>% disturbance_by_season
 disturbance_by_season <- . %>%
-  dplyr::group_by(season, disturbance_cause) %>%
+  dplyr::group_by(season, disturbance_cause, encounter_encounter_type) %>%
   dplyr::tally() %>%
-  dplyr::arrange(-season, -n)
+  dplyr::ungroup() %>%
+  dplyr::rename(encounter_type = encounter_encounter_type) %>%
+  dplyr::arrange(-season, encounter_type, -n)
 
 
 
-#' Summarise disturbance by season and cause for ODKC data
+#' Summarise nest disturbance by season and cause for ODKC data
 #'
-#' @param value The ouput of \code{wastd_GET("disturbance-observations") %>%
-#'   parse_disturbance_observations()}
+#' @param value ODKC tracks_dist
 #' @export
 #' @family odkc
-disturbance_by_season_odkc <- . %>%
+#' @examples
+#' data("odkc_data")
+#' odkc_data$tracks_dist %>% nest_disturbance_by_season_odkc()
+nest_disturbance_by_season_odkc <- . %>%
+  wastdr::sf_as_tbl() %>%
+  dplyr::group_by(season, disturbance_cause) %>%
+  dplyr::tally() %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(encounter_type = "nest") %>%
+  dplyr::arrange(-season, -n)
+
+
+#' Summarise general disturbance by season and cause for ODKC data
+#'
+#' @param value ODKC dist
+#' @export
+#' @family odkc
+#' @examples
+#' data("odkc_data")
+#' odkc_data$dist %>% general_disturbance_by_season_odkc()
+general_disturbance_by_season_odkc <- . %>%
+  wastdr::sf_as_tbl() %>%
   dplyr::group_by(season, disturbanceobservation_disturbance_cause) %>%
   dplyr::tally() %>%
+  dplyr::ungroup() %>%
+  dplyr::rename(disturbance_cause = disturbanceobservation_disturbance_cause) %>%
+  dplyr::mutate(encounter_type = "other") %>%
   dplyr::arrange(-season, -n)
+
+# usethis::use_test("summarise_dist")

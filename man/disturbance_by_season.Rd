@@ -2,14 +2,22 @@
 % Please edit documentation in R/summarise_dist.R
 \name{disturbance_by_season}
 \alias{disturbance_by_season}
-\title{Summarise disturbance by season and cause}
+\title{Summarise WAStD disturbance by season and cause}
 \usage{
 disturbance_by_season(value)
 }
 \arguments{
-\item{value}{The ouput of \code{wastd_GET("disturbance-observations") %>%
-parse_disturbance_observations()}}
+\item{value}{The ouput of
+\code{
+\link{wastdr::wastd_GET}("turtle-nest-disturbance-observations") %>%
+\link{wastdr::parse_encounterobservations}()
+} or \code{data("wastd_data"); wastd_data$nest_dist}}
 }
 \description{
-Summarise disturbance by season and cause
+Summarise WAStD disturbance by season and cause
 }
+\examples{
+data("wastd_data")
+wastd_data$nest_dist \%>\% disturbance_by_season
+}
+\concept{wastd}
