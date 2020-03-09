@@ -15,6 +15,12 @@ Status](https://travis-ci.org/dbca-wa/wastdr.svg?branch=master)](https://travis-
 status](https://ci.appveyor.com/api/projects/status/github/dbca-wa/wastdr?branch=master&svg=true)](https://ci.appveyor.com/project/dbca-wa/wastdr)
 [![Test
 coverage](https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/dbca-wa/wastdr)
+[![Azure pipelines build
+status](https://img.shields.io/azure-devops/build/dbca-wa/wastdr/2)](https://dev.azure.com/dbca-wa/wastdr/_build/latest?definitionId=1&branchName=master)
+[![Azure pipelines test
+status](https://img.shields.io/azure-devops/tests/dbca-wa/wastdr/2?color=brightgreen&compact_message)](https://dev.azure.com/dbca-wa/wastdr/_build/latest?definitionId=1&branchName=master)
+[![Azure pipelines coverage
+status](https://img.shields.io/azure-devops/coverage/dbca-wa/wastdr/2)](https://dev.azure.com/dbca-wa/wastdr/_build/latest?definitionId=1&branchName=master)
 <!-- badges: end -->
 
 The [WA Strandings Database WAStD](https://tsc.dbca.wa.gov.au/)

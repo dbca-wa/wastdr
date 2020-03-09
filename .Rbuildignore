@@ -13,3 +13,4 @@ man-roxygen
 ^\.httr-oauth$
 ^pkgdown$
 ^appveyor\.yml$
+^azure-pipelines\.yml$

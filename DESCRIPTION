@@ -62,7 +62,9 @@ Suggests:
     tidyverse (>= 1.2.1),
     tidyr (>= 1.0.0),
     testthat (>= 2.3.0),
-    roxygen2 (>= 7.0.2)
+    roxygen2 (>= 7.0.2),
+    xml2,
+    covr
 License: MIT + file LICENSE
 Language: en-US
 Encoding: UTF-8
