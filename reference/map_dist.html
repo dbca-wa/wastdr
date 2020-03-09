@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Map Disturbance observations interactively. — map_dist • wastdr</title>
+<title>Map nest and general disturbance observations interactively. — map_dist • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Map Disturbance observations interactively. — map_dist" />
-<meta property="og:description" content="Map Disturbance observations interactively." />
+<meta property="og:title" content="Map nest and general disturbance observations interactively. — map_dist" />
+<meta property="og:description" content="Map nest and general disturbance observations interactively." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -134,18 +134,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Map Disturbance observations interactively.</h1>
+    <h1>Map nest and general disturbance observations interactively.</h1>
     <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/map_dist.R'><code>R/map_dist.R</code></a></small>
     <div class="hidden name"><code>map_dist.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Map Disturbance observations interactively.</p>
+    <p>Map nest and general disturbance observations interactively.</p>
     </div>
 
     <pre class="usage"><span class='fu'>map_dist</span>(
   <span class='no'>dist</span>,
-  <span class='kw'>tracks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>wastd_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/wastdr/man/wastdr_settings.html'>get_wastd_url</a></span>(),
   <span class='kw'>fmt</span> <span class='kw'>=</span> <span class='st'>"%d/%m/%Y %H:%M"</span>,
   <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
@@ -156,11 +155,9 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dist</th>
-      <td><p>The output of <code>parse_disturbance_observations()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>tracks</th>
-      <td><p>TurtleNestDisturbanceObservations, optional. Planned feature.</p></td>
+      <td><p>Turtle nest and general disturbance and predation, e.g.
+<code><a href='wastd_data.html'>wastd_data</a>$nest_dist</code>. This data contains both dist/pred
+recorded against nests and general signs of disturbance or predation.</p></td>
     </tr>
     <tr>
       <th>wastd_url</th>
@@ -189,6 +186,11 @@ cluster markers expand.</p></td>
 each disturbance class separately.
 The maps auto-zooms to the extent of data given.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
+<span class='no'>wastd_data</span>$<span class='no'>nest_dist</span> <span class='kw'>%&gt;%</span> <span class='fu'>map_dist</span>()
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -196,6 +198,7 @@ The maps auto-zooms to the extent of data given.</p>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

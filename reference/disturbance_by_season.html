@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summarise disturbance by season and cause — disturbance_by_season • wastdr</title>
+<title>Tally WAStD disturbances by season, cause, and encounter type — disturbance_by_season • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Summarise disturbance by season and cause — disturbance_by_season" />
-<meta property="og:description" content="Summarise disturbance by season and cause" />
+<meta property="og:title" content="Tally WAStD disturbances by season, cause, and encounter type — disturbance_by_season" />
+<meta property="og:description" content="Tally WAStD disturbances by season, cause, and encounter type" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -134,13 +134,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summarise disturbance by season and cause</h1>
+    <h1>Tally WAStD disturbances by season, cause, and encounter type</h1>
     <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/summarise_dist.R'><code>R/summarise_dist.R</code></a></small>
     <div class="hidden name"><code>disturbance_by_season.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Summarise disturbance by season and cause</p>
+    <p>Tally WAStD disturbances by season, cause, and encounter type</p>
     </div>
 
     <pre class="usage"><span class='fu'>disturbance_by_season</span>(<span class='no'>value</span>)</pre>
@@ -150,17 +150,35 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>value</th>
-      <td><p>The ouput of <code>wastd_GET("disturbance-observations") <!-- %&gt;% -->
-parse_disturbance_observations()</code></p></td>
+      <td><p>The ouput of
+<code>
+<a href='wastd_GET.html'>wastd_GET</a>("turtle-nest-disturbance-observations") <!-- %&gt;% -->
+<a href='parse_encounterobservations.html'>parse_encounterobservations</a>()
+</code> or <code><a href='https://rdrr.io/r/utils/data.html'>data("wastd_data"); wastd_data$nest_dist</a></code></p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A tibble with columns `season`, `disturbance_cause`,
+ `encounter_type`, and a tally `n`.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
+<span class='no'>wastd_data</span>$<span class='no'>nest_dist</span> <span class='kw'>%&gt;%</span> <span class='no'>disturbance_by_season</span></div><div class='output co'>#&gt; # A tibble: 4 x 4
+#&gt;   season disturbance_cause encounter_type     n
+#&gt;    &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;          &lt;int&gt;
+#&gt; 1   2017 dingo             nest               7
+#&gt; 2   2017 unknown           nest               1
+#&gt; 3   2016 dingo             nest               1
+#&gt; 4   2016 human             nest               1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

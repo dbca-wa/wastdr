@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Filter strandings to mortalities for ODKC data — filter_dead_odkc • wastdr</title>
+<title>Tally ODKC General disturbances by season, cause, and encounter type — general_disturbance_by_season_odkc • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Filter strandings to mortalities for ODKC data — filter_dead_odkc" />
-<meta property="og:description" content="Filter strandings to mortalities for ODKC data" />
+<meta property="og:title" content="Tally ODKC General disturbances by season, cause, and encounter type — general_disturbance_by_season_odkc" />
+<meta property="og:description" content="Tally ODKC General disturbances by season, cause, and encounter type" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -134,39 +134,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Filter strandings to mortalities for ODKC data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/summarise_mwi.R'><code>R/summarise_mwi.R</code></a></small>
-    <div class="hidden name"><code>filter_dead_odkc.Rd</code></div>
+    <h1>Tally ODKC General disturbances by season, cause, and encounter type</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/summarise_dist.R'><code>R/summarise_dist.R</code></a></small>
+    <div class="hidden name"><code>general_disturbance_by_season_odkc.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Filter strandings to mortalities for ODKC data</p>
+    <p>Tally ODKC General disturbances by season, cause, and encounter type</p>
     </div>
 
-    <pre class="usage"><span class='fu'>filter_dead_odkc</span>(<span class='no'>data</span>)</pre>
+    <pre class="usage"><span class='fu'>general_disturbance_by_season_odkc</span>(<span class='no'>value</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>A dataframe with column "health", e.g. data from form
-"Marine Wildlife Incident 0.6".</p></td>
+      <th>value</th>
+      <td><p>ODKC dist</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>The dataframe with rows matching mortal outcomes.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other odkc: 
 <code><a href='add_nest_labels_odkc.html'>add_nest_labels_odkc</a>()</code>,
 <code><a href='exclude_training_species_odkc.html'>exclude_training_species_odkc</a>()</code>,
 <code><a href='filter_alive_odkc.html'>filter_alive_odkc</a>()</code>,
+<code><a href='filter_dead_odkc.html'>filter_dead_odkc</a>()</code>,
 <code><a href='filter_disturbance_odkc.html'>filter_disturbance_odkc</a>()</code>,
 <code><a href='filter_predation_odkc.html'>filter_predation_odkc</a>()</code>,
-<code><a href='general_disturbance_by_season_odkc.html'>general_disturbance_by_season_odkc</a>()</code>,
 <code><a href='nest_disturbance_by_season_odkc.html'>nest_disturbance_by_season_odkc</a>()</code>,
 <code><a href='nesting_type_by_area_season_age_species_odkc.html'>nesting_type_by_area_season_age_species_odkc</a>()</code>,
 <code><a href='nesting_type_by_area_season_species_odkc.html'>nesting_type_by_area_season_species_odkc</a>()</code>,
@@ -181,13 +177,22 @@
 <code><a href='nesting_type_by_site_season_age_species_odkc.html'>nesting_type_by_site_season_age_species_odkc</a>()</code>,
 <code><a href='nesting_type_by_site_season_species_odkc.html'>nesting_type_by_site_season_species_odkc</a>()</code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"odkc_data"</span>)
+<span class='no'>odkc_data</span>$<span class='no'>dist</span> <span class='kw'>%&gt;%</span> <span class='fu'>general_disturbance_by_season_odkc</span>()</div><div class='output co'>#&gt; # A tibble: 4 x 4
+#&gt;   season disturbance_cause     n encounter_type
+#&gt;    &lt;dbl&gt; &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;         
+#&gt; 1   2019 dog                   2 other         
+#&gt; 2   2019 unknown               2 other         
+#&gt; 3   2019 cat                   1 other         
+#&gt; 4   2019 fox                   1 other         </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
       <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
