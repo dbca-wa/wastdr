@@ -45,6 +45,8 @@ An S3 class "odkc_turtledata" with items:
         against hatched nests, one row per outlier.
   \item tracks_light Individual light sources known at hatchling emergence,
         one row per light source.
+  \item track_tally A line transect tally of turtle tracks from form
+        "Track Tally 0.6".
   \item dist The disturbance and predation records from form
         "Predator or Disturbance 1.1".
   \item mwi Strandings and rescues from the form

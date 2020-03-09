@@ -26,6 +26,8 @@
 #'         against hatched nests, one row per outlier.
 #'   \item tracks_light Individual light sources known at hatchling emergence,
 #'         one row per light source.
+#'   \item track_tally A line transect tally of turtle tracks from form
+#'         "Track Tally 0.6".
 #'   \item dist The disturbance and predation records from form
 #'         "Predator or Disturbance 1.1".
 #'   \item mwi Strandings and rescues from the form
@@ -223,7 +225,6 @@ download_odkc_turtledata_2019 <-
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
-    # NONE YET - TODO ADD ONCE DATA
     tracks_light_prod <- ft$url[7] %>%
       ruODK::odata_submission_get(
         table = .,
@@ -232,6 +233,21 @@ download_odkc_turtledata_2019 <-
         local_dir = local_dir
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
+
+
+
+    ruODK::ru_setup(
+      pid = 1,
+      fid = "build_Turtle-Track-Tally-0-6_1564387009",
+      url = prod
+    )
+    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    tracktally_prod <-
+      ruODK::odata_submission_get(
+        verbose = verbose,
+        wkt = T,
+        local_dir = local_dir
+      )
 
     #----------------------------------------------------------------------------#
     # Fix error: PROD used UAT db for a week - what's in UAT but not in PROD?
@@ -332,7 +348,7 @@ download_odkc_turtledata_2019 <-
       dplyr::anti_join(tracks_dist_prod, by = "meta_instance_id")
 
     areas_sf <- wastdr::wastd_GET("area") %>%
-      magrittr::extract2("features") %>%
+      magrittr::extract2("data") %>%
       geojsonio::as.json() %>%
       geojsonsf::geojson_sf()
 
@@ -403,6 +419,8 @@ download_odkc_turtledata_2019 <-
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates()
 
+    track_tally <- tracktally_prod
+
     odkc_turtledata <-
       structure(
         list(
@@ -414,6 +432,7 @@ download_odkc_turtledata_2019 <-
           tracks_hatch = tracks_hatch,
           tracks_fan_outlier = tracks_fan_outlier,
           tracks_light = tracks_light,
+          track_tally = track_tally,
           dist = dist,
           mwi = mwi,
           mwi_dmg = mwi_dmg,
@@ -447,7 +466,8 @@ print.odkc_turtledata <- function(x, ...) {
       "Survey end points: {nrow(x$sve)}\n",
       "Marine Wildlife Incidents (rescues, strandings): {nrow(x$mwi)}\n",
       "Live sightings: {nrow(x$tsi)}",
-      "Turtle Tracks or Nests: {nrow(x$tracks)}\n"
+      "Turtle Tracks or Nests: {nrow(x$tracks)}\n",
+      "Turtle Track Tallies: {nrow(x$track_tally)}\n"
     )
   )
   invisible(x)
