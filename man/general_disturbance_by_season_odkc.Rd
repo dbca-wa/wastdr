@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_dist.R
 \name{general_disturbance_by_season_odkc}
 \alias{general_disturbance_by_season_odkc}
-\title{Summarise general disturbance by season and cause for ODKC data}
+\title{Tally ODKC General disturbances by season, cause, and encounter type}
 \usage{
 general_disturbance_by_season_odkc(value)
 }
@@ -10,7 +10,7 @@ general_disturbance_by_season_odkc(value)
 \item{value}{ODKC dist}
 }
 \description{
-Summarise general disturbance by season and cause for ODKC data
+Tally ODKC General disturbances by season, cause, and encounter type
 }
 \examples{
 data("odkc_data")

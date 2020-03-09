@@ -1,4 +1,4 @@
-test_that("map_dist_odkc returns a leaflet htmlwidget", {
+test_that("map_mwi_odkc returns a leaflet htmlwidget", {
   data("odkc_data")
 
   themap <- map_mwi_odkc(

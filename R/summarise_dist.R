@@ -93,14 +93,15 @@ filter_predation_odkc <-
   }
 
 
-#' Summarise WAStD disturbance by season and cause
+#' Tally WAStD disturbances by season, cause, and encounter type
 #'
 #' @param value The ouput of
 #'   \code{
-#'   \link{wastdr::wastd_GET}("turtle-nest-disturbance-observations") %>%
-#'   \link{wastdr::parse_encounterobservations}()
+#'   \link{wastd_GET}("turtle-nest-disturbance-observations") %>%
+#'   \link{parse_encounterobservations}()
 #'   } or \code{data("wastd_data"); wastd_data$nest_dist}
-#'
+#' @return A tibble with columns `season`, `disturbance_cause`,
+#'  `encounter_type`, and a tally `n`.
 #' @export
 #' @family wastd
 #' @examples
@@ -115,7 +116,7 @@ disturbance_by_season <- . %>%
 
 
 
-#' Summarise nest disturbance by season and cause for ODKC data
+#' Tally ODKC Nest disturbances by season, cause, and encounter type
 #'
 #' @param value ODKC tracks_dist
 #' @export
@@ -132,7 +133,7 @@ nest_disturbance_by_season_odkc <- . %>%
   dplyr::arrange(-season, -n)
 
 
-#' Summarise general disturbance by season and cause for ODKC data
+#' Tally ODKC General disturbances by season, cause, and encounter type
 #'
 #' @param value ODKC dist
 #' @export

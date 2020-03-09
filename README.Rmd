@@ -91,8 +91,7 @@ Review the settings with:
 wastdr::wastdr_settings()
 ```
 
-For a more permanent configuration method using environment variables 
-please see the vignette "Setup".
+For other configuration methods please see the vignette "Setup".
 
 ## Get WAStD
 Once set up, `wastdr` can load data from WAStD simply with:
@@ -108,7 +107,7 @@ Valid endpoints are listed in the base API URL of WAStD, e.g.:
 * `encounters`
 * `animal-encounters`
 * `turtle-nest-encounters`
-* `disturbance-observations`
+* `turte-nest-disturbance-observations`
 
 ## ...or have a pickle
 If you don't have access to the WAStD API, you can still get a feel for the data
@@ -124,6 +123,7 @@ wastd_data$animals
 wastd_data$tracks
 
 wastd_data$tracks %>% map_tracks(sites = wastd_data$sites)
+odkc_data$tracks %>% map_tracks_odkc(sites = odkc_data$sites)
 ```
 
 ## Learn more

@@ -103,6 +103,7 @@ pkgdown
 placename
 png
 POSIXct
+pred
 predation
 qa
 RESTful
@@ -121,7 +122,6 @@ subclasses
 successrate
 Sumarizes
 summarise
-Summarise
 summarised
 sve
 svs
@@ -138,7 +138,6 @@ TSC
 tsi
 turtledata
 TurtleNest
-TurtleNestDisturbanceObservations
 turtlenestencounter
 TurtleNestEncounters
 turtleviewer

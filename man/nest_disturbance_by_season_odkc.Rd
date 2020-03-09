@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_dist.R
 \name{nest_disturbance_by_season_odkc}
 \alias{nest_disturbance_by_season_odkc}
-\title{Summarise nest disturbance by season and cause for ODKC data}
+\title{Tally ODKC Nest disturbances by season, cause, and encounter type}
 \usage{
 nest_disturbance_by_season_odkc(value)
 }
@@ -10,7 +10,7 @@ nest_disturbance_by_season_odkc(value)
 \item{value}{ODKC tracks_dist}
 }
 \description{
-Summarise nest disturbance by season and cause for ODKC data
+Tally ODKC Nest disturbances by season, cause, and encounter type
 }
 \examples{
 data("odkc_data")
