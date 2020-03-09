@@ -49,10 +49,10 @@ This map function uses data from ODK Central / ruODK using form
 }
 \examples{
 \dontrun{
-data("odkc")
-map_tracks_odkc(odkc$tracks, sites = odkc$sites, cluster = TRUE)
-map_tracks_odkc(odkc$tracks, sites = odkc$sites, cluster = FALSE)
-map_tracks_odkc(odkc$tracks, sites = NULL, cluster = TRUE)
-map_tracks_odkc(odkc$tracks, sites = NULL, cluster = FALSE)
+data("odkc_data")
+map_tracks_odkc(odkc_data$tracks, sites = odkc_data$sites, cluster = TRUE)
+map_tracks_odkc(odkc_data$tracks, sites = odkc_data$sites, cluster = FALSE)
+map_tracks_odkc(odkc_data$tracks, sites = NULL, cluster = TRUE)
+map_tracks_odkc(odkc_data$tracks, sites = NULL, cluster = FALSE)
 }
 }

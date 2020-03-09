@@ -18,11 +18,11 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' data("odkc")
-#' map_tracks_odkc(odkc$tracks, sites = odkc$sites, cluster = TRUE)
-#' map_tracks_odkc(odkc$tracks, sites = odkc$sites, cluster = FALSE)
-#' map_tracks_odkc(odkc$tracks, sites = NULL, cluster = TRUE)
-#' map_tracks_odkc(odkc$tracks, sites = NULL, cluster = FALSE)
+#' data("odkc_data")
+#' map_tracks_odkc(odkc_data$tracks, sites = odkc_data$sites, cluster = TRUE)
+#' map_tracks_odkc(odkc_data$tracks, sites = odkc_data$sites, cluster = FALSE)
+#' map_tracks_odkc(odkc_data$tracks, sites = NULL, cluster = TRUE)
+#' map_tracks_odkc(odkc_data$tracks, sites = NULL, cluster = FALSE)
 #' }
 map_tracks_odkc <- function(tracks,
                             sites = NULL,
@@ -66,6 +66,7 @@ map_tracks_odkc <- function(tracks,
       }
     }
 
+  tracks <- tracks %>% wastdr::sf_as_tbl()
   tracks_df <- tracks %>% split(tracks$details_species)
   overlay_names <- names(tracks_df) %>% purrr::map_chr(humanize)
   if (ts == TRUE) {
