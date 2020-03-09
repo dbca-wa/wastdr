@@ -5,7 +5,7 @@
 \alias{odkc_data}
 \title{Turtle Nesting Census data from ODK Centrail
 First 6 records of each dataset, all sites.}
-\format{An object of class \code{list} of length 15.}
+\format{An object of class \code{list} of length 18.}
 \usage{
 odkc_data
 }

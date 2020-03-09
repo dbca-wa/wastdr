@@ -465,9 +465,9 @@ print.odkc_turtledata <- function(x, ...) {
       "Survey start points: {nrow(x$svs)}\n",
       "Survey end points: {nrow(x$sve)}\n",
       "Marine Wildlife Incidents (rescues, strandings): {nrow(x$mwi)}\n",
-      "Live sightings: {nrow(x$tsi)}",
+      "Live sightings: {nrow(x$tsi)}\n",
       "Turtle Tracks or Nests: {nrow(x$tracks)}\n",
-      "Turtle Track Tallies: {nrow(x$track_tally)}\n"
+      "Turtle Track Tallies: {nrow(x$track_tally)}"
     )
   )
   invisible(x)
