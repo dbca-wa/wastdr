@@ -48,11 +48,10 @@ given.
 }
 \examples{
 \dontrun{
-data("odkc")
-map_dist_odkc(
-  odkc$dist,
-  tracks = odkc$tracks_dist,
-  sites = odkc$sites
-)
+data("odkc_data")
+map_dist_odkc(odkc_data$dist, tracks = odkc_data$tracks_dist, sites = odkc_data$sites)
+map_dist_odkc(NULL, tracks = odkc_data$tracks_dist, sites = odkc_data$sites)
+map_dist_odkc(odkc_data$dist, tracks = NULL, sites = odkc_data$sites)
+map_dist_odkc(odkc_data$dist, tracks = odkc_data$tracks_dist, sites = NULL)
 }
 }

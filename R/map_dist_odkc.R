@@ -17,12 +17,11 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' data("odkc")
-#' map_dist_odkc(
-#'   odkc$dist,
-#'   tracks = odkc$tracks_dist,
-#'   sites = odkc$sites
-#' )
+#' data("odkc_data")
+#' map_dist_odkc(odkc_data$dist, tracks = odkc_data$tracks_dist, sites = odkc_data$sites)
+#' map_dist_odkc(NULL, tracks = odkc_data$tracks_dist, sites = odkc_data$sites)
+#' map_dist_odkc(odkc_data$dist, tracks = NULL, sites = odkc_data$sites)
+#' map_dist_odkc(odkc_data$dist, tracks = odkc_data$tracks_dist, sites = NULL)
 #' }
 map_dist_odkc <- function(dist,
                           tracks = NULL,
@@ -40,11 +39,6 @@ map_dist_odkc <- function(dist,
       NULL
     }
 
-  pal <- leaflet::colorFactor(
-    palette = "viridis",
-    domain = dist$disturbanceobservation_disturbance_cause
-  )
-
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
@@ -54,6 +48,13 @@ map_dist_odkc <- function(dist,
   # Disturbances by cause
   #
   if (!is.null(dist) && nrow(dist) > 0) {
+    dist <- dist %>% wastdr::sf_as_tbl()
+
+    pal <- leaflet::colorFactor(
+      palette = "viridis",
+      domain = dist$disturbanceobservation_disturbance_cause
+    )
+
     dist.df <-
       dist %>% split(dist$disturbanceobservation_disturbance_cause)
     overlay_names <- names(dist.df) %>% purrr::map_chr(humanize)
@@ -71,19 +72,20 @@ map_dist_odkc <- function(dist,
           ),
           label = ~ glue::glue(
             "{calendar_date_awst} ",
-            "Signs of {humanize(disturbanceobservation_disturbance_cause)}"
+            "Signs of {humanize(disturbanceobservation_disturbance_cause)} ",
           ),
-          popup = ~ glue::glue(
-            "<h3>Signs of {humanize(disturbanceobservation_disturbance_cause)}</h3>",
-            '<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ',
-            "{lubridate::with_tz(observation_start_time, tz)} AWST</br>",
-            '<span class="glyphicon glyphicon-user" aria-hidden="true"></span> {reporter}<br/>',
-            '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> ',
-            "Confidence: {humanize(disturbanceobservation_disturbance_cause_confidence)}. ",
-            "{disturbanceobservation_comments}<br/>",
-            '<img height="150px;" alt="Photo" ',
-            'src="{ifelse(!is.na({disturbanceobservation_photo_disturbance}), disturbanceobservation_photo_disturbance, "")}"></img><br/>'
-          ),
+          popup = ~ glue::glue('
+<h3>Signs of {humanize(disturbanceobservation_disturbance_cause)}</h3>
+  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+  {lubridate::with_tz(observation_start_time, tz)} AWST</br>
+  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {reporter}<br/>
+  <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+  Confidence: {humanize(disturbanceobservation_disturbance_cause_confidence)}.
+  {disturbanceobservation_comments}<br/>
+  <img height="150px;" alt="Photo"
+  src="{ifelse(!is.na({disturbanceobservation_photo_disturbance}),
+  disturbanceobservation_photo_disturbance, "")}"></img><br/>
+          '),
 
           group = humanize(df),
           clusterOptions = co
@@ -94,6 +96,8 @@ map_dist_odkc <- function(dist,
   # Dist nests by dist cause
   #
   if (!is.null(tracks) && nrow(tracks) > 0) {
+    tracks <- tracks %>% wastdr::sf_as_tbl()
+
     pal_tracks <- leaflet::colorFactor(
       palette = "viridis",
       domain = tracks$disturbance_cause
@@ -122,17 +126,16 @@ map_dist_odkc <- function(dist,
             "{calendar_date_awst} ",
             "Nest with {humanize(disturbance_cause)}"
           ),
-          popup = ~ glue::glue(
-            '<h3>Nest disturbed by {humanize(disturbance_cause)}</h3>
+          popup = ~ glue::glue('
+<h3>Nest disturbed by {humanize(disturbance_cause)}</h3>
 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 {lubridate::with_tz(observation_start_time, tz)} AWST</br>
 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {reporter}<br/>
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 Confidence: {disturbance_cause_confidence}. {comments}<br/>
 <img height="150px;" alt="Photo"
-src="{ifelse(!is.na({photo_disturbance}), photo_disturbance, "")}"></img><br/>'
-          ),
-
+src="{ifelse(!is.na({photo_disturbance}), photo_disturbance, "")}"></img><br/>
+                               '),
           group = humanize(df),
           clusterOptions = co
         )
