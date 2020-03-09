@@ -18,8 +18,8 @@ get_more(total_count, limit)
 Decide whether the given download limit has been reached
 }
 \examples{
-testthat::expect_true(get_more(0L,NULL))
-testthat::expect_true(get_more(1000L,NULL))
-testthat::expect_true(get_more(9L,10))
-testthat::expect_false(get_more(10L,10))
+testthat::expect_true(get_more(0L, NULL))
+testthat::expect_true(get_more(1000L, NULL))
+testthat::expect_true(get_more(9L, 10))
+testthat::expect_false(get_more(10L, 10))
 }

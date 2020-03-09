@@ -143,7 +143,6 @@ list_survey_effort <- function(surveys, placename = "") {
 #' @template param-prefix
 #' @export
 plot_survey_effort <- function(surveys, placename = "", prefix = "") {
-
   surveys %>%
     survey_hours_per_site_name_and_date() %>%
     ggplot2::ggplot(., aes(turtle_date, site_name, fill = hours_surveyed)) +
@@ -169,7 +168,6 @@ plot_survey_effort <- function(surveys, placename = "", prefix = "") {
 #' @template param-prefix
 #' @export
 survey_hours_heatmap <- function(surveys, placename = "", prefix = "") {
-
   surveys %>%
     wastdr::survey_hours_per_site_name_and_date(.) %>%
     ggTimeSeries::ggplot_calendar_heatmap("turtle_date", "hours_surveyed") +
@@ -181,7 +179,7 @@ survey_hours_heatmap <- function(surveys, placename = "", prefix = "") {
     ggplot2::ggsave(
       glue::glue(
         "{prefix}_survey_hours_heatmap_{wastdr::urlize(placename)}.png"
-        ),
+      ),
       width = 10, height = 6
     )
 }
@@ -207,7 +205,7 @@ survey_count_heatmap <- function(surveys, placename = "", prefix = "") {
     ggplot2::ggsave(
       glue::glue(
         "{prefix}_survey_count_heatmap_{wastdr::urlize(placename)}.png"
-        ),
+      ),
       width = 10, height = 6
     )
 }
@@ -235,7 +233,8 @@ survey_season_stats <- function(surveys) {
       first_day = min(turtle_date),
       last_day = max(turtle_date),
       season_length_days = as.numeric(
-        lubridate::interval(first_day, last_day)) / (3600 * 24),
+        lubridate::interval(first_day, last_day)
+      ) / (3600 * 24),
       number_surveys = n(),
       hours_surveyed = round(sum(duration_hours))
     )
@@ -266,7 +265,8 @@ survey_season_site_stats <- function(surveys) {
       first_day = min(turtle_date),
       last_day = max(turtle_date),
       season_length_days = as.numeric(
-        lubridate::interval(first_day, last_day)) / (3600 * 24),
+        lubridate::interval(first_day, last_day)
+      ) / (3600 * 24),
       number_surveys = n(),
       hours_surveyed = round(sum(duration_hours))
     )

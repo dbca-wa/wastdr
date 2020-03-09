@@ -2,12 +2,10 @@
 % Please edit documentation in R/download_odkc_turtledata_2019.R
 \name{download_odkc_turtledata_2019}
 \alias{download_odkc_turtledata_2019}
-\title{Download and save Turtle data from ODK Central.}
+\title{Download all turtle data from DBCA's ODK Central}
 \usage{
 download_odkc_turtledata_2019(
-  datafile = here::here("wa-turtle-programs", "data_odkc.rda"),
-  extrafile = here::here("wa-turtle-programs", "data_odkc_extra.rda"),
-  local_dir = here::here("wa-turtle-programs", "media"),
+  local_dir = here::here("media"),
   prod = "https://odkcentral.dbca.wa.gov.au",
   uat = "https://odkcentral-uat.dbca.wa.gov.au",
   tz = "Australia/Perth",
@@ -15,10 +13,6 @@ download_odkc_turtledata_2019(
 )
 }
 \arguments{
-\item{datafile}{The target filename to save the final data to.}
-
-\item{extrafile}{The target filename to save the UAT data to.}
-
 \item{local_dir}{A local directory to which to save the attachment files.
 Attachment filepaths will be relative to the directory.
 The directory and its parent folders will be created if not existing.}
@@ -29,35 +23,42 @@ default: "https://odkcentral.dbca.wa.gov.au".}
 \item{uat}{The ODKC UAT server,
 default: "https://odkcentral-uat.dbca.wa.gov.au".}
 
-\item{tz}{The local timezone, default: "Australia/Perth".}
+\item{tz}{The lubridate timezone, default: "Australia/Perth}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}
 }
 \value{
-A list of tibbles and sf objects:
-
-  * downloaded_on An UTC POSIXct timestamp of the data snapshot.
-  * tracks The turtle tracks and nests from form "Turtle Track or Nest 1.0".
-  * tracks_dist Individual disturbances recorded against tracks, one row per
-    disturbance.
-  * tracks_log Individual nest tags recorded against nests, one row per tag.
-  * tracks_egg Next excavation photos, one row per photo.
-  * tracks_hatch Turtle hatchling morphometrics, one row per mesured
-    hatchling.
-  * tracks_fan_outlier Individual hatchling track outliers recorded against
-    hatched nests, one row per outlier.
-  * tracks_light Individual light sources known at hatchling emergence, one
-    row per light source.
-  * dist The disturbance and predation records from form "Predator or
-    Disturbance 1.1".
-  * mwi Strandings and rescues from the form "Marine Wildlife Incident 0.6 ".
-  * mwi_dmg Individual injuries recorded against mwi, one record per injury.
-  * svs Survey start points from form "Site Visit Start 1.3".
-  * sve Survey end points from form "Site Visit End 1.2".
-  * sites An sf object of known TSC sites.
-  * areas An sf object of known TSC localities.
+An S3 class "odkc_turtledata" with items:
+\itemize{
+  \item downloaded_on An UTC POSIXct timestamp of the data snapshot.
+  \item tracks The turtle tracks and nests from form
+        "Turtle Track or Nest 1.0".
+  \item tracks_dist Individual disturbances recorded against tracks,
+        one row per disturbance.
+  \item tracks_log Individual nest tags recorded against nests,
+        one row per tag.
+  \item tracks_egg Next excavation photos, one row per photo.
+  \item tracks_hatch Turtle hatchling morphometrics, one row per measured
+        hatchling.
+  \item tracks_fan_outlier Individual hatchling track outliers recorded
+        against hatched nests, one row per outlier.
+  \item tracks_light Individual light sources known at hatchling emergence,
+        one row per light source.
+  \item dist The disturbance and predation records from form
+        "Predator or Disturbance 1.1".
+  \item mwi Strandings and rescues from the form
+        "Marine Wildlife Incident 0.6 ".
+  \item mwi_dmg Individual injuries recorded against mwi,
+        one record per injury.
+  \item tsi Turtle Sightings from form "Turtle Sighting 0.1/0.2",
+        one row per sighted turtle.
+  \item svs Survey start points from form "Site Visit Start 1.3".
+  \item sve Survey end points from form "Site Visit End 1.2".
+  \item sites An sf object of known TSC sites.
+  \item areas An sf object of known TSC localities.
+ }
 }
 \description{
-Download and save Turtle data from ODK Central.
+Download all turtle data from DBCA's ODK Central
 }

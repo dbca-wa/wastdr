@@ -16,11 +16,11 @@
 #' @export
 #' @import magrittr
 parse_area_sf <- function(wastd_api_response,
-                          wastd_url = wastdr::get_wastd_url()){
-    wastd_api_response %>%
-        magrittr::extract2("data") %>%
-        geojsonio::as.json() %>%
-        geojsonsf::geojson_sf()
+                          wastd_url = wastdr::get_wastd_url()) {
+  wastd_api_response %>%
+    magrittr::extract2("data") %>%
+    geojsonio::as.json() %>%
+    geojsonsf::geojson_sf()
 }
 
 

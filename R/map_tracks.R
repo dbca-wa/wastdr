@@ -19,32 +19,34 @@ map_tracks <- function(tracks,
                        fmt = "%d/%m/%Y %H:%M",
                        cluster = FALSE,
                        ts = FALSE) {
-  co <- if(cluster==TRUE) leaflet::markerClusterOptions() else NULL
+  co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
     leaflet::clearBounds(.) %>%
     {
-      if (ts == TRUE)
+      if (ts == TRUE) {
         leaftime::addTimeline(.,
-                              group = "Time series",
-                              data = tracks_as_geojson(tracks),
-                              sliderOpts = leaftime::sliderOptions(
-                                formatOutput = htmlwidgets::JS(
-                                  "function(date) {return new Date(date).toDateString()}"
-                                ),
-                              ),
-                              timelineOpts = leaftime::timelineOptions(
-                                styleOptions = leaftime::styleOptions(
-                                  radius = 10,
-                                  stroke = FALSE,
-                                  fillColor = "yellow",
-                                  fillOpacity = .4
-                                )
-                              )
+          group = "Time series",
+          data = tracks_as_geojson(tracks),
+          sliderOpts = leaftime::sliderOptions(
+            formatOutput = htmlwidgets::JS(
+              "function(date) {return new Date(date).toDateString()}"
+            ),
+          ),
+          timelineOpts = leaftime::timelineOptions(
+            styleOptions = leaftime::styleOptions(
+              radius = 10,
+              stroke = FALSE,
+              fillColor = "yellow",
+              fillOpacity = .4
+            )
+          )
         )
-      else invisible(.)
+      } else {
+        invisible(.)
+      }
     }
 
   tracks.df <- tracks %>% split(tracks$species)
@@ -83,7 +85,7 @@ map_tracks <- function(tracks,
 
   l %>%
     {
-      if (!is.null(sites))
+      if (!is.null(sites)) {
         leaflet::addPolygons(
           .,
           data = sites,
@@ -91,8 +93,11 @@ map_tracks <- function(tracks,
           weight = 1,
           fillOpacity = 0.5,
           fillColor = "blue",
-          label = ~ site_name
-        ) else .
+          label = ~site_name
+        )
+      } else {
+        .
+      }
     } %>%
     leaflet::addLayersControl(
       baseGroups = c("Aerial", "Place names"),

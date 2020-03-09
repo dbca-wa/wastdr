@@ -19,22 +19,21 @@ test_that("chr2int works", {
 
   testdata <- tibble::tribble(
     ~colA, ~colB, ~crit,
-    "a",   1,     "NA",
-    "b",   2,     "NA,NA",
-    "c",   3,     "NA, 4, 235, NA",
-    "d",   4,     "1",
-    "e",   5,     "2,3,4"
+    "a", 1, "NA",
+    "b", 2, "NA,NA",
+    "c", 3, "NA, 4, 235, NA",
+    "d", 4, "1",
+    "e", 5, "2,3,4"
   )
 
   output_col <- purrr::map(testdata$crit, chr2int)
   reference_col <- list(
     list(),
     list(),
-    list(4,235),
+    list(4, 235),
     list(1),
-    list(2,3,4)
+    list(2, 3, 4)
   )
   # expect_equal(output_col, reference_col)
-
-  })
+})
 # usethis::use_r("chr2int")

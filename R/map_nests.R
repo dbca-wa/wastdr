@@ -13,7 +13,7 @@ map_nests <- function(data,
                       wastd_url = wastdr::get_wastd_url(),
                       fmt = "%d/%m/%Y %H:%M",
                       cluster = FALSE) {
-  co <- if(cluster==TRUE) leaflet::markerClusterOptions() else NULL
+  co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
   pal <- leaflet::colorFactor(palette = "RdYlBu", domain = data$status)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
@@ -30,19 +30,19 @@ map_nests <- function(data,
         markerColor = ~ pal(status)
       ),
       label = ~ glue::glue(
-        '{datetime} {status} ',
+        "{datetime} {status} ",
         "{flipper_tag_id} {date_nest_laid} {tag_label}"
       ),
       popup = ~ glue::glue(
         "<h3>{flipper_tag_id} {date_nest_laid} {tag_label}</h3>",
         '<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ',
-        '{datetime} AWST</br>',
+        "{datetime} AWST</br>",
         '<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> ',
         "{humanize(status)}<br/>",
         '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>',
-        '{encounter_observer_name}<br/>',
+        "{encounter_observer_name}<br/>",
         '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> ',
-        '{encounter_comments}<br/>',
+        "{encounter_comments}<br/>",
 
         "Survey {encounter_survey_id} at {encounter_site_name}<br/>",
         "{encounter_survey_start_time}-",

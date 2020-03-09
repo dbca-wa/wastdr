@@ -28,10 +28,11 @@ wastd_POST <- function(data,
   ua <- httr::user_agent("http://github.com/dbca-wa/wastdr")
   url <- paste0(api_url, serializer, "/")
 
-  if (is.null(api_token))
+  if (is.null(api_token)) {
     auth <- httr::authenticate(api_un, api_pw, type = "basic")
-  else
+  } else {
     auth <- httr::add_headers(c(Authorization = api_token))
+  }
   if (is.null(auth)) wastdr_msg_warn("No authentication set!")
 
   if (verbose == TRUE) wastdr_msg_info(glue::glue("[wastd_POST] {url}"))
@@ -52,10 +53,11 @@ wastd_POST <- function(data,
     )
   }
 
-  if (httr::http_type(res) != "application/json")
+  if (httr::http_type(res) != "application/json") {
     wastdr_msg_abort(
       glue::glue("API did not return JSON.\nIs {url} a valid endpoint?")
     )
+  }
   text <- httr::content(res, as = "text", encoding = "UTF-8")
 
   if (identical(text, "")) {
@@ -64,8 +66,9 @@ wastd_POST <- function(data,
 
   res_parsed <- jsonlite::fromJSON(text, flatten = F, simplifyVector = F)
 
-  if (verbose == TRUE)
+  if (verbose == TRUE) {
     wastdr_msg_success(glue::glue("[wastd_POST] {res$status}"))
+  }
 
   structure(
     list(

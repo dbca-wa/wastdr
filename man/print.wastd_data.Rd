@@ -2,17 +2,17 @@
 % Please edit documentation in R/download_wastd_turtledata.R
 \name{print.wastd_data}
 \alias{print.wastd_data}
-\title{S3 print method for 'wastd_api_response'.}
+\title{S3 print method for 'wastd_data'.}
 \usage{
 \method{print}{wastd_data}(x, ...)
 }
 \arguments{
-\item{x}{An object of class `wastd_api_response` as returned by
-\code{\link{wastd_GET}}.}
+\item{x}{An object of class `wastd_data` as returned by
+\code{\link{download_wastd_turtledata}}.}
 
 \item{...}{Extra parameters for `print`}
 }
 \description{
 Prints a short representation of data returned by
-\code{\link{wastd_GET}}.
+\code{\link{download_wastd_turtledata}}.
 }

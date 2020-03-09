@@ -4,7 +4,7 @@
 #'
 #' @return The SimpleFeatures object with geometry set to NULL.
 #' @export
-sf_as_tbl <- function(sf_obj){
+sf_as_tbl <- function(sf_obj) {
   sf::st_geometry(sf_obj) <- NULL
   sf_obj
 }
@@ -110,7 +110,7 @@ nesting_type_by_season_week_site_species <- . %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
     season, season_week, iso_week, site_name, species, nest_type
-    ) %>%
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
@@ -188,7 +188,8 @@ track_success <- function(tracks) {
 
   all_tracks_by_date %>%
     dplyr::left_join(successful_tracks_by_date,
-                     by = c("turtle_date", "species", "season")) %>%
+      by = c("turtle_date", "species", "season")
+    ) %>%
     dplyr::mutate(
       successful = ifelse(is.na(successful), 0, successful),
       track_success = 100 * successful / all
@@ -236,20 +237,24 @@ ggplot_track_success_by_date <- function(data,
     ggplot2::ggplot(aes(x = tdate_as_fdate(turtle_date))) +
     ggplot2::facet_grid(rows = vars(season), scales = "free_x") +
     ggplot2::geom_bar(aes(y = all),
-                      stat = "identity",
-                      color = "black",
-                      fill = "grey") +
+      stat = "identity",
+      color = "black",
+      fill = "grey"
+    ) +
     ggplot2::geom_bar(aes(y = successful),
-                      stat = "identity",
-                      color = "black",
-                      fill = "green") +
+      stat = "identity",
+      color = "black",
+      fill = "green"
+    ) +
     ggplot2::ggtitle(
       paste("Nesting effort of", speciesname %>% humanize()),
-      subtitle = "Number of all (grey) and successful (green) tracks") +
+      subtitle = "Number of all (grey) and successful (green) tracks"
+    ) +
     ggplot2::labs(x = "Date", y = "Number of all and successful tracks") +
     ggplot2::scale_x_continuous(
-      labels = function(x)
+      labels = function(x) {
         fdate_as_tdate(x)
+      }
     ) +
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
     ggplot2::theme_classic() +
@@ -293,11 +298,13 @@ ggplot_track_successrate_by_date <- function(data,
     ) +
     ggplot2::ggtitle(
       paste("Nesting success of", speciesname %>% humanize()),
-      subtitle = "Fraction of successful over total nesting crawls") +
+      subtitle = "Fraction of successful over total nesting crawls"
+    ) +
     ggplot2::labs(x = "Date", y = "Fraction of tracks with nest") +
     ggplot2::scale_x_continuous(
-      labels = function(x)
+      labels = function(x) {
         fdate_as_tdate(x)
+      }
     ) +
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
     ggplot2::theme_classic() +

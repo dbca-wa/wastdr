@@ -40,7 +40,8 @@ map_tracks_odkc <- function(tracks,
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
     leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-    leaflet::clearBounds(.) %>% {
+    leaflet::clearBounds(.) %>%
+    {
       if (ts == TRUE) {
         leaftime::addTimeline(
           .,
@@ -114,20 +115,21 @@ map_tracks_odkc <- function(tracks,
         )
     })
 
-  l %>% {
-      if (!is.null(sites) && nrow(sites) > 0)
-          leaflet::addPolygons(
-              .,
-              data = sites,
-              group = "Sites",
-              weight = 1,
-              fillOpacity = 0.5,
-              fillColor = "blue",
-              label = ~ site_name
-          )
-      else
-          .
-
+  l %>%
+    {
+      if (!is.null(sites) && nrow(sites) > 0) {
+        leaflet::addPolygons(
+          .,
+          data = sites,
+          group = "Sites",
+          weight = 1,
+          fillOpacity = 0.5,
+          fillColor = "blue",
+          label = ~site_name
+        )
+      } else {
+        .
+      }
     } %>%
     leaflet::addLayersControl(
       baseGroups = c("Aerial", "Place names"),

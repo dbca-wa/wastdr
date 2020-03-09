@@ -1,7 +1,5 @@
-#' Download and save Turtle data from ODK Central.
+#' Download all turtle data from DBCA's ODK Central
 #'
-#' @param datafile The target filename to save the final data to.
-#' @param extrafile The target filename to save the UAT data to.
 #' @param local_dir A local directory to which to save the attachment files.
 #'   Attachment filepaths will be relative to the directory.
 #'   The directory and its parent folders will be created if not existing.
@@ -9,36 +7,41 @@
 #' default: "https://odkcentral.dbca.wa.gov.au".
 #' @param uat The ODKC UAT server,
 #' default: "https://odkcentral-uat.dbca.wa.gov.au".
-#' @param tz The local timezone, default: "Australia/Perth".
+#' @template param-tz
 #' @template param-verbose
 #'
-#' @return A list of tibbles and sf objects:
-#'
-#'   * downloaded_on An UTC POSIXct timestamp of the data snapshot.
-#'   * tracks The turtle tracks and nests from form "Turtle Track or Nest 1.0".
-#'   * tracks_dist Individual disturbances recorded against tracks, one row per
-#'     disturbance.
-#'   * tracks_log Individual nest tags recorded against nests, one row per tag.
-#'   * tracks_egg Next excavation photos, one row per photo.
-#'   * tracks_hatch Turtle hatchling morphometrics, one row per mesured
-#'     hatchling.
-#'   * tracks_fan_outlier Individual hatchling track outliers recorded against
-#'     hatched nests, one row per outlier.
-#'   * tracks_light Individual light sources known at hatchling emergence, one
-#'     row per light source.
-#'   * dist The disturbance and predation records from form "Predator or
-#'     Disturbance 1.1".
-#'   * mwi Strandings and rescues from the form "Marine Wildlife Incident 0.6 ".
-#'   * mwi_dmg Individual injuries recorded against mwi, one record per injury.
-#'   * svs Survey start points from form "Site Visit Start 1.3".
-#'   * sve Survey end points from form "Site Visit End 1.2".
-#'   * sites An sf object of known TSC sites.
-#'   * areas An sf object of known TSC localities.
+#' @return An S3 class "odkc_turtledata" with items:
+#' \itemize{
+#'   \item downloaded_on An UTC POSIXct timestamp of the data snapshot.
+#'   \item tracks The turtle tracks and nests from form
+#'         "Turtle Track or Nest 1.0".
+#'   \item tracks_dist Individual disturbances recorded against tracks,
+#'         one row per disturbance.
+#'   \item tracks_log Individual nest tags recorded against nests,
+#'         one row per tag.
+#'   \item tracks_egg Next excavation photos, one row per photo.
+#'   \item tracks_hatch Turtle hatchling morphometrics, one row per measured
+#'         hatchling.
+#'   \item tracks_fan_outlier Individual hatchling track outliers recorded
+#'         against hatched nests, one row per outlier.
+#'   \item tracks_light Individual light sources known at hatchling emergence,
+#'         one row per light source.
+#'   \item dist The disturbance and predation records from form
+#'         "Predator or Disturbance 1.1".
+#'   \item mwi Strandings and rescues from the form
+#'         "Marine Wildlife Incident 0.6 ".
+#'   \item mwi_dmg Individual injuries recorded against mwi,
+#'         one record per injury.
+#'   \item tsi Turtle Sightings from form "Turtle Sighting 0.1/0.2",
+#'         one row per sighted turtle.
+#'   \item svs Survey start points from form "Site Visit Start 1.3".
+#'   \item sve Survey end points from form "Site Visit End 1.2".
+#'   \item sites An sf object of known TSC sites.
+#'   \item areas An sf object of known TSC localities.
+#'  }
 #' @export
 download_odkc_turtledata_2019 <-
-  function(datafile = here::here("wa-turtle-programs", "data_odkc.rda"),
-           extrafile = here::here("wa-turtle-programs", "data_odkc_extra.rda"),
-           local_dir = here::here("wa-turtle-programs", "media"),
+  function(local_dir = here::here("media"),
            prod = "https://odkcentral.dbca.wa.gov.au",
            uat = "https://odkcentral-uat.dbca.wa.gov.au",
            tz = "Australia/Perth",
@@ -110,7 +113,38 @@ download_odkc_turtledata_2019 <-
         wkt = T,
         local_dir = local_dir
       ) %>%
-    dplyr::left_join(mwi_prod, by = c("submissions_id" = "id"))
+      dplyr::left_join(mwi_prod, by = c("submissions_id" = "id"))
+
+    # Turtle Sighting
+    ruODK::ru_setup(
+      pid = 1,
+      fid = "build_Turtle-Sighting-0-1_1559790020",
+      url = prod
+    )
+    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    ft <- ruODK::odata_service_get()
+    tsi01 <- ft$url[[1]] %>%
+      ruODK::odata_submission_get(
+        table = .,
+        verbose = verbose,
+        wkt = T,
+        local_dir = local_dir
+      )
+
+    ruODK::ru_setup(
+      pid = 1,
+      fid = "build_Turtle-Sighting-0-2_1581567844",
+      url = prod
+    )
+    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    ft <- ruODK::odata_service_get()
+    tsi02 <- ft$url[[1]] %>%
+      ruODK::odata_submission_get(
+        table = .,
+        verbose = verbose,
+        wkt = T,
+        local_dir = local_dir
+      )
 
     # Dist
     ruODK::ru_setup(
@@ -161,7 +195,7 @@ download_odkc_turtledata_2019 <-
         wkt = T,
         local_dir = local_dir
       ) %>%
-    dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
+      dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
     tracks_log_prod <- ft$url[4] %>%
       ruODK::odata_submission_get(
@@ -179,7 +213,7 @@ download_odkc_turtledata_2019 <-
         wkt = T,
         local_dir = local_dir
       ) %>%
-    dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
+      dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
     tracks_fan_outlier_prod <- ft$url[6] %>%
       ruODK::odata_submission_get(
@@ -197,7 +231,7 @@ download_odkc_turtledata_2019 <-
         wkt = T,
         local_dir = local_dir
       ) %>%
-    dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
+      dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
     #----------------------------------------------------------------------------#
     # Fix error: PROD used UAT db for a week - what's in UAT but not in PROD?
@@ -297,18 +331,6 @@ download_odkc_turtledata_2019 <-
     tracks_dist_extra <- tracks_dist_uat %>%
       dplyr::anti_join(tracks_dist_prod, by = "meta_instance_id")
 
-    save(
-      svs_extra,
-      sve_extra,
-      mwi_extra,
-      dist_extra,
-      tracks_extra,
-      tracks_dist_extra,
-      file = extrafile
-    )
-
-    # load(extrafile)
-
     areas_sf <- wastdr::wastd_GET("area") %>%
       magrittr::extract2("features") %>%
       geojsonio::as.json() %>%
@@ -324,16 +346,18 @@ download_odkc_turtledata_2019 <-
       sf::st_join(areas)
 
     mwi <- dplyr::bind_rows(mwi_prod, mwi_extra) %>%
-      wastdr::join_tsc_sites(sites, prefix="incident_observed_at_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
       wastdr::add_dates()
 
     mwi_dmg <- mwi_dmg_prod %>%
-      wastdr::join_tsc_sites(sites, prefix="incident_observed_at_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
       wastdr::add_dates()
 
     mwi_tag <- mwi_tag_prod %>%
-      wastdr::join_tsc_sites(sites, prefix="incident_observed_at_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
       wastdr::add_dates()
+
+    tsi <- dplyr::bind_rows(tsi01, tsi02)
 
     svs <- dplyr::bind_rows(svs_prod, svs_extra) %>%
       wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
@@ -345,59 +369,86 @@ download_odkc_turtledata_2019 <-
 
     dist <- dplyr::bind_rows(dist_prod, dist_extra) %>%
       wastdr::join_tsc_sites(sites,
-                             prefix = "disturbanceobservation_location_") %>%
+        prefix = "disturbanceobservation_location_"
+      ) %>%
       wastdr::add_dates()
 
     tracks <- dplyr::bind_rows(tracks_prod, tracks_extra) %>%
-      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates()
 
     tracks_dist <- tracks_dist_prod %>%
       dplyr::bind_rows(tracks_dist_extra) %>%
-      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates()
 
     tracks_log <- tracks_log_prod %>%
-      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates()
 
     tracks_egg <- tracks_egg_prod %>%
-      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates()
 
     tracks_hatch <- tracks_hatch_prod %>%
-      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates()
 
     tracks_fan_outlier <-
       tracks_fan_outlier_prod %>%
-      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates()
 
     tracks_light <- tracks_light_prod %>%
-      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates()
 
-    turtledata <- list(
-      downloaded_on = Sys.time(),
-      tracks = tracks,
-      tracks_dist = tracks_dist,
-      tracks_egg = tracks_egg,
-      tracks_log = tracks_log,
-      tracks_hatch = tracks_hatch,
-      tracks_fan_outlier = tracks_fan_outlier,
-      tracks_light = tracks_light,
-      dist = dist,
-      mwi = mwi,
-      mwi_dmg = mwi_dmg,
-      mwi_tag = mwi_tag,
-      svs = svs,
-      sve = sve,
-      sites = sites,
-      areas = areas
-    )
+    odkc_turtledata <-
+      structure(
+        list(
+          downloaded_on = Sys.time(),
+          tracks = tracks,
+          tracks_dist = tracks_dist,
+          tracks_egg = tracks_egg,
+          tracks_log = tracks_log,
+          tracks_hatch = tracks_hatch,
+          tracks_fan_outlier = tracks_fan_outlier,
+          tracks_light = tracks_light,
+          dist = dist,
+          mwi = mwi,
+          mwi_dmg = mwi_dmg,
+          mwi_tag = mwi_tag,
+          tsi = tsi,
+          svs = svs,
+          sve = sve,
+          sites = sites,
+          areas = areas
+        ),
+        class = "odkc_turtledata"
+      )
 
-    save(turtledata, file = datafile, compress = "xz")
-
-    turtledata
+    odkc_turtledata
   }
+
+#' @title S3 print method for 'odkc_turtledata'.
+#' @description Prints a short representation of data returned by
+#' \code{\link{download_odkc_turtledata_2019}}.
+#' @param x An object of class `wastd_data` as returned by
+#'   \code{\link{download_odkc_turtledata_2019}}.
+#' @param ... Extra parameters for `print`
+#' @export
+print.odkc_turtledata <- function(x, ...) {
+  print(
+    glue::glue(
+      "<ODKC Turtle Data> accessed on {x$downloaded_on}\n",
+      "Areas: {nrow(x$areas)}\n",
+      "Sites: {nrow(x$sites)}\n",
+      "Survey start points: {nrow(x$svs)}\n",
+      "Survey end points: {nrow(x$sve)}\n",
+      "Marine Wildlife Incidents (rescues, strandings): {nrow(x$mwi)}\n",
+      "Live sightings: {nrow(x$tsi)}",
+      "Turtle Tracks or Nests: {nrow(x$tracks)}\n"
+    )
+  )
+  invisible(x)
+}

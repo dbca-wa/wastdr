@@ -19,9 +19,11 @@ map_dist <- function(dist,
   # ---------------------------------------------------------------------------#
   # Options
   #
-  co <- if(cluster==TRUE) leaflet::markerClusterOptions() else NULL
-  pal <- leaflet::colorFactor(palette = "viridis",
-                              domain = dist$disturbance_cause)
+  co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
+  pal <- leaflet::colorFactor(
+    palette = "viridis",
+    domain = dist$disturbance_cause
+  )
 
   # ---------------------------------------------------------------------------#
   # Base map
@@ -42,8 +44,8 @@ map_dist <- function(dist,
     purrr::walk(function(df) {
       l <<- l %>% leaflet::addAwesomeMarkers(
         data = dist.df[[df]],
-        lng = ~ encounter_longitude,
-        lat = ~ encounter_latitude,
+        lng = ~encounter_longitude,
+        lat = ~encounter_latitude,
         icon = leaflet::makeAwesomeIcon(
           text = ~ stringr::str_sub(disturbance_cause, 0, 1),
           markerColor = "orange",
@@ -51,16 +53,16 @@ map_dist <- function(dist,
         ),
         label = ~ glue::glue("{datetime} {humanize(disturbance_cause)}"),
         popup = ~ glue::glue(
-          '<h3>Signs of {humanize(disturbance_cause)}</h3>',
+          "<h3>Signs of {humanize(disturbance_cause)}</h3>",
           '<span class="glyphicon glyphicon-globe" aria-hidden="true"></span> ',
-          '{encounter_site_name}</br>',
+          "{encounter_site_name}</br>",
           '<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ',
-          '{datetime} AWST</br>',
+          "{datetime} AWST</br>",
           '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>',
-          ' {encounter_observer_name}<br/>',
+          " {encounter_observer_name}<br/>",
           '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> ',
-          'Confidence: {humanize(disturbance_cause_confidence)}. ',
-          '{encounter_comments}<br/>',
+          "Confidence: {humanize(disturbance_cause_confidence)}. ",
+          "{encounter_comments}<br/>",
 
 
           "<p>Survey {encounter_survey_id} at {encounter_site_name} ",

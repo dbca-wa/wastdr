@@ -48,7 +48,7 @@ This map function uses data from ODK Central / ruODK using form
 \examples{
 \dontrun{
 data("odkc")
-map_mwi_odkc(odkc$mwi, sites=odkc$sites)
-map_mwi_odkc(data=NULL, sites=odkc$sites)
+map_mwi_odkc(odkc$mwi, sites = odkc$sites)
+map_mwi_odkc(data = NULL, sites = odkc$sites)
 }
 }

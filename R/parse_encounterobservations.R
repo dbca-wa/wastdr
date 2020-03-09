@@ -28,46 +28,53 @@
 #' @export
 #' @import magrittr
 parse_encounterobservations <- function(wastd_api_response) {
-    wastd_api_response %>%
-        wastdr::wastd_parse()%>%
-        dplyr::select(
-            -"geometry",
-            -"type",
-            -dplyr::ends_with("latitude"),
-            -dplyr::ends_with("longitude")
-        ) %>%
-        tidyr::unnest_wider("encounter",
-                            names_repair = "universal")  %>%
-        dplyr::select(-"geometry", -"type") %>%
-        dplyr::rename(encounter = properties) %>%
-        tidyr::unnest_wider("encounter",
-                            names_repair = "universal",
-                            names_sep = "_") %>%
-        tidyr::unnest_wider("encounter_area",
-                            names_repair = "universal",
-                            names_sep = "_") %>%
-        tidyr::unnest_wider("encounter_site",
-                            names_repair = "universal",
-                            names_sep = "_") %>%
-        tidyr::unnest_wider("encounter_survey",
-                            names_repair = "universal",
-                            names_sep = "_") %>%
-        tidyr::unnest_wider("encounter_observer",
-                            names_repair = "universal",
-                            names_sep = "_") %>%
-        tidyr::unnest_wider("encounter_reporter",
-                            names_repair = "universal",
-                            names_sep = "_") %>%
-        dplyr::select(
-            -"encounter_survey_site",
-            -"encounter_survey_reporter",
-            -"encounter_photographs",
-            -tidyr::contains("encounter_tx_logs")
-        ) %>%
-        dplyr::mutate(
-            observation_start_time = httpdate_as_gmt08(encounter_when)
-        ) %>%
-        wastdr::add_dates()
+  wastd_api_response %>%
+    wastdr::wastd_parse() %>%
+    dplyr::select(
+      -"geometry",
+      -"type",
+      -dplyr::ends_with("latitude"),
+      -dplyr::ends_with("longitude")
+    ) %>%
+    tidyr::unnest_wider("encounter",
+      names_repair = "universal"
+    ) %>%
+    dplyr::select(-"geometry", -"type") %>%
+    dplyr::rename(encounter = properties) %>%
+    tidyr::unnest_wider("encounter",
+      names_repair = "universal",
+      names_sep = "_"
+    ) %>%
+    tidyr::unnest_wider("encounter_area",
+      names_repair = "universal",
+      names_sep = "_"
+    ) %>%
+    tidyr::unnest_wider("encounter_site",
+      names_repair = "universal",
+      names_sep = "_"
+    ) %>%
+    tidyr::unnest_wider("encounter_survey",
+      names_repair = "universal",
+      names_sep = "_"
+    ) %>%
+    tidyr::unnest_wider("encounter_observer",
+      names_repair = "universal",
+      names_sep = "_"
+    ) %>%
+    tidyr::unnest_wider("encounter_reporter",
+      names_repair = "universal",
+      names_sep = "_"
+    ) %>%
+    dplyr::select(
+      -"encounter_survey_site",
+      -"encounter_survey_reporter",
+      -"encounter_photographs",
+      -tidyr::contains("encounter_tx_logs")
+    ) %>%
+    dplyr::mutate(
+      observation_start_time = httpdate_as_gmt08(encounter_when)
+    ) %>%
+    wastdr::add_dates()
 }
 
 # usethis::use_test("parse_encounterobservations")

@@ -6,8 +6,8 @@
 #' @return The dataframe with rows matching live outcomes.
 #' @export
 filter_alive <- function(data) {
-    data %>%
-        dplyr::filter(health %in% c("na", "other", "alive", "alive-injured"))
+  data %>%
+    dplyr::filter(health %in% c("na", "other", "alive", "alive-injured"))
 }
 
 
@@ -19,19 +19,19 @@ filter_alive <- function(data) {
 #' @return The dataframe with rows matching mortal outcomes.
 #' @export
 filter_dead <- function(data) {
-    data %>%
-        dplyr::filter(
-            health %in% c(
-                "alive-then-died",
-                "dead-advanced",
-                "dead-organs-intact",
-                "dead-edible",
-                "dead-mummified",
-                "dead-disarticulated",
-                "deadedible",
-                "deadadvanced"
-            )
-        )
+  data %>%
+    dplyr::filter(
+      health %in% c(
+        "alive-then-died",
+        "dead-advanced",
+        "dead-organs-intact",
+        "dead-edible",
+        "dead-mummified",
+        "dead-disarticulated",
+        "deadedible",
+        "deadadvanced"
+      )
+    )
 }
 
 #' Filter strandings to live rescues for ODKC data
@@ -43,12 +43,12 @@ filter_dead <- function(data) {
 #' @export
 #' @family odkc
 filter_alive_odkc <- function(data) {
-    data %>%
-        dplyr::filter(
-            status_health %in% c(
-                "na", "other", "alive", "alive-injured"
-            )
-        )
+  data %>%
+    dplyr::filter(
+      status_health %in% c(
+        "na", "other", "alive", "alive-injured"
+      )
+    )
 }
 
 
@@ -61,17 +61,17 @@ filter_alive_odkc <- function(data) {
 #' @export
 #' @family odkc
 filter_dead_odkc <- function(data) {
-    data %>%
-        dplyr::filter(
-            status_health %in% c(
-                "alive-then-died",
-                "dead-advanced",
-                "dead-organs-intact",
-                "dead-edible",
-                "dead-mummified",
-                "dead-disarticulated",
-                "deadedible",
-                "deadadvanced"
-            )
-        )
+  data %>%
+    dplyr::filter(
+      status_health %in% c(
+        "alive-then-died",
+        "dead-advanced",
+        "dead-organs-intact",
+        "dead-edible",
+        "dead-mummified",
+        "dead-disarticulated",
+        "deadedible",
+        "deadadvanced"
+      )
+    )
 }

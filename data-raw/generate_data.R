@@ -1,14 +1,15 @@
 library(wastdr)
 
 sanitize_names <- . %>%
-    dplyr::mutate_at(
-        dplyr::vars(
-            tidyr::ends_with("reporter"),
-            tidyr::contains("reporter_id"),
-            tidyr::ends_with("observer"),
-            tidyr::contains("observer_id")
-        ),
-        ~"Name hidden")
+  dplyr::mutate_at(
+    dplyr::vars(
+      tidyr::ends_with("reporter"),
+      tidyr::contains("reporter_id"),
+      tidyr::ends_with("observer"),
+      tidyr::contains("observer_id")
+    ),
+    ~"Name hidden"
+  )
 
 
 # Generate animal_encounters ("observed" by author)
@@ -31,31 +32,34 @@ usethis::use_data(wastd_area_raw, compress = "xz", overwrite = TRUE)
 
 # Surveys > test parse_surveys
 wastd_surveys_raw <- wastdr::wastd_GET(
-    "surveys", query = list(reporter=4), max_records = 10)
+  "surveys",
+  query = list(reporter = 4), max_records = 10
+)
 usethis::use_data(wastd_surveys_raw, compress = "xz", overwrite = TRUE)
 
 # TODO generate odkc data
 library(turtleviewer)
-data(turtledata, package="turtleviewer")
+data(turtledata, package = "turtleviewer")
 odkc_data <- list(
-    tracks = head(turtledata$tracks),
-    tracks_dist = head(turtledata$tracks_dist),
-    tracks_egg = head(turtledata$tracks_egg),
-    tracks_log = head(turtledata$tracks_log),
-    tracks_hatch = head(turtledata$tracks_hatch),
-    tracks_fan_outlier = head(turtledata$tracks_fan_outlier),
-    tracks_light = head(turtledata$tracks_light),
-    dist = head(turtledata$dist),
-    mwi = head(turtledata$mwi),
-    mwi_dmg = head(turtledata$mwi_dmg),
-    mwi_tag = head(turtledata$mwi_tag),
-    svs = head(turtledata$svs),
-    sve = head(turtledata$sve),
-    sites = turtledata$sites,
-    areas = turtledata$areas,
-    downloaded_on = turtledata$downloaded_on
+  tracks = head(turtledata$tracks),
+  tracks_dist = head(turtledata$tracks_dist),
+  tracks_egg = head(turtledata$tracks_egg),
+  tracks_log = head(turtledata$tracks_log),
+  tracks_hatch = head(turtledata$tracks_hatch),
+  tracks_fan_outlier = head(turtledata$tracks_fan_outlier),
+  tracks_light = head(turtledata$tracks_light),
+  dist = head(turtledata$dist),
+  mwi = head(turtledata$mwi),
+  mwi_dmg = head(turtledata$mwi_dmg),
+  mwi_tag = head(turtledata$mwi_tag),
+  tsi = head(turtledata$tsi),
+  svs = head(turtledata$svs),
+  sve = head(turtledata$sve),
+  sites = turtledata$sites,
+  areas = turtledata$areas,
+  downloaded_on = turtledata$downloaded_on
 )
-usethis::use_data(odkc_data, compress="xz", overwrite=TRUE)
+usethis::use_data(odkc_data, compress = "xz", overwrite = TRUE)
 
 # WAStD Turtle Data, 10 records each, names sanitised
 wastd_data <- download_wastd_turtledata(max_records = 10)
@@ -69,5 +73,4 @@ wastd_data$hatchling_morph <- wastd_data$hatchling_morph %>% sanitize_names()
 wastd_data$nest_fans <- wastd_data$nest_fans %>% sanitize_names()
 wastd_data$nest_fan_outliers <- wastd_data$nest_fan_outliers %>% sanitize_names()
 wastd_data$nest_lightsources <- wastd_data$nest_lightsources %>% sanitize_names()
-usethis::use_data(wastd_data, compress="xz", overwrite=TRUE)
-
+usethis::use_data(wastd_data, compress = "xz", overwrite = TRUE)

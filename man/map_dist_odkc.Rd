@@ -51,7 +51,8 @@ given.
 data("odkc")
 map_dist_odkc(
   odkc$dist,
-  tracks=odkc$tracks_dist,
-  sites=odkc$sites)
+  tracks = odkc$tracks_dist,
+  sites = odkc$sites
+)
 }
 }

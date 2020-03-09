@@ -16,7 +16,6 @@ bool
 Bugfix
 calendardate
 Centrail
-centralise
 chr
 CKAN
 Crendentials
@@ -81,6 +80,7 @@ maz
 Metaprogramming
 morphometrics
 mortalities
+msg
 mwi
 NameID
 natator
@@ -96,7 +96,6 @@ odkcentral
 OGC
 onwards
 ouput
-outliser
 ows
 param
 parsers
@@ -136,6 +135,7 @@ timeseries
 tne
 tsc
 TSC
+tsi
 turtledata
 TurtleNest
 TurtleNestDisturbanceObservations
@@ -152,7 +152,6 @@ Upsert
 uuid
 visualisation
 visualisations
-visualising
 wa
 WACensus
 WARNINGs

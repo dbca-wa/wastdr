@@ -54,9 +54,8 @@
 #' @importFrom purrr map map_chr map_dbl
 #' @importFrom lubridate interval as.period
 parse_surveys <- function(
-  wastd_api_response,
-  wastd_url = wastdr::get_wastd_url()
-) {
+                          wastd_api_response,
+                          wastd_url = wastdr::get_wastd_url()) {
   wastd_api_response$data %>%
     {
       tibble::tibble(
@@ -107,4 +106,3 @@ parse_surveys <- function(
 }
 
 # usethis::use_test("parse_surveys")
-

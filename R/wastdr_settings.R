@@ -30,7 +30,7 @@ print.wastdr_settings <- function(x, ...) {
   cat("  API Token:     see wastdr::get_wastdr_api_token()\n")
   cat("  API Username: ", x$api_un, "\n")
   cat("  API Password:  see wastdr::get_wastdr_api_pw()\n")
-  cat("  Verbose:      ", x$wastdr_verbose , "\n")
+  cat("  Verbose:      ", x$wastdr_verbose, "\n")
 }
 
 # ------------------------------------------------------------------------------#
@@ -91,7 +91,8 @@ wastdr_setup <- function(wastd_url = get_wastd_url(),
 #' @rdname wastdr_settings
 get_wastd_url <- function() {
   Sys.getenv("WASTD_URL",
-             unset = "https://tsc.dbca.wa.gov.au")
+    unset = "https://tsc.dbca.wa.gov.au"
+  )
 }
 
 
@@ -99,7 +100,8 @@ get_wastd_url <- function() {
 #' @rdname wastdr_settings
 get_wastdr_api_url <- function() {
   Sys.getenv("WASTDR_API_URL",
-             unset = "https://tsc.dbca.wa.gov.au/api/1/")
+    unset = "https://tsc.dbca.wa.gov.au/api/1/"
+  )
 }
 
 #' @export
@@ -125,4 +127,3 @@ get_wastdr_api_pw <- function() {
 get_wastdr_verbose <- function() {
   Sys.getenv("WASTDR_VERBOSE", FALSE)
 }
-

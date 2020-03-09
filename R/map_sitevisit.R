@@ -17,89 +17,89 @@
 #' @export
 map_sv_odkc <- function(svs,
                         sve,
-                          sites,
-                          wastd_url = wastdr::get_wastd_url(),
-                          fmt = "%d/%m/%Y %H:%M",
-                          tz = "Australia/Perth",
-                          cluster = FALSE) {
-    layersControlOptions <- NULL
-    markerClusterOptions <- NULL
+                        sites,
+                        wastd_url = wastdr::get_wastd_url(),
+                        fmt = "%d/%m/%Y %H:%M",
+                        tz = "Australia/Perth",
+                        cluster = FALSE) {
+  layersControlOptions <- NULL
+  markerClusterOptions <- NULL
 
-    if (cluster == TRUE) {
-        co <- leaflet::markerClusterOptions()
-    } else {
-        co <- NULL
-    }
+  if (cluster == TRUE) {
+    co <- leaflet::markerClusterOptions()
+  } else {
+    co <- NULL
+  }
 
-    layersControlOptions <- NULL
+  layersControlOptions <- NULL
 
-    l <- leaflet::leaflet(width = 800, height = 600) %>%
-        leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
-        leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-        leaflet::clearBounds() %>%
-        # Site Visit Start
-        leaflet::addAwesomeMarkers(
-        data = svs,
-        lng = ~site_visit_location_longitude,
-        lat = ~site_visit_location_latitude,
-        icon = leaflet::makeAwesomeIcon(
-            text = "SVS",
-            markerColor = "green",
-            iconColor = "white"
-        ),
-        label = ~ glue::glue(
-            "{calendar_date_awst} ",
-            " Start {reporter} {site_name}"
-        ),
-        popup = ~ glue::glue(
-            "<h3>Site Visit Start</h3>",
-            "<p>Start {lubridate::with_tz(survey_start_time, tz)} AWST</p>",
-            "<p>Device ID{device_id}</p>",
-            "<p>By {reporter} with {site_visit_team}</p>",
-            "<p>Comments: {site_visit_comments}</p>"
-        ),
+  l <- leaflet::leaflet(width = 800, height = 600) %>%
+    leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
+    leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
+    leaflet::clearBounds() %>%
+    # Site Visit Start
+    leaflet::addAwesomeMarkers(
+      data = svs,
+      lng = ~site_visit_location_longitude,
+      lat = ~site_visit_location_latitude,
+      icon = leaflet::makeAwesomeIcon(
+        text = "SVS",
+        markerColor = "green",
+        iconColor = "white"
+      ),
+      label = ~ glue::glue(
+        "{calendar_date_awst} ",
+        " Start {reporter} {site_name}"
+      ),
+      popup = ~ glue::glue(
+        "<h3>Site Visit Start</h3>",
+        "<p>Start {lubridate::with_tz(survey_start_time, tz)} AWST</p>",
+        "<p>Device ID{device_id}</p>",
+        "<p>By {reporter} with {site_visit_team}</p>",
+        "<p>Comments: {site_visit_comments}</p>"
+      ),
 
-        group = "Site Visit Start",
-        clusterOptions = co
+      group = "Site Visit Start",
+      clusterOptions = co
     ) %>%
-        # Site Visit End
-        leaflet::addAwesomeMarkers(
-            data = sve,
-            lng = ~site_visit_location_longitude,
-            lat = ~site_visit_location_latitude,
-            icon = leaflet::makeAwesomeIcon(
-                text = "SVE",
-                markerColor = "red",
-                iconColor = "white"
-            ),
-            label = ~ glue::glue(
-                "{calendar_date_awst} ",
-                " End {reporter} {site_name}"
-            ),
-            popup = ~ glue::glue(
-                "<h3>Site Visit End</h3>",
-                "<p>End {lubridate::with_tz(survey_end_time, tz)} AWST</p>",
-                "<p>Device ID{device_id}</p>",
-                "<p>By {reporter}</p>",
-                "<p>Comments: {site_visit_comments}</p>"
-            ),
+    # Site Visit End
+    leaflet::addAwesomeMarkers(
+      data = sve,
+      lng = ~site_visit_location_longitude,
+      lat = ~site_visit_location_latitude,
+      icon = leaflet::makeAwesomeIcon(
+        text = "SVE",
+        markerColor = "red",
+        iconColor = "white"
+      ),
+      label = ~ glue::glue(
+        "{calendar_date_awst} ",
+        " End {reporter} {site_name}"
+      ),
+      popup = ~ glue::glue(
+        "<h3>Site Visit End</h3>",
+        "<p>End {lubridate::with_tz(survey_end_time, tz)} AWST</p>",
+        "<p>Device ID{device_id}</p>",
+        "<p>By {reporter}</p>",
+        "<p>Comments: {site_visit_comments}</p>"
+      ),
 
-            group = "Site Visit End",
-            clusterOptions = co
-        ) %>%
-        # Sites
-            leaflet::addPolygons(
-                data=sites,
-                group="Sites",
-                weight = 1,
-                fillOpacity = 0.5,
-                fillColor = "blue",
-                label = ~ site_name
-            ) %>%
-            leaflet::addLayersControl(
-                baseGroups = c("Aerial", "Place names"),
-                overlayGroups = c("Site Visit Start", "Site Visit End"),
-                options = leaflet::layersControlOptions(collapsed = FALSE)
-            )
-    l
+      group = "Site Visit End",
+      clusterOptions = co
+    ) %>%
+    # Sites
+    leaflet::addPolygons(
+      data = sites,
+      group = "Sites",
+      weight = 1,
+      fillOpacity = 0.5,
+      fillColor = "blue",
+      label = ~site_name
+    ) %>%
+    leaflet::addLayersControl(
+      baseGroups = c("Aerial", "Place names"),
+      overlayGroups = c("Site Visit Start", "Site Visit End"),
+      options = leaflet::layersControlOptions(collapsed = FALSE)
+    )
+  l
 }
