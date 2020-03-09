@@ -4,7 +4,7 @@
 \name{wastd_tne}
 \alias{wastd_tne}
 \title{WAStD TurtleNestEncounters, parsed, test data captured by author}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 10 rows and 41 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 10 rows and 43 columns.}
 \usage{
 wastd_tne
 }

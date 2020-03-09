@@ -20,7 +20,7 @@ test_that("wastd_api_response prints something", {
 })
 
 
-test_that("wastd_tne_raw parses correctly to animals", {
+test_that("wastd_tne_raw parses correctly to nests", {
     data(wastd_tne_raw)
     data(wastd_tne)
     fresh_tracks <- parse_turtle_nest_encounters(wastd_tne_raw) %>%

@@ -21,7 +21,7 @@ usethis::use_data(wastd_ae, compress = "xz", overwrite = TRUE)
 # Generate tracks
 q <- list(area_id = 17, observer = 4)
 wastd_tne_raw <- wastdr::wastd_GET("turtle-nest-encounters", query = q, max_records = 10)
-wastd_tne <- parse_turtle_nest_encounters(wastd_tne_raw)
+wastd_tne <- parse_turtle_nest_encounters(wastd_tne_raw) %>% add_nest_labels()
 usethis::use_data(wastd_tne_raw, compress = "xz", overwrite = TRUE)
 usethis::use_data(wastd_tne, compress = "xz", overwrite = TRUE)
 
