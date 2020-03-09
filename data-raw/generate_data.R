@@ -44,6 +44,7 @@ odkc_data <- list(
     tracks_log = head(turtledata$tracks_log),
     tracks_hatch = head(turtledata$tracks_hatch),
     tracks_fan_outlier = head(turtledata$tracks_fan_outlier),
+    tracks_light = head(turtledata$tracks_light),
     dist = head(turtledata$dist),
     mwi = head(turtledata$mwi),
     mwi_dmg = head(turtledata$mwi_dmg),

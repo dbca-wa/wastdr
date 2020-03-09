@@ -19,8 +19,13 @@
 #'   * tracks_dist Individual disturbances recorded against tracks, one row per
 #'     disturbance.
 #'   * tracks_log Individual nest tags recorded against nests, one row per tag.
-#'   * tracks_fan_outliser Individual hatchling track outliers recorded against
+#'   * tracks_egg Next excavation photos, one row per photo.
+#'   * tracks_hatch Turtle hatchling morphometrics, one row per mesured
+#'     hatchling.
+#'   * tracks_fan_outlier Individual hatchling track outliers recorded against
 #'     hatched nests, one row per outlier.
+#'   * tracks_light Individual light sources known at hatchling emergence, one
+#'     row per light source.
 #'   * dist The disturbance and predation records from form "Predator or
 #'     Disturbance 1.1".
 #'   * mwi Strandings and rescues from the form "Marine Wildlife Incident 0.6 ".
@@ -185,14 +190,14 @@ download_odkc_turtledata_2019 <-
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
     # NONE YET - TODO ADD ONCE DATA
-    tracks_light <- ft$url[7] %>%
+    tracks_light_prod <- ft$url[7] %>%
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
         wkt = T,
         local_dir = local_dir
-      ) # %>%
-    # dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
+      ) %>%
+    dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
     #----------------------------------------------------------------------------#
     # Fix error: PROD used UAT db for a week - what's in UAT but not in PROD?
@@ -347,8 +352,8 @@ download_odkc_turtledata_2019 <-
       wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
       wastdr::add_dates()
 
-    tracks_dist <-
-      dplyr::bind_rows(tracks_dist_prod, tracks_dist_extra) %>%
+    tracks_dist <- tracks_dist_prod %>%
+      dplyr::bind_rows(tracks_dist_extra) %>%
       wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
       wastdr::add_dates()
 
@@ -369,6 +374,10 @@ download_odkc_turtledata_2019 <-
       wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
       wastdr::add_dates()
 
+    tracks_light <- tracks_light_prod %>%
+      wastdr::join_tsc_sites(sites, prefix="details_observed_at_") %>%
+      wastdr::add_dates()
+
     turtledata <- list(
       downloaded_on = Sys.time(),
       tracks = tracks,
@@ -377,6 +386,7 @@ download_odkc_turtledata_2019 <-
       tracks_log = tracks_log,
       tracks_hatch = tracks_hatch,
       tracks_fan_outlier = tracks_fan_outlier,
+      tracks_light = tracks_light,
       dist = dist,
       mwi = mwi,
       mwi_dmg = mwi_dmg,
