@@ -2,20 +2,19 @@
 % Please edit documentation in R/map_dist.R
 \name{map_dist}
 \alias{map_dist}
-\title{Map Disturbance observations interactively.}
+\title{Map nest and general disturbance observations interactively.}
 \usage{
 map_dist(
   dist,
-  tracks = NULL,
   wastd_url = wastdr::get_wastd_url(),
   fmt = "\%d/\%m/\%Y \%H:\%M",
   cluster = FALSE
 )
 }
 \arguments{
-\item{dist}{The output of \code{parse_disturbance_observations()}.}
-
-\item{tracks}{TurtleNestDisturbanceObservations, optional. Planned feature.}
+\item{dist}{Turtle nest and general disturbance and predation, e.g.
+\code{\link{wastd_data}$nest_dist}. This data contains both dist/pred
+recorded against nests and general signs of disturbance or predation.}
 
 \item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
 
@@ -31,10 +30,16 @@ cluster markers expand.}
 A leaflet map
 }
 \description{
-Map Disturbance observations interactively.
+Map nest and general disturbance observations interactively.
 }
 \details{
 Creates a Leaflet map with an interactive legend offering to toggle
 each disturbance class separately.
 The maps auto-zooms to the extent of data given.
+}
+\examples{
+\dontrun{
+data("wastd_data")
+wastd_data$nest_dist \%>\% map_dist()
+}
 }
