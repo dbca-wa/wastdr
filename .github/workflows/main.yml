@@ -41,6 +41,11 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@master
 
+      - name: Install backports
+        if: runner.os == 'ubuntu-16.04'
+        run: |
+          sudo add-apt-repository -y ppa:cran/jq
+
       - name: Query dependencies
         run: |
           install.packages('remotes')
@@ -64,11 +69,6 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
-
-      - name: Install backports
-        if: runner.os == 'ubuntu-16.04'
-        run: |
-          sudo add-apt-repository -y ppa:cran/jq
 
       - name: Install dependencies
         run: |
