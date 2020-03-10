@@ -1,5 +1,7 @@
 #' Download all turtle data from DBCA's ODK Central
 #'
+#' \lifecycle{maturing}
+#'
 #' @param local_dir A local directory to which to save the attachment files.
 #'   Attachment filepaths will be relative to the directory.
 #'   The directory and its parent folders will be created if not existing.

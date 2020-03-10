@@ -65,5 +65,5 @@ An S3 class "odkc_turtledata" with items:
  }
 }
 \description{
-Download all turtle data from DBCA's ODK Central
+\lifecycle{maturing}
 }

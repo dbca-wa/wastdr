@@ -1,5 +1,7 @@
 #' Add turtle dates to a dataframe with datetime col `observation_start_time`.
 #'
+#' \lifecycle{stable}
+#'
 #' @param data a dataframe with datetime col `observation_start_time`, e.g. the
 #' output of ODKC form "turtle track or nest", "predator or disturbance", or
 #' "marine wildlife incident".
@@ -28,6 +30,8 @@ add_dates <- function(data) {
 }
 
 #' Add turtle dates to a dataframe with datetime col `survey_start_time`.
+#'
+#' \lifecycle{stable}
 #'
 #' @param data a dataframe with datetime col `survey_start_time`, e.g. the
 #' output of ODKC form "site visit start".
@@ -58,6 +62,8 @@ add_dates_svs <- function(data) {
 }
 
 #' Add turtle dates to a dataframe with datetime col `survey_end_time`.
+#'
+#' \lifecycle{stable}
 #'
 #' @param data a dataframe with datetime col `survey_end_time`, e.g. the
 #' output of ODKC form "site visit end".

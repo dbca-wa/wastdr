@@ -21,5 +21,5 @@ The initial dataframe plus new columns
   * iso_week
 }
 \description{
-Add turtle dates to a dataframe with datetime col `observation_start_time`.
+\lifecycle{stable}
 }

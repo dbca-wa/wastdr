@@ -1,5 +1,6 @@
 #' Download all turtle data from WAStD
 #'
+#' \lifecycle{maturing}
 #'
 #' @param max_records <int> The max number of records to retrieve,
 #'   default: NULL (all).

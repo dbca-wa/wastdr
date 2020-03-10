@@ -38,5 +38,5 @@ An S3 class "wastd_data" with items:
 }
 }
 \description{
-Download all turtle data from WAStD
+\lifecycle{maturing}
 }
