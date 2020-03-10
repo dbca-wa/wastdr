@@ -2,24 +2,10 @@
 % Please edit documentation in R/check_wastd_api.R
 \name{skip_test_if_offline}
 \alias{skip_test_if_offline}
-\title{#' Check whether API token is set and WAStD is online, else abort
-#' @export
-check_wastd_api <- function() {
-    res <- wastd_GET("")
-    if (res$status_code != 200)
-        wastdr_msg_abort("WAStD is offline or authentication is missing.")
-}
-Check whether API token is set and WAStD is online, else skip test}
+\title{Check whether API token is set and WAStD is online, else skip test}
 \usage{
 skip_test_if_offline()
 }
 \description{
-#' Check whether API token is set and WAStD is online, else abort
-#' @export
-check_wastd_api <- function() {
-    res <- wastd_GET("")
-    if (res$status_code != 200)
-        wastdr_msg_abort("WAStD is offline or authentication is missing.")
-}
 Check whether API token is set and WAStD is online, else skip test
 }
