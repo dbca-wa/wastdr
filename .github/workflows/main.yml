@@ -23,9 +23,6 @@ jobs:
           - {os: macOS-latest, r: '3.5'}
           - {os: macOS-latest, r: '3.6'}
           - {os: macOS-latest, r: 'devel'}
-          # stringi package breaks ubuntu 16.04
-          # - {os: ubuntu-16.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
-          # - {os: ubuntu-16.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
           - {os: ubuntu-18.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
           - {os: ubuntu-18.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
 
@@ -39,6 +36,7 @@ jobs:
       WASTDR_API_UN: ${{secrets.WASTDR_API_UN}}
       WASTDR_API_PW: ${{secrets.WASTDR_API_PW}}
       WASTDR_API_TOKEN: ${{secrets.WASTDR_API_TOKEN}}
+      GITHUB_PAT: ${{secrets.GITHUB_PAT}}
 
     steps:
       - uses: actions/checkout@v2
@@ -48,19 +46,6 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - uses: r-lib/actions/setup-pandoc@master
-
-      - name: Whack Ubuntu 16 with a wrench over the head until it works
-        if: matrix.config.os == 'ubuntu-16.04'
-        run: |
-          sudo add-apt-repository -y ppa:cran/jq
-          sudo apt-get install -y libicu-dev libpng-dev
-
-      - name: Backport stringi
-        if: matrix.config.os == 'ubuntu-16.04'
-        run: |
-          install.packages("stringi")
-        shell: Rscript {0}
-
 
       - name: Query dependencies
         run: |
@@ -108,11 +93,14 @@ jobs:
         run: covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
         shell: Rscript {0}
 
-      - name: Install package
+      - name: Prepare for pkgdown docs
         if: matrix.config.os == 'ubuntu-18.04' && matrix.config.r == '3.6'
-        run: R CMD INSTALL .
+        run: |
+          R CMD INSTALL .
+          git config --global user.name $${{secrets.GH_USER}}
+          git config --global user.email $${{secrets.GH_EMAIL}}
 
-      - name: Deploy package docs
+      - name: Deploy pkgdown docs
         if: matrix.config.os == 'ubuntu-18.04' && matrix.config.r == '3.6'
         run: |
           remotes::install_dev("pkgdown")
