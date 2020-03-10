@@ -2,12 +2,14 @@
 #'
 #' @param data The output of \code{parse_turtle_nest_encounters}.
 #' @template param-surveys
+#' @param local_dir A local directory to save the plot to, default: ".".
 #' @template param-placename
 #' @template param-prefix
 #' @return A ggplot2 object. Saves the plot to .png.
 #' @export
 tracks_ts <- function(data,
                       surveys,
+                      local_dir = ".",
                       placename = "",
                       prefix = "") {
   fname <-
@@ -47,6 +49,8 @@ tracks_ts <- function(data,
         ggplot2::xlab("Turtle date") +
         ggplot2::guides(colour = ggplot2::guide_legend(title = "Nest type")) +
         ggplot2::theme_classic() +
-        ggplot2::ggsave(fname, width = 10, height = 6)
+        ggplot2::ggsave(fs::path(local_dir, fname), width = 10, height = 6)
     }
 }
+
+# usethis::use_test("tracks_ts")

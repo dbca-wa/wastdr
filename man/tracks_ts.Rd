@@ -4,12 +4,14 @@
 \alias{tracks_ts}
 \title{Plot of nesting_type_by_season_day_species over time}
 \usage{
-tracks_ts(data, surveys, placename = "", prefix = "")
+tracks_ts(data, surveys, local_dir = ".", placename = "", prefix = "")
 }
 \arguments{
 \item{data}{The output of \code{parse_turtle_nest_encounters}.}
 
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
+
+\item{local_dir}{A local directory to save the plot to, default: ".".}
 
 \item{placename}{(string) The place name, used in labels.}
 
