@@ -51,10 +51,14 @@ download_odkc_turtledata_2019 <-
            download = TRUE,
            verbose = TRUE) {
     fs::dir_create(local_dir, recurse = TRUE)
+    ruODK::ru_setup(
+      pid = 1,
+      url = prod
+    )
     pl <- ruODK::project_list()
     # pl
 
-    fl <- ruODK::form_list(pid = 1)
+    fl <- ruODK::form_list()
     # fl
 
     # SV start
@@ -74,8 +78,9 @@ download_odkc_turtledata_2019 <-
 
     # SV end
     ruODK::ru_setup(
-      pid = 1, fid = "build_Site-Visit-End-0-2_1559789512", url =
-        prod
+      pid = 1,
+      fid = "build_Site-Visit-End-0-2_1559789512",
+      url = prod
     )
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     sve_prod <-
