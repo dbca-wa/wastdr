@@ -14,3 +14,4 @@ man-roxygen
 ^pkgdown$
 ^appveyor\.yml$
 ^azure-pipelines\.yml$
+^.github$
