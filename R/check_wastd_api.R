@@ -15,6 +15,12 @@ skip_test_if_odkc_offline <- function() {
         un = ruODK::get_default_un(),
         pw = ruODK::get_default_pw()
     )
-    res <- ruODK::project_list() # will error if auth fails
+
+    res <- ruODK::project_list(
+        url = ruODK::get_default_url(),
+        un = ruODK::get_default_un(),
+        pw = ruODK::get_default_pw()
+    ) # will error if auth fails
+
     if (!tibble::is_tibble(res)) testthat::skip("Check your ODKC credentials!")
 }
