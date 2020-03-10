@@ -32,6 +32,13 @@ jobs:
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       RSPM: ${{ matrix.config.rspm }}
+      ODKC_URL: ${{secrets.ODKC_URL}}
+      ODKC_UN: ${{secrets.ODKC_UN}}
+      ODKC_PW: ${{secrets.ODKC_PW}}
+      WASTDR_API_URL: ${{secrets.WASTDR_API_URL}}
+      WASTDR_API_UN: ${{secrets.WASTDR_API_UN}}
+      WASTDR_API_PW: ${{secrets.WASTDR_API_PW}}
+      WASTDR_API_TOKEN: ${{secrets.WASTDR_API_TOKEN}}
 
     steps:
       - uses: actions/checkout@v2
