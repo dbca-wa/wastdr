@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return GeoJSON features from a WAStD API endpoint as data.table or list — wastd_GET • wastdr</title>
+<title>Return GeoJSON features from a WAStD API endpoint — wastd_GET • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,11 +42,11 @@
 
 
 
-<meta property="og:title" content="Return GeoJSON features from a WAStD API endpoint as data.table or list — wastd_GET" />
+<meta property="og:title" content="Return GeoJSON features from a WAStD API endpoint — wastd_GET" />
 <meta property="og:description" content="Call the WAStD API serializer's list view with given GET
   parameters, parse the response's features into a nested list.
   This function requires the WAStD API to return the results in a key
-  `features` as is the standard for a GeoJSON FeatureCollection." />
+  `features` (if GeoJSON) or `data` (if JSON)." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -137,7 +137,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return GeoJSON features from a WAStD API endpoint as data.table or list</h1>
+    <h1>Return GeoJSON features from a WAStD API endpoint</h1>
     <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/wastd_GET.R'><code>R/wastd_GET.R</code></a></small>
     <div class="hidden name"><code>wastd_GET.Rd</code></div>
     </div>
@@ -146,7 +146,7 @@
     <p>Call the WAStD API serializer's list view with given GET
   parameters, parse the response's features into a nested list.
   This function requires the WAStD API to return the results in a key
-  `features` as is the standard for a GeoJSON FeatureCollection.</p>
+  `features` (if GeoJSON) or `data` (if JSON).</p>
     </div>
 
     <pre class="usage"><span class='fu'>wastd_GET</span>(
