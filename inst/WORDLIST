@@ -20,6 +20,8 @@ Centrail
 changedate
 chr
 CKAN
+CMD
+CODECOV
 Crendentials
 crs
 curation
@@ -33,6 +35,7 @@ de
 deduplicates
 depressus
 df
+dir
 dmg
 dpaw
 dttm
@@ -41,7 +44,6 @@ emergences
 ERRORs
 eval
 exacavations
-excavtion
 featurecollection
 Featurecollection
 FeatureCollections
@@ -80,7 +82,6 @@ maz
 Metaprogramming
 morphometrics
 mortalities
-msg
 mwi
 NameID
 natator
@@ -106,10 +107,10 @@ POSIXct
 pred
 predation
 qa
+Renviron
 RESTful
 rlang
 roundtrip
-Rprofile
 ruODK
 sd
 serializer
