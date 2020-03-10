@@ -1,5 +1,12 @@
 test_that("download_odkc_turtledata_2019 works", {
   skip_test_if_odkc_offline()
+
+  ruODK::ru_setup(
+    url = ruODK::get_default_url(),
+    un = ruODK::get_default_un(),
+    pw = ruODK::get_default_pw()
+  )
+
   x <- download_odkc_turtledata_2019(
     local_dir = tempdir(),
     download = FALSE,
