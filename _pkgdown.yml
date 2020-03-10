@@ -1,0 +1,7 @@
+authors:
+  DBCA:
+    html: "<img src='man/figures/dbca_bcs.png' width='150' alt='DBCA'/>"
+    href: https://www.dbca.wa.gov.au/science/
+  NWSFTCP:
+    html: "<img src='man/figures/flatbacks.svg' width='150' alt='NWSFTCP'/>"
+    href: https://flatbacks.dbca.wa.gov.au/
