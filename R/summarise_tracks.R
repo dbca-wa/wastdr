@@ -78,7 +78,8 @@ nesting_type_by_site_season_age_species <- . %>%
     season,
     species,
     nest_age,
-    nest_type) %>%
+    nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
@@ -95,7 +96,8 @@ nesting_type_by_season_week_species <- . %>%
     season_week,
     iso_week,
     species,
-    nest_type) %>%
+    nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
@@ -114,7 +116,8 @@ nesting_type_by_season_week_age_species <- . %>%
     iso_week,
     species,
     nest_age,
-    nest_type) %>%
+    nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)

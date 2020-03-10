@@ -40,7 +40,7 @@ tracks_ts <- function(data,
         ggplot2::ggtitle(
           glue::glue("Nesting activity at {placename}"),
           subtitle = glue::glue(
-          'Number counted per day (points) over number of surveys (bars)'
+            "Number counted per day (points) over number of surveys (bars)"
           )
         ) +
         ggplot2::ylab("Number of turtle tracks or nests") +

@@ -8,7 +8,8 @@ nesting_type_by_season_species_odkc <- . %>%
   dplyr::group_by(
     season,
     details_species,
-    details_nest_type) %>%
+    details_nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(details_nest_type, n, fill = 0)
@@ -24,7 +25,8 @@ nesting_type_by_season_age_species_odkc <- . %>%
     season,
     details_species,
     details_nest_age,
-    details_nest_type) %>%
+    details_nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(details_nest_type, n, fill = 0)
@@ -40,7 +42,8 @@ nesting_type_by_area_season_species_odkc <- . %>%
     area_name,
     season,
     details_species,
-    details_nest_type) %>%
+    details_nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(details_nest_type, n, fill = 0)
@@ -58,7 +61,8 @@ nesting_type_by_area_season_age_species_odkc <- . %>%
     season,
     details_species,
     details_nest_age,
-    details_nest_type) %>%
+    details_nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(details_nest_type, n, fill = 0)
@@ -76,7 +80,8 @@ nesting_type_by_site_season_species_odkc <- . %>%
     site_name,
     season,
     details_species,
-    details_nest_type) %>%
+    details_nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(details_nest_type, n, fill = 0)
@@ -96,7 +101,8 @@ nesting_type_by_site_season_age_species_odkc <- . %>%
     season,
     details_species,
     details_nest_age,
-    details_nest_type) %>%
+    details_nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(details_nest_type, n, fill = 0)
@@ -115,7 +121,8 @@ nesting_type_by_season_week_species_odkc <- . %>%
     season_week,
     iso_week,
     details_species,
-    details_nest_type) %>%
+    details_nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(details_nest_type, n, fill = 0)
@@ -135,7 +142,8 @@ nesting_type_by_season_week_age_species_odkc <- . %>%
     iso_week,
     details_species,
     details_nest_age,
-    details_nest_type) %>%
+    details_nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(details_nest_type, n, fill = 0)
@@ -172,7 +180,8 @@ nesting_type_by_season_day_species_odkc <- . %>%
     season,
     turtle_date,
     details_species,
-    details_nest_type) %>%
+    details_nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup()
 
@@ -189,7 +198,8 @@ nesting_type_by_season_calendarday_species_odkc <- . %>%
     season,
     calendar_date_awst,
     details_species,
-    details_nest_type) %>%
+    details_nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(details_nest_type, n, fill = 0)
@@ -208,7 +218,8 @@ nesting_type_by_season_calendarday_age_species_odkc <- . %>%
     calendar_date_awst,
     details_species,
     details_nest_age,
-    details_nest_type) %>%
+    details_nest_type
+  ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(details_nest_type, n, fill = 0)

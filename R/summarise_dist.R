@@ -147,7 +147,8 @@ general_disturbance_by_season_odkc <- . %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   dplyr::rename(
-    disturbance_cause = disturbanceobservation_disturbance_cause) %>%
+    disturbance_cause = disturbanceobservation_disturbance_cause
+  ) %>%
   dplyr::mutate(encounter_type = "other") %>%
   dplyr::arrange(-season, -n)
 

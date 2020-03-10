@@ -53,10 +53,11 @@ wastd_POST <- function(data,
     )
   }
 
-  if (httr::http_type(res) != "application/json")
+  if (httr::http_type(res) != "application/json") {
     wastdr_msg_warn(
       glue::glue("API did not return JSON.\nIs {url} a valid endpoint?")
     )
+  }
 
   text <- httr::content(res, as = "text", encoding = "UTF-8")
 
@@ -66,8 +67,9 @@ wastd_POST <- function(data,
     simplifyVector = FALSE
   )
 
-  if (verbose == TRUE)
+  if (verbose == TRUE) {
     wastdr_msg_success(glue::glue("[wastd_POST] {res$status}"))
+  }
 
 
   structure(

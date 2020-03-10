@@ -55,15 +55,15 @@ map_mwi_odkc <- function(data,
             markerColor = "red",
             iconColor = ~ pal_mwi(details_taxon)
           ),
-          label = ~ glue::glue('
+          label = ~ glue::glue("
                                {lubridate::with_tz(observation_start_time, tz)}
             {humanize(status_health)}
                                {humanize(details_maturity)}
                                {humanize(details_sex)}
             {humanize(details_species)}
-          '),
+          "),
           popup = ~ glue::glue(
-          '
+            '
           <h3>{humanize(status_health)} {humanize(details_maturity)}
           {humanize(details_sex)} {humanize(details_species)}</h3>
           <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
@@ -99,7 +99,8 @@ map_mwi_odkc <- function(data,
           <img height="150px;" alt="Photo Habitat 4"
           src="{ifelse(!is.na({habitat_photos_photo_habitat_4}),
           habitat_photos_photo_habitat_4, "")}"></img><br/>
-          '),
+          '
+          ),
           group = df,
           clusterOptions = co
         )

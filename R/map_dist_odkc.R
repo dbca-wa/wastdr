@@ -19,7 +19,9 @@
 #' \dontrun{
 #' data("odkc_data")
 #' map_dist_odkc(
-#'   odkc_data$dist, tracks = odkc_data$tracks_dist, sites = odkc_data$sites)
+#'   odkc_data$dist,
+#'   tracks = odkc_data$tracks_dist, sites = odkc_data$sites
+#' )
 #' map_dist_odkc(NULL, tracks = odkc_data$tracks_dist, sites = odkc_data$sites)
 #' map_dist_odkc(odkc_data$dist, tracks = NULL, sites = odkc_data$sites)
 #' map_dist_odkc(odkc_data$dist, tracks = odkc_data$tracks_dist, sites = NULL)
@@ -68,7 +70,8 @@ map_dist_odkc <- function(dist,
           lat = ~disturbanceobservation_location_latitude,
           icon = leaflet::makeAwesomeIcon(
             text = ~ stringr::str_sub(
-              disturbanceobservation_disturbance_cause, 0, 1),
+              disturbanceobservation_disturbance_cause, 0, 1
+            ),
             markerColor = "orange",
             iconColor = ~ pal(disturbanceobservation_disturbance_cause)
           ),

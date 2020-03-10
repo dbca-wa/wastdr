@@ -16,14 +16,21 @@ test_that("wastd_GET falls back to BasicAuth with NULL api_token", {
   skip_test_if_offline()
   capture_warnings(
     # TSC currentle does not support BasicAuth
-    testthat::expect_message(res <- wastd_GET("area", api_token = NULL))
+    testthat::expect_message(
+      # message only sent on verbose=TRUE
+      res <- wastd_GET("area", api_token = NULL, verbose = TRUE)
+    )
   )
 })
 
 test_that("wastd_GET aborts with NULL api_un or api_pw", {
   skip_test_if_offline()
-  testthat::expect_error(res <- wastd_GET("area", api_token = NULL, api_un = NULL))
-  testthat::expect_error(res <- wastd_GET("area", api_token = NULL, api_pw = NULL))
+  testthat::expect_error(
+    res <- wastd_GET("area", api_token = NULL, api_un = NULL)
+  )
+  testthat::expect_error(
+    res <- wastd_GET("area", api_token = NULL, api_pw = NULL)
+  )
 })
 
 
