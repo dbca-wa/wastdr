@@ -53,7 +53,9 @@ download_odkc_turtledata_2019 <-
     fs::dir_create(local_dir, recurse = TRUE)
     ruODK::ru_setup(
       pid = 1,
-      url = prod
+      url = prod,
+      un = ruODK::get_default_un(),
+      pw = ruODK::get_default_pw()
     )
     pl <- ruODK::project_list()
     # pl

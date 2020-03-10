@@ -1,5 +1,5 @@
 test_that("download_odkc_turtledata_2019 works", {
-  skip_test_if_offline()
+  skip_test_if_odkc_offline()
   x <- download_odkc_turtledata_2019(
     local_dir = tempdir(),
     download = FALSE,

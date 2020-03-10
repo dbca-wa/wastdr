@@ -1,5 +1,5 @@
 test_that("download_wastd_turtledata works", {
-  skip_test_if_offline()
+    skip_test_if_wastd_offline()
 
   # Bad things will happen if all records have all NULL area or site
   # This can break tests with `max_records = 1`

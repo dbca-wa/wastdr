@@ -105,3 +105,5 @@ map_tracks <- function(tracks,
       options = leaflet::layersControlOptions(collapsed = FALSE)
     )
 }
+
+# usethis::use_test("map_tracks")
