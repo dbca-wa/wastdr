@@ -15,6 +15,11 @@
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
+#' @examples
+#' \dontrun{
+#' data("odkc_data")
+#' map_sv_odkc(odkc_data$svs, odkc_data$sve, sites = odkc_data$sites)
+#' }
 map_sv_odkc <- function(svs,
                         sve,
                         sites,
@@ -22,16 +27,7 @@ map_sv_odkc <- function(svs,
                         fmt = "%d/%m/%Y %H:%M",
                         tz = "Australia/Perth",
                         cluster = FALSE) {
-  layersControlOptions <- NULL
-  markerClusterOptions <- NULL
-
-  if (cluster == TRUE) {
-    co <- leaflet::markerClusterOptions()
-  } else {
-    co <- NULL
-  }
-
-  layersControlOptions <- NULL
+  co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
@@ -55,7 +51,7 @@ map_sv_odkc <- function(svs,
         "<h3>Site Visit Start</h3>",
         "<p>Start {lubridate::with_tz(survey_start_time, tz)} AWST</p>",
         "<p>Device ID{device_id}</p>",
-        "<p>By {reporter} with {site_visit_team}</p>",
+        "<p>By {humanize(reporter)} with {humanize(site_visit_team)}</p>",
         "<p>Comments: {site_visit_comments}</p>"
       ),
 
@@ -80,7 +76,7 @@ map_sv_odkc <- function(svs,
         "<h3>Site Visit End</h3>",
         "<p>End {lubridate::with_tz(survey_end_time, tz)} AWST</p>",
         "<p>Device ID{device_id}</p>",
-        "<p>By {reporter}</p>",
+        "<p>By {humanize(reporter)}</p>",
         "<p>Comments: {site_visit_comments}</p>"
       ),
 
@@ -103,3 +99,5 @@ map_sv_odkc <- function(svs,
     )
   l
 }
+
+# usethis::use_test("map_sv_odkc")

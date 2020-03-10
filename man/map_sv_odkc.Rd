@@ -46,3 +46,9 @@ Map Site Visit Start and End from ODK Central data over TSC Sites.
 Creates a Leaflet map of site visit start and end points.
 The maps auto-zooms to the extent of data given.
 }
+\examples{
+\dontrun{
+data("odkc_data")
+map_sv_odkc(odkc_data$svs, odkc_data$sve, sites = odkc_data$sites)
+}
+}

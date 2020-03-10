@@ -35,12 +35,7 @@ map_dist_odkc <- function(dist,
                           cluster = FALSE) {
   overlay_names <- NULL
 
-  co <-
-    if (cluster == TRUE) {
-      leaflet::markerClusterOptions()
-    } else {
-      NULL
-    }
+  co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
