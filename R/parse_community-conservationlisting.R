@@ -40,8 +40,8 @@
 #' @export
 #' @import magrittr
 parse_community_conservationlisting <- function(
-                                                wastd_api_response,
-                                                wastd_url = wastdr::get_wastd_url()) {
+  wastd_api_response,
+  wastd_url = wastdr::get_wastd_url()) {
   wastd_api_response$data %>% {
     tibble::tibble(
       id = purrr::map_int(., "id"),
@@ -56,7 +56,8 @@ parse_community_conservationlisting <- function(
         wastdr::httpdate_as_gmt08(),
       effective_to = purrr::map_chr(., "effective_to", .default = NA) %>%
         wastdr::httpdate_as_gmt08(),
-      last_reviewed_on = purrr::map_chr(., "last_reviewed_on", .default = NA) %>%
+      last_reviewed_on = purrr::map_chr(
+        ., "last_reviewed_on", .default = NA) %>%
         wastdr::httpdate_as_gmt08(),
       review_due = purrr::map_chr(., "review_due", .default = NA) %>%
         wastdr::httpdate_as_gmt08(),

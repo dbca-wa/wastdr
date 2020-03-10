@@ -10,12 +10,6 @@ tracks_ts <- function(data,
                       surveys,
                       placename = "",
                       prefix = "") {
-  . <- NULL
-  season <- NULL
-  turtle_date <- NULL
-  n <- NULL
-  nest_type <- NULL
-
   fname <-
     glue::glue("{prefix}_track_abundance_{wastdr::urlize(placename)}.png")
   data %>%
@@ -32,7 +26,7 @@ tracks_ts <- function(data,
         ggplot2::geom_bar(
           data = surveys,
           ggplot2::aes(x = tdate_as_fdate(turtle_date)),
-          show.legend = F
+          show.legend = FALSE
         ) +
         ggalt::geom_lollipop(
           data = .,
@@ -45,7 +39,9 @@ tracks_ts <- function(data,
         ) +
         ggplot2::ggtitle(
           glue::glue("Nesting activity at {placename}"),
-          subtitle = "Number counted per day (points) over number of surveys (bars)"
+          subtitle = glue::glue(
+          'Number counted per day (points) over number of surveys (bars)'
+          )
         ) +
         ggplot2::ylab("Number of turtle tracks or nests") +
         ggplot2::xlab("Turtle date") +

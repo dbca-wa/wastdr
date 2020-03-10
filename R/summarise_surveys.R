@@ -1,4 +1,4 @@
-#' Return the number of surveys for a given site_id and season.
+#' Return the number of surveys for a given site_id and season
 #'
 #' @template param-surveys
 #' @param site_id The ID of a site, e.g. 22
@@ -10,7 +10,7 @@ survey_count <- function(surveys, site_id, season) {
     nrow()
 }
 
-#' Return the number of surveys for a given site_id and season.
+#' Return the number of surveys for a given site_id and season
 #'
 #' @template param-surveys
 #' @param site_id The ID of a site, e.g. 22
@@ -23,7 +23,7 @@ survey_ground_covered <- function(surveys, site_id, km_per_survey, season) {
 
 
 #' Count number of surveys per season, turtle date and site_name from the output
-#' of \code{parse_surveys}.
+#' of \code{parse_surveys}
 #'
 #' @template param-surveys
 #' @return A tibble with columns season, turtle_date, site_name, n
@@ -38,7 +38,7 @@ surveys_per_site_name_and_date <- function(surveys) {
 }
 
 #' Sum the hours surveyed per site_name and date from the output of
-#' \code{parse_surveys}.
+#' \code{parse_surveys}
 #'
 #' @template param-surveys
 #' @return A tibble with columns season, turtle_date, site_name, hours_surveyed
@@ -54,7 +54,7 @@ survey_hours_per_site_name_and_date <- function(surveys) {
 }
 
 #' Sum the hours surveyed per person by season from the output of
-#' \code{parse_surveys}.
+#' \code{parse_surveys}
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
 #' @return A tibble with columns reporter, season, hours_surveyed,
@@ -78,20 +78,19 @@ survey_hours_per_person <- function(surveys) {
     dplyr::arrange(desc(hours_surveyed))
 }
 
-#' Create a datatable of survey counts from the output of \code{parse_surveys}.
+#' Create a table of survey counts from the output of \code{parse_surveys}
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
 #' @param placename (string) The place name, used in labels. Default: ""
-#' @importFrom DT datatable
 #' @export
 list_survey_count <- function(surveys, placename = "") {
   . <- NULL
   surveys %>%
     surveys_per_site_name_and_date() %>%
-    DT::datatable(., caption = glue::glue("Survey Count {placename}"))
+    reactable::reactable(filterable = TRUE, sortable = TRUE)
 }
 
-#' Plot the surveyed hours from the output of \code{parse_surveys}.
+#' Plot the surveyed hours from the output of \code{parse_surveys}
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
 #' @param placename (string) The place name, used in labels. Default: ""
@@ -123,8 +122,8 @@ plot_survey_count <- function(surveys, placename = "", prefix = "") {
     )
 }
 
-#' Create a datatable from the surveyed hours from the output of
-#' \code{parse_surveys}.
+#' Create a table from the surveyed hours from the output of
+#' \code{parse_surveys}
 #'
 #' @param surveys (tibble) The output of \code{parse_surveys}.
 #' @param placename (string) The place name, used in labels. Default: ""
@@ -133,10 +132,10 @@ list_survey_effort <- function(surveys, placename = "") {
   . <- NULL
   surveys %>%
     survey_hours_per_site_name_and_date() %>%
-    DT::datatable(., caption = glue::glue("Survey Effort [h] {placename}"))
+    reactable::reactable(filterable = TRUE, sortable = TRUE)
 }
 
-#' Plot the surveyed hours from the output of \code{parse_surveys}.
+#' Plot the surveyed hours from the output of \code{parse_surveys}
 #'
 #' @template param-surveys
 #' @template param-placename
@@ -161,7 +160,7 @@ plot_survey_effort <- function(surveys, placename = "", prefix = "") {
     )
 }
 
-#' Plot the surveyed hours from the output of \code{parse_surveys} as heatmap.
+#' Plot the surveyed hours from the output of \code{parse_surveys} as heatmap
 #'
 #' @template param-surveys
 #' @template param-placename
@@ -184,7 +183,7 @@ survey_hours_heatmap <- function(surveys, placename = "", prefix = "") {
     )
 }
 
-#' Plot the survey count from the output of \code{parse_surveys} as heatmap.
+#' Plot the survey count from the output of \code{parse_surveys} as heatmap
 #'
 #' @template param-surveys
 #' @template param-placename
@@ -210,7 +209,7 @@ survey_count_heatmap <- function(surveys, placename = "", prefix = "") {
     )
 }
 
-#' Generate a season summary from the output of \code{parse_surveys}.
+#' Generate a season summary from the output of \code{parse_surveys}
 #'
 #' @details Surveys, gruped by \code{season},
 #'   summarised as first and last day of surveys, season length in days,

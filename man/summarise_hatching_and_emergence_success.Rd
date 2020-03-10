@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{summarise_hatching_and_emergence_success}
 \alias{summarise_hatching_and_emergence_success}
-\title{Utility to summarise a tibble of tracks with nest excavtion data.}
+\title{Utility to summarise a tibble of tracks with nest excavation data.}
 \usage{
 summarise_hatching_and_emergence_success(value)
 }

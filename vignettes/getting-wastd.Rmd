@@ -4,7 +4,7 @@ author: "Florian Mayer"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Getting WAStD}
+  %\VignetteIndexEntry{getting-wastd}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -27,7 +27,6 @@ library(dplyr)
 library(magrittr)
 library(leaflet)
 library(listviewer)
-library(DT)
 library(ggplot2)
 ```
 

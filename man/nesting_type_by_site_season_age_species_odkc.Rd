@@ -2,7 +2,8 @@
 % Please edit documentation in R/summarise_tracks_odkc.R
 \name{nesting_type_by_site_season_age_species_odkc}
 \alias{nesting_type_by_site_season_age_species_odkc}
-\title{Pivot table of nesting type by site, season, track age, and species for ODKC data}
+\title{Pivot table of nesting type by site, season, track age, and species for
+ODKC data}
 \usage{
 nesting_type_by_site_season_age_species_odkc(value)
 }
@@ -11,7 +12,8 @@ nesting_type_by_site_season_age_species_odkc(value)
 retrieved and parsed with \code{ruODK::odata_submission_get()}.}
 }
 \description{
-Pivot table of nesting type by site, season, track age, and species for ODKC data
+Pivot table of nesting type by site, season, track age, and species for
+ODKC data
 }
 \seealso{
 Other odkc: 

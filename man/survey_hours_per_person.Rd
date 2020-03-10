@@ -3,7 +3,7 @@
 \name{survey_hours_per_person}
 \alias{survey_hours_per_person}
 \title{Sum the hours surveyed per person by season from the output of
-\code{parse_surveys}.}
+\code{parse_surveys}}
 \usage{
 survey_hours_per_person(surveys)
 }
@@ -16,5 +16,5 @@ sorted by most to fewest hours.
 }
 \description{
 Sum the hours surveyed per person by season from the output of
-\code{parse_surveys}.
+\code{parse_surveys}
 }

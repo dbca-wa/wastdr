@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_surveys.R
 \name{survey_count_heatmap}
 \alias{survey_count_heatmap}
-\title{Plot the survey count from the output of \code{parse_surveys} as heatmap.}
+\title{Plot the survey count from the output of \code{parse_surveys} as heatmap}
 \usage{
 survey_count_heatmap(surveys, placename = "", prefix = "")
 }
@@ -14,5 +14,5 @@ survey_count_heatmap(surveys, placename = "", prefix = "")
 \item{prefix}{(string) A prefix for the filename. Default: ""}
 }
 \description{
-Plot the survey count from the output of \code{parse_surveys} as heatmap.
+Plot the survey count from the output of \code{parse_surveys} as heatmap
 }

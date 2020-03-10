@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_surveys.R
 \name{survey_ground_covered}
 \alias{survey_ground_covered}
-\title{Return the number of surveys for a given site_id and season.}
+\title{Return the number of surveys for a given site_id and season}
 \usage{
 survey_ground_covered(surveys, site_id, km_per_survey, season)
 }
@@ -16,5 +16,5 @@ survey_ground_covered(surveys, site_id, km_per_survey, season)
 \item{season}{The desired season's start year, e.g. 2018}
 }
 \description{
-Return the number of surveys for a given site_id and season.
+Return the number of surveys for a given site_id and season
 }

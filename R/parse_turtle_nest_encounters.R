@@ -56,16 +56,24 @@
 parse_turtle_nest_encounters <- function(wastd_api_response) {
   wastd_api_response$data %>% {
     tibble::tibble(
-      area_name = purrr::map_chr(., c("properties", "area", "name"), .default = NA),
-      area_type = purrr::map_chr(., c("properties", "area", "area_type"), .default = NA),
-      area_id = purrr::map_chr(., c("properties", "area", "pk"), .default = NA) %>% as.integer(),
+      area_name = purrr::map_chr(
+        ., c("properties", "area", "name"), .default = NA),
+      area_type = purrr::map_chr(
+        ., c("properties", "area", "area_type"), .default = NA),
+      area_id = purrr::map_chr(
+        ., c("properties", "area", "pk"), .default = NA) %>% as.integer(),
 
-      site_name = purrr::map_chr(., c("properties", "site", "name"), .default = NA),
-      site_type = purrr::map_chr(., c("properties", "site", "area_type"), .default = NA),
-      site_id = purrr::map_chr(., c("properties", "site", "pk"), .default = NA) %>% as.integer(),
+      site_name = purrr::map_chr(
+        ., c("properties", "site", "name"), .default = NA),
+      site_type = purrr::map_chr(
+        ., c("properties", "site", "area_type"), .default = NA),
+      site_id = purrr::map_chr(
+        ., c("properties", "site", "pk"), .default = NA) %>% as.integer(),
 
-      survey_id = purrr::map_chr(., c("properties", "survey", "id"), .default = NA) %>% as.integer(),
-      survey_start_time = purrr::map_chr(.,
+      survey_id = purrr::map_chr(
+        ., c("properties", "survey", "id"), .default = NA) %>% as.integer(),
+      survey_start_time = purrr::map_chr(
+        .,
         c("properties", "survey", "start_time"),
         .default = NA
       ) %>% httpdate_as_gmt08(),
@@ -81,11 +89,13 @@ parse_turtle_nest_encounters <- function(wastd_api_response) {
         ),
         .default = NA
       ),
+
       survey_end_comments = purrr::map_chr(., c(
         "properties", "survey", "end_comments"
       ), .default = NA),
 
-      datetime = purrr::map_chr(., c("properties", "when")) %>% httpdate_as_gmt08(),
+      datetime = purrr::map_chr(
+        ., c("properties", "when")) %>% httpdate_as_gmt08(),
       calendar_date_awst = datetime %>%
         lubridate::with_tz("Australia/Perth") %>%
         lubridate::floor_date(unit = "day") %>%
@@ -98,7 +108,8 @@ parse_turtle_nest_encounters <- function(wastd_api_response) {
       longitude = purrr::map_dbl(., c("properties", "longitude")),
       latitude = purrr::map_dbl(., c("properties", "latitude")),
       crs = purrr::map_chr(., c("properties", "crs")),
-      location_accuracy = purrr::map_chr(., c("properties", "location_accuracy")) %>% as.integer(),
+      location_accuracy = purrr::map_chr(
+        ., c("properties", "location_accuracy")) %>% as.integer(),
 
       species = purrr::map_chr(., c("properties", "species")),
       nest_age = purrr::map_chr(., c("properties", "nest_age")),
@@ -108,14 +119,19 @@ parse_turtle_nest_encounters <- function(wastd_api_response) {
       disturbance = purrr::map_chr(., c("properties", "disturbance")),
       comments = map_chr_hack(., c("properties", "comments")),
 
-      absolute_admin_url = purrr::map_chr(., c("properties", "absolute_admin_url")),
+      absolute_admin_url = purrr::map_chr(
+        ., c("properties", "absolute_admin_url")),
       obs = purrr::map(., c("properties", "observation_set")),
       photos = purrr::map(., c("properties", "photographs")),
 
-      hatching_success = obs %>% purrr::map(get_num_field, "hatching_success") %>% as.numeric(),
-      emergence_success = obs %>% purrr::map(get_num_field, "emergence_success") %>% as.numeric(),
-      clutch_size = obs %>% purrr::map(get_num_field, "egg_count_calculated") %>% as.numeric(),
-      clutch_size_fresh = obs %>% purrr::map(get_num_field, "egg_count") %>% as.numeric(),
+      hatching_success = obs %>%
+        purrr::map(get_num_field, "hatching_success") %>% as.numeric(),
+      emergence_success = obs %>%
+        purrr::map(get_num_field, "emergence_success") %>% as.numeric(),
+      clutch_size = obs %>%
+        purrr::map(get_num_field, "egg_count_calculated") %>% as.numeric(),
+      clutch_size_fresh = obs %>%
+        purrr::map(get_num_field, "egg_count") %>% as.numeric(),
 
       source = purrr::map_chr(., c("properties", "source")),
       source_id = purrr::map_chr(., c("properties", "source_id")),

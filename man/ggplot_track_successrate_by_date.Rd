@@ -3,7 +3,7 @@
 \name{ggplot_track_successrate_by_date}
 \alias{ggplot_track_successrate_by_date}
 \title{Plot the track success rate (relative numbers) of a given species as time
-series.}
+series}
 \usage{
 ggplot_track_successrate_by_date(
   data,
@@ -23,5 +23,5 @@ ggplot_track_successrate_by_date(
 }
 \description{
 Plot the track success rate (relative numbers) of a given species as time
-series.
+series
 }

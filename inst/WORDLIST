@@ -6,6 +6,7 @@ animalencounter
 AnimalEncounters
 anonymized
 api
+AppVeyor
 au
 Austalia
 authorised
@@ -16,12 +17,12 @@ bool
 Bugfix
 calendardate
 Centrail
+changedate
 chr
 CKAN
 Crendentials
 crs
 curation
-datatable
 datestring
 datetime
 datetimes
@@ -43,7 +44,6 @@ exacavations
 excavtion
 featurecollection
 Featurecollection
-FeatureCollection
 FeatureCollections
 GeoJSON
 geoserver

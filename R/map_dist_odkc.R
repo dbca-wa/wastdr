@@ -18,7 +18,8 @@
 #' @examples
 #' \dontrun{
 #' data("odkc_data")
-#' map_dist_odkc(odkc_data$dist, tracks = odkc_data$tracks_dist, sites = odkc_data$sites)
+#' map_dist_odkc(
+#'   odkc_data$dist, tracks = odkc_data$tracks_dist, sites = odkc_data$sites)
 #' map_dist_odkc(NULL, tracks = odkc_data$tracks_dist, sites = odkc_data$sites)
 #' map_dist_odkc(odkc_data$dist, tracks = NULL, sites = odkc_data$sites)
 #' map_dist_odkc(odkc_data$dist, tracks = odkc_data$tracks_dist, sites = NULL)
@@ -66,7 +67,8 @@ map_dist_odkc <- function(dist,
           lng = ~disturbanceobservation_location_longitude,
           lat = ~disturbanceobservation_location_latitude,
           icon = leaflet::makeAwesomeIcon(
-            text = ~ stringr::str_sub(disturbanceobservation_disturbance_cause, 0, 1),
+            text = ~ stringr::str_sub(
+              disturbanceobservation_disturbance_cause, 0, 1),
             markerColor = "orange",
             iconColor = ~ pal(disturbanceobservation_disturbance_cause)
           ),
@@ -78,7 +80,8 @@ map_dist_odkc <- function(dist,
 <h3>Signs of {humanize(disturbanceobservation_disturbance_cause)}</h3>
   <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
   {lubridate::with_tz(observation_start_time, tz)} AWST</br>
-  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {reporter}<br/>
+  <span class="glyphicon glyphicon-user" aria-hidden="true">
+  </span> {reporter}<br/>
   <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
   Confidence: {humanize(disturbanceobservation_disturbance_cause_confidence)}.
   {disturbanceobservation_comments}<br/>
@@ -130,11 +133,12 @@ map_dist_odkc <- function(dist,
 <h3>Nest disturbed by {humanize(disturbance_cause)}</h3>
 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 {lubridate::with_tz(observation_start_time, tz)} AWST</br>
-<span class="glyphicon glyphicon-user" aria-hidden="true"></span> {reporter}<br/>
+<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+{reporter}<br/>
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 Confidence: {disturbance_cause_confidence}. {comments}<br/>
 <img height="150px;" alt="Photo"
-src="{ifelse(!is.na({photo_disturbance}), photo_disturbance, "")}"></img><br/>
+src="{ifelse(!is.na({photo_disturbance}), photo_disturbance, "")}"></img>
                                '),
           group = humanize(df),
           clusterOptions = co

@@ -2,7 +2,7 @@
 % Please edit documentation in R/wastd_GET.R
 \name{wastd_GET}
 \alias{wastd_GET}
-\title{Return GeoJSON features from a WAStD API endpoint as data.table or list}
+\title{Return GeoJSON features from a WAStD API endpoint}
 \usage{
 wastd_GET(
   serializer,
@@ -76,7 +76,7 @@ An S3 object of class 'wastd_api_response' containing:
 Call the WAStD API serializer's list view with given GET
   parameters, parse the response's features into a nested list.
   This function requires the WAStD API to return the results in a key
-  `features` as is the standard for a GeoJSON FeatureCollection.
+  `features` (if GeoJSON) or `data` (if JSON).
 }
 \examples{
 \dontrun{

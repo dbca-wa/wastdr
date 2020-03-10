@@ -106,7 +106,7 @@ filter_predation_odkc <-
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' wastd_data$nest_dist %>% disturbance_by_season
+#' wastd_data$nest_dist %>% disturbance_by_season()
 disturbance_by_season <- . %>%
   dplyr::group_by(season, disturbance_cause, encounter_encounter_type) %>%
   dplyr::tally() %>%
@@ -146,7 +146,8 @@ general_disturbance_by_season_odkc <- . %>%
   dplyr::group_by(season, disturbanceobservation_disturbance_cause) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
-  dplyr::rename(disturbance_cause = disturbanceobservation_disturbance_cause) %>%
+  dplyr::rename(
+    disturbance_cause = disturbanceobservation_disturbance_cause) %>%
   dplyr::mutate(encounter_type = "other") %>%
   dplyr::arrange(-season, -n)
 

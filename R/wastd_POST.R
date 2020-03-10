@@ -53,22 +53,22 @@ wastd_POST <- function(data,
     )
   }
 
-  if (httr::http_type(res) != "application/json") {
-    wastdr_msg_abort(
+  if (httr::http_type(res) != "application/json")
+    wastdr_msg_warn(
       glue::glue("API did not return JSON.\nIs {url} a valid endpoint?")
     )
-  }
+
   text <- httr::content(res, as = "text", encoding = "UTF-8")
 
-  if (identical(text, "")) {
-    stop("The response did not return any content.", call. = FALSE)
-  }
+  res_parsed <- jsonlite::fromJSON(
+    text,
+    flatten = FALSE,
+    simplifyVector = FALSE
+  )
 
-  res_parsed <- jsonlite::fromJSON(text, flatten = F, simplifyVector = F)
-
-  if (verbose == TRUE) {
+  if (verbose == TRUE)
     wastdr_msg_success(glue::glue("[wastd_POST] {res$status}"))
-  }
+
 
   structure(
     list(

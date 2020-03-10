@@ -103,13 +103,23 @@ map_tracks_odkc <- function(tracks,
 <br/>
 
 <h5>Photos of tracks</h5>
-<img height="150px;" alt="Track Photo 1" src="{ifelse(!is.na({track_photos_photo_track_1}), track_photos_photo_track_1, "")}"></img>
-<img height="150px;" alt="Track Photo 2" src="{ifelse(!is.na({track_photos_photo_track_2}), track_photos_photo_track_2, "")}"></img>
+<img height="150px;" alt="Track Photo 1"
+src="{ifelse(!is.na({track_photos_photo_track_1}),
+track_photos_photo_track_1, "")}"></img>
+<img height="150px;" alt="Track Photo 2"
+src="{ifelse(!is.na({track_photos_photo_track_2}),
+track_photos_photo_track_2, "")}"></img>
 
 <h5>Photos of nest</h5>
-<img height="150px;" alt="Track Nest 1" src="{ifelse(!is.na({nest_photos_photo_nest_1}), nest_photos_photo_nest_1, "")}"></img>
-<img height="150px;" alt="Track Nest 2" src="{ifelse(!is.na({nest_photos_photo_nest_2}), nest_photos_photo_nest_2, "")}"></img>
-<img height="150px;" alt="Track Nest 3" src="{ifelse(!is.na({nest_photos_photo_nest_3}), nest_photos_photo_nest_3, "")}"></img>
+<img height="150px;" alt="Track Nest 1"
+src="{ifelse(!is.na({nest_photos_photo_nest_1}),
+nest_photos_photo_nest_1, "")}"></img>
+<img height="150px;" alt="Track Nest 2"
+src="{ifelse(!is.na({nest_photos_photo_nest_2}),
+nest_photos_photo_nest_2, "")}"></img>
+<img height="150px;" alt="Track Nest 3"
+src="{ifelse(!is.na({nest_photos_photo_nest_3}),
+nest_photos_photo_nest_3, "")}"></img>
           '),
           group = humanize(df),
           clusterOptions = co

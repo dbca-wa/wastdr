@@ -22,6 +22,6 @@ Tally WAStD disturbances by season, cause, and encounter type
 }
 \examples{
 data("wastd_data")
-wastd_data$nest_dist \%>\% disturbance_by_season
+wastd_data$nest_dist \%>\% disturbance_by_season()
 }
 \concept{wastd}

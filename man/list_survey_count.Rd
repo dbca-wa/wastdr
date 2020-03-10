@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_surveys.R
 \name{list_survey_count}
 \alias{list_survey_count}
-\title{Create a datatable of survey counts from the output of \code{parse_surveys}.}
+\title{Create a table of survey counts from the output of \code{parse_surveys}}
 \usage{
 list_survey_count(surveys, placename = "")
 }
@@ -12,5 +12,5 @@ list_survey_count(surveys, placename = "")
 \item{placename}{(string) The place name, used in labels. Default: ""}
 }
 \description{
-Create a datatable of survey counts from the output of \code{parse_surveys}.
+Create a table of survey counts from the output of \code{parse_surveys}
 }

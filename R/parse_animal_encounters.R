@@ -126,8 +126,10 @@ parse_animal_encounters <- function(wastd_api_response) {
       season = datetime %>% datetime_as_season(),
       season_week = datetime %>% datetime_as_seasonweek(),
       iso_week = datetime %>% datetime_as_isoweek(),
-      longitude = purrr::map_dbl(., c("properties", "longitude"), .default = NA_real_),
-      latitude = purrr::map_dbl(., c("properties", "latitude"), .default = NA_real_),
+      longitude = purrr::map_dbl(
+        ., c("properties", "longitude"), .default = NA_real_),
+      latitude = purrr::map_dbl(
+        ., c("properties", "latitude"), .default = NA_real_),
       crs = purrr::map_chr(., c("properties", "crs"), .default = NA),
       location_accuracy = purrr::map_chr(.,
         c("properties", "location_accuracy"),

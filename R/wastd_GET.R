@@ -1,9 +1,9 @@
-#' Return GeoJSON features from a WAStD API endpoint as data.table or list
+#' Return GeoJSON features from a WAStD API endpoint
 #'
 #' @description Call the WAStD API serializer's list view with given GET
 #'   parameters, parse the response's features into a nested list.
 #'   This function requires the WAStD API to return the results in a key
-#'   `features` as is the standard for a GeoJSON FeatureCollection.
+#'   `features` (if GeoJSON) or `data` (if JSON).
 #'
 #' @template param-serializer
 #' @param query <list> A list of GET parameters, default: list().
@@ -95,7 +95,7 @@ wastd_GET <- function(serializer,
     } %>%
     {
       if (format == "json") {
-        jsonlite::fromJSON(., flatten = F, simplifyVector = F)
+        jsonlite::fromJSON(., flatten = FALSE, simplifyVector = FALSE)
       } else {
         .
       }
@@ -130,7 +130,7 @@ wastd_GET <- function(serializer,
         httr::content(., as = "text", encoding = "UTF-8") %>%
         {
           if (format == "json") {
-            jsonlite::fromJSON(., flatten = F, simplifyVector = F)
+            jsonlite::fromJSON(., flatten = FALSE, simplifyVector = FALSE)
           } else {
             .
           }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_surveys.R
 \name{plot_survey_effort}
 \alias{plot_survey_effort}
-\title{Plot the surveyed hours from the output of \code{parse_surveys}.}
+\title{Plot the surveyed hours from the output of \code{parse_surveys}}
 \usage{
 plot_survey_effort(surveys, placename = "", prefix = "")
 }
@@ -14,5 +14,5 @@ plot_survey_effort(surveys, placename = "", prefix = "")
 \item{prefix}{(string) A prefix for the filename. Default: ""}
 }
 \description{
-Plot the surveyed hours from the output of \code{parse_surveys}.
+Plot the surveyed hours from the output of \code{parse_surveys}
 }

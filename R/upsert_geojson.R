@@ -3,7 +3,8 @@
 #' @param gj_featurecollection (list) A GeoJSON featurecollection as list
 #' @template param-serializer
 #' @template param-auth
-#' @param chunksize (int) The number of features to upload simultaneously, default: 1000.
+#' @param chunksize (int) The number of features to upload simultaneously,
+#'   default: 1000.
 #' @template param-verbose
 #' @importFrom purrr map
 #' @export
@@ -18,7 +19,8 @@ upsert_geojson <- function(gj_featurecollection,
   . <- NULL
   if (verbose) message("[upsert_geojson] Updating ", api_url, serializer, "...")
   props <- purrr::map(gj_featurecollection[["features"]], "properties")
-  # purrr::map(props, wastd_POST, api_url = api_url) # One by one - very slow. Faster:
+  # purrr::map(props, wastd_POST, api_url = api_url)
+  # One by one - very slow. Faster:
   len <- length(props)
   for (i in 0:(len / chunksize)) {
     start <- (i * chunksize) + 1

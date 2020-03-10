@@ -1,4 +1,4 @@
-#' Convert a SimpleFeatures object to a non-spatial dataframe.
+#' Convert a SimpleFeatures object to a non-spatial dataframe
 #'
 #' @param sf_obj A SimpleFeatures object
 #'
@@ -9,7 +9,7 @@ sf_as_tbl <- function(sf_obj) {
   sf_obj
 }
 
-#' Pivot table of nesting type by season and species.
+#' Pivot table of nesting type by season and species
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -20,7 +20,7 @@ nesting_type_by_season_species <- . %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
 
-#' Pivot table of nesting type by season, track age and species.
+#' Pivot table of nesting type by season, track age and species
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -31,7 +31,7 @@ nesting_type_by_season_age_species <- . %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
 
-#' Pivot table of nesting type by area, season, and species.
+#' Pivot table of nesting type by area, season, and species
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -42,7 +42,7 @@ nesting_type_by_area_season_species <- . %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
 
-#' Pivot table of nesting type by area, season, track age, and species.
+#' Pivot table of nesting type by area, season, track age, and species
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -54,7 +54,7 @@ nesting_type_by_area_season_age_species <- . %>%
   tidyr::spread(nest_type, n, fill = 0)
 
 
-#' Pivot table of nesting type by site, season, and species.
+#' Pivot table of nesting type by site, season, and species
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -66,13 +66,19 @@ nesting_type_by_site_season_species <- . %>%
   tidyr::spread(nest_type, n, fill = 0)
 
 
-#' Pivot table of nesting type by site, season, track age, and species.
+#' Pivot table of nesting type by site, season, track age, and species
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
 nesting_type_by_site_season_age_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(area_name, site_name, season, species, nest_age, nest_type) %>%
+  dplyr::group_by(
+    area_name,
+    site_name,
+    season,
+    species,
+    nest_age,
+    nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
@@ -84,38 +90,55 @@ nesting_type_by_site_season_age_species <- . %>%
 #' @export
 nesting_type_by_season_week_species <- . %>%
   dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(season, season_week, iso_week, species, nest_type) %>%
+  dplyr::group_by(
+    season,
+    season_week,
+    iso_week,
+    species,
+    nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
 
 
-#' Pivot table of nesting type by season, season_week, iso_week, track age, and species.
+#' Pivot table of nesting type by season, season_week, iso_week, track age,
+#' and species
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
 nesting_type_by_season_week_age_species <- . %>%
   dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(season, season_week, iso_week, species, nest_age, nest_type) %>%
+  dplyr::group_by(
+    season,
+    season_week,
+    iso_week,
+    species,
+    nest_age,
+    nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
 
 
-#' Pivot table of nesting type by season, season_week, iso_week, and species.
+#' Pivot table of nesting type by season, season_week, iso_week, and species
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
 nesting_type_by_season_week_site_species <- . %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
-    season, season_week, iso_week, site_name, species, nest_type
+    season,
+    season_week,
+    iso_week,
+    site_name,
+    species,
+    nest_type
   ) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
 
-#' Pivot table of nesting type by season, turtle date. and species.
+#' Pivot table of nesting type by season, turtle date. and species
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -126,7 +149,7 @@ nesting_type_by_season_day_species <- . %>%
   dplyr::ungroup()
 
 
-#' Pivot table of nesting type by season, calendardate, and species.
+#' Pivot table of nesting type by season, calendardate, and species
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -138,7 +161,8 @@ nesting_type_by_season_calendarday_species <- . %>%
   tidyr::spread(nest_type, n, fill = 0)
 
 
-#' Pivot table of nesting type by season, calendardate, and track age, and species.
+#' Pivot table of nesting type by season, calendardate, and track age,
+#' and species
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -268,7 +292,7 @@ ggplot_track_success_by_date <- function(data,
 }
 
 #' Plot the track success rate (relative numbers) of a given species as time
-#' series.
+#' series
 #'
 #' @param data The output of \code{parse_turtle_nest_encounters()}
 #' @param speciesname The species name, e.g. "natator-depressus"
@@ -320,7 +344,7 @@ ggplot_track_successrate_by_date <- function(data,
 #------------------------------------------------------------------------------#
 # Hatching and emergence success - from nest excavations
 #
-#' Utility to summarise a tibble of tracks with nest excavtion data.
+#' Utility to summarise a tibble of tracks with nest excavation data.
 #'
 #' Calculates:
 #' \itemize{
@@ -355,7 +379,7 @@ summarise_hatching_and_emergence_success <- . %>%
   )
 
 
-#' Sumarizes HS and ES for tracks of type `hatched-nest`.
+#' Sumarizes HS and ES for tracks of type `hatched-nest`
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -365,7 +389,7 @@ hatching_emergence_success <- . %>%
   dplyr::group_by(season, species) %>%
   summarise_hatching_and_emergence_success(.)
 
-#' Sumarizes HS and ES for tracks of type `hatched-nest`,
+#' Sumarizes HS and ES for tracks of type `hatched-nest`
 #' grouped by `area_name`.
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
@@ -376,7 +400,7 @@ hatching_emergence_success_area <- . %>%
   dplyr::group_by(area_name, season, species) %>%
   summarise_hatching_and_emergence_success(.)
 
-#' Sumarizes HS and ES for tracks of type `hatched-nest`,
+#' Sumarizes HS and ES for tracks of type `hatched-nest`
 #' grouped by `site_name`.
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}

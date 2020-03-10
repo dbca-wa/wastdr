@@ -4,13 +4,13 @@ author: "Florian Mayer, North West Shelf Flatbacks WA"
 date: "`r Sys.time()`"
 output: rmarkdown::html_vignette
 vignette: >
-    %\VignetteIndexEntry{Data analysis}
+    %\VignetteIndexEntry{analysis}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
 ---
   
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval=F)
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval=T)
 library(wastdr)
 library(dplyr)
 library(tidyr)
@@ -19,8 +19,8 @@ library(skimr)
 library(leaflet)
 library(lubridate)
 library(listviewer)
-library(DT)
 library(ggplot2)
+library(reactable)
 wastdr::wastdr_setup()
 # wastdr::wastdr_settings()
 ```
@@ -153,7 +153,7 @@ wastd_data$surveys %>% survey_hours_heatmap(placename = "All the places", prefix
 wastd_data$surveys %>% survey_count_heatmap(placename = "All the places", prefix = "TEST")
 wastd_data$surveys %>% survey_season_stats() %>% knitr::kable()
 wastd_data$surveys %>% survey_season_site_stats() %>% knitr::kable()
-wastd_data$surveys %>% survey_show_detail() %>% DT::datatable(escape = F)
+wastd_data$surveys %>% survey_show_detail() %>% reactable::reactable(filterable = TRUE, sortable = TRUE)
 ```
 
 # QA

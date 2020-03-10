@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_surveys.R
 \name{survey_season_stats}
 \alias{survey_season_stats}
-\title{Generate a season summary from the output of \code{parse_surveys}.}
+\title{Generate a season summary from the output of \code{parse_surveys}}
 \usage{
 survey_season_stats(surveys)
 }
@@ -10,7 +10,7 @@ survey_season_stats(surveys)
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
 }
 \description{
-Generate a season summary from the output of \code{parse_surveys}.
+Generate a season summary from the output of \code{parse_surveys}
 }
 \details{
 Surveys, gruped by \code{season},

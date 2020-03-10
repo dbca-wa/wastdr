@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{hatching_emergence_success_area}
 \alias{hatching_emergence_success_area}
-\title{Sumarizes HS and ES for tracks of type `hatched-nest`,
+\title{Sumarizes HS and ES for tracks of type `hatched-nest`
 grouped by `area_name`.}
 \usage{
 hatching_emergence_success_area(value)
@@ -11,6 +11,6 @@ hatching_emergence_success_area(value)
 \item{value}{The output of \code{parse_turtle_nest_encounters()}}
 }
 \description{
-Sumarizes HS and ES for tracks of type `hatched-nest`,
+Sumarizes HS and ES for tracks of type `hatched-nest`
 grouped by `area_name`.
 }

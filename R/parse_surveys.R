@@ -61,13 +61,16 @@ parse_surveys <- function(
       tibble::tibble(
         site_name = map_chr_hack(., c("properties", "site", "name")),
         site_type = map_chr_hack(., c("properties", "site", "area_type")),
-        site_id = map_chr_hack(., c("properties", "site", "pk")) %>% as.integer(),
+        site_id = map_chr_hack(
+          ., c("properties", "site", "pk")) %>% as.integer(),
         reporter = map_chr_hack(., c("properties", "reporter", "name")),
-        reporter_username = map_chr_hack(., c("properties", "reporter", "username")),
+        reporter_username = map_chr_hack(
+          ., c("properties", "reporter", "username")),
         reporter_id = map_chr_hack(., c("properties", "reporter", "pk")),
         start_time = purrr::map_chr(., c("properties", "start_time")) %>%
           httpdate_as_gmt08(),
-        end_time = map_chr_hack(., c("properties", "end_time")) %>% httpdate_as_gmt08(),
+        end_time = map_chr_hack(
+          ., c("properties", "end_time")) %>% httpdate_as_gmt08(),
         calendar_date_awst = start_time %>%
           lubridate::with_tz("Australia/Perth") %>%
           lubridate::floor_date(unit = "day") %>%
@@ -85,8 +88,10 @@ parse_surveys <- function(
         end_device_id = map_chr_hack(., c("properties", "end_device_id")),
         status = map_chr_hack(., c("properties", "status")),
         id = purrr::map_int(., "id"),
-        is_production = map_chr_hack(., c("properties", "production")) %>% as.logical(),
-        absolute_admin_url = map_chr_hack(., c("properties", "absolute_admin_url")),
+        is_production = map_chr_hack(
+          ., c("properties", "production")) %>% as.logical(),
+        absolute_admin_url = map_chr_hack(
+          ., c("properties", "absolute_admin_url")),
         start_photo_url = map_chr_hack(., c("properties", "start_photo")),
         end_photo_url = map_chr_hack(., c("properties", "end_photo")),
         # transect, start_location, end_location, team
@@ -94,8 +99,8 @@ parse_surveys <- function(
     } %>%
     dplyr::mutate(
       change_url = glue::glue(
-        '<a href="{wastd_url}{absolute_admin_url}" target="_">Update Survey {id}</a>'
-      ),
+      '<a href="{wastd_url}{absolute_admin_url}"
+      target="_">Update Survey {id}</a>'),
       duration_minutes = (
         lubridate::interval(start_time, end_time) %>%
           lubridate::as.period() %>%

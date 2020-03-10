@@ -30,9 +30,6 @@
 #' @usage lhs \%>\% rhs
 NULL
 
-# Silence lifecycle warnings
-if (FALSE) lifecycle::deprecate_soft()
-
 # CMD check silencer
 utils::globalVariables(c(
   ".",
@@ -59,6 +56,7 @@ utils::globalVariables(c(
   "mwi_tag_prod",
   "n",
   "name",
+  "nest_type",
   "obs",
   "observation_start_time",
   "pk",

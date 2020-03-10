@@ -2,7 +2,8 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{nesting_type_by_season_week_age_species}
 \alias{nesting_type_by_season_week_age_species}
-\title{Pivot table of nesting type by season, season_week, iso_week, track age, and species.}
+\title{Pivot table of nesting type by season, season_week, iso_week, track age,
+and species}
 \usage{
 nesting_type_by_season_week_age_species(value)
 }
@@ -10,5 +11,6 @@ nesting_type_by_season_week_age_species(value)
 \item{value}{The output of \code{parse_turtle_nest_encounters()}}
 }
 \description{
-Pivot table of nesting type by season, season_week, iso_week, track age, and species.
+Pivot table of nesting type by season, season_week, iso_week, track age,
+and species
 }

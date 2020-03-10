@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_surveys.R
 \name{survey_count}
 \alias{survey_count}
-\title{Return the number of surveys for a given site_id and season.}
+\title{Return the number of surveys for a given site_id and season}
 \usage{
 survey_count(surveys, site_id, season)
 }
@@ -14,5 +14,5 @@ survey_count(surveys, site_id, season)
 \item{season}{The desired season's start year, e.g. 2018}
 }
 \description{
-Return the number of surveys for a given site_id and season.
+Return the number of surveys for a given site_id and season
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{sf_as_tbl}
 \alias{sf_as_tbl}
-\title{Convert a SimpleFeatures object to a non-spatial dataframe.}
+\title{Convert a SimpleFeatures object to a non-spatial dataframe}
 \usage{
 sf_as_tbl(sf_obj)
 }
@@ -13,5 +13,5 @@ sf_as_tbl(sf_obj)
 The SimpleFeatures object with geometry set to NULL.
 }
 \description{
-Convert a SimpleFeatures object to a non-spatial dataframe.
+Convert a SimpleFeatures object to a non-spatial dataframe
 }

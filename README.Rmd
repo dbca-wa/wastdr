@@ -119,7 +119,7 @@ If you don't have access to the WAStD API, you can still get a feel for the data
 by using the pickled example data:
 
 ```{r}
-require(wastdr)
+library(wastdr)
 
 data("wastd_data")
 data("odkc_data")
@@ -136,8 +136,8 @@ See the vignette for built-in helpers to transform, analyze and visualize
 WAStD data.
 
 ```{r, eval=FALSE}
-vignette("getting-wastd")
-vignette("analysis")
+vignette("getting-wastd", package = "wastdr")
+vignette("analysis", package = "wastdr")
 ```
 
 # Contribute
@@ -162,11 +162,10 @@ covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
 ```
 
 To enable local testing of the API as well as checking and upload of test 
-coverage, add these two lines with the respective tokens to your .Rprofile:
+coverage, add your CODECOV token to your .Renviron:
 
 ```{r, eval=FALSE}
-Sys.setenv(CODECOV_TOKEN = "my-codecov-token")
-Sys.setenv(MY_API_TOKEN = "my-api-token")
+CODECOV_TOKEN = "my-codecov-token"
 ```
 
 The `wastdr` [webpage](https://dbca-wa.github.io/wastdr/) is hosted on

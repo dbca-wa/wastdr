@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_surveys.R
 \name{survey_hours_heatmap}
 \alias{survey_hours_heatmap}
-\title{Plot the surveyed hours from the output of \code{parse_surveys} as heatmap.}
+\title{Plot the surveyed hours from the output of \code{parse_surveys} as heatmap}
 \usage{
 survey_hours_heatmap(surveys, placename = "", prefix = "")
 }
@@ -14,5 +14,5 @@ survey_hours_heatmap(surveys, placename = "", prefix = "")
 \item{prefix}{(string) A prefix for the filename. Default: ""}
 }
 \description{
-Plot the surveyed hours from the output of \code{parse_surveys} as heatmap.
+Plot the surveyed hours from the output of \code{parse_surveys} as heatmap
 }

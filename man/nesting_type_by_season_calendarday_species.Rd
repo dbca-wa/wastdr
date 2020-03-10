@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{nesting_type_by_season_calendarday_species}
 \alias{nesting_type_by_season_calendarday_species}
-\title{Pivot table of nesting type by season, calendardate, and species.}
+\title{Pivot table of nesting type by season, calendardate, and species}
 \usage{
 nesting_type_by_season_calendarday_species(value)
 }
@@ -10,5 +10,5 @@ nesting_type_by_season_calendarday_species(value)
 \item{value}{The output of \code{parse_turtle_nest_encounters()}}
 }
 \description{
-Pivot table of nesting type by season, calendardate, and species.
+Pivot table of nesting type by season, calendardate, and species
 }

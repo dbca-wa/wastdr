@@ -11,7 +11,7 @@
 chr2int <- function(data) {
   suppressWarnings(
     data %>%
-      data.table::tstrsplit(",", type.convert = T) %>%
+      data.table::tstrsplit(",", type.convert = TRUE) %>%
       t() %>%
       unlist() %>%
       purrr::discard(., is.na) %>%

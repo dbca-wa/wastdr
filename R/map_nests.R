@@ -33,24 +33,21 @@ map_nests <- function(data,
         "{datetime} {status} ",
         "{flipper_tag_id} {date_nest_laid} {tag_label}"
       ),
-      popup = ~ glue::glue(
-        "<h3>{flipper_tag_id} {date_nest_laid} {tag_label}</h3>",
-        '<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ',
-        "{datetime} AWST</br>",
-        '<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> ',
-        "{humanize(status)}<br/>",
-        '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>',
-        "{encounter_observer_name}<br/>",
-        '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> ',
-        "{encounter_comments}<br/>",
-
-        "Survey {encounter_survey_id} at {encounter_site_name}<br/>",
-        "{encounter_survey_start_time}-",
-        "{encounter_survey_end_time} AWST",
-        "</p>",
-        '<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow" ',
-        'href="{wastd_url}{encounter_absolute_admin_url}">Edit on WAStD</a></p>'
-      ),
+      popup = ~ glue::glue('
+        <h3>{flipper_tag_id} {date_nest_laid} {tag_label}</h3>
+        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+        {datetime} AWST</br>
+        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+        {humanize(status)}<br/>
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        {encounter_observer_name}<br/>
+        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+        {encounter_comments}<br/>
+        Survey {encounter_survey_id} at {encounter_site_name}<br/>
+        {encounter_survey_start_time}-{encounter_survey_end_time} AWST</p>
+        <p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
+        href="{wastd_url}{encounter_absolute_admin_url}">Edit on WAStD</a></p>
+      '),
       group = "Nests",
       clusterOptions = co
     ) %>%

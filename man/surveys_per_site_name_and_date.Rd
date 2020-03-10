@@ -3,7 +3,7 @@
 \name{surveys_per_site_name_and_date}
 \alias{surveys_per_site_name_and_date}
 \title{Count number of surveys per season, turtle date and site_name from the output
-of \code{parse_surveys}.}
+of \code{parse_surveys}}
 \usage{
 surveys_per_site_name_and_date(surveys)
 }
@@ -16,5 +16,5 @@ A tibble with columns season, turtle_date, site_name, n
 }
 \description{
 Count number of surveys per season, turtle date and site_name from the output
-of \code{parse_surveys}.
+of \code{parse_surveys}
 }
