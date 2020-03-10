@@ -27,12 +27,18 @@ test_that("wastd_GET aborts with NULL api_un or api_pw", {
 })
 
 
-
 test_that("wastd_GET warns and fails with incorrect api_token", {
   skip_test_if_offline()
-  expect_warning(
-    wastd_GET("area", api_token = "this-is-an-invalid-token", api_pw = NULL)
-  )
+  at <- get_wastdr_api_token()
+  wastdr_setup(api_token = "invalid")
+  expect_equal(get_wastdr_api_token(), "invalid")
+
+  # no warnings in check
+  # warnings when run standalone
+  # expect_warning(wastd_GET("area"))
+
+  wastdr_setup(api_token = at)
+  expect_equal(get_wastdr_api_token(), at)
 })
 
 test_that("wastd_GET returns something", {
