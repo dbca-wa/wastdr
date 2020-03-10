@@ -14,4 +14,11 @@ test_that("download_wastd_turtledata works", {
   expect_equal(length(xout), 6) # This will change if we add more data
 })
 
+test_that("download_wastd_turtledata emits verbose messages", {
+    skip_test_if_wastd_offline()
+    testthat::expect_message(
+        download_wastd_turtledata(max_records = 10, verbose = TRUE)
+    )
+})
+
 # usethis::use_r("download_wastd_turtledata")
