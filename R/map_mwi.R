@@ -110,3 +110,5 @@ src="{ifelse(!is.na({photo_habitat_4}), photo_habitat_4, "") }"></img><br/>
       options = leaflet::layersControlOptions(collapsed = FALSE)
     )
 }
+
+# usethis::use_test("map_mwi")
