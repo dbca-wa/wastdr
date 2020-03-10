@@ -50,6 +50,8 @@ wastd_GET <- function(serializer,
   query <- c(query, list(format = format, limit = limit))
   if (is.null(api_token)) {
     if (verbose == TRUE) wastdr_msg_info("No API token found, using BasicAuth.")
+    if (is.null(api_un)) wastdr_msg_abort("BasicAuth requires an API username.")
+    if (is.null(api_pw)) wastdr_msg_abort("BasicAuth requires an API password.")
     auth <- httr::authenticate(api_un, api_pw, type = "basic")
   } else {
     auth <- httr::add_headers(c(Authorization = api_token))
@@ -63,7 +65,7 @@ wastd_GET <- function(serializer,
     wastdr_msg_warn(
       glue::glue(
         "Authorization failed.\n",
-        "If you are DBCA staff, run wastdr_setup(api_token='Token XXX').\n",
+        "DBCA staff can run wastdr::wastdr_setup(api_token='Token XXX').\n",
         "You can find your API token under \"My Profile\" in WAStD.\n",
         "External collaborators run ",
         "wastdr::wastdr_setup(api_un='XXX', api_pw='XXX').\n",

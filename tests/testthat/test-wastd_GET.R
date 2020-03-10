@@ -1,5 +1,4 @@
 test_that("wastd_GET parses GeoJSON properties", {
-  require(magrittr)
   skip_test_if_offline()
 
   area <- wastdr::wastd_GET("area", max_records = 3) %>%
@@ -13,13 +12,27 @@ test_that("wastd_GET parses GeoJSON properties", {
   expect_false("properties" %in% names(com))
 })
 
-test_that("wastd_GET warns and fails with NULL api_token", {
-  testthat::expect_warning(res <- wastd_GET("area", api_token = NULL))
+test_that("wastd_GET falls back to BasicAuth with NULL api_token", {
+  skip_test_if_offline()
+  capture_warnings(
+    # TSC currentle does not support BasicAuth
+    testthat::expect_message(res <- wastd_GET("area", api_token = NULL))
+  )
+})
+
+test_that("wastd_GET aborts with NULL api_un or api_pw", {
+  skip_test_if_offline()
+  testthat::expect_error(res <- wastd_GET("area", api_token = NULL, api_un = NULL))
+  testthat::expect_error(res <- wastd_GET("area", api_token = NULL, api_pw = NULL))
 })
 
 
+
 test_that("wastd_GET warns and fails with incorrect api_token", {
-  expect_warning(wastd_GET("area", api_token = "this-is-an-invalid-token"))
+  skip_test_if_offline()
+  expect_warning(
+    wastd_GET("area", api_token = "this-is-an-invalid-token", api_pw = NULL)
+  )
 })
 
 test_that("wastd_GET returns something", {
