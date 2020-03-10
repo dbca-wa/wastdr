@@ -9,7 +9,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![GitHub
 issues](https://img.shields.io/github/issues/dbca-wa/wastdr.svg?style=popout)](https://github.com/dbca-wa/wastdr/issues/)
 [![Last-changedate](https://img.shields.io/github/last-commit/dbca-wa/wastdr.svg)](https://github.com/dbca-wa/wastdr/commits/master)
-![R-CMD-check](https://github.com/dbca-wa/wastdr/workflows/R-CMD-check/badge.svg?branch=master)
+[![R-CMD-check](https://github.com/dbca-wa/wastdr/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/dbca-wa/wastdr/actions)
 [![Build
 Status](https://travis-ci.org/dbca-wa/wastdr.svg?branch=master)](https://travis-ci.org/dbca-wa/wastdr)
 [![AppVeyor build
@@ -141,7 +141,7 @@ data("wastd_data")
 data("odkc_data")
 
 wastd_data$animals
-#> # A tibble: 10 x 42
+#> # A tibble: 10 x 43
 #>    area_name area_type area_id site_name site_type site_id survey_id
 #>    <chr>     <chr>       <int> <chr>     <chr>       <int>     <int>
 #>  1 Barrow I… Locality       41 <NA>      <NA>           NA        NA
@@ -154,11 +154,11 @@ wastd_data$animals
 #>  8 Barrow I… Locality       41 <NA>      <NA>           NA        NA
 #>  9 Barrow I… Locality       41 <NA>      <NA>           NA        NA
 #> 10 Mundabul… Site           42 <NA>      <NA>           NA        NA
-#> # … with 35 more variables: survey_start_time <dttm>, survey_end_time <dttm>,
+#> # … with 36 more variables: survey_start_time <dttm>, survey_end_time <dttm>,
 #> #   survey_start_comments <chr>, survey_end_comments <chr>, datetime <dttm>,
 #> #   calendar_date_awst <chr>, turtle_date <date>, season <dbl>,
 #> #   season_week <dbl>, iso_week <dbl>, longitude <dbl>, latitude <dbl>,
-#> #   crs <chr>, location_accuracy <dbl>, name <chr>, species <chr>,
+#> #   crs <chr>, location_accuracy <dbl>, taxon <chr>, name <chr>, species <chr>,
 #> #   health <chr>, sex <chr>, maturity <chr>, habitat <chr>, activity <chr>,
 #> #   nesting_event <chr>, checked_for_injuries <chr>,
 #> #   scanned_for_pit_tags <chr>, checked_for_flipper_tags <chr>,
