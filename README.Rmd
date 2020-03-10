@@ -74,21 +74,31 @@ For convenience, `wastdr_setup` sets the correct variables, while
 `wastdr_settings` retrieves the currently set values.
 
 DBCA staff can find their WAStD API Token at [WAStD](https://tsc.dbca.wa.gov.au/) 
-under "My Profile" and add to their `.Renviron`:
+under "My Profile" and add to their `.Renviron`.
+To use ODK Central turtle data download helpers, also add ODK Central 
+credentials.
 
 ```{r, eval=F}
 WASTDR_API_URL="https://tsc.dbca.wa.gov.au/api/1/"
 WASTDR_API_TOKEN="Token XXX"
 WASTDR_VERBOSE=TRUE
+
+ODKC_URL="https://odkcentral.dbca.wa.gov.au"
+ODKC_UN="..."
+ODKC_PW="..."
 ```
 
-External collaborators can use their allocated username and password:
+External collaborators can use their allocated WAStD username and password:
 
 ```{r, eval=F}
 WASTDR_API_URL="https://tsc.dbca.wa.gov.au/api/1/"
 WASTDR_API_UN="..."
 WASTDR_API_PW="..."
 WASTDR_VERBOSE=TRUE
+
+ODKC_URL="https://odkcentral.dbca.wa.gov.au"
+ODKC_UN="..."
+ODKC_PW="..."
 ```
 
 Review the settings with:
