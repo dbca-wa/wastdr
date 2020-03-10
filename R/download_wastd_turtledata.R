@@ -156,9 +156,11 @@ print.wastd_data <- function(x, ...) {
       "Areas: {nrow(x$areas)}\n",
       "Sites: {nrow(x$sites)}\n",
       "Surveys: {nrow(x$surveys)}\n",
-      "Animal Encounters (tags, strandings): {nrow}\n",
+      "Animal Encounters (tags, strandings): {nrow(x$animals)}\n",
       "Turtle Nest Encounters (tracks): {nrow(x$tracks)}\n",
     )
   )
   invisible(x)
 }
+
+# usethis::use_test("download_wastd_turtledata")
