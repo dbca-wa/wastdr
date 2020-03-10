@@ -13,7 +13,7 @@ issues](https://img.shields.io/github/issues/dbca-wa/wastdr.svg?style=popout)](h
 [![Build
 Status](https://travis-ci.org/dbca-wa/wastdr.svg?branch=master)](https://travis-ci.org/dbca-wa/wastdr)
 [![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/dbca-wa/wastdr?branch=master&svg=true)](https://ci.appveyor.com/project/dbca-wa/wastdr)
+status](https://ci.appveyor.com/api/projects/status/github/dbca-wa/wastdr?branch=master&svg=true)](https://ci.appveyor.com/project/florianm/wastdr)
 [![Test
 coverage](https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/dbca-wa/wastdr)
 <!-- badges: end -->
