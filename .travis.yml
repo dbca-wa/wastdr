@@ -25,8 +25,9 @@ jobs:
       provider: script
       script: Rscript -e 'install.packages("devtools"); devtools::install(); pkgdown::deploy_site_github()'
       skip_cleanup: true
-    after_success:
-      - Rscript -e 'covr::codecov()'
+    # after_success:
+    #  - Rscript -e 'covr::codecov()'
+    # now done by GH actions
   - r: devel
     before_cache: Rscript -e 'remotes::install_cran("V8")'
     before_install:
