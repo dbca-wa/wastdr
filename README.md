@@ -9,6 +9,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![GitHub
 issues](https://img.shields.io/github/issues/dbca-wa/wastdr.svg?style=popout)](https://github.com/dbca-wa/wastdr/issues/)
 [![Last-changedate](https://img.shields.io/github/last-commit/dbca-wa/wastdr.svg)](https://github.com/dbca-wa/wastdr/commits/master)
+![R-CMD-check](https://github.com/dbca-wa/wastdr/workflows/R-CMD-check/badge.svg?branch=master)
 [![Build
 Status](https://travis-ci.org/dbca-wa/wastdr.svg?branch=master)](https://travis-ci.org/dbca-wa/wastdr)
 [![AppVeyor build
@@ -134,8 +135,7 @@ If you don’t have access to the WAStD API, you can still get a feel for
 the data by using the pickled example data:
 
 ``` r
-require(wastdr)
-#> Loading required package: wastdr
+library(wastdr)
 
 data("wastd_data")
 data("odkc_data")
@@ -208,8 +208,8 @@ See the vignette for built-in helpers to transform, analyze and
 visualize WAStD data.
 
 ``` r
-vignette("getting-wastd")
-vignette("analysis")
+vignette("getting-wastd", package = "wastdr")
+vignette("analysis", package = "wastdr")
 ```
 
 # Contribute
@@ -236,12 +236,10 @@ covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
 ```
 
 To enable local testing of the API as well as checking and upload of
-test coverage, add these two lines with the respective tokens to your
-.Rprofile:
+test coverage, add your CODECOV token to your .Renviron:
 
 ``` r
-Sys.setenv(CODECOV_TOKEN = "my-codecov-token")
-Sys.setenv(MY_API_TOKEN = "my-api-token")
+CODECOV_TOKEN = "my-codecov-token"
 ```
 
 The `wastdr` [webpage](https://dbca-wa.github.io/wastdr/) is hosted on
