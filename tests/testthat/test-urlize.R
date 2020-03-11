@@ -9,3 +9,5 @@ test_that("urlize returns url-safe string", {
   testthat::expect_equal(urlize("file name 1"), "file-name-1")
   testthat::expect_equal(urlize("Natator depressus"), "natator-depressus")
 })
+
+# usethis::use_r("urlize")

@@ -29,6 +29,7 @@
 #'   \item nest_lightsources - Light sources present during hatchling emergence.
 #' }
 #' @export
+#' @family included
 download_wastd_turtledata <- function(
                                       max_records = NULL,
                                       verbose = get_wastdr_verbose()) {
@@ -150,6 +151,7 @@ download_wastd_turtledata <- function(
 #'   \code{\link{download_wastd_turtledata}}.
 #' @param ... Extra parameters for `print`
 #' @export
+#' @family included
 print.wastd_data <- function(x, ...) {
   print(
     glue::glue(

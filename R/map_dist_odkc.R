@@ -1,5 +1,7 @@
 #' Map Disturbance observations interactively from ODK Central data.
 #'
+#' \lifecycle{maturing}
+#'
 #' @details Creates a Leaflet map with an interactive legend offering to toggle
 #' each disturbance class separately. The maps auto-zooms to the extent of data
 #' given.
@@ -15,6 +17,7 @@
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
+#' @family odkc
 #' @examples
 #' \dontrun{
 #' data("odkc_data")

@@ -20,3 +20,5 @@ test_that("datetime_as_isoweek returns correct week at edge cases", {
     datetime_as_isoweek(httpdate_as_gmt08("2018-11-01T22:00:00Z")), 44
   )
 })
+
+# usethis::use_r("datetime_as_isoweek")

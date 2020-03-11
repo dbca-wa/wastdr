@@ -29,7 +29,6 @@ datestring
 datetime
 datetimes
 dbca
-DBCA
 DBCA's
 de
 deduplicates
@@ -47,6 +46,7 @@ exacavations
 featurecollection
 Featurecollection
 FeatureCollections
+funder
 GeoJSON
 geoserver
 GeoServer
@@ -96,6 +96,7 @@ ODKC
 odkcentral
 OGC
 onwards
+ORCID
 ouput
 ows
 param
@@ -153,13 +154,14 @@ uuid
 visualisation
 visualisations
 wa
+wacensus
 WACensus
 WARNINGs
 wastd
 WAStD
 WASTD
 WAStD's
-wastr
+wastde
 WFS
 WIP
 ymd

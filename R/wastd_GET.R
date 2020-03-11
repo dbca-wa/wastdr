@@ -21,6 +21,7 @@
 #' @template param-verbose
 #' @template return-wastd-api-response
 #' @export
+#' @family api
 #' @examples
 #' \dontrun{
 #' track_records <- wastd_GET("turtle-nest-encounters")

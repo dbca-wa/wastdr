@@ -3,6 +3,7 @@
 #' @param value A date
 #' @importFrom lubridate %--%
 #' @export
+#' @family helpers
 tdate_as_fdate <- . %>%
   {
     lubridate::as.duration(
@@ -12,3 +13,5 @@ tdate_as_fdate <- . %>%
     )
   } %>%
   as.numeric("days")
+
+# usethis::use_test("tdate_as_fdate")

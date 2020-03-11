@@ -10,7 +10,7 @@ general_disturbance_by_season_odkc(value)
 \item{value}{ODKC dist}
 }
 \description{
-Tally ODKC General disturbances by season, cause, and encounter type
+\lifecycle{stable}
 }
 \examples{
 data("odkc_data")
@@ -24,6 +24,9 @@ Other odkc:
 \code{\link{filter_dead_odkc}()},
 \code{\link{filter_disturbance_odkc}()},
 \code{\link{filter_predation_odkc}()},
+\code{\link{map_dist_odkc}()},
+\code{\link{map_mwi_odkc}()},
+\code{\link{map_sv_odkc}()},
 \code{\link{nest_disturbance_by_season_odkc}()},
 \code{\link{nesting_type_by_area_season_age_species_odkc}()},
 \code{\link{nesting_type_by_area_season_species_odkc}()},

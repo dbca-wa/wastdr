@@ -13,4 +13,19 @@ The output of \code{\link{download_wastd_turtledata}}, but
 observer and reporter names are hidden, tibbles are filtered down to the
 first 10 records, however all areas and sites are included.
 }
+\seealso{
+Other included: 
+\code{\link{download_odkc_turtledata_2019}()},
+\code{\link{download_wastd_turtledata}()},
+\code{\link{odkc_data}},
+\code{\link{print.odkc_turtledata}()},
+\code{\link{print.wastd_data}()},
+\code{\link{wastd_ae_raw}},
+\code{\link{wastd_ae}},
+\code{\link{wastd_area_raw}},
+\code{\link{wastd_surveys_raw}},
+\code{\link{wastd_tne_raw}},
+\code{\link{wastd_tne}}
+}
+\concept{included}
 \keyword{datasets}

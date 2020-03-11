@@ -4,6 +4,7 @@
 #' @param site_id The ID of a site, e.g. 22
 #' @template param-season
 #' @export
+#' @family wastd
 survey_count <- function(surveys, site_id, season) {
   surveys %>%
     dplyr::filter(site_id == site_id, season == season) %>%
@@ -17,6 +18,7 @@ survey_count <- function(surveys, site_id, season) {
 #' @param km_per_survey The numbers of kilometers covered in a survey, e.g. 1.6
 #' @template param-season
 #' @export
+#' @family wastd
 survey_ground_covered <- function(surveys, site_id, km_per_survey, season) {
   survey_count(surveys, site_id, season) * km_per_survey
 }
@@ -30,6 +32,7 @@ survey_ground_covered <- function(surveys, site_id, km_per_survey, season) {
 #' (number of surveys)
 #' @importFrom dplyr group_by tally ungroup
 #' @export
+#' @family wastd
 surveys_per_site_name_and_date <- function(surveys) {
   surveys %>%
     dplyr::group_by(season, turtle_date, site_name) %>%
@@ -44,6 +47,7 @@ surveys_per_site_name_and_date <- function(surveys) {
 #' @return A tibble with columns season, turtle_date, site_name, hours_surveyed
 #' @importFrom dplyr group_by tally ungroup mutate select
 #' @export
+#' @family wastd
 survey_hours_per_site_name_and_date <- function(surveys) {
   surveys %>%
     dplyr::group_by(season, turtle_date, site_name) %>%
@@ -61,6 +65,7 @@ survey_hours_per_site_name_and_date <- function(surveys) {
 #' sorted by most to fewest hours.
 #' @importFrom dplyr group_by tally ungroup mutate select
 #' @export
+#' @family wastd
 survey_hours_per_person <- function(surveys) {
   reporter <- NULL
   season <- NULL
@@ -83,6 +88,7 @@ survey_hours_per_person <- function(surveys) {
 #' @param surveys (tibble) The output of \code{parse_surveys}.
 #' @param placename (string) The place name, used in labels. Default: ""
 #' @export
+#' @family wastd
 list_survey_count <- function(surveys, placename = "") {
   . <- NULL
   surveys %>%
@@ -96,6 +102,7 @@ list_survey_count <- function(surveys, placename = "") {
 #' @param placename (string) The place name, used in labels. Default: ""
 #' @param prefix (string) A prefix for the filename. Default: ""
 #' @export
+#' @family wastd
 plot_survey_count <- function(surveys, placename = "", prefix = "") {
   . <- NULL
   aes <- NULL
@@ -128,6 +135,7 @@ plot_survey_count <- function(surveys, placename = "", prefix = "") {
 #' @param surveys (tibble) The output of \code{parse_surveys}.
 #' @param placename (string) The place name, used in labels. Default: ""
 #' @export
+#' @family wastd
 list_survey_effort <- function(surveys, placename = "") {
   . <- NULL
   surveys %>%
@@ -141,6 +149,7 @@ list_survey_effort <- function(surveys, placename = "") {
 #' @template param-placename
 #' @template param-prefix
 #' @export
+#' @family wastd
 plot_survey_effort <- function(surveys, placename = "", prefix = "") {
   surveys %>%
     survey_hours_per_site_name_and_date() %>%
@@ -166,6 +175,7 @@ plot_survey_effort <- function(surveys, placename = "", prefix = "") {
 #' @template param-placename
 #' @template param-prefix
 #' @export
+#' @family wastd
 survey_hours_heatmap <- function(surveys, placename = "", prefix = "") {
   surveys %>%
     wastdr::survey_hours_per_site_name_and_date(.) %>%
@@ -189,6 +199,7 @@ survey_hours_heatmap <- function(surveys, placename = "", prefix = "") {
 #' @template param-placename
 #' @template param-prefix
 #' @export
+#' @family wastd
 survey_count_heatmap <- function(surveys, placename = "", prefix = "") {
   . <- NULL
   Year <- NULL
@@ -217,6 +228,7 @@ survey_count_heatmap <- function(surveys, placename = "", prefix = "") {
 #'
 #' @template param-surveys
 #' @export
+#' @family wastd
 survey_season_stats <- function(surveys) {
   season <- NULL
   turtle_date <- NULL
@@ -249,6 +261,7 @@ survey_season_stats <- function(surveys) {
 #' @template param-surveys
 #'
 #' @export
+#' @family wastd
 survey_season_site_stats <- function(surveys) {
   season <- NULL
   site_name <- NULL
@@ -275,6 +288,7 @@ survey_season_site_stats <- function(surveys) {
 #' Select main survey attributes.
 #'
 #' @param value The output of \code{parse_surveys()}
+#' @family wastd
 #' @export
 survey_show_detail <- . %>%
   dplyr::select(

@@ -17,3 +17,5 @@ test_that("datetime_as_season returns correct year at edge cases", {
     2017
   )
 })
+
+# usethis::use_r("datetime_as_season")

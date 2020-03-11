@@ -1,6 +1,7 @@
 #' Parse a \code{wastd_api_response} of \code{taxon-conservationlisting} to
 #' tbl_df.
 #'
+#' \lifecycle{stable}
 #'
 #' @param wastd_api_response A \code{wastd_api_response} of
 #'   \code{taxon-conservationlisting},
@@ -38,10 +39,10 @@
 #'   \item criteria <lst> A list if TSC conservation criterion IDs.
 #' }
 #' @export
-#' @import magrittr
+#' @family tsc
 parse_taxon_conservationlisting <- function(
-                                            wastd_api_response,
-                                            wastd_url = wastdr::get_wastd_url()) {
+  wastd_api_response,
+  wastd_url = wastdr::get_wastd_url()) {
   wastd_api_response$data %>% {
     tibble::tibble(
       id = purrr::map_int(., "id"),
@@ -51,15 +52,15 @@ parse_taxon_conservationlisting <- function(
       scope = purrr::map_int(., "scope"),
       status = purrr::map_int(., "status"),
       proposed_on = purrr::map_chr(., "proposed_on",
-        .default = NA
+                                   .default = NA
       ) %>%
         wastdr::httpdate_as_gmt08(),
       effective_from = purrr::map_chr(., "effective_from",
-        .default = NA
+                                      .default = NA
       ) %>%
         wastdr::httpdate_as_gmt08(),
       effective_to = purrr::map_chr(., "effective_to",
-        .default = NA
+                                    .default = NA
       ) %>%
         wastdr::httpdate_as_gmt08(),
       last_reviewed_on = purrr::map_chr(., "last_reviewed_on",
@@ -77,3 +78,5 @@ parse_taxon_conservationlisting <- function(
     )
   }
 }
+
+# usethis::use_test("parse_taxon_conservationlisting")

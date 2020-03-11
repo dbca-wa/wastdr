@@ -7,10 +7,10 @@
 exclude_training_species_odkc(value)
 }
 \arguments{
-\item{value}{The output of \code{parse_disturbance_observations()}.}
+\item{value}{A tibble with a column "details_species".}
 }
 \description{
-Exclude ODKC records with \code{species} "corolla-corolla".
+\lifecycle{stable}
 }
 \seealso{
 Other odkc: 
@@ -20,6 +20,9 @@ Other odkc:
 \code{\link{filter_disturbance_odkc}()},
 \code{\link{filter_predation_odkc}()},
 \code{\link{general_disturbance_by_season_odkc}()},
+\code{\link{map_dist_odkc}()},
+\code{\link{map_mwi_odkc}()},
+\code{\link{map_sv_odkc}()},
 \code{\link{nest_disturbance_by_season_odkc}()},
 \code{\link{nesting_type_by_area_season_age_species_odkc}()},
 \code{\link{nesting_type_by_area_season_species_odkc}()},

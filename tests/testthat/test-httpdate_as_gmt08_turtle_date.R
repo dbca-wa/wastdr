@@ -18,3 +18,5 @@ test_that("httpdate_as_gmt08_turtle_date returns correct date", {
   testthat::expect_equal(noon_awst, nov20)
   testthat::expect_equal(soon_noon_awst, nov20)
 })
+
+# usethis::use_r("httpdate_as_gmt08_turtle_date")

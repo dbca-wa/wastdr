@@ -1,5 +1,5 @@
 test_that("download_wastd_turtledata works", {
-    skip_test_if_wastd_offline()
+  skip_test_if_wastd_offline()
 
   # Bad things will happen if all records have all NULL area or site
   # This can break tests with `max_records = 1`
@@ -15,10 +15,10 @@ test_that("download_wastd_turtledata works", {
 })
 
 test_that("download_wastd_turtledata emits verbose messages", {
-    skip_test_if_wastd_offline()
-    testthat::expect_message(
-        download_wastd_turtledata(max_records = 10, verbose = TRUE)
-    )
+  skip_test_if_wastd_offline()
+  testthat::expect_message(
+    download_wastd_turtledata(max_records = 10, verbose = TRUE)
+  )
 })
 
 # usethis::use_r("download_wastd_turtledata")

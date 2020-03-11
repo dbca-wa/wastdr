@@ -67,3 +67,18 @@ An S3 class "odkc_turtledata" with items:
 \description{
 \lifecycle{maturing}
 }
+\seealso{
+Other included: 
+\code{\link{download_wastd_turtledata}()},
+\code{\link{odkc_data}},
+\code{\link{print.odkc_turtledata}()},
+\code{\link{print.wastd_data}()},
+\code{\link{wastd_ae_raw}},
+\code{\link{wastd_ae}},
+\code{\link{wastd_area_raw}},
+\code{\link{wastd_data}},
+\code{\link{wastd_surveys_raw}},
+\code{\link{wastd_tne_raw}},
+\code{\link{wastd_tne}}
+}
+\concept{included}

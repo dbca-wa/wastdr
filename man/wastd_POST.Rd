@@ -72,3 +72,9 @@ wastd_POST(props[[1]], serializer = "names")
   wastd_upsert_geojson(serializer = "names", verbose = T)
 }
 }
+\seealso{
+Other api: 
+\code{\link{wastd_GET}()},
+\code{\link{wastd_parse}()}
+}
+\concept{api}

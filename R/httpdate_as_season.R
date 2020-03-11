@@ -22,3 +22,5 @@ httpdate_as_season <- function(datestring) {
     -lubridate::days(180) %>%
     lubridate::isoyear()
 }
+
+# usethis::use_test("httpdate_as_season")

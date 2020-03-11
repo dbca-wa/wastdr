@@ -1,5 +1,7 @@
 #' Map nest and general disturbance observations interactively.
 #'
+#' \lifecycle{maturing}
+#'
 #' @details Creates a Leaflet map with an interactive legend offering to toggle
 #' each disturbance class separately.
 #' The maps auto-zooms to the extent of data given.
@@ -12,6 +14,7 @@
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
+#' @family wastd
 #' @examples
 #' \dontrun{
 #' data("wastd_data")

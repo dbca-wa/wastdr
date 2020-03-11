@@ -42,6 +42,8 @@ nest_type_text <- tibble::tibble(
 #' Add labels for species and nest/track type to parsed
 #' \code{turtle-nest-encounters}.
 #'
+#' \lifecycle{stable}
+#'
 #' @description Adds two columns, two new columns, \code{species_colours} and
 #' \code{nest_type_text}, to parsed \code{turtle-nest-encounters} containing
 #' \code{WAStD} \code{species} and \code{nest_type}. The new columns can be used
@@ -52,6 +54,7 @@ nest_type_text <- tibble::tibble(
 #'   \code{turtle-nest-encounters}.
 #' @return The dataframe with two new columns, \code{species_colours} and
 #'   \code{nest_type_text}.
+#' @family wastd
 #' @export
 add_nest_labels <- function(nests) {
   nests %>%
@@ -61,6 +64,8 @@ add_nest_labels <- function(nests) {
 
 #' Add labels for species and nest/track type to parsed
 #' \code{turtle-nest-encounters} from ODK Central.
+#'
+#' \lifecycle{stable}
 #'
 #' @description Adds two columns, two new columns, \code{species_colours} and
 #' \code{nest_type_text}, to parsed \code{turtle-nest-encounters} containing

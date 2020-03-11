@@ -1,8 +1,9 @@
-#' Parse a \code{wastd_api_response} of \code{animal-encounters} to tbl_df
+#' Parse a \code{wastd_api_response} of \code{surveys} to tbl_df
 #'
+#' \lifecycle{maturing}
 #'
 #' @param wastd_api_response A \code{wastd_api_response} of
-#'  \code{animal-encounters}, e.g. \code{get_wastd("animal-encounters")}
+#'  \code{surveys}, e.g. \code{get_wastd("surveys")}
 #' @template param-wastd_url
 #' @return A \code{tbl_df} with columns:
 #' \itemize{
@@ -53,6 +54,7 @@
 #' @importFrom tibble tibble
 #' @importFrom purrr map map_chr map_dbl
 #' @importFrom lubridate interval as.period
+#' @family wastd
 parse_surveys <- function(
                           wastd_api_response,
                           wastd_url = wastdr::get_wastd_url()) {

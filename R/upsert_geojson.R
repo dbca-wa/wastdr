@@ -6,8 +6,8 @@
 #' @param chunksize (int) The number of features to upload simultaneously,
 #'   default: 1000.
 #' @template param-verbose
-#' @importFrom purrr map
 #' @export
+#' @family wacensus
 upsert_geojson <- function(gj_featurecollection,
                            serializer = "names",
                            api_url = wastdr::get_wastdr_api_url(),

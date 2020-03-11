@@ -1,5 +1,7 @@
 #' Map tagged Turtle Nests interactively.
 #'
+#' \lifecycle{maturing}
+#'
 #' @details Creates a Leaflet map with an interactive legend.
 #' The maps auto-zooms to the extent of data given.
 #'
@@ -8,6 +10,7 @@
 #' @template param-fmt
 #' @template param-cluster
 #' @return A leaflet map
+#' @family wastd
 #' @export
 map_nests <- function(data,
                       wastd_url = wastdr::get_wastd_url(),

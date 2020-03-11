@@ -4,6 +4,7 @@
 #'
 #' @return The SimpleFeatures object with geometry set to NULL.
 #' @export
+#' @family helpers
 sf_as_tbl <- function(sf_obj) {
   sf::st_geometry(sf_obj) <- NULL
   sf_obj
@@ -13,6 +14,7 @@ sf_as_tbl <- function(sf_obj) {
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_season_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, species, nest_type) %>%
@@ -24,6 +26,7 @@ nesting_type_by_season_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_season_age_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, species, nest_age, nest_type) %>%
@@ -35,6 +38,7 @@ nesting_type_by_season_age_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_area_season_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(area_name, season, species, nest_type) %>%
@@ -46,6 +50,7 @@ nesting_type_by_area_season_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_area_season_age_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(area_name, season, species, nest_age, nest_type) %>%
@@ -58,6 +63,7 @@ nesting_type_by_area_season_age_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_site_season_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(area_name, site_name, season, species, nest_type) %>%
@@ -70,6 +76,7 @@ nesting_type_by_site_season_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_site_season_age_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
@@ -89,6 +96,7 @@ nesting_type_by_site_season_age_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_season_week_species <- . %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
@@ -108,6 +116,7 @@ nesting_type_by_season_week_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_season_week_age_species <- . %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
@@ -127,6 +136,7 @@ nesting_type_by_season_week_age_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_season_week_site_species <- . %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
@@ -145,6 +155,7 @@ nesting_type_by_season_week_site_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_season_day_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, turtle_date, species, nest_type) %>%
@@ -156,6 +167,7 @@ nesting_type_by_season_day_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_season_calendarday_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, calendar_date_awst, species, nest_type) %>%
@@ -169,6 +181,7 @@ nesting_type_by_season_calendarday_species <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 nesting_type_by_season_calendarday_age_species <- . %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, calendar_date_awst, species, nest_age, nest_type) %>%
@@ -184,6 +197,7 @@ nesting_type_by_season_calendarday_age_species <- . %>%
 #' Calculate nesting success as number of tracks with nests vs other tracks
 #' @template param-tracks
 #' @export
+#' @family wastd
 track_success <- function(tracks) {
   nest_type <- NULL
   season <- NULL
@@ -227,6 +241,7 @@ track_success <- function(tracks) {
 #'
 #' @param track_success The output of \code{\link{track_success}}
 #' @export
+#' @family wastd
 track_success_by_species <- function(track_success) {
   season <- NULL
   species <- NULL
@@ -247,6 +262,7 @@ track_success_by_species <- function(track_success) {
 #' @template param-placename
 #' @template param-prefix
 #' @export
+#' @family wastd
 ggplot_track_success_by_date <- function(data,
                                          speciesname,
                                          placename = "",
@@ -302,6 +318,7 @@ ggplot_track_success_by_date <- function(data,
 #' @template param-placename
 #' @template param-prefix
 #' @export
+#' @family wastd
 ggplot_track_successrate_by_date <- function(data,
                                              speciesname,
                                              placename = "",
@@ -363,6 +380,7 @@ ggplot_track_successrate_by_date <- function(data,
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 summarise_hatching_and_emergence_success <- . %>%
   dplyr::summarize(
     "count" = n(),
@@ -386,6 +404,7 @@ summarise_hatching_and_emergence_success <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 hatching_emergence_success <- . %>%
   dplyr::filter(nest_type == "hatched-nest") %>%
   dplyr::filter(hatching_success >= 0) %>%
@@ -397,6 +416,7 @@ hatching_emergence_success <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 hatching_emergence_success_area <- . %>%
   dplyr::filter(nest_type == "hatched-nest") %>%
   dplyr::filter(hatching_success >= 0) %>%
@@ -408,6 +428,7 @@ hatching_emergence_success_area <- . %>%
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
+#' @family wastd
 hatching_emergence_success_site <- . %>%
   dplyr::filter(nest_type == "hatched-nest") %>%
   dplyr::filter(hatching_success >= 0) %>%

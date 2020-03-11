@@ -51,6 +51,10 @@ A \code{tbl_df} with columns:
 }
 }
 \description{
-Parse a \code{wastd_api_response} of \code{community-conservationlisting} to
-tbl_df.
+\lifecycle{stable}
 }
+\seealso{
+Other tsc: 
+\code{\link{parse_taxon_conservationlisting}()}
+}
+\concept{tsc}

@@ -1,6 +1,7 @@
 #' Parse a \code{wastd_api_response} of \code{community-conservationlisting} to
 #' tbl_df.
 #'
+#' \lifecycle{stable}
 #'
 #' @param wastd_api_response A \code{wastd_api_response} of
 #'   \code{taxon-conservationlisting},
@@ -38,7 +39,7 @@
 #'   \item criteria <lst> A list if TSC conservation criterion IDs.
 #' }
 #' @export
-#' @import magrittr
+#' @family tsc
 parse_community_conservationlisting <- function(
                                                 wastd_api_response,
                                                 wastd_url = wastdr::get_wastd_url()) {
@@ -72,3 +73,5 @@ parse_community_conservationlisting <- function(
     )
   }
 }
+
+# usethis::use_test("parse_community_conservationlisting")

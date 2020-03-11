@@ -1,5 +1,7 @@
 #' Map TurtleNestEncounters interactively.
 #'
+#' \lifecycle{maturing}
+#'
 #' @details Creates a Leaflet map with an interactive legend offering to
 #' toggle each species separately.
 #' The maps auto-zooms to the extent of data given.
@@ -13,6 +15,7 @@
 #' @param ts Whether to render the data as additional timeseries (warning: slow)
 #' @return A leaflet map
 #' @export
+#' @family wastd
 map_tracks <- function(tracks,
                        sites = NULL,
                        wastd_url = wastdr::get_wastd_url(),

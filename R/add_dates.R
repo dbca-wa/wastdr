@@ -13,6 +13,7 @@
 #'   * season
 #'   * season_week
 #'   * iso_week
+#' @family helpers
 #' @export
 add_dates <- function(data) {
   data %>%
@@ -43,6 +44,7 @@ add_dates <- function(data) {
 #'   * season
 #'   * season_week
 #'   * iso_week
+#' @family helpers
 #' @export
 add_dates_svs <- function(data) {
   survey_start_time <- NULL
@@ -75,6 +77,7 @@ add_dates_svs <- function(data) {
 #'   * season
 #'   * season_week
 #'   * iso_week
+#' @family helpers
 #' @export
 add_dates_sve <- function(data) {
   survey_end_time <- NULL

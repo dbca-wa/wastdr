@@ -14,7 +14,7 @@ e.g. '2016-11-20T21:46:57.163000Z' with time zone included}
 A POSIXct date
 }
 \description{
-Calculate the "turtle date" from a given datetime
+\lifecycle{stable}
 }
 \details{
 Return the actual date for afternoon and evening datetimes
@@ -34,3 +34,41 @@ This date convention is widely used in the turtle research community.
 httpdate_as_gmt08_turtle_date("2016-11-20T04:00:00Z") # noon AWST
 httpdate_as_gmt08_turtle_date("2016-11-21T03:59:59Z") # noon AWST - 1 sec
 }
+\seealso{
+Other helpers: 
+\code{\link{add_dates_sve}()},
+\code{\link{add_dates_svs}()},
+\code{\link{add_dates}()},
+\code{\link{chr2int}()},
+\code{\link{datetime_as_isoweek}()},
+\code{\link{datetime_as_seasonweek}()},
+\code{\link{datetime_as_season}()},
+\code{\link{datetime_as_turtle_date}()},
+\code{\link{exclude_training_species}()},
+\code{\link{exclude_training_surveys}()},
+\code{\link{extract_possibly}()},
+\code{\link{fdate_as_tdate}()},
+\code{\link{filter_missing_survey}()},
+\code{\link{filter_surveys_missing_end}()},
+\code{\link{filter_surveys_requiring_qa}()},
+\code{\link{filter_wastd_season}()},
+\code{\link{get_more}()},
+\code{\link{get_num_field}()},
+\code{\link{httpdate_as_gmt08}()},
+\code{\link{humanize}()},
+\code{\link{join_tsc_sites}()},
+\code{\link{map_chr_hack}()},
+\code{\link{sf_as_tbl}()},
+\code{\link{skip_test_if_odkc_offline}()},
+\code{\link{skip_test_if_wastd_offline}()},
+\code{\link{tdate_as_fdate}()},
+\code{\link{urlize}()},
+\code{\link{wastdr_msg_abort}()},
+\code{\link{wastdr_msg_info}()},
+\code{\link{wastdr_msg_noop}()},
+\code{\link{wastdr_msg_success}()},
+\code{\link{wastdr_msg_warn}()},
+\code{\link{wastdr_settings}()},
+\code{\link{wastdr_setup}()}
+}
+\concept{helpers}

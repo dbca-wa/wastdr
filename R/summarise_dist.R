@@ -1,9 +1,12 @@
 #' Filter disturbance data to disturbances
 #'
+#' \lifecycle{stable}
+#'
 #' @param data A dataframe with column "disturbance_cause".
 #'
 #' @return The dataframe with rows matching disturbance causes.
 #' @export
+#' @family wastd
 filter_disturbance <- function(data) {
   data %>%
     dplyr::filter(
@@ -20,6 +23,8 @@ filter_disturbance <- function(data) {
 }
 
 #' Filter disturbance data to disturbances for ODKC data
+#'
+#' \lifecycle{stable}
 #'
 #' @param data A dataframe with column "disturbance_cause".
 #'
@@ -43,10 +48,13 @@ filter_disturbance_odkc <- function(data) {
 
 #' Filter disturbance data to predator presences
 #'
+#' \lifecycle{stable}
+#'
 #' @param data A dataframe with column "disturbance_cause".
 #'
 #' @return The dataframe with rows matching predator presences.
 #' @export
+#' @family wastd
 filter_predation <-
   function(data) {
     data %>%
@@ -67,6 +75,8 @@ filter_predation <-
   }
 
 #' Filter disturbance data to predator presences for ODKC data
+#'
+#' \lifecycle{stable}
 #'
 #' @param data A dataframe with column "disturbance_cause".
 #'
@@ -95,6 +105,8 @@ filter_predation_odkc <-
 
 #' Tally WAStD disturbances by season, cause, and encounter type
 #'
+#' \lifecycle{stable}
+#'
 #' @param value The ouput of
 #'   \code{
 #'   \link{wastd_GET}("turtle-nest-disturbance-observations") %>%
@@ -118,6 +130,8 @@ disturbance_by_season <- . %>%
 
 #' Tally ODKC Nest disturbances by season, cause, and encounter type
 #'
+#' \lifecycle{stable}
+#'
 #' @param value ODKC tracks_dist
 #' @export
 #' @family odkc
@@ -134,6 +148,8 @@ nest_disturbance_by_season_odkc <- . %>%
 
 
 #' Tally ODKC General disturbances by season, cause, and encounter type
+#'
+#' \lifecycle{stable}
 #'
 #' @param value ODKC dist
 #' @export

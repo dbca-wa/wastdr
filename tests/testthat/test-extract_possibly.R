@@ -45,3 +45,5 @@ test_that("extract_possibly extracts only top level values", {
   fc <- extract_possibly(lol, "field7")
   testthat::expect_equal(fc[[1]], NULL)
 })
+
+# usethis::use_r("extract_possibly")

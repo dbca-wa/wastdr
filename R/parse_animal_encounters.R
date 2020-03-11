@@ -1,5 +1,7 @@
 #' Parse a \code{wastd_api_response} of \code{animal-encounters} to tbl_df
 #'
+#' \lifecycle{stable}
+#'
 #' @param wastd_api_response A \code{wastd_api_response} of
 #' \code{animal-encounters}, e.g. \code{get_wastd("animal-encounters")}
 #' @return A \code{tbl_df} with columns:
@@ -46,9 +48,7 @@
 #'   \item status <chr>
 #' }
 #' @export
-#' @import magrittr
-#' @importFrom tibble tibble
-#' @importFrom purrr map map_chr map_dbl
+#' @family wastd
 parse_animal_encounters <- function(wastd_api_response) {
   obs <- NULL # Make R CMD check happy
   datetime <- NULL

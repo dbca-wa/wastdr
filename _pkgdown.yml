@@ -5,3 +5,29 @@ authors:
   NWSFTCP:
     html: "<img src='man/figures/flatbacks.svg' width='150' alt='NWSFTCP'/>"
     href: https://flatbacks.dbca.wa.gov.au/
+template:
+  params:
+    bootswatch: yeti
+    ganalytics: UA-155735563-2
+reference:
+- title: API access
+  contents:
+  - has_concept("api")
+- title: WA Sea Turtles DB
+  contents:
+  - has_concept("wastd")
+- title: ODK Central Turtle Data
+  contents:
+  - has_concept("odkc")
+- title: Threatened Species and Communities DB
+  contents:
+  - has_concept("tsc")
+- title: WACensus access
+  contents:
+  - has_concept("wacensus")
+- title: Helpers
+  contents:
+  - has_concept("helpers")
+- title: Example data
+  contents:
+  - has_concept("included")

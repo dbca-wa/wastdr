@@ -2,9 +2,12 @@
 % Please edit documentation in R/filters.R
 \name{filter_missing_site}
 \alias{filter_missing_site}
+\alias{filter_nosite}
 \title{Filter records with missing \code{site_id}}
 \usage{
 filter_missing_site(value)
+
+filter_nosite(value)
 }
 \arguments{
 \item{value}{The output of \code{parse_turtle_nest_encounters}}

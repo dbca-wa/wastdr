@@ -25,3 +25,5 @@ test_that("datetime_as_seasonweek returns correct week at edge cases", {
     datetime_as_seasonweek(httpdate_as_gmt08("2018-01-01T12:00:00Z")), 27
   )
 })
+
+# usethis::use_r("datetime_as_seasonweek")

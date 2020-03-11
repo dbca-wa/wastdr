@@ -13,4 +13,19 @@ odkc_data
 Turtle Nesting Census data from ODK Centrail
 First 6 records of each dataset, all sites.
 }
+\seealso{
+Other included: 
+\code{\link{download_odkc_turtledata_2019}()},
+\code{\link{download_wastd_turtledata}()},
+\code{\link{print.odkc_turtledata}()},
+\code{\link{print.wastd_data}()},
+\code{\link{wastd_ae_raw}},
+\code{\link{wastd_ae}},
+\code{\link{wastd_area_raw}},
+\code{\link{wastd_data}},
+\code{\link{wastd_surveys_raw}},
+\code{\link{wastd_tne_raw}},
+\code{\link{wastd_tne}}
+}
+\concept{included}
 \keyword{datasets}

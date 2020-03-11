@@ -1,5 +1,7 @@
 #' Calculate the "turtle date" from a given datetime
 #'
+#' \lifecycle{stable}
+#'
 #' @details Return the actual date for afternoon and evening datetimes
 #' (noon to midnight) or the date of the previous day for morning datetimes
 #' (midnight to noon).
@@ -16,6 +18,7 @@
 #' @importFrom lubridate hours as_date
 #' @import magrittr
 #' @export
+#' @family helpers
 #' @examples
 #' # noon AWST is turtle date "2016-11-20":
 #' datetime_as_turtle_date(
@@ -24,10 +27,12 @@
 #'
 #' # 1 sec before noon AWST is turtle date "2016-11-19":
 #' datetime_as_turtle_date(
-#'   httpdate_as_gmt08_turtle_date("2016-11-21T03:59:59Z")
+#'   httpdate_as_gmt08_turtle_date("2016-11-20T03:59:59Z")
 #' )
 datetime_as_turtle_date <- function(datetime) {
   datetime %>%
     -lubridate::hours(12) %>%
     lubridate::as_date()
 }
+
+# usethis::use_test("datetime_as_turtle_date")

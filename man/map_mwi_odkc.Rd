@@ -36,7 +36,7 @@ cluster markers expand.}
 A leaflet map
 }
 \description{
-Map Marine Wildlife Incident 0.6 parsed with ruODK from ODK Central.
+\lifecycle{maturing}
 }
 \details{
 Creates a Leaflet map with an interactive legend offering to toggle
@@ -52,3 +52,29 @@ map_mwi_odkc(odkc$mwi, sites = odkc$sites)
 map_mwi_odkc(data = NULL, sites = odkc$sites)
 }
 }
+\seealso{
+Other odkc: 
+\code{\link{add_nest_labels_odkc}()},
+\code{\link{exclude_training_species_odkc}()},
+\code{\link{filter_alive_odkc}()},
+\code{\link{filter_dead_odkc}()},
+\code{\link{filter_disturbance_odkc}()},
+\code{\link{filter_predation_odkc}()},
+\code{\link{general_disturbance_by_season_odkc}()},
+\code{\link{map_dist_odkc}()},
+\code{\link{map_sv_odkc}()},
+\code{\link{nest_disturbance_by_season_odkc}()},
+\code{\link{nesting_type_by_area_season_age_species_odkc}()},
+\code{\link{nesting_type_by_area_season_species_odkc}()},
+\code{\link{nesting_type_by_season_age_species_odkc}()},
+\code{\link{nesting_type_by_season_calendarday_age_species_odkc}()},
+\code{\link{nesting_type_by_season_calendarday_species_odkc}()},
+\code{\link{nesting_type_by_season_day_species_odkc}()},
+\code{\link{nesting_type_by_season_species_odkc}()},
+\code{\link{nesting_type_by_season_week_age_species_odkc}()},
+\code{\link{nesting_type_by_season_week_site_species_odkc}()},
+\code{\link{nesting_type_by_season_week_species_odkc}()},
+\code{\link{nesting_type_by_site_season_age_species_odkc}()},
+\code{\link{nesting_type_by_site_season_species_odkc}()}
+}
+\concept{odkc}

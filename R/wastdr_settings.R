@@ -9,7 +9,7 @@
 #' \code{\link{get_wastdr_api_token}},
 #' \code{\link{get_wastdr_api_un}}, and
 #' \code{\link{get_wastdr_api_pw}}.
-#' @family wastr settings
+#' @family helpers
 wastdr_settings <- function() {
   ops <- list(
     wastd_url = get_wastd_url(),
@@ -39,6 +39,7 @@ print.wastdr_settings <- function(x, ...) {
 #' Configure default WAStD settings
 #'
 #' @export
+#' @family helpers
 #' @param wastd_url A WAStD URL (optional),
 #'   default: "https://tsc.dbca.wa.gov.au"
 #' @param api_url A WAStD API URL (optional),

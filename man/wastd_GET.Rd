@@ -87,3 +87,9 @@ hatched_nest_records <- wastd_GET("turtle-nest-encounters",
 )
 }
 }
+\seealso{
+Other api: 
+\code{\link{wastd_POST}()},
+\code{\link{wastd_parse}()}
+}
+\concept{api}

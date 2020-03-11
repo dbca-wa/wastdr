@@ -1,5 +1,6 @@
 #' Parse a \code{wastd_api_response} of \code{area} to tbl_df and sf
 #'
+#' \lifecycle{stable}
 #'
 #' @param wastd_api_response A \code{wastd_api_response} of
 #' \code{area}, e.g. \code{get_wastd("area")}
@@ -14,7 +15,7 @@
 #'   \item length_survey_roundtrip_m <int>
 #' }
 #' @export
-#' @import magrittr
+#' @family wastd
 parse_area_sf <- function(wastd_api_response,
                           wastd_url = wastdr::get_wastd_url()) {
   wastd_api_response %>%

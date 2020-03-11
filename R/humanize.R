@@ -1,10 +1,11 @@
 #' Convert between url-safe dash-separated-names and Human Readable Title Case
 #'
+#' \lifecycle{stable}
+#'
 #' @param urlsafe_string (chr) A url-safe-string
 #' @return a Human Readable Title Cased String
-#' @import magrittr
-#' @importFrom stringr str_to_title str_replace_all
 #' @export
+#' @family helpers
 #' @examples
 #' humanize("chelonia-mydas")
 #' humanize("natator-depressus")
@@ -14,3 +15,5 @@ humanize <- function(urlsafe_string) {
     stringr::str_to_title(.) %>%
     stringr::str_replace_all("-", " ")
 }
+
+# usethis::use_test("humanize")

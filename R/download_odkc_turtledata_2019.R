@@ -45,6 +45,7 @@
 #'   \item areas An sf object of known TSC localities.
 #'  }
 #' @export
+#' @family included
 download_odkc_turtledata_2019 <-
   function(local_dir = here::here("media"),
            prod = "https://odkcentral.dbca.wa.gov.au",
@@ -489,6 +490,7 @@ download_odkc_turtledata_2019 <-
 #'   \code{\link{download_odkc_turtledata_2019}}.
 #' @param ... Extra parameters for `print`
 #' @export
+#' @family included
 print.odkc_turtledata <- function(x, ...) {
   print(
     glue::glue(

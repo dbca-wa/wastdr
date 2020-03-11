@@ -1,5 +1,7 @@
 #' Calculate the isoweek from a given datetime
 #'
+#' \lifecycle{stable}
+#'
 #' @details Return the isoweek of a given datetime.
 #'
 #' The isoweek is useful as a grouping variable for weekly summaries.
@@ -9,6 +11,7 @@
 #' @importFrom lubridate days isoweek
 #' @import magrittr
 #' @export
+#' @family helpers
 #' @examples
 #' # These datetimes are turtle season 2017:
 #' datetime_as_isoweek(httpdate_as_gmt08("2017-06-30T15:59:59Z")) # 26
@@ -19,3 +22,5 @@
 datetime_as_isoweek <- function(datetime) {
   datetime %>% lubridate::isoweek()
 }
+
+# usethis::use_test("datetime_as_isoweek")

@@ -1,8 +1,9 @@
 #' Map Marine Wildlife Incident 0.6
 #'
+#' \lifecycle{maturing}
+#'
 #' @details Creates a Leaflet map with an interactive legend offering to toggle
 #' each species separately. The maps auto-zooms to the extent of data given.
-#'
 #'
 #' @param data AnimalEncounters from WAStD.
 #' @param sites An sf object of sites with `site_name` and polygon geom, e.g.
@@ -13,6 +14,7 @@
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
+#' @family wastd
 map_mwi <- function(data,
                     sites = NULL,
                     wastd_url = wastdr::get_wastd_url(),

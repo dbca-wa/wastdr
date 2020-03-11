@@ -20,5 +20,13 @@ default: "https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows"}
 The httr::content of a GET request to the WFS GetFeature endpoint
 }
 \description{
+\lifecycle{stable}
+}
+\details{
 Defaults to DBCA's KMI GeoServer offering public WACensus views
 }
+\seealso{
+Other wacensus: 
+\code{\link{upsert_geojson}()}
+}
+\concept{wacensus}

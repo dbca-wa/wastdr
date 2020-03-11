@@ -1,5 +1,6 @@
 #' Parse a \code{wastd_api_response} of \code{turtle-nest-encounters} to tbl_df
 #'
+#' \lifecycle{maturing}
 #'
 #' @param wastd_api_response A \code{wastd_api_response} of
 #' \code{turtle-nest-encounters}, e.g.
@@ -50,9 +51,7 @@
 #'   \item reporter <chr>
 #' }
 #' @export
-#' @import magrittr
-#' @importFrom tibble tibble
-#' @importFrom purrr map map_chr map_dbl
+#' @family wastd
 parse_turtle_nest_encounters <- function(wastd_api_response) {
   wastd_api_response$data %>% {
     tibble::tibble(
@@ -159,3 +158,5 @@ parse_turtle_nest_encounters <- function(wastd_api_response) {
     )
   }
 }
+
+# usethis::use_test("parse_turtle_nest_encounters")

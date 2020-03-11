@@ -6,6 +6,7 @@
 #' @template param-verbose
 #' @template return-wastd-api-response
 #' @export
+#' @family api
 #' @examples
 #' \dontrun{
 #' # One by one

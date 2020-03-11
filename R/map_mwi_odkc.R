@@ -1,5 +1,7 @@
 #' Map Marine Wildlife Incident 0.6 parsed with ruODK from ODK Central.
 #'
+#' \lifecycle{maturing}
+#'
 #' @details Creates a Leaflet map with an interactive legend offering to toggle
 #' each species separately. The maps auto-zooms to the extent of data given.
 #'
@@ -16,6 +18,7 @@
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
+#' @family odkc
 #' @examples
 #' \dontrun{
 #' data("odkc")

@@ -1,5 +1,7 @@
 #' Map Site Visit Start and End from ODK Central data over TSC Sites.
 #'
+#' \lifecycle{maturing}
+#'
 #' @details Creates a Leaflet map of site visit start and end points.
 #' The maps auto-zooms to the extent of data given.
 #'
@@ -15,6 +17,7 @@
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
+#' @family odkc
 #' @examples
 #' \dontrun{
 #' data("odkc_data")

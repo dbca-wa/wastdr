@@ -9,3 +9,5 @@ test_that("humanize returns human readable string", {
   testthat::expect_equal(humanize("natator-depressus"), "Natator Depressus")
   testthat::expect_equal(humanize("successful-crawl"), "Successful Crawl")
 })
+
+# usethis::use_r("humanize")
