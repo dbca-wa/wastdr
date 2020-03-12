@@ -10,7 +10,11 @@ track_success(tracks)
 \item{tracks}{The output of \code{parse_turtle_nest_encounters} and \code{add_nest_labels}.}
 }
 \description{
-Calculate nesting success as number of tracks with nests vs other tracks
+\lifecycle{stable}
+}
+\examples{
+data("wastd_data")
+nesting_type_by_season_week_site_species(wastd_data$tracks)
 }
 \seealso{
 Other wastd: 

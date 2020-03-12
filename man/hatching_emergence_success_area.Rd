@@ -11,8 +11,7 @@ hatching_emergence_success_area(value)
 \item{value}{The output of \code{parse_turtle_nest_encounters()}}
 }
 \description{
-Sumarizes HS and ES for tracks of type \code{hatched-nest}
-grouped by `area_name`.
+\lifecycle{stable}
 }
 \seealso{
 Other wastd: 

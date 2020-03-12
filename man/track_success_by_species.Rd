@@ -10,7 +10,7 @@ track_success_by_species(track_success)
 \item{track_success}{The output of \code{\link{track_success}}}
 }
 \description{
-The nesting success grouped by season and species
+\lifecycle{stable}
 }
 \seealso{
 Other wastd: 

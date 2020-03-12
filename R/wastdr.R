@@ -71,11 +71,13 @@ utils::globalVariables(c(
   "season",
   "site_id",
   "site_name",
+  "species",
   "status_health",
   "start",
   "start_comments",
   "start_time",
   "status",
+  "successful",
   "sve_extra",
   "sve_prod",
   "svs_extra",
@@ -91,6 +93,7 @@ utils::globalVariables(c(
   "tracks_prod",
   "turtle_date",
   "value",
+  "vars",
   "when",
   "Year"
 ))

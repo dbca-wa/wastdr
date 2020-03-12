@@ -13,7 +13,7 @@ wastd_data
 \description{
 The output of \code{\link{download_wastd_turtledata}}, but
 observer and reporter names are hidden, tibbles are filtered down to the
-first 10 records, however all areas and sites are included.
+first 100 records, however all areas and sites are included.
 }
 \seealso{
 Other included: 

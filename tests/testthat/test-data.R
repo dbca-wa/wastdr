@@ -45,6 +45,7 @@ test_that("wastd_data contains expected tibbles", {
       "sites",
       "surveys",
       "animals",
+      "turtle_morph",
       "tracks",
       "nest_dist",
       "nest_tags",
@@ -55,7 +56,7 @@ test_that("wastd_data contains expected tibbles", {
       "nest_lightsources"
     )
   )
-  purrr::map(wastd_data, class)
+  # purrr::map(wastd_data, class)
   expect_equal(class(wastd_data$downloaded_on), c("POSIXct", "POSIXt"))
   expect_equal(class(wastd_data$areas), c("sf", "data.frame"))
   expect_equal(class(wastd_data$surveys), c("tbl_df", "tbl", "data.frame"))

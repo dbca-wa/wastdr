@@ -16,7 +16,7 @@ ggplot_track_success_by_date(data, speciesname, placename = "", prefix = "")
 \item{prefix}{(string) A prefix for the filename. Default: ""}
 }
 \description{
-Plot the track success (absolute numbers) of a given species as time series
+\lifecycle{stable}
 }
 \seealso{
 Other wastd: 

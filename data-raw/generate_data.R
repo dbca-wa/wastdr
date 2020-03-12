@@ -62,7 +62,7 @@ odkc_data <- list(
 usethis::use_data(odkc_data, compress = "xz", overwrite = TRUE)
 
 # WAStD Turtle Data, 10 records each, names sanitised
-wastd_data <- download_wastd_turtledata(max_records = 10)
+wastd_data <- download_wastd_turtledata(max_records = 100)
 wastd_data$surveys <- wastd_data$surveys %>% sanitize_names()
 wastd_data$animals <- wastd_data$animals %>% sanitize_names()
 wastd_data$turtle_morph <- wastd_data$turtle_morph %>% sanitize_names()

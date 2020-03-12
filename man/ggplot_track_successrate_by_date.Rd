@@ -22,8 +22,7 @@ ggplot_track_successrate_by_date(
 \item{prefix}{(string) A prefix for the filename. Default: ""}
 }
 \description{
-Plot the track success rate (relative numbers) of a given species as time
-series
+\lifecycle{stable}
 }
 \seealso{
 Other wastd: 

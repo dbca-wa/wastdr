@@ -54,7 +54,7 @@ parse_encounterobservations <- function(wastd_api_response) {
           .
       } %>%
       {
-        if ("encounter_area" %in% colnames(.))
+        if ("encounter_site" %in% colnames(.))
           tidyr::unnest_wider(.,
                               "encounter_site",
                               names_repair = "universal",
@@ -62,7 +62,7 @@ parse_encounterobservations <- function(wastd_api_response) {
         else
           .
       } %>% {
-        if ("encounter_area" %in% colnames(.))
+        if ("encounter_survey" %in% colnames(.))
           tidyr::unnest_wider(.,
                               "encounter_survey",
                               names_repair = "universal",

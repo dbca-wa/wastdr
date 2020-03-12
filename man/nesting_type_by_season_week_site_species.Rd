@@ -10,7 +10,11 @@ nesting_type_by_season_week_site_species(value)
 \item{value}{The output of \code{parse_turtle_nest_encounters()}}
 }
 \description{
-Pivot table of nesting type by season, season_week, iso_week, and species
+\lifecycle{stable}
+}
+\examples{
+data("wastd_data")
+nesting_type_by_season_week_site_species(wastd_data$tracks)
 }
 \seealso{
 Other wastd: 

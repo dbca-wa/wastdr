@@ -15,6 +15,10 @@ The SimpleFeatures object with geometry set to NULL.
 \description{
 Convert a SimpleFeatures object to a non-spatial dataframe
 }
+\examples{
+data("wastd_data")
+sf_as_tbl(wastd_data$sites)
+}
 \seealso{
 Other helpers: 
 \code{\link{add_dates_sve}()},

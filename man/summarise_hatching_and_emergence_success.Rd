@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{summarise_hatching_and_emergence_success}
 \alias{summarise_hatching_and_emergence_success}
-\title{Utility to summarise a tibble of tracks with nest excavation data.}
+\title{\lifecycle{stable}}
 \usage{
 summarise_hatching_and_emergence_success(value)
 }
@@ -10,6 +10,9 @@ summarise_hatching_and_emergence_success(value)
 \item{value}{The output of \code{parse_turtle_nest_encounters()}}
 }
 \description{
+Utility to summarise a tibble of tracks with nest excavation data.
+}
+\details{
 Calculates:
 \itemize{
 \item count The count of nests
