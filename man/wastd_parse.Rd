@@ -24,6 +24,9 @@ From a \code{wastd_api_response}, turn the key \code{payload}
   If GeoJSON is found, the keys `geometry` (including `coordinates`) will
   remain unchanged, but the key `properties` will be unnested.
 }
+\details{
+\lifecycle{stable}
+}
 \seealso{
 Other api: 
 \code{\link{wastd_GET}()},

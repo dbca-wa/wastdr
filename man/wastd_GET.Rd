@@ -78,6 +78,9 @@ Call the WAStD API serializer's list view with given GET
   This function requires the WAStD API to return the results in a key
   `features` (if GeoJSON) or `data` (if JSON).
 }
+\details{
+\lifecycle{stable}
+}
 \examples{
 \dontrun{
 track_records <- wastd_GET("turtle-nest-encounters")

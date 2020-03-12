@@ -1,5 +1,8 @@
 #' Send a POST request to WAStD's API
 #'
+#'
+#' \lifecycle{stable}
+#'
 #' @param data (JSON) A list of lists (JSON) to post to WAStD.
 #' @template param-serializer
 #' @template param-auth

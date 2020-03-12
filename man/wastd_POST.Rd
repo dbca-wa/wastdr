@@ -57,7 +57,7 @@ An S3 object of class 'wastd_api_response' containing:
   response: The API HTTP response with all metadata
 }
 \description{
-Send a POST request to WAStD's API
+\lifecycle{stable}
 }
 \examples{
 \dontrun{

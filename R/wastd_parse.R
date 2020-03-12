@@ -1,5 +1,7 @@
 #' Parse a \code{wastd_api_response} into a tibble
 #'
+#' \lifecycle{stable}
+#'
 #' @description From a \code{wastd_api_response}, turn the key \code{payload}
 #'   (default: "features") into a \code{tibble:tibble}, and
 #'   \code{tidyr::unnest_wider} the tibble into columns equivalent to the fields

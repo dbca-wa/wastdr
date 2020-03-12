@@ -1,5 +1,7 @@
 #' Return GeoJSON features from a WAStD API endpoint
 #'
+#' \lifecycle{stable}
+#'
 #' @description Call the WAStD API serializer's list view with given GET
 #'   parameters, parse the response's features into a nested list.
 #'   This function requires the WAStD API to return the results in a key
