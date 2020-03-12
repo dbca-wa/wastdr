@@ -9,7 +9,7 @@
 ^data-raw$
 ^docs$
 vignettes/rsconnect/*
-man-roxygen
+^man-roxygen$
 ^\.httr-oauth$
 ^pkgdown$
 ^appveyor\.yml$
