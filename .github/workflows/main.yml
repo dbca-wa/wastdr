@@ -73,8 +73,8 @@ jobs:
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
 
-      - name: Install dplyr from source for Windows
-        if: matrix.config.os == 'windows-latest'  && matrix.config.r == '3.6'
+      - name: Bash Windows over the head with a source install of dplyr
+        if: runner.os == 'Windows'
         run: install.packages("dplyr", type = "source")
         shell: Rscript {0}
 
