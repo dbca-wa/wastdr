@@ -400,7 +400,7 @@ summarise_hatching_and_emergence_success <- . %>%
   )
 
 
-#' Sumarizes HS and ES for tracks of type `hatched-nest`
+#' Sumarizes HS and ES for tracks of type \code{hatched-nest}
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
@@ -411,7 +411,7 @@ hatching_emergence_success <- . %>%
   dplyr::group_by(season, species) %>%
   summarise_hatching_and_emergence_success(.)
 
-#' Sumarizes HS and ES for tracks of type `hatched-nest`
+#' Sumarizes HS and ES for tracks of type \code{hatched-nest}
 #' grouped by `area_name`.
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
@@ -423,7 +423,7 @@ hatching_emergence_success_area <- . %>%
   dplyr::group_by(area_name, season, species) %>%
   summarise_hatching_and_emergence_success(.)
 
-#' Sumarizes HS and ES for tracks of type `hatched-nest`
+#' Sumarizes HS and ES for tracks of type \code{hatched-nest}
 #' grouped by `site_name`.
 #'
 #' @param value The output of \code{parse_turtle_nest_encounters()}
