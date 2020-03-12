@@ -35,4 +35,8 @@
 #' @family included
 "wastd_surveys_raw"
 
+#' TSC data, parsed, first ten records each
+#' @family included
+"tsc_data"
+
 # usethis::use_test("data")
