@@ -46,14 +46,9 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@master
 
-      # V8 unbreaks geojsonio
-      # https://github.com/ropensci/geojsonio/issues/65#issuecomment-556962919
-      # dplyr dev > tidyr dev > ruODK will resolve with new tidyr versions
-      # Install global R packages
-      - name: Herd spiders
+      - name: Install R packages for CI
         run: |
           install.packages('remotes')
-          install.packages('V8')
           remotes::install_github('r-hub/sysreqs')
         shell: Rscript {0}
 
@@ -75,12 +70,12 @@ jobs:
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
-          # Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
 
       - name: Install R dependencies
         run: |
+          install.packages('V8')
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
