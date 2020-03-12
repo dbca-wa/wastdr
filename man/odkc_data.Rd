@@ -5,7 +5,9 @@
 \alias{odkc_data}
 \title{Turtle Nesting Census data from ODK Centrail
 First 6 records of each dataset, all sites.}
-\format{An object of class \code{list} of length 18.}
+\format{
+An object of class \code{list} of length 18.
+}
 \usage{
 odkc_data
 }
@@ -19,6 +21,7 @@ Other included:
 \code{\link{download_wastd_turtledata}()},
 \code{\link{print.odkc_turtledata}()},
 \code{\link{print.wastd_data}()},
+\code{\link{tsc_data}},
 \code{\link{wastd_ae_raw}},
 \code{\link{wastd_ae}},
 \code{\link{wastd_area_raw}},

@@ -4,17 +4,23 @@
 \alias{survey_count}
 \title{Return the number of surveys for a given site_id and season}
 \usage{
-survey_count(surveys, site_id, season)
+survey_count(surveys, sid, seas)
 }
 \arguments{
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
 
-\item{site_id}{The ID of a site, e.g. 22}
+\item{sid}{The ID of a site, e.g. 22}
 
-\item{season}{The desired season's start year, e.g. 2018}
+\item{seas}{The season as integer, e.g. 2018}
 }
 \description{
-Return the number of surveys for a given site_id and season
+\lifecycle{stable}
+}
+\examples{
+data("wastd_data")
+one_season <- unique(wastd_data$surveys$season)[1]
+one_site_id <- unique(wastd_data$surveys$site_id)[1]
+survey_count(wastd_data$surveys, one_site_id, one_season)
 }
 \seealso{
 Other wastd: 
@@ -50,10 +56,12 @@ Other wastd:
 \code{\link{parse_animal_encounters}()},
 \code{\link{parse_area_sf}()},
 \code{\link{parse_area}()},
+\code{\link{parse_encounterobservations}()},
 \code{\link{parse_surveys}()},
 \code{\link{parse_turtle_nest_encounters}()},
 \code{\link{plot_survey_count}()},
 \code{\link{plot_survey_effort}()},
+\code{\link{print.wastd_api_response}()},
 \code{\link{summarise_hatching_and_emergence_success}()},
 \code{\link{survey_count_heatmap}()},
 \code{\link{survey_ground_covered}()},
@@ -65,6 +73,7 @@ Other wastd:
 \code{\link{survey_show_detail}()},
 \code{\link{surveys_per_site_name_and_date}()},
 \code{\link{track_success_by_species}()},
-\code{\link{track_success}()}
+\code{\link{track_success}()},
+\code{\link{tracks_ts}()}
 }
 \concept{wastd}

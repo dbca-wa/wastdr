@@ -4,7 +4,9 @@
 \name{wastd_area_raw}
 \alias{wastd_area_raw}
 \title{WAStD Areas, unparsed}
-\format{An object of class \code{wastd_api_response} of length 5.}
+\format{
+An object of class \code{wastd_api_response} of length 5.
+}
 \usage{
 wastd_area_raw
 }
@@ -18,6 +20,7 @@ Other included:
 \code{\link{odkc_data}},
 \code{\link{print.odkc_turtledata}()},
 \code{\link{print.wastd_data}()},
+\code{\link{tsc_data}},
 \code{\link{wastd_ae_raw}},
 \code{\link{wastd_ae}},
 \code{\link{wastd_data}},

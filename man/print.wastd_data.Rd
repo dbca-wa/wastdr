@@ -22,6 +22,7 @@ Other included:
 \code{\link{download_wastd_turtledata}()},
 \code{\link{odkc_data}},
 \code{\link{print.odkc_turtledata}()},
+\code{\link{tsc_data}},
 \code{\link{wastd_ae_raw}},
 \code{\link{wastd_ae}},
 \code{\link{wastd_area_raw}},

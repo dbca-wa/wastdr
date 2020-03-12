@@ -4,7 +4,9 @@
 \name{wastd_ae}
 \alias{wastd_ae}
 \title{WAStD AnimalEncounters, parsed, test data captured by author}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7 rows and 43 columns.}
+\format{
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7 rows and 43 columns.
+}
 \usage{
 wastd_ae
 }
@@ -18,6 +20,7 @@ Other included:
 \code{\link{odkc_data}},
 \code{\link{print.odkc_turtledata}()},
 \code{\link{print.wastd_data}()},
+\code{\link{tsc_data}},
 \code{\link{wastd_ae_raw}},
 \code{\link{wastd_area_raw}},
 \code{\link{wastd_data}},

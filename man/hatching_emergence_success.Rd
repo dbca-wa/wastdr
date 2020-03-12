@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{hatching_emergence_success}
 \alias{hatching_emergence_success}
-\title{Sumarizes HS and ES for tracks of type `hatched-nest`}
+\title{Sumarizes HS and ES for tracks of type \code{hatched-nest}}
 \usage{
 hatching_emergence_success(value)
 }
@@ -10,7 +10,7 @@ hatching_emergence_success(value)
 \item{value}{The output of \code{parse_turtle_nest_encounters()}}
 }
 \description{
-Sumarizes HS and ES for tracks of type `hatched-nest`
+Sumarizes HS and ES for tracks of type \code{hatched-nest}
 }
 \seealso{
 Other wastd: 
@@ -45,10 +45,12 @@ Other wastd:
 \code{\link{parse_animal_encounters}()},
 \code{\link{parse_area_sf}()},
 \code{\link{parse_area}()},
+\code{\link{parse_encounterobservations}()},
 \code{\link{parse_surveys}()},
 \code{\link{parse_turtle_nest_encounters}()},
 \code{\link{plot_survey_count}()},
 \code{\link{plot_survey_effort}()},
+\code{\link{print.wastd_api_response}()},
 \code{\link{summarise_hatching_and_emergence_success}()},
 \code{\link{survey_count_heatmap}()},
 \code{\link{survey_count}()},
@@ -61,6 +63,7 @@ Other wastd:
 \code{\link{survey_show_detail}()},
 \code{\link{surveys_per_site_name_and_date}()},
 \code{\link{track_success_by_species}()},
-\code{\link{track_success}()}
+\code{\link{track_success}()},
+\code{\link{tracks_ts}()}
 }
 \concept{wastd}

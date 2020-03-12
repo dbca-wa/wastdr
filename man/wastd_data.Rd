@@ -4,7 +4,9 @@
 \name{wastd_data}
 \alias{wastd_data}
 \title{Turtle Nesting Census data from WAStD}
-\format{An object of class \code{wastd_data} of length 13.}
+\format{
+An object of class \code{wastd_data} of length 14.
+}
 \usage{
 wastd_data
 }
@@ -20,6 +22,7 @@ Other included:
 \code{\link{odkc_data}},
 \code{\link{print.odkc_turtledata}()},
 \code{\link{print.wastd_data}()},
+\code{\link{tsc_data}},
 \code{\link{wastd_ae_raw}},
 \code{\link{wastd_ae}},
 \code{\link{wastd_area_raw}},

@@ -63,6 +63,7 @@ Other odkc:
 \code{\link{general_disturbance_by_season_odkc}()},
 \code{\link{map_dist_odkc}()},
 \code{\link{map_sv_odkc}()},
+\code{\link{map_tracks_odkc}()},
 \code{\link{nest_disturbance_by_season_odkc}()},
 \code{\link{nesting_type_by_area_season_age_species_odkc}()},
 \code{\link{nesting_type_by_area_season_species_odkc}()},
