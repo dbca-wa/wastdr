@@ -1,5 +1,6 @@
 #' Parse a \code{wastd_api_response} of Encounter observations to tbl_df
 #'
+#' \lifecycle{stable}
 #'
 #' WAStD provides all subclasses of `wastd.observations.observation` together
 #' with their encounter (survey, site, area, reporter, observer) via its API
@@ -26,7 +27,7 @@
 #'   \item Observation
 #' }
 #' @export
-#' @import magrittr
+#' @family wastd
 parse_encounterobservations <- function(wastd_api_response) {
   wastd_api_response %>%
     wastdr::wastd_parse() %>%

@@ -11,6 +11,7 @@
 #' @importFrom lubridate days isoyear
 #' @import magrittr
 #' @export
+#' @family helpers
 #' @examples
 #' # These datetimes are turtle season 2017:
 #' httpdate_as_season("2017-06-30T15:59:59Z") # 2016

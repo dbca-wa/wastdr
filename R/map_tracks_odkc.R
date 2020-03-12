@@ -16,6 +16,7 @@
 #' @param ts Whether to render the data as additional timeseries (warning: slow)
 #' @return A leaflet map
 #' @export
+#' @family odkc
 #' @examples
 #' \dontrun{
 #' data("odkc_data")

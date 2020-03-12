@@ -7,6 +7,7 @@
 #' @template param-prefix
 #' @return A ggplot2 object. Saves the plot to .png.
 #' @export
+#' @family wastd
 tracks_ts <- function(data,
                       surveys,
                       local_dir = ".",

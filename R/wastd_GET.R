@@ -170,6 +170,7 @@ wastd_GET <- function(serializer,
 #'   \code{\link{wastd_GET}}.
 #' @param ... Extra parameters for `print`
 #' @export
+#' @family wastd
 print.wastd_api_response <- function(x, ...) {
   print(
     glue::glue(

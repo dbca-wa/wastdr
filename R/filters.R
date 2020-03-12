@@ -38,6 +38,7 @@ filter_nosurvey <- . %>% dplyr::filter(is.na(survey_id))
 #' Filter records with missing \code{site_id}
 #' @param value The output of \code{parse_turtle_nest_encounters}
 #' @export
+#' @family helpers
 filter_missing_site <- . %>% dplyr::filter(is.na(site_id))
 
 #' @export
