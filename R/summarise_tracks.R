@@ -24,12 +24,14 @@ sf_as_tbl <- function(sf_obj) {
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_species(wastd_data$tracks)
-nesting_type_by_season_species <- . %>%
+nesting_type_by_season_species <- function(value){
+  value %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, species, nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
+}
 
 
 #' Pivot table of nesting type by season, track age and species
@@ -42,13 +44,14 @@ nesting_type_by_season_species <- . %>%
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_age_species(wastd_data$tracks)
-nesting_type_by_season_age_species <- . %>%
+nesting_type_by_season_age_species <- function(value){
+  value %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, species, nest_age, nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
-
+}
 
 #' Pivot table of nesting type by area, season, and species
 #'
@@ -60,13 +63,14 @@ nesting_type_by_season_age_species <- . %>%
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_area_season_species(wastd_data$tracks)
-nesting_type_by_area_season_species <- . %>%
+nesting_type_by_area_season_species <- function(value){
+  value %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(area_name, season, species, nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
-
+}
 
 #' Pivot table of nesting type by area, season, track age, and species
 #'
@@ -78,12 +82,14 @@ nesting_type_by_area_season_species <- . %>%
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_area_season_age_species(wastd_data$tracks)
-nesting_type_by_area_season_age_species <- . %>%
+nesting_type_by_area_season_age_species <-function(value){
+  value %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(area_name, season, species, nest_age, nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
+}
 
 
 #' Pivot table of nesting type by site, season, and species
@@ -96,12 +102,14 @@ nesting_type_by_area_season_age_species <- . %>%
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_site_season_species(wastd_data$tracks)
-nesting_type_by_site_season_species <- . %>%
+nesting_type_by_site_season_species <- function(value){
+  value %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(area_name, site_name, season, species, nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
+}
 
 
 #' Pivot table of nesting type by site, season, track age, and species
@@ -114,7 +122,8 @@ nesting_type_by_site_season_species <- . %>%
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_site_season_age_species(wastd_data$tracks)
-nesting_type_by_site_season_age_species <- . %>%
+nesting_type_by_site_season_age_species <- function(value){
+  value %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
     area_name,
@@ -127,6 +136,7 @@ nesting_type_by_site_season_age_species <- . %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
+}
 
 
 #' Pivot table of nesting type by season, season_week, iso_week, and species
@@ -139,7 +149,8 @@ nesting_type_by_site_season_age_species <- . %>%
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_site_season_age_species(wastd_data$tracks)
-nesting_type_by_season_week_species <- . %>%
+nesting_type_by_season_week_species <- function(value){
+  value %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
     season,
@@ -151,6 +162,7 @@ nesting_type_by_season_week_species <- . %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
+}
 
 
 #' Pivot table of nesting type by season, season_week, iso_week, track age,
@@ -164,7 +176,8 @@ nesting_type_by_season_week_species <- . %>%
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_week_age_species(wastd_data$tracks)
-nesting_type_by_season_week_age_species <- . %>%
+nesting_type_by_season_week_age_species <- function(value){
+  value %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
     season,
@@ -177,6 +190,7 @@ nesting_type_by_season_week_age_species <- . %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
+}
 
 
 #' Pivot table of nesting type by season, season_week, iso_week, and species
@@ -189,7 +203,8 @@ nesting_type_by_season_week_age_species <- . %>%
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_week_site_species(wastd_data$tracks)
-nesting_type_by_season_week_site_species <- . %>%
+nesting_type_by_season_week_site_species <- function(value){
+  value %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
     season,
@@ -202,6 +217,8 @@ nesting_type_by_season_week_site_species <- . %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
+}
+
 
 #' Pivot table of nesting type by season, turtle date. and species
 #'
@@ -213,12 +230,13 @@ nesting_type_by_season_week_site_species <- . %>%
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_day_species(wastd_data$tracks)
-nesting_type_by_season_day_species <- . %>%
+nesting_type_by_season_day_species <- function(value){
+  value %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, turtle_date, species, nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup()
-
+}
 
 #' Pivot table of nesting type by season, calendardate, and species
 #'
@@ -230,13 +248,14 @@ nesting_type_by_season_day_species <- . %>%
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_calendarday_species(wastd_data$tracks)
-nesting_type_by_season_calendarday_species <- . %>%
+nesting_type_by_season_calendarday_species <- function(value){
+  value %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, calendar_date_awst, species, nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
-
+}
 
 #' Pivot table of nesting type by season, calendardate, and track age,
 #' and species
@@ -249,13 +268,14 @@ nesting_type_by_season_calendarday_species <- . %>%
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_calendarday_age_species(wastd_data$tracks)
-nesting_type_by_season_calendarday_age_species <- . %>%
+nesting_type_by_season_calendarday_age_species <- function(value){
+  value %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, calendar_date_awst, species, nest_age, nest_type) %>%
   dplyr::tally() %>%
   dplyr::ungroup() %>%
   tidyr::spread(nest_type, n, fill = 0)
-
+}
 
 #------------------------------------------------------------------------------#
 # Nesting success - tracks with nest vs tracks without and rest
