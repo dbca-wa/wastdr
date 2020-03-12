@@ -57,7 +57,12 @@ download_wastd_turtledata <- function(
     ) %>%
     wastdr::parse_animal_encounters()
 
-  # "turtle-morphometrics"
+  if (verbose == TRUE) {
+    wastdr_msg_info("Downloading turtle morphometrics...")
+  }
+  turtle_morph <- "turtle-morphometrics" %>%
+    wastdr::wastd_GET(max_records = max_records) %>%
+    wastdr::parse_encounterobservations()
 
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading TurtleNestEncounters...")
@@ -130,6 +135,7 @@ download_wastd_turtledata <- function(
       sites = sites,
       surveys = surveys,
       animals = animals,
+      turtle_morph = turtle_morph,
       tracks = tracks,
       nest_dist = nest_dist,
       nest_tags = nest_tags,
