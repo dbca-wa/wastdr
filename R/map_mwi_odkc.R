@@ -42,7 +42,10 @@ map_mwi_odkc <- function(data,
 
   if (!is.null(data) && nrow(data) > 0) {
     data <- data %>% wastdr::sf_as_tbl()
-    pal_mwi <- leaflet::colorFactor(palette = "viridis", domain = data$details_taxon)
+    pal_mwi <- leaflet::colorFactor(
+      palette = "viridis",
+      domain = data$details_taxon
+    )
     data.df <- data %>% split(data$details_taxon)
     overlay_names <- names(data.df)
     if (!is.null(sites)) overlay_names <- c("Sites", overlay_names)

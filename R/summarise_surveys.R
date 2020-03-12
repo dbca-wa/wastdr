@@ -270,8 +270,7 @@ survey_season_stats <- function(surveys) {
     dplyr::summarise(
       first_day = min(turtle_date),
       last_day = max(turtle_date),
-      season_length_days = as.numeric(
-        lubridate::interval(first_day, last_day)) / (3600 * 24),
+      season_length_days = as.numeric(lubridate::interval(first_day, last_day)) / (3600 * 24),
       number_surveys = n(),
       hours_surveyed = round(sum(duration_hours))
     )
@@ -296,8 +295,7 @@ survey_season_site_stats <- function(surveys) {
     dplyr::summarise(
       first_day = min(turtle_date),
       last_day = max(turtle_date),
-      season_length_days = as.numeric(
-        lubridate::interval(first_day, last_day)) / (3600 * 24),
+      season_length_days = as.numeric(lubridate::interval(first_day, last_day)) / (3600 * 24),
       number_surveys = n(),
       hours_surveyed = round(sum(duration_hours))
     )
@@ -311,19 +309,20 @@ survey_season_site_stats <- function(surveys) {
 #' @template param-surveys
 #' @family wastd
 #' @export
-survey_show_detail <- . %>%
-  dplyr::select(
-    change_url,
-    site_name,
-    season,
-    turtle_date,
-    is_production,
-    start_time,
-    end_time,
-    duration_hours,
-    start_comments,
-    end_comments,
-    status
-  )
-
+survey_show_detail <- function(surveys) {
+  surveys %>%
+    dplyr::select(
+      change_url,
+      site_name,
+      season,
+      turtle_date,
+      is_production,
+      start_time,
+      end_time,
+      duration_hours,
+      start_comments,
+      end_comments,
+      status
+    )
+}
 # usethis::use_test("summarise_surveys")

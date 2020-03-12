@@ -140,8 +140,7 @@ wastd_data$nest_dist %>% map_dist(cluster=T)
 
 
 # Surveys
-```{r surveys}
-wastd_data$surveys %>% survey_count()
+```{r surveys, fig.width=7}
 wastd_data$surveys %>% surveys_per_site_name_and_date() %>% knitr::kable()
 wastd_data$surveys %>% survey_hours_per_site_name_and_date() %>% knitr::kable()
 wastd_data$surveys %>% survey_hours_per_person() %>% knitr::kable()
