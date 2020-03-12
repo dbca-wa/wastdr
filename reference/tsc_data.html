@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add turtle dates to a dataframe with datetime col `survey_start_time`. — add_dates_svs • wastdr</title>
+<title>TSC data, parsed, first ten records each — tsc_data • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Add turtle dates to a dataframe with datetime col `survey_start_time`. — add_dates_svs" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="TSC data, parsed, first ten records each — tsc_data" />
+<meta property="og:description" content="TSC data, parsed, first ten records each" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -144,82 +144,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add turtle dates to a dataframe with datetime col `survey_start_time`.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/add_dates.R'><code>R/add_dates.R</code></a></small>
-    <div class="hidden name"><code>add_dates_svs.Rd</code></div>
+    <h1>TSC data, parsed, first ten records each</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>tsc_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
+    <p>TSC data, parsed, first ten records each</p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_dates_svs</span>(<span class='no'>data</span>)</pre>
+    <pre class="usage"><span class='no'>tsc_data</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>data</th>
-      <td><p>a dataframe with datetime col `survey_start_time`, e.g. the
-output of ODKC form "site visit start".</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>The initial dataframe plus new columns</p>
-<p>* calendar_date_awst
-  * turtle_date
-  * season
-  * season_week
-  * iso_week</p>
+    <p>An object of class <code>list</code> of length 14.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other helpers: 
-<code><a href='add_dates_sve.html'>add_dates_sve</a>()</code>,
-<code><a href='add_dates.html'>add_dates</a>()</code>,
-<code><a href='chr2int.html'>chr2int</a>()</code>,
-<code><a href='datetime_as_isoweek.html'>datetime_as_isoweek</a>()</code>,
-<code><a href='datetime_as_seasonweek.html'>datetime_as_seasonweek</a>()</code>,
-<code><a href='datetime_as_season.html'>datetime_as_season</a>()</code>,
-<code><a href='datetime_as_turtle_date.html'>datetime_as_turtle_date</a>()</code>,
-<code><a href='exclude_training_species.html'>exclude_training_species</a>()</code>,
-<code><a href='exclude_training_surveys.html'>exclude_training_surveys</a>()</code>,
-<code><a href='extract_possibly.html'>extract_possibly</a>()</code>,
-<code><a href='fdate_as_tdate.html'>fdate_as_tdate</a>()</code>,
-<code><a href='filter_missing_site.html'>filter_missing_site</a>()</code>,
-<code><a href='filter_missing_survey.html'>filter_missing_survey</a>()</code>,
-<code><a href='filter_surveys_missing_end.html'>filter_surveys_missing_end</a>()</code>,
-<code><a href='filter_surveys_requiring_qa.html'>filter_surveys_requiring_qa</a>()</code>,
-<code><a href='filter_wastd_season.html'>filter_wastd_season</a>()</code>,
-<code><a href='get_more.html'>get_more</a>()</code>,
-<code><a href='get_num_field.html'>get_num_field</a>()</code>,
-<code><a href='httpdate_as_gmt08_turtle_date.html'>httpdate_as_gmt08_turtle_date</a>()</code>,
-<code><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a>()</code>,
-<code><a href='httpdate_as_season.html'>httpdate_as_season</a>()</code>,
-<code><a href='humanize.html'>humanize</a>()</code>,
-<code><a href='join_tsc_sites.html'>join_tsc_sites</a>()</code>,
-<code><a href='map_chr_hack.html'>map_chr_hack</a>()</code>,
-<code><a href='sf_as_tbl.html'>sf_as_tbl</a>()</code>,
-<code><a href='skip_test_if_odkc_offline.html'>skip_test_if_odkc_offline</a>()</code>,
-<code><a href='skip_test_if_wastd_offline.html'>skip_test_if_wastd_offline</a>()</code>,
-<code><a href='tdate_as_fdate.html'>tdate_as_fdate</a>()</code>,
-<code><a href='tracks_as_geojson.html'>tracks_as_geojson</a>()</code>,
-<code><a href='urlize.html'>urlize</a>()</code>,
-<code><a href='wastdr_msg_abort.html'>wastdr_msg_abort</a>()</code>,
-<code><a href='wastdr_msg_info.html'>wastdr_msg_info</a>()</code>,
-<code><a href='wastdr_msg_noop.html'>wastdr_msg_noop</a>()</code>,
-<code><a href='wastdr_msg_success.html'>wastdr_msg_success</a>()</code>,
-<code><a href='wastdr_msg_warn.html'>wastdr_msg_warn</a>()</code>,
-<code><a href='wastdr_settings.html'>wastdr_settings</a>()</code>,
-<code><a href='wastdr_setup.html'>wastdr_setup</a>()</code></p></div>
+    <div class='dont-index'><p>Other included: 
+<code><a href='download_odkc_turtledata_2019.html'>download_odkc_turtledata_2019</a>()</code>,
+<code><a href='download_wastd_turtledata.html'>download_wastd_turtledata</a>()</code>,
+<code><a href='odkc_data.html'>odkc_data</a></code>,
+<code><a href='print.odkc_turtledata.html'>print.odkc_turtledata</a>()</code>,
+<code><a href='print.wastd_data.html'>print.wastd_data</a>()</code>,
+<code><a href='wastd_ae_raw.html'>wastd_ae_raw</a></code>,
+<code><a href='wastd_ae.html'>wastd_ae</a></code>,
+<code><a href='wastd_area_raw.html'>wastd_area_raw</a></code>,
+<code><a href='wastd_data.html'>wastd_data</a></code>,
+<code><a href='wastd_surveys_raw.html'>wastd_surveys_raw</a></code>,
+<code><a href='wastd_tne_raw.html'>wastd_tne_raw</a></code>,
+<code><a href='wastd_tne.html'>wastd_tne</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
+      <li><a href="#format">Format</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 

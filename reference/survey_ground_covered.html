@@ -43,7 +43,7 @@
 
 
 <meta property="og:title" content="Return the number of surveys for a given site_id and season — survey_ground_covered" />
-<meta property="og:description" content="Return the number of surveys for a given site_id and season" />
+<meta property="og:description" content="" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -150,10 +150,10 @@
     </div>
 
     <div class="ref-description">
-    <p>Return the number of surveys for a given site_id and season</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>survey_ground_covered</span>(<span class='no'>surveys</span>, <span class='no'>site_id</span>, <span class='no'>km_per_survey</span>, <span class='no'>season</span>)</pre>
+    <pre class="usage"><span class='fu'>survey_ground_covered</span>(<span class='no'>surveys</span>, <span class='no'>sid</span>, <span class='no'>kms</span>, <span class='no'>seas</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,16 +163,16 @@
       <td><p>(tibble) The output of <code>parse_surveys</code>.</p></td>
     </tr>
     <tr>
-      <th>site_id</th>
+      <th>sid</th>
       <td><p>The ID of a site, e.g. 22</p></td>
     </tr>
     <tr>
-      <th>km_per_survey</th>
+      <th>kms</th>
       <td><p>The numbers of kilometers covered in a survey, e.g. 1.6</p></td>
     </tr>
     <tr>
-      <th>season</th>
-      <td><p>The desired season's start year, e.g. 2018</p></td>
+      <th>seas</th>
+      <td><p>The season as integer, e.g. 2018</p></td>
     </tr>
     </table>
 
@@ -211,10 +211,12 @@
 <code><a href='parse_animal_encounters.html'>parse_animal_encounters</a>()</code>,
 <code><a href='parse_area_sf.html'>parse_area_sf</a>()</code>,
 <code><a href='parse_area.html'>parse_area</a>()</code>,
+<code><a href='parse_encounterobservations.html'>parse_encounterobservations</a>()</code>,
 <code><a href='parse_surveys.html'>parse_surveys</a>()</code>,
 <code><a href='parse_turtle_nest_encounters.html'>parse_turtle_nest_encounters</a>()</code>,
 <code><a href='plot_survey_count.html'>plot_survey_count</a>()</code>,
 <code><a href='plot_survey_effort.html'>plot_survey_effort</a>()</code>,
+<code><a href='print.wastd_api_response.html'>print.wastd_api_response</a>()</code>,
 <code><a href='summarise_hatching_and_emergence_success.html'>summarise_hatching_and_emergence_success</a>()</code>,
 <code><a href='survey_count_heatmap.html'>survey_count_heatmap</a>()</code>,
 <code><a href='survey_count.html'>survey_count</a>()</code>,
@@ -226,14 +228,22 @@
 <code><a href='survey_show_detail.html'>survey_show_detail</a>()</code>,
 <code><a href='surveys_per_site_name_and_date.html'>surveys_per_site_name_and_date</a>()</code>,
 <code><a href='track_success_by_species.html'>track_success_by_species</a>()</code>,
-<code><a href='track_success.html'>track_success</a>()</code></p></div>
+<code><a href='track_success.html'>track_success</a>()</code>,
+<code><a href='tracks_ts.html'>tracks_ts</a>()</code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
+<span class='no'>one_season</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>wastd_data</span>$<span class='no'>surveys</span>$<span class='no'>season</span>)[<span class='fl'>1</span>]
+<span class='no'>one_site_id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>wastd_data</span>$<span class='no'>surveys</span>$<span class='no'>site_id</span>)[<span class='fl'>1</span>]
+<span class='no'>some_kms</span> <span class='kw'>&lt;-</span> <span class='fl'>10</span>
+<span class='fu'>survey_ground_covered</span>(<span class='no'>wastd_data</span>$<span class='no'>surveys</span>, <span class='no'>one_site_id</span>, <span class='no'>some_kms</span>, <span class='no'>one_season</span>)</div><div class='output co'>#&gt; [1] 10</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

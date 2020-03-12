@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Utility to summarise a tibble of tracks with nest excavation data. — summarise_hatching_and_emergence_success • wastdr</title>
+<title><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a> — summarise_hatching_and_emergence_success • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,18 +42,8 @@
 
 
 
-<meta property="og:title" content="Utility to summarise a tibble of tracks with nest excavation data. — summarise_hatching_and_emergence_success" />
-<meta property="og:description" content="Calculates:
-count The count of nests
-clutch_size_fresh Mean observed clutch size during nesting event
-clutch_size_mean Mean of reconstructed clutch size
-clutch_size_sd SD of reconstructed clutch size
-clutch_size_min Min of reconstructed clutch size
-clutch_size_maz Max of reconstructed clutch size
-hatching_success_mean, sd, min, max Hatching success stats
-emergence_success_mean, sd, min, max Emergence success stats
-
-" />
+<meta property="og:title" content="<a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a> — summarise_hatching_and_emergence_success" />
+<meta property="og:description" content="Utility to summarise a tibble of tracks with nest excavation data." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -97,7 +87,7 @@ emergence_success_mean, sd, min, max Emergence success stats
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -154,23 +144,13 @@ emergence_success_mean, sd, min, max Emergence success stats
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Utility to summarise a tibble of tracks with nest excavation data.</h1>
+    <h1><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></h1>
     <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/summarise_tracks.R'><code>R/summarise_tracks.R</code></a></small>
     <div class="hidden name"><code>summarise_hatching_and_emergence_success.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculates:</p><ul>
-<li><p>count The count of nests</p></li>
-<li><p>clutch_size_fresh Mean observed clutch size during nesting event</p></li>
-<li><p>clutch_size_mean Mean of reconstructed clutch size</p></li>
-<li><p>clutch_size_sd SD of reconstructed clutch size</p></li>
-<li><p>clutch_size_min Min of reconstructed clutch size</p></li>
-<li><p>clutch_size_maz Max of reconstructed clutch size</p></li>
-<li><p>hatching_success_mean, sd, min, max Hatching success stats</p></li>
-<li><p>emergence_success_mean, sd, min, max Emergence success stats</p></li>
-</ul>
-
+    <p>Utility to summarise a tibble of tracks with nest excavation data.</p>
     </div>
 
     <pre class="usage"><span class='fu'>summarise_hatching_and_emergence_success</span>(<span class='no'>value</span>)</pre>
@@ -183,6 +163,19 @@ emergence_success_mean, sd, min, max Emergence success stats
       <td><p>The output of <code><a href='parse_turtle_nest_encounters.html'>parse_turtle_nest_encounters()</a></code></p></td>
     </tr>
     </table>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Calculates:</p><ul>
+<li><p>count The count of nests</p></li>
+<li><p>clutch_size_fresh Mean observed clutch size during nesting event</p></li>
+<li><p>clutch_size_mean Mean of reconstructed clutch size</p></li>
+<li><p>clutch_size_sd SD of reconstructed clutch size</p></li>
+<li><p>clutch_size_min Min of reconstructed clutch size</p></li>
+<li><p>clutch_size_maz Max of reconstructed clutch size</p></li>
+<li><p>hatching_success_mean, sd, min, max Hatching success stats</p></li>
+<li><p>emergence_success_mean, sd, min, max Emergence success stats</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -219,10 +212,12 @@ emergence_success_mean, sd, min, max Emergence success stats
 <code><a href='parse_animal_encounters.html'>parse_animal_encounters</a>()</code>,
 <code><a href='parse_area_sf.html'>parse_area_sf</a>()</code>,
 <code><a href='parse_area.html'>parse_area</a>()</code>,
+<code><a href='parse_encounterobservations.html'>parse_encounterobservations</a>()</code>,
 <code><a href='parse_surveys.html'>parse_surveys</a>()</code>,
 <code><a href='parse_turtle_nest_encounters.html'>parse_turtle_nest_encounters</a>()</code>,
 <code><a href='plot_survey_count.html'>plot_survey_count</a>()</code>,
 <code><a href='plot_survey_effort.html'>plot_survey_effort</a>()</code>,
+<code><a href='print.wastd_api_response.html'>print.wastd_api_response</a>()</code>,
 <code><a href='survey_count_heatmap.html'>survey_count_heatmap</a>()</code>,
 <code><a href='survey_count.html'>survey_count</a>()</code>,
 <code><a href='survey_ground_covered.html'>survey_ground_covered</a>()</code>,
@@ -234,13 +229,15 @@ emergence_success_mean, sd, min, max Emergence success stats
 <code><a href='survey_show_detail.html'>survey_show_detail</a>()</code>,
 <code><a href='surveys_per_site_name_and_date.html'>surveys_per_site_name_and_date</a>()</code>,
 <code><a href='track_success_by_species.html'>track_success_by_species</a>()</code>,
-<code><a href='track_success.html'>track_success</a>()</code></p></div>
+<code><a href='track_success.html'>track_success</a>()</code>,
+<code><a href='tracks_ts.html'>tracks_ts</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 
