@@ -26,3 +26,5 @@ gs_getFeature <- function(
     httr::GET(ua, query = query) %>%
     httr::content(., encoding = "utf-8")
 }
+
+# usethis::use_test("gs_getFeature")
