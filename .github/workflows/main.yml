@@ -23,7 +23,8 @@ jobs:
           - {os: windows-latest, r: 'devel'}
           - {os: macOS-latest, r: '3.5'}
           - {os: macOS-latest, r: '3.6'}
-          - {os: macOS-latest, r: 'devel'}
+          # fails on missing proj4
+          #- {os: macOS-latest, r: 'devel'}
           - {os: ubuntu-16.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
           - {os: ubuntu-16.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
           - {os: ubuntu-16.04, r: 'devel', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
@@ -100,6 +101,7 @@ jobs:
         run: |
           remove.packages(c('knitr', 'roxygen2', 'stringi', 'stringr'))
           install.packages(c('knitr', 'roxygen2', 'stringi', 'stringr'))
+        shell: Rscript {0}
 
       - name: Install R dependencies
         run: |
