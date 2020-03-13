@@ -12,16 +12,16 @@ test_that("wastd_GET parses GeoJSON properties", {
   expect_false("properties" %in% names(com))
 })
 
-test_that("wastd_GET falls back to BasicAuth with NULL api_token", {
-  skip_test_if_wastd_offline()
-  capture_warnings(
-    # TSC currentle does not support BasicAuth
-    testthat::expect_error(
-      # message only sent on verbose=TRUE
-      res <- wastd_GET("area", api_token = NULL, verbose = TRUE)
-    )
-  )
-})
+# test_that("wastd_GET falls back to BasicAuth with NULL api_token", {
+#   skip_test_if_wastd_offline()
+#
+#   # TSC currently does not support BasicAuth
+#   testthat::expect_error(
+#     res <- suppressWarnings(wastd_GET(
+#       "area", api_token = NULL, verbose = FALSE
+#     )))
+#
+# })
 
 test_that("wastd_GET aborts with NULL api_un or api_pw", {
   skip_test_if_wastd_offline()
