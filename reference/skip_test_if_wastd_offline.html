@@ -152,12 +152,42 @@
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>skip_test_if_wastd_offline</span>()</pre>
+    <pre class="usage"><span class='fu'>skip_test_if_wastd_offline</span>(
+  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
+  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
+  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
+  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>()
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>api_url</th>
+      <td><p>(character) The WAStD API URL,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_url</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_token</th>
+      <td><p>(character) The WAStD API token,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_token</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_un</th>
+      <td><p>(character) A WAStD API username,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_un</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_pw</th>
+      <td><p>(character) A WAStD API password,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other helpers: 
+<code>%&gt;%()</code>,
 <code><a href='add_dates_sve.html'>add_dates_sve</a>()</code>,
 <code><a href='add_dates_svs.html'>add_dates_svs</a>()</code>,
 <code><a href='add_dates.html'>add_dates</a>()</code>,
@@ -200,6 +230,7 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 
