@@ -25,11 +25,17 @@ jobs:
           - {os: macOS-latest, r: '3.6'}
           # fails on missing proj4
           #- {os: macOS-latest, r: 'devel'}
-          - {os: ubuntu-16.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
-          - {os: ubuntu-16.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
-          - {os: ubuntu-16.04, r: 'devel', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
+          #
+          # After fixing https://github.com/tidyverse/stringr/issues/320
+          # fails with libproj.so.***2: missing
+          #- {os: ubuntu-16.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
+          #- {os: ubuntu-16.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
+          #
+          # fails at r-lib/actions/setup-r@master
+          #- {os: ubuntu-16.04, r: 'devel', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
           - {os: ubuntu-18.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
           - {os: ubuntu-18.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
+          # fails at r-lib/actions/setup-r@master
           # - {os: ubuntu-18.04, r: 'devel', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
