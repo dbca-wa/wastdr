@@ -92,13 +92,6 @@ wastd_GET <- function(serializer,
   res_parsed <- res %>%
     httr::content(as = "text", encoding = "UTF-8") %>%
     {
-      if (identical(., "")) {
-        wastdr_msg_warn("The response did not return any content.")
-      } else {
-        .
-      }
-    } %>%
-    {
       if (format == "json") {
         jsonlite::fromJSON(., flatten = FALSE, simplifyVector = FALSE)
       } else {
