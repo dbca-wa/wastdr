@@ -1,3 +1,7 @@
+# wastdr 0.2.6
+* Test coverage increased.
+* Test data included (WAStD, TSC, ODKC) and used in tests and examples.
+
 # wastdr 0.2.0
 * Refactor `wastd_GET` and `wastd_POST`, add examples to man, tests, vignettes.
 
