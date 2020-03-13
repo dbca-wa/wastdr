@@ -18,14 +18,14 @@ sf_as_tbl <- function(sf_obj) {
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_species(wastd_data$tracks)
-nesting_type_by_season_species <- function(value){
-  value %>%
+nesting_type_by_season_species <- function(tracks){
+  tracks %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, species, nest_type) %>%
   dplyr::tally() %>%
@@ -38,14 +38,14 @@ nesting_type_by_season_species <- function(value){
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_age_species(wastd_data$tracks)
-nesting_type_by_season_age_species <- function(value){
-  value %>%
+nesting_type_by_season_age_species <- function(tracks){
+  tracks %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, species, nest_age, nest_type) %>%
   dplyr::tally() %>%
@@ -57,14 +57,14 @@ nesting_type_by_season_age_species <- function(value){
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_area_season_species(wastd_data$tracks)
-nesting_type_by_area_season_species <- function(value){
-  value %>%
+nesting_type_by_area_season_species <- function(tracks){
+  tracks %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(area_name, season, species, nest_type) %>%
   dplyr::tally() %>%
@@ -76,14 +76,14 @@ nesting_type_by_area_season_species <- function(value){
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_area_season_age_species(wastd_data$tracks)
-nesting_type_by_area_season_age_species <-function(value){
-  value %>%
+nesting_type_by_area_season_age_species <- function(tracks){
+  tracks %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(area_name, season, species, nest_age, nest_type) %>%
   dplyr::tally() %>%
@@ -96,14 +96,14 @@ nesting_type_by_area_season_age_species <-function(value){
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_site_season_species(wastd_data$tracks)
-nesting_type_by_site_season_species <- function(value){
-  value %>%
+nesting_type_by_site_season_species <-function(tracks){
+  tracks %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(area_name, site_name, season, species, nest_type) %>%
   dplyr::tally() %>%
@@ -116,14 +116,14 @@ nesting_type_by_site_season_species <- function(value){
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_site_season_age_species(wastd_data$tracks)
-nesting_type_by_site_season_age_species <- function(value){
-  value %>%
+nesting_type_by_site_season_age_species <-function(tracks){
+  tracks %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
     area_name,
@@ -143,14 +143,14 @@ nesting_type_by_site_season_age_species <- function(value){
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_site_season_age_species(wastd_data$tracks)
-nesting_type_by_season_week_species <- function(value){
-  value %>%
+nesting_type_by_season_week_species <-function(tracks){
+  tracks %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
     season,
@@ -170,14 +170,14 @@ nesting_type_by_season_week_species <- function(value){
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_week_age_species(wastd_data$tracks)
-nesting_type_by_season_week_age_species <- function(value){
-  value %>%
+nesting_type_by_season_week_age_species <- function(tracks){
+  tracks %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
     season,
@@ -197,14 +197,14 @@ nesting_type_by_season_week_age_species <- function(value){
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_week_site_species(wastd_data$tracks)
-nesting_type_by_season_week_site_species <- function(value){
-  value %>%
+nesting_type_by_season_week_site_species <-function(tracks){
+  tracks %>%
   dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(
     season,
@@ -224,14 +224,14 @@ nesting_type_by_season_week_site_species <- function(value){
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_day_species(wastd_data$tracks)
-nesting_type_by_season_day_species <- function(value){
-  value %>%
+nesting_type_by_season_day_species <- function(tracks){
+  tracks %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, turtle_date, species, nest_type) %>%
   dplyr::tally() %>%
@@ -242,14 +242,14 @@ nesting_type_by_season_day_species <- function(value){
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_calendarday_species(wastd_data$tracks)
-nesting_type_by_season_calendarday_species <- function(value){
-  value %>%
+nesting_type_by_season_calendarday_species <- function(tracks){
+  tracks %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, calendar_date_awst, species, nest_type) %>%
   dplyr::tally() %>%
@@ -262,14 +262,14 @@ nesting_type_by_season_calendarday_species <- function(value){
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_calendarday_age_species(wastd_data$tracks)
-nesting_type_by_season_calendarday_age_species <- function(value){
-  value %>%
+nesting_type_by_season_calendarday_age_species <- function(tracks){
+  tracks %>%
   # dplyr::filter(nest_age == "fresh") %>%
   dplyr::group_by(season, calendar_date_awst, species, nest_age, nest_type) %>%
   dplyr::tally() %>%
@@ -290,7 +290,7 @@ nesting_type_by_season_calendarday_age_species <- function(value){
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' nesting_type_by_season_week_site_species(wastd_data$tracks)
+#' track_success(wastd_data$tracks)
 track_success <- function(tracks) {
 
   all_tracks_by_date <- tracks %>%
@@ -492,6 +492,9 @@ summarise_hatching_and_emergence_success <- . %>%
 #' @param value The output of \code{parse_turtle_nest_encounters()}
 #' @export
 #' @family wastd
+#' @examples
+#'  data("wastd_data")
+#'  summarise_hatching_and_emergence_success(wastd_data$tracks)
 hatching_emergence_success <- . %>%
   dplyr::filter(nest_type == "hatched-nest") %>%
   dplyr::filter(hatching_success >= 0) %>%
@@ -503,27 +506,36 @@ hatching_emergence_success <- . %>%
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
-hatching_emergence_success_area <- . %>%
+#' @examples
+#' data("wastd_data")
+#' hatching_emergence_success_area(wastd_data$tracks)
+hatching_emergence_success_area <- function(tracks){
+  tracks %>%
   dplyr::filter(nest_type == "hatched-nest") %>%
   dplyr::filter(hatching_success >= 0) %>%
   dplyr::group_by(area_name, season, species) %>%
   summarise_hatching_and_emergence_success(.)
+}
 
 #' Sumarizes HS and ES for tracks of type \code{hatched-nest}
 #' grouped by `site_name`.
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @export
 #' @family wastd
-hatching_emergence_success_site <- . %>%
+#' @examples
+#' data("wastd_data")
+#' hatching_emergence_success_site(wastd_data$tracks)
+hatching_emergence_success_site <- function(tracks){
+  tracks %>%
   dplyr::filter(nest_type == "hatched-nest") %>%
   dplyr::filter(hatching_success >= 0) %>%
   dplyr::group_by(site_name, season, species) %>%
   summarise_hatching_and_emergence_success(.)
-
+}
 # usethis::use_test("summarise_tracks")

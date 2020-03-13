@@ -14,7 +14,7 @@ track_success(tracks)
 }
 \examples{
 data("wastd_data")
-nesting_type_by_season_week_site_species(wastd_data$tracks)
+track_success(wastd_data$tracks)
 }
 \seealso{
 Other wastd: 

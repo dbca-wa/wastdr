@@ -4,10 +4,10 @@
 \alias{nesting_type_by_site_season_age_species}
 \title{Pivot table of nesting type by site, season, track age, and species}
 \usage{
-nesting_type_by_site_season_age_species(value)
+nesting_type_by_site_season_age_species(tracks)
 }
 \arguments{
-\item{value}{The output of \code{parse_turtle_nest_encounters()}}
+\item{tracks}{The output of \code{parse_turtle_nest_encounters} and \code{add_nest_labels}.}
 }
 \description{
 \lifecycle{stable}

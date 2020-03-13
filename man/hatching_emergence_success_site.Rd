@@ -5,13 +5,17 @@
 \title{Sumarizes HS and ES for tracks of type \code{hatched-nest}
 grouped by `site_name`.}
 \usage{
-hatching_emergence_success_site(value)
+hatching_emergence_success_site(tracks)
 }
 \arguments{
-\item{value}{The output of \code{parse_turtle_nest_encounters()}}
+\item{tracks}{The output of \code{parse_turtle_nest_encounters} and \code{add_nest_labels}.}
 }
 \description{
 \lifecycle{stable}
+}
+\examples{
+data("wastd_data")
+hatching_emergence_success_site(wastd_data$tracks)
 }
 \seealso{
 Other wastd: 
