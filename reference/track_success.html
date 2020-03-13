@@ -220,16 +220,21 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
-<span class='fu'><a href='nesting_type_by_season_week_site_species.html'>nesting_type_by_season_week_site_species</a></span>(<span class='no'>wastd_data</span>$<span class='no'>tracks</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 5 x 11</span><span>
-#&gt;   season season_week iso_week site_name species `false-crawl` `hatched-nest`
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          20       46 </span><span style='color: #BB0000;'>NA</span><span>        chelon…             7              0
-#&gt; </span><span style='color: #555555;'>2</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          20       46 </span><span style='color: #BB0000;'>NA</span><span>        chelon…             0              0
-#&gt; </span><span style='color: #555555;'>3</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          20       46 </span><span style='color: #BB0000;'>NA</span><span>        coroll…             1              0
-#&gt; </span><span style='color: #555555;'>4</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          20       46 </span><span style='color: #BB0000;'>NA</span><span>        eretmo…             5              1
-#&gt; </span><span style='color: #555555;'>5</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          20       46 </span><span style='color: #BB0000;'>NA</span><span>        natato…             1              0
-#&gt; </span><span style='color: #555555;'># … with 4 more variables: nest </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, `successful-crawl` </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   `track-not-assessed` </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, `track-unsure` </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+<span class='fu'>track_success</span>(<span class='no'>wastd_data</span>$<span class='no'>tracks</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 12 x 6</span><span>
+#&gt;    season turtle_date species                  all successful track_success
+#&gt;     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-14  corolla-corolla            2          2        100   
+#&gt; </span><span style='color: #555555;'> 2</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-15  chelonia-mydas             1          0          0   
+#&gt; </span><span style='color: #555555;'> 3</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-15  eretmochelys-imbricata     1          1        100   
+#&gt; </span><span style='color: #555555;'> 4</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-15  natator-depressus          2          1         50   
+#&gt; </span><span style='color: #555555;'> 5</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-16  corolla-corolla            1          0          0   
+#&gt; </span><span style='color: #555555;'> 6</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-17  cheloniidae-fam            1          1        100   
+#&gt; </span><span style='color: #555555;'> 7</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-17  corolla-corolla            3          0          0   
+#&gt; </span><span style='color: #555555;'> 8</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-18  chelonia-mydas            58          3          5.17
+#&gt; </span><span style='color: #555555;'> 9</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-18  cheloniidae-fam           13          0          0   
+#&gt; </span><span style='color: #555555;'>10</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-18  corolla-corolla            1          0          0   
+#&gt; </span><span style='color: #555555;'>11</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-18  eretmochelys-imbricata     5          0          0   
+#&gt; </span><span style='color: #555555;'>12</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016 2016-11-18  natator-depressus          6          0          0   </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
