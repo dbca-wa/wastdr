@@ -87,3 +87,5 @@ wastd_POST <- function(data,
     class = "wastd_api_response"
   )
 }
+
+# usethis::use_test("wastd_POST")
