@@ -29,7 +29,7 @@ jobs:
           - {os: ubuntu-16.04, r: 'devel', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
           - {os: ubuntu-18.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
           - {os: ubuntu-18.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
-          - {os: ubuntu-18.04, r: 'devel', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
+          # - {os: ubuntu-18.04, r: 'devel', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       RSPM: ${{ matrix.config.rspm }}
@@ -70,6 +70,10 @@ jobs:
           key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
           restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
 
+      - name: Add Ubuntu Xenial patches
+        if:  matrix.config.os == 'ubuntu-16.04'
+        run: sudo add-apt-repository -y ppa:opencpu/jq
+
       - name: Install system dependencies
         if: runner.os == 'Linux'
         env:
@@ -81,6 +85,14 @@ jobs:
       - name: Bash Windows over the head with a source install of dplyr
         if: runner.os == 'Windows'
         run: install.packages("dplyr", type = "source")
+        shell: Rscript {0}
+
+      - name: Source install macOS packages
+        if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'devel'
+        run: |
+          remotes::install_github('ropensci/geojsonio')
+          remotes::install_github('hrbrmstr/ggalt')
+          remotes::install_github('r-spatial/sf')
         shell: Rscript {0}
 
       - name: Install R dependencies

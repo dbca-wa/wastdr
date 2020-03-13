@@ -24,6 +24,7 @@ The initial dataframe plus new columns
 }
 \seealso{
 Other helpers: 
+\code{\link{\%>\%}()},
 \code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},
 \code{\link{chr2int}()},

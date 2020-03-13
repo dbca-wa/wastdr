@@ -21,6 +21,7 @@ extract_possibly(lol, "field8")
 \url{https://rdrr.io/cran/purrr/man/safely.html}
 
 Other helpers: 
+\code{\link{\%>\%}()},
 \code{\link{add_dates_sve}()},
 \code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},

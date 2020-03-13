@@ -17,6 +17,7 @@ wastdr_msg_noop("This is a noop message.")
 }
 \seealso{
 Other helpers: 
+\code{\link{\%>\%}()},
 \code{\link{add_dates_sve}()},
 \code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},

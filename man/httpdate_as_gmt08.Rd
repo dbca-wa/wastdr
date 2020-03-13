@@ -21,6 +21,7 @@ httpdate_as_gmt08("2016-11-20T21:46:57.163000Z")
 }
 \seealso{
 Other helpers: 
+\code{\link{\%>\%}()},
 \code{\link{add_dates_sve}()},
 \code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},

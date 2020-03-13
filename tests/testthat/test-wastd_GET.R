@@ -1,7 +1,7 @@
 test_that("wastd_GET parses GeoJSON properties", {
   skip_test_if_wastd_offline()
 
-  area <- wastdr::wastd_GET("area", max_records = 3) %>%
+  area <- wastdr::wastd_GET("area", max_records = 3, verbose = T) %>%
     wastdr::parse_area()
   expect_true(class(area$area_name) == "character")
   expect_false("properties" %in% names(area))
@@ -16,7 +16,7 @@ test_that("wastd_GET falls back to BasicAuth with NULL api_token", {
   skip_test_if_wastd_offline()
   capture_warnings(
     # TSC currentle does not support BasicAuth
-    testthat::expect_message(
+    testthat::expect_error(
       # message only sent on verbose=TRUE
       res <- wastd_GET("area", api_token = NULL, verbose = TRUE)
     )
@@ -57,13 +57,15 @@ test_that("wastd_GET returns something", {
 
 
 test_that("wastd_GET fails if HTTP error is returned", {
-  expect_warning(
+  expect_error(
+    suppressWarnings(
     wastd_GET("", api_url = "http://httpstat.us/401", query = list())
+    )
   )
-  expect_warning(
+  expect_error(
     wastd_GET("", api_url = "http://httpstat.us/500", query = list())
   )
-  expect_warning(
+  expect_error(
     wastd_GET("", api_url = "http://httpstat.us/404", query = list())
   )
 })

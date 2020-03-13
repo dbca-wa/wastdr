@@ -29,6 +29,7 @@ datetime_as_season(httpdate_as_gmt08("2017-08-30T06:38:43Z")) # 2017
 }
 \seealso{
 Other helpers: 
+\code{\link{\%>\%}()},
 \code{\link{add_dates_sve}()},
 \code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},

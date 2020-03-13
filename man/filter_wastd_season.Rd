@@ -20,6 +20,7 @@ The dataframe filtered to rows from the desired season.
 }
 \seealso{
 Other helpers: 
+\code{\link{\%>\%}()},
 \code{\link{add_dates_sve}()},
 \code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},

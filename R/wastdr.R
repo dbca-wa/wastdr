@@ -22,7 +22,7 @@
 #'
 #' @name %>%
 #' @rdname pipe
-#' @family utilities
+#' @family helpers
 #' @keywords internal
 #' @export
 #' @importFrom magrittr %>%

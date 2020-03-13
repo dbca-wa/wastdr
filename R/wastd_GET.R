@@ -44,7 +44,9 @@ wastd_GET <- function(serializer,
                       verbose = wastdr::get_wastdr_verbose()) {
   # Prep and gate checks
   ua <- httr::user_agent("http://github.com/dbca-wa/wastdr")
-  url <- glue::glue(api_url, serializer)
+  url_parts <- httr::parse_url(api_url)
+  url_parts["path"] = glue::glue("{url_parts['path']}{serializer}")
+  url <- httr::build_url(url_parts)
   limit <- ifelse(
     is.null(max_records),
     chunk_size,
@@ -68,26 +70,16 @@ wastd_GET <- function(serializer,
     wastdr_msg_warn(
       glue::glue(
         "Authorization failed.\n",
-        "DBCA staff can run wastdr::wastdr_setup(api_token='Token XXX').\n",
-        "You can find your API token under \"My Profile\" in WAStD.\n",
-        "External collaborators run ",
-        "wastdr::wastdr_setup(api_un='XXX', api_pw='XXX').\n",
+        "Run wastdr::wastdr_setup(api_token='Token XXX').\n",
+        "with the API token under \"My Profile\" in WAStD.\n",
         "See ?wastdr_setup or vignette('setup', package='wastdr')."
       )
     )
-    return(
-      structure(
-        list(
-          data = NULL,
-          serializer = serializer,
-          url = res$url,
-          date = res$headers$date,
-          status_code = res$status_code
-        ),
-        class = "wastd_api_response"
-      )
-    )
   }
+
+  if (res$status_code >= 400)
+    wastdr_msg_abort(glue::glue("Aborting with {res$status_code}."))
+
 
   res_parsed <- res %>%
     httr::content(as = "text", encoding = "UTF-8") %>%
@@ -103,6 +95,21 @@ wastd_GET <- function(serializer,
   # OffsetLimitPagination serializer returns records as "results"
   data_key <-
     ifelse("features" %in% names(res_parsed), "features", "results")
+
+  if (!(data_key %in% names(res_parsed)))
+    return(
+      structure(
+        list(
+          data = res_parsed,
+          serializer = serializer,
+          url = res$url,
+          date = res$headers$date,
+          status_code = res$status_code
+        ),
+        class = "wastd_api_response"
+      )
+    )
+
   features <- res_parsed[[data_key]]
   next_url <- res_parsed$`next`
   total_count <- length(features)

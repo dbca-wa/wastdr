@@ -4,13 +4,32 @@
 \alias{skip_test_if_wastd_offline}
 \title{Check whether API token is set and WAStD is online, else skip test}
 \usage{
-skip_test_if_wastd_offline()
+skip_test_if_wastd_offline(
+  api_url = get_wastdr_api_url(),
+  api_token = get_wastdr_api_token(),
+  api_un = get_wastdr_api_un(),
+  api_pw = get_wastdr_api_pw()
+)
+}
+\arguments{
+\item{api_url}{(character) The WAStD API URL,
+default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}
+
+\item{api_token}{(character) The WAStD API token,
+default \code{\link{get_wastdr_api_token}}, see \code{\link{wastdr_setup}}}
+
+\item{api_un}{(character) A WAStD API username,
+default \code{\link{get_wastdr_api_un}}, see \code{\link{wastdr_setup}}}
+
+\item{api_pw}{(character) A WAStD API password,
+default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
 }
 \description{
 \lifecycle{stable}
 }
 \seealso{
 Other helpers: 
+\code{\link{\%>\%}()},
 \code{\link{add_dates_sve}()},
 \code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},

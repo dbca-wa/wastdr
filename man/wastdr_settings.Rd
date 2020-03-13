@@ -40,6 +40,7 @@ Get or set wastdr WAStD settings
 \code{\link{get_wastdr_api_pw}}.
 
 Other helpers: 
+\code{\link{\%>\%}()},
 \code{\link{add_dates_sve}()},
 \code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},
