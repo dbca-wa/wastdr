@@ -1,8 +1,9 @@
 pandoc: 2.7.3
 pkgdown: 1.4.1.9000
-pkgdown_sha: 2ae20f3d3c207330f5972642ec42a7be277c6a7a
+pkgdown_sha: 97dcfa237ea7c0ba73453402861c40665f6fb06e
 articles:
   analysis: analysis.html
   getting-wastd: getting-wastd.html
   setup: setup.html
+last_built: 2020-03-13T02:11Z
 
