@@ -95,6 +95,17 @@ jobs:
           remotes::install_github('r-spatial/sf')
         shell: Rscript {0}
 
+      - name: Source install Ubuntu Xenial packages
+        if: matrix.config.os == 'ubuntu-16.04'
+        run: |
+          remove.packages("tidyverse")
+          remove.packages("knitr")
+          remove.packages("roxygen2")
+          remove.packages("selectr")
+          remove.packages("stringi")
+          remove.packages("stringr")
+          install.packages(c("knitr", "roxygen2", "selectr", "selectr", "tidyverse", "stringi", "stringr"))
+
       - name: Install R dependencies
         run: |
           install.packages('V8')
