@@ -4,7 +4,13 @@
 \alias{ggplot_track_success_by_date}
 \title{Plot the track success (absolute numbers) of a given species as time series}
 \usage{
-ggplot_track_success_by_date(data, speciesname, placename = "", prefix = "")
+ggplot_track_success_by_date(
+  data,
+  speciesname,
+  placename = "",
+  prefix = "",
+  local_dir = here::here()
+)
 }
 \arguments{
 \item{data}{The output of \code{\link{track_success}}}
@@ -14,6 +20,9 @@ ggplot_track_success_by_date(data, speciesname, placename = "", prefix = "")
 \item{placename}{(string) The place name, used in labels.}
 
 \item{prefix}{(string) A prefix for the filename. Default: ""}
+
+\item{local_dir}{The dir to save the plot to as PNG,
+default: \code{here::here()}}
 }
 \description{
 \lifecycle{stable}

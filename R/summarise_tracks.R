@@ -24,13 +24,13 @@ sf_as_tbl <- function(sf_obj) {
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_species(wastd_data$tracks)
-nesting_type_by_season_species <- function(tracks){
+nesting_type_by_season_species <- function(tracks) {
   tracks %>%
-  # dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(season, species, nest_type) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  tidyr::spread(nest_type, n, fill = 0)
+    # dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(season, species, nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 }
 
 
@@ -44,13 +44,13 @@ nesting_type_by_season_species <- function(tracks){
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_age_species(wastd_data$tracks)
-nesting_type_by_season_age_species <- function(tracks){
+nesting_type_by_season_age_species <- function(tracks) {
   tracks %>%
-  # dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(season, species, nest_age, nest_type) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  tidyr::spread(nest_type, n, fill = 0)
+    # dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(season, species, nest_age, nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 }
 
 #' Pivot table of nesting type by area, season, and species
@@ -63,13 +63,13 @@ nesting_type_by_season_age_species <- function(tracks){
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_area_season_species(wastd_data$tracks)
-nesting_type_by_area_season_species <- function(tracks){
+nesting_type_by_area_season_species <- function(tracks) {
   tracks %>%
-  # dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(area_name, season, species, nest_type) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  tidyr::spread(nest_type, n, fill = 0)
+    # dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(area_name, season, species, nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 }
 
 #' Pivot table of nesting type by area, season, track age, and species
@@ -82,13 +82,13 @@ nesting_type_by_area_season_species <- function(tracks){
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_area_season_age_species(wastd_data$tracks)
-nesting_type_by_area_season_age_species <- function(tracks){
+nesting_type_by_area_season_age_species <- function(tracks) {
   tracks %>%
-  # dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(area_name, season, species, nest_age, nest_type) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  tidyr::spread(nest_type, n, fill = 0)
+    # dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(area_name, season, species, nest_age, nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 }
 
 
@@ -102,13 +102,13 @@ nesting_type_by_area_season_age_species <- function(tracks){
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_site_season_species(wastd_data$tracks)
-nesting_type_by_site_season_species <-function(tracks){
+nesting_type_by_site_season_species <- function(tracks) {
   tracks %>%
-  # dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(area_name, site_name, season, species, nest_type) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  tidyr::spread(nest_type, n, fill = 0)
+    # dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(area_name, site_name, season, species, nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 }
 
 
@@ -122,20 +122,18 @@ nesting_type_by_site_season_species <-function(tracks){
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_site_season_age_species(wastd_data$tracks)
-nesting_type_by_site_season_age_species <-function(tracks){
+nesting_type_by_site_season_age_species <- function(tracks) {
   tracks %>%
-  # dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(
-    area_name,
-    site_name,
-    season,
-    species,
-    nest_age,
-    nest_type
-  ) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  tidyr::spread(nest_type, n, fill = 0)
+    # dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(area_name,
+                    site_name,
+                    season,
+                    species,
+                    nest_age,
+                    nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 }
 
 
@@ -149,19 +147,17 @@ nesting_type_by_site_season_age_species <-function(tracks){
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_site_season_age_species(wastd_data$tracks)
-nesting_type_by_season_week_species <-function(tracks){
+nesting_type_by_season_week_species <- function(tracks) {
   tracks %>%
-  dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(
-    season,
-    season_week,
-    iso_week,
-    species,
-    nest_type
-  ) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  tidyr::spread(nest_type, n, fill = 0)
+    dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(season,
+                    season_week,
+                    iso_week,
+                    species,
+                    nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 }
 
 
@@ -176,20 +172,18 @@ nesting_type_by_season_week_species <-function(tracks){
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_week_age_species(wastd_data$tracks)
-nesting_type_by_season_week_age_species <- function(tracks){
+nesting_type_by_season_week_age_species <- function(tracks) {
   tracks %>%
-  dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(
-    season,
-    season_week,
-    iso_week,
-    species,
-    nest_age,
-    nest_type
-  ) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  tidyr::spread(nest_type, n, fill = 0)
+    dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(season,
+                    season_week,
+                    iso_week,
+                    species,
+                    nest_age,
+                    nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 }
 
 
@@ -203,20 +197,18 @@ nesting_type_by_season_week_age_species <- function(tracks){
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_week_site_species(wastd_data$tracks)
-nesting_type_by_season_week_site_species <-function(tracks){
+nesting_type_by_season_week_site_species <- function(tracks) {
   tracks %>%
-  dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(
-    season,
-    season_week,
-    iso_week,
-    site_name,
-    species,
-    nest_type
-  ) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  tidyr::spread(nest_type, n, fill = 0)
+    dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(season,
+                    season_week,
+                    iso_week,
+                    site_name,
+                    species,
+                    nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 }
 
 
@@ -230,12 +222,12 @@ nesting_type_by_season_week_site_species <-function(tracks){
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_day_species(wastd_data$tracks)
-nesting_type_by_season_day_species <- function(tracks){
+nesting_type_by_season_day_species <- function(tracks) {
   tracks %>%
-  # dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(season, turtle_date, species, nest_type) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup()
+    # dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(season, turtle_date, species, nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup()
 }
 
 #' Pivot table of nesting type by season, calendardate, and species
@@ -248,13 +240,13 @@ nesting_type_by_season_day_species <- function(tracks){
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_calendarday_species(wastd_data$tracks)
-nesting_type_by_season_calendarday_species <- function(tracks){
+nesting_type_by_season_calendarday_species <- function(tracks) {
   tracks %>%
-  # dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(season, calendar_date_awst, species, nest_type) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  tidyr::spread(nest_type, n, fill = 0)
+    # dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(season, calendar_date_awst, species, nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 }
 
 #' Pivot table of nesting type by season, calendardate, and track age,
@@ -268,13 +260,13 @@ nesting_type_by_season_calendarday_species <- function(tracks){
 #' @examples
 #' data("wastd_data")
 #' nesting_type_by_season_calendarday_age_species(wastd_data$tracks)
-nesting_type_by_season_calendarday_age_species <- function(tracks){
+nesting_type_by_season_calendarday_age_species <- function(tracks) {
   tracks %>%
-  # dplyr::filter(nest_age == "fresh") %>%
-  dplyr::group_by(season, calendar_date_awst, species, nest_age, nest_type) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  tidyr::spread(nest_type, n, fill = 0)
+    # dplyr::filter(nest_age == "fresh") %>%
+    dplyr::group_by(season, calendar_date_awst, species, nest_age, nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 }
 
 #------------------------------------------------------------------------------#
@@ -292,7 +284,6 @@ nesting_type_by_season_calendarday_age_species <- function(tracks){
 #' data("wastd_data")
 #' track_success(wastd_data$tracks)
 track_success <- function(tracks) {
-
   all_tracks_by_date <- tracks %>%
     dplyr::filter(
       nest_type %in% c(
@@ -316,8 +307,7 @@ track_success <- function(tracks) {
 
   all_tracks_by_date %>%
     dplyr::left_join(successful_tracks_by_date,
-      by = c("turtle_date", "species", "season")
-    ) %>%
+                     by = c("turtle_date", "species", "season")) %>%
     dplyr::mutate(
       successful = ifelse(is.na(successful), 0, successful),
       track_success = 100 * successful / all
@@ -349,36 +339,33 @@ track_success_by_species <- function(track_success) {
 #' @param speciesname The species name, e.g. "natator-depressus"
 #' @template param-placename
 #' @template param-prefix
+#' @param local_dir The dir to save the plot to as PNG,
+#'   default: \code{here::here()}
 #' @export
 #' @family wastd
 ggplot_track_success_by_date <- function(data,
                                          speciesname,
                                          placename = "",
-                                         prefix = "") {
-  . <- NULL
-  species <- NULL
-  aes <- NULL
-  turtle_date <- NULL
-  vars <- NULL
-  season <- NULL
-  successful <- NULL
-
+                                         prefix = "",
+                                         local_dir = here::here()) {
   data %>%
     dplyr::filter(species == speciesname) %>%
-    ggplot2::ggplot(aes(x = tdate_as_fdate(turtle_date))) +
-    ggplot2::facet_grid(rows = vars(season), scales = "free_x") +
-    ggplot2::geom_bar(aes(y = all),
+    ggplot2::ggplot(ggplot2::aes(x = tdate_as_fdate(turtle_date))) +
+    ggplot2::facet_grid(rows = ggplot2::vars(season), scales = "free_x") +
+    ggplot2::geom_bar(
+      ggplot2::aes(y = all),
       stat = "identity",
       color = "black",
       fill = "grey"
     ) +
-    ggplot2::geom_bar(aes(y = successful),
+    ggplot2::geom_bar(
+      ggplot2::aes(y = successful),
       stat = "identity",
       color = "black",
       fill = "green"
     ) +
     ggplot2::ggtitle(
-      paste("Nesting effort of", speciesname %>% humanize()),
+      glue::glue("Nesting effort of {humanize(speciesname)}"),
       subtitle = "Number of all (grey) and successful (green) tracks"
     ) +
     ggplot2::labs(x = "Date", y = "Number of all and successful tracks") +
@@ -390,12 +377,14 @@ ggplot_track_success_by_date <- function(data,
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
     ggplot2::theme_classic() +
     ggplot2::ggsave(
-      glue::glue(
-        "{prefix}_track_effort_{wastdr::urlize(placename)}_{speciesname}.png"
+      fs::path(
+        local_dir,
+        glue::glue(
+          "{prefix}_track_effort_{wastdr::urlize(placename)}_{speciesname}.png"
+        )
       ),
-      width = 10,
-      height = 6
-    )
+    width = 10,
+    height = 6)
 }
 
 #' Plot the track success rate (relative numbers) of a given species as time
@@ -407,26 +396,28 @@ ggplot_track_success_by_date <- function(data,
 #' @param speciesname The species name, e.g. "natator-depressus"
 #' @template param-placename
 #' @template param-prefix
+#' @param local_dir The dir to save the plot to as PNG,
+#'   default: \code{here::here()}
 #' @export
 #' @family wastd
 ggplot_track_successrate_by_date <- function(data,
                                              speciesname,
                                              placename = "",
-                                             prefix = "") {
+                                             prefix = "",
+                                             local_dir = here::here()) {
   data %>%
     dplyr::filter(species == speciesname) %>%
-    ggplot2::ggplot(aes(x = tdate_as_fdate(turtle_date))) +
-    ggplot2::facet_grid(rows = vars(season), scales = "free_x") +
+    ggplot2::ggplot(ggplot2::aes(x = tdate_as_fdate(turtle_date))) +
+    ggplot2::facet_grid(rows = ggplot2::vars(season), scales = "free_x") +
     ggplot2::geom_bar(
-      aes(y = track_success),
+      ggplot2::aes(y = track_success),
       stat = "identity",
       color = "black",
       fill = "grey"
     ) +
     ggplot2::ggtitle(
-      paste("Nesting success of", speciesname %>% humanize()),
-      subtitle = "Fraction of successful over total nesting crawls"
-    ) +
+      glue::glue("Nesting success of {humanize(speciesname)}"),
+      subtitle = "Fraction of successful over total nesting crawls") +
     ggplot2::labs(x = "Date", y = "Fraction of tracks with nest") +
     ggplot2::scale_x_continuous(
       labels = function(x) {
@@ -436,8 +427,11 @@ ggplot_track_successrate_by_date <- function(data,
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
     ggplot2::theme_classic() +
     ggplot2::ggsave(
-      glue::glue(
-        "{prefix}_track_success_{wastdr::urlize(placename)}_{speciesname}.png"
+      fs::path(
+        local_dir,
+        glue::glue(
+          "{prefix}_track_success_{wastdr::urlize(placename)}_{speciesname}.png"
+        )
       ),
       width = 10,
       height = 6
@@ -512,12 +506,12 @@ hatching_emergence_success <- . %>%
 #' @examples
 #' data("wastd_data")
 #' hatching_emergence_success_area(wastd_data$tracks)
-hatching_emergence_success_area <- function(tracks){
+hatching_emergence_success_area <- function(tracks) {
   tracks %>%
-  dplyr::filter(nest_type == "hatched-nest") %>%
-  dplyr::filter(hatching_success >= 0) %>%
-  dplyr::group_by(area_name, season, species) %>%
-  summarise_hatching_and_emergence_success(.)
+    dplyr::filter(nest_type == "hatched-nest") %>%
+    dplyr::filter(hatching_success >= 0) %>%
+    dplyr::group_by(area_name, season, species) %>%
+    summarise_hatching_and_emergence_success(.)
 }
 
 #' Sumarizes HS and ES for tracks of type \code{hatched-nest}
@@ -531,11 +525,11 @@ hatching_emergence_success_area <- function(tracks){
 #' @examples
 #' data("wastd_data")
 #' hatching_emergence_success_site(wastd_data$tracks)
-hatching_emergence_success_site <- function(tracks){
+hatching_emergence_success_site <- function(tracks) {
   tracks %>%
-  dplyr::filter(nest_type == "hatched-nest") %>%
-  dplyr::filter(hatching_success >= 0) %>%
-  dplyr::group_by(site_name, season, species) %>%
-  summarise_hatching_and_emergence_success(.)
+    dplyr::filter(nest_type == "hatched-nest") %>%
+    dplyr::filter(hatching_success >= 0) %>%
+    dplyr::group_by(site_name, season, species) %>%
+    summarise_hatching_and_emergence_success(.)
 }
 # usethis::use_test("summarise_tracks")

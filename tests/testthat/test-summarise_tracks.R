@@ -194,10 +194,28 @@ test_that("track_success_by_species returns a tibble", {
 
 })
 
-# ggplot_track_success_by_date
-# ggplot_track_successrate_by_date
-#
-#
+
+test_that("ggplot_track_success_by_date returns a ggplot", {
+    data("wastd_data")
+    sp <- unique(wastd_data$tracks$species)[1]
+
+    x <- track_success(wastd_data$tracks) %>%
+        ggplot_track_success_by_date(sp, local_dir = tempdir())
+
+    expect_equal(class(x), c("gg", "ggplot"))
+})
+
+
+test_that("ggplot_track_successrate_by_date returns a ggplot", {
+    data("wastd_data")
+    sp <- unique(wastd_data$tracks$species)[1]
+
+    x <- track_success(wastd_data$tracks) %>%
+        ggplot_track_successrate_by_date(sp, local_dir = tempdir())
+
+    expect_equal(class(x), c("gg", "ggplot"))
+})
+
 
 test_that("summarise_hatching_and_emergence_success returns a tibble", {
     data("wastd_data")

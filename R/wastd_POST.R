@@ -30,19 +30,22 @@ wastd_POST <- function(data,
                        api_pw = wastdr::get_wastdr_api_pw(),
                        verbose = wastdr::get_wastdr_verbose()) {
   ua <- httr::user_agent("http://github.com/dbca-wa/wastdr")
-  url <- paste0(api_url, serializer, "/")
+  url_parts <- httr::parse_url(api_url)
+  url_parts["path"] = glue::glue("{url_parts['path']}{serializer}")
+  url <- httr::build_url(url_parts)
 
   if (is.null(api_token)) {
+    if (verbose == TRUE) wastdr_msg_info("No API token found, using BasicAuth.")
+    if (is.null(api_un)) wastdr_msg_abort("BasicAuth requires an API username.")
+    if (is.null(api_pw)) wastdr_msg_abort("BasicAuth requires an API password.")
     auth <- httr::authenticate(api_un, api_pw, type = "basic")
   } else {
     auth <- httr::add_headers(c(Authorization = api_token))
   }
-  if (is.null(auth)) wastdr_msg_warn("No authentication set!")
 
   if (verbose == TRUE) wastdr_msg_info(glue::glue("[wastd_POST] {url}"))
 
-  res <- httr::POST(url, auth, ua, encode = "json", body = data) %>%
-    httr::warn_for_status(.)
+  res <- httr::POST(url, auth, ua, encode = "json", body = data)
 
   if (res$status_code == 401) {
     stop(glue::glue(
