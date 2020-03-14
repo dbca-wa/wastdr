@@ -53,6 +53,7 @@ utils::globalVariables(c(
   "first_day",
   "health",
   "hours_surveyed",
+  "hatching_success",
   "is_production",
   "iso_week",
   "layersControlOptions",
