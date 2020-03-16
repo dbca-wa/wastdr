@@ -4,10 +4,10 @@
 \alias{disturbance_by_season}
 \title{Tally WAStD disturbances by season, cause, and encounter type}
 \usage{
-disturbance_by_season(value)
+disturbance_by_season(data)
 }
 \arguments{
-\item{value}{The ouput of
+\item{data}{A dataframe with column "disturbance_cause", e.g. the ouput of
 \code{
 \link{wastd_GET}("turtle-nest-disturbance-observations") %>%
 \link{parse_encounterobservations}()
@@ -22,7 +22,7 @@ A tibble with columns `season`, `disturbance_cause`,
 }
 \examples{
 data("wastd_data")
-wastd_data$nest_dist \%>\% disturbance_by_season()
+wastd_data$nest_dist \%>\% disturbance_by_season() \%>\% head()
 }
 \seealso{
 Other wastd: 

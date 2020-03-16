@@ -37,6 +37,7 @@
 #'         "Marine Wildlife Incident 0.6 ".
 #'   \item mwi_dmg Individual injuries recorded against mwi,
 #'         one record per injury.
+#'   \item mwi_tag Individual tags sighted during an mwi, one record per tag.
 #'   \item tsi Turtle Sightings from form "Turtle Sighting 0.1/0.2",
 #'         one row per sighted turtle.
 #'   \item svs Survey start points from form "Site Visit Start 1.3".

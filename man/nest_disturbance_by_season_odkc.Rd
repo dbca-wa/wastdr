@@ -4,7 +4,7 @@
 \alias{nest_disturbance_by_season_odkc}
 \title{Tally ODKC Nest disturbances by season, cause, and encounter type}
 \usage{
-nest_disturbance_by_season_odkc(value)
+nest_disturbance_by_season_odkc(data)
 }
 \arguments{
 \item{value}{ODKC tracks_dist}
@@ -22,8 +22,6 @@ Other odkc:
 \code{\link{exclude_training_species_odkc}()},
 \code{\link{filter_alive_odkc}()},
 \code{\link{filter_dead_odkc}()},
-\code{\link{filter_disturbance_odkc}()},
-\code{\link{filter_predation_odkc}()},
 \code{\link{general_disturbance_by_season_odkc}()},
 \code{\link{map_dist_odkc}()},
 \code{\link{map_mwi_odkc}()},

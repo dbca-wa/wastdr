@@ -8,7 +8,7 @@ filter_dead_odkc(data)
 }
 \arguments{
 \item{data}{A dataframe with column "health", e.g. data from form
-"Marine Wildlife Incident 0.6".}
+"Marine Wildlife Incident 0.6" as shown in \code{odkc_data$mwi}.}
 }
 \value{
 The dataframe with rows matching mortal outcomes.
@@ -16,13 +16,15 @@ The dataframe with rows matching mortal outcomes.
 \description{
 \lifecycle{stable}
 }
+\examples{
+data("odkc_data")
+odkc_data$mwi \%>\% filter_dead_odkc() \%>\% head()
+}
 \seealso{
 Other odkc: 
 \code{\link{add_nest_labels_odkc}()},
 \code{\link{exclude_training_species_odkc}()},
 \code{\link{filter_alive_odkc}()},
-\code{\link{filter_disturbance_odkc}()},
-\code{\link{filter_predation_odkc}()},
 \code{\link{general_disturbance_by_season_odkc}()},
 \code{\link{map_dist_odkc}()},
 \code{\link{map_mwi_odkc}()},

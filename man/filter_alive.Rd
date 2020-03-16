@@ -7,14 +7,17 @@
 filter_alive(data)
 }
 \arguments{
-\item{data}{A dataframe with column "health", e.g. data from form
-"Marine Wildlife Incident 0.6".}
+\item{data}{A dataframe with column "health", e.g. \code{wastd_data$animals}.}
 }
 \value{
 The dataframe with rows matching live outcomes.
 }
 \description{
 \lifecycle{stable}
+}
+\examples{
+data("wastd_data")
+wastd_data$animals \%>\% filter_alive() \%>\% head()
 }
 \seealso{
 Other wastd: 
