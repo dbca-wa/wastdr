@@ -152,14 +152,14 @@
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>disturbance_by_season</span>(<span class='no'>value</span>)</pre>
+    <pre class="usage"><span class='fu'>disturbance_by_season</span>(<span class='no'>data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>value</th>
-      <td><p>The ouput of
+      <th>data</th>
+      <td><p>A dataframe with column "disturbance_cause", e.g. the ouput of
 <code>
 <a href='wastd_GET.html'>wastd_GET</a>("turtle-nest-disturbance-observations") <!-- %&gt;% -->
 <a href='parse_encounterobservations.html'>parse_encounterobservations</a>()
@@ -228,20 +228,15 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
-<span class='no'>wastd_data</span>$<span class='no'>nest_dist</span> <span class='kw'>%&gt;%</span> <span class='fu'>disturbance_by_season</span>()</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 30 x 4</span><span>
-#&gt;    season disturbance_cause encounter_type     n
-#&gt;     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 dingo             nest              24
-#&gt; </span><span style='color: #555555;'> 2</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 dog               nest               2
-#&gt; </span><span style='color: #555555;'> 3</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 goanna            nest               2
-#&gt; </span><span style='color: #555555;'> 4</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 unknown           nest               2
-#&gt; </span><span style='color: #555555;'> 5</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 vehicle           nest               2
-#&gt; </span><span style='color: #555555;'> 6</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 other             nest               1
-#&gt; </span><span style='color: #555555;'> 7</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 turtle            nest               1
-#&gt; </span><span style='color: #555555;'> 8</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 fox               other             12
-#&gt; </span><span style='color: #555555;'> 9</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 human             other              9
-#&gt; </span><span style='color: #555555;'>10</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 vehicle           other              8
-#&gt; </span><span style='color: #555555;'># … with 20 more rows</span><span></div></span></pre>
+<span class='no'>wastd_data</span>$<span class='no'>nest_dist</span> <span class='kw'>%&gt;%</span> <span class='fu'>disturbance_by_season</span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 4</span><span>
+#&gt;   season disturbance_cause encounter_type     n
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 dingo             nest              24
+#&gt; </span><span style='color: #555555;'>2</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 dog               nest               2
+#&gt; </span><span style='color: #555555;'>3</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 goanna            nest               2
+#&gt; </span><span style='color: #555555;'>4</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 unknown           nest               2
+#&gt; </span><span style='color: #555555;'>5</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 vehicle           nest               2
+#&gt; </span><span style='color: #555555;'>6</span><span>   </span><span style='text-decoration: underline;'>2</span><span>017 other             nest               1</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>

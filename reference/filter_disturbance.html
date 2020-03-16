@@ -159,7 +159,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A dataframe with column "disturbance_cause".</p></td>
+      <td><p>A dataframe with column "disturbance_cause", e.g. the ouput of
+<code>
+<a href='wastd_GET.html'>wastd_GET</a>("turtle-nest-disturbance-observations") <!-- %&gt;% -->
+<a href='parse_encounterobservations.html'>parse_encounterobservations</a>()
+</code> or <code><a href='https://rdrr.io/r/utils/data.html'>data("wastd_data"); wastd_data$nest_dist</a></code></p></td>
     </tr>
     </table>
 
@@ -221,6 +225,93 @@
 <code><a href='track_success.html'>track_success</a>()</code>,
 <code><a href='tracks_ts.html'>tracks_ts</a>()</code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
+<span class='no'>wastd_data</span>$<span class='no'>nest_dist</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_disturbance</span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 45</span><span>
+#&gt;   id    encounter_pk encounter_area_… encounter_area_… encounter_area_…
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
+#&gt; </span><span style='color: #555555;'>1</span><span> uuid…          315               18 Locality         Perth Metro     
+#&gt; </span><span style='color: #555555;'>2</span><span> uuid…         </span><span style='text-decoration: underline;'>4</span><span>919              148 Locality         Smokey Bay Area 
+#&gt; </span><span style='color: #555555;'>3</span><span> uuid…         </span><span style='text-decoration: underline;'>2</span><span>681               18 Locality         Perth Metro     
+#&gt; </span><span style='color: #555555;'>4</span><span> uuid…         </span><span style='text-decoration: underline;'>2</span><span>749               14 Locality         Onslow          
+#&gt; </span><span style='color: #555555;'>5</span><span> uuid…          314               18 Locality         Perth Metro     
+#&gt; </span><span style='color: #555555;'>6</span><span> uuid…          322               18 Locality         Perth Metro     
+#&gt; </span><span style='color: #555555;'># … with 40 more variables: encounter_site_pk </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_site_area_type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, encounter_site_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_survey_id </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, encounter_survey_start_time </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_survey_end_time </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, encounter_survey_start_comments </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_survey_end_comments </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_survey_absolute_admin_url </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_survey_production </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, encounter_location_accuracy </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_when </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, encounter_observer_pk </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_observer_username </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, encounter_observer_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_reporter_pk </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, encounter_reporter_username </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_reporter_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, encounter_status </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_source </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, encounter_encounter_type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_leaflet_title </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, encounter_latitude </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_longitude </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, encounter_crs </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_absolute_admin_url </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, encounter_comments </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   encounter_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, observation_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, disturbance_cause </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   disturbance_cause_confidence </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, disturbance_severity </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   comments </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, observation_start_time </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, datetime </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>,
+#&gt; #   calendar_date_awst </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, turtle_date </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span style='color: #555555;'>, season </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   season_week </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, iso_week </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"odkc_data"</span>)
+<span class='no'>odkc_data</span>$<span class='no'>tracks_dist</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_disturbance</span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 86</span><span>
+#&gt;   id    submissions_id photo_disturban… disturbance_cau… disturbance_cau…
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
+#&gt; </span><span style='color: #555555;'>1</span><span> 8a0f… uuid:b2910a04… 1581375904930.j… unknown          guess           
+#&gt; </span><span style='color: #555555;'>2</span><span> 25e6… uuid:7e5621a7… 1582411817399.j… unknown          expert-opinion  
+#&gt; </span><span style='color: #555555;'>3</span><span> 3fbf… uuid:7e5621a7… 1582411857037.j… unknown          expert-opinion  
+#&gt; </span><span style='color: #555555;'>4</span><span> 6fa2… uuid:d4c5670d… 1581487440698.j… cyclone          expert-opinion  
+#&gt; </span><span style='color: #555555;'>5</span><span> fffa… uuid:eed08f87… 1581487803025.j… cyclone          expert-opinion  
+#&gt; </span><span style='color: #555555;'>6</span><span> 0579… uuid:750cd217… 1581486439068.j… cyclone          expert-opinion  
+#&gt; </span><span style='color: #555555;'># … with 81 more variables: disturbance_severity </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, comments </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   odata_context.x </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, observation_start_time </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, reporter </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   device_id </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, observation_end_time </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, system_submission_date </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   system_submitter_id </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, system_submitter_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   meta_instance_id </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, details_nest_age </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, details_species </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   details_nest_type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, details_observed_at_longitude </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   details_observed_at_latitude </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, details_observed_at_altitude </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   nest_habitat </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, nest_disturbance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, nest_nest_tagged </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   nest_logger_found </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, nest_eggs_counted </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   nest_hatchlings_measured </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, nest_fan_angles_measured </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   track_photos_tail_pokes </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, track_photos_photo_track_1 </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   track_photos_photo_track_2 </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, track_photos_max_track_width_front </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   track_photos_max_track_width_rear </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   track_photos_carapace_drag_width </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, track_photos_step_length </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   nest_tag_status </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, nest_tag_tag_label </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, nest_tag_photo_tag </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   nest_tag_date_nest_laid </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, nest_tag_tag_comments </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   nest_tag_flipper_tag_id </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_photo_hatchling_tracks_seawards </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_bearing_to_water_manual </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_leftmost_track_manual </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_rightmost_track_manual </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_no_tracks_main_group </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_no_tracks_main_group_min </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_no_tracks_main_group_max </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_outlier_tracks_present </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_hatchling_path_to_sea </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_hatchling_emergence_time_known </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_cloud_cover_at_emergence_known </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_light_sources_present </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_photo_hatchling_tracks_relief </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   fan_angles_path_to_sea_comments </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   emergence_climate_cloud_cover_at_emergence </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   egg_count_no_egg_shells </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, egg_count_no_live_hatchlings </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   egg_count_no_dead_hatchlings </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, egg_count_no_undeveloped_eggs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   egg_count_no_unhatched_eggs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, egg_count_no_unhatched_term </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   egg_count_no_depredated_eggs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, egg_count_nest_depth_top </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   egg_count_nest_depth_bottom </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   other_light_sources_other_light_sources_present </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   nest_photos_photo_nest_1 </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, nest_photos_photo_nest_3 </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   nest_photos_photo_nest_2 </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   hatchling_emergence_time_group_hatchling_emergence_time </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>,
+#&gt; #   hatchling_emergence_time_group_hatchling_emergence_time_source </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>,
+#&gt; #   odata_context.y </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, species_colours </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, nest_type_text </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   geometry </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span style='color: #555555;'>, site_id </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, site_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, area_id </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   area_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, datetime </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, calendar_date_awst </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   turtle_date </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span style='color: #555555;'>, season </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, season_week </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, iso_week </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
@@ -228,6 +319,7 @@
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
