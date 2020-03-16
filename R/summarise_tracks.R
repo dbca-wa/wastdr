@@ -341,13 +341,15 @@ track_success_by_species <- function(track_success) {
 #' @template param-prefix
 #' @param local_dir The dir to save the plot to as PNG,
 #'   default: \code{here::here()}
+#' @param export Whether to export the figure as a file, default: FALSE
 #' @export
 #' @family wastd
 ggplot_track_success_by_date <- function(data,
                                          speciesname,
                                          placename = "",
                                          prefix = "",
-                                         local_dir = here::here()) {
+                                         local_dir = here::here(),
+                                         export = FALSE) {
   data %>%
     dplyr::filter(species == speciesname) %>%
     ggplot2::ggplot(ggplot2::aes(x = tdate_as_fdate(turtle_date))) +
@@ -364,10 +366,8 @@ ggplot_track_success_by_date <- function(data,
       color = "black",
       fill = "green"
     ) +
-    ggplot2::ggtitle(
-      glue::glue("Nesting effort of {humanize(speciesname)}"),
-      subtitle = "Number of all (grey) and successful (green) tracks"
-    ) +
+    ggplot2::ggtitle(glue::glue("Nesting effort of {humanize(speciesname)}"),
+                     subtitle = "Number of all (grey) and successful (green) tracks") +
     ggplot2::labs(x = "Date", y = "Number of all and successful tracks") +
     ggplot2::scale_x_continuous(
       labels = function(x) {
@@ -376,15 +376,17 @@ ggplot_track_success_by_date <- function(data,
     ) +
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
     ggplot2::theme_classic() +
-    ggplot2::ggsave(
-      fs::path(
-        local_dir,
-        glue::glue(
-          "{prefix}_track_effort_{wastdr::urlize(placename)}_{speciesname}.png"
-        )
-      ),
-    width = 10,
-    height = 6)
+    {
+      if (export == TRUE)
+        ggplot2::ggsave(fs::path(
+          local_dir,
+          glue::glue(
+            "{prefix}_track_effort_{wastdr::urlize(placename)}_{speciesname}.png"
+          )
+        ),
+        width = 10,
+        height = 6)
+    } + NULL
 }
 
 #' Plot the track success rate (relative numbers) of a given species as time
@@ -398,13 +400,15 @@ ggplot_track_success_by_date <- function(data,
 #' @template param-prefix
 #' @param local_dir The dir to save the plot to as PNG,
 #'   default: \code{here::here()}
+#' @param export Whether to export the figure as a file, default: FALSE
 #' @export
 #' @family wastd
 ggplot_track_successrate_by_date <- function(data,
                                              speciesname,
                                              placename = "",
                                              prefix = "",
-                                             local_dir = here::here()) {
+                                             local_dir = here::here(),
+                                             export = FALSE) {
   data %>%
     dplyr::filter(species == speciesname) %>%
     ggplot2::ggplot(ggplot2::aes(x = tdate_as_fdate(turtle_date))) +
@@ -415,9 +419,8 @@ ggplot_track_successrate_by_date <- function(data,
       color = "black",
       fill = "grey"
     ) +
-    ggplot2::ggtitle(
-      glue::glue("Nesting success of {humanize(speciesname)}"),
-      subtitle = "Fraction of successful over total nesting crawls") +
+    ggplot2::ggtitle(glue::glue("Nesting success of {humanize(speciesname)}"),
+                     subtitle = "Fraction of successful over total nesting crawls") +
     ggplot2::labs(x = "Date", y = "Fraction of tracks with nest") +
     ggplot2::scale_x_continuous(
       labels = function(x) {
@@ -426,16 +429,17 @@ ggplot_track_successrate_by_date <- function(data,
     ) +
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
     ggplot2::theme_classic() +
-    ggplot2::ggsave(
-      fs::path(
-        local_dir,
-        glue::glue(
-          "{prefix}_track_success_{wastdr::urlize(placename)}_{speciesname}.png"
-        )
-      ),
-      width = 10,
-      height = 6
-    )
+    {
+      if (export == TRUE)
+    ggplot2::ggsave(fs::path(
+      local_dir,
+      glue::glue(
+        "{prefix}_track_success_{wastdr::urlize(placename)}_{speciesname}.png"
+      )
+    ),
+    width = 10,
+    height = 6)
+    } + NULL
 }
 
 #------------------------------------------------------------------------------#

@@ -102,12 +102,12 @@ wastd_data$tracks %>%
 wastd_data$tracks %>% 
   track_success %>% 
   ggplot_track_success_by_date(
-    "natator-depressus", placename="Test place", prefix="TEST", local_dir = here::here("vignettes"))
+    "natator-depressus", placename="Test place", prefix="TEST")
 
 wastd_data$tracks %>% 
   track_success %>% 
   ggplot_track_successrate_by_date(
-    "natator-depressus", placename="Test place", prefix="TEST", local_dir = here::here("vignettes"))
+    "natator-depressus", placename="Test place", prefix="TEST")
 ```
 
 ## Nest excavations: Hatching and emergence success

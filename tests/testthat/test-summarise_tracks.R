@@ -128,17 +128,19 @@ test_that("nesting_type_by_season_day_species returns a tibble", {
 
 })
 
-test_that("nesting_type_by_season_calendarday_species returns a tibble", {
-    data("wastd_data")
+test_that("nesting_type_by_season_calendarday_species returns a tibble",
+          {
+              data("wastd_data")
 
-    x <- nesting_type_by_season_calendarday_species(wastd_data$tracks)
+              x <-
+                  nesting_type_by_season_calendarday_species(wastd_data$tracks)
 
-    expect_true(tibble::is_tibble(x))
-    expect_true("season" %in% names(x))
-    expect_true("calendar_date_awst" %in% names(x))
-    expect_true("species" %in% names(x))
+              expect_true(tibble::is_tibble(x))
+              expect_true("season" %in% names(x))
+              expect_true("calendar_date_awst" %in% names(x))
+              expect_true("species" %in% names(x))
 
-})
+          })
 
 test_that("nesting_type_by_season_week_species returns a tibble", {
     data("wastd_data")
@@ -153,18 +155,20 @@ test_that("nesting_type_by_season_week_species returns a tibble", {
 
 })
 
-test_that("nesting_type_by_season_calendarday_age_species returns a tibble", {
-    data("wastd_data")
+test_that("nesting_type_by_season_calendarday_age_species returns a tibble",
+          {
+              data("wastd_data")
 
-    x <- nesting_type_by_season_calendarday_age_species(wastd_data$tracks)
+              x <-
+                  nesting_type_by_season_calendarday_age_species(wastd_data$tracks)
 
-    expect_true(tibble::is_tibble(x))
-    expect_true("season" %in% names(x))
-    expect_true("calendar_date_awst" %in% names(x))
-    expect_true("species" %in% names(x))
-    expect_true("nest_age" %in% names(x))
+              expect_true(tibble::is_tibble(x))
+              expect_true("season" %in% names(x))
+              expect_true("calendar_date_awst" %in% names(x))
+              expect_true("species" %in% names(x))
+              expect_true("nest_age" %in% names(x))
 
-})
+          })
 
 
 # track_success
@@ -184,7 +188,8 @@ test_that("track_success returns a tibble", {
 test_that("track_success_by_species returns a tibble", {
     data("wastd_data")
 
-    x <- track_success(wastd_data$tracks) %>% track_success_by_species()
+    x <-
+        track_success(wastd_data$tracks) %>% track_success_by_species()
 
     expect_true(tibble::is_tibble(x))
     expect_true("season" %in% names(x))
@@ -200,22 +205,49 @@ test_that("ggplot_track_success_by_date returns a ggplot", {
     sp <- unique(wastd_data$tracks$species)[1]
 
     x <- track_success(wastd_data$tracks) %>%
-        ggplot_track_success_by_date(sp, local_dir = tempdir())
+        ggplot_track_success_by_date(sp, local_dir = tempdir(), export = TRUE)
 
     expect_equal(class(x), c("gg", "ggplot"))
 })
 
+
+test_that("ggplot_track_success_by_date returns a ggplot with export=FALSE",
+          {
+              data("wastd_data")
+              sp <- unique(wastd_data$tracks$species)[1]
+
+              x <- track_success(wastd_data$tracks) %>%
+                  ggplot_track_success_by_date(sp,
+                                               local_dir = tempdir(),
+                                               export = FALSE)
+
+              expect_equal(class(x), c("gg", "ggplot"))
+          })
 
 test_that("ggplot_track_successrate_by_date returns a ggplot", {
     data("wastd_data")
     sp <- unique(wastd_data$tracks$species)[1]
 
     x <- track_success(wastd_data$tracks) %>%
-        ggplot_track_successrate_by_date(sp, local_dir = tempdir())
+        ggplot_track_successrate_by_date(sp,
+                                         local_dir = tempdir(),
+                                         export = TRUE)
 
     expect_equal(class(x), c("gg", "ggplot"))
 })
 
+test_that("ggplot_track_successrate_by_date returns a ggplot with export=FALSE",
+          {
+              data("wastd_data")
+              sp <- unique(wastd_data$tracks$species)[1]
+
+              x <- track_success(wastd_data$tracks) %>%
+                  ggplot_track_successrate_by_date(sp,
+                                                   local_dir = tempdir(),
+                                                   export = FALSE)
+
+              expect_equal(class(x), c("gg", "ggplot"))
+          })
 
 test_that("summarise_hatching_and_emergence_success returns a tibble", {
     data("wastd_data")

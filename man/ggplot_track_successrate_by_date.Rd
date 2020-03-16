@@ -10,7 +10,8 @@ ggplot_track_successrate_by_date(
   speciesname,
   placename = "",
   prefix = "",
-  local_dir = here::here()
+  local_dir = here::here(),
+  export = FALSE
 )
 }
 \arguments{
@@ -24,6 +25,8 @@ ggplot_track_successrate_by_date(
 
 \item{local_dir}{The dir to save the plot to as PNG,
 default: \code{here::here()}}
+
+\item{export}{Whether to export the figure as a file, default: FALSE}
 }
 \description{
 \lifecycle{stable}
