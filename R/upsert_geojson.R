@@ -2,22 +2,22 @@
 #'
 #' @param gj_featurecollection (list) A GeoJSON featurecollection as list
 #' @template param-serializer
-#' @template param-auth
 #' @param chunksize (int) The number of features to upload simultaneously,
 #'   default: 1000.
+#' @template param-auth
 #' @template param-verbose
 #' @export
 #' @family wacensus
 upsert_geojson <- function(gj_featurecollection,
                            serializer = "names",
+                           chunksize = 1000,
                            api_url = wastdr::get_wastdr_api_url(),
                            api_token = wastdr::get_wastdr_api_token(),
                            api_un = wastdr::get_wastdr_api_un(),
                            api_pw = wastdr::get_wastdr_api_pw(),
-                           chunksize = 1000,
-                           verbose = FALSE) {
-  . <- NULL
-  if (verbose) message("[upsert_geojson] Updating ", api_url, serializer, "...")
+                           verbose = get_wastdr_verbose()) {
+  if (verbose)
+    wastdr_msg_info(glue::glue("Posting to {api_url}{serializer}..."))
   props <- purrr::map(gj_featurecollection[["features"]], "properties")
   # purrr::map(props, wastd_POST, api_url = api_url)
   # One by one - very slow. Faster:
@@ -25,7 +25,8 @@ upsert_geojson <- function(gj_featurecollection,
   for (i in 0:(len / chunksize)) {
     start <- (i * chunksize) + 1
     end <- min((start + chunksize) - 1, len)
-    message("[upsert_geojson] Processing feature ", start, " to ", end)
+    if (verbose)
+      wastdr_msg_info(glue::glue("Processing feature {start} to {end}..."))
     props[start:end] %>%
       purrr::map(., purrr::flatten) %>%
       wastd_POST(.,
@@ -37,5 +38,8 @@ upsert_geojson <- function(gj_featurecollection,
         verbose = verbose
       )
   }
-  message("[upsert_geojson] Finished. ", len, " records updated.")
+  if (verbose)
+    wastdr_msg_success(glue::glue("Finished. {len} records updated."))
 }
+
+# usethis::use_test("upsert_geojson")

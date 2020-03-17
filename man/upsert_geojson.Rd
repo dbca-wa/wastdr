@@ -7,12 +7,12 @@
 upsert_geojson(
   gj_featurecollection,
   serializer = "names",
+  chunksize = 1000,
   api_url = wastdr::get_wastdr_api_url(),
   api_token = wastdr::get_wastdr_api_token(),
   api_un = wastdr::get_wastdr_api_un(),
   api_pw = wastdr::get_wastdr_api_pw(),
-  chunksize = 1000,
-  verbose = FALSE
+  verbose = get_wastdr_verbose()
 )
 }
 \arguments{
@@ -33,6 +33,9 @@ Possible values as per
 \item taxa (WACensus taxa)
 }}
 
+\item{chunksize}{(int) The number of features to upload simultaneously,
+default: 1000.}
+
 \item{api_url}{(character) The WAStD API URL,
 default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}
 
@@ -44,9 +47,6 @@ default \code{\link{get_wastdr_api_un}}, see \code{\link{wastdr_setup}}}
 
 \item{api_pw}{(character) A WAStD API password,
 default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
-
-\item{chunksize}{(int) The number of features to upload simultaneously,
-default: 1000.}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}
