@@ -155,12 +155,12 @@
     <pre class="usage"><span class='fu'>upsert_geojson</span>(
   <span class='no'>gj_featurecollection</span>,
   <span class='kw'>serializer</span> <span class='kw'>=</span> <span class='st'>"names"</span>,
+  <span class='kw'>chunksize</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
   <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/wastdr/man/wastdr_settings.html'>get_wastdr_api_url</a></span>(),
   <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/wastdr/man/wastdr_settings.html'>get_wastdr_api_token</a></span>(),
   <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/wastdr/man/wastdr_settings.html'>get_wastdr_api_un</a></span>(),
   <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/wastdr/man/wastdr_settings.html'>get_wastdr_api_pw</a></span>(),
-  <span class='kw'>chunksize</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -187,6 +187,11 @@ Possible values as per
 </ul></td>
     </tr>
     <tr>
+      <th>chunksize</th>
+      <td><p>(int) The number of features to upload simultaneously,
+default: 1000.</p></td>
+    </tr>
+    <tr>
       <th>api_url</th>
       <td><p>(character) The WAStD API URL,
 default <code><a href='wastdr_settings.html'>get_wastdr_api_url</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
@@ -205,11 +210,6 @@ default <code><a href='wastdr_settings.html'>get_wastdr_api_un</a></code>, see <
       <th>api_pw</th>
       <td><p>(character) A WAStD API password,
 default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
-    </tr>
-    <tr>
-      <th>chunksize</th>
-      <td><p>(int) The number of features to upload simultaneously,
-default: 1000.</p></td>
     </tr>
     <tr>
       <th>verbose</th>

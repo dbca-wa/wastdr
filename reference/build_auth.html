@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Exclude ODKC records with <code>species</code> "corolla-corolla". — exclude_training_species_odkc • wastdr</title>
+<title>Build token or basic authentication based on given credentials — build_auth • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Exclude ODKC records with <code>species</code> "corolla-corolla". — exclude_training_species_odkc" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="Build token or basic authentication based on given credentials — build_auth" />
+<meta property="og:description" content="Build token or basic authentication based on given credentials" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -143,55 +143,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Exclude ODKC records with <code>species</code> "corolla-corolla".</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/filters.R'><code>R/filters.R</code></a></small>
-    <div class="hidden name"><code>exclude_training_species_odkc.Rd</code></div>
+    <h1>Build token or basic authentication based on given credentials</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/build_auth.R'><code>R/build_auth.R</code></a></small>
+    <div class="hidden name"><code>build_auth.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
+    <p>Build token or basic authentication based on given credentials</p>
     </div>
 
-    <pre class="usage"><span class='fu'>exclude_training_species_odkc</span>(<span class='no'>value</span>)</pre>
+    <pre class="usage"><span class='fu'>build_auth</span>(
+  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
+  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
+  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>(),
+  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>value</th>
-      <td><p>A tibble with a column "details_species".</p></td>
+      <th>api_token</th>
+      <td><p>(character) The WAStD API token,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_token</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_un</th>
+      <td><p>(character) A WAStD API username,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_un</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_pw</th>
+      <td><p>(character) A WAStD API password,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_url</th>
+      <td><p>(character) The WAStD API URL,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_url</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <div class='dont-index'><p>Other odkc: 
-<code><a href='add_nest_labels_odkc.html'>add_nest_labels_odkc</a>()</code>,
-<code><a href='general_disturbance_by_season_odkc.html'>general_disturbance_by_season_odkc</a>()</code>,
-<code><a href='map_dist_odkc.html'>map_dist_odkc</a>()</code>,
-<code><a href='map_mwi_odkc.html'>map_mwi_odkc</a>()</code>,
-<code><a href='map_sv_odkc.html'>map_sv_odkc</a>()</code>,
-<code><a href='map_tracks_odkc.html'>map_tracks_odkc</a>()</code>,
-<code><a href='nest_disturbance_by_season_odkc.html'>nest_disturbance_by_season_odkc</a>()</code>,
-<code><a href='nesting_type_by_area_season_age_species_odkc.html'>nesting_type_by_area_season_age_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_area_season_species_odkc.html'>nesting_type_by_area_season_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_age_species_odkc.html'>nesting_type_by_season_age_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_calendarday_age_species_odkc.html'>nesting_type_by_season_calendarday_age_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_calendarday_species_odkc.html'>nesting_type_by_season_calendarday_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_day_species_odkc.html'>nesting_type_by_season_day_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_species_odkc.html'>nesting_type_by_season_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_week_age_species_odkc.html'>nesting_type_by_season_week_age_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_week_site_species_odkc.html'>nesting_type_by_season_week_site_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_week_species_odkc.html'>nesting_type_by_season_week_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_site_season_age_species_odkc.html'>nesting_type_by_site_season_age_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_site_season_species_odkc.html'>nesting_type_by_site_season_species_odkc</a>()</code></p></div>
+    <p>httr::authenticate() for Basicauth or httr::add_headers fot TokenAuth</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#value">Value</a></li>
     </ul>
 
   </div>

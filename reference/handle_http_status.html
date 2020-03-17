@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Exclude ODKC records with <code>species</code> "corolla-corolla". — exclude_training_species_odkc • wastdr</title>
+<title>Emit a specific warning messages depending on HTTP status — handle_http_status • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,9 @@
 
 
 
-<meta property="og:title" content="Exclude ODKC records with <code>species</code> "corolla-corolla". — exclude_training_species_odkc" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="Emit a specific warning messages depending on HTTP status — handle_http_status" />
+<meta property="og:description" content="Status 401: Instruct how to authenticate.
+Status http_error: warn and show status." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -143,55 +144,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Exclude ODKC records with <code>species</code> "corolla-corolla".</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/filters.R'><code>R/filters.R</code></a></small>
-    <div class="hidden name"><code>exclude_training_species_odkc.Rd</code></div>
+    <h1>Emit a specific warning messages depending on HTTP status</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/handle_http_status.R'><code>R/handle_http_status.R</code></a></small>
+    <div class="hidden name"><code>handle_http_status.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
+    <p>Status 401: Instruct how to authenticate.
+Status http_error: warn and show status.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>exclude_training_species_odkc</span>(<span class='no'>value</span>)</pre>
+    <pre class="usage"><span class='fu'>handle_http_status</span>(<span class='no'>response</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>value</th>
-      <td><p>A tibble with a column "details_species".</p></td>
+      <th>response</th>
+      <td><p>An HTTP response.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other odkc: 
-<code><a href='add_nest_labels_odkc.html'>add_nest_labels_odkc</a>()</code>,
-<code><a href='general_disturbance_by_season_odkc.html'>general_disturbance_by_season_odkc</a>()</code>,
-<code><a href='map_dist_odkc.html'>map_dist_odkc</a>()</code>,
-<code><a href='map_mwi_odkc.html'>map_mwi_odkc</a>()</code>,
-<code><a href='map_sv_odkc.html'>map_sv_odkc</a>()</code>,
-<code><a href='map_tracks_odkc.html'>map_tracks_odkc</a>()</code>,
-<code><a href='nest_disturbance_by_season_odkc.html'>nest_disturbance_by_season_odkc</a>()</code>,
-<code><a href='nesting_type_by_area_season_age_species_odkc.html'>nesting_type_by_area_season_age_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_area_season_species_odkc.html'>nesting_type_by_area_season_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_age_species_odkc.html'>nesting_type_by_season_age_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_calendarday_age_species_odkc.html'>nesting_type_by_season_calendarday_age_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_calendarday_species_odkc.html'>nesting_type_by_season_calendarday_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_day_species_odkc.html'>nesting_type_by_season_day_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_species_odkc.html'>nesting_type_by_season_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_week_age_species_odkc.html'>nesting_type_by_season_week_age_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_week_site_species_odkc.html'>nesting_type_by_season_week_site_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_season_week_species_odkc.html'>nesting_type_by_season_week_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_site_season_age_species_odkc.html'>nesting_type_by_site_season_age_species_odkc</a>()</code>,
-<code><a href='nesting_type_by_site_season_species_odkc.html'>nesting_type_by_site_season_species_odkc</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#see-also">See also</a></li>
     </ul>
 
   </div>
