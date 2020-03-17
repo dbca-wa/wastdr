@@ -12,16 +12,6 @@ test_that("wastd_GET parses GeoJSON properties", {
   expect_false("properties" %in% names(com))
 })
 
-# test_that("wastd_GET falls back to BasicAuth with NULL api_token", {
-#   skip_test_if_wastd_offline()
-#
-#   # TSC currently does not support BasicAuth
-#   testthat::expect_error(
-#     res <- suppressWarnings(wastd_GET(
-#       "area", api_token = NULL, verbose = FALSE
-#     )))
-#
-# })
 
 test_that("wastd_GET aborts with NULL api_un or api_pw", {
   skip_test_if_wastd_offline()
@@ -57,15 +47,13 @@ test_that("wastd_GET returns something", {
 
 
 test_that("wastd_GET fails if HTTP error is returned", {
-  expect_error(
-    suppressWarnings(
+  expect_warning(
     wastd_GET("", api_url = "http://httpstat.us/401", query = list())
-    )
   )
-  expect_error(
+  expect_warning(
     wastd_GET("", api_url = "http://httpstat.us/500", query = list())
   )
-  expect_error(
+  expect_warning(
     wastd_GET("", api_url = "http://httpstat.us/404", query = list())
   )
 })
@@ -96,16 +84,16 @@ test_that("wastd_GET respects limit", {
 test_that("wastd_GET combines pagination", {
   skip_test_if_wastd_offline()
   # With geojson
-  ae <- wastd_GET("animal-encounters", max_records = 120)
+  ae <- wastd_GET("animal-encounters", max_records = 21, chunk_size = 5)
   capture.output(print(ae))
   expect_equal(ae$status_code, 200)
-  expect_true(length(ae$data) >= 120)
+  expect_true(length(ae$data) >= 21)
 
   # With plain json
-  x <- wastd_GET("users", max_records = 120)
+  x <- wastd_GET("users", max_records = 21, chunk_size = 5)
   capture.output(print(x))
   expect_equal(x$status_code, 200)
-  expect_true(length(x$data) >= 120)
+  expect_true(length(x$data) >= 21)
 })
 
 # usethis::use_r("wastd_GET")

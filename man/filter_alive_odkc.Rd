@@ -7,7 +7,7 @@
 filter_alive_odkc(data)
 }
 \arguments{
-\item{data}{A dataframe with column "health", e.g. data from form
+\item{data}{A dataframe with column "status_health", e.g. data from form
 "Marine Wildlife Incident 0.6" as shown in \code{odkc_data$mwi}.}
 }
 \value{

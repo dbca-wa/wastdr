@@ -45,7 +45,7 @@ wastd_GET <- function(serializer,
   # Prep and gate checks
   ua <- httr::user_agent("http://github.com/dbca-wa/wastdr")
   url_parts <- httr::parse_url(api_url)
-  url_parts["path"] = glue::glue("{url_parts['path']}{serializer}")
+  url_parts["path"] = paste0(url_parts['path'], serializer)
   url <- httr::build_url(url_parts)
   limit <- ifelse(
     is.null(max_records),
@@ -53,33 +53,13 @@ wastd_GET <- function(serializer,
     min(max_records, chunk_size)
   )
   query <- c(query, list(format = format, limit = limit))
-  if (is.null(api_token)) {
-    if (verbose == TRUE) wastdr_msg_info("No API token found, using BasicAuth.")
-    if (is.null(api_un)) wastdr_msg_abort("BasicAuth requires an API username.")
-    if (is.null(api_pw)) wastdr_msg_abort("BasicAuth requires an API password.")
-    auth <- httr::authenticate(api_un, api_pw, type = "basic")
-  } else {
-    auth <- httr::add_headers(c(Authorization = api_token))
-  }
+  auth <- build_auth(api_token = api_token, api_un = api_un, api_pw = api_pw)
 
   # First batch of results and error handling
   if (verbose == TRUE) wastdr_msg_info(glue::glue("Fetching {url}"))
   res <- httr::GET(url, auth, ua, query = query)
 
-  if (res$status_code == 401) {
-    wastdr_msg_warn(
-      glue::glue(
-        "Authorization failed.\n",
-        "Run wastdr::wastdr_setup(api_token='Token XXX').\n",
-        "with the API token under \"My Profile\" in WAStD.\n",
-        "See ?wastdr_setup or vignette('setup', package='wastdr')."
-      )
-    )
-  }
-
-  if (res$status_code >= 400)
-    wastdr_msg_abort(glue::glue("Aborting with {res$status_code}."))
-
+  handle_http_status(res)
 
   res_parsed <- res %>%
     httr::content(as = "text", encoding = "UTF-8") %>%
@@ -114,15 +94,6 @@ wastd_GET <- function(serializer,
   next_url <- res_parsed$`next`
   total_count <- length(features)
 
-  if (httr::http_error(res)) {
-    wastdr::wastdr_msg_warn(
-      glue::glue(
-        "WAStD API request failed ",
-        "[{httr::status_code(res)}]\n{res_parsed$message %||% ''}"
-      )
-    )
-  }
-
   # Unless we already have reached our desired max_records in the first page of
   # results, loop over paginated response until we either hit the end of the
   # server side data (next_url is Null) or our max_records.
@@ -147,9 +118,8 @@ wastd_GET <- function(serializer,
     }
   }
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_success(glue::glue("Done fetching {url}"))
-  }
+  if (verbose == TRUE)
+    wastdr::wastdr_msg_success(glue::glue("Done fetching {res$url}"))
 
   structure(
     list(

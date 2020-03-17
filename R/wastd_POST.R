@@ -33,38 +33,13 @@ wastd_POST <- function(data,
   url_parts <- httr::parse_url(api_url)
   url_parts["path"] = glue::glue("{url_parts['path']}{serializer}")
   url <- httr::build_url(url_parts)
-
-  if (is.null(api_token)) {
-    if (verbose == TRUE) wastdr_msg_info("No API token found, using BasicAuth.")
-    if (is.null(api_un)) wastdr_msg_abort("BasicAuth requires an API username.")
-    if (is.null(api_pw)) wastdr_msg_abort("BasicAuth requires an API password.")
-    auth <- httr::authenticate(api_un, api_pw, type = "basic")
-  } else {
-    auth <- httr::add_headers(c(Authorization = api_token))
-  }
+  auth <- build_auth(api_token = api_token, api_un = api_un, api_pw = api_pw)
 
   if (verbose == TRUE) wastdr_msg_info(glue::glue("[wastd_POST] {url}"))
 
   res <- httr::POST(url, auth, ua, encode = "json", body = data)
 
-  if (res$status_code == 401) {
-    stop(glue::glue(
-      "Authorization failed.\n",
-      "If you are DBCA staff, run wastdr_setup(api_token='Token XXX').\n",
-      "You can find your API token under \"My Profile\" in WAStD.\n",
-      "External collaborators run ",
-      "wastdr::wastdr_setup(api_un='XXX', api_pw='XXX').\n",
-      "See ?wastdr_setup or vignette('setup')."
-    ),
-    call. = FALSE
-    )
-  }
-
-  if (httr::http_type(res) != "application/json") {
-    wastdr_msg_warn(
-      glue::glue("API did not return JSON.\nIs {url} a valid endpoint?")
-    )
-  }
+  handle_http_status(res)
 
   text <- httr::content(res, as = "text", encoding = "UTF-8")
 
@@ -74,10 +49,8 @@ wastd_POST <- function(data,
     simplifyVector = FALSE
   )
 
-  if (verbose == TRUE) {
+  if (verbose == TRUE)
     wastdr_msg_success(glue::glue("[wastd_POST] {res$status}"))
-  }
-
 
   structure(
     list(
