@@ -32,7 +32,7 @@ test_that("filter_dead excludes all health stages indicating not dead", {
 test_that("filter_alive_odkc excludes all health stages indicating death", {
     data("odkc_data")
 
-    x <- odkc_data$mwi %>% filter_alive_odkc()
+    x <- odkc_data$mwi %>% filter_alive(health_col = "status_health")
     xn <- unique(x$status_health)
 
     expect_false("alive-then-died" %in% xn)
@@ -48,7 +48,7 @@ test_that("filter_alive_odkc excludes all health stages indicating death", {
 test_that("filter_dead_odkc excludes all health stages indicating not dead", {
     data("odkc_data")
 
-    x <- odkc_data$mwi %>% filter_dead_odkc()
+    x <- odkc_data$mwi %>% filter_dead(health_col = "status_health")
     xn <- unique(x$status_health)
 
     expect_false("na" %in% xn)

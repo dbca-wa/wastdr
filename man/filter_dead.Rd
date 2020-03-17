@@ -2,12 +2,17 @@
 % Please edit documentation in R/summarise_mwi.R
 \name{filter_dead}
 \alias{filter_dead}
-\title{Filter strandings to mortalities}
+\title{Filter animal encounters to mortalities: strandings}
 \usage{
-filter_dead(data)
+filter_dead(data, health_col = "health")
 }
 \arguments{
-\item{data}{A dataframe with column "health", e.g. \code{wastd_data$animals}.}
+\item{data}{A dataframe with column indicating "health",
+e.g. \code{wastd_data$animals} with column \code{health} or
+\code{odkc_data$mwi} with column \code{health_status}.}
+
+\item{health_col}{The column name of the column coding animal health,
+default: "health" (WAStD).}
 }
 \value{
 The dataframe with rows matching mortal outcomes.
@@ -18,6 +23,9 @@ The dataframe with rows matching mortal outcomes.
 \examples{
 data("wastd_data")
 wastd_data$animals \%>\% filter_dead() \%>\% head()
+
+data("odkc_data")
+odkc_data$mwi \%>\% filter_dead(health_col = "status_health") \%>\% head()
 }
 \seealso{
 Other wastd: 

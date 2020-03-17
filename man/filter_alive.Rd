@@ -2,12 +2,17 @@
 % Please edit documentation in R/summarise_mwi.R
 \name{filter_alive}
 \alias{filter_alive}
-\title{Filter strandings to live rescues}
+\title{Filter animal encounters to live outcomes: tagging, in water, and rescues}
 \usage{
-filter_alive(data)
+filter_alive(data, health_col = "health")
 }
 \arguments{
-\item{data}{A dataframe with column "health", e.g. \code{wastd_data$animals}.}
+\item{data}{A dataframe with column indicating "health",
+e.g. \code{wastd_data$animals} with column \code{health} or
+\code{odkc_data$mwi} with column \code{health_status}.}
+
+\item{health_col}{The column name of the column coding animal health,
+default: "health" (WAStD).}
 }
 \value{
 The dataframe with rows matching live outcomes.
@@ -18,6 +23,9 @@ The dataframe with rows matching live outcomes.
 \examples{
 data("wastd_data")
 wastd_data$animals \%>\% filter_alive() \%>\% head()
+
+data("odkc_data")
+odkc_data$mwi \%>\% filter_alive(health_col = "status_health") \%>\% head()
 }
 \seealso{
 Other wastd: 

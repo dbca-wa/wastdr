@@ -62,8 +62,6 @@ map_dist_odkc(odkc_data$dist, tracks = odkc_data$tracks_dist, sites = NULL)
 Other odkc: 
 \code{\link{add_nest_labels_odkc}()},
 \code{\link{exclude_training_species_odkc}()},
-\code{\link{filter_alive_odkc}()},
-\code{\link{filter_dead_odkc}()},
 \code{\link{general_disturbance_by_season_odkc}()},
 \code{\link{map_mwi_odkc}()},
 \code{\link{map_sv_odkc}()},

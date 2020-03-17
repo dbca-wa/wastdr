@@ -29,8 +29,6 @@ to create \code{leaflet} markers with
 \seealso{
 Other odkc: 
 \code{\link{exclude_training_species_odkc}()},
-\code{\link{filter_alive_odkc}()},
-\code{\link{filter_dead_odkc}()},
 \code{\link{general_disturbance_by_season_odkc}()},
 \code{\link{map_dist_odkc}()},
 \code{\link{map_mwi_odkc}()},
