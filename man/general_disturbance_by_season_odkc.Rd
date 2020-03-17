@@ -7,7 +7,7 @@
 general_disturbance_by_season_odkc(data)
 }
 \arguments{
-\item{value}{ODKC dist}
+\item{data}{ODKC dist}
 }
 \description{
 \lifecycle{stable}

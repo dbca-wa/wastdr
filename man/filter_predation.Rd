@@ -21,10 +21,14 @@ The dataframe with rows matching predator presences.
 }
 \examples{
 data("wastd_data")
-wastd_data$nest_dist \%>\% filter_predation() \%>\% head()
+wastd_data$nest_dist \%>\%
+  filter_predation() \%>\%
+  head()
 
 data("odkc_data")
-odkc_data$tracks_dist \%>\% filter_predation() \%>\% head()
+odkc_data$tracks_dist \%>\%
+  filter_predation() \%>\%
+  head()
 }
 \seealso{
 Other wastd: 

@@ -58,12 +58,16 @@ map_mwi <- function(data,
 <h3>{humanize(health)} {humanize(maturity)}
 {humanize(sex)} {humanize(species)}</h3>
 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-{lubridate::with_tz(datetime, tz)} AWST</br>
-<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+{format(datetime, fmt)} AWST<br/>
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+{observer}<br/>
+<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 {reporter}<br/>
+
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 Cause of death: {humanize(cause_of_death)}
 ({humanize(cause_of_death_confidence)})
+
 <h5>Animal</h5>
 Activity: {activity}<br/>
           '),

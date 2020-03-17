@@ -1,3 +1,8 @@
+# wastdr 0.2.8
+* Test coverage 99.9%
+* `filter_dead()` and `filter_alive()` work for WAStD and ODKC data, see 
+  examples.
+
 # wastdr 0.2.6
 * Test coverage increased.
 * Test data included (WAStD, TSC, ODKC) and used in tests and examples.

@@ -16,8 +16,9 @@ upsert_geojson <- function(gj_featurecollection,
                            api_un = wastdr::get_wastdr_api_un(),
                            api_pw = wastdr::get_wastdr_api_pw(),
                            verbose = get_wastdr_verbose()) {
-  if (verbose)
+  if (verbose) {
     wastdr_msg_info(glue::glue("Posting to {api_url}{serializer}..."))
+  }
   props <- purrr::map(gj_featurecollection[["features"]], "properties")
   # purrr::map(props, wastd_POST, api_url = api_url)
   # One by one - very slow. Faster:
@@ -25,8 +26,9 @@ upsert_geojson <- function(gj_featurecollection,
   for (i in 0:(len / chunksize)) {
     start <- (i * chunksize) + 1
     end <- min((start + chunksize) - 1, len)
-    if (verbose)
+    if (verbose) {
       wastdr_msg_info(glue::glue("Processing feature {start} to {end}..."))
+    }
     props[start:end] %>%
       purrr::map(., purrr::flatten) %>%
       wastd_POST(.,
@@ -38,8 +40,9 @@ upsert_geojson <- function(gj_featurecollection,
         verbose = verbose
       )
   }
-  if (verbose)
+  if (verbose) {
     wastdr_msg_success(glue::glue("Finished. {len} records updated."))
+  }
 }
 
 # usethis::use_test("upsert_geojson")

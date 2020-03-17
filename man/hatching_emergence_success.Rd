@@ -13,8 +13,8 @@ hatching_emergence_success(value)
 \lifecycle{stable}
 }
 \examples{
- data("wastd_data")
- summarise_hatching_and_emergence_success(wastd_data$tracks)
+data("wastd_data")
+summarise_hatching_and_emergence_success(wastd_data$tracks)
 }
 \seealso{
 Other wastd: 

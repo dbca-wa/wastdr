@@ -9,9 +9,8 @@ skip_test_if_wastd_offline <- function(api_url = get_wastdr_api_url(),
                                        api_token = get_wastdr_api_token(),
                                        api_un = get_wastdr_api_un(),
                                        api_pw = get_wastdr_api_pw()) {
-
   suppressWarnings(
-      res <- wastd_GET(
+    res <- wastd_GET(
       "",
       max_records = 1,
       api_url = api_url,
@@ -46,8 +45,9 @@ skip_test_if_odkc_offline <- function() {
     pw = ruODK::get_default_pw()
   ) # will error if auth fails
 
-  if (!tibble::is_tibble(res))
+  if (!tibble::is_tibble(res)) {
     testthat::skip("Check your ODKC credentials!")
+  }
 }
 
 # usethis::use_test("check_wastd_api")

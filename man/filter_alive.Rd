@@ -22,10 +22,14 @@ The dataframe with rows matching live outcomes.
 }
 \examples{
 data("wastd_data")
-wastd_data$animals \%>\% filter_alive() \%>\% head()
+wastd_data$animals \%>\%
+  filter_alive() \%>\%
+  head()
 
 data("odkc_data")
-odkc_data$mwi \%>\% filter_alive(health_col = "status_health") \%>\% head()
+odkc_data$mwi \%>\%
+  filter_alive(health_col = "status_health") \%>\%
+  head()
 }
 \seealso{
 Other wastd: 

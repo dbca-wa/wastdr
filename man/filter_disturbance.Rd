@@ -21,10 +21,14 @@ The dataframe with rows matching disturbance causes.
 }
 \examples{
 data("wastd_data")
-wastd_data$nest_dist \%>\% filter_disturbance() \%>\% head()
+wastd_data$nest_dist \%>\%
+  filter_disturbance() \%>\%
+  head()
 
 data("odkc_data")
-odkc_data$tracks_dist \%>\% filter_disturbance() \%>\% head()
+odkc_data$tracks_dist \%>\%
+  filter_disturbance() \%>\%
+  head()
 }
 \seealso{
 Other wastd: 

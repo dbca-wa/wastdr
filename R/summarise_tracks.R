@@ -125,12 +125,14 @@ nesting_type_by_site_season_species <- function(tracks) {
 nesting_type_by_site_season_age_species <- function(tracks) {
   tracks %>%
     # dplyr::filter(nest_age == "fresh") %>%
-    dplyr::group_by(area_name,
-                    site_name,
-                    season,
-                    species,
-                    nest_age,
-                    nest_type) %>%
+    dplyr::group_by(
+      area_name,
+      site_name,
+      season,
+      species,
+      nest_age,
+      nest_type
+    ) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
     tidyr::spread(nest_type, n, fill = 0)
@@ -150,11 +152,13 @@ nesting_type_by_site_season_age_species <- function(tracks) {
 nesting_type_by_season_week_species <- function(tracks) {
   tracks %>%
     dplyr::filter(nest_age == "fresh") %>%
-    dplyr::group_by(season,
-                    season_week,
-                    iso_week,
-                    species,
-                    nest_type) %>%
+    dplyr::group_by(
+      season,
+      season_week,
+      iso_week,
+      species,
+      nest_type
+    ) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
     tidyr::spread(nest_type, n, fill = 0)
@@ -175,12 +179,14 @@ nesting_type_by_season_week_species <- function(tracks) {
 nesting_type_by_season_week_age_species <- function(tracks) {
   tracks %>%
     dplyr::filter(nest_age == "fresh") %>%
-    dplyr::group_by(season,
-                    season_week,
-                    iso_week,
-                    species,
-                    nest_age,
-                    nest_type) %>%
+    dplyr::group_by(
+      season,
+      season_week,
+      iso_week,
+      species,
+      nest_age,
+      nest_type
+    ) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
     tidyr::spread(nest_type, n, fill = 0)
@@ -200,12 +206,14 @@ nesting_type_by_season_week_age_species <- function(tracks) {
 nesting_type_by_season_week_site_species <- function(tracks) {
   tracks %>%
     dplyr::filter(nest_age == "fresh") %>%
-    dplyr::group_by(season,
-                    season_week,
-                    iso_week,
-                    site_name,
-                    species,
-                    nest_type) %>%
+    dplyr::group_by(
+      season,
+      season_week,
+      iso_week,
+      site_name,
+      species,
+      nest_type
+    ) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
     tidyr::spread(nest_type, n, fill = 0)
@@ -307,7 +315,8 @@ track_success <- function(tracks) {
 
   all_tracks_by_date %>%
     dplyr::left_join(successful_tracks_by_date,
-                     by = c("turtle_date", "species", "season")) %>%
+      by = c("turtle_date", "species", "season")
+    ) %>%
     dplyr::mutate(
       successful = ifelse(is.na(successful), 0, successful),
       track_success = 100 * successful / all
@@ -367,7 +376,8 @@ ggplot_track_success_by_date <- function(data,
       fill = "green"
     ) +
     ggplot2::ggtitle(glue::glue("Nesting effort of {humanize(speciesname)}"),
-                     subtitle = "Number of all (grey) and successful (green) tracks") +
+      subtitle = "Number of all (grey) and successful (green) tracks"
+    ) +
     ggplot2::labs(x = "Date", y = "Number of all and successful tracks") +
     ggplot2::scale_x_continuous(
       labels = function(x) {
@@ -377,7 +387,7 @@ ggplot_track_success_by_date <- function(data,
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
     ggplot2::theme_classic() +
     {
-      if (export == TRUE)
+      if (export == TRUE) {
         ggplot2::ggsave(fs::path(
           local_dir,
           glue::glue(
@@ -385,8 +395,11 @@ ggplot_track_success_by_date <- function(data,
           )
         ),
         width = 10,
-        height = 6)
-    } + NULL
+        height = 6
+        )
+      }
+    } +
+    NULL
 }
 
 #' Plot the track success rate (relative numbers) of a given species as time
@@ -420,7 +433,8 @@ ggplot_track_successrate_by_date <- function(data,
       fill = "grey"
     ) +
     ggplot2::ggtitle(glue::glue("Nesting success of {humanize(speciesname)}"),
-                     subtitle = "Fraction of successful over total nesting crawls") +
+      subtitle = "Fraction of successful over total nesting crawls"
+    ) +
     ggplot2::labs(x = "Date", y = "Fraction of tracks with nest") +
     ggplot2::scale_x_continuous(
       labels = function(x) {
@@ -430,16 +444,19 @@ ggplot_track_successrate_by_date <- function(data,
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
     ggplot2::theme_classic() +
     {
-      if (export == TRUE)
-    ggplot2::ggsave(fs::path(
-      local_dir,
-      glue::glue(
-        "{prefix}_track_success_{wastdr::urlize(placename)}_{speciesname}.png"
-      )
-    ),
-    width = 10,
-    height = 6)
-    } + NULL
+      if (export == TRUE) {
+        ggplot2::ggsave(fs::path(
+          local_dir,
+          glue::glue(
+            "{prefix}_track_success_{wastdr::urlize(placename)}_{speciesname}.png"
+          )
+        ),
+        width = 10,
+        height = 6
+        )
+      }
+    } +
+    NULL
 }
 
 #------------------------------------------------------------------------------#
@@ -491,8 +508,8 @@ summarise_hatching_and_emergence_success <- . %>%
 #' @export
 #' @family wastd
 #' @examples
-#'  data("wastd_data")
-#'  summarise_hatching_and_emergence_success(wastd_data$tracks)
+#' data("wastd_data")
+#' summarise_hatching_and_emergence_success(wastd_data$tracks)
 hatching_emergence_success <- . %>%
   dplyr::filter(nest_type == "hatched-nest") %>%
   dplyr::filter(hatching_success >= 0) %>%

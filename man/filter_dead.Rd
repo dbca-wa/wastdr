@@ -22,10 +22,14 @@ The dataframe with rows matching mortal outcomes.
 }
 \examples{
 data("wastd_data")
-wastd_data$animals \%>\% filter_dead() \%>\% head()
+wastd_data$animals \%>\%
+  filter_dead() \%>\%
+  head()
 
 data("odkc_data")
-odkc_data$mwi \%>\% filter_dead(health_col = "status_health") \%>\% head()
+odkc_data$mwi \%>\%
+  filter_dead(health_col = "status_health") \%>\%
+  head()
 }
 \seealso{
 Other wastd: 

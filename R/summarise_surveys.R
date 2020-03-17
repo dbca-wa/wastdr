@@ -129,10 +129,13 @@ plot_survey_count <-
            prefix = "") {
     surveys %>%
       surveys_per_site_name_and_date() %>%
-      ggplot2::ggplot(.,
-                      ggplot2::aes(turtle_date,
-                                   site_name,
-                                   fill = n)) +
+      ggplot2::ggplot(
+        .,
+        ggplot2::aes(turtle_date,
+          site_name,
+          fill = n
+        )
+      ) +
       ggplot2::geom_raster() +
       ggplot2::facet_grid(rows = ggplot2::vars(season)) +
       ggplot2::theme_classic() +
@@ -175,14 +178,19 @@ plot_survey_effort <-
            prefix = "") {
     surveys %>%
       survey_hours_per_site_name_and_date() %>%
-      ggplot2::ggplot(.,
-                      ggplot2::aes(turtle_date,
-                                   site_name,
-                                   fill = hours_surveyed)) +
+      ggplot2::ggplot(
+        .,
+        ggplot2::aes(turtle_date,
+          site_name,
+          fill = hours_surveyed
+        )
+      ) +
       ggplot2::geom_raster() +
       ggplot2::facet_grid(rows = ggplot2::vars(season)) +
-      ggplot2::scale_x_date(breaks = scales::pretty_breaks(),
-                            labels = scales::date_format("%d %b %Y")) +
+      ggplot2::scale_x_date(
+        breaks = scales::pretty_breaks(),
+        labels = scales::date_format("%d %b %Y")
+      ) +
       ggplot2::theme_classic() +
       ggplot2::ggtitle(glue::glue("Survey Effort {placename}")) +
       ggplot2::labs(x = "Turtle date", y = "", fill = "Hours surveyed") +

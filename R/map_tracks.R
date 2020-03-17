@@ -16,6 +16,12 @@
 #' @return A leaflet map
 #' @export
 #' @family wastd
+#' @examples
+#' \dontrun{
+#' data("wastd_data")
+#' map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster=T)
+#' map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster=F)
+#' }
 map_tracks <- function(tracks,
                        sites = NULL,
                        wastd_url = wastdr::get_wastd_url(),
@@ -67,20 +73,27 @@ map_tracks <- function(tracks,
             text = ~nest_type_text,
             markerColor = ~species_colours
           ),
-          label = ~ glue::glue(
-            '{format(datetime, "%d/%m/%Y %H:%M")} {humanize(nest_age)}',
-            " {humanize(species)} {humanize(nest_type)} {name}"
-          ),
-          popup = ~ glue::glue(
-            "<h3>{humanize(nest_age)} {humanize(species)}",
-            " {humanize(nest_type)} {name}</h3>",
-            "<p>Seen on {format(datetime, fmt)} AWST by {observer}",
-            "<p>Survey {survey_id} at {site_name} ",
-            "{format(survey_start_time, fmt)}-",
-            "{format(survey_end_time, fmt)} AWST</p>",
-            '<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow" ',
-            'href="{wastd_url}{absolute_admin_url}">Edit on WAStD</a></p>'
-          ),
+          label = ~ glue::glue('
+            {format(datetime, "%d/%m/%Y %H:%M")} {humanize(nest_age)}
+            {humanize(species)} {humanize(nest_type)} {name}
+          '),
+          popup = ~ glue::glue('
+            <h3>{humanize(nest_age)} {humanize(species)}
+            {humanize(nest_type)} {name}</h3>
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+            {format(datetime, fmt)} AWST<br/>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            {observer}<br/>
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            {reporter}<br/>
+
+            <p>Survey {survey_id} at {site_name}
+            {format(survey_start_time, fmt)}-
+            {format(survey_end_time, fmt)} AWST</p>
+
+            <p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
+            href="{wastd_url}{absolute_admin_url}">Edit on WAStD</a></p>
+          '),
           group = humanize(df),
           clusterOptions = co
         )

@@ -17,18 +17,21 @@ handle_http_status <- function(response) {
     )
   }
 
-  if (httr::http_error(response))
+  if (httr::http_error(response)) {
     wastdr::wastdr_msg_warn(glue::glue(
       "WAStD API request failed with [{httr::status_code(response)}]"
     ))
+  }
 
 
-  if (httr::http_type(response) != "application/json")
+  if (httr::http_type(response) != "application/json") {
     wastdr_msg_warn(
-      glue::glue("API did not return JSON.\n",
-                 "Is {response$url} a valid endpoint?")
+      glue::glue(
+        "API did not return JSON.\n",
+        "Is {response$url} a valid endpoint?"
+      )
     )
-
+  }
 }
 
 # usethis::use_test("handle_http_status")

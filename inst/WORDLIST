@@ -1,17 +1,15 @@
 Additionaly
-alphanumieric
 analyse
 analysing
 animalencounter
 AnimalEncounters
 anonymized
 api
-AppVeyor
 au
-Austalia
 authorised
 awst
 AWST
+Basicauth
 behaviour
 bool
 Bugfix
@@ -30,7 +28,6 @@ datetime
 datetimes
 dbca
 DBCA's
-de
 deduplicates
 depressus
 df
@@ -59,6 +56,7 @@ hatchling
 Hatchling
 hbvsupra
 herbie
+http
 https
 httr
 interable
@@ -75,7 +73,6 @@ lightsources
 LineTransectEncounters
 LoggerEncounters
 lon
-lst
 lubridate
 magrittr
 maz
@@ -83,7 +80,6 @@ Metaprogramming
 morphometrics
 mortalities
 mwi
-NameID
 natator
 nesters
 nesttag
@@ -135,6 +131,7 @@ tibble
 tibbles
 timeseries
 tne
+TokenAuth
 tsc
 TSC
 tsi
@@ -150,7 +147,6 @@ unlist
 unnested
 unparsed
 Upsert
-uuid
 visualisation
 visualisations
 wa
@@ -161,7 +157,6 @@ wastd
 WAStD
 WASTD
 WAStD's
-wastde
 WFS
 WIP
 ymd

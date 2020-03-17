@@ -71,16 +71,20 @@ map_dist <- function(dist,
           {encounter_site_name}</br>
           <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
           {datetime} AWST</br>
-          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-           {encounter_observer_name}<br/>
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          {encounter_observer_name}<br/>
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          {encounter_reporter_name}<br/>
           <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
           Confidence: {humanize(disturbance_cause_confidence)}.
           {encounter_comments}<br/>
+
           <p>Survey {encounter_survey_id} at {encounter_site_name}<br/>
           {encounter_survey_start_time}-{encounter_survey_end_time}</p>
           <a href="{encounter_survey_absolute_admin_url}"
           class="btn btn-xs btn-secondary" target="_" rel="nofollow">
           Edit survey in WAStD</a>
+
           <p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
           href="{wastd_url}{encounter_absolute_admin_url}">
           Edit record in WAStD</a></p>

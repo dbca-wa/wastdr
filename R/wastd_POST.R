@@ -31,7 +31,7 @@ wastd_POST <- function(data,
                        verbose = wastdr::get_wastdr_verbose()) {
   ua <- httr::user_agent("http://github.com/dbca-wa/wastdr")
   url_parts <- httr::parse_url(api_url)
-  url_parts["path"] = glue::glue("{url_parts['path']}{serializer}")
+  url_parts["path"] <- glue::glue("{url_parts['path']}{serializer}")
   url <- httr::build_url(url_parts)
   auth <- build_auth(api_token = api_token, api_un = api_un, api_pw = api_pw)
 
@@ -49,8 +49,9 @@ wastd_POST <- function(data,
     simplifyVector = FALSE
   )
 
-  if (verbose == TRUE)
+  if (verbose == TRUE) {
     wastdr_msg_success(glue::glue("[wastd_POST] {res$status}"))
+  }
 
   structure(
     list(

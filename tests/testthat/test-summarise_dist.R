@@ -29,7 +29,6 @@ test_that("filter_predation excludes all disturbance from wastd data", {
   expect_false("other" %in% xn)
   expect_false("vehicle" %in% xn)
   expect_false("cyclone" %in% xn)
-
 })
 
 

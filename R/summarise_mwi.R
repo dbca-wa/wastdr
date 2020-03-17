@@ -12,16 +12,22 @@
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' wastd_data$animals %>% filter_alive() %>% head()
+#' wastd_data$animals %>%
+#'   filter_alive() %>%
+#'   head()
 #'
 #' data("odkc_data")
-#' odkc_data$mwi %>% filter_alive(health_col = "status_health") %>% head()
+#' odkc_data$mwi %>%
+#'   filter_alive(health_col = "status_health") %>%
+#'   head()
 filter_alive <- function(data, health_col = "health") {
   data %>%
-    dplyr::filter(!!rlang::sym(health_col) %in% c("na",
-                                                  "other",
-                                                  "alive",
-                                                  "alive-injured"))
+    dplyr::filter(!!rlang::sym(health_col) %in% c(
+      "na",
+      "other",
+      "alive",
+      "alive-injured"
+    ))
 }
 
 
@@ -39,10 +45,14 @@ filter_alive <- function(data, health_col = "health") {
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' wastd_data$animals %>% filter_dead() %>% head()
+#' wastd_data$animals %>%
+#'   filter_dead() %>%
+#'   head()
 #'
 #' data("odkc_data")
-#' odkc_data$mwi %>% filter_dead(health_col = "status_health") %>% head()
+#' odkc_data$mwi %>%
+#'   filter_dead(health_col = "status_health") %>%
+#'   head()
 filter_dead <- function(data, health_col = "health") {
   data %>%
     dplyr::filter(

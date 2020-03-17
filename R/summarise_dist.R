@@ -8,10 +8,14 @@
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' wastd_data$nest_dist %>% filter_disturbance() %>% head()
+#' wastd_data$nest_dist %>%
+#'   filter_disturbance() %>%
+#'   head()
 #'
 #' data("odkc_data")
-#' odkc_data$tracks_dist %>% filter_disturbance() %>% head()
+#' odkc_data$tracks_dist %>%
+#'   filter_disturbance() %>%
+#'   head()
 filter_disturbance <- function(data) {
   data %>%
     dplyr::filter(
@@ -37,27 +41,31 @@ filter_disturbance <- function(data) {
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' wastd_data$nest_dist %>% filter_predation() %>% head()
+#' wastd_data$nest_dist %>%
+#'   filter_predation() %>%
+#'   head()
 #'
 #' data("odkc_data")
-#' odkc_data$tracks_dist %>% filter_predation() %>% head()
+#' odkc_data$tracks_dist %>%
+#'   filter_predation() %>%
+#'   head()
 filter_predation <- function(data) {
-    data %>%
-      dplyr::filter(
-        disturbance_cause %in% c(
-          "bandicoot",
-          "bird",
-          "cat",
-          "crab",
-          "croc",
-          "dingo",
-          "dog",
-          "fox",
-          "goanna",
-          "pig"
-        )
+  data %>%
+    dplyr::filter(
+      disturbance_cause %in% c(
+        "bandicoot",
+        "bird",
+        "cat",
+        "crab",
+        "croc",
+        "dingo",
+        "dog",
+        "fox",
+        "goanna",
+        "pig"
       )
-  }
+    )
+}
 
 
 #' Tally WAStD disturbances by season, cause, and encounter type
@@ -71,14 +79,16 @@ filter_predation <- function(data) {
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' wastd_data$nest_dist %>% disturbance_by_season() %>% head()
+#' wastd_data$nest_dist %>%
+#'   disturbance_by_season() %>%
+#'   head()
 disturbance_by_season <- function(data) {
   data %>%
-  dplyr::group_by(season, disturbance_cause, encounter_encounter_type) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  dplyr::rename(encounter_type = encounter_encounter_type) %>%
-  dplyr::arrange(-season, encounter_type, -n)
+    dplyr::group_by(season, disturbance_cause, encounter_encounter_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    dplyr::rename(encounter_type = encounter_encounter_type) %>%
+    dplyr::arrange(-season, encounter_type, -n)
 }
 
 
@@ -86,7 +96,7 @@ disturbance_by_season <- function(data) {
 #'
 #' \lifecycle{stable}
 #'
-#' @param value ODKC tracks_dist
+#' @param data ODKC tracks_dist
 #' @export
 #' @family odkc
 #' @examples
@@ -94,12 +104,12 @@ disturbance_by_season <- function(data) {
 #' odkc_data$tracks_dist %>% nest_disturbance_by_season_odkc()
 nest_disturbance_by_season_odkc <- function(data) {
   data %>%
-  wastdr::sf_as_tbl() %>%
-  dplyr::group_by(season, disturbance_cause) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  dplyr::mutate(encounter_type = "nest") %>%
-  dplyr::arrange(-season, -n)
+    wastdr::sf_as_tbl() %>%
+    dplyr::group_by(season, disturbance_cause) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(encounter_type = "nest") %>%
+    dplyr::arrange(-season, -n)
 }
 
 
@@ -107,7 +117,7 @@ nest_disturbance_by_season_odkc <- function(data) {
 #'
 #' \lifecycle{stable}
 #'
-#' @param value ODKC dist
+#' @param data ODKC dist
 #' @export
 #' @family odkc
 #' @examples
@@ -115,15 +125,15 @@ nest_disturbance_by_season_odkc <- function(data) {
 #' odkc_data$dist %>% general_disturbance_by_season_odkc()
 general_disturbance_by_season_odkc <- function(data) {
   data %>%
-  wastdr::sf_as_tbl() %>%
-  dplyr::group_by(season, disturbanceobservation_disturbance_cause) %>%
-  dplyr::tally() %>%
-  dplyr::ungroup() %>%
-  dplyr::rename(
-    disturbance_cause = disturbanceobservation_disturbance_cause
-  ) %>%
-  dplyr::mutate(encounter_type = "other") %>%
-  dplyr::arrange(-season, -n)
+    wastdr::sf_as_tbl() %>%
+    dplyr::group_by(season, disturbanceobservation_disturbance_cause) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    dplyr::rename(
+      disturbance_cause = disturbanceobservation_disturbance_cause
+    ) %>%
+    dplyr::mutate(encounter_type = "other") %>%
+    dplyr::arrange(-season, -n)
 }
 
 # usethis::use_test("summarise_dist")

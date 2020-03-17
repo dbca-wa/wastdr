@@ -29,7 +29,7 @@ default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}
 Default: wastdr::get_wastdr_verbose()}
 }
 \value{
-httr::authenticate() for Basicauth or httr::add_headers fot TokenAuth
+httr::authenticate() for Basicauth or httr::add_headers for TokenAuth
 }
 \description{
 Build token or basic authentication based on given credentials

@@ -50,7 +50,6 @@
 #' @export
 #' @family wastd
 parse_animal_encounters <- function(wastd_api_response) {
-
   wastd_api_response$data %>% {
     tibble::tibble(
       area_name = purrr::map_chr(.,

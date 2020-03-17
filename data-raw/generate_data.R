@@ -3,24 +3,22 @@ library(wastdr)
 sanitize_names <- . %>%
   dplyr::mutate_at(
     dplyr::vars(
-      tidyr::ends_with("reporter"),
-      tidyr::contains("reporter_id"),
-      tidyr::ends_with("observer"),
-      tidyr::contains("observer_id")
+      tidyr::contains("reporter"),
+      tidyr::contains("observer")
     ),
     ~"Name hidden"
   )
 
 # Generate animal_encounters ("observed" by author)
 q <- list(taxon = "Cheloniidae", area_id = 17, observer = 4)
-wastd_ae_raw <- wastd_GET("animal-encounters", query = q, max_records = 10)
+wastd_ae_raw <- wastd_GET("animal-encounters", query = q, max_records = 100)
 wastd_ae <- parse_animal_encounters(wastd_ae_raw)
 usethis::use_data(wastd_ae_raw, compress = "xz", overwrite = TRUE)
 usethis::use_data(wastd_ae, compress = "xz", overwrite = TRUE)
 
 # Generate tracks
 q <- list(area_id = 17, observer = 4)
-wastd_tne_raw <- wastdr::wastd_GET("turtle-nest-encounters", query = q, max_records = 10)
+wastd_tne_raw <- wastdr::wastd_GET("turtle-nest-encounters", query = q, max_records = 100)
 wastd_tne <- parse_turtle_nest_encounters(wastd_tne_raw) %>% add_nest_labels()
 usethis::use_data(wastd_tne_raw, compress = "xz", overwrite = TRUE)
 usethis::use_data(wastd_tne, compress = "xz", overwrite = TRUE)
@@ -77,8 +75,12 @@ wastd_data$nest_lightsources <- wastd_data$nest_lightsources %>% sanitize_names(
 usethis::use_data(wastd_data, compress = "xz", overwrite = TRUE)
 
 # Generate tcl
-get_10 <- . %>% wastdr::wastd_GET(max_records = 10) %>% wastd_parse()
-get_all <- . %>% wastdr::wastd_GET() %>% wastd_parse()
+get_10 <- . %>%
+  wastdr::wastd_GET(max_records = 10) %>%
+  wastd_parse()
+get_all <- . %>%
+  wastdr::wastd_GET() %>%
+  wastd_parse()
 
 tsc_data <- list(
   # Taxonomy

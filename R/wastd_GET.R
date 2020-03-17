@@ -45,7 +45,7 @@ wastd_GET <- function(serializer,
   # Prep and gate checks
   ua <- httr::user_agent("http://github.com/dbca-wa/wastdr")
   url_parts <- httr::parse_url(api_url)
-  url_parts["path"] = paste0(url_parts['path'], serializer)
+  url_parts["path"] <- paste0(url_parts["path"], serializer)
   url <- httr::build_url(url_parts)
   limit <- ifelse(
     is.null(max_records),
@@ -76,7 +76,7 @@ wastd_GET <- function(serializer,
   data_key <-
     ifelse("features" %in% names(res_parsed), "features", "results")
 
-  if (!(data_key %in% names(res_parsed)))
+  if (!(data_key %in% names(res_parsed))) {
     return(
       structure(
         list(
@@ -89,6 +89,7 @@ wastd_GET <- function(serializer,
         class = "wastd_api_response"
       )
     )
+  }
 
   features <- res_parsed[[data_key]]
   next_url <- res_parsed$`next`
@@ -118,8 +119,9 @@ wastd_GET <- function(serializer,
     }
   }
 
-  if (verbose == TRUE)
+  if (verbose == TRUE) {
     wastdr::wastdr_msg_success(glue::glue("Done fetching {res$url}"))
+  }
 
   structure(
     list(

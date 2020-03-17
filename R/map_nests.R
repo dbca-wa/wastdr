@@ -38,6 +38,8 @@ map_nests <- function(data,
       ),
       popup = ~ glue::glue('
         <h3>{flipper_tag_id} {date_nest_laid} {tag_label}</h3>
+        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+        {encounter_site_name}</br>
         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
         {datetime} AWST</br>
         <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
@@ -46,8 +48,13 @@ map_nests <- function(data,
         {encounter_observer_name}<br/>
         <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
         {encounter_comments}<br/>
-        Survey {encounter_survey_id} at {encounter_site_name}<br/>
+
+        Survey {encounter_survey_id} at {encounter_site_name}<br/>wa
         {encounter_survey_start_time}-{encounter_survey_end_time} AWST</p>
+        <a href="{encounter_survey_absolute_admin_url}"
+        class="btn btn-xs btn-secondary" target="_" rel="nofollow">
+        Edit survey in WAStD</a>
+
         <p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
         href="{wastd_url}{encounter_absolute_admin_url}">Edit on WAStD</a></p>
       '),

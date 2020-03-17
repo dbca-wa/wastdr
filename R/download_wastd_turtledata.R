@@ -30,8 +30,7 @@
 #' }
 #' @export
 #' @family included
-download_wastd_turtledata <- function(
-                                      max_records = NULL,
+download_wastd_turtledata <- function(max_records = NULL,
                                       verbose = get_wastdr_verbose()) {
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading Areas...")
@@ -82,7 +81,7 @@ download_wastd_turtledata <- function(
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading nest tags...")
   }
-  nest_tags <- "turtle-nest-tag-observations" %>%
+  nest_tags <- "nest-tag-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations()
 
@@ -96,7 +95,7 @@ download_wastd_turtledata <- function(
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading hatchling morph...")
   }
-  hatchling_morph <- "turtle-nest-hatchling-morphometrics" %>%
+  hatchling_morph <- "turtle-hatchling-morphometrics" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations()
 

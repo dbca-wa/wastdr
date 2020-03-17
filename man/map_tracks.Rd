@@ -42,6 +42,13 @@ Creates a Leaflet map with an interactive legend offering to
 toggle each species separately.
 The maps auto-zooms to the extent of data given.
 }
+\examples{
+\dontrun{
+data("wastd_data")
+map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster=T)
+map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster=F)
+}
+}
 \seealso{
 Other wastd: 
 \code{\link{add_nest_labels}()},
