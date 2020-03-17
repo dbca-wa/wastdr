@@ -50,8 +50,6 @@
 #' @export
 #' @family wastd
 parse_animal_encounters <- function(wastd_api_response) {
-  obs <- NULL # Make R CMD check happy
-  datetime <- NULL
 
   wastd_api_response$data %>% {
     tibble::tibble(

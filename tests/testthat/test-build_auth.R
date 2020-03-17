@@ -39,3 +39,4 @@ test_that("build_auth errors if api_token and api_pw are NULL", {
     expect_error(build_auth(api_token = NULL, api_pw = NULL, verbose = FALSE))
 })
 
+# usethis::use_r("build_auth")
