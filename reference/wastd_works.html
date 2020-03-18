@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Filter a dataframe of tracks, disturbance, incidents, or surveys to season — filter_wastd_season • wastdr</title>
+<title>Check whether API token is set and WAStD is online — wastd_works • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,7 +42,7 @@
 
 
 
-<meta property="og:title" content="Filter a dataframe of tracks, disturbance, incidents, or surveys to season — filter_wastd_season" />
+<meta property="og:title" content="Check whether API token is set and WAStD is online — wastd_works" />
 <meta property="og:description" content="" />
 <meta property="og:image" content="/logo.png" />
 
@@ -143,34 +143,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Filter a dataframe of tracks, disturbance, incidents, or surveys to season</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/filters.R'><code>R/filters.R</code></a></small>
-    <div class="hidden name"><code>filter_wastd_season.Rd</code></div>
+    <h1>Check whether API token is set and WAStD is online</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/check_wastd_api.R'><code>R/check_wastd_api.R</code></a></small>
+    <div class="hidden name"><code>wastd_works.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>filter_wastd_season</span>(<span class='no'>data</span>, <span class='no'>season_start_year</span>)</pre>
+    <pre class="usage"><span class='fu'>wastd_works</span>(
+  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
+  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
+  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
+  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>A dataframe of tracks, disturbance, incidents, or surveys
-containing a column "season" (int) with the season start year, e.g. 2019.</p></td>
+      <th>api_url</th>
+      <td><p>(character) The WAStD API URL,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_url</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
     </tr>
     <tr>
-      <th>season_start_year</th>
-      <td><p>The desired season's start year, e.g. 2019.</p></td>
+      <th>api_token</th>
+      <td><p>(character) The WAStD API token,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_token</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_un</th>
+      <td><p>(character) A WAStD API username,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_un</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_pw</th>
+      <td><p>(character) A WAStD API password,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>The dataframe filtered to rows from the desired season.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other helpers: 
@@ -191,6 +204,7 @@ containing a column "season" (int) with the season start year, e.g. 2019.</p></t
 <code><a href='filter_missing_survey.html'>filter_missing_survey</a>()</code>,
 <code><a href='filter_surveys_missing_end.html'>filter_surveys_missing_end</a>()</code>,
 <code><a href='filter_surveys_requiring_qa.html'>filter_surveys_requiring_qa</a>()</code>,
+<code><a href='filter_wastd_season.html'>filter_wastd_season</a>()</code>,
 <code><a href='get_more.html'>get_more</a>()</code>,
 <code><a href='get_num_field.html'>get_num_field</a>()</code>,
 <code><a href='httpdate_as_gmt08_turtle_date.html'>httpdate_as_gmt08_turtle_date</a>()</code>,
@@ -204,7 +218,6 @@ containing a column "season" (int) with the season start year, e.g. 2019.</p></t
 <code><a href='tdate_as_fdate.html'>tdate_as_fdate</a>()</code>,
 <code><a href='tracks_as_geojson.html'>tracks_as_geojson</a>()</code>,
 <code><a href='urlize.html'>urlize</a>()</code>,
-<code><a href='wastd_works.html'>wastd_works</a>()</code>,
 <code><a href='wastdr_msg_abort.html'>wastdr_msg_abort</a>()</code>,
 <code><a href='wastdr_msg_info.html'>wastdr_msg_info</a>()</code>,
 <code><a href='wastdr_msg_noop.html'>wastdr_msg_noop</a>()</code>,
@@ -218,7 +231,6 @@ containing a column "season" (int) with the season start year, e.g. 2019.</p></t
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 
