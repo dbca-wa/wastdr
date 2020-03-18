@@ -7,6 +7,8 @@
 wastd_POST(
   data,
   serializer,
+  query = list(format = "json"),
+  encode = "json",
   api_url = wastdr::get_wastdr_api_url(),
   api_token = wastdr::get_wastdr_api_token(),
   api_un = wastdr::get_wastdr_api_un(),
@@ -31,6 +33,13 @@ Possible values as per
 \item tag-observations (tag observations during encounters)
 \item taxa (WACensus taxa)
 }}
+
+\item{query}{<list> A list of POST parameters,
+default: \code{list(format="json")}.}
+
+\item{encode}{The parameter \code{encode} for \code{link{httr::POST}},
+default: "json".
+Other optinons: \code{c("multipart", "form", "json", "raw")}.}
 
 \item{api_url}{(character) The WAStD API URL,
 default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}

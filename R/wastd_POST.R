@@ -5,6 +5,11 @@
 #'
 #' @param data (JSON) A list of lists (JSON) to post to WAStD.
 #' @template param-serializer
+#' @param query <list> A list of POST parameters,
+#'   default: \code{list(format="json")}.
+#' @param encode The parameter \code{encode} for \code{link{httr::POST}},
+#'   default: "json".
+#'   Other options: \code{c("multipart", "form", "json", "raw")}.
 #' @template param-auth
 #' @template param-verbose
 #' @template return-wastd-api-response
@@ -24,6 +29,8 @@
 #' }
 wastd_POST <- function(data,
                        serializer,
+                       query = list(format="json"),
+                       encode = "json",
                        api_url = wastdr::get_wastdr_api_url(),
                        api_token = wastdr::get_wastdr_api_token(),
                        api_un = wastdr::get_wastdr_api_un(),
@@ -31,23 +38,24 @@ wastd_POST <- function(data,
                        verbose = wastdr::get_wastdr_verbose()) {
   ua <- httr::user_agent("http://github.com/dbca-wa/wastdr")
   url_parts <- httr::parse_url(api_url)
-  url_parts["path"] <- glue::glue("{url_parts['path']}{serializer}")
+  url_parts["path"] <- glue::glue("{url_parts['path']}{serializer}/")
   url <- httr::build_url(url_parts)
   auth <- build_auth(api_token = api_token, api_un = api_un, api_pw = api_pw)
 
   if (verbose == TRUE) wastdr_msg_info(glue::glue("[wastd_POST] {url}"))
 
-  res <- httr::POST(url, auth, ua, encode = "json", body = data)
+  res <- httr::POST(url, auth, ua, encode = encode, body = data, query = query)
 
   handle_http_status(res)
 
   text <- httr::content(res, as = "text", encoding = "UTF-8")
 
+  if (httr::http_type(res) == "application/json"){
   res_parsed <- jsonlite::fromJSON(
     text,
     flatten = FALSE,
     simplifyVector = FALSE
-  )
+  )} else res_parsed <- text
 
   if (verbose == TRUE) {
     wastdr_msg_success(glue::glue("[wastd_POST] {res$status}"))

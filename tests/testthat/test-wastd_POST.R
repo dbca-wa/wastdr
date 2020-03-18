@@ -1,7 +1,17 @@
-test_that("wastd_POST returns HTTP 405 on non-existing serializers", {
-  suppressWarnings(x <- wastd_POST("test", "", verbose = TRUE))
+test_that("wastd_POST returns HTTP 404 on non-existing serializers", {
+  expect_warning(
+    x <- wastd_POST(
+      serializer = "doesnotexist", data=list(),
+      # api_url = "http://localhost:8220/api/1/",
+      # api_token = Sys.getenv("WASTDR_API_TOKEN_DEV"),
+      verbose = TRUE)
+
+    # x <- wastd_POST(
+    #   serializer = "area", data=list(),
+    #   api_url = "http://localhost:8220/api/1/", verbose = TRUE)
+    )
   expect_equal(class(x), "wastd_api_response")
-  expect_equal(x$status_code, 405)
+  expect_equal(x$status_code, 404)
 })
 
 test_that("wastd_POST errors on authentication failure", {
