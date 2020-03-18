@@ -7,7 +7,7 @@
 odkc_works(url = ruODK::get_default_url())
 }
 \arguments{
-\item{url}{The ODK URL, default: \code{\link{ruODK::get_default_url}}}
+\item{url}{The ODK URL, default: \code{ruODK::get_default_url}}
 }
 \description{
 \lifecycle{stable}
