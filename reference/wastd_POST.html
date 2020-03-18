@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.9</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/dbca-wa/wastdr">
+  <a href="https://github.com/dbca-wa/wastdr/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -155,6 +155,8 @@
     <pre class="usage"><span class='fu'>wastd_POST</span>(
   <span class='no'>data</span>,
   <span class='no'>serializer</span>,
+  <span class='kw'>query</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>),
+  <span class='kw'>encode</span> <span class='kw'>=</span> <span class='st'>"json"</span>,
   <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/wastdr/man/wastdr_settings.html'>get_wastdr_api_url</a></span>(),
   <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/wastdr/man/wastdr_settings.html'>get_wastdr_api_token</a></span>(),
   <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/wastdr/man/wastdr_settings.html'>get_wastdr_api_un</a></span>(),
@@ -184,6 +186,17 @@ Possible values as per
 <li><p>tag-observations (tag observations during encounters)</p></li>
 <li><p>taxa (WACensus taxa)</p></li>
 </ul></td>
+    </tr>
+    <tr>
+      <th>query</th>
+      <td><p>&lt;list&gt; A list of POST parameters,
+default: <code><a href='https://rdrr.io/r/base/list.html'>list(format="json")</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>encode</th>
+      <td><p>The parameter <code>encode</code> for <code>link{httr::POST}</code>,
+default: "json".
+Other optinons: <code><a href='https://rdrr.io/r/base/c.html'>c("multipart", "form", "json", "raw")</a></code>.</p></td>
     </tr>
     <tr>
       <th>api_url</th>
