@@ -47,11 +47,11 @@ download_wastd_turtledata <- function(max_records = NULL,
     sf::st_join(areas)
 
   if (verbose == TRUE) {
-    wastdr_msg_info("Downloading AnimalEncounters of Turtles 2016 and on...")
+    wastdr_msg_info("Downloading AnimalEncounters 2016 and on...")
   }
   animals <- "animal-encounters" %>%
     wastdr::wastd_GET(
-      query = list(taxon = "Cheloniidae", when__year__gte = 2016),
+      query = list(when__year__gte = 2016),
       max_records = max_records
     ) %>%
     wastdr::parse_animal_encounters()

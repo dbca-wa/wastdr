@@ -39,7 +39,7 @@ default: \code{list(format="json")}.}
 
 \item{encode}{The parameter \code{encode} for \code{link{httr::POST}},
 default: "json".
-Other optinons: \code{c("multipart", "form", "json", "raw")}.}
+Other options: \code{c("multipart", "form", "json", "raw")}.}
 
 \item{api_url}{(character) The WAStD API URL,
 default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}

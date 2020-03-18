@@ -29,6 +29,7 @@ map_tracks <- function(tracks,
                        cluster = FALSE,
                        ts = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
+  url <- sub("/$","",wastd_url)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
@@ -78,21 +79,25 @@ map_tracks <- function(tracks,
             {humanize(species)} {humanize(nest_type)} {name}
           '),
           popup = ~ glue::glue('
-            <h3>{humanize(nest_age)} {humanize(species)}
-            {humanize(nest_type)} {name}</h3>
-            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-            {format(datetime, fmt)} AWST<br/>
-            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-            {observer}<br/>
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-            {reporter}<br/>
+<h3>{humanize(nest_age)} {humanize(species)}
+{humanize(nest_type)} {name}</h3>
 
-            <p>Survey {survey_id} at {site_name}
-            {format(survey_start_time, fmt)}-
-            {format(survey_end_time, fmt)} AWST</p>
+<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+{area_name} - {site_name}</br>
 
-            <p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
-            href="{wastd_url}{absolute_admin_url}">Edit on WAStD</a></p>
+<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+{format(datetime, fmt)} AWST<br/>
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+{observer}<br/>
+<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+{reporter}<br/>
+
+<p>Survey {survey_id} at {site_name}
+{format(survey_start_time, fmt)}-
+{format(survey_end_time, fmt)} AWST</p>
+
+<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
+href="{url}{absolute_admin_url}">Edit on WAStD</a></p>
           '),
           group = humanize(df),
           clusterOptions = co

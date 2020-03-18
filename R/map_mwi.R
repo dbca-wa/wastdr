@@ -23,6 +23,7 @@ map_mwi <- function(data,
                     cluster = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
   overlay_names <- c()
+  url <- sub("/$","",wastd_url)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
@@ -57,6 +58,10 @@ map_mwi <- function(data,
           popup = ~ glue::glue('
 <h3>{humanize(health)} {humanize(maturity)}
 {humanize(sex)} {humanize(species)}</h3>
+
+<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+{area_name} - {site_name}</br>
+
 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 {format(datetime, fmt)} AWST<br/>
 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
@@ -65,11 +70,12 @@ map_mwi <- function(data,
 {reporter}<br/>
 
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-Cause of death: {humanize(cause_of_death)}
-({humanize(cause_of_death_confidence)})
+Cause of death: {humanize(cause_of_death)}<br/>
+<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+Activity: {humanize(activity)}<br/>
 
-<h5>Animal</h5>
-Activity: {activity}<br/>
+<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
+href="{url}{absolute_admin_url}">Edit on WAStD</a></p>
           '),
           group = df,
           clusterOptions = co

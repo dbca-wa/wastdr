@@ -28,6 +28,7 @@ map_dist <- function(dist,
   # Options
   #
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
+  url <- sub("/$","",wastd_url)
   pal_cause <- leaflet::colorFactor(
     palette = "viridis",
     domain = dist$disturbance_cause
@@ -65,30 +66,34 @@ map_dist <- function(dist,
         ),
         label = ~ glue::glue("{datetime} {humanize(disturbance_cause)}"),
         popup = ~ glue::glue('
-          <h3>Signs of {humanize(disturbance_cause)}
-          ({humanize(encounter_encounter_type)})</h3>
-          <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-          {encounter_site_name}</br>
-          <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-          {datetime} AWST</br>
-          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-          {encounter_observer_name}<br/>
-          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-          {encounter_reporter_name}<br/>
-          <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-          Confidence: {humanize(disturbance_cause_confidence)}.
-          {encounter_comments}<br/>
+<h3>Signs of {humanize(disturbance_cause)}
+({humanize(encounter_encounter_type)})</h3>
 
-          <p>Survey {encounter_survey_id} at {encounter_site_name}<br/>
-          {encounter_survey_start_time}-{encounter_survey_end_time}</p>
-          <a href="{encounter_survey_absolute_admin_url}"
-          class="btn btn-xs btn-secondary" target="_" rel="nofollow">
-          Edit survey in WAStD</a>
+<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+{encounter_area_name} - {encounter_site_name}</br>
 
-          <p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
-          href="{wastd_url}{encounter_absolute_admin_url}">
-          Edit record in WAStD</a></p>
-                             '),
+<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+{datetime} AWST</br>
+
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+{encounter_observer_name}<br/>
+<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+{encounter_reporter_name}<br/>
+
+<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+Confidence: {humanize(disturbance_cause_confidence)}.
+{encounter_comments}<br/>
+
+<p>Survey {encounter_survey_id} at {encounter_site_name}<br/>
+{encounter_survey_start_time}-{encounter_survey_end_time}</p>
+<a href="{url}{encounter_survey_absolute_admin_url}"
+class="btn btn-xs btn-secondary" target="_" rel="nofollow">
+Edit survey in WAStD</a>
+
+<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
+href="{url}{encounter_absolute_admin_url}">
+Edit record in WAStD</a></p>
+        '),
         group = df,
         clusterOptions = co
       )
