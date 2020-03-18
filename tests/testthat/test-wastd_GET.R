@@ -1,5 +1,5 @@
 test_that("wastd_GET parses GeoJSON properties", {
-  skip_test_if_wastd_offline()
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
 
   area <- wastdr::wastd_GET("area", max_records = 3, verbose = T) %>%
     wastdr::parse_area()
@@ -14,7 +14,8 @@ test_that("wastd_GET parses GeoJSON properties", {
 
 
 test_that("wastd_GET aborts with NULL api_un or api_pw", {
-  skip_test_if_wastd_offline()
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
+
   testthat::expect_error(
     res <- wastd_GET("area", api_token = NULL, api_un = NULL)
   )
@@ -25,7 +26,8 @@ test_that("wastd_GET aborts with NULL api_un or api_pw", {
 
 
 test_that("wastd_GET warns and fails with incorrect api_token", {
-  skip_test_if_wastd_offline()
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
+
   at <- get_wastdr_api_token()
   wastdr_setup(api_token = "invalid")
   expect_equal(get_wastdr_api_token(), "invalid")
@@ -39,7 +41,8 @@ test_that("wastd_GET warns and fails with incorrect api_token", {
 })
 
 test_that("wastd_GET returns something", {
-  skip_test_if_wastd_offline()
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
+
   res <- wastd_GET("")
   expect_equal(res$status_code, 200)
   expect_s3_class(res, "wastd_api_response")
@@ -59,14 +62,16 @@ test_that("wastd_GET fails if HTTP error is returned", {
 })
 
 test_that("wastd_GET works with correct API token", {
-  skip_test_if_wastd_offline()
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
+
   ae <- wastd_GET("animal-encounters", max_records = 3)
   capture.output(print(ae))
   expect_equal(ae$status_code, 200)
 })
 
 test_that("wastd_GET respects limit", {
-  skip_test_if_wastd_offline()
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
+
   # With geojson
   ae <- wastd_GET("animal-encounters", max_records = 3)
   capture.output(print(ae))
@@ -82,7 +87,7 @@ test_that("wastd_GET respects limit", {
 
 
 test_that("wastd_GET combines pagination", {
-  skip_test_if_wastd_offline()
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
   # With geojson
   ae <- wastd_GET("animal-encounters", max_records = 21, chunk_size = 5)
   capture.output(print(ae))

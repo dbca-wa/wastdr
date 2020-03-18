@@ -1,5 +1,5 @@
 test_that("download_wastd_turtledata works", {
-  skip_test_if_wastd_offline()
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
 
   # Bad things will happen if all records have all NULL area or site
   # This can break tests with `max_records = 1`
@@ -16,7 +16,8 @@ test_that("download_wastd_turtledata works", {
 })
 
 test_that("download_wastd_turtledata emits verbose messages", {
-  skip_test_if_wastd_offline()
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
+
   testthat::expect_message(
     download_wastd_turtledata(max_records = 10, verbose = TRUE)
   )

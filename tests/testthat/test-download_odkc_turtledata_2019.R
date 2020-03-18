@@ -1,5 +1,5 @@
 test_that("download_odkc_turtledata_2019 works", {
-  skip_test_if_odkc_offline()
+  testthat::skip_if_not(odkc_works(), message = "ODKC offline or wrong auth")
 
   ruODK::ru_setup(
     url = ruODK::get_default_url(),
