@@ -161,6 +161,7 @@ ERRORs, WARNINGs or NOTEs apart from the "New CRAN package" NOTE):
 ```{r, eval=FALSE}
 styler:::style_pkg()
 spelling::spell_check_package()
+spelling::spell_check_test(vignettes = TRUE, error = FALSE)
 spelling::update_wordlist()
 devtools::document(roclets = c("rd", "collate", "namespace", "vignette"))
 devtools::build()
