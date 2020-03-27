@@ -1,8 +1,8 @@
-test_that("wastd_works return FALSE if unauthenticated", {
+test_that("wastd_works returns FALSE if unauthenticated", {
   expect_false(wastd_works(api_token = "invalid", api_un = "invalid"))
 })
 
-test_that("odkc_works return FALSE if unauthenticated", {
+test_that("odkc_works returns FALSE if unauthenticated", {
   expect_false(odkc_works(url = "http://httpstat.us/401"))
 })
 
