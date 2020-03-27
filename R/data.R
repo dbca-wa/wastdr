@@ -1,13 +1,19 @@
-#' Turtle Nesting Census data from ODK Centrail
-#' First 6 records of each dataset, all sites.
+#' Turtle Nesting Census data from ODK Central.
+#'
+#' This dataset contains the truncated output from
+#' \code{\link{download_odkc_turtledata_2019}}.
+#' All TSC sites and areas are included, while all other tables are truncated
+#' with \code{head()}.
 #' @family included
 "odkc_data"
 
 #' Turtle Nesting Census data from WAStD
 #'
-#' The output of \code{\link{download_wastd_turtledata}}, but
-#' observer and reporter names are hidden, tibbles are filtered down to the
-#' first 100 records, however all areas and sites are included.
+#' This dataset contains the truncated output from
+#' \code{\link{download_wastd_turtledata}}.
+#' Names of observer and reporter are hidden.
+#' All TSC sites and areas are included, while all other tables are truncated
+#' with \code{head()}.
 #' @family included
 "wastd_data"
 

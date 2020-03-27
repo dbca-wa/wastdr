@@ -28,7 +28,7 @@ map_dist <- function(dist,
   # Options
   #
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
-  url <- sub("/$","",wastd_url)
+  url <- sub("/$", "", wastd_url)
   pal_cause <- leaflet::colorFactor(
     palette = "viridis",
     domain = dist$disturbance_cause
@@ -91,7 +91,7 @@ class="btn btn-xs btn-secondary" target="_" rel="nofollow">
 Edit survey in WAStD</a>
 
 <p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
-href="{url}{encounter_absolute_admin_url}">
+href="{url}{absolute_admin_url}">
 Edit record in WAStD</a></p>
         '),
         group = df,

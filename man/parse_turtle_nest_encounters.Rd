@@ -48,8 +48,7 @@ A \code{tbl_df} with columns:
   \item emergence_success <dbl>
   \item clutch_size <dbl> The calculated clutch size reconstructed from
   excavated eggs.
-  \item clutch_size_fresh <dbl> The directly observed clutch size during
-  tagging.
+  \item egg_count <dbl> The directly observed clutch size during tagging.
   \item source <chr>
   \item source_id <chr>
   \item encounter_type <chr>

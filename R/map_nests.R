@@ -5,20 +5,25 @@
 #' @details Creates a Leaflet map with an interactive legend.
 #' The maps auto-zooms to the extent of data given.
 #'
-#' @param data The output of \code{parse_nesttag_observations}.
+#' @param data The output of \code{wastd_data$nest_tags}.
 #' @template param-wastd_url
 #' @template param-fmt
 #' @template param-cluster
 #' @return A leaflet map
 #' @family wastd
 #' @export
+#' @examples
+#' \dontrun{
+#' data("wastd_data")
+#' wastd_data$nest_tags %>% map_nests()
+#' }
 map_nests <- function(data,
                       wastd_url = wastdr::get_wastd_url(),
                       fmt = "%d/%m/%Y %H:%M",
                       cluster = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
   pal <- leaflet::colorFactor(palette = "RdYlBu", domain = data$status)
-  url <- sub("/$","",wastd_url)
+  url <- sub("/$", "", wastd_url)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
@@ -30,7 +35,7 @@ map_nests <- function(data,
       lat = ~encounter_latitude,
       icon = leaflet::makeAwesomeIcon(
         icon = "tag",
-        text = ~tag_label,
+        text = ~ toupper(substring(data$status, 1, 1)),
         markerColor = ~ pal(status)
       ),
       label = ~ glue::glue(
@@ -62,7 +67,7 @@ class="btn btn-xs btn-secondary" target="_" rel="nofollow">
 Edit survey in WAStD</a>
 
 <p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
-href="{url}{encounter_absolute_admin_url}">Edit on WAStD</a></p>
+href="{url}{absolute_admin_url}">Edit on WAStD</a></p>
       '),
       group = "Nests",
       clusterOptions = co

@@ -12,7 +12,7 @@ map_nests(
 )
 }
 \arguments{
-\item{data}{The output of \code{parse_nesttag_observations}.}
+\item{data}{The output of \code{wastd_data$nest_tags}.}
 
 \item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
 
@@ -33,6 +33,12 @@ A leaflet map
 \details{
 Creates a Leaflet map with an interactive legend.
 The maps auto-zooms to the extent of data given.
+}
+\examples{
+\dontrun{
+data("wastd_data")
+wastd_data$nest_tags \%>\% map_nests()
+}
 }
 \seealso{
 Other wastd: 

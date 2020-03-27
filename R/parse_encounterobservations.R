@@ -33,7 +33,7 @@ parse_encounterobservations <- function(wastd_api_response) {
     wastdr::wastd_parse() %>%
     # dplyr::select(
     #   -"geometry",
-      # -"type",
+    # -"type",
     #   -dplyr::ends_with("latitude"),
     #   -dplyr::ends_with("longitude")
     # ) %>%

@@ -31,8 +31,6 @@ datetime_as_isoweek(httpdate_as_gmt08("2018-11-01T22:00:00Z")) # 44
 \seealso{
 Other helpers: 
 \code{\link{\%>\%}()},
-\code{\link{add_dates_sve}()},
-\code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},
 \code{\link{chr2int}()},
 \code{\link{datetime_as_seasonweek}()},

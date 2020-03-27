@@ -1,3 +1,12 @@
+# wastdr 0.2.11
+* Start work on ODKC to WAStD data ingest via `ruODK`, `odkc_data`, 
+  `wastd_post_one` and `wastd_bulk_post`. The hard bits are:
+  
+  * Data mapping ODKC to WAStD
+  * Guess users (re-implement PostGIS's trigram fuzzy search)
+  * Determine create / update / skip based on source/sourceID already present 
+    in WAStD
+
 # wastdr 0.2.8
 * Test coverage 99.9%
 * `filter_dead()` and `filter_alive()` work for WAStD and ODKC data, see 

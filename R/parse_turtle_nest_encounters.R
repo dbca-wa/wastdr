@@ -41,8 +41,7 @@
 #'   \item emergence_success <dbl>
 #'   \item clutch_size <dbl> The calculated clutch size reconstructed from
 #'   excavated eggs.
-#'   \item clutch_size_fresh <dbl> The directly observed clutch size during
-#'   tagging.
+#'   \item egg_count <dbl> The directly observed clutch size during tagging.
 #'   \item source <chr>
 #'   \item source_id <chr>
 #'   \item encounter_type <chr>
@@ -53,110 +52,18 @@
 #' @export
 #' @family wastd
 parse_turtle_nest_encounters <- function(wastd_api_response) {
-  wastd_api_response$data %>% {
-    tibble::tibble(
-      area_name = purrr::map_chr(
-        ., c("properties", "area", "name"),
-        .default = NA
-      ),
-      area_type = purrr::map_chr(
-        ., c("properties", "area", "area_type"),
-        .default = NA
-      ),
-      area_id = purrr::map_chr(
-        ., c("properties", "area", "pk"),
-        .default = NA
-      ) %>% as.integer(),
-
-      site_name = purrr::map_chr(
-        ., c("properties", "site", "name"),
-        .default = NA
-      ),
-      site_type = purrr::map_chr(
-        ., c("properties", "site", "area_type"),
-        .default = NA
-      ),
-      site_id = purrr::map_chr(
-        ., c("properties", "site", "pk"),
-        .default = NA
-      ) %>% as.integer(),
-
-      survey_id = purrr::map_chr(
-        ., c("properties", "survey", "id"),
-        .default = NA
-      ) %>% as.integer(),
-      survey_start_time = purrr::map_chr(
-        .,
-        c("properties", "survey", "start_time"),
-        .default = NA
-      ) %>% httpdate_as_gmt08(),
-      survey_end_time = purrr::map_chr(.,
-        c("properties", "survey", "end_time"),
-        .default = NA
-      ) %>% httpdate_as_gmt08(),
-      survey_start_comments = purrr::map_chr(.,
-        c(
-          "properties",
-          "survey",
-          "start_comments"
-        ),
-        .default = NA
-      ),
-
-      survey_end_comments = purrr::map_chr(., c(
-        "properties", "survey", "end_comments"
-      ), .default = NA),
-
-      datetime = purrr::map_chr(
-        ., c("properties", "when")
-      ) %>% httpdate_as_gmt08(),
-      calendar_date_awst = datetime %>%
-        lubridate::with_tz("Australia/Perth") %>%
-        lubridate::floor_date(unit = "day") %>%
-        as.character(),
-      turtle_date = datetime %>% datetime_as_turtle_date(),
-      season = datetime %>% datetime_as_season(),
-      season_week = datetime %>% datetime_as_seasonweek(),
-      iso_week = datetime %>% datetime_as_isoweek(),
-
-      longitude = purrr::map_dbl(., c("properties", "longitude")),
-      latitude = purrr::map_dbl(., c("properties", "latitude")),
-      crs = purrr::map_chr(., c("properties", "crs")),
-      location_accuracy = purrr::map_chr(
-        ., c("properties", "location_accuracy")
-      ) %>% as.integer(),
-
-      species = purrr::map_chr(., c("properties", "species")),
-      nest_age = purrr::map_chr(., c("properties", "nest_age")),
-      nest_type = purrr::map_chr(., c("properties", "nest_type")),
-      name = map_chr_hack(., c("properties", "name")),
-      habitat = purrr::map_chr(., c("properties", "habitat")),
-      disturbance = purrr::map_chr(., c("properties", "disturbance")),
-      comments = map_chr_hack(., c("properties", "comments")),
-
-      absolute_admin_url = purrr::map_chr(
-        ., c("properties", "absolute_admin_url")
-      ),
-      obs = purrr::map(., c("properties", "observation_set")),
-      photos = purrr::map(., c("properties", "photographs")),
-
-      hatching_success = obs %>%
-        purrr::map(get_num_field, "hatching_success") %>% as.numeric(),
-      emergence_success = obs %>%
-        purrr::map(get_num_field, "emergence_success") %>% as.numeric(),
-      clutch_size = obs %>%
-        purrr::map(get_num_field, "egg_count_calculated") %>% as.numeric(),
-      clutch_size_fresh = obs %>%
-        purrr::map(get_num_field, "egg_count") %>% as.numeric(),
-
-      source = purrr::map_chr(., c("properties", "source")),
-      source_id = purrr::map_chr(., c("properties", "source_id")),
-      encounter_type = purrr::map_chr(., c("properties", "encounter_type")),
-      status = purrr::map_chr(., c("properties", "status")),
-      observer = map_chr_hack(., c("properties", "observer", "name")),
-      reporter = map_chr_hack(., c("properties", "reporter", "name"))
-    )
-  }
+  wastd_api_response %>%
+    wastdr::wastd_parse() %>%
+    dplyr::select(-"geometry") %>%
+    tidyr::unnest_wider("area", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider("site", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider("survey", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider("survey_site", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider("survey_reporter", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider("observer", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider("reporter", names_repair = "universal", names_sep = "_") %>%
+    wastdr::add_dates(date_col = "when") %>%
+    wastdr::add_nest_labels()
 }
 
 # usethis::use_test("parse_turtle_nest_encounters")

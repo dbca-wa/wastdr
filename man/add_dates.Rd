@@ -4,21 +4,29 @@
 \alias{add_dates}
 \title{Add turtle dates to a dataframe with datetime col `observation_start_time`.}
 \usage{
-add_dates(data)
+add_dates(data, date_col = "observation_start_time")
 }
 \arguments{
 \item{data}{a dataframe with datetime col `observation_start_time`, e.g. the
 output of ODKC form "turtle track or nest", "predator or disturbance", or
-"marine wildlife incident".}
+"marine wildlife incident". The date_col must be in plain text, not already
+converted to a date format.}
+
+\item{date_col}{<chr> The column name of the datetime to annotate.
+Default: \code{"observation_start_time"}.}
 }
 \value{
 The initial dataframe plus new columns
-
-  * calendar_date_awst
-  * turtle_date
-  * season
-  * season_week
-  * iso_week
+\itemize{
+  \item calendar_date_awst <chr> The calendar date in GMT+08 (AWST)
+  \item turtle_date <POSIXct> The turtle date,
+    see \code{\link{datetime_as_turtle_date}}.
+  \item season <int> The season, see \code{\link{datetime_as_season}}.
+  \item season_week <int> The season week,
+    see \code{\link{datetime_as_seasonweek}}.
+  \item iso_week <int> The season week,
+    see \code{\link{datetime_as_isoweek}}.
+}
 }
 \description{
 \lifecycle{stable}
@@ -26,8 +34,6 @@ The initial dataframe plus new columns
 \seealso{
 Other helpers: 
 \code{\link{\%>\%}()},
-\code{\link{add_dates_sve}()},
-\code{\link{add_dates_svs}()},
 \code{\link{chr2int}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},

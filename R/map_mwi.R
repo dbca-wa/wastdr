@@ -23,7 +23,7 @@ map_mwi <- function(data,
                     cluster = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
   overlay_names <- c()
-  url <- sub("/$","",wastd_url)
+  url <- sub("/$", "", wastd_url)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%

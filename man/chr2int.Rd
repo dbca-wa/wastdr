@@ -22,8 +22,6 @@ list("NA,2,234,NA", "NA", "5,NA,NA,1") \%>\% chr2int()
 \seealso{
 Other helpers: 
 \code{\link{\%>\%}()},
-\code{\link{add_dates_sve}()},
-\code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},

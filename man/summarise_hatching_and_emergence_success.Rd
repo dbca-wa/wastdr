@@ -7,10 +7,15 @@
 summarise_hatching_and_emergence_success(value)
 }
 \arguments{
-\item{value}{The output of \code{parse_turtle_nest_encounters()}}
+\item{value}{The output of \code{wastd_data$nest_excavations}}
 }
 \description{
 Utility to summarise a tibble of tracks with nest excavation data.
+If the dataset does not contain variables \code{egg_count} or
+\code{egg_count_calculated}, they will be added and set to
+\code{NA_integer_}. This can happen if the subset of data retrieved from
+WAStD happens to contain all NA in either of these variables, as
+\code{\link{parse_encounterobservations}} drops columns with all NA.
 }
 \details{
 Calculates:

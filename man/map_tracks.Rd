@@ -45,8 +45,8 @@ The maps auto-zooms to the extent of data given.
 \examples{
 \dontrun{
 data("wastd_data")
-map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster=T)
-map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster=F)
+map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster = T)
+map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster = F)
 }
 }
 \seealso{

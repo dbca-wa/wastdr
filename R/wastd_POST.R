@@ -29,7 +29,7 @@
 #' }
 wastd_POST <- function(data,
                        serializer,
-                       query = list(format="json"),
+                       query = list(format = "json"),
                        encode = "json",
                        api_url = wastdr::get_wastdr_api_url(),
                        api_token = wastdr::get_wastdr_api_token(),
@@ -50,12 +50,15 @@ wastd_POST <- function(data,
 
   text <- httr::content(res, as = "text", encoding = "UTF-8")
 
-  if (httr::http_type(res) == "application/json"){
-  res_parsed <- jsonlite::fromJSON(
-    text,
-    flatten = FALSE,
-    simplifyVector = FALSE
-  )} else res_parsed <- text
+  if (httr::http_type(res) == "application/json") {
+    res_parsed <- jsonlite::fromJSON(
+      text,
+      flatten = FALSE,
+      simplifyVector = FALSE
+    )
+  } else {
+    res_parsed <- text
+  }
 
   if (verbose == TRUE) {
     wastdr_msg_success(glue::glue("[wastd_POST] {res$status}"))

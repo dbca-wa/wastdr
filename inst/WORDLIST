@@ -14,7 +14,6 @@ behaviour
 bool
 Bugfix
 calendardate
-Centrail
 changedate
 chr
 CKAN
@@ -101,6 +100,7 @@ pkgdown
 placename
 png
 POSIXct
+PostGIS's
 pred
 predation
 qa
@@ -113,6 +113,7 @@ sd
 serializer
 serializer's
 SimpleFeatures
+sourceID
 SSO
 strandings
 Strandings
@@ -132,12 +133,14 @@ tibbles
 timeseries
 tne
 TokenAuth
+trigram
 tsc
 TSC
 tsi
 turtledata
 TurtleNest
 turtlenestencounter
+TurtleNestEncounter
 TurtleNestEncounters
 turtleviewer
 uat

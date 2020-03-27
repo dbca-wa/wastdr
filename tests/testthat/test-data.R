@@ -19,22 +19,6 @@ test_that("wastd_api_response prints something", {
   expect_output(print(wastd_ae_raw))
 })
 
-
-test_that("wastd_tne_raw parses correctly to nests", {
-  data(wastd_tne_raw)
-  data(wastd_tne)
-  fresh_tracks <- parse_turtle_nest_encounters(wastd_tne_raw) %>%
-    add_nest_labels()
-  expect_equal(length(wastd_tne_raw$data), nrow(wastd_tne))
-  expect_equal(nrow(fresh_tracks), nrow(wastd_tne))
-
-  # Compare pickled and fresh animals excluding list columns (like obs)
-  expect_equal(
-    fresh_tracks %>% dplyr::select(-obs, -photos),
-    wastd_tne %>% dplyr::select(-obs, -photos)
-  )
-})
-
 test_that("wastd_data contains expected tibbles", {
   data(wastd_data)
   expect_equal(

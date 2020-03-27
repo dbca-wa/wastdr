@@ -45,7 +45,13 @@ Site names and IDs are only correct at the time of writing. As they could change
 double-check the correct spelling of your own place names and their IDs in WAStD.
 
 ```{r filter_data}
-tracks_2017 <- wastd_data$tracks %>% dplyr::filter(season==2017)
+seasons <- wastd_data$tracks %>% 
+  dplyr::group_by(season) %>% 
+  dplyr::tally() %>% 
+  dplyr::arrange(-n) %>% 
+  magrittr::extract2("season")
+
+tracks <- wastd_data$tracks %>% filter_wastd_season(seasons[[1]])
 ```
 
 # Turtle Tracks and Nests
@@ -68,7 +74,8 @@ markers and popups.
 Use "Place names" where the aerial imagery is not available at the zoom level required
 for the grouped markers to expand.
 ```{r tracks_maps}
-wastd_data$tracks %>% map_tracks(sites = wastd_data$sites)
+wastd_data$tracks %>% 
+  map_tracks(sites = wastd_data$sites)
 
 # Many tracks display more performant when clustered
 wastd_data$tracks %>% map_tracks(sites = wastd_data$sites, cluster=T)
@@ -109,9 +116,9 @@ wastd_data$tracks %>%
 ## Nest excavations: Hatching and emergence success
 
 ```{r tracks_hses}
-wastd_data$tracks %>% hatching_emergence_success() %>% knitr::kable()
-wastd_data$tracks %>% hatching_emergence_success_area() %>% knitr::kable()
-wastd_data$tracks %>% hatching_emergence_success_site() %>% knitr::kable()
+wastd_data$nest_excavations %>% hatching_emergence_success() %>% knitr::kable()
+wastd_data$nest_excavations %>% hatching_emergence_success_area() %>% knitr::kable()
+wastd_data$nest_excavations %>% hatching_emergence_success_site() %>% knitr::kable()
 ```
 
 ## Tagged nests

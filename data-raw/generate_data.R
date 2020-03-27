@@ -19,7 +19,7 @@ usethis::use_data(wastd_ae, compress = "xz", overwrite = TRUE)
 # Generate tracks
 q <- list(area_id = 17, observer = 4)
 wastd_tne_raw <- wastdr::wastd_GET("turtle-nest-encounters", query = q, max_records = 100)
-wastd_tne <- parse_turtle_nest_encounters(wastd_tne_raw) %>% add_nest_labels()
+wastd_tne <- parse_turtle_nest_encounters(wastd_tne_raw)
 usethis::use_data(wastd_tne_raw, compress = "xz", overwrite = TRUE)
 usethis::use_data(wastd_tne, compress = "xz", overwrite = TRUE)
 
@@ -28,10 +28,8 @@ wastd_area_raw <- wastdr::wastd_GET("area")
 usethis::use_data(wastd_area_raw, compress = "xz", overwrite = TRUE)
 
 # Surveys > test parse_surveys
-wastd_surveys_raw <- wastdr::wastd_GET(
-  "surveys",
-  query = list(reporter = 4), max_records = 10
-)
+q2 <- list(reporter = 4)
+wastd_surveys_raw <- wastdr::wastd_GET("surveys", query = q2, max_records = 10)
 usethis::use_data(wastd_surveys_raw, compress = "xz", overwrite = TRUE)
 
 # TODO generate odkc data

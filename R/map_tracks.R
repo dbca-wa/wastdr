@@ -19,8 +19,8 @@
 #' @examples
 #' \dontrun{
 #' data("wastd_data")
-#' map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster=T)
-#' map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster=F)
+#' map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster = T)
+#' map_tracks(wastd_data$tracks, sites = wastd_data$sites, cluster = F)
 #' }
 map_tracks <- function(tracks,
                        sites = NULL,
@@ -29,7 +29,9 @@ map_tracks <- function(tracks,
                        cluster = FALSE,
                        ts = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
-  url <- sub("/$","",wastd_url)
+  url <- sub("/$", "", wastd_url)
+
+  if (!("name" %in% names(tracks))) tracks <- dplyr::mutate(tracks, name = "")
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
@@ -74,10 +76,10 @@ map_tracks <- function(tracks,
             text = ~nest_type_text,
             markerColor = ~species_colours
           ),
-          label = ~ glue::glue('
-            {format(datetime, "%d/%m/%Y %H:%M")} {humanize(nest_age)}
+          label = ~ glue::glue("
+            {format(datetime, fmt)} {humanize(nest_age)}
             {humanize(species)} {humanize(nest_type)} {name}
-          '),
+          "),
           popup = ~ glue::glue('
 <h3>{humanize(nest_age)} {humanize(species)}
 {humanize(nest_type)} {name}</h3>
@@ -88,13 +90,13 @@ map_tracks <- function(tracks,
 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 {format(datetime, fmt)} AWST<br/>
 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-{observer}<br/>
+{observer_name}<br/>
 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-{reporter}<br/>
+{reporter_name}<br/>
 
 <p>Survey {survey_id} at {site_name}
-{format(survey_start_time, fmt)}-
-{format(survey_end_time, fmt)} AWST</p>
+{format(httpdate_as_gmt08(survey_start_time), fmt)}-
+{format(httpdate_as_gmt08(survey_end_time), fmt)} AWST</p>
 
 <p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
 href="{url}{absolute_admin_url}">Edit on WAStD</a></p>

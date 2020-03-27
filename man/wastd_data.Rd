@@ -11,9 +11,11 @@ An object of class \code{wastd_data} of length 14.
 wastd_data
 }
 \description{
-The output of \code{\link{download_wastd_turtledata}}, but
-observer and reporter names are hidden, tibbles are filtered down to the
-first 100 records, however all areas and sites are included.
+This dataset contains the truncated output from
+\code{\link{download_wastd_turtledata}}.
+Names of observer and reporter are hidden.
+All TSC sites and areas are included, while all other tables are truncated
+with \code{head()}.
 }
 \seealso{
 Other included: 

@@ -465,6 +465,11 @@ ggplot_track_successrate_by_date <- function(data,
 #' \lifecycle{stable}
 #'
 #' Utility to summarise a tibble of tracks with nest excavation data.
+#' If the dataset does not contain variables \code{egg_count} or
+#' \code{egg_count_calculated}, they will be added and set to
+#' \code{NA_integer_}. This can happen if the subset of data retrieved from
+#' WAStD happens to contain all NA in either of these variables, as
+#' \code{\link{parse_encounterobservations}} drops columns with all NA.
 #'
 #' Calculates:
 #' \itemize{
@@ -478,17 +483,31 @@ ggplot_track_successrate_by_date <- function(data,
 #' \item emergence_success_{mean, sd, min, max} Emergence success stats
 #' }
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @param value The output of \code{wastd_data$nest_excavations}
 #' @export
 #' @family wastd
 summarise_hatching_and_emergence_success <- . %>%
+  {
+    if (!("egg_count" %in% names(.))) {
+      dplyr::mutate(., egg_count = NA_integer_)
+    } else {
+      .
+    }
+  } %>%
+  {
+    if (!("egg_count_calculated" %in% names(.))) {
+      dplyr::mutate(., egg_count_calculated = NA_integer_)
+    } else {
+      .
+    }
+  } %>%
   dplyr::summarize(
     "count" = n(),
-    "clutch_size_fresh" = mean(clutch_size_fresh) %>% round(digits = 2),
-    "clutch_size_mean" = mean(clutch_size) %>% round(digits = 2),
-    "clutch_size_sd" = sd(clutch_size) %>% round(digits = 2),
-    "clutch_size_min" = min(clutch_size),
-    "clutch_size_max" = max(clutch_size),
+    "clutch_size_fresh" = mean(egg_count) %>% round(digits = 2),
+    "clutch_size_mean" = mean(egg_count_calculated) %>% round(digits = 2),
+    "clutch_size_sd" = sd(egg_count_calculated) %>% round(digits = 2),
+    "clutch_size_min" = min(egg_count_calculated),
+    "clutch_size_max" = max(egg_count_calculated),
     "hatching_success_mean" = mean(hatching_success) %>% round(digits = 2),
     "hatching_success_sd" = sd(hatching_success) %>% round(digits = 2),
     "hatching_success_min" = min(hatching_success),
@@ -500,18 +519,17 @@ summarise_hatching_and_emergence_success <- . %>%
   )
 
 
-#' Sumarizes HS and ES for tracks of type \code{hatched-nest}
+#' Sumarizes HS and ES for Nest excavations
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_turtle_nest_encounters()}
+#' @param value The output of \code{wastd_data$nest_excavations}
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' summarise_hatching_and_emergence_success(wastd_data$tracks)
+#' summarise_hatching_and_emergence_success(wastd_data$nest_excavations)
 hatching_emergence_success <- . %>%
-  dplyr::filter(nest_type == "hatched-nest") %>%
   dplyr::filter(hatching_success >= 0) %>%
   dplyr::group_by(season, species) %>%
   summarise_hatching_and_emergence_success(.)
@@ -531,7 +549,7 @@ hatching_emergence_success_area <- function(tracks) {
   tracks %>%
     dplyr::filter(nest_type == "hatched-nest") %>%
     dplyr::filter(hatching_success >= 0) %>%
-    dplyr::group_by(area_name, season, species) %>%
+    dplyr::group_by(encounter_area_name, season, species) %>%
     summarise_hatching_and_emergence_success(.)
 }
 
@@ -550,7 +568,7 @@ hatching_emergence_success_site <- function(tracks) {
   tracks %>%
     dplyr::filter(nest_type == "hatched-nest") %>%
     dplyr::filter(hatching_success >= 0) %>%
-    dplyr::group_by(site_name, season, species) %>%
+    dplyr::group_by(encounter_site_name, season, species) %>%
     summarise_hatching_and_emergence_success(.)
 }
 # usethis::use_test("summarise_tracks")

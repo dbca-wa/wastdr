@@ -18,8 +18,6 @@ filter_nosurvey(value)
 \seealso{
 Other helpers: 
 \code{\link{\%>\%}()},
-\code{\link{add_dates_sve}()},
-\code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},
 \code{\link{chr2int}()},
 \code{\link{datetime_as_isoweek}()},

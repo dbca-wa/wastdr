@@ -37,8 +37,6 @@ httpdate_as_gmt08_turtle_date("2016-11-21T03:59:59Z") # noon AWST - 1 sec
 \seealso{
 Other helpers: 
 \code{\link{\%>\%}()},
-\code{\link{add_dates_sve}()},
-\code{\link{add_dates_svs}()},
 \code{\link{add_dates}()},
 \code{\link{chr2int}()},
 \code{\link{datetime_as_isoweek}()},

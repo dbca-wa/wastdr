@@ -33,17 +33,17 @@ filter_missing_survey <- . %>% dplyr::filter(is.na(survey_id))
 
 #' @export
 #' @rdname filter_missing_survey
-filter_nosurvey <- . %>% dplyr::filter(is.na(survey_id))
+filter_nosurvey <- . %>% dplyr::filter(is.na(survey_pk))
 
 #' Filter records with missing \code{site_id}
 #' @param value The output of \code{parse_turtle_nest_encounters}
 #' @export
 #' @family helpers
-filter_missing_site <- . %>% dplyr::filter(is.na(site_id))
+filter_missing_site <- . %>% dplyr::filter(is.na(site_pk))
 
 #' @export
 #' @rdname filter_missing_site
-filter_nosite <- . %>% dplyr::filter(is.na(site_id))
+filter_nosite <- . %>% dplyr::filter(is.na(site_pk))
 
 
 #' Exclude training surveys.

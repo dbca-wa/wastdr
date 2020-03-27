@@ -68,57 +68,81 @@ download_wastd_turtledata <- function(max_records = NULL,
   }
   tracks <- "turtle-nest-encounters" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_turtle_nest_encounters() %>%
-    wastdr::add_nest_labels()
+    wastdr::parse_turtle_nest_encounters()
+
+  tracks_subset <-
+    wastd_data$tracks %>% dplyr::select(
+      pk,
+      nest_age,
+      nest_type,
+      species,
+      habitat,
+      disturbance,
+      nest_tagged,
+      logger_found,
+      eggs_counted,
+      hatchlings_measured,
+      fan_angles_measured,
+      absolute_admin_url,
+      species_colours,
+      nest_type_text
+    )
 
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading nest disturbances...")
   }
   nest_dist <- "turtle-nest-disturbance-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by = "pk")
 
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading nest tags...")
   }
   nest_tags <- "nest-tag-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by = "pk")
 
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading nest excavations...")
   }
   nest_excavations <- "turtle-nest-excavations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by = "pk")
 
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading hatchling morph...")
   }
   hatchling_morph <- "turtle-hatchling-morphometrics" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by = "pk")
 
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading hatchling fans...")
   }
   nest_fans <- "turtle-nest-hatchling-emergences" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by = "pk")
 
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading hatchling fan outliers...")
   }
   nest_fan_outliers <- "turtle-nest-hatchling-emergence-outliers" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by = "pk")
 
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading light sources...")
   }
   nest_lightsources <- "turtle-nest-hatchling-emergence-light-sources" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by = "pk")
 
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading surveys...")
