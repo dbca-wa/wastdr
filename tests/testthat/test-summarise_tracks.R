@@ -13,6 +13,11 @@ test_that("nesting_type_by_season_species returns a tibble", {
   data("wastd_data")
 
   x <- nesting_type_by_season_species(wastd_data$tracks)
+  expect_true("season" %in% names(wastd_data$tracks))
+  expect_true("species" %in% names(wastd_data$tracks))
+  expect_true("nest_age" %in% names(wastd_data$tracks))
+  expect_true("nest_type" %in% names(wastd_data$tracks))
+
 
   expect_true(tibble::is_tibble(x))
   expect_true("season" %in% names(x))
@@ -23,8 +28,13 @@ test_that("nesting_type_by_season_age_species returns a tibble", {
   data("wastd_data")
 
   x <- nesting_type_by_season_age_species(wastd_data$tracks)
+  expect_true("season" %in% names(wastd_data$tracks))
+  expect_true("species" %in% names(wastd_data$tracks))
+  expect_true("nest_age" %in% names(wastd_data$tracks))
+  expect_true("nest_type" %in% names(wastd_data$tracks))
 
   expect_true(tibble::is_tibble(x))
+
   expect_true("season" %in% names(x))
   expect_true("species" %in% names(x))
   expect_true("nest_age" %in% names(x))
@@ -178,8 +188,7 @@ test_that("track_success returns a tibble", {
 test_that("track_success_by_species returns a tibble", {
   data("wastd_data")
 
-  x <-
-    track_success(wastd_data$tracks) %>% track_success_by_species()
+  x <- track_success(wastd_data$tracks) %>% track_success_by_species()
 
   expect_true(tibble::is_tibble(x))
   expect_true("season" %in% names(x))
@@ -243,6 +252,9 @@ test_that("summarise_hatching_and_emergence_success returns a tibble", {
   data("wastd_data")
 
   x <- summarise_hatching_and_emergence_success(wastd_data$nest_excavations)
+  egg_count
+  egg_count_calculated
+
 
   expect_true(tibble::is_tibble(x))
   expect_true("count" %in% names(x))
