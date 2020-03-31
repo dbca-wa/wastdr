@@ -520,15 +520,15 @@ summarise_hatching_and_emergence_success <- function(data){
     "count" = n(),
     "clutch_size_fresh" = mean(egg_count) %>% round(digits = 2),
     "clutch_size_mean" = mean(egg_count_calculated) %>% round(digits = 2),
-    "clutch_size_sd" = sd(egg_count_calculated) %>% round(digits = 2),
+    "clutch_size_sd" = stats::sd(egg_count_calculated) %>% round(digits = 2),
     "clutch_size_min" = min(egg_count_calculated),
     "clutch_size_max" = max(egg_count_calculated),
     "hatching_success_mean" = mean(hatching_success) %>% round(digits = 2),
-    "hatching_success_sd" = sd(hatching_success) %>% round(digits = 2),
+    "hatching_success_sd" = stats::sd(hatching_success) %>% round(digits = 2),
     "hatching_success_min" = min(hatching_success),
     "hatching_success_max" = max(hatching_success),
     "emergence_success_mean" = mean(emergence_success) %>% round(digits = 2),
-    "emergence_success_sd" = sd(emergence_success) %>% round(digits = 2),
+    "emergence_success_sd" = stats::sd(emergence_success) %>% round(digits = 2),
     "emergence_success_min" = min(emergence_success),
     "emergence_success_max" = max(emergence_success)
   )
