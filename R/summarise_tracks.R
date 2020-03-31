@@ -330,6 +330,9 @@ track_success <- function(tracks) {
 #' @param track_success The output of \code{\link{track_success}}
 #' @export
 #' @family wastd
+#' @examples
+#' data("wastd_data")
+#' track_success(wastd_data$tracks) %>% track_success_by_species()
 track_success_by_species <- function(track_success) {
   track_success %>%
     group_by(season, species) %>%
@@ -353,6 +356,10 @@ track_success_by_species <- function(track_success) {
 #' @param export Whether to export the figure as a file, default: FALSE
 #' @export
 #' @family wastd
+#' @examples
+#' data("wastd_data")
+#' sp <- wastd_data$tracks$species[[1]]
+#' track_success(wastd_data$tracks) %>% ggplot_track_success_by_date(sp)
 ggplot_track_success_by_date <- function(data,
                                          speciesname,
                                          placename = "",
@@ -407,7 +414,7 @@ ggplot_track_success_by_date <- function(data,
 #'
 #' \lifecycle{stable}
 #'
-#' @param data The output of \code{parse_turtle_nest_encounters()}
+#' @template param-tracks
 #' @param speciesname The species name, e.g. "natator-depressus"
 #' @template param-placename
 #' @template param-prefix
@@ -416,13 +423,17 @@ ggplot_track_success_by_date <- function(data,
 #' @param export Whether to export the figure as a file, default: FALSE
 #' @export
 #' @family wastd
-ggplot_track_successrate_by_date <- function(data,
+#' @examples
+#' data("wastd_data")
+#' sp <- wastd_data$tracks$species[[1]]
+#' track_success(wastd_data$tracks) %>% ggplot_track_successrate_by_date(sp)
+ggplot_track_successrate_by_date <- function(tracks,
                                              speciesname,
                                              placename = "",
                                              prefix = "",
                                              local_dir = here::here(),
                                              export = FALSE) {
-  data %>%
+  tracks %>%
     dplyr::filter(species == speciesname) %>%
     ggplot2::ggplot(ggplot2::aes(x = tdate_as_fdate(turtle_date))) +
     ggplot2::facet_grid(rows = ggplot2::vars(season), scales = "free_x") +
@@ -483,10 +494,14 @@ ggplot_track_successrate_by_date <- function(data,
 #' \item emergence_success_{mean, sd, min, max} Emergence success stats
 #' }
 #'
-#' @param value The output of \code{wastd_data$nest_excavations}
+#' @param data The output of \code{wastd_data$nest_excavations}
 #' @export
 #' @family wastd
-summarise_hatching_and_emergence_success <- . %>%
+#' @examples
+#' data("wastd_data")
+#' summarise_hatching_and_emergence_success(wastd_data$nest_excavations)
+summarise_hatching_and_emergence_success <- function(data){
+  data %>%
   {
     if (!("egg_count" %in% names(.))) {
       dplyr::mutate(., egg_count = NA_integer_)
@@ -517,56 +532,54 @@ summarise_hatching_and_emergence_success <- . %>%
     "emergence_success_min" = min(emergence_success),
     "emergence_success_max" = max(emergence_success)
   )
+}
 
-
-#' Sumarizes HS and ES for Nest excavations
+#' Sumarize HS and ES for Nest excavations
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{wastd_data$nest_excavations}
+#' @param data The output of \code{wastd_data$nest_excavations}
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' summarise_hatching_and_emergence_success(wastd_data$nest_excavations)
-hatching_emergence_success <- . %>%
+#' hatching_emergence_success(wastd_data$nest_excavations)
+hatching_emergence_success <- function(data){
+  data %>%
   dplyr::filter(hatching_success >= 0) %>%
   dplyr::group_by(season, species) %>%
   summarise_hatching_and_emergence_success(.)
+}
 
-#' Sumarizes HS and ES for tracks of type \code{hatched-nest}
-#' grouped by `area_name`.
+#' Summarize HS and ES for excavations of hatched nests grouped by `area_name`
 #'
 #' \lifecycle{stable}
 #'
-#' @template param-tracks
+#' @param data The output of \code{wastd_data$nest_excavations}
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' hatching_emergence_success_area(wastd_data$tracks)
-hatching_emergence_success_area <- function(tracks) {
-  tracks %>%
-    dplyr::filter(nest_type == "hatched-nest") %>%
+#' hatching_emergence_success_area(wastd_data$nest_excavations)
+hatching_emergence_success_area <- function(data) {
+  data %>%
     dplyr::filter(hatching_success >= 0) %>%
     dplyr::group_by(encounter_area_name, season, species) %>%
     summarise_hatching_and_emergence_success(.)
 }
 
-#' Sumarizes HS and ES for tracks of type \code{hatched-nest}
-#' grouped by `site_name`.
+#' Summarize HS and ES for excavations of hatched nests grouped by `site_name`
 #'
 #' \lifecycle{stable}
 #'
-#' @template param-tracks
+#' @param data The output of \code{wastd_data$nest_excavations}
 #' @export
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' hatching_emergence_success_site(wastd_data$tracks)
-hatching_emergence_success_site <- function(tracks) {
-  tracks %>%
-    dplyr::filter(nest_type == "hatched-nest") %>%
+#' hatching_emergence_success_site(wastd_data$nest_excavations)
+hatching_emergence_success_site <- function(data) {
+  data %>%
     dplyr::filter(hatching_success >= 0) %>%
     dplyr::group_by(encounter_site_name, season, species) %>%
     summarise_hatching_and_emergence_success(.)

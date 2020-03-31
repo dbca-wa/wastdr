@@ -242,7 +242,7 @@ test_that("ggplot_track_successrate_by_date returns a ggplot with export=FALSE",
 test_that("summarise_hatching_and_emergence_success returns a tibble", {
   data("wastd_data")
 
-  x <- summarise_hatching_and_emergence_success(wastd_data$tracks)
+  x <- summarise_hatching_and_emergence_success(wastd_data$nest_excavations)
 
   expect_true(tibble::is_tibble(x))
   expect_true("count" %in% names(x))
@@ -264,11 +264,11 @@ test_that("summarise_hatching_and_emergence_success returns a tibble", {
 test_that("hatching_emergence_success_area returns a tibble", {
   data("wastd_data")
 
-  x <- hatching_emergence_success_area(wastd_data$tracks)
+  x <- hatching_emergence_success_area(wastd_data$nest_excavations)
 
   expect_true(tibble::is_tibble(x))
 
-  expect_true("area_name" %in% names(x))
+  expect_true("encounter_area_name" %in% names(x))
   expect_true("season" %in% names(x))
   expect_true("species" %in% names(x))
   expect_true("count" %in% names(x))
@@ -291,11 +291,11 @@ test_that("hatching_emergence_success_area returns a tibble", {
 test_that("hatching_emergence_success_site returns a tibble", {
   data("wastd_data")
 
-  x <- hatching_emergence_success_site(wastd_data$tracks)
+  x <- hatching_emergence_success_site(wastd_data$nest_excavations)
 
   expect_true(tibble::is_tibble(x))
 
-  expect_true("site_name" %in% names(x))
+  expect_true("encounter_site_name" %in% names(x))
   expect_true("season" %in% names(x))
   expect_true("species" %in% names(x))
   expect_true("count" %in% names(x))
