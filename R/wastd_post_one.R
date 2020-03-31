@@ -7,7 +7,7 @@
 #' @template param-serializer
 #' @template param-auth
 #' @template param-verbose
-#' @return The \code{\link{wastd_api_response}} from \code{\link{wastd_POST}}.
+#' @return The \code{wastd_api_response} from \code{\link{wastd_POST}}.
 #' @family("api")
 #' @export
 wastd_post_one <- function(data_row,

@@ -15,6 +15,9 @@ wastd_bulk_post(
 )
 }
 \arguments{
+\item{data}{A tibble of a data with columns equal to the serializer's
+fields.}
+
 \item{serializer}{(character) WAStD API serializer name (required)
 Possible values see \code{https://tsc.dbca.wa.gov.au/api/1/}}
 
@@ -32,13 +35,9 @@ default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}
-
-\item{data_row}{A tibble of a data with columns equal to the serializer's
-fields.}
 }
 \value{
-The list of \code{\link{wastd_api_response}}s from
-  \code{\link{wastd_POST}}.
+The list of \code{wastd_api_response}s from \code{\link{wastd_POST}}
 }
 \description{
 \lifecycle{maturing}

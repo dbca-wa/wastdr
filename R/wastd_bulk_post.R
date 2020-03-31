@@ -2,13 +2,12 @@
 #'
 #' \lifecycle{maturing}
 #'
-#' @param data_row A tibble of a data with columns equal to the serializer's
+#' @param data A tibble of a data with columns equal to the serializer's
 #'   fields.
 #' @template param-serializer
 #' @template param-auth
 #' @template param-verbose
-#' @return The list of \code{\link{wastd_api_response}}s from
-#'   \code{\link{wastd_POST}}.
+#' @return The list of \code{wastd_api_response}s from \code{\link{wastd_POST}}
 #' @family("api")
 #' @export
 #' @examples

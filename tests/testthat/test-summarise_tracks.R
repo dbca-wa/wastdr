@@ -252,10 +252,9 @@ test_that("summarise_hatching_and_emergence_success returns a tibble", {
   data("wastd_data")
 
   x <- summarise_hatching_and_emergence_success(wastd_data$nest_excavations)
-  egg_count
-  egg_count_calculated
-
-
+  # Test data can collapse variables if all NULL
+  # egg_count
+  # egg_count_calculated
   expect_true(tibble::is_tibble(x))
   expect_true("count" %in% names(x))
   expect_true("clutch_size_fresh" %in% names(x))

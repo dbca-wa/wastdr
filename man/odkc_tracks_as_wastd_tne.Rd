@@ -12,7 +12,7 @@ e.g. \code{odkc_data$tracks}.}
 }
 \value{
 A tibble suitable to
-  \code{\link{wastd_bulk_post("turtle-nest-encounters")}}
+  \code{\link{wastd_bulk_post}("turtle-nest-encounters")}
 }
 \description{
 Transform odkc_data$tracks into WAStD TurtleNestEncounter

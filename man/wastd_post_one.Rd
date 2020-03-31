@@ -37,7 +37,7 @@ default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
 Default: wastdr::get_wastdr_verbose()}
 }
 \value{
-The \code{\link{wastd_api_response}} from \code{\link{wastd_POST}}.
+The \code{wastd_api_response} from \code{\link{wastd_POST}}.
 }
 \description{
 \lifecycle{maturing}
