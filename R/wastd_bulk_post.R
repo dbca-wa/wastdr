@@ -13,9 +13,9 @@
 #' @export
 #' @examples
 #' \dontrun{
-#'  odkc_data$tracks %>%
-#     odkc_tracks_as_wastd_tne() %>%
-#     wastd_bulk_post("turtle-nest-encounters")
+#' odkc_data$tracks %>%
+#'   odkc_tracks_as_wastd_tne() %>%
+#'   wastd_bulk_post("turtle-nest-encounters")
 #' }
 wastd_bulk_post <- function(data,
                             serializer,
@@ -23,16 +23,17 @@ wastd_bulk_post <- function(data,
                             api_token = wastdr::get_wastdr_api_token(),
                             api_un = wastdr::get_wastdr_api_un(),
                             api_pw = wastdr::get_wastdr_api_pw(),
-                            verbose = FALSE){
-    apply(data,
-          1,
-          wastd_post_one,
-          serializer = serializer,
-          api_url = api_url,
-          api_token = api_token,
-          api_un = api_un,
-          api_pw = api_pw,
-          verbose = verbose)
+                            verbose = FALSE) {
+  apply(data,
+    1,
+    wastd_post_one,
+    serializer = serializer,
+    api_url = api_url,
+    api_token = api_token,
+    api_un = api_un,
+    api_pw = api_pw,
+    verbose = verbose
+  )
 }
 
 # usethis::use_test("wastd_bulk_post")

@@ -45,7 +45,9 @@ The list of \code{\link{wastd_api_response}}s from
 }
 \examples{
 \dontrun{
- odkc_data$tracks \%>\%
+odkc_data$tracks \%>\%
+  odkc_tracks_as_wastd_tne() \%>\%
+  wastd_bulk_post("turtle-nest-encounters")
 }
 }
 \seealso{

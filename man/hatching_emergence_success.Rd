@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{hatching_emergence_success}
 \alias{hatching_emergence_success}
-\title{Sumarize HS and ES for Nest excavations}
+\title{Summarize HS and ES for Nest excavations}
 \usage{
 hatching_emergence_success(data)
 }
