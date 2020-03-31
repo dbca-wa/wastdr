@@ -20,13 +20,18 @@ jobs:
         config:
           - {os: windows-latest, r: '3.5'}
           - {os: windows-latest, r: '3.6'}
-          - {os: windows-latest, r: 'devel'}
+          # Fails at Install R dependencies with
+          # Warning: unable to access index for repository https://cloud.r-project.org/bin/windows/contrib/4.***:
+          # installation of package 'fs' had non-zero exit status
+          # installation of package 'XML' had non-zero exit status
+          # installation of package 'rlist' had non-zero exit status
+          #- {os: windows-latest, r: 'devel'}
           # Fails at r-lib/actions/setup-r@master
           #- {os: windows-latest, r: '4.0'}
           # Fails at R CMD Check with:
           # ERROR: dependency ‘sf’ is not available for package ‘wastdr’
-          #- {os: macOS-latest, r: '3.5'}
-          #- {os: macOS-latest, r: '3.6'}
+          - {os: macOS-latest, r: '3.5'}
+          - {os: macOS-latest, r: '3.6'}
           # Fails at "Source install macOS packages"" with:
           # ERROR: dependencies ‘tidyr’, ‘dplyr’, ‘promises’ are not available for package ‘plotly’
           # ERROR: dependencies ‘dplyr’, ‘proj4’, ‘plotly’ are not available for package ‘ggalt’
@@ -35,9 +40,7 @@ jobs:
           # installation of package ‘promises’ had non-zero exit status
           # installation of package ‘dplyr’ had non-zero exit status
           # installation of package ‘tidyr’ had non-zero exit status
-          #
-          #
-          - {os: macOS-latest, r: 'devel'}
+          #- {os: macOS-latest, r: 'devel'}
           #- {os: macOS-latest, r: '4.0'}
           # fails on missing proj4
           #- {os: macOS-latest, r: 'devel'}
@@ -117,6 +120,7 @@ jobs:
         run: |
           remotes::install_github('ropensci/geojsonio')
           remotes::install_github('hrbrmstr/ggalt')
+          install.packages("sf")
           remotes::install_github('r-spatial/sf')
         shell: Rscript {0}
 
