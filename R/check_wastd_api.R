@@ -9,7 +9,7 @@ wastd_works <- function(api_url = get_wastdr_api_url(),
                         api_token = get_wastdr_api_token(),
                         api_un = get_wastdr_api_un(),
                         api_pw = get_wastdr_api_pw()) {
-  suppressWarnings(
+  # suppressWarnings(
     res <- wastd_GET(
       "",
       max_records = 1,
@@ -19,7 +19,7 @@ wastd_works <- function(api_url = get_wastdr_api_url(),
       api_pw = api_pw,
       verbose = FALSE
     )
-  )
+  # )
 
   return(res$status_code == 200)
 }

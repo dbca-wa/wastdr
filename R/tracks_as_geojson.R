@@ -18,3 +18,5 @@ tracks_as_geojson <- function(tracks) {
       lon = "observed_at_longitude"
     )
 }
+
+# usethis::use_test("tracks_as_geojson")

@@ -1,4 +1,7 @@
 test_that("map_tracks returns a leaflet htmlwidget", {
+  testthat::skip_if(Sys.getenv("WASTDR_TALIBAN_TESTS") == TRUE,
+                    message = "This test segfaults on Ubuntu 19.10")
+
   data("wastd_data")
 
   themap <- map_tracks(

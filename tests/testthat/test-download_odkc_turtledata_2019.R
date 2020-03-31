@@ -1,4 +1,7 @@
 test_that("download_odkc_turtledata_2019 works", {
+  testthat::skip_if(Sys.getenv("WASTDR_SKIP_SLOW_TESTS", unset = FALSE) == TRUE,
+                    message = "Skip slow running tests")
+
   testthat::skip_if_not(odkc_works(), message = "ODKC offline or wrong auth")
 
   suppressMessages(
