@@ -12,6 +12,10 @@ track_success_by_species(track_success)
 \description{
 \lifecycle{stable}
 }
+\examples{
+data("wastd_data")
+track_success(wastd_data$tracks) \%>\% track_success_by_species()
+}
 \seealso{
 Other wastd: 
 \code{\link{add_nest_labels}()},

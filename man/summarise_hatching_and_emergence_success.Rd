@@ -4,10 +4,10 @@
 \alias{summarise_hatching_and_emergence_success}
 \title{\lifecycle{stable}}
 \usage{
-summarise_hatching_and_emergence_success(value)
+summarise_hatching_and_emergence_success(data)
 }
 \arguments{
-\item{value}{The output of \code{wastd_data$nest_excavations}}
+\item{data}{The output of \code{wastd_data$nest_excavations}}
 }
 \description{
 Utility to summarise a tibble of tracks with nest excavation data.
@@ -29,6 +29,10 @@ Calculates:
 \item hatching_success_{mean, sd, min, max} Hatching success stats
 \item emergence_success_{mean, sd, min, max} Emergence success stats
 }
+}
+\examples{
+data("wastd_data")
+summarise_hatching_and_emergence_success(wastd_data$nest_excavations)
 }
 \seealso{
 Other wastd: 

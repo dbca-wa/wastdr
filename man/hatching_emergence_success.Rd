@@ -2,19 +2,19 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{hatching_emergence_success}
 \alias{hatching_emergence_success}
-\title{Sumarizes HS and ES for Nest excavations}
+\title{Sumarize HS and ES for Nest excavations}
 \usage{
-hatching_emergence_success(value)
+hatching_emergence_success(data)
 }
 \arguments{
-\item{value}{The output of \code{wastd_data$nest_excavations}}
+\item{data}{The output of \code{wastd_data$nest_excavations}}
 }
 \description{
 \lifecycle{stable}
 }
 \examples{
 data("wastd_data")
-summarise_hatching_and_emergence_success(wastd_data$nest_excavations)
+hatching_emergence_success(wastd_data$nest_excavations)
 }
 \seealso{
 Other wastd: 

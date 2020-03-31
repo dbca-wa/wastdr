@@ -2,20 +2,19 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{hatching_emergence_success_area}
 \alias{hatching_emergence_success_area}
-\title{Sumarizes HS and ES for tracks of type \code{hatched-nest}
-grouped by `area_name`.}
+\title{Summarize HS and ES for excavations of hatched nests grouped by `area_name`}
 \usage{
-hatching_emergence_success_area(tracks)
+hatching_emergence_success_area(data)
 }
 \arguments{
-\item{tracks}{The output of \code{parse_turtle_nest_encounters} and \code{add_nest_labels}.}
+\item{data}{The output of \code{wastd_data$nest_excavations}}
 }
 \description{
 \lifecycle{stable}
 }
 \examples{
 data("wastd_data")
-hatching_emergence_success_area(wastd_data$tracks)
+hatching_emergence_success_area(wastd_data$nest_excavations)
 }
 \seealso{
 Other wastd: 

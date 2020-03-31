@@ -21,11 +21,22 @@ jobs:
           - {os: windows-latest, r: '3.5'}
           - {os: windows-latest, r: '3.6'}
           - {os: windows-latest, r: 'devel'}
-          #
           # Fails at r-lib/actions/setup-r@master
           #- {os: windows-latest, r: '4.0'}
-          - {os: macOS-latest, r: '3.5'}
-          - {os: macOS-latest, r: '3.6'}
+          # Fails at R CMD Check with:
+          # ERROR: dependency ‘sf’ is not available for package ‘wastdr’
+          #- {os: macOS-latest, r: '3.5'}
+          #- {os: macOS-latest, r: '3.6'}
+          # Fails at "Source install macOS packages"" with:
+          # ERROR: dependencies ‘tidyr’, ‘dplyr’, ‘promises’ are not available for package ‘plotly’
+          # ERROR: dependencies ‘dplyr’, ‘proj4’, ‘plotly’ are not available for package ‘ggalt’
+          # installation of package ‘proj4’ had non-zero exit status
+          # installation of package ‘later’ had non-zero exit status
+          # installation of package ‘promises’ had non-zero exit status
+          # installation of package ‘dplyr’ had non-zero exit status
+          # installation of package ‘tidyr’ had non-zero exit status
+          #
+          #
           - {os: macOS-latest, r: 'devel'}
           #- {os: macOS-latest, r: '4.0'}
           # fails on missing proj4
@@ -33,8 +44,9 @@ jobs:
           #
           # After fixing https://github.com/tidyverse/stringr/issues/320
           # fails with libproj.so.***2: missing
-          - {os: ubuntu-16.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
-          - {os: ubuntu-16.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
+          # ERROR dependency ‘geojsonio’ is not available for package ‘wastdr’
+          #- {os: ubuntu-16.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
+          #- {os: ubuntu-16.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
           # fails at r-lib/actions/setup-r@master
           #- {os: ubuntu-16.04, r: 'devel', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
           - {os: ubuntu-18.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}

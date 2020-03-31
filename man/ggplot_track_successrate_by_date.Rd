@@ -6,7 +6,7 @@
 series}
 \usage{
 ggplot_track_successrate_by_date(
-  data,
+  tracks,
   speciesname,
   placename = "",
   prefix = "",
@@ -15,7 +15,7 @@ ggplot_track_successrate_by_date(
 )
 }
 \arguments{
-\item{data}{The output of \code{parse_turtle_nest_encounters()}}
+\item{tracks}{The output of \code{parse_turtle_nest_encounters} and \code{add_nest_labels}.}
 
 \item{speciesname}{The species name, e.g. "natator-depressus"}
 
@@ -30,6 +30,11 @@ default: \code{here::here()}}
 }
 \description{
 \lifecycle{stable}
+}
+\examples{
+data("wastd_data")
+sp <- wastd_data$tracks$species[[1]]
+track_success(wastd_data$tracks) \%>\% ggplot_track_successrate_by_date(sp)
 }
 \seealso{
 Other wastd: 

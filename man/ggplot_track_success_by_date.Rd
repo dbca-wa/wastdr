@@ -30,6 +30,11 @@ default: \code{here::here()}}
 \description{
 \lifecycle{stable}
 }
+\examples{
+data("wastd_data")
+sp <- wastd_data$tracks$species[[1]]
+track_success(wastd_data$tracks) \%>\% ggplot_track_success_by_date(sp)
+}
 \seealso{
 Other wastd: 
 \code{\link{add_nest_labels}()},
