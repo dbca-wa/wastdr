@@ -13,9 +13,10 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Setup">
 <meta property="og:description" content="wastdr">
 <meta property="og:image" content="/logo.png">
@@ -30,7 +31,7 @@
   gtag('config', 'UA-155735563-2');
 </script>
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -43,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.12</span>
       </span>
     </div>
 
@@ -100,10 +101,10 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Setup</h1>
+      <h1 data-toc-skip>Setup</h1>
                         <h4 class="author">Florian Mayer</h4>
             
-            <h4 class="date">2020-03-18</h4>
+            <h4 class="date">2020-03-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/setup.Rmd"><code>vignettes/setup.Rmd</code></a></small>
       <div class="hidden name"><code>setup.Rmd</code></div>
@@ -116,7 +117,7 @@
 <h1 class="hasAnchor">
 <a href="#authentication" class="anchor"></a>Authentication</h1>
 <p>This vignette explains how to authenticate to the WAStD API.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span>(wastdr)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">wastdr</span>)</pre></body></html></div>
 <p>There are two audiences with two different authentication options.</p>
 <p>The first audience, DBCA staff, has access to <a href="https://strandings.dpaw.wa.gov.au">WAStD</a>. On their profile page they will find their own API token.</p>
 <p>The second audience, external collaborators, will be given a username and password. Using these credentials, they can access the <a href="https://strandings.dpaw.wa.gov.au/api/1/">WAStD API</a> both through their browser and from other software like <code>wastdr</code>.</p>
@@ -132,14 +133,14 @@
 </h2>
 <p>For a permanent setup, the environment variables can be set in the user’s <code>.Renviron</code>.</p>
 <p>DBCA staff add to their <code>.Renviron</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>WASTDR_API_URL=<span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>WASTDR_API_UN=<span class="st">"XXX"</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>WASTDR_API_PW=<span class="st">"XXX"</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span>
+<span class="no">WASTDR_API_UN</span><span class="kw">=</span><span class="st">"XXX"</span>
+<span class="no">WASTDR_API_PW</span><span class="kw">=</span><span class="st">"XXX"</span></pre></body></html></div>
 <p>Note that the API token contains the word <code>Token</code> and a whitespace in addition to the actual API token.</p>
 <p>External collaborators add to their <code>.Renviron</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>WASTDR_API_URL=<span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>WASTDR_API_UN=<span class="st">"XXX"</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>WASTDR_API_PW=<span class="st">"XXX"</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span>
+<span class="no">WASTDR_API_UN</span><span class="kw">=</span><span class="st">"XXX"</span>
+<span class="no">WASTDR_API_PW</span><span class="kw">=</span><span class="st">"XXX"</span></pre></body></html></div>
 <p>In the long term, this last method is the most elegant and persistent way of configuring <code>wastdr</code>.</p>
 </div>
 <div id="per-session" class="section level2">
@@ -148,30 +149,30 @@
 <p>If <code>api_*</code> settings are not provided, <code>wastdr::get_wastd</code> defaults to specifically named environment variables.</p>
 <p>For convenience, <code>wastdr_setup</code> sets these environment variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
 <p>If these variables haven’t been provided through e.g. <code>.Renviron</code>, you may set them on a per session basis:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastdr_setup.html">wastdr_setup</a></span>(<span class="dt">api_token =</span> <span class="st">"Token XXX"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/wastdr_setup.html">wastdr_setup</a></span>(<span class="kw">api_token</span> <span class="kw">=</span> <span class="st">"Token XXX"</span>)</pre></body></html></div>
 <p>Alternatively you may use your username and password.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastdr_setup.html">wastdr_setup</a></span>(<span class="dt">api_un =</span> <span class="st">"XXX"</span>, <span class="dt">api_pw =</span> <span class="st">"XXX"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/wastdr_setup.html">wastdr_setup</a></span>(<span class="kw">api_un</span> <span class="kw">=</span> <span class="st">"XXX"</span>, <span class="kw">api_pw</span> <span class="kw">=</span> <span class="st">"XXX"</span>)</pre></body></html></div>
 <p>Review the settings with:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastdr_settings.html">wastdr_settings</a></span>()</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&gt; &lt;wastdr settings&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt;   WAStD URL:     https://tsc.dbca.wa.gov.au/ </span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt;   API URL:       https://tsc.dbca.wa.gov.au/api/1/ </span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt;   API Token:     see wastdr::get_wastdr_api_token()</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;   API Username:  wastd_username </span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;   API Password:  see wastdr::get_wastdr_api_pw()</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt;   Verbose:       FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/wastdr_settings.html">wastdr_settings</a></span>()
+<span class="co">#&gt; &lt;wastdr settings&gt;</span>
+<span class="co">#&gt;   WAStD URL:     https://tsc.dbca.wa.gov.au/ </span>
+<span class="co">#&gt;   API URL:       https://tsc.dbca.wa.gov.au/api/1/ </span>
+<span class="co">#&gt;   API Token:     see wastdr::get_wastdr_api_token()</span>
+<span class="co">#&gt;   API Username:  wastd_username </span>
+<span class="co">#&gt;   API Password:  see wastdr::get_wastdr_api_pw()</span>
+<span class="co">#&gt;   Verbose:       FALSE</span></pre></body></html></div>
 <p><code>wastdr_setup</code> defaults <code>api_url</code> to the currently only existing API url.</p>
 </div>
 <div id="per-function-call" class="section level2">
 <h2 class="hasAnchor">
 <a href="#per-function-call" class="anchor"></a>Per function call</h2>
 <p>Crendentials can be supplied directly to functions:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastd_GET.html">wastd_GET</a></span>(<span class="st">'encounters'</span>, </span>
-<span id="cb7-2"><a href="#cb7-2"></a>                  <span class="dt">api_token =</span> <span class="st">"Token XXX"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a>wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastd_GET.html">wastd_GET</a></span>(<span class="st">'encounters'</span>,</span>
-<span id="cb7-5"><a href="#cb7-5"></a>                  <span class="dt">api_un =</span> <span class="st">"XXX"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6"></a>                  <span class="dt">api_pw =</span> <span class="st">"XXX"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/wastd_GET.html">wastd_GET</a></span>(<span class="st">'encounters'</span>,
+                  <span class="kw">api_token</span> <span class="kw">=</span> <span class="st">"Token XXX"</span>)
+
+<span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/wastd_GET.html">wastd_GET</a></span>(<span class="st">'encounters'</span>,
+                  <span class="kw">api_un</span> <span class="kw">=</span> <span class="st">"XXX"</span>,
+                  <span class="kw">api_pw</span> <span class="kw">=</span> <span class="st">"XXX"</span>)</pre></body></html></div>
 <p>This method overrides any other settings, but leads to verbose code with confidential data (token or password) in plain text.</p>
 </div>
 </div>
@@ -179,20 +180,9 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#authentication">Authentication</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#best-practice--renviron">Best practice: <code>.Renviron</code></a></li>
-      <li><a href="#per-session">Per session</a></li>
-      <li><a href="#per-function-call">Per function call</a></li>
-      </ul>
-</li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -203,7 +193,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
 </div>
 
       </footer>

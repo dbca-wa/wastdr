@@ -13,9 +13,10 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="WA Sea Turtle Database WAStD API Wrapper">
 <meta property="og:description" content="The WA Sea Turtle Database WAStD is a Django web app with a 
     RESTful API returning GeoJSON FeatureCollections. 
@@ -36,7 +37,7 @@
   gtag('config', 'UA-155735563-2');
 </script>
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -49,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.12</span>
       </span>
     </div>
 
@@ -122,13 +123,13 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install <code>wastdr</code> from GitHub:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("devtools")</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    <span class="st">"dbca-wa/wastdr"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    <span class="dt">dependencies =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    <span class="dt">upgrade =</span> <span class="st">"always"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
+<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(
+    <span class="st">"dbca-wa/wastdr"</span>,
+    <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+    <span class="kw">upgrade</span> <span class="kw">=</span> <span class="st">"always"</span>,
+    <span class="kw">build_vignettes</span> <span class="kw">=</span> <span class="fl">TRUE</span>
+)</pre></div>
 <p>While the WAStD API is only accessible to a selected audience, and <code>wastdr</code> is under active development, it is not feasible to release <code>wastdr</code> on CRAN yet. Therefore, <code>wastdr</code> will be distributed via GitHub for the time being.</p>
 </div>
 <div id="setup" class="section level2">
@@ -136,40 +137,40 @@
 <a href="#setup" class="anchor"></a>Setup</h2>
 <p><code>wastdr</code> requires to be configured with the WAStD API URL and an access token or a username / password combination. <code>wastdr</code> functions expect these settings to be available as environment variables. For convenience, <code>wastdr_setup</code> sets the correct variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
 <p>DBCA staff can find their WAStD API Token at <a href="https://tsc.dbca.wa.gov.au/">WAStD</a> under “My Profile” and add to their <code>.Renviron</code>. To use ODK Central turtle data download helpers, also add ODK Central credentials.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>WASTDR_API_URL=<span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>WASTDR_API_TOKEN=<span class="st">"Token XXX"</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>WASTDR_VERBOSE=<span class="ot">TRUE</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a>ODKC_URL=<span class="st">"https://odkcentral.dbca.wa.gov.au"</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>ODKC_UN=<span class="st">"..."</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>ODKC_PW=<span class="st">"..."</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span>
+<span class="no">WASTDR_API_TOKEN</span><span class="kw">=</span><span class="st">"Token XXX"</span>
+<span class="no">WASTDR_VERBOSE</span><span class="kw">=</span><span class="fl">TRUE</span>
+
+<span class="no">ODKC_URL</span><span class="kw">=</span><span class="st">"https://odkcentral.dbca.wa.gov.au"</span>
+<span class="no">ODKC_UN</span><span class="kw">=</span><span class="st">"..."</span>
+<span class="no">ODKC_PW</span><span class="kw">=</span><span class="st">"..."</span></pre></div>
 <p>External collaborators can use their allocated WAStD username and password:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>WASTDR_API_URL=<span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>WASTDR_API_UN=<span class="st">"..."</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>WASTDR_API_PW=<span class="st">"..."</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>WASTDR_VERBOSE=<span class="ot">TRUE</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a>ODKC_URL=<span class="st">"https://odkcentral.dbca.wa.gov.au"</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>ODKC_UN=<span class="st">"..."</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>ODKC_PW=<span class="st">"..."</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span>
+<span class="no">WASTDR_API_UN</span><span class="kw">=</span><span class="st">"..."</span>
+<span class="no">WASTDR_API_PW</span><span class="kw">=</span><span class="st">"..."</span>
+<span class="no">WASTDR_VERBOSE</span><span class="kw">=</span><span class="fl">TRUE</span>
+
+<span class="no">ODKC_URL</span><span class="kw">=</span><span class="st">"https://odkcentral.dbca.wa.gov.au"</span>
+<span class="no">ODKC_UN</span><span class="kw">=</span><span class="st">"..."</span>
+<span class="no">ODKC_PW</span><span class="kw">=</span><span class="st">"..."</span></pre></div>
 <p>Review the settings with:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>wastdr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/wastdr/man/wastdr_settings.html">wastdr_settings</a></span>()</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; &lt;wastdr settings&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt;   WAStD URL:     https://tsc.dbca.wa.gov.au </span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt;   API URL:       https://tsc.dbca.wa.gov.au/api/1/ </span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt;   API Token:     see wastdr::get_wastdr_api_token()</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt;   API Username:  FlorianM </span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt;   API Password:  see wastdr::get_wastdr_api_pw()</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt;   Verbose:       TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="reference/wastdr_settings.html">wastdr_settings</a></span>()
+<span class="co">#&gt; &lt;wastdr settings&gt;</span>
+<span class="co">#&gt;   WAStD URL:     https://tsc.dbca.wa.gov.au </span>
+<span class="co">#&gt;   API URL:       https://tsc.dbca.wa.gov.au/api/1/ </span>
+<span class="co">#&gt;   API Token:     see wastdr::get_wastdr_api_token()</span>
+<span class="co">#&gt;   API Username:  FlorianM </span>
+<span class="co">#&gt;   API Password:  see wastdr::get_wastdr_api_pw()</span>
+<span class="co">#&gt;   Verbose:       TRUE</span></pre></div>
 <p>For other configuration methods please see the vignette “Setup”.</p>
 </div>
 <div id="get-wastd" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-wastd" class="anchor"></a>Get WAStD</h2>
 <p>Once set up, <code>wastdr</code> can load data from WAStD simply with:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>tracks &lt;-<span class="st"> "turtle-nest-encounters"</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="st">    </span><span class="kw"><a href="reference/wastd_GET.html">wastd_GET</a></span>(<span class="dt">max_records =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st">  </span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="st">    </span><span class="kw"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="no">tracks</span> <span class="kw">&lt;-</span> <span class="st">"turtle-nest-encounters"</span> <span class="kw">%&gt;%</span>
+    <span class="fu"><a href="reference/wastd_GET.html">wastd_GET</a></span>(<span class="kw">max_records</span> <span class="kw">=</span> <span class="fl">10</span>) <span class="kw">%&gt;%</span>
+    <span class="fu"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>()</pre></div>
 <p>Valid endpoints are listed in the base API URL of WAStD, e.g.:</p>
 <ul>
 <li><code>encounters</code></li>
@@ -182,73 +183,73 @@
 <h2 class="hasAnchor">
 <a href="#or-have-a-pickle" class="anchor"></a>…or have a pickle</h2>
 <p>If you don’t have access to the WAStD API, you can still get a feel for the data by using the pickled example data:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(wastdr)</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"wastd_data"</span>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"odkc_data"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5"></a></span>
-<span id="cb6-6"><a href="#cb6-6"></a>wastd_data<span class="op">$</span>animals</span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; # A tibble: 10 x 43</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt;    area_name area_type area_id site_name site_type site_id survey_id</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt;  1 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;  2 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt;  3 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;  4 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;  5 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt;  6 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;  7 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt;  8 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt;  9 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt; 10 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt; # … with 36 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt; #   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="co">#&gt; #   calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;, season &lt;dbl&gt;,</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="co">#&gt; #   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, longitude &lt;dbl&gt;, latitude &lt;dbl&gt;,</span></span>
-<span id="cb6-24"><a href="#cb6-24"></a><span class="co">#&gt; #   crs &lt;chr&gt;, location_accuracy &lt;dbl&gt;, taxon &lt;chr&gt;, name &lt;chr&gt;, species &lt;chr&gt;,</span></span>
-<span id="cb6-25"><a href="#cb6-25"></a><span class="co">#&gt; #   health &lt;chr&gt;, sex &lt;chr&gt;, maturity &lt;chr&gt;, habitat &lt;chr&gt;, activity &lt;chr&gt;,</span></span>
-<span id="cb6-26"><a href="#cb6-26"></a><span class="co">#&gt; #   nesting_event &lt;chr&gt;, checked_for_injuries &lt;chr&gt;,</span></span>
-<span id="cb6-27"><a href="#cb6-27"></a><span class="co">#&gt; #   scanned_for_pit_tags &lt;chr&gt;, checked_for_flipper_tags &lt;chr&gt;,</span></span>
-<span id="cb6-28"><a href="#cb6-28"></a><span class="co">#&gt; #   cause_of_death &lt;chr&gt;, cause_of_death_confidence &lt;chr&gt;,</span></span>
-<span id="cb6-29"><a href="#cb6-29"></a><span class="co">#&gt; #   absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;,</span></span>
-<span id="cb6-30"><a href="#cb6-30"></a><span class="co">#&gt; #   encounter_type &lt;chr&gt;, status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;</span></span>
-<span id="cb6-31"><a href="#cb6-31"></a>wastd_data<span class="op">$</span>tracks</span>
-<span id="cb6-32"><a href="#cb6-32"></a><span class="co">#&gt; # A tibble: 10 x 43</span></span>
-<span id="cb6-33"><a href="#cb6-33"></a><span class="co">#&gt;    area_name area_type area_id site_name site_type site_id survey_id</span></span>
-<span id="cb6-34"><a href="#cb6-34"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;</span></span>
-<span id="cb6-35"><a href="#cb6-35"></a><span class="co">#&gt;  1 Port Hed… Locality       13 Port Hed… Site           35      4562</span></span>
-<span id="cb6-36"><a href="#cb6-36"></a><span class="co">#&gt;  2 Port Hed… Locality       13 Port Hed… Site           35      4562</span></span>
-<span id="cb6-37"><a href="#cb6-37"></a><span class="co">#&gt;  3 Port Hed… Locality       13 Port Hed… Site           35      4562</span></span>
-<span id="cb6-38"><a href="#cb6-38"></a><span class="co">#&gt;  4 &lt;NA&gt;      &lt;NA&gt;           NA &lt;NA&gt;      &lt;NA&gt;           NA        NA</span></span>
-<span id="cb6-39"><a href="#cb6-39"></a><span class="co">#&gt;  5 Perth Me… Locality       18 Florian … Site           53      3635</span></span>
-<span id="cb6-40"><a href="#cb6-40"></a><span class="co">#&gt;  6 Perth Me… Locality       18 Florian … Site           53      3635</span></span>
-<span id="cb6-41"><a href="#cb6-41"></a><span class="co">#&gt;  7 Perth Me… Locality       18 Kensingt… Site           33      3634</span></span>
-<span id="cb6-42"><a href="#cb6-42"></a><span class="co">#&gt;  8 Perth Me… Locality       18 Kensingt… Site           33      3634</span></span>
-<span id="cb6-43"><a href="#cb6-43"></a><span class="co">#&gt;  9 Perth Me… Locality       18 Kensingt… Site           33      3634</span></span>
-<span id="cb6-44"><a href="#cb6-44"></a><span class="co">#&gt; 10 Perth Me… Locality       18 Kensingt… Site           33      3634</span></span>
-<span id="cb6-45"><a href="#cb6-45"></a><span class="co">#&gt; # … with 36 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,</span></span>
-<span id="cb6-46"><a href="#cb6-46"></a><span class="co">#&gt; #   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,</span></span>
-<span id="cb6-47"><a href="#cb6-47"></a><span class="co">#&gt; #   calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;, season &lt;dbl&gt;,</span></span>
-<span id="cb6-48"><a href="#cb6-48"></a><span class="co">#&gt; #   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, longitude &lt;dbl&gt;, latitude &lt;dbl&gt;,</span></span>
-<span id="cb6-49"><a href="#cb6-49"></a><span class="co">#&gt; #   crs &lt;chr&gt;, location_accuracy &lt;int&gt;, species &lt;chr&gt;, nest_age &lt;chr&gt;,</span></span>
-<span id="cb6-50"><a href="#cb6-50"></a><span class="co">#&gt; #   nest_type &lt;chr&gt;, name &lt;chr&gt;, habitat &lt;chr&gt;, disturbance &lt;chr&gt;,</span></span>
-<span id="cb6-51"><a href="#cb6-51"></a><span class="co">#&gt; #   comments &lt;chr&gt;, absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;, photos &lt;list&gt;,</span></span>
-<span id="cb6-52"><a href="#cb6-52"></a><span class="co">#&gt; #   hatching_success &lt;dbl&gt;, emergence_success &lt;dbl&gt;, clutch_size &lt;dbl&gt;,</span></span>
-<span id="cb6-53"><a href="#cb6-53"></a><span class="co">#&gt; #   clutch_size_fresh &lt;dbl&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;,</span></span>
-<span id="cb6-54"><a href="#cb6-54"></a><span class="co">#&gt; #   encounter_type &lt;chr&gt;, status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;,</span></span>
-<span id="cb6-55"><a href="#cb6-55"></a><span class="co">#&gt; #   species_colours &lt;chr&gt;, nest_type_text &lt;chr&gt;</span></span>
-<span id="cb6-56"><a href="#cb6-56"></a></span>
-<span id="cb6-57"><a href="#cb6-57"></a>wastd_data<span class="op">$</span>tracks <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/map_tracks.html">map_tracks</a></span>(<span class="dt">sites =</span> wastd_data<span class="op">$</span>sites)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">wastdr</span>)
+
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"wastd_data"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"odkc_data"</span>)
+
+<span class="no">wastd_data</span>$<span class="no">animals</span>
+<span class="co">#&gt; # A tibble: 10 x 43</span>
+<span class="co">#&gt;    area_name area_type area_id site_name site_type site_id survey_id</span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;</span>
+<span class="co">#&gt;  1 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  2 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  3 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  4 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  5 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  6 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  7 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  8 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  9 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt; 10 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt; # … with 36 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,</span>
+<span class="co">#&gt; #   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,</span>
+<span class="co">#&gt; #   calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;, season &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, longitude &lt;dbl&gt;, latitude &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   crs &lt;chr&gt;, location_accuracy &lt;dbl&gt;, taxon &lt;chr&gt;, name &lt;chr&gt;, species &lt;chr&gt;,</span>
+<span class="co">#&gt; #   health &lt;chr&gt;, sex &lt;chr&gt;, maturity &lt;chr&gt;, habitat &lt;chr&gt;, activity &lt;chr&gt;,</span>
+<span class="co">#&gt; #   nesting_event &lt;chr&gt;, checked_for_injuries &lt;chr&gt;,</span>
+<span class="co">#&gt; #   scanned_for_pit_tags &lt;chr&gt;, checked_for_flipper_tags &lt;chr&gt;,</span>
+<span class="co">#&gt; #   cause_of_death &lt;chr&gt;, cause_of_death_confidence &lt;chr&gt;,</span>
+<span class="co">#&gt; #   absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   encounter_type &lt;chr&gt;, status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;</span>
+<span class="no">wastd_data</span>$<span class="no">tracks</span>
+<span class="co">#&gt; # A tibble: 10 x 43</span>
+<span class="co">#&gt;    area_name area_type area_id site_name site_type site_id survey_id</span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;</span>
+<span class="co">#&gt;  1 Port Hed… Locality       13 Port Hed… Site           35      4562</span>
+<span class="co">#&gt;  2 Port Hed… Locality       13 Port Hed… Site           35      4562</span>
+<span class="co">#&gt;  3 Port Hed… Locality       13 Port Hed… Site           35      4562</span>
+<span class="co">#&gt;  4 &lt;NA&gt;      &lt;NA&gt;           NA &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  5 Perth Me… Locality       18 Florian … Site           53      3635</span>
+<span class="co">#&gt;  6 Perth Me… Locality       18 Florian … Site           53      3635</span>
+<span class="co">#&gt;  7 Perth Me… Locality       18 Kensingt… Site           33      3634</span>
+<span class="co">#&gt;  8 Perth Me… Locality       18 Kensingt… Site           33      3634</span>
+<span class="co">#&gt;  9 Perth Me… Locality       18 Kensingt… Site           33      3634</span>
+<span class="co">#&gt; 10 Perth Me… Locality       18 Kensingt… Site           33      3634</span>
+<span class="co">#&gt; # … with 36 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,</span>
+<span class="co">#&gt; #   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,</span>
+<span class="co">#&gt; #   calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;, season &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, longitude &lt;dbl&gt;, latitude &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   crs &lt;chr&gt;, location_accuracy &lt;int&gt;, species &lt;chr&gt;, nest_age &lt;chr&gt;,</span>
+<span class="co">#&gt; #   nest_type &lt;chr&gt;, name &lt;chr&gt;, habitat &lt;chr&gt;, disturbance &lt;chr&gt;,</span>
+<span class="co">#&gt; #   comments &lt;chr&gt;, absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;, photos &lt;list&gt;,</span>
+<span class="co">#&gt; #   hatching_success &lt;dbl&gt;, emergence_success &lt;dbl&gt;, clutch_size &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   clutch_size_fresh &lt;dbl&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   encounter_type &lt;chr&gt;, status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;,</span>
+<span class="co">#&gt; #   species_colours &lt;chr&gt;, nest_type_text &lt;chr&gt;</span>
+
+<span class="no">wastd_data</span>$<span class="no">tracks</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="reference/map_tracks.html">map_tracks</a></span>(<span class="kw">sites</span> <span class="kw">=</span> <span class="no">wastd_data</span>$<span class="no">sites</span>)</pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>odkc_data<span class="op">$</span>tracks <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/map_tracks_odkc.html">map_tracks_odkc</a></span>(<span class="dt">sites =</span> odkc_data<span class="op">$</span>sites)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="r"><span class="no">odkc_data</span>$<span class="no">tracks</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="reference/map_tracks_odkc.html">map_tracks_odkc</a></span>(<span class="kw">sites</span> <span class="kw">=</span> <span class="no">odkc_data</span>$<span class="no">sites</span>)</pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-2.png"><!-- --></p>
 </div>
 <div id="learn-more" class="section level2">
 <h2 class="hasAnchor">
 <a href="#learn-more" class="anchor"></a>Learn more</h2>
 <p>See the vignette for built-in helpers to transform, analyze and visualize WAStD data.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span>(<span class="st">"getting-wastd"</span>, <span class="dt">package =</span> <span class="st">"wastdr"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span>(<span class="st">"analysis"</span>, <span class="dt">package =</span> <span class="st">"wastdr"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span>(<span class="st">"getting-wastd"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"wastdr"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span>(<span class="st">"analysis"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"wastdr"</span>)</pre></div>
 </div>
 </div>
 <div id="contribute" class="section level1">
@@ -257,17 +258,17 @@
 <p>Every contribution, constructive feedback, or suggestion is welcome!</p>
 <p>Send us your ideas and requests as <a href="https://github.com/dbca-wa/wastdr/issues">issues</a> or submit a pull request.</p>
 <p>Pull requests should eventually pass tests and checks (not introducing new ERRORs, WARNINGs or NOTEs apart from the “New CRAN package” NOTE):</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>styler<span class="op">:::</span><span class="kw">style_pkg</span>()</span>
-<span id="cb9-2"><a href="#cb9-2"></a>spelling<span class="op">::</span><span class="kw"><a href="https://docs.ropensci.org/spelling/reference/spell_check_package.html">spell_check_package</a></span>()</span>
-<span id="cb9-3"><a href="#cb9-3"></a>spelling<span class="op">::</span><span class="kw"><a href="https://docs.ropensci.org/spelling/reference/wordlist.html">update_wordlist</a></span>()</span>
-<span id="cb9-4"><a href="#cb9-4"></a>devtools<span class="op">::</span><span class="kw">document</span>(<span class="dt">roclets =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"rd"</span>, <span class="st">"collate"</span>, <span class="st">"namespace"</span>, <span class="st">"vignette"</span>))</span>
-<span id="cb9-5"><a href="#cb9-5"></a>devtools<span class="op">::</span><span class="kw">build</span>()</span>
-<span id="cb9-6"><a href="#cb9-6"></a>devtools<span class="op">::</span><span class="kw">test</span>()</span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co"># devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>goodpractice<span class="op">::</span><span class="kw">goodpractice</span>(<span class="dt">quiet =</span> F)</span>
-<span id="cb9-9"><a href="#cb9-9"></a>covr<span class="op">::</span><span class="kw"><a href="http://covr.r-lib.org/reference/codecov.html">codecov</a></span>(<span class="dt">token =</span> <span class="kw"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"CODECOV_TOKEN"</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="r"><span class="kw pkg">styler</span><span class="kw ns">:::</span><span class="fu">style_pkg</span>()
+<span class="kw pkg">spelling</span><span class="kw ns">::</span><span class="fu"><a href="https://docs.ropensci.org/spelling/reference/spell_check_package.html">spell_check_package</a></span>()
+<span class="kw pkg">spelling</span><span class="kw ns">::</span><span class="fu"><a href="https://docs.ropensci.org/spelling/reference/wordlist.html">update_wordlist</a></span>()
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">document</span>(<span class="kw">roclets</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"rd"</span>, <span class="st">"collate"</span>, <span class="st">"namespace"</span>, <span class="st">"vignette"</span>))
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">build</span>()
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">test</span>()
+<span class="co"># devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))</span>
+<span class="kw pkg">goodpractice</span><span class="kw ns">::</span><span class="fu">goodpractice</span>(<span class="kw">quiet</span> <span class="kw">=</span> <span class="no">F</span>)
+<span class="kw pkg">covr</span><span class="kw ns">::</span><span class="fu"><a href="http://covr.r-lib.org/reference/codecov.html">codecov</a></span>(<span class="kw">token</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"CODECOV_TOKEN"</span>))</pre></div>
 <p>To enable local testing of the API as well as checking and upload of test coverage, add your CODECOV token to your .Renviron:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>CODECOV_TOKEN =<span class="st"> "my-codecov-token"</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="r"><span class="no">CODECOV_TOKEN</span> <span class="kw">=</span> <span class="st">"my-codecov-token"</span></pre></div>
 <p>The <code>wastdr</code> <a href="https://dbca-wa.github.io/wastdr/">webpage</a> is hosted on gh-pages and generated using <a href="https://github.com/hadley/pkgdown">pkgdown</a>.</p>
 </div>
 
@@ -310,10 +311,6 @@
 <li><a href="https://github.com/dbca-wa/wastdr/commits/master"><img src="https://img.shields.io/github/last-commit/dbca-wa/wastdr.svg" alt="Last-changedate"></a></li>
 <li><a href="https://github.com/dbca-wa/wastdr/actions"><img src="https://github.com/dbca-wa/wastdr/workflows/R-CMD-check/badge.svg?branch=master" alt="R-CMD-check"></a></li>
 <li><a href="https://codecov.io/gh/dbca-wa/wastdr"><img src="https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg" alt="Test coverage"></a></li>
-<li><a href="https://www.dbca.wa.gov.au/science/"><img src="reference/figures/dbca_bcs.png" width="150" alt="DBCA"></a></li>
-<li><a href="https://flatbacks.dbca.wa.gov.au/"><img src="reference/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a></li>
-<li><a href="https://www.dbca.wa.gov.au/science/"><img src="reference/figures/dbca_bcs.png" width="150" alt="DBCA"></a></li>
-<li><a href="https://flatbacks.dbca.wa.gov.au/"><img src="reference/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a></li>
 </ul>
 </div>
 </div>
@@ -325,7 +322,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
 </div>
 
       </footer>
