@@ -30,8 +30,8 @@ jobs:
           #- {os: windows-latest, r: '4.0'}
           # Fails at R CMD Check with:
           # ERROR: dependency ‘sf’ is not available for package ‘wastdr’
-          - {os: macOS-latest, r: '3.5'}
-          - {os: macOS-latest, r: '3.6'}
+          #- {os: macOS-latest, r: '3.5'}
+          #- {os: macOS-latest, r: '3.6'}
           # Fails at "Source install macOS packages"" with:
           # ERROR: dependencies ‘tidyr’, ‘dplyr’, ‘promises’ are not available for package ‘plotly’
           # ERROR: dependencies ‘dplyr’, ‘proj4’, ‘plotly’ are not available for package ‘ggalt’
