@@ -118,7 +118,13 @@
       <a href="../articles/getting-wastd.html">Getting WAStD</a>
     </li>
     <li>
+      <a href="../articles/odkc.html">Turtle Nesting Census ETL</a>
+    </li>
+    <li>
       <a href="../articles/setup.html">Setup</a>
+    </li>
+    <li>
+      <a href="../articles/wamtram.html">Turtle Tagging ETL</a>
     </li>
   </ul>
 </li>
@@ -158,7 +164,7 @@
 <p>Start work on ODKC to WAStD data ingest via <code>ruODK</code>, <code>odkc_data</code>, <code>wastd_post_one</code> and <code>wastd_bulk_post</code>. The hard bits are:</p>
 <ul>
 <li>Data mapping ODKC to WAStD</li>
-<li>Guess users (re-implement PostGIS’s trigram fuzzy search)</li>
+<li>Guess users (re-implement PostGISâs trigram fuzzy search)</li>
 <li>Determine create / update / skip based on source/sourceID already present in WAStD</li>
 </ul>
 </li>
@@ -365,7 +371,7 @@
 <p>Added <code>isoweek</code> to parsers. The parsers now provide for each record:</p>
 <ul>
 <li>timezone-aware datetime (actual time of observation),</li>
-<li>“turtle date” (nesting night start date),</li>
+<li>âturtle dateâ (nesting night start date),</li>
 <li>season start year,</li>
 <li>week number.</li>
 </ul>
@@ -380,7 +386,7 @@
 <h2 class="hasAnchor">
 <a href="#major-changes-5" class="anchor"></a>Major changes</h2>
 <ul>
-<li>All <code>parse_</code> functions changed the column <code>date</code> to the more descriptive <code>turtle_date</code>, as in the date (ymd) of “the night before”. Using <code>turtle_date</code> groups turtle tagging (nightfall to sunrise) and tracks (made same night but observed the next morning) under the same date. This change requires code depending on the column <code>date</code> to be updated to <code>turtle_date</code>.</li>
+<li>All <code>parse_</code> functions changed the column <code>date</code> to the more descriptive <code>turtle_date</code>, as in the date (ymd) of âthe night beforeâ. Using <code>turtle_date</code> groups turtle tagging (nightfall to sunrise) and tracks (made same night but observed the next morning) under the same date. This change requires code depending on the column <code>date</code> to be updated to <code>turtle_date</code>.</li>
 </ul>
 </div>
 <div id="minor-changes-9" class="section level2">
@@ -399,7 +405,7 @@
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>
-<code>parse_surveys</code> can now handle surveys without a <code>source_id</code>. These surveys are e.g. those which were reconstructed by WAStD.</li>
+<code>parse_surveys</code> can now handle surveys without a <code>source_id</code>. These surveys are e.g.Â those which were reconstructed by WAStD.</li>
 </ul>
 </div>
 </div>
@@ -410,7 +416,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes-10" class="anchor"></a>Minor changes</h2>
 <ul>
-<li>Add map_nests to create a map of tagged nests from WAStD “nesttag-observations”.</li>
+<li>Add map_nests to create a map of tagged nests from WAStD ânesttag-observationsâ.</li>
 </ul>
 </div>
 </div>
@@ -422,7 +428,7 @@
 <a href="#minor-changes-11" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Added <code>map_dist</code> to map disturbance observations.</li>
-<li>Added <code>parse_nesttag_observations</code> for WAStD “nesttag-observations”.</li>
+<li>Added <code>parse_nesttag_observations</code> for WAStD ânesttag-observationsâ.</li>
 </ul>
 </div>
 </div>
@@ -488,7 +494,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes-16" class="anchor"></a>Minor changes</h2>
 <ul>
-<li>Cut down on size of vignette “analysis”</li>
+<li>Cut down on size of vignette âanalysisâ</li>
 </ul>
 </div>
 </div>
@@ -535,9 +541,9 @@
 <a href="#minor-changes-19" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>AnimalEncounters and TurtleNestEncounters now include survey information.</li>
-<li>Surveys: <code>parse_survey</code>, plus some data viz for Surveys, see vignette “Analysis”.</li>
+<li>Surveys: <code>parse_survey</code>, plus some data viz for Surveys, see vignette âAnalysisâ.</li>
 <li>wastd_POST can be used to update users and taxomony in WAStD.</li>
-<li>Changed example dataset names to “tne” and “nests”.</li>
+<li>Changed example dataset names to âtneâ and ânestsâ.</li>
 <li>Added <code>map_tracks</code>, a map of turtle tracks/nests. WIP: more data viz for tracks.</li>
 </ul>
 </div>

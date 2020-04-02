@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Getting WAStD • wastdr</title>
+<title>Turtle Nesting Census ETL • wastdr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Getting WAStD">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Turtle Nesting Census ETL">
 <meta property="og:description" content="wastdr">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -107,88 +107,36 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Getting WAStD</h1>
-                        <h4 class="author">Florian Mayer</h4>
+      <h1 data-toc-skip>Turtle Nesting Census ETL</h1>
             
-            <h4 class="date">2020-04-02</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/getting-wastd.Rmd"><code>vignettes/getting-wastd.Rmd</code></a></small>
-      <div class="hidden name"><code>getting-wastd.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/odkc.Rmd"><code>vignettes/odkc.Rmd</code></a></small>
+      <div class="hidden name"><code>odkc.Rmd</code></div>
 
     </div>
 
     
     
-<div id="get-wastd" class="section level2">
-<h2 class="hasAnchor">
-<a href="#get-wastd" class="anchor"></a>Get WAStD</h2>
-<p>After setting up <code>wastdr</code>’s authentication in vignette “Setup”, we can now retrieve data using <code><a href="../reference/wastd_GET.html">wastdr::wastd_GET()</a></code> to send <code>GET</code> requests to the <code>WAStD</code> API.</p>
-<p>This vignette shows examples of retrieving and parsing data from all existing WAStD API endpoints. The intent of this vignette is to serve as a starting point</p>
-<p>See vignette “get-tsc” for examples of the Threatened Species and Communities side.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">wastdr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)</pre></body></html></div>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">magrittr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">leaflet</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">listviewer</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)</pre></body></html></div>
-</div>
-<div id="encounters" class="section level1">
-<h1 class="hasAnchor">
-<a href="#encounters" class="anchor"></a>Encounters</h1>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"># Encounters from 2016 onwards (this includes disturbances, animal and turtle 
-# nest encounters but not their specific details)
-# https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?when__year__gte=2016</pre></body></html></div>
-<div id="filtering-the-results" class="section level2">
-<h2 class="hasAnchor">
-<a href="#filtering-the-results" class="anchor"></a>Filtering the results</h2>
-<p>See examples of filter parameters and possible filter values on:</p>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">wastdr</span>)</pre></body></html></div>
+<p>This workflow imports all Turtle Nesting Census data captured via OpenDataKit from ODK Central to WAStD.</p>
 <ul>
-<li><a href="https://tsc.dbca.wa.gov.au/api/1/animal-encounters/">https://tsc.dbca.wa.gov.au/api/1/animal-encounters/</a></li>
-<li><a href=""></a></li>
-<li><a href=""></a></li>
+<li>Download all ODKC data including attachments</li>
+<li>Load existing nesting records from TSC: load only a minimal set of source, source ID, QA status to determine later what to create / update / skip:
+<ul>
+<li>does not exist in TSC: create (POST)</li>
+<li>exists in TSC with status “new”: update (PATCH)</li>
+<li>exists in TSC with status higher than “new”: skip (and message)</li>
 </ul>
-<p>This section will be expanded to show how to filter the data, e.g.</p>
-<ul>
-<li>All data from an area (marine protected area, location, study site)</li>
-<li>All data collected or recorded by a certain person</li>
-<li>All data with specific properties, e.g. only certain stranding types, taxonomic groups etc.</li>
+</li>
+<li>Make (transform) ODKC to WAStD data</li>
+<li>Load transformed data into WAStD’s API (create/update/skip)</li>
+<li>No QA</li>
 </ul>
 </div>
-<div id="animalencounters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#animalencounters" class="anchor"></a>AnimalEncounters</h2>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"># AnimalEncounters of Turtles from 2016 onwards
-# https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</pre></body></html></div>
-</div>
-<div id="turtlenestencounters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#turtlenestencounters" class="anchor"></a>TurtleNestEncounters</h2>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"># https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</pre></body></html></div>
-</div>
-<div id="linetransectencounters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#linetransectencounters" class="anchor"></a>LineTransectEncounters</h2>
-</div>
-<div id="loggerencounters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#loggerencounters" class="anchor"></a>LoggerEncounters</h2>
-</div>
-</div>
-  </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
