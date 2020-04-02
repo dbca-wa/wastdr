@@ -123,6 +123,7 @@ jobs:
           brew install proj
           brew install gdal
 
+      # macos-latest configure: error: libproj not found in standard or given locations.
       - name: Source install macOS packages
         if: runner.os == 'macOS'
         run: |
