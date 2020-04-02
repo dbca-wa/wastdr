@@ -110,9 +110,11 @@ jobs:
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
 
-      - name: Bash Windows over the head with a source install of dplyr
+      - name: Bash Windows over the head with a source install of dplyr and sf
         if: runner.os == 'Windows'
-        run: install.packages("dplyr", type = "source")
+        run: |
+          install.packages("dplyr", type = "source")
+          install.packages("sf", type = "source")
         shell: Rscript {0}
 
       - name: Source install macOS system deps
@@ -129,7 +131,6 @@ jobs:
         run: |
           remotes::install_github('ropensci/geojsonio')
           remotes::install_github('hrbrmstr/ggalt')
-          install.packages("sf")
           remotes::install_github('r-spatial/sf')
         shell: Rscript {0}
 
