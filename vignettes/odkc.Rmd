@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(wastdr)
+library(drake)
 ```
 
 This workflow imports all Turtle Nesting Census data captured via OpenDataKit

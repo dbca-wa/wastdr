@@ -29,6 +29,7 @@ Imports:
     crayon (>= 1.3.4),
     data.table (>= 1.12.8),
     dplyr (>= 0.8.3),
+    drake (>= 7.12.0.9000),
     geojsonio (>= 0.9.0),
     geojsonsf (>= 1.3.0),
     ggTimeSeries (>= 1.0.1),
@@ -55,7 +56,8 @@ Imports:
     tidyr (>= 1.0.1),
     rlang (>= 0.4.5)
 Remotes:
-    github::dbca-wa/ruODK
+    github::dbca-wa/ruODK,
+    github::ropensci/drake
 Suggests:
     spelling (>= 2.1),
     ckanr (>= 0.4.0),
@@ -66,7 +68,8 @@ Suggests:
     testthat (>= 2.3.0),
     roxygen2 (>= 7.0.2),
     xml2 (>= 1.2.2),
-    covr (>= 3.4.0)
+    covr (>= 3.4.0),
+    visNetwork
 License: MIT + file LICENSE
 Language: en_US
 Encoding: UTF-8
