@@ -1,0 +1,39 @@
+---
+title: "Turtle Tagging ETL"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Turtle Tagging ETL}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(wastdr)
+```
+
+This workflow copies the contents of the turtle tagging database WAMTRAM2 into
+the WA Sea Turtle Database (WAStD).
+
+* Load the turtle tagging db WAMTRAM from its MS SQL Server database into memory 
+  and save objects as RData
+* Load existing tagging records from TSC: load only a minimal set of 
+  source, source ID, QA status to determine later what to create / update / skip:
+  * does not exist in TSC: create (POST)
+  * exists in TSC with status "new": update (PATCH)
+  * exists in TSC with status higher than "new": skip (and message)
+* Make (transform) WAMTRAM to TSC data
+* Load transformed data into TSC's API (create/update/skip)
+* Extract tagging records from TSC again
+* Show (map, tabulate, summarise) tagging records from TSC
+* Compare tagging data from TSC to tagging data from WAMTRAM - 
+  e.g. tally across factor levels (species, health, tag status). 
+  At least compare: same number of sightings of same tag?
+
+
