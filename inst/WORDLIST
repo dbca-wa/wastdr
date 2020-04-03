@@ -37,6 +37,7 @@ dttm
 dummmy
 emergences
 ERRORs
+ETL
 eval
 exacavations
 featurecollection
@@ -91,6 +92,7 @@ ODKC
 odkcentral
 OGC
 onwards
+OpenDataKit
 ORCID
 ouput
 ows
@@ -104,6 +106,7 @@ PostGIS's
 pred
 predation
 qa
+RData
 Renviron
 RESTful
 rlang
@@ -135,6 +138,7 @@ TokenAuth
 trigram
 tsc
 TSC
+TSC's
 tsi
 turtledata
 TurtleNest
@@ -154,6 +158,7 @@ visualisations
 wa
 wacensus
 WACensus
+WAMTRAM
 WARNINGs
 wastd
 WAStD
