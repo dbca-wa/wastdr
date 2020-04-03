@@ -72,21 +72,17 @@ wastd_data$nest_fan_outliers <- wastd_data$nest_fan_outliers %>% sanitize_names(
 wastd_data$nest_lightsources <- wastd_data$nest_lightsources %>% sanitize_names()
 usethis::use_data(wastd_data, compress = "xz", overwrite = TRUE)
 
-# Generate tcl
-get_10 <- . %>%
-  wastdr::wastd_GET(max_records = 10) %>%
-  wastd_parse()
-get_all <- . %>%
-  wastdr::wastd_GET() %>%
-  wastd_parse()
+# Generate TSC data
+get_10 <- . %>% wastdr::wastd_GET(max_records = 10) %>% wastd_parse()
+get_all <- . %>% wastdr::wastd_GET() %>% wastd_parse()
 
 tsc_data <- list(
   # Taxonomy
-  taxon = get_10("taxon"),
-  taxon_fast = get_10("taxon-fast"),
-  vernacular = get_10("vernacular"),
-  crossreference = get_10("crossreference"),
-  community = get_10("community"),
+  taxon = get_all("taxon"),
+  taxon_fast = get_all("taxon-fast"),
+  vernacular = get_all("vernacular"),
+  crossreference = get_all("crossreference"),
+  community = get_all("community"),
 
   # Conservation listings
   conservationlist = get_all("conservationlist"),

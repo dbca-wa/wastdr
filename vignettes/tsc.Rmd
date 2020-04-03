@@ -1,0 +1,51 @@
+---
+title: "Threatened Species and Communities (TSC)"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Threatened Species and Communities (TSC)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(wastdr)
+```
+
+# Taxonomy
+
+Use packaged data (fast, but older)
+
+```{r}
+data("tsc_data", package="wastdr")
+```
+
+Load fresh data from TSC (slow, but up to date with TSC)
+
+```{r, eval=FALSE}
+get_all <- . %>% wastdr::wastd_GET() %>% wastd_parse()
+
+taxon = get_all("taxon")
+taxon_fast = get_all("taxon-fast")
+vernacular = get_all("vernacular")
+crossreference = get_all("crossreference")
+community = get_all("community")
+```
+
+## Inspect taxonomic data
+
+```{r, fig.width=9}
+rt <- . %>% head %>% reactable::reactable(sortable = T, filterable = T)
+
+tsc_data$taxon %>%  rt
+tsc_data$taxon_fast %>% rt
+tsc_data$vernacular %>% rt
+tsc_data$crossreference %>% head() %>% listviewer::jsonedit()
+```
+
