@@ -25,6 +25,9 @@ data("wastd_data")
 wastd_data$nest_dist \%>\%
   disturbance_by_season() \%>\%
   head()
+
+data("odkc_data")
+odkc_data$tracks_dist \%>\% nest_disturbance_by_season()
 }
 \seealso{
 Other wastd: 

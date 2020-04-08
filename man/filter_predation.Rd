@@ -29,6 +29,10 @@ data("odkc_data")
 odkc_data$tracks_dist \%>\%
   filter_predation() \%>\%
   head()
+
+odkc_data$dist \%>\%
+  filter_predation() \%>\%
+  head()
 }
 \seealso{
 Other wastd: 

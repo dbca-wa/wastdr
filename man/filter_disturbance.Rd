@@ -29,6 +29,10 @@ data("odkc_data")
 odkc_data$tracks_dist \%>\%
   filter_disturbance() \%>\%
   head()
+
+odkc_data$dist \%>\%
+  filter_disturbance() \%>\%
+  head()
 }
 \seealso{
 Other wastd: 

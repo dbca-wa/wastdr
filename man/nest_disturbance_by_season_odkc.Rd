@@ -10,7 +10,7 @@ nest_disturbance_by_season_odkc(data)
 \item{data}{ODKC tracks_dist}
 }
 \description{
-\lifecycle{stable}
+\lifecycle{deprecated}
 }
 \examples{
 data("odkc_data")

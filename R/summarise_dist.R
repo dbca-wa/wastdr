@@ -16,19 +16,29 @@
 #' odkc_data$tracks_dist %>%
 #'   filter_disturbance() %>%
 #'   head()
+#'
+#' odkc_data$dist %>%
+#'   filter_disturbance() %>%
+#'   head()
 filter_disturbance <- function(data) {
-  data %>%
-    dplyr::filter(
-      disturbance_cause %in% c(
-        "human",
-        "unknown",
-        "tide",
-        "turtle",
-        "other",
-        "vehicle",
-        "cyclone"
-      )
-    )
+
+  flt_col <- dplyr::case_when(
+    "disturbanceobservation_disturbance_cause" %in% names(data) ~
+      "disturbanceobservation_disturbance_cause",
+    TRUE ~ "disturbance_cause"
+  )
+
+  flt_vals <- c(
+    "human",
+    "unknown",
+    "tide",
+    "turtle",
+    "other",
+    "vehicle",
+    "cyclone"
+  )
+
+    data %>% dplyr::filter(!!rlang::sym(flt_col) %in% flt_vals)
 }
 
 #' Filter disturbance data to predator presences
@@ -49,22 +59,32 @@ filter_disturbance <- function(data) {
 #' odkc_data$tracks_dist %>%
 #'   filter_predation() %>%
 #'   head()
+#'
+#' odkc_data$dist %>%
+#'   filter_predation() %>%
+#'   head()
 filter_predation <- function(data) {
-  data %>%
-    dplyr::filter(
-      disturbance_cause %in% c(
-        "bandicoot",
-        "bird",
-        "cat",
-        "crab",
-        "croc",
-        "dingo",
-        "dog",
-        "fox",
-        "goanna",
-        "pig"
-      )
-    )
+
+  flt_col <- dplyr::case_when(
+    "disturbanceobservation_disturbance_cause" %in% names(data) ~
+      "disturbanceobservation_disturbance_cause",
+    TRUE ~ "disturbance_cause"
+  )
+
+  flt_vals <- c(
+    "bandicoot",
+    "bird",
+    "cat",
+    "crab",
+    "croc",
+    "dingo",
+    "dog",
+    "fox",
+    "goanna",
+    "pig"
+  )
+
+  data %>% dplyr::filter(!!rlang::sym(flt_col) %in% flt_vals)
 }
 
 
@@ -82,19 +102,34 @@ filter_predation <- function(data) {
 #' wastd_data$nest_dist %>%
 #'   disturbance_by_season() %>%
 #'   head()
+#'
+#' data("odkc_data")
+#' odkc_data$tracks_dist %>% nest_disturbance_by_season()
 disturbance_by_season <- function(data) {
+  flt_col <- dplyr::case_when(
+    "disturbanceobservation_disturbance_cause" %in% names(data) ~
+      "disturbanceobservation_disturbance_cause",
+    TRUE ~ "disturbance_cause"
+  )
+
   data %>%
-    dplyr::group_by(season, disturbance_cause, encounter_encounter_type) %>%
+    {
+      if ("encounter_encounter_type" %in% names(data))
+        # wastd_data$nest_dist
+        dplyr::rename(., encounter_type = encounter_encounter_type)
+      else
+        # odkc_data$tracks_dist
+        dplyr::mutate(., encounter_type = "nest")
+    } %>%
+    dplyr::group_by(season, !!rlang::sym(flt_col), encounter_type) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
-    dplyr::rename(encounter_type = encounter_encounter_type) %>%
     dplyr::arrange(-season, encounter_type, -n)
 }
 
-
 #' Tally ODKC Nest disturbances by season, cause, and encounter type
 #'
-#' \lifecycle{stable}
+#' \lifecycle{deprecated}
 #'
 #' @param data ODKC tracks_dist
 #' @export
