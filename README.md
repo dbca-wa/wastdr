@@ -108,7 +108,7 @@ Review the settings with:
 ``` r
 wastdr::wastdr_settings()
 #> <wastdr settings>
-#>   WAStD URL:     https://tsc.dbca.wa.gov.au 
+#>   WAStD URL:     https://tsc.dbca.wa.gov.au/ 
 #>   API URL:       https://tsc.dbca.wa.gov.au/api/1/ 
 #>   API Token:     see wastdr::get_wastdr_api_token()
 #>   API Username:  FlorianM 
@@ -147,7 +147,7 @@ data("wastd_data")
 data("odkc_data")
 
 wastd_data$animals
-#> # A tibble: 10 x 43
+#> # A tibble: 100 x 43
 #>    area_name area_type area_id site_name site_type site_id survey_id
 #>    <chr>     <chr>       <int> <chr>     <chr>       <int>     <int>
 #>  1 Barrow I… Locality       41 <NA>      <NA>           NA        NA
@@ -160,41 +160,49 @@ wastd_data$animals
 #>  8 Barrow I… Locality       41 <NA>      <NA>           NA        NA
 #>  9 Barrow I… Locality       41 <NA>      <NA>           NA        NA
 #> 10 Mundabul… Site           42 <NA>      <NA>           NA        NA
-#> # … with 36 more variables: survey_start_time <dttm>, survey_end_time <dttm>,
-#> #   survey_start_comments <chr>, survey_end_comments <chr>, datetime <dttm>,
-#> #   calendar_date_awst <chr>, turtle_date <date>, season <dbl>,
-#> #   season_week <dbl>, iso_week <dbl>, longitude <dbl>, latitude <dbl>,
-#> #   crs <chr>, location_accuracy <dbl>, taxon <chr>, name <chr>, species <chr>,
-#> #   health <chr>, sex <chr>, maturity <chr>, habitat <chr>, activity <chr>,
-#> #   nesting_event <chr>, checked_for_injuries <chr>,
-#> #   scanned_for_pit_tags <chr>, checked_for_flipper_tags <chr>,
-#> #   cause_of_death <chr>, cause_of_death_confidence <chr>,
-#> #   absolute_admin_url <chr>, obs <list>, source <chr>, source_id <chr>,
-#> #   encounter_type <chr>, status <chr>, observer <chr>, reporter <chr>
+#> # … with 90 more rows, and 36 more variables: survey_start_time <dttm>,
+#> #   survey_end_time <dttm>, survey_start_comments <chr>,
+#> #   survey_end_comments <chr>, datetime <dttm>, calendar_date_awst <chr>,
+#> #   turtle_date <date>, season <dbl>, season_week <dbl>, iso_week <dbl>,
+#> #   longitude <dbl>, latitude <dbl>, crs <chr>, location_accuracy <dbl>,
+#> #   taxon <chr>, name <chr>, species <chr>, health <chr>, sex <chr>,
+#> #   maturity <chr>, habitat <chr>, activity <chr>, nesting_event <chr>,
+#> #   checked_for_injuries <chr>, scanned_for_pit_tags <chr>,
+#> #   checked_for_flipper_tags <chr>, cause_of_death <chr>,
+#> #   cause_of_death_confidence <chr>, absolute_admin_url <chr>, obs <list>,
+#> #   source <chr>, source_id <chr>, encounter_type <chr>, status <chr>,
+#> #   observer <chr>, reporter <chr>
 wastd_data$tracks
-#> # A tibble: 10 x 43
-#>    area_name area_type area_id site_name site_type site_id survey_id
-#>    <chr>     <chr>       <int> <chr>     <chr>       <int>     <int>
-#>  1 Port Hed… Locality       13 Port Hed… Site           35      4562
-#>  2 Port Hed… Locality       13 Port Hed… Site           35      4562
-#>  3 Port Hed… Locality       13 Port Hed… Site           35      4562
-#>  4 <NA>      <NA>           NA <NA>      <NA>           NA        NA
-#>  5 Perth Me… Locality       18 Florian … Site           53      3635
-#>  6 Perth Me… Locality       18 Florian … Site           53      3635
-#>  7 Perth Me… Locality       18 Kensingt… Site           33      3634
-#>  8 Perth Me… Locality       18 Kensingt… Site           33      3634
-#>  9 Perth Me… Locality       18 Kensingt… Site           33      3634
-#> 10 Perth Me… Locality       18 Kensingt… Site           33      3634
-#> # … with 36 more variables: survey_start_time <dttm>, survey_end_time <dttm>,
-#> #   survey_start_comments <chr>, survey_end_comments <chr>, datetime <dttm>,
-#> #   calendar_date_awst <chr>, turtle_date <date>, season <dbl>,
-#> #   season_week <dbl>, iso_week <dbl>, longitude <dbl>, latitude <dbl>,
-#> #   crs <chr>, location_accuracy <int>, species <chr>, nest_age <chr>,
-#> #   nest_type <chr>, name <chr>, habitat <chr>, disturbance <chr>,
-#> #   comments <chr>, absolute_admin_url <chr>, obs <list>, photos <list>,
-#> #   hatching_success <dbl>, emergence_success <dbl>, clutch_size <dbl>,
-#> #   clutch_size_fresh <dbl>, source <chr>, source_id <chr>,
-#> #   encounter_type <chr>, status <chr>, observer <chr>, reporter <chr>,
+#> # A tibble: 100 x 61
+#>    type      pk area_pk area_area_type area_name area_ site_pk site_area_type
+#>    <chr>  <int>   <int> <chr>          <chr>     <lgl>   <int> <chr>         
+#>  1 Feat… 159497      13 Locality       Port Hed… NA         35 Site          
+#>  2 Feat… 159498      13 Locality       Port Hed… NA         35 Site          
+#>  3 Feat… 159499      13 Locality       Port Hed… NA         35 Site          
+#>  4 Feat…     80      NA <NA>           <NA>      NA         NA <NA>          
+#>  5 Feat…    314      18 Locality       Perth Me… NA         53 Site          
+#>  6 Feat…    315      18 Locality       Perth Me… NA         53 Site          
+#>  7 Feat…    316      18 Locality       Perth Me… NA         33 Site          
+#>  8 Feat…    317      18 Locality       Perth Me… NA         33 Site          
+#>  9 Feat…    318      18 Locality       Perth Me… NA         33 Site          
+#> 10 Feat…    319      18 Locality       Perth Me… NA         33 Site          
+#> # … with 90 more rows, and 53 more variables: site_name <chr>, site_ <lgl>,
+#> #   survey_id <int>, survey_site_pk <int>, survey_site_area_type <chr>,
+#> #   survey_site_name <chr>, survey_site_ <lgl>, survey_start_time <chr>,
+#> #   survey_end_time <chr>, survey_start_comments <chr>,
+#> #   survey_reporter_pk <chr>, survey_reporter_username <chr>,
+#> #   survey_reporter_name <chr>, survey_reporter_ <chr>,
+#> #   survey_absolute_admin_url <chr>, survey_production <lgl>, survey_ <lgl>,
+#> #   source <chr>, source_id <chr>, encounter_type <chr>, leaflet_title <chr>,
+#> #   status <chr>, observer_pk <chr>, observer_username <chr>,
+#> #   observer_name <chr>, reporter_pk <chr>, reporter_username <chr>,
+#> #   reporter_name <chr>, comments <chr>, latitude <dbl>, longitude <dbl>,
+#> #   crs <chr>, location_accuracy <chr>, when <chr>, nest_age <chr>,
+#> #   nest_type <chr>, species <chr>, habitat <chr>, disturbance <chr>,
+#> #   nest_tagged <chr>, logger_found <chr>, eggs_counted <chr>,
+#> #   hatchlings_measured <chr>, fan_angles_measured <chr>,
+#> #   absolute_admin_url <chr>, datetime <dttm>, calendar_date_awst <chr>,
+#> #   turtle_date <date>, season <dbl>, season_week <dbl>, iso_week <dbl>,
 #> #   species_colours <chr>, nest_type_text <chr>
 
 wastd_data$tracks %>% map_tracks(sites = wastd_data$sites)

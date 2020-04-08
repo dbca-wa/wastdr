@@ -27,7 +27,6 @@ datetime
 datetimes
 dbca
 DBCA's
-deduplicates
 depressus
 df
 dir
@@ -149,7 +148,6 @@ turtleviewer
 uat
 UAT
 UID
-unlist
 unnested
 unparsed
 Upsert
