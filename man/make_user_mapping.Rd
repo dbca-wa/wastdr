@@ -6,6 +6,9 @@
 \usage{
 make_user_mapping(odkc_data)
 }
+\arguments{
+\item{odkc_data}{.}
+}
 \description{
 Generate a TSC user mapping from a given list of usernames
 }

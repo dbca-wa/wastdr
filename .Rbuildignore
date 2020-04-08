@@ -15,3 +15,4 @@ vignettes/rsconnect/*
 ^appveyor\.yml$
 ^azure-pipelines\.yml$
 ^.github$
+^.drake$

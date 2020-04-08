@@ -21,9 +21,9 @@
 #' @family odkc
 #' @examples
 #' \dontrun{
-#' data("odkc")
-#' map_mwi_odkc(odkc$mwi, sites = odkc$sites)
-#' map_mwi_odkc(data = NULL, sites = odkc$sites)
+#' data("odkc_data")
+#' map_mwi_odkc(odkc_data$mwi, sites = odkc_data$sites)
+#' map_mwi_odkc(data = NULL, sites = odkc_data$sites)
 #' }
 map_mwi_odkc <- function(data,
                          sites = NULL,
@@ -61,52 +61,110 @@ map_mwi_odkc <- function(data,
             markerColor = "red",
             iconColor = ~ pal_mwi(details_taxon)
           ),
-          label = ~ glue::glue("
-                               {lubridate::with_tz(observation_start_time, tz)}
+          label = ~ glue::glue('
+            {lubridate::with_tz(observation_start_time, tz)}
             {humanize(status_health)}
-                               {humanize(details_maturity)}
-                               {humanize(details_sex)}
+            {humanize(details_maturity)}
+            {humanize(details_sex)}
             {humanize(details_species)}
-          "),
-          popup = ~ glue::glue(
-            '
-          <h3>{humanize(status_health)} {humanize(details_maturity)}
-          {humanize(details_sex)} {humanize(details_species)}</h3>
-          <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-          {lubridate::with_tz(observation_start_time, tz)} AWST</br>
-          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-          {reporter}<br/>
-           <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-           Cause of death: {humanize(death_cause_of_death)}
-           ({humanize(death_cause_of_death_confidence)})
-           <h5>Animal</h5>
-           Activity: {status_activity}; behaviour: {status_behaviour} <br/>
-           <img height="150px;" alt="Photo carapace top"
-           src="{photos_turtle_photo_carapace_top %||% ""}"></img><br/>
-           <img height="150px;" alt="Photo head top"
-           src="{ifelse(!is.na({photos_turtle_photo_head_top}),
-                               photos_turtle_photo_head_top, "")}"></img><br/>
-           <img height="150px;" alt="Photo head side"
-           src="{ifelse(!is.na({photos_turtle_photo_head_side}),
-                               photos_turtle_photo_head_side, "")}"></img><br/>
-          <img height="150px;" alt="Photo head front"
-           src="{ifelse(!is.na({photos_turtle_photo_head_front}),
-                               photos_turtle_photo_head_front, "")}"></img><br/>
-           <h5>Habitat</h5>
-           <img height="150px;" alt="Photo Habitat 1"
-          src="{ifelse(!is.na({incident_photo_habitat}),
-          incident_photo_habitat, "")}"></img><br/>
-          <img height="150px;" alt="Photo Habitat 2"
-          src="{ifelse(!is.na({habitat_photos_photo_habitat_2}),
-          habitat_photos_photo_habitat_2, "")}"></img><br/>
-          <img height="150px;" alt="Photo Habitat 3"
-          src="{ifelse(!is.na({habitat_photos_photo_habitat_3}),
-          habitat_photos_photo_habitat_3, "")}"></img><br/>
-          <img height="150px;" alt="Photo Habitat 4"
-          src="{ifelse(!is.na({habitat_photos_photo_habitat_4}),
-          habitat_photos_photo_habitat_4, "")}"></img><br/>
-          '
-          ),
+          '),
+          popup = ~ glue::glue('
+<h3>
+ {humanize(status_health)} {humanize(details_maturity)}
+ {humanize(details_sex)} {humanize(details_species)}
+</h3>
+
+<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+{lubridate::with_tz(observation_start_time, tz)} AWST</br>
+
+<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+{reporter}<br/>
+
+<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+Cause of death: {humanize(death_cause_of_death)}
+({humanize(death_cause_of_death_confidence)})<br/>
+
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+Activity: {humanize(status_activity)}; behaviour: {status_behaviour};
+
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+Fate: {animal_fate_animal_fate_comment}<br/>
+
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+Injuries: {checks_checked_for_injuries}<br/>
+
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+Flipper tags: {checks_checked_for_flipper_tags}<br/>
+
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+PIT tags: {checks_scanned_for_pit_tags}<br/>
+
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+Samples taken: {checks_samples_taken}<br/>
+
+<div id="crsl" class="carousel slide" style="height:150px;" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#crsl" data-slide-to="0" class="active"></li>
+    <li data-target="#crsl" data-slide-to="1"></li>
+    <li data-target="#crsl" data-slide-to="2"></li>
+    <li data-target="#crsl" data-slide-to="3"></li>
+    <li data-target="#crsl" data-slide-to="4"></li>
+    <li data-target="#crsl" data-slide-to="5"></li>
+    <li data-target="#crsl" data-slide-to="6"></li>
+    <li data-target="#crsl" data-slide-to="7"></li>
+    <li data-target="#crsl" data-slide-to="8"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img height="150px;" src="{incident_photo_habitat}" alt="Photo habitat">
+      <div class="carousel-caption"><p>Habitat</p></div>
+    </div>
+    <div class="item">
+      <img height="150px;" src="{habitat_photos_photo_habitat_2}" alt="Photo habitat 2">
+      <div class="carousel-caption"><p>Habitat 2</p></div>
+    </div>
+    <div class="item">
+      <img height="150px;" src="{habitat_photos_photo_habitat_3}" alt="Photo habitat 3">
+      <div class="carousel-caption"><p>Habitat 3</p></div>
+    </div>
+    <div class="item">
+      <img height="150px;" src="{habitat_photos_photo_habitat_4}" alt="Photo habitat 4">
+      <div class="carousel-caption"><p>Habitat 4</p></div>
+    </div>
+
+    <div class="item">
+      <img height="150px;" src="{photos_turtle_photo_carapace_top}" alt="Photo carapace top">
+      <div class="carousel-caption"><p>Carapace top</p></div>
+    </div>
+    <div class="item">
+      <img height="150px;" src="{photos_turtle_photo_head_top}" alt="Photo head top">
+      <div class="carousel-caption"><p>Head top</p></div>
+    </div>
+    <div class="item">
+      <img height="150px;" src="{photos_turtle_photo_head_side}" alt="Photo head side">
+      <div class="carousel-caption"><p>Head side</p></div>
+    </div>
+    <div class="item">
+      <img height="150px;" src="{photos_turtle_photo_head_front}" alt="Photo head front">
+      <div class="carousel-caption"><p>Head front</p></div>
+    </div>
+
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#crsl" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#crsl" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+          '),
           group = df,
           clusterOptions = co
         )

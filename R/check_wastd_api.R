@@ -21,7 +21,7 @@ wastd_works <- function(api_url = get_wastdr_api_url(),
     )
   # )
 
-  return(res$status_code == 200)
+  return(class(res) == "wastd_api_response" && res$status_code == 200)
 }
 
 #' Check whether ODKC is online

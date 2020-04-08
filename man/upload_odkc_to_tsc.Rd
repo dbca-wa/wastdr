@@ -6,6 +6,11 @@
 \usage{
 upload_odkc_to_tsc(odkc_as_tsc, existing_tsc_tne)
 }
+\arguments{
+\item{odkc_as_tsc}{.}
+
+\item{existing_tsc_tne}{.}
+}
 \description{
 Top level helper to upload all Turtle Nesting Census data to TSC
 }

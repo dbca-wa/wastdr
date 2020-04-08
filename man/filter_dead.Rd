@@ -4,7 +4,7 @@
 \alias{filter_dead}
 \title{Filter animal encounters to mortalities: strandings}
 \usage{
-filter_dead(data, health_col = "health")
+filter_dead(data)
 }
 \arguments{
 \item{data}{A dataframe with column indicating "health",

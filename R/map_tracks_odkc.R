@@ -103,24 +103,52 @@ map_tracks_odkc <- function(tracks,
 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {reporter}
 <br/>
 
-<h5>Photos of tracks</h5>
-<img height="150px;" alt="Track Photo 1"
-src="{ifelse(!is.na({track_photos_photo_track_1}),
-track_photos_photo_track_1, "")}"></img>
-<img height="150px;" alt="Track Photo 2"
-src="{ifelse(!is.na({track_photos_photo_track_2}),
-track_photos_photo_track_2, "")}"></img>
+<div id="crsl" class="carousel slide" style="height:150px;" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#crsl" data-slide-to="0" class="active"></li>
+    <li data-target="#crsl" data-slide-to="1"></li>
+    <li data-target="#crsl" data-slide-to="2"></li>
+    <li data-target="#crsl" data-slide-to="3"></li>
+    <li data-target="#crsl" data-slide-to="4"></li>
+    <li data-target="#crsl" data-slide-to="5"></li>
+  </ol>
 
-<h5>Photos of nest</h5>
-<img height="150px;" alt="Track Nest 1"
-src="{ifelse(!is.na({nest_photos_photo_nest_1}),
-nest_photos_photo_nest_1, "")}"></img>
-<img height="150px;" alt="Track Nest 2"
-src="{ifelse(!is.na({nest_photos_photo_nest_2}),
-nest_photos_photo_nest_2, "")}"></img>
-<img height="150px;" alt="Track Nest 3"
-src="{ifelse(!is.na({nest_photos_photo_nest_3}),
-nest_photos_photo_nest_3, "")}"></img>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img height="150px;" src="{track_photos_photo_track_1}" alt="Photo uptrack">
+      <div class="carousel-caption"><p>Uptrack</p></div>
+    </div>
+    <div class="item">
+      <img height="150px;" src="{track_photos_photo_track_2}" alt="Photo downtrack">
+      <div class="carousel-caption"><p>Downtrack</p></div>
+    </div>
+
+    <div class="item">
+      <img height="150px;" src="{nest_photos_photo_nest_1}" alt="Photo nest">
+      <div class="carousel-caption"><p>Nest photo 1</p></div>
+    </div>
+    <div class="item">
+      <img height="150px;" src="{nest_photos_photo_nest_2}" alt="Photo nest 2">
+      <div class="carousel-caption"><p>Nest photo 2</p></div>
+    </div>
+        <div class="item">
+      <img height="150px;" src="{nest_photos_photo_nest_3}" alt="Photo nest 3">
+      <div class="carousel-caption"><p>Nest photo 3</p></div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#crsl" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#crsl" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
           '),
           group = humanize(df),
           clusterOptions = co

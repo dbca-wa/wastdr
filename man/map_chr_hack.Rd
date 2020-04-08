@@ -39,7 +39,6 @@ Other helpers:
 \code{\link{filter_surveys_requiring_qa}()},
 \code{\link{filter_wastd_season}()},
 \code{\link{get_more}()},
-\code{\link{get_num_field}()},
 \code{\link{httpdate_as_gmt08_turtle_date}()},
 \code{\link{httpdate_as_gmt08}()},
 \code{\link{httpdate_as_season}()},

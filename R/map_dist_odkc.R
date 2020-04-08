@@ -79,16 +79,16 @@ map_dist_odkc <- function(dist,
           ),
           popup = ~ glue::glue('
 <h3>Signs of {humanize(disturbanceobservation_disturbance_cause)}</h3>
-  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-  {lubridate::with_tz(observation_start_time, tz)} AWST</br>
-  <span class="glyphicon glyphicon-user" aria-hidden="true">
-  </span> {reporter}<br/>
-  <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-  Confidence: {humanize(disturbanceobservation_disturbance_cause_confidence)}.
-  {disturbanceobservation_comments}<br/>
-  <img height="150px;" alt="Photo"
-  src="{ifelse(!is.na({disturbanceobservation_photo_disturbance}),
-  disturbanceobservation_photo_disturbance, "")}"></img><br/>
+<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+{lubridate::with_tz(observation_start_time, tz)} AWST</br>
+<span class="glyphicon glyphicon-user" aria-hidden="true">
+</span> {reporter}<br/>
+<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+Confidence: {humanize(disturbanceobservation_disturbance_cause_confidence)}.
+{disturbanceobservation_comments}<br/>
+<img height="150px;" alt="Photo"
+src="{ifelse(!is.na({disturbanceobservation_photo_disturbance}),
+disturbanceobservation_photo_disturbance, "")}"></img><br/>
           '),
 
           group = humanize(df),

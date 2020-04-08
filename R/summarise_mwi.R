@@ -55,7 +55,7 @@ filter_alive <- function(data) {
 #' odkc_data$mwi %>%
 #'   filter_dead() %>%
 #'   head()
-filter_dead <- function(data, health_col = "health") {
+filter_dead <- function(data) {
   flt_col <- dplyr::case_when(
     "status_health" %in% names(data) ~  "status_health",
     TRUE ~ "health"

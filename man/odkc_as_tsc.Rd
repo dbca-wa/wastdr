@@ -6,6 +6,11 @@
 \usage{
 odkc_as_tsc(odkc_data, user_mapping)
 }
+\arguments{
+\item{odkc_data}{.}
+
+\item{user_mapping}{.}
+}
 \description{
 Top level helper combining all mapped data ODKC to TSC
 }
