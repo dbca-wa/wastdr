@@ -10,9 +10,6 @@ filter_dead(data, health_col = "health")
 \item{data}{A dataframe with column indicating "health",
 e.g. \code{wastd_data$animals} with column \code{health} or
 \code{odkc_data$mwi} with column \code{health_status}.}
-
-\item{health_col}{The column name of the column coding animal health,
-default: "health" (WAStD).}
 }
 \value{
 The dataframe with rows matching mortal outcomes.
@@ -28,7 +25,7 @@ wastd_data$animals \%>\%
 
 data("odkc_data")
 odkc_data$mwi \%>\%
-  filter_dead(health_col = "status_health") \%>\%
+  filter_dead() \%>\%
   head()
 }
 \seealso{

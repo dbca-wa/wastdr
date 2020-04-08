@@ -1,105 +1,160 @@
-test_that("filter_disturbance excludes all predation from wastd data", {
+# ---------------------------------------------------------------------------- #
+# filter_disturbance
+#
+test_that("filter_disturbance excludes predation from wastd_data$nest_dist", {
   data("wastd_data")
 
-  x <- wastd_data$nest_dist %>% filter_disturbance()
-  xn <- unique(x$disturbance_cause)
+  filtered_data <- wastd_data$nest_dist %>% filter_disturbance()
+  filtered_values <- unique(filtered_data$disturbance_cause)
 
-  expect_false("bandicoot" %in% xn)
-  expect_false("bird" %in% xn)
-  expect_false("cat" %in% xn)
-  expect_false("crab" %in% xn)
-  expect_false("croc" %in% xn)
-  expect_false("dingo" %in% xn)
-  expect_false("dog" %in% xn)
-  expect_false("fox" %in% xn)
-  expect_false("goanna" %in% xn)
-  expect_false("pig" %in% xn)
+  excluded_values <- c(
+    "bandicoot",
+    "bird",
+    "cat",
+    "crab",
+    "croc",
+    "dingo",
+    "dog",
+    "fox",
+    "goanna",
+    "pig"
+  )
+
+  for (x in excluded_values)
+    expect_false(
+      x %in% filtered_values,
+      label = glue::glue("{x} found but should have been excluded")
+    )
 })
 
-test_that("filter_predation excludes all disturbance from wastd data", {
+test_that("filter_disturbance excludes predation from odkc_data$tracks_dist", {
+  data("odkc_data")
+
+  filtered_data <- odkc_data$tracks_dist %>% filter_disturbance()
+  filtered_values <- unique(filtered_data$disturbance_cause)
+
+  excluded_values <- c(
+    "bandicoot",
+    "bird",
+    "cat",
+    "crab",
+    "croc",
+    "dingo",
+    "dog",
+    "fox",
+    "goanna",
+    "pig"
+  )
+
+  for (x in excluded_values)
+    expect_false(
+      x %in% filtered_values,
+      label = glue::glue("{x} found but should have been excluded")
+    )
+})
+
+test_that("filter_disturbance excludes general predation from odkc_data$dist", {
+  data("odkc_data")
+
+  filtered_data <- odkc_data$dist %>% filter_disturbance()
+  filtered_values <- unique(filtered_data$disturbanceobservation_disturbance_cause)
+
+  excluded_values <- c(
+    "bandicoot",
+    "bird",
+    "cat",
+    "crab",
+    "croc",
+    "dingo",
+    "dog",
+    "fox",
+    "goanna",
+    "pig"
+  )
+
+  for (x in excluded_values)
+    expect_false(
+      x %in% filtered_values,
+      label = glue::glue("{x} found but should have been excluded")
+    )
+})
+
+# ---------------------------------------------------------------------------- #
+# filter_predation
+#
+test_that("filter_predation excludes disturbance from wastd_data$nest_dist", {
   data("wastd_data")
 
-  x <- wastd_data$nest_dist %>% filter_predation()
-  xn <- unique(x$disturbance_cause)
+  filtered_data <- wastd_data$nest_dist %>% filter_predation()
+  filtered_values <- unique(filtered_data$disturbance_cause)
 
-  expect_false("human" %in% xn)
-  expect_false("unknown" %in% xn)
-  expect_false("tide" %in% xn)
-  expect_false("turtle" %in% xn)
-  expect_false("other" %in% xn)
-  expect_false("vehicle" %in% xn)
-  expect_false("cyclone" %in% xn)
+  excluded_values <- c(
+    "human",
+    "unknown",
+    "tide",
+    "turtle",
+    "other",
+    "vehicle",
+    "cyclone"
+  )
+
+  for (x in excluded_values)
+    expect_false(
+      x %in% filtered_values,
+      label = glue::glue("{x} found but should have been excluded")
+    )
 })
 
 
-test_that("filter_disturbance excludes all predation from odkc data", {
+test_that("filter_predation excludes all disturbance from odkc_data$tracks_dist", {
   data("odkc_data")
 
-  x <- odkc_data$tracks_dist %>% filter_disturbance()
-  xn <- unique(x$disturbance_cause)
+  filtered_data <- odkc_data$tracks_dist %>% filter_predation()
+  filtered_values <- unique(filtered_data$disturbance_cause)
 
-  expect_false("bandicoot" %in% xn)
-  expect_false("bird" %in% xn)
-  expect_false("cat" %in% xn)
-  expect_false("crab" %in% xn)
-  expect_false("croc" %in% xn)
-  expect_false("dingo" %in% xn)
-  expect_false("dog" %in% xn)
-  expect_false("fox" %in% xn)
-  expect_false("goanna" %in% xn)
-  expect_false("pig" %in% xn)
+  excluded_values <- c(
+    "human",
+    "unknown",
+    "tide",
+    "turtle",
+    "other",
+    "vehicle",
+    "cyclone"
+  )
+
+  for (x in excluded_values)
+    expect_false(
+      x %in% filtered_values,
+      label = glue::glue("{x} found but should have been excluded")
+    )
 })
 
-test_that("filter_disturbance excludes all general predation from odkc data", {
+test_that("filter_predation excludes general disturbance from odkc_data$dist", {
   data("odkc_data")
 
-  x <- odkc_data$dist %>% filter_disturbance()
-  xn <- unique(x$disturbanceobservation_disturbance_cause)
+  filtered_data <- odkc_data$dist %>% filter_predation()
+  filtered_values <- unique(filtered_data$disturbanceobservation_disturbance_cause)
 
-  expect_false("bandicoot" %in% xn)
-  expect_false("bird" %in% xn)
-  expect_false("cat" %in% xn)
-  expect_false("crab" %in% xn)
-  expect_false("croc" %in% xn)
-  expect_false("dingo" %in% xn)
-  expect_false("dog" %in% xn)
-  expect_false("fox" %in% xn)
-  expect_false("goanna" %in% xn)
-  expect_false("pig" %in% xn)
+  excluded_values <- c(
+    "human",
+    "unknown",
+    "tide",
+    "turtle",
+    "other",
+    "vehicle",
+    "cyclone"
+  )
+
+  for (x in excluded_values)
+    expect_false(
+      x %in% filtered_values,
+      label = glue::glue("{x} found but should have been excluded")
+    )
 })
 
-
-test_that("filter_predation excludes all disturbance from odkc data", {
-  data("odkc_data")
-
-  x <- odkc_data$tracks_dist %>% filter_predation()
-  xn <- unique(x$disturbance_cause)
-
-  expect_false("human" %in% xn)
-  expect_false("unknown" %in% xn)
-  expect_false("tide" %in% xn)
-  expect_false("turtle" %in% xn)
-  expect_false("other" %in% xn)
-  expect_false("vehicle" %in% xn)
-  expect_false("cyclone" %in% xn)
-})
-
-test_that("filter_predation excludes all general disturbance from odkc data", {
-  data("odkc_data")
-
-  x <- odkc_data$dist %>% filter_predation()
-  xn <- unique(x$disturbanceobservation_disturbance_cause)
-
-  expect_false("human" %in% xn)
-  expect_false("unknown" %in% xn)
-  expect_false("tide" %in% xn)
-  expect_false("turtle" %in% xn)
-  expect_false("other" %in% xn)
-  expect_false("vehicle" %in% xn)
-  expect_false("cyclone" %in% xn)
-})
-
-
+# ---------------------------------------------------------------------------- #
+# Summary helpers
+#
 test_that("disturbance_by_season works", {
   data("wastd_data")
   x1 <- wastd_data$nest_dist %>% disturbance_by_season()

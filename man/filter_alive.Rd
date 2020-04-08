@@ -4,15 +4,12 @@
 \alias{filter_alive}
 \title{Filter animal encounters to live outcomes: tagging, in water, and rescues}
 \usage{
-filter_alive(data, health_col = "health")
+filter_alive(data)
 }
 \arguments{
 \item{data}{A dataframe with column indicating "health",
 e.g. \code{wastd_data$animals} with column \code{health} or
 \code{odkc_data$mwi} with column \code{health_status}.}
-
-\item{health_col}{The column name of the column coding animal health,
-default: "health" (WAStD).}
 }
 \value{
 The dataframe with rows matching live outcomes.
@@ -28,7 +25,7 @@ wastd_data$animals \%>\%
 
 data("odkc_data")
 odkc_data$mwi \%>\%
-  filter_alive(health_col = "status_health") \%>\%
+  filter_alive() \%>\%
   head()
 }
 \seealso{

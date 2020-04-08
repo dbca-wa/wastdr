@@ -5,8 +5,6 @@
 #' @param data A dataframe with column indicating "health",
 #'   e.g. \code{wastd_data$animals} with column \code{health} or
 #'   \code{odkc_data$mwi} with column \code{health_status}.
-#' @param health_col The column name of the column coding animal health,
-#'   default: "health" (WAStD).
 #' @return The dataframe with rows matching live outcomes.
 #' @export
 #' @family wastd
@@ -18,16 +16,22 @@
 #'
 #' data("odkc_data")
 #' odkc_data$mwi %>%
-#'   filter_alive(health_col = "status_health") %>%
+#'   filter_alive() %>%
 #'   head()
-filter_alive <- function(data, health_col = "health") {
-  data %>%
-    dplyr::filter(!!rlang::sym(health_col) %in% c(
-      "na",
-      "other",
-      "alive",
-      "alive-injured"
-    ))
+filter_alive <- function(data) {
+  flt_col <- dplyr::case_when(
+    "status_health" %in% names(data) ~  "status_health",
+    TRUE ~ "health"
+  )
+
+  flt_val <- c(
+    "na",
+    "other",
+    "alive",
+    "alive-injured"
+  )
+
+  data %>% dplyr::filter(!!rlang::sym(flt_col) %in% flt_val)
 }
 
 
@@ -38,8 +42,6 @@ filter_alive <- function(data, health_col = "health") {
 #' @param data A dataframe with column indicating "health",
 #'   e.g. \code{wastd_data$animals} with column \code{health} or
 #'   \code{odkc_data$mwi} with column \code{health_status}.
-#' @param health_col The column name of the column coding animal health,
-#'   default: "health" (WAStD).
 #' @return The dataframe with rows matching mortal outcomes.
 #' @export
 #' @family wastd
@@ -51,22 +53,26 @@ filter_alive <- function(data, health_col = "health") {
 #'
 #' data("odkc_data")
 #' odkc_data$mwi %>%
-#'   filter_dead(health_col = "status_health") %>%
+#'   filter_dead() %>%
 #'   head()
 filter_dead <- function(data, health_col = "health") {
-  data %>%
-    dplyr::filter(
-      !!rlang::sym(health_col) %in% c(
-        "alive-then-died",
-        "dead-advanced",
-        "dead-organs-intact",
-        "dead-edible",
-        "dead-mummified",
-        "dead-disarticulated",
-        "deadedible",
-        "deadadvanced"
-      )
-    )
+  flt_col <- dplyr::case_when(
+    "status_health" %in% names(data) ~  "status_health",
+    TRUE ~ "health"
+  )
+
+  flt_val <- c(
+    "alive-then-died",
+    "dead-advanced",
+    "dead-organs-intact",
+    "dead-edible",
+    "dead-mummified",
+    "dead-disarticulated",
+    "deadedible",
+    "deadadvanced"
+  )
+
+  data %>% dplyr::filter(!!rlang::sym(flt_col) %in% flt_val)
 }
 
 # usethis::use_test("summarise_mwi")
