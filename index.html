@@ -165,7 +165,7 @@
 <p>Review the settings with:</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="reference/wastdr_settings.html">wastdr_settings</a></span>()
 <span class="co">#&gt; &lt;wastdr settings&gt;</span>
-<span class="co">#&gt;   WAStD URL:     https://tsc.dbca.wa.gov.au </span>
+<span class="co">#&gt;   WAStD URL:     https://tsc.dbca.wa.gov.au/ </span>
 <span class="co">#&gt;   API URL:       https://tsc.dbca.wa.gov.au/api/1/ </span>
 <span class="co">#&gt;   API Token:     see wastdr::get_wastdr_api_token()</span>
 <span class="co">#&gt;   API Username:  FlorianM </span>
@@ -198,7 +198,7 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"odkc_data"</span>)
 
 <span class="no">wastd_data</span>$<span class="no">animals</span>
-<span class="co">#&gt; # A tibble: 10 x 43</span>
+<span class="co">#&gt; # A tibble: 100 x 43</span>
 <span class="co">#&gt;    area_name area_type area_id site_name site_type site_id survey_id</span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;</span>
 <span class="co">#&gt;  1 Barrow Iâ¦ Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
@@ -211,41 +211,49 @@
 <span class="co">#&gt;  8 Barrow Iâ¦ Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
 <span class="co">#&gt;  9 Barrow Iâ¦ Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
 <span class="co">#&gt; 10 Mundabulâ¦ Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt; # â¦ with 36 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,</span>
-<span class="co">#&gt; #   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,</span>
-<span class="co">#&gt; #   calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;, season &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, longitude &lt;dbl&gt;, latitude &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   crs &lt;chr&gt;, location_accuracy &lt;dbl&gt;, taxon &lt;chr&gt;, name &lt;chr&gt;, species &lt;chr&gt;,</span>
-<span class="co">#&gt; #   health &lt;chr&gt;, sex &lt;chr&gt;, maturity &lt;chr&gt;, habitat &lt;chr&gt;, activity &lt;chr&gt;,</span>
-<span class="co">#&gt; #   nesting_event &lt;chr&gt;, checked_for_injuries &lt;chr&gt;,</span>
-<span class="co">#&gt; #   scanned_for_pit_tags &lt;chr&gt;, checked_for_flipper_tags &lt;chr&gt;,</span>
-<span class="co">#&gt; #   cause_of_death &lt;chr&gt;, cause_of_death_confidence &lt;chr&gt;,</span>
-<span class="co">#&gt; #   absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;,</span>
-<span class="co">#&gt; #   encounter_type &lt;chr&gt;, status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;</span>
+<span class="co">#&gt; # â¦ with 90 more rows, and 36 more variables: survey_start_time &lt;dttm&gt;,</span>
+<span class="co">#&gt; #   survey_end_time &lt;dttm&gt;, survey_start_comments &lt;chr&gt;,</span>
+<span class="co">#&gt; #   survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;, calendar_date_awst &lt;chr&gt;,</span>
+<span class="co">#&gt; #   turtle_date &lt;date&gt;, season &lt;dbl&gt;, season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   longitude &lt;dbl&gt;, latitude &lt;dbl&gt;, crs &lt;chr&gt;, location_accuracy &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   taxon &lt;chr&gt;, name &lt;chr&gt;, species &lt;chr&gt;, health &lt;chr&gt;, sex &lt;chr&gt;,</span>
+<span class="co">#&gt; #   maturity &lt;chr&gt;, habitat &lt;chr&gt;, activity &lt;chr&gt;, nesting_event &lt;chr&gt;,</span>
+<span class="co">#&gt; #   checked_for_injuries &lt;chr&gt;, scanned_for_pit_tags &lt;chr&gt;,</span>
+<span class="co">#&gt; #   checked_for_flipper_tags &lt;chr&gt;, cause_of_death &lt;chr&gt;,</span>
+<span class="co">#&gt; #   cause_of_death_confidence &lt;chr&gt;, absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;,</span>
+<span class="co">#&gt; #   source &lt;chr&gt;, source_id &lt;chr&gt;, encounter_type &lt;chr&gt;, status &lt;chr&gt;,</span>
+<span class="co">#&gt; #   observer &lt;chr&gt;, reporter &lt;chr&gt;</span>
 <span class="no">wastd_data</span>$<span class="no">tracks</span>
-<span class="co">#&gt; # A tibble: 10 x 43</span>
-<span class="co">#&gt;    area_name area_type area_id site_name site_type site_id survey_id</span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;</span>
-<span class="co">#&gt;  1 Port Hedâ¦ Locality       13 Port Hedâ¦ Site           35      4562</span>
-<span class="co">#&gt;  2 Port Hedâ¦ Locality       13 Port Hedâ¦ Site           35      4562</span>
-<span class="co">#&gt;  3 Port Hedâ¦ Locality       13 Port Hedâ¦ Site           35      4562</span>
-<span class="co">#&gt;  4 &lt;NA&gt;      &lt;NA&gt;           NA &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt;  5 Perth Meâ¦ Locality       18 Florian â¦ Site           53      3635</span>
-<span class="co">#&gt;  6 Perth Meâ¦ Locality       18 Florian â¦ Site           53      3635</span>
-<span class="co">#&gt;  7 Perth Meâ¦ Locality       18 Kensingtâ¦ Site           33      3634</span>
-<span class="co">#&gt;  8 Perth Meâ¦ Locality       18 Kensingtâ¦ Site           33      3634</span>
-<span class="co">#&gt;  9 Perth Meâ¦ Locality       18 Kensingtâ¦ Site           33      3634</span>
-<span class="co">#&gt; 10 Perth Meâ¦ Locality       18 Kensingtâ¦ Site           33      3634</span>
-<span class="co">#&gt; # â¦ with 36 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,</span>
-<span class="co">#&gt; #   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,</span>
-<span class="co">#&gt; #   calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;, season &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, longitude &lt;dbl&gt;, latitude &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   crs &lt;chr&gt;, location_accuracy &lt;int&gt;, species &lt;chr&gt;, nest_age &lt;chr&gt;,</span>
-<span class="co">#&gt; #   nest_type &lt;chr&gt;, name &lt;chr&gt;, habitat &lt;chr&gt;, disturbance &lt;chr&gt;,</span>
-<span class="co">#&gt; #   comments &lt;chr&gt;, absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;, photos &lt;list&gt;,</span>
-<span class="co">#&gt; #   hatching_success &lt;dbl&gt;, emergence_success &lt;dbl&gt;, clutch_size &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   clutch_size_fresh &lt;dbl&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;,</span>
-<span class="co">#&gt; #   encounter_type &lt;chr&gt;, status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;,</span>
+<span class="co">#&gt; # A tibble: 100 x 61</span>
+<span class="co">#&gt;    type      pk area_pk area_area_type area_name area_ site_pk site_area_type</span>
+<span class="co">#&gt;    &lt;chr&gt;  &lt;int&gt;   &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;     &lt;lgl&gt;   &lt;int&gt; &lt;chr&gt;         </span>
+<span class="co">#&gt;  1 Featâ¦ 159497      13 Locality       Port Hedâ¦ NA         35 Site          </span>
+<span class="co">#&gt;  2 Featâ¦ 159498      13 Locality       Port Hedâ¦ NA         35 Site          </span>
+<span class="co">#&gt;  3 Featâ¦ 159499      13 Locality       Port Hedâ¦ NA         35 Site          </span>
+<span class="co">#&gt;  4 Featâ¦     80      NA &lt;NA&gt;           &lt;NA&gt;      NA         NA &lt;NA&gt;          </span>
+<span class="co">#&gt;  5 Featâ¦    314      18 Locality       Perth Meâ¦ NA         53 Site          </span>
+<span class="co">#&gt;  6 Featâ¦    315      18 Locality       Perth Meâ¦ NA         53 Site          </span>
+<span class="co">#&gt;  7 Featâ¦    316      18 Locality       Perth Meâ¦ NA         33 Site          </span>
+<span class="co">#&gt;  8 Featâ¦    317      18 Locality       Perth Meâ¦ NA         33 Site          </span>
+<span class="co">#&gt;  9 Featâ¦    318      18 Locality       Perth Meâ¦ NA         33 Site          </span>
+<span class="co">#&gt; 10 Featâ¦    319      18 Locality       Perth Meâ¦ NA         33 Site          </span>
+<span class="co">#&gt; # â¦ with 90 more rows, and 53 more variables: site_name &lt;chr&gt;, site_ &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   survey_id &lt;int&gt;, survey_site_pk &lt;int&gt;, survey_site_area_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   survey_site_name &lt;chr&gt;, survey_site_ &lt;lgl&gt;, survey_start_time &lt;chr&gt;,</span>
+<span class="co">#&gt; #   survey_end_time &lt;chr&gt;, survey_start_comments &lt;chr&gt;,</span>
+<span class="co">#&gt; #   survey_reporter_pk &lt;chr&gt;, survey_reporter_username &lt;chr&gt;,</span>
+<span class="co">#&gt; #   survey_reporter_name &lt;chr&gt;, survey_reporter_ &lt;chr&gt;,</span>
+<span class="co">#&gt; #   survey_absolute_admin_url &lt;chr&gt;, survey_production &lt;lgl&gt;, survey_ &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   source &lt;chr&gt;, source_id &lt;chr&gt;, encounter_type &lt;chr&gt;, leaflet_title &lt;chr&gt;,</span>
+<span class="co">#&gt; #   status &lt;chr&gt;, observer_pk &lt;chr&gt;, observer_username &lt;chr&gt;,</span>
+<span class="co">#&gt; #   observer_name &lt;chr&gt;, reporter_pk &lt;chr&gt;, reporter_username &lt;chr&gt;,</span>
+<span class="co">#&gt; #   reporter_name &lt;chr&gt;, comments &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   crs &lt;chr&gt;, location_accuracy &lt;chr&gt;, when &lt;chr&gt;, nest_age &lt;chr&gt;,</span>
+<span class="co">#&gt; #   nest_type &lt;chr&gt;, species &lt;chr&gt;, habitat &lt;chr&gt;, disturbance &lt;chr&gt;,</span>
+<span class="co">#&gt; #   nest_tagged &lt;chr&gt;, logger_found &lt;chr&gt;, eggs_counted &lt;chr&gt;,</span>
+<span class="co">#&gt; #   hatchlings_measured &lt;chr&gt;, fan_angles_measured &lt;chr&gt;,</span>
+<span class="co">#&gt; #   absolute_admin_url &lt;chr&gt;, datetime &lt;dttm&gt;, calendar_date_awst &lt;chr&gt;,</span>
+<span class="co">#&gt; #   turtle_date &lt;date&gt;, season &lt;dbl&gt;, season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   species_colours &lt;chr&gt;, nest_type_text &lt;chr&gt;</span>
 
 <span class="no">wastd_data</span>$<span class="no">tracks</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="reference/map_tracks.html">map_tracks</a></span>(<span class="kw">sites</span> <span class="kw">=</span> <span class="no">wastd_data</span>$<span class="no">sites</span>)</pre></div>
