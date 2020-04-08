@@ -15,11 +15,12 @@ test_that("filter_alive excludes dead outcome from WAStD", {
     "deadadvanced"
   )
 
-  for (x in excluded_values)
+  for (x in excluded_values) {
     expect_false(
       x %in% filtered_values,
       label = glue::glue("{x} found but should have been excluded")
     )
+  }
 })
 
 test_that("filter_alive excludes dead outcome from ODKC", {
@@ -39,11 +40,12 @@ test_that("filter_alive excludes dead outcome from ODKC", {
     "deadadvanced"
   )
 
-  for (x in excluded_values)
+  for (x in excluded_values) {
     expect_false(
       x %in% filtered_values,
       label = glue::glue("{x} found but should have been excluded")
     )
+  }
 })
 
 
@@ -60,11 +62,12 @@ test_that("filter_dead excludes live outcome from WAStD", {
     "alive-injured"
   )
 
-  for (x in excluded_values)
+  for (x in excluded_values) {
     expect_false(
       x %in% filtered_values,
       label = glue::glue("{x} found but should have been excluded")
     )
+  }
 })
 
 test_that("filter_dead excludes live outcome from ODKC", {
@@ -80,11 +83,12 @@ test_that("filter_dead excludes live outcome from ODKC", {
     "alive-injured"
   )
 
-  for (x in excluded_values)
+  for (x in excluded_values) {
     expect_false(
       x %in% filtered_values,
       label = glue::glue("{x} found but should have been excluded")
     )
+  }
 })
 
 # usethis::use_r("summarise_mwi")

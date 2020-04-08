@@ -21,10 +21,9 @@
 #'   filter_disturbance() %>%
 #'   head()
 filter_disturbance <- function(data) {
-
   flt_col <- dplyr::case_when(
     "disturbanceobservation_disturbance_cause" %in% names(data) ~
-      "disturbanceobservation_disturbance_cause",
+    "disturbanceobservation_disturbance_cause",
     TRUE ~ "disturbance_cause"
   )
 
@@ -38,7 +37,7 @@ filter_disturbance <- function(data) {
     "cyclone"
   )
 
-    data %>% dplyr::filter(!!rlang::sym(flt_col) %in% flt_vals)
+  data %>% dplyr::filter(!!rlang::sym(flt_col) %in% flt_vals)
 }
 
 #' Filter disturbance data to predator presences
@@ -64,10 +63,9 @@ filter_disturbance <- function(data) {
 #'   filter_predation() %>%
 #'   head()
 filter_predation <- function(data) {
-
   flt_col <- dplyr::case_when(
     "disturbanceobservation_disturbance_cause" %in% names(data) ~
-      "disturbanceobservation_disturbance_cause",
+    "disturbanceobservation_disturbance_cause",
     TRUE ~ "disturbance_cause"
   )
 
@@ -106,18 +104,19 @@ filter_predation <- function(data) {
 disturbance_by_season <- function(data) {
   flt_col <- dplyr::case_when(
     "disturbanceobservation_disturbance_cause" %in% names(data) ~
-      "disturbanceobservation_disturbance_cause",
+    "disturbanceobservation_disturbance_cause",
     TRUE ~ "disturbance_cause"
   )
 
   data %>%
     {
-      if ("encounter_encounter_type" %in% names(data))
+      if ("encounter_encounter_type" %in% names(data)) {
         # wastd_data$nest_dist
         dplyr::rename(., encounter_type = encounter_encounter_type)
-      else
+      } else {
         # odkc_data$tracks_dist
         dplyr::mutate(., encounter_type = "nest")
+      }
     } %>%
     dplyr::group_by(season, !!rlang::sym(flt_col), encounter_type) %>%
     dplyr::tally() %>%

@@ -1,6 +1,7 @@
 test_that("map_tracks_odkc returns a leaflet htmlwidget", {
   testthat::skip_if(Sys.getenv("WASTDR_TALIBAN_TESTS", unset = FALSE) == TRUE,
-                    message = "This test segfaults on Ubuntu 19.10")
+    message = "This test segfaults on Ubuntu 19.10"
+  )
 
   data("odkc_data")
 

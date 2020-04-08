@@ -3,7 +3,7 @@
 #' @param odkc_as_tsc .
 #' @param existing_tsc_tne .
 #' @export
-upload_odkc_to_tsc <- function(odkc_as_tsc, existing_tsc_tne){
-    wastdr_msg_info("Upload to TSC")
-    odkc_as_tsc
+upload_odkc_to_tsc <- function(odkc_as_tsc, existing_tsc_tne) {
+  wastdr_msg_info("Upload to TSC")
+  odkc_as_tsc
 }

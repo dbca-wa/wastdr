@@ -20,7 +20,7 @@
 #'   head()
 filter_alive <- function(data) {
   flt_col <- dplyr::case_when(
-    "status_health" %in% names(data) ~  "status_health",
+    "status_health" %in% names(data) ~ "status_health",
     TRUE ~ "health"
   )
 
@@ -57,7 +57,7 @@ filter_alive <- function(data) {
 #'   head()
 filter_dead <- function(data) {
   flt_col <- dplyr::case_when(
-    "status_health" %in% names(data) ~  "status_health",
+    "status_health" %in% names(data) ~ "status_health",
     TRUE ~ "health"
   )
 

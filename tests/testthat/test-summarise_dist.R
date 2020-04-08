@@ -20,11 +20,12 @@ test_that("filter_disturbance excludes predation from wastd_data$nest_dist", {
     "pig"
   )
 
-  for (x in excluded_values)
+  for (x in excluded_values) {
     expect_false(
       x %in% filtered_values,
       label = glue::glue("{x} found but should have been excluded")
     )
+  }
 })
 
 test_that("filter_disturbance excludes predation from odkc_data$tracks_dist", {
@@ -46,11 +47,12 @@ test_that("filter_disturbance excludes predation from odkc_data$tracks_dist", {
     "pig"
   )
 
-  for (x in excluded_values)
+  for (x in excluded_values) {
     expect_false(
       x %in% filtered_values,
       label = glue::glue("{x} found but should have been excluded")
     )
+  }
 })
 
 test_that("filter_disturbance excludes general predation from odkc_data$dist", {
@@ -73,11 +75,12 @@ test_that("filter_disturbance excludes general predation from odkc_data$dist", {
     "pig"
   )
 
-  for (x in excluded_values)
+  for (x in excluded_values) {
     expect_false(
       x %in% filtered_values,
       label = glue::glue("{x} found but should have been excluded")
     )
+  }
 })
 
 # ---------------------------------------------------------------------------- #
@@ -99,11 +102,12 @@ test_that("filter_predation excludes disturbance from wastd_data$nest_dist", {
     "cyclone"
   )
 
-  for (x in excluded_values)
+  for (x in excluded_values) {
     expect_false(
       x %in% filtered_values,
       label = glue::glue("{x} found but should have been excluded")
     )
+  }
 })
 
 
@@ -123,11 +127,12 @@ test_that("filter_predation excludes disturbance from odkc_data$tracks_dist", {
     "cyclone"
   )
 
-  for (x in excluded_values)
+  for (x in excluded_values) {
     expect_false(
       x %in% filtered_values,
       label = glue::glue("{x} found but should have been excluded")
     )
+  }
 })
 
 test_that("filter_predation excludes disturbance from odkc_data$dist", {
@@ -147,11 +152,12 @@ test_that("filter_predation excludes disturbance from odkc_data$dist", {
     "cyclone"
   )
 
-  for (x in excluded_values)
+  for (x in excluded_values) {
     expect_false(
       x %in% filtered_values,
       label = glue::glue("{x} found but should have been excluded")
     )
+  }
 })
 
 # ---------------------------------------------------------------------------- #

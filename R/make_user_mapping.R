@@ -2,6 +2,6 @@
 #'
 #' @param odkc_data .
 #' @export
-make_user_mapping <- function(odkc_data){
-    odkc_data
+make_user_mapping <- function(odkc_data) {
+  odkc_data
 }

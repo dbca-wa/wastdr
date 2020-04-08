@@ -61,13 +61,13 @@ map_mwi_odkc <- function(data,
             markerColor = "red",
             iconColor = ~ pal_mwi(details_taxon)
           ),
-          label = ~ glue::glue('
+          label = ~ glue::glue("
             {lubridate::with_tz(observation_start_time, tz)}
             {humanize(status_health)}
             {humanize(details_maturity)}
             {humanize(details_sex)}
             {humanize(details_species)}
-          '),
+          "),
           popup = ~ glue::glue('
 <h3>
  {humanize(status_health)} {humanize(details_maturity)}

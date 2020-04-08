@@ -73,8 +73,12 @@ wastd_data$nest_lightsources <- wastd_data$nest_lightsources %>% sanitize_names(
 usethis::use_data(wastd_data, compress = "xz", overwrite = TRUE)
 
 # Generate TSC data
-get_10 <- . %>% wastdr::wastd_GET(max_records = 10) %>% wastd_parse()
-get_all <- . %>% wastdr::wastd_GET() %>% wastd_parse()
+get_10 <- . %>%
+  wastdr::wastd_GET(max_records = 10) %>%
+  wastd_parse()
+get_all <- . %>%
+  wastdr::wastd_GET() %>%
+  wastd_parse()
 
 tsc_data <- list(
   # Taxonomy

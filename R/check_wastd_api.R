@@ -10,15 +10,15 @@ wastd_works <- function(api_url = get_wastdr_api_url(),
                         api_un = get_wastdr_api_un(),
                         api_pw = get_wastdr_api_pw()) {
   # suppressWarnings(
-    res <- wastd_GET(
-      "",
-      max_records = 1,
-      api_url = api_url,
-      api_token = api_token,
-      api_un = api_un,
-      api_pw = api_pw,
-      verbose = FALSE
-    )
+  res <- wastd_GET(
+    "",
+    max_records = 1,
+    api_url = api_url,
+    api_token = api_token,
+    api_un = api_un,
+    api_pw = api_pw,
+    verbose = FALSE
+  )
   # )
 
   return(class(res) == "wastd_api_response" && res$status_code == 200)

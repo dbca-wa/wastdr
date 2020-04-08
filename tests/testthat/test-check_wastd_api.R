@@ -1,10 +1,10 @@
 test_that("wastd_works returns FALSE if unauthenticated", {
   expect_true(
     wastd_works(
-    api_token = "invalid",
-    api_un = "invalid",
-    api_pw = "invalid"
-  ) == FALSE
+      api_token = "invalid",
+      api_un = "invalid",
+      api_pw = "invalid"
+    ) == FALSE
   )
 })
 
