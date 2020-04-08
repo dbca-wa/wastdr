@@ -11,8 +11,8 @@
 #' @export
 #' @family wacensus
 gs_getFeature <- function(
-                          layer_name = "public:herbie_hbvsupra_public",
-                          url = "https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows") {
+  layer_name = "public:herbie_hbvsupra_public",
+  url = "https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows") {
   ua <- httr::user_agent("http://github.com/dbca-wa/scarab-scripts")
   url <- "https://kmi.dbca.wa.gov.au/geoserver/public/ows"
   query <- list(

@@ -55,13 +55,20 @@ parse_turtle_nest_encounters <- function(wastd_api_response) {
   wastd_api_response %>%
     wastdr::wastd_parse() %>%
     dplyr::select(-"geometry") %>%
-    tidyr::unnest_wider("area", names_repair = "universal", names_sep = "_") %>%
-    tidyr::unnest_wider("site", names_repair = "universal", names_sep = "_") %>%
-    tidyr::unnest_wider("survey", names_repair = "universal", names_sep = "_") %>%
-    tidyr::unnest_wider("survey_site", names_repair = "universal", names_sep = "_") %>%
-    tidyr::unnest_wider("survey_reporter", names_repair = "universal", names_sep = "_") %>%
-    tidyr::unnest_wider("observer", names_repair = "universal", names_sep = "_") %>%
-    tidyr::unnest_wider("reporter", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider(
+      "area", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider(
+      "site", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider(
+      "survey", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider(
+      "survey_site", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider(
+      "survey_reporter", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider(
+      "observer", names_repair = "universal", names_sep = "_") %>%
+    tidyr::unnest_wider(
+      "reporter", names_repair = "universal", names_sep = "_") %>%
     wastdr::add_dates(date_col = "when") %>%
     wastdr::add_nest_labels()
 }

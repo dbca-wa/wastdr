@@ -2,7 +2,8 @@
 #'
 #' * Download all ODKC data including attachments
 #' * Load existing nesting records from TSC: load only a minimal set of
-#'   source, source ID, QA status to determine later what to create / update / skip:
+#'   source, source ID, QA status to determine later what to
+#'   create / update / skip:
 #'   * does not exist in TSC: create (POST)
 #'   * exists in TSC with status "new": update (PATCH)
 #'   * exists in TSC with status higher than "new": skip (and message)
@@ -18,7 +19,7 @@
 #' }
 odkc_plan <- function(){
     drake::drake_plan(
-        odkc_data = download_odkc_turtledata_2019(download = F),
+        odkc_data = download_odkc_turtledata_2019(download = FALSE),
         user_mapping = make_user_mapping(odkc_data),
         odkc_as_tsc = odkc_as_tsc(odkc_data, user_mapping),
         existing_tsc_tne = wastd_GET("turtle-nest-encounters") %>%

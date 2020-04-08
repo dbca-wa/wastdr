@@ -28,17 +28,23 @@ test_that("exclude_training_species_odkc works", {
 
 test_that("filter_missing_survey works", {
   data("wastd_data")
-  expect_true(wastd_data$tracks %>% filter_missing_survey() %>% tibble::is_tibble())
+  expect_true(
+    wastd_data$tracks %>% filter_missing_survey() %>% tibble::is_tibble()
+  )
 })
 
 test_that("filter_missing_site works", {
   data("wastd_data")
-  expect_true(wastd_data$tracks %>% filter_missing_site() %>% tibble::is_tibble())
+  expect_true(
+    wastd_data$tracks %>% filter_missing_site() %>% tibble::is_tibble()
+  )
 })
 
 test_that("exclude_training_surveys works", {
   data("wastd_data")
-  expect_true(wastd_data$surveys %>% exclude_training_surveys() %>% tibble::is_tibble())
+  expect_true(
+    wastd_data$surveys %>% exclude_training_surveys() %>% tibble::is_tibble()
+  )
 })
 
 test_that("filter_surveys_requiring_qa works", {
@@ -62,7 +68,9 @@ test_that("filter_surveys_missing_end works", {
 
 test_that("filter_wastd_season works", {
   data("wastd_data")
-  expect_true(wastd_data$tracks %>% filter_wastd_season(2019) %>% tibble::is_tibble())
+  expect_true(
+    wastd_data$tracks %>% filter_wastd_season(2019) %>% tibble::is_tibble()
+  )
 })
 
 # usethis::use_r("filters")

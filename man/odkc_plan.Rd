@@ -9,7 +9,8 @@ odkc_plan()
 \description{
 * Download all ODKC data including attachments
 * Load existing nesting records from TSC: load only a minimal set of
-  source, source ID, QA status to determine later what to create / update / skip:
+  source, source ID, QA status to determine later what to
+  create / update / skip:
   * does not exist in TSC: create (POST)
   * exists in TSC with status "new": update (PATCH)
   * exists in TSC with status higher than "new": skip (and message)

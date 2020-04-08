@@ -278,7 +278,9 @@ survey_season_stats <- function(surveys) {
     dplyr::summarise(
       first_day = min(turtle_date),
       last_day = max(turtle_date),
-      season_length_days = as.numeric(lubridate::interval(first_day, last_day)) / (3600 * 24),
+      season_length_days = as.numeric(
+        lubridate::interval(first_day, last_day)
+      ) / (3600 * 24),
       number_surveys = n(),
       hours_surveyed = round(sum(duration_hours))
     )
@@ -303,7 +305,9 @@ survey_season_site_stats <- function(surveys) {
     dplyr::summarise(
       first_day = min(turtle_date),
       last_day = max(turtle_date),
-      season_length_days = as.numeric(lubridate::interval(first_day, last_day)) / (3600 * 24),
+      season_length_days = as.numeric(
+        lubridate::interval(first_day, last_day)
+      ) / (3600 * 24),
       number_surveys = n(),
       hours_surveyed = round(sum(duration_hours))
     )

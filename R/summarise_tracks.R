@@ -271,7 +271,9 @@ nesting_type_by_season_calendarday_species <- function(tracks) {
 nesting_type_by_season_calendarday_age_species <- function(tracks) {
   tracks %>%
     # dplyr::filter(nest_age == "fresh") %>%
-    dplyr::group_by(season, calendar_date_awst, species, nest_age, nest_type) %>%
+    dplyr::group_by(
+      season, calendar_date_awst, species, nest_age, nest_type
+    ) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
     tidyr::spread(nest_type, n, fill = 0)
@@ -398,7 +400,8 @@ ggplot_track_success_by_date <- function(data,
         ggplot2::ggsave(fs::path(
           local_dir,
           glue::glue(
-            "{prefix}_track_effort_{wastdr::urlize(placename)}_{speciesname}.png"
+            "{prefix}_track_effort_",
+            "{wastdr::urlize(placename)}_{speciesname}.png"
           )
         ),
         width = 10,
@@ -459,7 +462,8 @@ ggplot_track_successrate_by_date <- function(tracks,
         ggplot2::ggsave(fs::path(
           local_dir,
           glue::glue(
-            "{prefix}_track_success_{wastdr::urlize(placename)}_{speciesname}.png"
+            "{prefix}_track_success_",
+            "{wastdr::urlize(placename)}_{speciesname}.png"
           )
         ),
         width = 10,
@@ -528,7 +532,8 @@ summarise_hatching_and_emergence_success <- function(data) {
       "hatching_success_min" = min(hatching_success),
       "hatching_success_max" = max(hatching_success),
       "emergence_success_mean" = mean(emergence_success) %>% round(digits = 2),
-      "emergence_success_sd" = stats::sd(emergence_success) %>% round(digits = 2),
+      "emergence_success_sd" = stats::sd(emergence_success) %>%
+        round(digits = 2),
       "emergence_success_min" = min(emergence_success),
       "emergence_success_max" = max(emergence_success)
     )

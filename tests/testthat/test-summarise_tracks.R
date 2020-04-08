@@ -235,7 +235,8 @@ test_that("ggplot_track_successrate_by_date returns a ggplot", {
   expect_equal(class(x), c("gg", "ggplot"))
 })
 
-test_that("ggplot_track_successrate_by_date returns a ggplot with export=FALSE", {
+test_that(
+  "ggplot_track_successrate_by_date returns a ggplot with export=FALSE", {
   data("wastd_data")
   sp <- unique(wastd_data$tracks$species)[1]
 

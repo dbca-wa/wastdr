@@ -57,7 +57,8 @@ test_that("filter_disturbance excludes general predation from odkc_data$dist", {
   data("odkc_data")
 
   filtered_data <- odkc_data$dist %>% filter_disturbance()
-  filtered_values <- unique(filtered_data$disturbanceobservation_disturbance_cause)
+  filtered_values <- filtered_data$disturbanceobservation_disturbance_cause %>%
+    unique()
 
   excluded_values <- c(
     "bandicoot",
@@ -106,7 +107,7 @@ test_that("filter_predation excludes disturbance from wastd_data$nest_dist", {
 })
 
 
-test_that("filter_predation excludes all disturbance from odkc_data$tracks_dist", {
+test_that("filter_predation excludes disturbance from odkc_data$tracks_dist", {
   data("odkc_data")
 
   filtered_data <- odkc_data$tracks_dist %>% filter_predation()
@@ -129,11 +130,12 @@ test_that("filter_predation excludes all disturbance from odkc_data$tracks_dist"
     )
 })
 
-test_that("filter_predation excludes general disturbance from odkc_data$dist", {
+test_that("filter_predation excludes disturbance from odkc_data$dist", {
   data("odkc_data")
 
   filtered_data <- odkc_data$dist %>% filter_predation()
-  filtered_values <- unique(filtered_data$disturbanceobservation_disturbance_cause)
+  filtered_values <- filtered_data$disturbanceobservation_disturbance_cause %>%
+    unique()
 
   excluded_values <- c(
     "human",

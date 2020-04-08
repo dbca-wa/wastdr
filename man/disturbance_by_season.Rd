@@ -22,12 +22,10 @@ A tibble with columns `season`, `disturbance_cause`,
 }
 \examples{
 data("wastd_data")
-wastd_data$nest_dist \%>\%
-  disturbance_by_season() \%>\%
-  head()
+wastd_data$nest_dist \%>\% disturbance_by_season()
 
 data("odkc_data")
-odkc_data$tracks_dist \%>\% nest_disturbance_by_season()
+odkc_data$tracks_dist \%>\% disturbance_by_season()
 }
 \seealso{
 Other wastd: 
