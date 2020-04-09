@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.17</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.18</span>
       </span>
     </div>
 
@@ -159,6 +159,27 @@
       <small>Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="wastdr-0218" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.18">
+<a href="#wastdr-0218" class="anchor"></a>wastdr 0.2.18</h1>
+<ul>
+<li>Adapted wastdr to new WAStD API (<a href='https://github.com/dbca-wa/wastdr/issues/3'>#3</a>)
+<ul>
+<li>include example data,</li>
+<li>use example data in code examples,</li>
+<li>use example data in tests,</li>
+<li>use example data in vignettes,</li>
+<li>automate example data refresh from WAStD,</li>
+<li>update docs, man, vignettes,</li>
+<li>propagate updates to turtleviewer.</li>
+</ul>
+</li>
+<li>Increased test coverage to near 100% (<a href='https://github.com/dbca-wa/wastdr/issues/3'>#3</a>)</li>
+<li>Set up CI on GitHub Actions for Windows and Ubuntu - TODO MacOS (<a href='https://github.com/dbca-wa/wastdr/issues/3'>#3</a>)</li>
+<li>Improve WAStD summarize_* methods (<a href='https://github.com/dbca-wa/wastdr/issues/5'>#5</a>).</li>
+<li>Improve map popups for ODKC tracks and mwi (<a href='https://github.com/dbca-wa/wastdr/issues/6'>#6</a>).</li>
+</ul>
+</div>
     <div id="wastdr-0211" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.11">
 <a href="#wastdr-0211" class="anchor"></a>wastdr 0.2.11</h1>
@@ -166,9 +187,9 @@
 <li>
 <p>Start work on ODKC to WAStD data ingest via <code>ruODK</code>, <code>odkc_data</code>, <code>wastd_post_one</code> and <code>wastd_bulk_post</code>. The hard bits are:</p>
 <ul>
-<li>Data mapping ODKC to WAStD</li>
-<li>Guess users (re-implement PostGISâs trigram fuzzy search)</li>
-<li>Determine create / update / skip based on source/sourceID already present in WAStD</li>
+<li>Data mapping ODKC to WAStD.</li>
+<li>Guess users (re-implement PostGISâs trigram fuzzy search).</li>
+<li>Determine create / update / skip based on source/sourceID already present in WAStD.</li>
 </ul>
 </li>
 </ul>
