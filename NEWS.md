@@ -1,11 +1,25 @@
+# wastdr 0.2.18
+* Adapted wastdr to new WAStD API (#3)
+  * include example data, 
+  * use example data in code examples,
+  * use example data in tests,
+  * use example data in vignettes,
+  * automate example data refresh from WAStD,
+  * update docs, man, vignettes,
+  * propagate updates to turtleviewer.
+* Increased test coverage to near 100% (#3)
+* Set up CI on GitHub Actions for Windows and Ubuntu - TODO MacOS (#3)
+* Improve WAStD summarize_* methods (#5).
+* Improve map popups for ODKC tracks and mwi (#6).
+
 # wastdr 0.2.11
 * Start work on ODKC to WAStD data ingest via `ruODK`, `odkc_data`, 
   `wastd_post_one` and `wastd_bulk_post`. The hard bits are:
   
-  * Data mapping ODKC to WAStD
-  * Guess users (re-implement PostGIS's trigram fuzzy search)
+  * Data mapping ODKC to WAStD.
+  * Guess users (re-implement PostGIS's trigram fuzzy search).
   * Determine create / update / skip based on source/sourceID already present 
-    in WAStD
+    in WAStD.
 
 # wastdr 0.2.8
 * Test coverage 99.9%
