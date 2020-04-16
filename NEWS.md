@@ -1,3 +1,7 @@
+# wastdr 0.2.19
+* Upgrade map_tracks_odkc and map_mwi_odkc to Bootstrap4 image carousels to 
+  work in the Shiny app turtleviewer.
+
 # wastdr 0.2.18
 * Adapted wastdr to new WAStD API (#3)
   * include example data, 

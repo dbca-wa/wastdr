@@ -73,6 +73,7 @@ LineTransectEncounters
 LoggerEncounters
 lon
 lubridate
+MacOS
 magrittr
 maz
 Metaprogramming

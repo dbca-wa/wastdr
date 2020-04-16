@@ -86,7 +86,7 @@ map_dist_odkc <- function(dist,
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 Confidence: {humanize(disturbanceobservation_disturbance_cause_confidence)}.
 {disturbanceobservation_comments}<br/>
-<img height="150px;" alt="Photo"
+<img class="d-block w-100" alt="Photo"
 src="{ifelse(!is.na({disturbanceobservation_photo_disturbance}),
 disturbanceobservation_photo_disturbance, "")}"></img><br/>
           '),
@@ -132,15 +132,19 @@ disturbanceobservation_photo_disturbance, "")}"></img><br/>
           ),
           popup = ~ glue::glue('
 <h3>Nest disturbed by {humanize(disturbance_cause)}</h3>
+
 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 {lubridate::with_tz(observation_start_time, tz)} AWST</br>
+
 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 {reporter}<br/>
+
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 Confidence: {disturbance_cause_confidence}. {comments}<br/>
-<img height="150px;" alt="Photo"
-src="{ifelse(!is.na({photo_disturbance}), photo_disturbance, "")}"></img>
-                               '),
+
+<img class="d-block w-100" alt="Photo"
+src="{photo_disturbance %||% ""}"></img>
+          '),
           group = humanize(df),
           clusterOptions = co
         )

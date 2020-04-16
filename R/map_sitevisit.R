@@ -50,13 +50,21 @@ map_sv_odkc <- function(svs,
         "{calendar_date_awst} ",
         " Start {reporter} {site_name}"
       ),
-      popup = ~ glue::glue(
-        "<h3>Site Visit Start</h3>",
-        "<p>Start {lubridate::with_tz(survey_start_time, tz)} AWST</p>",
-        "<p>Device ID{device_id}</p>",
-        "<p>By {humanize(reporter)} with {humanize(site_visit_team)}</p>",
-        "<p>Comments: {site_visit_comments}</p>"
-      ),
+      popup = ~ glue::glue('
+<h3>Site Visit Start</h3>
+
+<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+{lubridate::with_tz(survey_start_time, tz)} AWST</br>
+
+<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+{humanize(reporter)} with {humanize(site_visit_team)}
+(Device ID {device_id})<br/>
+
+<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+{site_visit_comments}<br/>
+
+<img class="d-block w-100" alt="Photo" src="{site_visit_site_conditions %||% ""}"></img>
+    '),
 
       group = "Site Visit Start",
       clusterOptions = co
@@ -75,14 +83,20 @@ map_sv_odkc <- function(svs,
         "{calendar_date_awst} ",
         " End {reporter} {site_name}"
       ),
-      popup = ~ glue::glue(
-        "<h3>Site Visit End</h3>",
-        "<p>End {lubridate::with_tz(survey_end_time, tz)} AWST</p>",
-        "<p>Device ID{device_id}</p>",
-        "<p>By {humanize(reporter)}</p>",
-        "<p>Comments: {site_visit_comments}</p>"
-      ),
+      popup = ~ glue::glue('
+<h3>Site Visit End</h3>
 
+<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+{lubridate::with_tz(survey_end_time, tz)} AWST</br>
+
+<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+{humanize(reporter)} (Device ID {device_id})<br/>
+
+<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+{site_visit_comments}<br/>
+
+<img class="d-block w-100" alt="Photo" src="{site_visit_site_conditions %||% ""}"></img>
+      '),
       group = "Site Visit End",
       clusterOptions = co
     ) %>%

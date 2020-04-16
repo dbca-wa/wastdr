@@ -1,5 +1,5 @@
 library(wastdr)
-
+library(sf)
 sanitize_names <- . %>%
   dplyr::mutate_at(
     dplyr::vars(
