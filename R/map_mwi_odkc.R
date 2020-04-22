@@ -85,7 +85,7 @@ Cause of death: {humanize(death_cause_of_death)}
 ({humanize(death_cause_of_death_confidence)})<br/>
 
 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-Activity: {humanize(status_activity)}; behaviour: {status_behaviour};
+Activity: {humanize(status_activity)}; behaviour: {status_behaviour};<br/>
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
 Fate: {animal_fate_animal_fate_comment}<br/>
@@ -102,53 +102,15 @@ PIT tags: {checks_scanned_for_pit_tags}<br/>
 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 Samples taken: {checks_samples_taken}<br/>
 
-<div id="crsl" class="carousel slide" data-ride="carousel">
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="{incident_photo_habitat %||% ""}" alt="Photo habitat">
-      <div class="carousel-caption"><p>Habitat</p></div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{habitat_photos_photo_habitat_2 %||% ""}" alt="Photo habitat 2">
-      <div class="carousel-caption"><p>Habitat 2</p></div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{habitat_photos_photo_habitat_3 %||% ""}" alt="Photo habitat 3">
-      <div class="carousel-caption"><p>Habitat 3</p></div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{habitat_photos_photo_habitat_4 %||% ""}" alt="Photo habitat 4">
-      <div class="carousel-caption "><p>Habitat 4</p></div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{photos_turtle_photo_carapace_top %||% ""}" alt="Photo carapace top">
-      <div class="carousel-caption"><p>Carapace top</p></div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{photos_turtle_photo_head_top %||% ""}" alt="Photo head top">
-      <div class="carousel-caption"><p>Head top</p></div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{photos_turtle_photo_head_side %||% ""}" alt="Photo head side">
-      <div class="carousel-caption"><p>Head side</p></div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{photos_turtle_photo_head_front %||% ""}" alt="Photo head front">
-      <div class="carousel-caption"><p>Head front</p></div>
-    </div>
-  </div>
-
-  <!-- Controls -->
-  <a class="carousel-control-prev" href="#crsl" role="button" data-slide="prev">
-   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-   <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#crsl" role="button" data-slide="next">
-   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-   <span class="sr-only">Next</span>
-  </a>
+<div style="min-height:200px; max-height:200px; overflow: auto;">
+<img class="d-block w-100" src="{incident_photo_habitat %||% ""}" alt="Photo habitat">
+<img class="d-block w-100" src="{habitat_photos_photo_habitat_2 %||% ""}" alt="Photo habitat 2">
+<img class="d-block w-100" src="{habitat_photos_photo_habitat_3 %||% ""}" alt="Photo habitat 3">
+<img class="d-block w-100" src="{habitat_photos_photo_habitat_4 %||% ""}" alt="Photo habitat 4">
+<img class="d-block w-100" src="{photos_turtle_photo_carapace_top %||% ""}" alt="Photo carapace top">
+<img class="d-block w-100" src="{photos_turtle_photo_head_top %||% ""}" alt="Photo head top">
+<img class="d-block w-100" src="{photos_turtle_photo_head_side %||% ""}" alt="Photo head side">
+<img class="d-block w-100" src="{photos_turtle_photo_head_front %||% ""}" alt="Photo head front">
 </div>
           '),
           group = df,

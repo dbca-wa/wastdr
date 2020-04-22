@@ -103,42 +103,12 @@ map_tracks_odkc <- function(tracks,
 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {reporter}
 <br/>
 
-<div id="crsl" class="carousel slide" data-ride="carousel">
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="{track_photos_photo_track_1 %||% ""}" alt="Photo uptrack">
-      <div class="carousel-caption"><p>Uptrack</p></div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{track_photos_photo_track_2 %||% ""}" alt="Photo downtrack">
-      <div class="carousel-caption"><p>Downtrack</p></div>
-    </div>
-
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{nest_photos_photo_nest_1 %||% ""}" alt="Photo nest">
-      <div class="carousel-caption"><p>Nest photo 1</p></div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{nest_photos_photo_nest_2 %||% ""}" alt="Photo nest 2">
-      <div class="carousel-caption"><p>Nest photo 2</p></div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{nest_photos_photo_nest_3 %||% ""}" alt="Photo nest 3">
-      <div class="carousel-caption"><p>Nest photo 3</p></div>
-    </div>
-  </div>
-
-  <!-- Controls -->
-  <a class="carousel-control-prev" href="#crsl" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#crsl" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+<div style="min-height:200px; max-height:200px; overflow: auto;">
+  <img class="d-block w-100" src="{track_photos_photo_track_1 %||% ""}" alt="Photo uptrack">
+  <img class="d-block w-100" src="{track_photos_photo_track_2 %||% ""}" alt="Photo downtrack">
+  <img class="d-block w-100" src="{nest_photos_photo_nest_1 %||% ""}" alt="Photo nest">
+  <img class="d-block w-100" src="{nest_photos_photo_nest_2 %||% ""}" alt="Photo nest 2">
+  <img class="d-block w-100" src="{nest_photos_photo_nest_3 %||% ""}" alt="Photo nest 3">
 </div>
           '),
           group = humanize(df),
