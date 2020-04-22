@@ -270,8 +270,7 @@ download_odkc_turtledata_2019 <-
       url = prod
     )
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    tracktally_prod <-
-      ruODK::odata_submission_get(
+    tracktally_prod <- ruODK::odata_submission_get(
         verbose = verbose,
         wkt = TRUE,
         local_dir = local_dir,
@@ -454,7 +453,14 @@ download_odkc_turtledata_2019 <-
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates()
 
-    track_tally <- tracktally_prod
+    track_tally <- tracktally_prod %>%
+        dplyr::mutate(
+          tx = purrr::map(overview_location,
+                          wastdr::gj_linestring_to_st_linestring)
+        ) %>%
+      sf::st_as_sf(crs = "WGS84") %>%
+      sf::st_zm() %>%
+      sf::st_join(sites)
 
     odkc_turtledata <-
       structure(
