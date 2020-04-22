@@ -10,7 +10,7 @@ download_odkc_turtledata_2019(
   uat = "https://odkcentral-uat.dbca.wa.gov.au",
   tz = "Australia/Perth",
   download = TRUE,
-  verbose = TRUE
+  verbose = wastdr::get_wastdr_verbose()
 )
 }
 \arguments{

@@ -53,7 +53,7 @@ download_odkc_turtledata_2019 <-
            uat = "https://odkcentral-uat.dbca.wa.gov.au",
            tz = "Australia/Perth",
            download = TRUE,
-           verbose = TRUE) {
+           verbose = wastdr::get_wastdr_verbose()) {
     fs::dir_create(local_dir, recurse = TRUE)
     ruODK::ru_setup(
       pid = 1,
@@ -407,7 +407,9 @@ download_odkc_turtledata_2019 <-
       wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
       wastdr::add_dates()
 
-    tsi <- dplyr::bind_rows(tsi01, tsi02)
+    tsi <- dplyr::bind_rows(tsi01, tsi02) %>%
+      wastdr::join_tsc_sites(sites, prefix = "encounter_observed_at_") %>%
+      wastdr::add_dates()
 
     svs <- dplyr::bind_rows(svs_prod, svs_extra) %>%
       wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
