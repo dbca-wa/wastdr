@@ -46,6 +46,7 @@ Imports:
     lifecycle (>= 0.1.0),
     lubridate (>= 1.7.4),
     magrittr (>= 1.5),
+    mapview,
     purrr (>= 0.3.3),
     reactable (>= 0.1.0),
     ruODK (>= 0.6.6.9016),
