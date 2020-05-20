@@ -4,16 +4,19 @@
 \alias{add_dates}
 \title{Add turtle dates to a dataframe with datetime col `observation_start_time`.}
 \usage{
-add_dates(data, date_col = "observation_start_time")
+add_dates(data, date_col = "observation_start_time", parse_date = TRUE)
 }
 \arguments{
 \item{data}{a dataframe with datetime col `observation_start_time`, e.g. the
 output of ODKC form "turtle track or nest", "predator or disturbance", or
-"marine wildlife incident". The date_col must be in plain text, not already
-converted to a date format.}
+"marine wildlife incident". If the date_col is plain text, it will be turned
+into a tz-aware datetime, else it is expected to be POSIXct / POSIXt.}
 
 \item{date_col}{<chr> The column name of the datetime to annotate.
 Default: \code{"observation_start_time"}.}
+
+\item{parse_date}{Whether the date_col needs to be parsed from character
+into a date format (TRUE, default) or already comes as a POSIXct/POSIXt.}
 }
 \value{
 The initial dataframe plus new columns

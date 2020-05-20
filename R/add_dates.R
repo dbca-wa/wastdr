@@ -4,10 +4,12 @@
 #'
 #' @param data a dataframe with datetime col `observation_start_time`, e.g. the
 #' output of ODKC form "turtle track or nest", "predator or disturbance", or
-#' "marine wildlife incident". The date_col must be in plain text, not already
-#' converted to a date format.
+#' "marine wildlife incident". If the date_col is plain text, it will be turned
+#' into a tz-aware datetime, else it is expected to be POSIXct / POSIXt.
 #' @param date_col <chr> The column name of the datetime to annotate.
 #'   Default: \code{"observation_start_time"}.
+#' @param parse_date Whether the date_col needs to be parsed from character
+#'   into a date format (TRUE, default) or already comes as a POSIXct/POSIXt.
 #' @return The initial dataframe plus new columns
 #' \itemize{
 #'   \item calendar_date_awst <chr> The calendar date in GMT+08 (AWST)
@@ -21,12 +23,21 @@
 #' }
 #' @family helpers
 #' @export
-add_dates <- function(data, date_col = "observation_start_time") {
+add_dates <- function(data, date_col = "observation_start_time", parse_date=TRUE) {
   data %>%
+    {
+      if (parse_date == TRUE){
+        dplyr::mutate(
+          .,
+          datetime = !!rlang::sym(date_col) %>%
+            httpdate_as_gmt08() %>%
+            lubridate::with_tz("Australia/Perth")
+        )
+      } else {
+        dplyr::mutate(., datetime = !!rlang::sym(date_col))
+      }
+    } %>%
     dplyr::mutate(
-      datetime = !!rlang::sym(date_col) %>%
-        httpdate_as_gmt08() %>%
-        lubridate::with_tz("Australia/Perth"),
       calendar_date_awst = datetime %>%
         lubridate::floor_date(unit = "day") %>%
         as.character(),
