@@ -4,7 +4,6 @@
 #' @param year The earliest calendar year to be returned. Default: NULL.
 #'   This value, if not NULL, will be used to construct a query parameter
 #'   \code{when_year_gte=2019}
-#' @export
 #' @return A list of tibbles:
 #' \itemize{
 #' \item users A tibble of user names, roles, and contact details which can be
