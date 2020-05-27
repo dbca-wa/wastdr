@@ -71,7 +71,7 @@ download_wastd_turtledata <- function(max_records = NULL,
     wastdr::parse_turtle_nest_encounters()
 
   tracks_subset <-
-    wastd_data$tracks %>% dplyr::select(
+    tracks %>% dplyr::select(
       pk,
       nest_age,
       nest_type,

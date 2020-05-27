@@ -35,7 +35,6 @@ gj_linestring_to_st_linestring <- function(gj_ls){
 }
 
 
-# TODO swap columns 2.1.3.4
 # what's acc and what's alt
 # test that coords are within sane bounds
 # add to dl_odkc_2019
