@@ -1,3 +1,7 @@
+# wastdr 0.3.0
+* Add `download_w2_data` to extract and parse WAMTRAM2. Early stages with 
+  improvements planned.
+
 # wastdr 0.2.19
 * Upgrade map_tracks_odkc and map_mwi_odkc to Bootstrap4 image carousels to 
   work in the Shiny app turtleviewer.
