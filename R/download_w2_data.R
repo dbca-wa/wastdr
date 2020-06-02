@@ -64,6 +64,7 @@
 #'   reconstructed_pit_tags
 #'   reconstructed_tags
 #'   reconstructed_turtles
+#' @export
 download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
                              tz = "Australia/Perth",
                              db_drv = Sys.getenv("W2_DRV"),
