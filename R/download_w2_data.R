@@ -337,15 +337,14 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
         wastdr::wastdr_msg_info("Parsing TRT_OBSERVATIONS")
     o = obs %>%
         dplyr::mutate(
-            o_date = parse_date_time(corrected_date, orders = ord, tz = tz),
-            o_time = parse_date_time(observation_time, orders = ord, tz = tz),
-            observation_datetime_gmt08 = o_date - days(1) + hours(hour(o_time)) + minutes(minute(o_time)),
-            observation_datetime_utc = with_tz(observation_datetime_gmt08, tz = "UTC")
+            o_date = lubridate::parse_date_time(corrected_date, orders = ord, tz = tz),
+            o_time = lubridate::parse_date_time(observation_time, orders = ord, tz = tz),
+            observation_datetime_gmt08 = o_date - lubridate::days(1) + lubridate::hours(hour(o_time)) + lubridate::minutes(minute(o_time)),
+            observation_datetime_utc = lubridate::with_tz(observation_datetime_gmt08, tz = "UTC")
         ) %>%
         dplyr::select(
             -observation_date,
             -observation_date_old,
-
             -corrected_date,
             -observation_time,
             -o_date,
