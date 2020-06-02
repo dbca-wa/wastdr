@@ -235,7 +235,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
             tag_label = other_tag_id,
             attached_on_side = side
         ) %>%
-        arrange(desc(tag_name))
+        dplyr::arrange(desc(tag_name))
 
     # 58k+ inferred turtle identities, reconstructed from encounters.
     if (verbose == TRUE)
