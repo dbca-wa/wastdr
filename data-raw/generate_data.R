@@ -34,26 +34,26 @@ usethis::use_data(wastd_surveys_raw, compress = "xz", overwrite = TRUE)
 
 # TODO generate odkc data
 library(turtleviewer)
-data(turtledata, package = "turtleviewer")
+data(odkc, package = "turtleviewer")
 odkc_data <- list(
-  tracks = head(turtledata$tracks),
-  tracks_dist = head(turtledata$tracks_dist),
-  tracks_egg = head(turtledata$tracks_egg),
-  tracks_log = head(turtledata$tracks_log),
-  tracks_hatch = head(turtledata$tracks_hatch),
-  tracks_fan_outlier = head(turtledata$tracks_fan_outlier),
-  tracks_light = head(turtledata$tracks_light),
-  track_tally = head(turtledata$track_tally),
-  dist = head(turtledata$dist),
-  mwi = head(turtledata$mwi),
-  mwi_dmg = head(turtledata$mwi_dmg),
-  mwi_tag = head(turtledata$mwi_tag),
-  tsi = head(turtledata$tsi),
-  svs = head(turtledata$svs),
-  sve = head(turtledata$sve),
-  sites = turtledata$sites,
-  areas = turtledata$areas,
-  downloaded_on = turtledata$downloaded_on
+  tracks = head(odkc$tracks),
+  tracks_dist = head(odkc$tracks_dist),
+  tracks_egg = head(odkc$tracks_egg),
+  tracks_log = head(odkc$tracks_log),
+  tracks_hatch = head(odkc$tracks_hatch),
+  tracks_fan_outlier = head(odkc$tracks_fan_outlier),
+  tracks_light = head(odkc$tracks_light),
+  track_tally = head(odkc$track_tally),
+  dist = head(odkc$dist),
+  mwi = head(odkc$mwi),
+  mwi_dmg = head(odkc$mwi_dmg),
+  mwi_tag = head(odkc$mwi_tag),
+  tsi = head(odkc$tsi),
+  svs = head(odkc$svs),
+  sve = head(odkc$sve),
+  sites = odkc$sites,
+  areas = odkc$areas,
+  downloaded_on = odkc$downloaded_on
 )
 usethis::use_data(odkc_data, compress = "xz", overwrite = TRUE)
 

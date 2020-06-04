@@ -33,7 +33,7 @@ resolve to a valid database name, e.g. `turtle_tagging`.}
 \item{db_user}{The read-permitted database user,
 default: `Sys.getenv("W2_UN")`.}
 
-\item{db_pass}{The database users's password, detaulf: `Sys.getenv("W2_PW")`.}
+\item{db_pass}{The database user's password, default: `Sys.getenv("W2_PW")`.}
 
 \item{db_port}{The database port, default: `Sys.getenv("W2_PT")`, which
 should resolve to a numeric port, e.g. `1234`.}

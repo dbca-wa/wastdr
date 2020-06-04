@@ -28,8 +28,10 @@ to create \code{leaflet} markers with
 }
 \seealso{
 Other odkc: 
+\code{\link{add_hatching_emergence_success_odkc}()},
 \code{\link{exclude_training_species_odkc}()},
 \code{\link{general_disturbance_by_season_odkc}()},
+\code{\link{hatching_emergence_success_odkc}()},
 \code{\link{map_dist_odkc}()},
 \code{\link{map_mwi_odkc}()},
 \code{\link{map_sv_odkc}()},

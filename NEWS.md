@@ -1,3 +1,8 @@
+# wastdr 0.3.2
+* Bugfix: `download_wastd_turtledata` called `parse_encounterobservations`
+  which called `add_dates` incorrectly. Dates are now preserved and value-added
+  with season, calendar and turtle date and local datetime.
+
 # wastdr 0.3.0
 * Add `download_w2_data` to extract and parse WAMTRAM2. Early stages with 
   improvements planned.

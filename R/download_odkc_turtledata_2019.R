@@ -271,11 +271,11 @@ download_odkc_turtledata_2019 <-
     )
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     tracktally_prod <- ruODK::odata_submission_get(
-        verbose = verbose,
-        wkt = TRUE,
-        local_dir = local_dir,
-        download = download
-      )
+      verbose = verbose,
+      wkt = TRUE,
+      local_dir = local_dir,
+      download = download
+    )
 
     #--------------------------------------------------------------------------#
     # Fix error: PROD used UAT db for a week - what's in UAT but not in PROD?
@@ -397,69 +397,71 @@ download_odkc_turtledata_2019 <-
 
     mwi <- dplyr::bind_rows(mwi_prod, mwi_extra) %>%
       wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     mwi_dmg <- mwi_dmg_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     mwi_tag <- mwi_tag_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     tsi <- dplyr::bind_rows(tsi01, tsi02) %>%
       wastdr::join_tsc_sites(sites, prefix = "encounter_observed_at_") %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     svs <- dplyr::bind_rows(svs_prod, svs_extra) %>%
       wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
-      wastdr::add_dates(date_col = "survey_start_time", parse_date=FALSE)
+      wastdr::add_dates(date_col = "survey_start_time", parse_date = FALSE)
 
     sve <- dplyr::bind_rows(sve_prod, sve_extra) %>%
       wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
-      wastdr::add_dates(date_col = "survey_end_time", parse_date=FALSE)
+      wastdr::add_dates(date_col = "survey_end_time", parse_date = FALSE)
 
     dist <- dplyr::bind_rows(dist_prod, dist_extra) %>%
       wastdr::join_tsc_sites(sites,
         prefix = "disturbanceobservation_location_"
       ) %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     tracks <- dplyr::bind_rows(tracks_prod, tracks_extra) %>%
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     tracks_dist <- tracks_dist_prod %>%
       dplyr::bind_rows(tracks_dist_extra) %>%
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     tracks_log <- tracks_log_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     tracks_egg <- tracks_egg_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     tracks_hatch <- tracks_hatch_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     tracks_fan_outlier <-
       tracks_fan_outlier_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     tracks_light <- tracks_light_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
-      wastdr::add_dates(parse_date=FALSE)
+      wastdr::add_dates(parse_date = FALSE)
 
     track_tally <- tracktally_prod %>%
-        dplyr::mutate(
-          tx = purrr::map(overview_location,
-                          wastdr::gj_linestring_to_st_linestring)
-        ) %>%
+      dplyr::mutate(
+        tx = purrr::map(
+          overview_location,
+          wastdr::gj_linestring_to_st_linestring
+        )
+      ) %>%
       sf::st_as_sf(crs = "WGS84") %>%
       sf::st_zm() %>%
       sf::st_join(sites)

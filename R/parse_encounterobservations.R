@@ -93,10 +93,7 @@ parse_encounterobservations <- function(wastd_api_response) {
       -tidyr::contains("encounter_photographs"),
       -tidyr::contains("encounter_tx_logs")
     ) %>%
-    dplyr::mutate(
-      observation_start_time = httpdate_as_gmt08(encounter_when)
-    ) %>%
-    wastdr::add_dates()
+    wastdr::add_dates(date_col = "encounter_when")
 }
 
 # usethis::use_test("parse_encounterobservations")

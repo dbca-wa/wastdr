@@ -23,10 +23,10 @@
 #' }
 #' @family helpers
 #' @export
-add_dates <- function(data, date_col = "observation_start_time", parse_date=TRUE) {
+add_dates <- function(data, date_col = "observation_start_time", parse_date = TRUE) {
   data %>%
     {
-      if (parse_date == TRUE){
+      if (parse_date == TRUE) {
         dplyr::mutate(
           .,
           datetime = !!rlang::sym(date_col) %>%

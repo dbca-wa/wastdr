@@ -281,7 +281,7 @@ survey_season_stats <- function(surveys) {
       season_length_days = as.numeric(
         lubridate::interval(first_day, last_day)
       ) / (3600 * 24),
-      number_surveys = n(),
+      number_surveys = dplyr::n(),
       hours_surveyed = round(sum(duration_hours))
     )
 }
@@ -308,7 +308,7 @@ survey_season_site_stats <- function(surveys) {
       season_length_days = as.numeric(
         lubridate::interval(first_day, last_day)
       ) / (3600 * 24),
-      number_surveys = n(),
+      number_surveys = dplyr::n(),
       hours_surveyed = round(sum(duration_hours))
     )
 }

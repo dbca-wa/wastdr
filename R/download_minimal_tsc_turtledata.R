@@ -13,27 +13,26 @@
 #' \item surveys A tibble of surveys reconstructed from source and year.
 #' }
 download_minimal_tsc_turtledata <- function(
-    source = "odk",
-    year = NULL
-){
-    users <- wastd_GET("users") %>% wastd_parse()
+                                            source = "odk",
+                                            year = NULL) {
+  users <- wastd_GET("users") %>% wastd_parse()
 
-    qry <- list(source = source)
-    if (!is.null(year)) source["when__year__gte"] = year
+  qry <- list(source = source)
+  if (!is.null(year)) source["when__year__gte"] <- year
 
-    enc <- wastd_GET("encounters", query = qry) %>%
-        wastd_parse() %>%
-        dplyr::select(source, source_id, status)
+  enc <- wastd_GET("encounters", query = qry) %>%
+    wastd_parse() %>%
+    dplyr::select(source, source_id, status)
 
-    # TODO build source query from source and year
-    surveys <- wastd_GET("surveys") %>% wastd_parse()
+  # TODO build source query from source and year
+  surveys <- wastd_GET("surveys") %>% wastd_parse()
 
-    sites <- wastd_GET("sites") %>% wastd_parse()
+  sites <- wastd_GET("sites") %>% wastd_parse()
 
-    list(
-        users = NULL,
-        enc = enc,
-        surveya = surveys,
-        sites = sites
-    )
+  list(
+    users = NULL,
+    enc = enc,
+    surveya = surveys,
+    sites = sites
+  )
 }

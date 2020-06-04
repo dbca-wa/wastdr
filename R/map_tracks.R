@@ -76,10 +76,10 @@ map_tracks <- function(tracks,
             text = ~nest_type_text,
             markerColor = ~species_colours
           ),
-          label = ~ glue::glue('
+          label = ~ glue::glue("
             {format(datetime, fmt)} {humanize(nest_age)}
             {humanize(species)} {humanize(nest_type)} {name}
-          '),
+          "),
           popup = ~ glue::glue('
 <h3>{humanize(nest_age)} {humanize(species)}
 {humanize(nest_type)} {name}</h3>
