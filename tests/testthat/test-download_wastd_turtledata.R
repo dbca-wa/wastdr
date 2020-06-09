@@ -20,7 +20,9 @@ test_that("download_wastd_turtledata works", {
 })
 
 test_that("download_wastd_turtledata emits verbose messages", {
-  testthat::skip_if(Sys.getenv("WASTDR_SKIP_SLOW_TESTS", unset = FALSE) == TRUE)
+  testthat::skip_if(Sys.getenv("WASTDR_SKIP_SLOW_TESTS", unset = FALSE) == TRUE,
+                    message = "Skip slow running tests"
+  )
 
   testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
 

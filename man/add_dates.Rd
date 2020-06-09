@@ -37,7 +37,6 @@ The initial dataframe plus new columns
 \seealso{
 Other helpers: 
 \code{\link{\%>\%}()},
-\code{\link{chr2int}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},
 \code{\link{datetime_as_season}()},

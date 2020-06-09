@@ -21,7 +21,6 @@ wastdr_msg_abort("This is an error, abort.")
 Other helpers: 
 \code{\link{\%>\%}()},
 \code{\link{add_dates}()},
-\code{\link{chr2int}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},
 \code{\link{datetime_as_season}()},

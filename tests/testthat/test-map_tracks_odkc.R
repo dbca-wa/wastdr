@@ -1,7 +1,7 @@
 test_that("map_tracks_odkc returns a leaflet htmlwidget", {
-  testthat::skip_if(Sys.getenv("WASTDR_TALIBAN_TESTS", unset = FALSE) == TRUE,
-    message = "This test segfaults on Ubuntu 19.10"
-  )
+  # testthat::skip_if(Sys.getenv("WASTDR_TALIBAN_TESTS", unset = FALSE) == TRUE,
+  #   message = "This test segfaults on Ubuntu 19.10"
+  # )
 
   data("odkc_data")
 
@@ -24,9 +24,9 @@ test_that("map_tracks_odkc returns a leaflet htmlwidget", {
 test_that("map_tracks_odkc works without sites", {
   data("odkc_data")
 
-  testthat::skip_if(
-    Sys.getenv("WASTDR_TALIBAN_TESTS", unset = FALSE) == TRUE
-  )
+  # testthat::skip_if(
+  #   Sys.getenv("WASTDR_TALIBAN_TESTS", unset = FALSE) == TRUE
+  # )
 
   themap <- map_tracks_odkc(
     odkc_data$tracks,
@@ -47,9 +47,9 @@ test_that("map_tracks_odkc works without sites", {
 test_that("map_tracks_odkc renders a timeline", {
   data("odkc_data")
 
-  testthat::skip_if(
-    Sys.getenv("WASTDR_TALIBAN_TESTS", unset = FALSE) == TRUE
-  )
+  # testthat::skip_if(
+  #   Sys.getenv("WASTDR_TALIBAN_TESTS", unset = FALSE) == TRUE
+  # )
 
   themap <- map_tracks_odkc(
     odkc_data$tracks,

@@ -31,7 +31,6 @@ default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
 Other helpers: 
 \code{\link{\%>\%}()},
 \code{\link{add_dates}()},
-\code{\link{chr2int}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},
 \code{\link{datetime_as_season}()},

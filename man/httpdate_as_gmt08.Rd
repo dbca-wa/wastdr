@@ -23,7 +23,6 @@ httpdate_as_gmt08("2016-11-20T21:46:57.163000Z")
 Other helpers: 
 \code{\link{\%>\%}()},
 \code{\link{add_dates}()},
-\code{\link{chr2int}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},
 \code{\link{datetime_as_season}()},

@@ -31,7 +31,6 @@ datetime_as_season(httpdate_as_gmt08("2017-08-30T06:38:43Z")) # 2017
 Other helpers: 
 \code{\link{\%>\%}()},
 \code{\link{add_dates}()},
-\code{\link{chr2int}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},
 \code{\link{datetime_as_turtle_date}()},

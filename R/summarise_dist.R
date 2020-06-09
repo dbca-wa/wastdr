@@ -8,11 +8,13 @@
 #' @family wastd
 #' @examples
 #' data("wastd_data")
+#' library(magrittr)
 #' wastd_data$nest_dist %>%
 #'   filter_disturbance() %>%
 #'   head()
 #'
 #' data("odkc_data")
+#' library(sf) # This is important when handling objects of class sfc
 #' odkc_data$tracks_dist %>%
 #'   filter_disturbance() %>%
 #'   head()
@@ -97,10 +99,10 @@ filter_predation <- function(data) {
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' wastd_data$nest_dist %>% sf_as_tbl() %>% disturbance_by_season()
+#' wastd_data$nest_dist %>% wastdr::sf_as_tbl() %>% disturbance_by_season()
 #'
 #' data("odkc_data")
-#' odkc_data$tracks_dist %>% sf_as_tbl() %>% disturbance_by_season()
+#' odkc_data$tracks_dist %>% wastdr::sf_as_tbl() %>% disturbance_by_season()
 disturbance_by_season <- function(data) {
   flt_col <- dplyr::case_when(
     "disturbanceobservation_disturbance_cause" %in% names(data) ~

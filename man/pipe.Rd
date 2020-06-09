@@ -12,7 +12,6 @@ See \code{magrittr::\link[magrittr]{\%>\%}} for details.
 \seealso{
 Other helpers: 
 \code{\link{add_dates}()},
-\code{\link{chr2int}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},
 \code{\link{datetime_as_season}()},

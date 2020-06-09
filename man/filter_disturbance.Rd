@@ -21,11 +21,13 @@ The dataframe with rows matching disturbance causes.
 }
 \examples{
 data("wastd_data")
+library(magrittr)
 wastd_data$nest_dist \%>\%
   filter_disturbance() \%>\%
   head()
 
 data("odkc_data")
+library(sf) # This is important when handling objects of class sfc
 odkc_data$tracks_dist \%>\%
   filter_disturbance() \%>\%
   head()
