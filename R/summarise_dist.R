@@ -99,10 +99,14 @@ filter_predation <- function(data) {
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' wastd_data$nest_dist %>% wastdr::sf_as_tbl() %>% disturbance_by_season()
+#' library(magrittr)
+#' wastd_data$nest_dist %>% wastdr::disturbance_by_season()
 #'
 #' data("odkc_data")
-#' odkc_data$tracks_dist %>% wastdr::sf_as_tbl() %>% disturbance_by_season()
+#' library(sf)
+#' odkc_data$tracks_dist %>%
+#'   wastdr::sf_as_tbl() %>%
+#'   wastdr::disturbance_by_season()
 disturbance_by_season <- function(data) {
   flt_col <- dplyr::case_when(
     "disturbanceobservation_disturbance_cause" %in% names(data) ~

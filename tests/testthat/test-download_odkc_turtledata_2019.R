@@ -4,14 +4,13 @@ test_that("download_odkc_turtledata_2019 works", {
   )
 
   testthat::skip_if_not(odkc_works(), message = "ODKC offline or wrong auth")
-
-  suppressMessages(
-    ruODK::ru_setup(
-      url = ruODK::get_default_url(),
-      un = ruODK::get_default_un(),
-      pw = ruODK::get_default_pw()
-    )
+  ruODK::ru_setup(
+    url = ruODK::get_default_url(),
+    un = ruODK::get_default_un(),
+    pw = ruODK::get_default_pw(),
+    verbose = FALSE
   )
+
 
   x <- suppressWarnings(download_odkc_turtledata_2019(
     local_dir = tempdir(),

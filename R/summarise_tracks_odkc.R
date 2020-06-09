@@ -282,10 +282,11 @@ add_hatching_emergence_success_odkc <- function(data) {
 #' @export
 #' @family odkc
 #' @examples
-#' data("odkcs_data")
+#' data("odkc_data")
 #' odkc_data$tracks_egg %>%
-#'   hatching_emergence_success() %>%
-#'   hatching_emergence_success_odkc()
+#'   wastdr::sf_as_tbl() %>%
+#'   wastdr::add_hatching_emergence_success_odkc() %>%
+#'   wastdr::hatching_emergence_success_odkc()
 hatching_emergence_success_odkc <- function(data) {
   data %>%
     dplyr::filter(hatching_success >= 0) %>%

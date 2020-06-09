@@ -4,10 +4,12 @@
 \alias{make_user_mapping}
 \title{Generate a TSC user mapping from a given list of usernames}
 \usage{
-make_user_mapping(odkc_data)
+make_user_mapping(odkc_data, tsc_data)
 }
 \arguments{
 \item{odkc_data}{.}
+
+\item{tsc_data}{.}
 }
 \description{
 Generate a TSC user mapping from a given list of usernames

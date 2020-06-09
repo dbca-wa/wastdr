@@ -7,10 +7,10 @@ test_that("gj_linestring_to_st_linestring produces sfg", {
     "-14.803913 128.402786 1.4 1.6;"
   )
   x <- gj_linestring_to_st_linestring(gj_ls)
-  m <- mapview::mapview(x)
+  # m <- mapview::mapview(x)
 
   testthat::expect_equal(class(x), c("XYZM", "LINESTRING", "sfg"))
-  testthat::expect_equal(class(m)[[1]], "mapview")
+  # testthat::expect_equal(class(m)[[1]], "mapview")
 })
 
 # usethis::use_r("gj_linestring_to_st_linestring")

@@ -13,10 +13,11 @@ hatching_emergence_success_odkc(data)
 \lifecycle{stable}
 }
 \examples{
-data("odkcs_data")
+data("odkc_data")
 odkc_data$tracks_egg \%>\%
-  hatching_emergence_success() \%>\%
-  hatching_emergence_success_odkc()
+  wastdr::sf_as_tbl() \%>\%
+  wastdr::add_hatching_emergence_success_odkc() \%>\%
+  wastdr::hatching_emergence_success_odkc()
 }
 \seealso{
 Other odkc: 

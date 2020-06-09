@@ -22,10 +22,14 @@ A tibble with columns `season`, `disturbance_cause`,
 }
 \examples{
 data("wastd_data")
-wastd_data$nest_dist \%>\% wastdr::sf_as_tbl() \%>\% disturbance_by_season()
+library(magrittr)
+wastd_data$nest_dist \%>\% wastdr::disturbance_by_season()
 
 data("odkc_data")
-odkc_data$tracks_dist \%>\% wastdr::sf_as_tbl() \%>\% disturbance_by_season()
+library(sf)
+odkc_data$tracks_dist \%>\%
+  wastdr::sf_as_tbl() \%>\%
+  wastdr::disturbance_by_season()
 }
 \seealso{
 Other wastd: 
