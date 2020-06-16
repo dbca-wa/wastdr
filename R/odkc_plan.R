@@ -13,9 +13,9 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' odkc_plan()
+#' wastdr::odkc_plan()
 #' drake::vis_drake_graph(odkc_plan())
-#' make(odkc_plan())
+#' drake::make(odkc_plan())
 #' }
 odkc_plan <- function() {
   drake::drake_plan(

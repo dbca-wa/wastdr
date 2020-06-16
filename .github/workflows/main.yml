@@ -18,46 +18,25 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: '3.5'}
-          - {os: windows-latest, r: '3.6'}
-          # Fails at Install R dependencies with
-          # Warning: unable to access index for repository https://cloud.r-project.org/bin/windows/contrib/4.***:
-          # installation of package 'fs' had non-zero exit status
-          # installation of package 'XML' had non-zero exit status
-          # installation of package 'rlist' had non-zero exit status
-          #- {os: windows-latest, r: 'devel'}
-          # Fails at r-lib/actions/setup-r@master
-          #- {os: windows-latest, r: '4.0'}
-          # Fails at R CMD Check with:
-          # ERROR: dependency ‘sf’ is not available for package ‘wastdr’
-          #- {os: macOS-latest, r: '3.5'}
-          #- {os: macOS-latest, r: '3.6'}
-          # Fails at "Source install macOS packages"" with:
-          # ERROR: dependencies ‘tidyr’, ‘dplyr’, ‘promises’ are not available for package ‘plotly’
-          # ERROR: dependencies ‘dplyr’, ‘proj4’, ‘plotly’ are not available for package ‘ggalt’
-          # installation of package ‘proj4’ had non-zero exit status
-          # installation of package ‘later’ had non-zero exit status
-          # installation of package ‘promises’ had non-zero exit status
-          # installation of package ‘dplyr’ had non-zero exit status
-          # installation of package ‘tidyr’ had non-zero exit status
-          #- {os: macOS-latest, r: 'devel'}
-          #- {os: macOS-latest, r: '4.0'}
-          # fails on missing proj4
-          #- {os: macOS-latest, r: 'devel'}
-          #
-          # After fixing https://github.com/tidyverse/stringr/issues/320
-          # fails with libproj.so.***2: missing
-          # ERROR dependency ‘geojsonio’ is not available for package ‘wastdr’
-          #- {os: ubuntu-16.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
-          #- {os: ubuntu-16.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
-          # fails at r-lib/actions/setup-r@master
-          #- {os: ubuntu-16.04, r: 'devel', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
-          - {os: ubuntu-18.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
-          - {os: ubuntu-18.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
-          # fails at r-lib/actions/setup-r@master
-          # reason https://github.com/r-lib/actions/issues/49
-          #- {os: ubuntu-18.04, r: 'devel', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
-          #- {os: ubuntu-18.04, r: '4.0', rspm: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"}
+          # See https://github.com/actions/virtual-environments
+          - { os: windows-latest, r: "devel" } # windows-2019
+          - { os: windows-latest, r: "release" }
+          - { os: windows-latest, r: "oldrel" }
+          - { os: windows-2016, r: "devel" }
+          - { os: windows-2016, r: "release" }
+          - { os: windows-2016, r: "oldrel" }
+          - { os: macOS-latest, r: "devel" } # macos-10.15
+          - { os: macOS-latest, r: "release"}
+          - { os: macOS-latest, r: "oldrel"}
+          # - { os: ubuntu-20.04, r: "devel" } # # not released yet
+          # - { os: ubuntu-20.04, r: "release"} # not released yet
+          # - { os: ubuntu-20.04, r: "oldrel" } # not released yet
+          - { os: ubuntu-latest, r: "devel" } # fails setup-r
+          - { os: ubuntu-latest, r: "release", pkgdown: "true"} # ubuntu-18.04
+          - { os: ubuntu-latest, r: "oldrel" }
+          - { os: ubuntu-16.04, r: "devel" } # fails setup-r
+          - { os: ubuntu-16.04, r: "release"} # fails setup-r
+          - { os: ubuntu-16.04, r: "oldrel" } # fails setup-r
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       RSPM: ${{ matrix.config.rspm }}
