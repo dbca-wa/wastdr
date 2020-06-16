@@ -39,7 +39,7 @@ Imports:
     lubridate (>= 1.7.8),
     magrittr (>= 1.5),
     purrr (>= 0.3.4),
-    ruODK (>= 0.6.6.9023),
+    ruODK (>= 0.6.6.9026),
     sf (>= 0.7),
     scales (>= 1.1.0),
     stringr (>= 1.4.0),
