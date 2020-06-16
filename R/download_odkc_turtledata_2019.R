@@ -10,6 +10,7 @@
 #' @param uat The ODKC UAT server,
 #' default: "https://odkcentral-uat.dbca.wa.gov.au".
 #' @template param-tz
+#' @param odkc_version The numeric ODK Central version, e.g. 0.7 or 0.8.
 #' @param download <lgl> Whether to download attachments to `local_dir` or not,
 #' @template param-verbose
 #'
@@ -53,6 +54,7 @@ download_odkc_turtledata_2019 <-
            uat = "https://odkcentral-uat.dbca.wa.gov.au",
            tz = "Australia/Perth",
            download = TRUE,
+           odkc_version = ruODK::get_default_odkc_version(),
            verbose = wastdr::get_wastdr_verbose()) {
     fs::dir_create(local_dir, recurse = TRUE)
     ruODK::ru_setup(
@@ -274,7 +276,8 @@ download_odkc_turtledata_2019 <-
       verbose = verbose,
       wkt = TRUE,
       local_dir = local_dir,
-      download = download
+      download = download,
+      odkc_version = odkc_version
     )
 
     #--------------------------------------------------------------------------#

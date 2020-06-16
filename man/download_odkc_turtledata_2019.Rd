@@ -10,6 +10,7 @@ download_odkc_turtledata_2019(
   uat = "https://odkcentral-uat.dbca.wa.gov.au",
   tz = "Australia/Perth",
   download = TRUE,
+  odkc_version = ruODK::get_default_odkc_version(),
   verbose = wastdr::get_wastdr_verbose()
 )
 }
@@ -27,6 +28,8 @@ default: "https://odkcentral-uat.dbca.wa.gov.au".}
 \item{tz}{The lubridate timezone, default: "Australia/Perth}
 
 \item{download}{<lgl> Whether to download attachments to `local_dir` or not,}
+
+\item{odkc_version}{The numeric ODK Central version, e.g. 0.7 or 0.8.}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}
