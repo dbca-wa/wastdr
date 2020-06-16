@@ -12,13 +12,11 @@
 #'   used to determine which encounters to create / update / skip.
 #' \item surveys A tibble of surveys reconstructed from source and year.
 #' }
-download_minimal_tsc_turtledata <- function(
-                                            source = "odk",
-                                            year = NULL) {
+download_minimal_tsc_turtledata <- function(source = "odk", year = NULL) {
   users <- wastd_GET("users") %>% wastd_parse()
 
   qry <- list(source = source)
-  if (!is.null(year)) source["when__year__gte"] <- year
+  if (!is.null(year)) qry["when__year__gte"] <- year
 
   enc <- wastd_GET("encounters", query = qry) %>%
     wastd_parse() %>%
