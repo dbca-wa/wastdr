@@ -105,6 +105,7 @@ jobs:
           brew install proj
           brew install gdal
           brew install libxml2
+          brew install v8
 
       # macos-latest configure: error: libproj not found in standard or given locations.
       - name: Source install macOS packages
