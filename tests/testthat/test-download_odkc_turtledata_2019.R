@@ -15,7 +15,8 @@ test_that("download_odkc_turtledata_2019 works", {
   x <- suppressWarnings(download_odkc_turtledata_2019(
     local_dir = tempdir(),
     download = FALSE,
-    verbose = FALSE
+    verbose = FALSE,
+    odkc_version = 0.7
   ))
   expect_equal(class(x), "odkc_turtledata")
   expect_equal(length(x), 18) # This will change if we add more data
