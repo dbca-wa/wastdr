@@ -80,11 +80,15 @@ jobs:
 
       # sf needs GDAL > 2.0.1, stringr needs libicu-dev
       - name: Add Ubuntu Xenial patches
-        if:  runner.os == 'Linux'
+        if: matrix.config.os == 'ubuntu-16.04'
         run: |
           sudo add-apt-repository -y ppa:opencpu/jq
           sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
           sudo apt-get update
+
+      - name: Add Ubuntu patches
+        if: runner.os == 'Linux'
+        run: |
           sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libicu-dev
 
       - name: Install system dependencies
