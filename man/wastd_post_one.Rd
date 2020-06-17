@@ -43,7 +43,9 @@ The \code{wastd_api_response} from \code{\link{wastd_POST}}.
 \lifecycle{maturing}
 }
 \seealso{
-Other ("api"): 
-\code{\link{wastd_bulk_post}()}
+Other api: 
+\code{\link{wastd_GET}()},
+\code{\link{wastd_POST}()},
+\code{\link{wastd_parse}()}
 }
-\concept{("api")}
+\concept{api}
