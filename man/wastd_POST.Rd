@@ -72,6 +72,7 @@ wastd_POST(props[[1]], serializer = "names")
 \seealso{
 Other api: 
 \code{\link{wastd_GET}()},
-\code{\link{wastd_parse}()}
+\code{\link{wastd_parse}()},
+\code{\link{wastd_post_one}()}
 }
 \concept{api}

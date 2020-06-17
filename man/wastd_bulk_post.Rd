@@ -49,8 +49,4 @@ odkc_data$tracks \%>\%
   wastd_bulk_post("turtle-nest-encounters")
 }
 }
-\seealso{
-Other ("api"): 
-\code{\link{wastd_post_one}()}
-}
 \concept{("api")}

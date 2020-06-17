@@ -30,6 +30,7 @@ From a \code{wastd_api_response}, turn the key \code{payload}
 \seealso{
 Other api: 
 \code{\link{wastd_GET}()},
-\code{\link{wastd_POST}()}
+\code{\link{wastd_POST}()},
+\code{\link{wastd_post_one}()}
 }
 \concept{api}
