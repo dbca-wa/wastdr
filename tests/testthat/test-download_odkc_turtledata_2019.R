@@ -8,16 +8,18 @@ test_that("download_odkc_turtledata_2019 works", {
     url = ruODK::get_default_url(),
     un = ruODK::get_default_un(),
     pw = ruODK::get_default_pw(),
-    verbose = FALSE
+    odkc_version = ruODK::get_default_odkc_version(),
+    verbose = ruODK::get_ru_verbose()
   )
 
 
-  x <- suppressWarnings(download_odkc_turtledata_2019(
-    local_dir = tempdir(),
-    download = FALSE,
-    verbose = FALSE,
-    odkc_version = 0.7
-  ))
+  x <- suppressWarnings(
+    download_odkc_turtledata_2019(
+      local_dir = tempdir(),
+      download = FALSE,
+      verbose = TRUE # pin for debugging GHA error
+    )
+  )
   expect_equal(class(x), "odkc_turtledata")
   expect_equal(length(x), 18) # This will change if we add more data
   xout <- capture.output(print(x))
