@@ -12,25 +12,41 @@
 #'   used to determine which encounters to create / update / skip.
 #' \item surveys A tibble of surveys reconstructed from source and year.
 #' }
+#' @export
 download_minimal_tsc_turtledata <- function(source = "odk", year = NULL) {
   users <- wastd_GET("users") %>% wastd_parse()
 
   qry <- list(source = source)
   if (!is.null(year)) qry["when__year__gte"] <- year
 
-  enc <- wastd_GET("encounters", query = qry) %>%
+  enc <- wastd_GET("encounters-src", query = qry) %>%
     wastd_parse() %>%
-    dplyr::select(source, source_id, status)
+    dplyr::select(-geometry)
 
-  # TODO build source query from source and year
   surveys <- wastd_GET("surveys") %>% wastd_parse()
 
-  sites <- wastd_GET("sites") %>% wastd_parse()
+  areas_sf <- wastdr::wastd_GET("area") %>%
+    magrittr::extract2("data") %>%
+    geojsonio::as.json() %>%
+    geojsonsf::geojson_sf()
+
+  areas <- areas_sf %>%
+    dplyr::filter(area_type == "Locality") %>%
+    dplyr::transmute(area_id = pk, area_name = name)
+
+  sites <- areas_sf %>%
+    dplyr::filter(area_type == "Site") %>%
+    dplyr::transmute(site_id = pk, site_name = name) %>%
+    sf::st_join(areas)
+
+
+  users <- wastd_GET("users") %>% wastd_parse()
 
   list(
-    users = NULL,
+    users = users,
     enc = enc,
-    surveya = surveys,
+    surveys = surveys,
+    areas = areas,
     sites = sites
   )
 }

@@ -20,7 +20,7 @@
 odkc_plan <- function() {
   drake::drake_plan(
     odkc_data = download_odkc_turtledata_2019(download = FALSE),
-    tsc_data = download_minimal_tsc_turtledata(),
+    tsc_data = download_minimal_tsc_turtledata(year = 2019),
     user_mapping = make_user_mapping(odkc_data, tsc_data),
     odkc_as_tsc = odkc_as_tsc(odkc_data, user_mapping),
     upload_to_tsc = upload_odkc_to_tsc(odkc_as_tsc, tsc_data)
