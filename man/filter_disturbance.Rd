@@ -21,7 +21,6 @@ The dataframe with rows matching disturbance causes.
 }
 \examples{
 data("wastd_data")
-library(magrittr)
 wastd_data$nest_dist \%>\%
   filter_disturbance() \%>\%
   head()

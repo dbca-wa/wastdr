@@ -32,8 +32,7 @@
 filter_odkc_turtledata <- function(data,
                                    area_name = NULL,
                                    verbose = wastdr::get_wastdr_verbose()) {
-  library(magrittr)
-  library(sf) # overrides dplyr::filter with spatial equivalents
+  requireNamespace("sf") # overrides dplyr::filter with spatial equivalents
 
   if (is.null(area_name)) {
     if (verbose == TRUE) {

@@ -24,7 +24,6 @@ See vignette "get-tsc" for examples of the Threatened Species and Communities si
 ```{r}
 library(wastdr)
 library(dplyr)
-library(magrittr)
 library(leaflet)
 library(listviewer)
 library(ggplot2)

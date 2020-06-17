@@ -56,7 +56,8 @@ download_odkc_turtledata_2019 <-
            download = TRUE,
            odkc_version = ruODK::get_default_odkc_version(),
            verbose = wastdr::get_wastdr_verbose()) {
-    fs::dir_create(local_dir, recurse = TRUE)
+    if (download == TRUE) fs::dir_create(local_dir, recurse = TRUE)
+
     ruODK::ru_setup(
       pid = 1,
       url = prod,

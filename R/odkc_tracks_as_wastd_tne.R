@@ -8,7 +8,6 @@
 #' @examples
 #' \dontrun{
 #' data("odkc_data", package = "wastdr")
-#' library(magrittr)
 #' odkc_data$tracks %>%
 #'   odkc_tracks_as_wastd_tne() %>%
 #'   head(1) %>%
