@@ -8,16 +8,19 @@
 #' @examples
 #' \dontrun{
 #' data("odkc_data", package = "wastdr")
+#'
 #' odkc_data$tracks %>%
 #'   odkc_tracks_as_wastd_tne() %>%
 #'   head(1) %>%
 #'   jsonlite::toJSON()
 #'
-#' odkc_data$tracks %>%
-#'   odkc_tracks_as_wastd_tne() %>%
+# odkc_data$tracks %>%
+#   odkc_tracks_as_wastd_tne() %>%
+#'   head() %>%
 #'   wastd_bulk_post("turtle-nest-encounters",
-#'     api_url = "http://localhost:8220/api/1/"
-#'   )
+#'     api_url = "http://localhost:8220/api/1/",
+#'     api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"))
+#'
 #' }
 odkc_tracks_as_wastd_tne <- function(data) {
   data %>%
@@ -29,22 +32,22 @@ odkc_tracks_as_wastd_tne <- function(data) {
       observer_id = 4,
       comments = glue::glue("Device ID {device_id}"),
       where = glue::glue(
-        "POINT ({details_observed_at_longitude} {details_observed_at_latitude})"
+        "POINT ({details_observed_at_longitude}",
+        " {details_observed_at_latitude})"
       ),
-      location_accuracy = "gps",
-      when = observation_start_time %>%
-        lubridate::with_tz("UTC") %>%
-        as.character(),
+      location_accuracy = "10",
+      location_accuracy_m = details_observed_at_accuracy,
+      when = observation_start_time,
       nest_age = details_nest_age,
       nest_type = details_nest_type,
       species = details_species,
-      habitat = nest_habitat,
-      disturbance = nest_disturbance,
-      nest_tagged = nest_nest_tagged,
-      logger_found = nest_logger_found,
-      eggs_counted = nest_eggs_counted,
-      hatchlings_measured = nest_hatchlings_measured,
-      fan_angles_measured = nest_fan_angles_measured
+      habitat = nest_habitat %>% tidyr::replace_na("na"),
+      disturbance = nest_disturbance %>% tidyr::replace_na("na"),
+      nest_tagged = nest_nest_tagged %>% tidyr::replace_na("na"),
+      logger_found = nest_logger_found %>% tidyr::replace_na("na"),
+      eggs_counted = nest_eggs_counted %>% tidyr::replace_na("na"),
+      hatchlings_measured = nest_hatchlings_measured %>% tidyr::replace_na("na"),
+      fan_angles_measured = nest_fan_angles_measured %>% tidyr::replace_na("na")
     )
 }
 

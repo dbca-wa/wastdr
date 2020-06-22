@@ -20,15 +20,16 @@ Transform odkc_data$tracks into WAStD TurtleNestEncounter
 \examples{
 \dontrun{
 data("odkc_data", package = "wastdr")
+
 odkc_data$tracks \%>\%
   odkc_tracks_as_wastd_tne() \%>\%
   head(1) \%>\%
   jsonlite::toJSON()
 
-odkc_data$tracks \%>\%
-  odkc_tracks_as_wastd_tne() \%>\%
+  head() \%>\%
   wastd_bulk_post("turtle-nest-encounters",
-    api_url = "http://localhost:8220/api/1/"
-  )
+    api_url = "http://localhost:8220/api/1/",
+    api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"))
+
 }
 }

@@ -20,6 +20,17 @@ odkc_plan()
 }
 \examples{
 \dontrun{
+
+# Step 1: New users (username, name, phone, email, role)
+# 400 for existing, 201 for new
+users <- here::here("users.csv") \%>\%
+  readr::read_csv(col_types = "ccccc") \%>\%
+  wastdr::wastd_bulk_post("users")
+
+# save point for debug
+save(odkc_data, tsc_data, user_mapping, file="odkc_import.RData")
+load("odkc_import.RData")
+
 wastdr::odkc_plan()
 drake::vis_drake_graph(odkc_plan())
 drake::make(odkc_plan())
