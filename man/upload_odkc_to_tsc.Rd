@@ -11,6 +11,10 @@ upload_odkc_to_tsc(odkc_as_tsc, existing_tsc_tne)
 
 \item{existing_tsc_tne}{.}
 }
+\value{
+A list of results from the various uploads.
+  Each result is a `wastd_api_response`.
+}
 \description{
 Top level helper to upload all Turtle Nesting Census data to TSC
 }

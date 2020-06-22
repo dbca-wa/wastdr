@@ -25,7 +25,7 @@ jobs:
           - { os: windows-2016, r: "devel" }
           - { os: windows-2016, r: "release" }
           # - { os: windows-2016, r: "oldrel" } # fails to install drake
-          - { os: macOS-latest, r: "devel" } # macos-10.15
+          # - { os: macOS-latest, r: "devel" } # macos-10.15 # fails to install geojsonio
           - { os: macOS-latest, r: "release"}
           - { os: macOS-latest, r: "oldrel"}
           # - { os: ubuntu-20.04, r: "devel" } # # not released yet
@@ -90,7 +90,7 @@ jobs:
       - name: Add Ubuntu Bionic patches
         if: matrix.config.os == 'ubuntu-latest'
         run: |
-          sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libnode-dev
+          sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libnode-dev
 
       - name: Install system dependencies
         if: runner.os == 'Linux'

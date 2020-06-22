@@ -72,7 +72,7 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
         # -------------------------------------------------------------------- #
         # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-hatchling-emergences/
         # tn_hatchling_emergences = odkc_data$tracks (fan_angle...)
-        #             "observation_name": "turtlehatchlingemergenceobservation",
+        # "observation_name": "turtlehatchlingemergenceobservation",
         # "latitude": -20.3068016667,
         # "longitude": 118.61307,
         # "bearing_to_water_degrees": null,
@@ -114,15 +114,13 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
         #
         #
         # -------------------------------------------------------------------- #
+        # https://github.com/dbca-wa/wastdr/issues/16
         # https://tsc.dbca.wa.gov.au/api/1/animal-encounters/
-        # ae = mwi
+        # ae_mwi = mwi
+        #
         # "comments": null,
-        # "latitude": -20.61337,
-        # "longitude": 117.15197,
-        # "crs": "WGS 84",
         # "location_accuracy": "10",
         # "when": "2015-01-21T08:00:00+08:00",
-        # "name": null,
         # "taxon": "Cheloniidae",
         # "species": "chelonia-mydas",
         # "health": "dead-disarticulated",
@@ -183,7 +181,8 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
         #
         #
         #
-        #
+        # -------------------------------------------------------------------- #
+        # https://github.com/dbca-wa/wastdr/issues/17
         # https://tsc.dbca.wa.gov.au/api/1/animal-encounters/
         # ae_sightings = odkc_data$tsi
         #
@@ -207,13 +206,16 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
         # "cause_of_death": "indeterminate-decomposed",
         # "cause_of_death_confidence": "expert-opinion",
         #
+        # -------------------------------------------------------------------- #
         # tracktally > line tx enc
         #
         # -------------------------------------------------------------------- #
+        # https://github.com/dbca-wa/wastdr/issues/15
         # https://tsc.dbca.wa.gov.au/api/1/surveys/
         # make survey end from orphaned sve?
         # surveys = ddkc_svs_sve_to_wastd_surveys(odkc_data$svs, odkc_data$sve)
         #
+        # ---------------------------------------------------------------------#
         # https://tsc.dbca.wa.gov.au/api/1/media-attachments/
         # "media_type": "data_sheet",
         # "title": "data sheet",

@@ -33,6 +33,7 @@ load("odkc_import.RData")
 
 wastdr::odkc_plan()
 drake::vis_drake_graph(odkc_plan())
+drake::clean()
 drake::make(odkc_plan())
 }
 }
