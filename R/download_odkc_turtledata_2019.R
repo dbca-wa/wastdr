@@ -80,7 +80,6 @@ download_odkc_turtledata_2019 <-
     svs_prod <-
       ruODK::odata_submission_get(
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -96,7 +95,6 @@ download_odkc_turtledata_2019 <-
     sve_prod <-
       ruODK::odata_submission_get(
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -115,7 +113,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -125,7 +122,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -136,7 +132,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -155,7 +150,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -172,7 +166,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -188,7 +181,6 @@ download_odkc_turtledata_2019 <-
     dist_prod <-
       ruODK::odata_submission_get(
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -207,7 +199,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -219,7 +210,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -230,7 +220,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -241,7 +230,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -252,7 +240,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -273,7 +260,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -290,7 +276,7 @@ download_odkc_turtledata_2019 <-
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     tracktally_prod <- ruODK::odata_submission_get(
       verbose = verbose,
-      wkt = TRUE,
+      wkt=TRUE,
       local_dir = local_dir,
       download = download,
       odkc_version = odkc_version
@@ -309,7 +295,6 @@ download_odkc_turtledata_2019 <-
     svs_uat <-
       ruODK::odata_submission_get(
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -327,7 +312,6 @@ download_odkc_turtledata_2019 <-
     sve_uat <-
       ruODK::odata_submission_get(
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -345,7 +329,6 @@ download_odkc_turtledata_2019 <-
     mwi_uat <-
       ruODK::odata_submission_get(
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -362,7 +345,6 @@ download_odkc_turtledata_2019 <-
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     dist_uat <-
       ruODK::odata_submission_get(
-        wkt = TRUE,
         verbose = verbose,
         local_dir = local_dir,
         download = download,
@@ -383,7 +365,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
@@ -397,7 +378,6 @@ download_odkc_turtledata_2019 <-
       ruODK::odata_submission_get(
         table = .,
         verbose = verbose,
-        wkt = TRUE,
         local_dir = local_dir,
         download = download,
         odkc_version = odkc_version
