@@ -187,6 +187,15 @@ utils::globalVariables(
     "surname",
     "tag_id",
     "tag_name",
-    "tsc_data"
+    "tsc_data",
+    "aliases",
+    "details_observed_at_accuracy",
+    "dist",
+    "geometry",
+    "nickname",
+    "observer",
+    "odkc_prep",
+    "odkc_username",
+    "username"
   )
 )

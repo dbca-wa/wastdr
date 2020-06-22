@@ -13,12 +13,13 @@
 #'   head()
 #'
 #' data("odkc_data")
-#' library(sf) # This is important when handling objects of class sfc
 #' odkc_data$tracks_dist %>%
+#'   sf_as_tbl() %>%
 #'   filter_disturbance() %>%
 #'   head()
 #'
 #' odkc_data$dist %>%
+#'   sf_as_tbl() %>%
 #'   filter_disturbance() %>%
 #'   head()
 filter_disturbance <- function(data) {
@@ -57,10 +58,12 @@ filter_disturbance <- function(data) {
 #'
 #' data("odkc_data")
 #' odkc_data$tracks_dist %>%
+#'   sf_as_tbl() %>%
 #'   filter_predation() %>%
 #'   head()
 #'
 #' odkc_data$dist %>%
+#'   sf_as_tbl() %>%
 #'   filter_predation() %>%
 #'   head()
 filter_predation <- function(data) {
@@ -102,7 +105,6 @@ filter_predation <- function(data) {
 #' wastd_data$nest_dist %>% wastdr::disturbance_by_season()
 #'
 #' data("odkc_data")
-#' library(sf)
 #' odkc_data$tracks_dist %>%
 #'   wastdr::sf_as_tbl() %>%
 #'   wastdr::disturbance_by_season()

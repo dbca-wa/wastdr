@@ -3,7 +3,7 @@
 #' Extract all unique reporter names from odkc data.
 #' Extract relevant user names from TSC users.
 #' Map most likely match and export to CSV.
-#' External QA: change mapping, possibly update TSC user alias to imporove the
+#' External QA: change mapping, possibly update TSC user alias to improve the
 #' user matching process.
 #' Return a named list containing the mapping of odkc_reporter and tsc_user_id.
 #'

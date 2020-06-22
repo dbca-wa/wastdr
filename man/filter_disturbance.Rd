@@ -26,12 +26,13 @@ wastd_data$nest_dist \%>\%
   head()
 
 data("odkc_data")
-library(sf) # This is important when handling objects of class sfc
 odkc_data$tracks_dist \%>\%
+  sf_as_tbl() \%>\%
   filter_disturbance() \%>\%
   head()
 
 odkc_data$dist \%>\%
+  sf_as_tbl() \%>\%
   filter_disturbance() \%>\%
   head()
 }

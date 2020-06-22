@@ -25,6 +25,7 @@ wastd_data$animals \%>\%
 
 data("odkc_data")
 odkc_data$mwi \%>\%
+  sf_as_tbl() \%>\%
   filter_alive() \%>\%
   head()
 }

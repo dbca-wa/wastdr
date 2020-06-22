@@ -33,9 +33,8 @@ odkc_data$tracks \%>\%
   odkc_tracks_as_wastd_tne(user_mapping) \%>\%
   dplyr::mutate(reporter_id=4, observer_id=4) \%>\%  # missing users in local dev
   head() \%>\%
-  wastd_bulk_post("turtle-nest-encounters",
+  wastd_POST("turtle-nest-encounters",
     api_url = Sys.getenv("WASTDR_API_DEV_URL"),
     api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"))
-
 }
 }

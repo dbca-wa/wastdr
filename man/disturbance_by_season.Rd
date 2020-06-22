@@ -26,7 +26,6 @@ library(magrittr)
 wastd_data$nest_dist \%>\% wastdr::disturbance_by_season()
 
 data("odkc_data")
-library(sf)
 odkc_data$tracks_dist \%>\%
   wastdr::sf_as_tbl() \%>\%
   wastdr::disturbance_by_season()

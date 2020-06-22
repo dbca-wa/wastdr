@@ -27,10 +27,12 @@ wastd_data$nest_dist \%>\%
 
 data("odkc_data")
 odkc_data$tracks_dist \%>\%
+  sf_as_tbl() \%>\%
   filter_predation() \%>\%
   head()
 
 odkc_data$dist \%>\%
+  sf_as_tbl() \%>\%
   filter_predation() \%>\%
   head()
 }

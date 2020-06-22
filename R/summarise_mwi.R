@@ -16,6 +16,7 @@
 #'
 #' data("odkc_data")
 #' odkc_data$mwi %>%
+#'   sf_as_tbl() %>%
 #'   filter_alive() %>%
 #'   head()
 filter_alive <- function(data) {
@@ -53,6 +54,7 @@ filter_alive <- function(data) {
 #'
 #' data("odkc_data")
 #' odkc_data$mwi %>%
+#'   sf_as_tbl() %>%
 #'   filter_dead() %>%
 #'   head()
 filter_dead <- function(data) {
