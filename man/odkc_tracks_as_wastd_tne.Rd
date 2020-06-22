@@ -4,11 +4,13 @@
 \alias{odkc_tracks_as_wastd_tne}
 \title{Transform odkc_data$tracks into WAStD TurtleNestEncounter}
 \usage{
-odkc_tracks_as_wastd_tne(data)
+odkc_tracks_as_wastd_tne(data, user_mapping)
 }
 \arguments{
 \item{data}{The tibble of parsed WAStD TurtleNestEncounters,
 e.g. \code{odkc_data$tracks}.}
+
+\item{user_mapping}{.}
 }
 \value{
 A tibble suitable to
@@ -20,12 +22,15 @@ Transform odkc_data$tracks into WAStD TurtleNestEncounter
 \examples{
 \dontrun{
 data("odkc_data", package = "wastdr")
+user_mapping = NULL # see odkc_plan for actual user mapping
 
 odkc_data$tracks \%>\%
-  odkc_tracks_as_wastd_tne() \%>\%
+  odkc_tracks_as_wastd_tne(user_mapping) \%>\%
   head(1) \%>\%
   jsonlite::toJSON()
 
+odkc_data$tracks \%>\%
+  odkc_tracks_as_wastd_tne(user_mapping) \%>\%
   head() \%>\%
   wastd_bulk_post("turtle-nest-encounters",
     api_url = "http://localhost:8220/api/1/",

@@ -2,34 +2,50 @@
 #'
 #' @param data The tibble of parsed WAStD TurtleNestEncounters,
 #'   e.g. \code{odkc_data$tracks}.
+#' @param user_mapping .
 #' @return A tibble suitable to
 #'   \code{\link{wastd_bulk_post}("turtle-nest-encounters")}
 #' @export
 #' @examples
 #' \dontrun{
 #' data("odkc_data", package = "wastdr")
+#' user_mapping = NULL # see odkc_plan for actual user mapping
 #'
 #' odkc_data$tracks %>%
-#'   odkc_tracks_as_wastd_tne() %>%
+#'   odkc_tracks_as_wastd_tne(user_mapping) %>%
 #'   head(1) %>%
 #'   jsonlite::toJSON()
 #'
-# odkc_data$tracks %>%
-#   odkc_tracks_as_wastd_tne() %>%
+#' odkc_data$tracks %>%
+#'   odkc_tracks_as_wastd_tne(user_mapping) %>%
+#'   dplyr::mutate(reporter_id=4, observer_id=4) %>%  # missing users in local dev
 #'   head() %>%
 #'   wastd_bulk_post("turtle-nest-encounters",
 #'     api_url = "http://localhost:8220/api/1/",
 #'     api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"))
 #'
 #' }
-odkc_tracks_as_wastd_tne <- function(data) {
+odkc_tracks_as_wastd_tne <- function(data, user_mapping) {
+
+  tsc_reporters <- user_mapping %>%
+    dplyr::transmute(
+      reporter = odkc_username,
+      reporter_id = pk
+    )
+
+  tsc_observers <- user_mapping %>%
+    dplyr::transmute(
+      observer = odkc_username,
+      observer_id = pk
+    )
+
   data %>%
     sf_as_tbl() %>%
     dplyr::transmute(
       source = "odk",
       source_id = id,
-      reporter_id = 4, # guess_user(name) > WAStD user PK
-      observer_id = 4,
+      reporter = reporter, # user_mapping$odkc_username
+      observer = reporter,
       comments = glue::glue("Device ID {device_id}"),
       where = glue::glue(
         "POINT ({details_observed_at_longitude}",
@@ -37,7 +53,10 @@ odkc_tracks_as_wastd_tne <- function(data) {
       ),
       location_accuracy = "10",
       location_accuracy_m = details_observed_at_accuracy,
-      when = observation_start_time,
+      when =  paste0(
+        lubridate::format_ISO8601(observation_start_time),
+        "+08:00"
+      ),
       nest_age = details_nest_age,
       nest_type = details_nest_type,
       species = details_species,
@@ -48,7 +67,10 @@ odkc_tracks_as_wastd_tne <- function(data) {
       eggs_counted = nest_eggs_counted %>% tidyr::replace_na("na"),
       hatchlings_measured = nest_hatchlings_measured %>% tidyr::replace_na("na"),
       fan_angles_measured = nest_fan_angles_measured %>% tidyr::replace_na("na")
-    )
+    ) %>%
+    dplyr::left_join(tsc_reporters, by = "reporter") %>% # TSC User PK
+    dplyr::left_join(tsc_observers, by = "observer") %>% # TSC User PK
+    dplyr::select(-reporter, -observer) # drop odkc_username
 }
 
 

@@ -9,8 +9,13 @@ test_that("odkc_tracks_as_wastd_tne works", {
   #     head(1) %>%
   #     jsonlite::toJSON()
 
+  user_mapping <- tibble(
+    odkc_username = 'test',
+    pk = 1
+  )
+
   odkc_names <- odkc_data$tracks %>%
-    odkc_tracks_as_wastd_tne() %>%
+    odkc_tracks_as_wastd_tne(user_mapping) %>%
     names()
 
   wastd_names <- c(
@@ -18,7 +23,8 @@ test_that("odkc_tracks_as_wastd_tne works", {
     "reporter_id",
     "observer_id",
     "where",
-    "when"
+    "when",
+    "location_accuracy_m" # TODO roll out TSC patch to Enc/AE/TNE/LE/TxE API
   )
 
   # ODKC data transformed into TSC shape should contain all fields of the

@@ -10,7 +10,7 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
     list(
         # -------------------------------------------------------------------- #
         # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/
-        tne = odkc_data$tracks %>% odkc_tracks_as_wastd_tne()
+        tne = odkc_tracks_as_wastd_tne(odkc_data$tracks, user_mapping)
         #
         # -------------------------------------------------------------------- #
         # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-disturbance-observations/

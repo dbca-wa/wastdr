@@ -34,5 +34,6 @@ make_user_mapping <- function(odkc_data, tsc_data) {
     ) %>%
     dplyr::group_by(odkc_username) %>%
     dplyr::top_n(1, -dist) %>%
-    dplyr::arrange(odkc_username)
+    dplyr::arrange(odkc_username) %>%
+    dplyr::ungroup()
 }
