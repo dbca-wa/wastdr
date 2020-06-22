@@ -32,6 +32,7 @@ Imports:
     ggplot2 (>= 3.2.1),
     glue (>= 1.4.0),
     fs (>= 1.4.1),
+    fuzzyjoin (>= 0.1.6),
     httr (>= 1.4.1),
     janitor (>= 2.0.1),
     jsonlite (>= 1.6.1),

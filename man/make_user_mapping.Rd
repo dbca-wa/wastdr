@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_user_mapping.R
 \name{make_user_mapping}
 \alias{make_user_mapping}
-\title{Generate a TSC user mapping from a given list of usernames}
+\title{Generate a TSC user mapping from a given list of ODKC data}
 \usage{
 make_user_mapping(odkc_data, tsc_data)
 }
@@ -12,5 +12,10 @@ make_user_mapping(odkc_data, tsc_data)
 \item{tsc_data}{.}
 }
 \description{
-Generate a TSC user mapping from a given list of usernames
+Extract all unique reporter names from odkc data.
+Extract relevant user names from TSC users.
+Map most likely match and export to CSV.
+External QA: change mapping, possibly update TSC user alias to imporove the
+user matching process.
+Return a named list containing the mapping of odkc_reporter and tsc_user_id.
 }
