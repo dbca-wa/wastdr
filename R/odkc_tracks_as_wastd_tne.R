@@ -16,10 +16,15 @@
 #'   head(1) %>%
 #'   jsonlite::toJSON()
 #'
-#' odkc_data$tracks %>%
+#' tne <- odkc_data$tracks %>%
 #'   odkc_tracks_as_wastd_tne(user_mapping) %>%
 #'   dplyr::mutate(reporter_id=4, observer_id=4) %>%  # missing users in local dev
-#'   head() %>%
+#'   head()
+#'
+#' tne_update <- dplyr::anti_join(x, tsc_data$enc, by="source_id")
+#' tne_create <- dplyr::anti_join(tsc_data$enc, x, by="source_id")
+#'
+#' tne_create %>%
 #'   wastd_POST("turtle-nest-encounters",
 #'     api_url = Sys.getenv("WASTDR_API_DEV_URL"),
 #'     api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"))

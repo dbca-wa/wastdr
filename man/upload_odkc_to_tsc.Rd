@@ -4,10 +4,10 @@
 \alias{upload_odkc_to_tsc}
 \title{Top level helper to upload all Turtle Nesting Census data to TSC}
 \usage{
-upload_odkc_to_tsc(odkc_as_tsc, tsc_data)
+upload_odkc_to_tsc(odkc_prep, tsc_data, update_existing = FALSE)
 }
 \arguments{
-\item{odkc_as_tsc}{ODKC data transformed into TSC format.}
+\item{odkc_prep}{ODKC data transformed into TSC format.}
 
 \item{tsc_data}{Minimal TSC data to inform skip logic.}
 }
