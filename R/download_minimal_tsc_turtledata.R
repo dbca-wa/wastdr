@@ -14,12 +14,18 @@
 #' }
 #' @export
 download_minimal_tsc_turtledata <- function(source = "odk", year = NULL) {
-  users <- wastd_GET("users") %>% wastd_parse()
+  users <- wastd_GET("users",
+                     api_url = Sys.getenv("WASTDR_API_DEV_URL"),
+                     api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"),
+                     verbose = TRUE) %>% wastd_parse()
 
   qry <- list(source = source)
   if (!is.null(year)) qry["when__year__gte"] <- year
 
-  enc <- wastd_GET("encounters-src", query = qry) %>%
+  enc <- wastd_GET("encounters-src", query = qry,
+                   api_url = Sys.getenv("WASTDR_API_DEV_URL"),
+                   api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"),
+                   verbose = TRUE) %>%
     wastd_parse() %>%
     dplyr::select(-geometry)
 

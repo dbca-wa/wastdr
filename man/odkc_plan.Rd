@@ -23,9 +23,17 @@ odkc_plan()
 
 # Step 1: New users (username, name, phone, email, role)
 # 400 for existing, 201 for new
+Append new users to spreadsheet: username, name, email, phone, role
 users <- here::here("users.csv") \%>\%
   readr::read_csv(col_types = "ccccc") \%>\%
   wastdr::wastd_bulk_post("users")
+
+users_dev <- here::here("users.csv") \%>\%
+  readr::read_csv(col_types = "ccccc") \%>\%
+  wastdr::wastd_bulk_post("users",
+  api_url = Sys.getenv("WASTDR_API_DEV_URL"),
+  api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"),
+  verbose = TRUE)
 
 # save point for debug
 save(odkc_data, tsc_data, user_mapping, file="odkc_import.RData")
