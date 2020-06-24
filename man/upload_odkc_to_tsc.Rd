@@ -10,11 +10,20 @@ upload_odkc_to_tsc(odkc_prep, tsc_data, update_existing = FALSE)
 \item{odkc_prep}{ODKC data transformed into TSC format.}
 
 \item{tsc_data}{Minimal TSC data to inform skip logic.}
+
+\item{update_existing}{Whether to update existing but unchanged records in
+TSC. Default: FALSE.}
 }
 \value{
 A list of results from the various uploads.
   Each result is a `wastd_api_response`.
 }
 \description{
-Top level helper to upload all Turtle Nesting Census data to TSC
+Encounters and their related observations are uploaded to TSC:
+}
+\details{
+* New encounters will be created
+* Existing but unchanged (status=new) encounters will be updated
+  if `update_existing=TRUE`, else skipped.
+* Existing and value-added encounters (status > new) will be skipped.s
 }

@@ -10,6 +10,9 @@
 #'   * Make (transform) ODKC to WAStD data
 #'   * Load transformed data into WAStD's API (create/update/skip)
 #'   * No QA
+#'
+#' @template param-auth
+#' @template param-verbose
 #' @export
 #' @examples
 #' \dontrun{
@@ -39,9 +42,22 @@
 #' }
 odkc_plan <- function() {
   drake::drake_plan(
+    api_url = wastdr::get_wastdr_api_url(),
+    api_token = wastdr::get_wastdr_api_token(),
+    verbose = wastdr::get_wastdr_verbose(),
     odkc_data = download_odkc_turtledata_2019(download = FALSE),
-    tsc_data = download_minimal_tsc_turtledata(year = 2019),
-    user_mapping = make_user_mapping(odkc_data, tsc_data),
+    tsc_users = download_tsc_users(
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
+    tsc_data = download_minimal_tsc_turtledata(
+      year = 2019,
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
+    user_mapping = make_user_mapping(odkc_data, tsc_users),
     odkc_prep = odkc_as_tsc(odkc_data, user_mapping),
     upload_to_tsc = upload_odkc_to_tsc(odkc_prep, tsc_data, update_existing = F)
   )
