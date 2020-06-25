@@ -32,7 +32,7 @@
 #'   verbose = TRUE)
 #'
 #' # save point for debug
-#' save(odkc_data, tsc_data, user_mapping, file="odkc_import.RData")
+#' save(atkn, aurl, vbse, updt, odkc_ex, odkc_tf, odkc_to_upload, tsc_data, tsc_users, file="odkc_import.RData")
 #' load("odkc_import.RData")
 #'
 #' wastdr::odkc_plan()
@@ -42,23 +42,43 @@
 #' }
 odkc_plan <- function() {
   drake::drake_plan(
-    api_url = wastdr::get_wastdr_api_url(),
-    api_token = wastdr::get_wastdr_api_token(),
-    verbose = wastdr::get_wastdr_verbose(),
-    odkc_data = download_odkc_turtledata_2019(download = FALSE),
-    tsc_users = download_tsc_users(
-      api_url = api_url,
-      api_token = api_token,
-      verbose = verbose
-    ),
+    # ------------------------------------------------------------------------ #
+    # SETUP
+    #
+    # api_url = wastdr::get_wastdr_api_url(),
+    # api_token = wastdr::get_wastdr_api_token(),
+    aurl = Sys.getenv("WASTDR_API_DEV_URL"),
+    atkn = Sys.getenv("WASTDR_API_DEV_TOKEN"),
+    vbse = wastdr::get_wastdr_verbose(),
+    updt = FALSE,
+
+    # ------------------------------------------------------------------------ #
+    # EXTRACT
+    #
+    # Source data extracted from source DB
+    # TODO there are duplicates due to overlapping sites, e.g. CBB overlap/gap
+    odkc_ex = download_odkc_turtledata_2019(download = FALSE),
+
+    # ------------------------------------------------------------------------ #
+    # TRANSFORM
+    #
+    # User mapping
+    tsc_users = download_tsc_users(api_url = aurl, api_token = atkn, verbose = vbse),
+    user_mapping = make_user_mapping(odkc_ex, tsc_users),
+    # Source data transformed into target format
+    odkc_tf = odkc_as_tsc(odkc_ex, user_mapping),
+
+    # ------------------------------------------------------------------------ #
+    # LOAD
+    #
+    # Existing data in target DB
     tsc_data = download_minimal_tsc_turtledata(
-      year = 2019,
-      api_url = api_url,
-      api_token = api_token,
-      verbose = verbose
-    ),
-    user_mapping = make_user_mapping(odkc_data, tsc_users),
-    odkc_prep = odkc_as_tsc(odkc_data, user_mapping),
-    upload_to_tsc = upload_odkc_to_tsc(odkc_prep, tsc_data, update_existing = F)
+      year = 2019, api_url = aurl, api_token = atkn, verbose = vbse),
+    # Skip logic
+    odkc_up = split_create_update_skip(odkc_tf, tsc_data, verbose = vbse),
+    # Upload
+    upload_to_tsc = upload_odkc_to_tsc(
+      odkc_up, update_existing = updt, api_url = aurl, api_token = atkn, verbose = vbse)
+    # Report?
   )
 }

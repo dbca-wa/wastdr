@@ -21,7 +21,7 @@ make_user_mapping <- function(odkc_data, tsc_users) {
       odkc_data$tsi$reporter))
 
   tsc_users <- tsc_users %>%
-    dplyr::mutate(tsc_usernames = paste(name, aliases, nickname, username))
+    dplyr::mutate(tsc_usernames = paste(name, aliases, nickname))
 
   tibble::tibble(odkc_username = odkc_reporters) %>%
     fuzzyjoin::stringdist_join(
