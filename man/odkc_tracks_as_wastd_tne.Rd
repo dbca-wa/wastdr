@@ -2,12 +2,12 @@
 % Please edit documentation in R/odkc_tracks_as_wastd_tne.R
 \name{odkc_tracks_as_wastd_tne}
 \alias{odkc_tracks_as_wastd_tne}
-\title{Transform odkc_data$tracks into WAStD TurtleNestEncounter}
+\title{Transform odkc_data$tracks into WAStD TurtleNestEncounters.}
 \usage{
 odkc_tracks_as_wastd_tne(data, user_mapping)
 }
 \arguments{
-\item{data}{The tibble of parsed WAStD TurtleNestEncounters,
+\item{data}{A tibble of parsed ODKC Track or Nests,
 e.g. \code{odkc_data$tracks}.}
 
 \item{user_mapping}{.}
@@ -17,7 +17,7 @@ A tibble suitable to
   \code{\link{wastd_bulk_post}("turtle-nest-encounters")}
 }
 \description{
-Transform odkc_data$tracks into WAStD TurtleNestEncounter
+Transform odkc_data$tracks into WAStD TurtleNestEncounters.
 }
 \examples{
 \dontrun{

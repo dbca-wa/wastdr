@@ -10,7 +10,7 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
     list(
         # -------------------------------------------------------------------- #
         # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/
-        tne = odkc_tracks_as_wastd_tne(odkc_data$tracks, user_mapping)
+        tne = odkc_tracks_as_wastd_tne(odkc_data$tracks, user_mapping),
         #
         # -------------------------------------------------------------------- #
         # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-disturbance-observations/
@@ -44,7 +44,7 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
         # "egg_count": null,
         # "hatching_success": 100.0,
         # "emergence_success": 100.0,
-        # "no_egg_shells": 10,
+        # "no_egg_shells": 10, ## Source fields
         # "no_live_hatchlings_neck_of_nest": null,
         # "no_live_hatchlings": 0,
         # "no_dead_hatchlings": 0,
@@ -114,77 +114,36 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
         #
         #
         # -------------------------------------------------------------------- #
-        # https://github.com/dbca-wa/wastdr/issues/16
         # https://tsc.dbca.wa.gov.au/api/1/animal-encounters/
-        # ae_mwi = mwi
-        #
-        # "comments": null,
-        # "location_accuracy": "10",
-        # "when": "2015-01-21T08:00:00+08:00",
-        # "taxon": "Cheloniidae",
-        # "species": "chelonia-mydas",
-        # "health": "dead-disarticulated",
-        # "sex": "na",
-        # "maturity": "juvenile",
-        # "behaviour": "",
-        # "habitat": "beach",
-        # "activity": "na",
-        # "nesting_event": "na",
-        # "checked_for_injuries": "na",
-        # "scanned_for_pit_tags": "na",
-        # "checked_for_flipper_tags": "na",
-        # "cause_of_death": "indeterminate-decomposed",
-        # "cause_of_death_confidence": "expert-opinion",
-        #
-        #
+        # https://github.com/dbca-wa/wastdr/issues/16
+        ae_mwi = odkc_mwi_as_wastd_ae(odkc_data$mwi, user_mapping)
+        # obs_media = odkc_mwi_as_wastd_media(odkc_data$mwi),
+
         # -------------------------------------------------------------------- #
         # mwi_dmg > damageobs
-        #
+        # https://github.com/dbca-wa/wastdr/issues/16
+        # obs_turtledmg = odkc_mwi_dmg_as_wastd_turtledmg(odkc_data$mwi_dmg, user_mapping),
+
         # -------------------------------------------------------------------- #
         # https://tsc.dbca.wa.gov.au/api/1/tag-observations/
+        # obs_tagobs = odkc_mwi_tag_as_wastd_tagobs(odkc_data$mwi_tag, user_mapping),
         # mwi_tag > tagobs
         # "tag_type": "flipper-tag",
         # "name": "WA49138",
         # "tag_location": "flipper-front-left-1",
         # "status": "removed",
         # "comments": ""
-        #
-        #
+
         # -------------------------------------------------------------------- #
         # https://tsc.dbca.wa.gov.au/api/1/turtle-morphometrics/
-        # turtle_morphometrics = odkc_data$mwi(morph...)
-        #
-        # "latitude": -25.499453390583632,
-        # "longitude": 113.0180311203003,
-        # "curved_carapace_length_mm": 905,
-        # "curved_carapace_length_accuracy": "10",
-        # "straight_carapace_length_mm": null,
-        # "straight_carapace_length_accuracy": null,
-        # "curved_carapace_width_mm": 830,
-        # "curved_carapace_width_accuracy": "10",
-        # "tail_length_carapace_mm": null,
-        # "tail_length_carapace_accuracy": null,
-        # "tail_length_vent_mm": null,
-        # "tail_length_vent_accuracy": null,
-        # "tail_length_plastron_mm": null,
-        # "tail_length_plastron_accuracy": null,
-        # "maximum_head_width_mm": null,
-        # "maximum_head_width_accuracy": null,
-        # "maximum_head_length_mm": null,
-        # "maximum_head_length_accuracy": null,
-        # "body_depth_mm": null,
-        # "body_depth_accuracy": null,
-        # "body_weight_g": null,
-        # "body_weight_accuracy": null,
-        # "handler": 12,
-        # "recorder": 12
-        #
-        #
-        #
+        # https://github.com/dbca-wa/wastdr/issues/16
+        # obs_turtlemorph = odkc_mwi_as_wastd_turtlemorph(odkc_data$mwi, user_mapping),
+
         # -------------------------------------------------------------------- #
         # https://github.com/dbca-wa/wastdr/issues/17
         # https://tsc.dbca.wa.gov.au/api/1/animal-encounters/
         # ae_sightings = odkc_data$tsi
+        # ae_tsi = odkc_tsi_as_wastd_ae(odkc_data$tsi, user_mapping),
         #
         # "comments": null,
         # "crs": "WGS 84",

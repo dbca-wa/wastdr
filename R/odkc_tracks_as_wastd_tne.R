@@ -1,6 +1,6 @@
-#' Transform odkc_data$tracks into WAStD TurtleNestEncounter
+#' Transform odkc_data$tracks into WAStD TurtleNestEncounters.
 #'
-#' @param data The tibble of parsed WAStD TurtleNestEncounters,
+#' @param data A tibble of parsed ODKC Track or Nests,
 #'   e.g. \code{odkc_data$tracks}.
 #' @param user_mapping .
 #' @return A tibble suitable to

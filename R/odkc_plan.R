@@ -63,7 +63,8 @@ odkc_plan <- function() {
     # TRANSFORM
     #
     # User mapping
-    tsc_users = download_tsc_users(api_url = aurl, api_token = atkn, verbose = vbse),
+    tsc_users = download_tsc_users(
+      api_url = aurl, api_token = atkn, verbose = vbse),
     user_mapping = make_user_mapping(odkc_ex, tsc_users),
     # Source data transformed into target format
     odkc_tf = odkc_as_tsc(odkc_ex, user_mapping),
@@ -78,7 +79,8 @@ odkc_plan <- function() {
     odkc_up = split_create_update_skip(odkc_tf, tsc_data, verbose = vbse),
     # Upload
     upload_to_tsc = upload_odkc_to_tsc(
-      odkc_up, update_existing = updt, api_url = aurl, api_token = atkn, verbose = vbse)
+      odkc_up, update_existing = updt,
+      api_url = aurl, api_token = atkn, verbose = vbse)
     # Report?
   )
 }

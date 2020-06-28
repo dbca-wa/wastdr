@@ -37,9 +37,25 @@ split_create_update_skip <- function(odkc_prep,
     tne_skip <- odkc_prep$tne %>%
         dplyr::semi_join(enc_skip, by = "source_id")
 
+    # TNE with source_id not in TSC at all are candidates for creates
+    ae_mwi_create <- odkc_prep$ae_mwi %>%
+        dplyr::anti_join(tsc_data$enc, by = "source_id")
+
+    # TNE with source_id occurring in enc_update are candidates for updates
+    ae_mwi_update <- odkc_prep$ae_mwi %>%
+        dplyr::semi_join(enc_update, by = "source_id")
+
+    # TNE with source_id in enc_skip are candidates for skipping
+    ae_mwi_skip <- odkc_prep$ae_mwi %>%
+        dplyr::semi_join(enc_skip, by = "source_id")
+
+
     list(
         tne_update = tne_update,
         tne_create = tne_create,
-        tne_skip = tne_skip
+        tne_skip = tne_skip,
+        ae_mwi_create = ae_mwi_create,
+        ae_mwi_update = ae_mwi_update,
+        ae_mwi_skip = ae_mwi_skip
     )
 }
