@@ -7,3 +7,5 @@ packrat/src/
 inst/doc
 .httr-oauth
 docs/
+odkc_import.RData
+users.csv

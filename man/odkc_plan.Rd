@@ -52,7 +52,7 @@ users_dev <- here::here("users.csv") \%>\%
   verbose = TRUE)
 
 # save point for debug
-save(atkn, aurl, vbse, updt, odkc_ex, odkc_tf, odkc_to_upload, tsc_data, tsc_users, file="odkc_import.RData")
+save(atkn, aurl, vbse, updt, odkc_ex, odkc_tf, odkc_up, tsc_data, tsc_users, user_mapping, file="odkc_import.RData")
 load("odkc_import.RData")
 
 wastdr::odkc_plan()

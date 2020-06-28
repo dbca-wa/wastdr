@@ -63,6 +63,7 @@ upload_odkc_to_tsc <- function(data,
     else {
       "Skipped {nrow(data$tne_update)} existing and uncurated TurtleNestEncounters" %>%
         glue::glue() %>% wastdr_msg_info()
+      tne_res_update <- NULL
     }
   } else {
     "No existing TurtleNestEncounters to update" %>% wastdr_msg_info()
