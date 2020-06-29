@@ -116,7 +116,7 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
         # -------------------------------------------------------------------- #
         # https://tsc.dbca.wa.gov.au/api/1/animal-encounters/
         # https://github.com/dbca-wa/wastdr/issues/16
-        ae_mwi = odkc_mwi_as_wastd_ae(odkc_data$mwi, user_mapping)
+        ae_mwi = odkc_mwi_as_wastd_ae(odkc_data$mwi, user_mapping),
         # obs_media = odkc_mwi_as_wastd_media(odkc_data$mwi),
 
         # -------------------------------------------------------------------- #
@@ -137,7 +137,7 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
         # -------------------------------------------------------------------- #
         # https://tsc.dbca.wa.gov.au/api/1/turtle-morphometrics/
         # https://github.com/dbca-wa/wastdr/issues/16
-        # obs_turtlemorph = odkc_mwi_as_wastd_turtlemorph(odkc_data$mwi, user_mapping),
+        obs_turtlemorph = odkc_mwi_as_wastd_turtlemorph(odkc_data$mwi, user_mapping)
 
         # -------------------------------------------------------------------- #
         # https://github.com/dbca-wa/wastdr/issues/17

@@ -50,12 +50,28 @@ split_create_update_skip <- function(odkc_prep,
         dplyr::semi_join(enc_skip, by = "source_id")
 
 
+    # OTM with source_id not in TSC at all are candidates for creates
+    obs_turtlemorph_create <- odkc_prep$obs_turtlemorph %>%
+        dplyr::anti_join(tsc_data$enc, by = "source_id")
+
+    # OTM with source_id occurring in enc_update are candidates for updates
+    obs_turtlemorph_update <- odkc_prep$obs_turtlemorph %>%
+        dplyr::semi_join(enc_update, by = "source_id")
+
+    # OTM with source_id in enc_skip are candidates for skipping
+    obs_turtlemorph_skip <- odkc_prep$obs_turtlemorph %>%
+        dplyr::semi_join(enc_skip, by = "source_id")
+
+
     list(
         tne_update = tne_update,
         tne_create = tne_create,
         tne_skip = tne_skip,
         ae_mwi_create = ae_mwi_create,
         ae_mwi_update = ae_mwi_update,
-        ae_mwi_skip = ae_mwi_skip
+        ae_mwi_skip = ae_mwi_skip,
+        obs_turtlemorph_create = obs_turtlemorph_create,
+        obs_turtlemorph_update = obs_turtlemorph_update,
+        obs_turtlemorph_skip = obs_turtlemorph_skip
     )
 }

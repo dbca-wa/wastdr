@@ -14,7 +14,7 @@ e.g. \code{odkc_data$mwi}.}
 }
 \value{
 A tibble suitable to
-  \code{\link{wastd_bulk_post}("animal-encounters")}
+  \code{\link{wastd_POST}("animal-encounters")}
 }
 \description{
 Transform odkc_data$mwi into WAStD AnimalEncounters.

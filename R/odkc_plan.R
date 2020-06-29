@@ -58,6 +58,8 @@ odkc_plan <- function() {
     # Source data extracted from source DB
     # TODO there are duplicates due to overlapping sites, e.g. CBB overlap/gap
     odkc_ex = download_odkc_turtledata_2019(download = FALSE),
+    # QA Reports: data collection problems?
+    # https://github.com/dbca-wa/wastdr/issues/21
 
     # ------------------------------------------------------------------------ #
     # TRANSFORM
@@ -66,6 +68,8 @@ odkc_plan <- function() {
     tsc_users = download_tsc_users(
       api_url = aurl, api_token = atkn, verbose = vbse),
     user_mapping = make_user_mapping(odkc_ex, tsc_users),
+    # QA Reports: inspect user mappings - flag dissimilar matches
+    # https://github.com/dbca-wa/wastdr/issues/21
     # Source data transformed into target format
     odkc_tf = odkc_as_tsc(odkc_ex, user_mapping),
 
@@ -81,6 +85,7 @@ odkc_plan <- function() {
     upload_to_tsc = upload_odkc_to_tsc(
       odkc_up, update_existing = updt,
       api_url = aurl, api_token = atkn, verbose = vbse)
-    # Report?
+    # QA Reports: inspect APi responses for any trouble uploading
+    # https://github.com/dbca-wa/wastdr/issues/21
   )
 }

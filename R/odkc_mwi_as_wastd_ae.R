@@ -4,7 +4,7 @@
 #'   e.g. \code{odkc_data$mwi}.
 #' @param user_mapping .
 #' @return A tibble suitable to
-#'   \code{\link{wastd_bulk_post}("animal-encounters")}
+#'   \code{\link{wastd_POST}("animal-encounters")}
 #' @export
 #' @examples
 #' \dontrun{
