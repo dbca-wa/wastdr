@@ -11,8 +11,6 @@
 #'   * Load transformed data into WAStD's API (create/update/skip)
 #'   * No QA
 #'
-#' @template param-auth
-#' @template param-verbose
 #' @export
 #' @examples
 #' \dontrun{

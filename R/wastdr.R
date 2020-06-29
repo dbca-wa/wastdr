@@ -196,6 +196,20 @@ utils::globalVariables(
     "observer",
     "odkc_prep",
     "odkc_username",
-    "username"
+    "username",
+    "atkn", "aurl", "checks_checked_for_flipper_tags", "checks_checked_for_injuries",
+    "checks_scanned_for_pit_tags", "death_cause_of_death",
+    "death_cause_of_death_confidence", "details_maturity", "details_sex",
+    "details_taxon", "handler", "incident_habitat", "incident_incident_time",
+    "incident_observed_at_accuracy", "incident_observed_at_manual_accuracy",
+    "morphometrics_curved_carapace_length_accuracy",
+    "morphometrics_curved_carapace_length_mm",
+    "morphometrics_curved_carapace_width_accuracy",
+    "morphometrics_curved_carapace_width_mm",
+    "morphometrics_maximum_head_width_accuracy",
+    "morphometrics_maximum_head_width_mm",
+    "morphometrics_tail_length_carapace_accuracy",
+    "morphometrics_tail_length_carapace_mm", "odkc_ex", "odkc_tf", "odkc_up",
+    "recorder", "status_activity", "status_behaviour", "tsc_users", "updt", "vbse"
   )
 )

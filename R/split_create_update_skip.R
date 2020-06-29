@@ -9,14 +9,10 @@
 #'
 #' @param odkc_prep ODKC data transformed into TSC format.
 #' @param tsc_data Minimal TSC data to inform skip logic.
-#' @template param-auth
-#' @template param-verbose
 #' @return A list of results from the various uploads.
 #'   Each result is a `wastd_api_response` or a tibble of data (`_skip`).
 #' @export
-split_create_update_skip <- function(odkc_prep,
-                                     tsc_data,
-                                     verbose = wastdr::get_wastdr_verbose()) {
+split_create_update_skip <- function(odkc_prep, tsc_data) {
     # WAStD Encounters are considered unchanged if QA status is "new" and
     # can be updated without losing edits applied in WAStD.
     enc_update <- tsc_data$enc %>% dplyr::filter(status == "new")

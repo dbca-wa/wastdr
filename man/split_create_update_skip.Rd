@@ -4,31 +4,12 @@
 \alias{split_create_update_skip}
 \title{Top level helper to split all Turtle Nesting Census data per skip logic}
 \usage{
-split_create_update_skip(
-  odkc_prep,
-  tsc_data,
-  verbose = wastdr::get_wastdr_verbose()
-)
+split_create_update_skip(odkc_prep, tsc_data)
 }
 \arguments{
 \item{odkc_prep}{ODKC data transformed into TSC format.}
 
 \item{tsc_data}{Minimal TSC data to inform skip logic.}
-
-\item{verbose}{Whether to show debug messages.
-Default: wastdr::get_wastdr_verbose()}
-
-\item{api_url}{(character) The WAStD API URL,
-default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}
-
-\item{api_token}{(character) The WAStD API token,
-default \code{\link{get_wastdr_api_token}}, see \code{\link{wastdr_setup}}}
-
-\item{api_un}{(character) A WAStD API username,
-default \code{\link{get_wastdr_api_un}}, see \code{\link{wastdr_setup}}}
-
-\item{api_pw}{(character) A WAStD API password,
-default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
 }
 \value{
 A list of results from the various uploads.

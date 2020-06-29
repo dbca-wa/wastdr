@@ -37,8 +37,6 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
         # tn-excavations = odkc_data$tracks (egg_count...)
         #
         # "observation_name": "turtlenestobservation",
-        # "latitude": -17.947485,
-        # "longitude": 122.2067066667,
         # "nest_position": "in-dune-vegetation",
         # "eggs_laid": false,
         # "egg_count": null,
