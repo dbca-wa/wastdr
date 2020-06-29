@@ -17,7 +17,6 @@ calendardate
 changedate
 chr
 CKAN
-CMD
 CODECOV
 corporateict
 Crendentials
@@ -160,9 +159,9 @@ TSC
 TSC's
 tsi
 turtledata
+TurtleMorphometricObservations
 TurtleNest
 turtlenestencounter
-TurtleNestEncounter
 TurtleNestEncounters
 turtleviewer
 tz

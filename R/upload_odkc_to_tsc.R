@@ -22,7 +22,6 @@ upload_odkc_to_tsc <- function(data,
                                api_un = wastdr::get_wastdr_api_un(),
                                api_pw = wastdr::get_wastdr_api_pw(),
                                verbose = wastdr::get_wastdr_verbose()) {
-
   list(
     # Tracks > TNE
     tne = wastd_create_update_skip(

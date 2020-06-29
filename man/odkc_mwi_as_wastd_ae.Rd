@@ -22,12 +22,13 @@ Transform odkc_data$mwi into WAStD AnimalEncounters.
 \examples{
 \dontrun{
 data("odkc_data", package = "wastdr")
-user_mapping = NULL # see odkc_plan for actual user mapping
+user_mapping <- NULL # see odkc_plan for actual user mapping
 ae <- odkc_mwi_as_wastd_ae(odkc_ex$mwi, user_mapping)
 
 ae \%>\%
   wastd_POST("animal-encounters",
     api_url = Sys.getenv("WASTDR_API_DEV_URL"),
-    api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"))
+    api_token = Sys.getenv("WASTDR_API_DEV_TOKEN")
+  )
 }
 }

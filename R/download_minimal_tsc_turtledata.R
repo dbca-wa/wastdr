@@ -16,43 +16,46 @@
 #' }
 #' @export
 download_minimal_tsc_turtledata <- function(
-  source = "odk",
-  year = NULL,
-  api_url = wastdr::get_wastdr_api_url(),
-  api_token = wastdr::get_wastdr_api_token(),
-  api_un = wastdr::get_wastdr_api_un(),
-  api_pw = wastdr::get_wastdr_api_pw(),
-  verbose = wastdr::get_wastdr_verbose()) {
+                                            source = "odk",
+                                            year = NULL,
+                                            api_url = wastdr::get_wastdr_api_url(),
+                                            api_token = wastdr::get_wastdr_api_token(),
+                                            api_un = wastdr::get_wastdr_api_un(),
+                                            api_pw = wastdr::get_wastdr_api_pw(),
+                                            verbose = wastdr::get_wastdr_verbose()) {
 
   # Encounters ----------------------------------------------------------------#
   qry <- list(source = source)
   if (!is.null(year)) qry["when__year__gte"] <- year
 
   enc <- wastd_GET("encounters-src",
-                   query = qry,
-                   api_url = api_url,
-                   api_token = api_token,
-                   api_un = api_un,
-                   api_pw = api_pw,
-                   verbose = verbose) %>%
+    query = qry,
+    api_url = api_url,
+    api_token = api_token,
+    api_un = api_un,
+    api_pw = api_pw,
+    verbose = verbose
+  ) %>%
     wastd_parse() %>%
     dplyr::select(-geometry)
 
   # Surveys -------------------------------------------------------------------#
   surveys <- wastd_GET("surveys",
-                       api_url = api_url,
-                       api_token = api_token,
-                       api_un = api_un,
-                       api_pw = api_pw,
-                       verbose = verbose) %>% wastd_parse()
+    api_url = api_url,
+    api_token = api_token,
+    api_un = api_un,
+    api_pw = api_pw,
+    verbose = verbose
+  ) %>% wastd_parse()
 
   # Areas and sites -----------------------------------------------------------#
   areas_sf <- wastdr::wastd_GET("area",
-                                api_url = api_url,
-                                api_token = api_token,
-                                api_un = api_un,
-                                api_pw = api_pw,
-                                verbose = verbose) %>%
+    api_url = api_url,
+    api_token = api_token,
+    api_un = api_un,
+    api_pw = api_pw,
+    verbose = verbose
+  ) %>%
     magrittr::extract2("data") %>%
     geojsonio::as.json() %>%
     geojsonsf::geojson_sf()

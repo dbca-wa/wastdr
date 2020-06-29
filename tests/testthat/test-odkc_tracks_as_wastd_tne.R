@@ -10,7 +10,7 @@ test_that("odkc_tracks_as_wastd_tne works", {
   #     jsonlite::toJSON()
 
   user_mapping <- tibble(
-    odkc_username = 'test',
+    odkc_username = "test",
     pk = 1
   )
 

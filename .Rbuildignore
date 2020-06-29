@@ -19,3 +19,5 @@ vignettes/rsconnect/*
 ^\.ccache$
 ^\.github$
 ^tic\.R$
+^odkc_import.RData$
+^users.csv$

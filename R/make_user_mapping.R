@@ -12,13 +12,14 @@
 #' @export
 make_user_mapping <- function(odkc_data, tsc_users) {
   odkc_reporters <- unique(c(
-      odkc_data$tracks$reporter,
-      odkc_data$track_tally$reporter,
-      odkc_data$dist$reporter,
-      odkc_data$mwi$reporter,
-      odkc_data$svs$reporter,
-      odkc_data$sve$reporter,
-      odkc_data$tsi$reporter))
+    odkc_data$tracks$reporter,
+    odkc_data$track_tally$reporter,
+    odkc_data$dist$reporter,
+    odkc_data$mwi$reporter,
+    odkc_data$svs$reporter,
+    odkc_data$sve$reporter,
+    odkc_data$tsi$reporter
+  ))
 
   tsc_users <- tsc_users %>%
     dplyr::mutate(tsc_usernames = paste(name, aliases, nickname))

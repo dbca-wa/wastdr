@@ -276,7 +276,7 @@ download_odkc_turtledata_2019 <-
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     tracktally_prod <- ruODK::odata_submission_get(
       verbose = verbose,
-      wkt=TRUE,
+      wkt = TRUE,
       local_dir = local_dir,
       download = download,
       odkc_version = odkc_version

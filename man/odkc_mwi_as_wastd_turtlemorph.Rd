@@ -22,12 +22,13 @@ Transform odkc_data$mwi into WAStD TurtleMorphometricObservations.
 \examples{
 \dontrun{
 data("odkc_data", package = "wastdr")
-user_mapping = NULL # see odkc_plan for actual user mapping
+user_mapping <- NULL # see odkc_plan for actual user mapping
 tmorph <- odkc_mwi_as_wastd_turtlemorph(odkc_ex$mwi, user_mapping)
 
 tmorph \%>\%
   wastd_POST("turtle-morphometrics",
     api_url = Sys.getenv("WASTDR_API_DEV_URL"),
-    api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"))
+    api_token = Sys.getenv("WASTDR_API_DEV_TOKEN")
+  )
 }
 }

@@ -9,7 +9,7 @@
 #' @examples
 #' \dontrun{
 #' data("odkc_data", package = "wastdr")
-#' user_mapping = NULL # see odkc_plan for actual user mapping
+#' user_mapping <- NULL # see odkc_plan for actual user mapping
 #'
 #' odkc_data$tracks %>%
 #'   odkc_tracks_as_wastd_tne(user_mapping) %>%
@@ -18,24 +18,24 @@
 #'
 #' tne <- odkc_data$tracks %>%
 #'   odkc_tracks_as_wastd_tne(user_mapping) %>%
-#'   dplyr::mutate(reporter_id=4, observer_id=4) %>%  # missing users in local dev
+#'   dplyr::mutate(reporter_id = 4, observer_id = 4) %>% # missing users in local dev
 #'   head()
 #'
-#' tne_update <- dplyr::anti_join(x, tsc_data$enc, by="source_id")
-#' tne_create <- dplyr::anti_join(tsc_data$enc, x, by="source_id")
+#' tne_update <- dplyr::anti_join(x, tsc_data$enc, by = "source_id")
+#' tne_create <- dplyr::anti_join(tsc_data$enc, x, by = "source_id")
 #'
 #' tne_create %>%
 #'   wastd_POST("turtle-nest-encounters",
 #'     api_url = Sys.getenv("WASTDR_API_DEV_URL"),
-#'     api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"))
+#'     api_token = Sys.getenv("WASTDR_API_DEV_TOKEN")
+#'   )
 #' }
 odkc_tracks_as_wastd_tne <- function(data, user_mapping) {
-
   tsc_reporters <- user_mapping %>%
     dplyr::transmute(reporter = odkc_username, reporter_id = pk)
 
   tsc_observers <- user_mapping %>%
-    dplyr::transmute(observer = odkc_username,observer_id = pk)
+    dplyr::transmute(observer = odkc_username, observer_id = pk)
 
   data %>%
     sf_as_tbl() %>%
@@ -51,7 +51,7 @@ odkc_tracks_as_wastd_tne <- function(data, user_mapping) {
       ),
       location_accuracy = "10",
       location_accuracy_m = details_observed_at_accuracy,
-      when =  paste0(
+      when = paste0(
         lubridate::format_ISO8601(observation_start_time),
         "+08:00"
       ),
