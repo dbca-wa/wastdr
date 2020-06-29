@@ -30,8 +30,10 @@ jobs:
           - { os: macOS-latest, r: "release", pkgdown: "true", latex: "true" }
           - { os: macOS-latest, r: "oldrel" }
           # - { os: ubuntu-latest, r: "devel" }
-          - { os: ubuntu-latest, r: "release" }
-          - { os: ubuntu-latest, r: "oldrel" }
+          - { os: ubuntu-latest, r: "release" } # Heisensegfault my old friend
+          - { os: ubuntu-latest, r: "oldrel" } # it's nice to see you crash again
+          # Ubuntu 16.04 fails to install ‘units’, ‘protolite’, ‘jqr’, ‘rgeos’, ‘V8’,
+          # ‘proj4’, ‘sf’, ‘ggalt’, ‘geojson’, ‘geojsonio’, ‘leafem’, ‘leafpop’, ‘mapview’
           - { os: ubuntu-16.04, r: "release"}
           - { os: ubuntu-16.04, r: "oldrel" }
 
@@ -101,6 +103,15 @@ jobs:
       - name: "[Stage] [Linux] Install curl"
         if: runner.os == 'Linux'
         run: sudo apt install libcurl4-openssl-dev
+
+      # sf needs GDAL > 2.0.1, stringr needs libicu-dev
+      - name: "[Stage] [Ubuntu Xenial] System packages"
+        if: matrix.config.os == 'ubuntu-16.04'
+        run: |
+          sudo add-apt-repository -y ppa:opencpu/jq
+          sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
+          sudo apt-get update
+          sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libicu-dev
 
       - name: "[Stage] Install"
         if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
