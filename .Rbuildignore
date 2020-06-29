@@ -16,3 +16,6 @@ vignettes/rsconnect/*
 ^azure-pipelines\.yml$
 ^.github$
 ^.drake$
+^\.ccache$
+^\.github$
+^tic\.R$
