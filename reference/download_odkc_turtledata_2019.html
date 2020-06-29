@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -171,7 +171,8 @@
   <span class='kw'>uat</span> <span class='kw'>=</span> <span class='st'>"https://odkcentral-uat.dbca.wa.gov.au"</span>,
   <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"Australia/Perth"</span>,
   <span class='kw'>download</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>odkc_version</span> <span class='kw'>=</span> <span class='kw pkg'>ruODK</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ruODK/man/ru_settings.html'>get_default_odkc_version</a></span>(),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -200,6 +201,10 @@ default: "https://odkcentral-uat.dbca.wa.gov.au".</p></td>
     <tr>
       <th>download</th>
       <td><p>&lt;lgl&gt; Whether to download attachments to `local_dir` or not,</p></td>
+    </tr>
+    <tr>
+      <th>odkc_version</th>
+      <td><p>The numeric ODK Central version, e.g. 0.7 or 0.8.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -273,7 +278,7 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

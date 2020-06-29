@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Transform odkc_data$tracks into WAStD TurtleNestEncounter — odkc_tracks_as_wastd_tne • wastdr</title>
+<title>Transform odkc_data$tracks into WAStD TurtleNestEncounters. — odkc_tracks_as_wastd_tne • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Transform odkc_data$tracks into WAStD TurtleNestEncounter — odkc_tracks_as_wastd_tne" />
-<meta property="og:description" content="Transform odkc_data$tracks into WAStD TurtleNestEncounter" />
+<meta property="og:title" content="Transform odkc_data$tracks into WAStD TurtleNestEncounters. — odkc_tracks_as_wastd_tne" />
+<meta property="og:description" content="Transform odkc_data$tracks into WAStD TurtleNestEncounters." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -156,46 +156,58 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Transform odkc_data$tracks into WAStD TurtleNestEncounter</h1>
+    <h1>Transform odkc_data$tracks into WAStD TurtleNestEncounters.</h1>
     <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/odkc_tracks_as_wastd_tne.R'><code>R/odkc_tracks_as_wastd_tne.R</code></a></small>
     <div class="hidden name"><code>odkc_tracks_as_wastd_tne.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Transform odkc_data$tracks into WAStD TurtleNestEncounter</p>
+    <p>Transform odkc_data$tracks into WAStD TurtleNestEncounters.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>odkc_tracks_as_wastd_tne</span>(<span class='no'>data</span>)</pre>
+    <pre class="usage"><span class='fu'>odkc_tracks_as_wastd_tne</span>(<span class='no'>data</span>, <span class='no'>user_mapping</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>The tibble of parsed WAStD TurtleNestEncounters,
+      <td><p>A tibble of parsed ODKC Track or Nests,
 e.g. <code>odkc_data$tracks</code>.</p></td>
+    </tr>
+    <tr>
+      <th>user_mapping</th>
+      <td><p>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble suitable to
-  <code><a href='wastd_bulk_post.html'>wastd_bulk_post</a>("turtle-nest-encounters")</code></p>
+  <code><a href='wastd_POST.html'>wastd_POST</a>("turtle-nest-encounters")</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"odkc_data"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wastdr"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>magrittr</span>)
+<span class='no'>user_mapping</span> <span class='kw'>=</span> <span class='kw'>NULL</span> <span class='co'># see odkc_plan for actual user mapping</span>
+
 <span class='no'>odkc_data</span>$<span class='no'>tracks</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>odkc_tracks_as_wastd_tne</span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'>odkc_tracks_as_wastd_tne</span>(<span class='no'>user_mapping</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='fu'><a href='https://jeroen.cran.dev/jsonlite/reference/fromJSON.html'>toJSON</a></span>()
 
-<span class='no'>odkc_data</span>$<span class='no'>tracks</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>odkc_tracks_as_wastd_tne</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='wastd_bulk_post.html'>wastd_bulk_post</a></span>(<span class='st'>"turtle-nest-encounters"</span>,
-    <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='st'>"http://localhost:8220/api/1/"</span>
-  )
+<span class='no'>tne</span> <span class='kw'>&lt;-</span> <span class='no'>odkc_data</span>$<span class='no'>tracks</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>odkc_tracks_as_wastd_tne</span>(<span class='no'>user_mapping</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>reporter_id</span><span class='kw'>=</span><span class='fl'>4</span>, <span class='kw'>observer_id</span><span class='kw'>=</span><span class='fl'>4</span>) <span class='kw'>%&gt;%</span>  <span class='co'># missing users in local dev</span>
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()
+
+<span class='no'>tne_update</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span>(<span class='no'>x</span>, <span class='no'>tsc_data</span>$<span class='no'>enc</span>, <span class='kw'>by</span><span class='kw'>=</span><span class='st'>"source_id"</span>)
+<span class='no'>tne_create</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span>(<span class='no'>tsc_data</span>$<span class='no'>enc</span>, <span class='no'>x</span>, <span class='kw'>by</span><span class='kw'>=</span><span class='st'>"source_id"</span>)
+
+<span class='no'>tne_create</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='wastd_POST.html'>wastd_POST</a></span>(<span class='st'>"turtle-nest-encounters"</span>,
+    <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WASTDR_API_DEV_URL"</span>),
+    <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WASTDR_API_DEV_TOKEN"</span>))
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -212,7 +224,7 @@ e.g. <code>odkc_data$tracks</code>.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

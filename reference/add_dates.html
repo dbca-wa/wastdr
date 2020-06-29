@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -165,7 +165,7 @@
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_dates</span>(<span class='no'>data</span>, <span class='kw'>date_col</span> <span class='kw'>=</span> <span class='st'>"observation_start_time"</span>)</pre>
+    <pre class="usage"><span class='fu'>add_dates</span>(<span class='no'>data</span>, <span class='kw'>date_col</span> <span class='kw'>=</span> <span class='st'>"observation_start_time"</span>, <span class='kw'>parse_date</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,13 +174,18 @@
       <th>data</th>
       <td><p>a dataframe with datetime col `observation_start_time`, e.g. the
 output of ODKC form "turtle track or nest", "predator or disturbance", or
-"marine wildlife incident". The date_col must be in plain text, not already
-converted to a date format.</p></td>
+"marine wildlife incident". If the date_col is plain text, it will be turned
+into a tz-aware datetime, else it is expected to be POSIXct / POSIXt.</p></td>
     </tr>
     <tr>
       <th>date_col</th>
       <td><p>&lt;chr&gt; The column name of the datetime to annotate.
 Default: <code>"observation_start_time"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>parse_date</th>
+      <td><p>Whether the date_col needs to be parsed from character
+into a date format (TRUE, default) or already comes as a POSIXct/POSIXt.</p></td>
     </tr>
     </table>
 
@@ -201,7 +206,6 @@ Default: <code>"observation_start_time"</code>.</p></td>
 
     <div class='dont-index'><p>Other helpers: 
 <code>%&gt;%()</code>,
-<code><a href='chr2int.html'>chr2int</a>()</code>,
 <code><a href='datetime_as_isoweek.html'>datetime_as_isoweek</a>()</code>,
 <code><a href='datetime_as_seasonweek.html'>datetime_as_seasonweek</a>()</code>,
 <code><a href='datetime_as_season.html'>datetime_as_season</a>()</code>,
@@ -251,7 +255,7 @@ Default: <code>"observation_start_time"</code>.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

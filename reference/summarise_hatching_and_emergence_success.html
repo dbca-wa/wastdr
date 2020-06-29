@@ -95,7 +95,7 @@ parse_encounterobservations drops columns with all NA." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -191,10 +191,7 @@ WAStD happens to contain all NA in either of these variables, as
     <p>Calculates:</p><ul>
 <li><p>count The count of nests</p></li>
 <li><p>clutch_size_fresh Mean observed clutch size during nesting event</p></li>
-<li><p>clutch_size_mean Mean of reconstructed clutch size</p></li>
-<li><p>clutch_size_sd SD of reconstructed clutch size</p></li>
-<li><p>clutch_size_min Min of reconstructed clutch size</p></li>
-<li><p>clutch_size_maz Max of reconstructed clutch size</p></li>
+<li><p>clutch_size_mean, sd, min, max  Reconstructed clutch size stats</p></li>
 <li><p>hatching_success_mean, sd, min, max Hatching success stats</p></li>
 <li><p>emergence_success_mean, sd, min, max Emergence success stats</p></li>
 </ul>
@@ -258,9 +255,9 @@ WAStD happens to contain all NA in either of these variables, as
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
 <span class='fu'>summarise_hatching_and_emergence_success</span>(<span class='no'>wastd_data</span>$<span class='no'>nest_excavations</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 14</span><span>
 #&gt;   count clutch_size_fre… clutch_size_mean clutch_size_sd clutch_size_min
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>   100               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>              </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'># … with 9 more variables: clutch_size_max </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, hatching_success_mean </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'># … with 9 more variables: clutch_size_max </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, hatching_success_mean </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   hatching_success_sd </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, hatching_success_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   hatching_success_max </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, emergence_success_mean </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   emergence_success_sd </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, emergence_success_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
@@ -280,7 +277,7 @@ WAStD happens to contain all NA in either of these variables, as
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

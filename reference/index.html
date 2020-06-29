@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -196,6 +196,12 @@
           <p><code><a href="wastd_parse.html">wastd_parse()</a></code> </p>
         </td>
         <td><p>Parse a <code>wastd_api_response</code> into a tibble</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="wastd_post_one.html">wastd_post_one()</a></code> </p>
+        </td>
+        <td><p>Post a one record to a WAStD / TSC API endpoint</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -545,6 +551,13 @@ of <code>parse_surveys</code></p></td>
       <tr>
         
         <td>
+          <p><code><a href="add_hatching_emergence_success_odkc.html">add_hatching_emergence_success_odkc()</a></code> </p>
+        </td>
+        <td><p>Add calculated egg count, hatching and emergence success to
+`odkc_data$tracks_egg`.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="add_nest_labels_odkc.html">add_nest_labels_odkc()</a></code> </p>
         </td>
         <td><p>Add labels for species and nest/track type to parsed
@@ -561,6 +574,12 @@ of <code>parse_surveys</code></p></td>
           <p><code><a href="general_disturbance_by_season_odkc.html">general_disturbance_by_season_odkc()</a></code> </p>
         </td>
         <td><p>Tally ODKC General disturbances by season, cause, and encounter type</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="hatching_emergence_success_odkc.html">hatching_emergence_success_odkc()</a></code> </p>
+        </td>
+        <td><p>Summarize HS and ES for Nest excavations</p></td>
       </tr><tr>
         
         <td>
@@ -740,12 +759,6 @@ ODKC data</p></td>
           <p><code><a href="add_dates.html">add_dates()</a></code> </p>
         </td>
         <td><p>Add turtle dates to a dataframe with datetime col `observation_start_time`.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="chr2int.html">chr2int()</a></code> </p>
-        </td>
-        <td><p>Return multiple lists of int as chr as one list of int and discard NA.</p></td>
       </tr><tr>
         
         <td>
@@ -1055,7 +1068,7 @@ ODKC data</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

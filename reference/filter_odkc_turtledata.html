@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return multiple lists of int as chr as one list of int and discard NA. — chr2int • wastdr</title>
+<title>Filter odkc_data to a given area_name. — filter_odkc_turtledata • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Return multiple lists of int as chr as one list of int and discard NA. — chr2int" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="Filter odkc_data to a given area_name. — filter_odkc_turtledata" />
+<meta property="og:description" content="Filter odkc_data to a given area_name." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -156,89 +156,77 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return multiple lists of int as chr as one list of int and discard NA.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/chr2int.R'><code>R/chr2int.R</code></a></small>
-    <div class="hidden name"><code>chr2int.Rd</code></div>
+    <h1>Filter odkc_data to a given area_name.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/filter_odkc_turtledata.R'><code>R/filter_odkc_turtledata.R</code></a></small>
+    <div class="hidden name"><code>filter_odkc_turtledata.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
+    <p>Filter odkc_data to a given area_name.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>chr2int</span>(<span class='no'>data</span>)</pre>
+    <pre class="usage"><span class='fu'>filter_odkc_turtledata</span>(
+  <span class='no'>data</span>,
+  <span class='kw'>area_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>One or several lists of integer numbers as character</p></td>
+      <td><p>&lt;list&gt; The output of data("odkc_data"), a list of tibbles and sf</p></td>
+    </tr>
+    <tr>
+      <th>area_name</th>
+      <td><p>&lt;chr&gt; The name of the area to filter the data by. Options:
+* NULL (default): do not filter data, return unfiltered data.
+* "All turtle programs": do not filter data, return unfiltered data.
+* "Other": Filter data to area_name NA.
+* Any name in `unique(odkc_data$areas$area_name)`: return data filtered to
+  this area_name.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>One list containing just the integer numbers</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other helpers: 
-<code>%&gt;%()</code>,
-<code><a href='add_dates.html'>add_dates</a>()</code>,
-<code><a href='datetime_as_isoweek.html'>datetime_as_isoweek</a>()</code>,
-<code><a href='datetime_as_seasonweek.html'>datetime_as_seasonweek</a>()</code>,
-<code><a href='datetime_as_season.html'>datetime_as_season</a>()</code>,
-<code><a href='datetime_as_turtle_date.html'>datetime_as_turtle_date</a>()</code>,
-<code><a href='exclude_training_species.html'>exclude_training_species</a>()</code>,
-<code><a href='exclude_training_surveys.html'>exclude_training_surveys</a>()</code>,
-<code><a href='extract_possibly.html'>extract_possibly</a>()</code>,
-<code><a href='fdate_as_tdate.html'>fdate_as_tdate</a>()</code>,
-<code><a href='filter_missing_site.html'>filter_missing_site</a>()</code>,
-<code><a href='filter_missing_survey.html'>filter_missing_survey</a>()</code>,
-<code><a href='filter_surveys_missing_end.html'>filter_surveys_missing_end</a>()</code>,
-<code><a href='filter_surveys_requiring_qa.html'>filter_surveys_requiring_qa</a>()</code>,
-<code><a href='filter_wastd_season.html'>filter_wastd_season</a>()</code>,
-<code><a href='get_more.html'>get_more</a>()</code>,
-<code><a href='httpdate_as_gmt08_turtle_date.html'>httpdate_as_gmt08_turtle_date</a>()</code>,
-<code><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a>()</code>,
-<code><a href='httpdate_as_season.html'>httpdate_as_season</a>()</code>,
-<code><a href='humanize.html'>humanize</a>()</code>,
-<code><a href='join_tsc_sites.html'>join_tsc_sites</a>()</code>,
-<code><a href='map_chr_hack.html'>map_chr_hack</a>()</code>,
-<code><a href='odkc_works.html'>odkc_works</a>()</code>,
-<code><a href='sf_as_tbl.html'>sf_as_tbl</a>()</code>,
-<code><a href='tdate_as_fdate.html'>tdate_as_fdate</a>()</code>,
-<code><a href='tracks_as_geojson.html'>tracks_as_geojson</a>()</code>,
-<code><a href='urlize.html'>urlize</a>()</code>,
-<code><a href='wastd_works.html'>wastd_works</a>()</code>,
-<code><a href='wastdr_msg_abort.html'>wastdr_msg_abort</a>()</code>,
-<code><a href='wastdr_msg_info.html'>wastdr_msg_info</a>()</code>,
-<code><a href='wastdr_msg_noop.html'>wastdr_msg_noop</a>()</code>,
-<code><a href='wastdr_msg_success.html'>wastdr_msg_success</a>()</code>,
-<code><a href='wastdr_msg_warn.html'>wastdr_msg_warn</a>()</code>,
-<code><a href='wastdr_settings.html'>wastdr_settings</a>()</code>,
-<code><a href='wastdr_setup.html'>wastdr_setup</a>()</code></p></div>
+    <p>&lt;list&gt; The input data, optionally filtered to a subset of records.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"NA,2,234,NA"</span>, <span class='st'>"NA"</span>, <span class='st'>"NA,NA,1"</span>) <span class='kw'>%&gt;%</span> <span class='fu'>chr2int</span>()</div><div class='output co'>#&gt; [[1]]
-#&gt; [1] 2
-#&gt; 
-#&gt; [[2]]
-#&gt; [1] 234
-#&gt; 
-#&gt; [[3]]
-#&gt; [1] 1
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"NA,2,234,NA"</span>, <span class='st'>"NA"</span>, <span class='st'>"5,NA,NA,1"</span>) <span class='kw'>%&gt;%</span> <span class='fu'>chr2int</span>()</div><div class='output co'>#&gt; [[1]]
-#&gt; [1] 5
-#&gt; 
-#&gt; [[2]]
-#&gt; [1] 2
-#&gt; 
-#&gt; [[3]]
-#&gt; [1] 234
-#&gt; 
-#&gt; [[4]]
-#&gt; [1] 1
-#&gt; </div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>odkc_data</span>)
+
+<span class='co'># All data</span>
+<span class='no'>data_all</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='no'>odkc_data</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data_all</span>$<span class='no'>tracks</span>)</div><div class='output co'>#&gt; [1] 6</div><div class='input'>
+<span class='co'># One area</span>
+<span class='no'>area_names</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>odkc_data</span>$<span class='no'>areas</span>$<span class='no'>area_name</span>)
+<span class='no'>area_names</span></div><div class='output co'>#&gt;  [1] "Cape Dommett"                                    
+#&gt;  [2] "Smokey Bay Area"                                 
+#&gt;  [3] "Cable Beach Broome"                              
+#&gt;  [4] "Broome"                                          
+#&gt;  [5] "Port Hedland"                                    
+#&gt;  [6] "Delambre Island"                                 
+#&gt;  [7] "Rosemary Island"                                 
+#&gt;  [8] "Conzinc Bay"                                     
+#&gt;  [9] "West Pilbara Turtle Program beaches Wickam"      
+#&gt; [10] "West Pilbara Turtle Program beaches Caravan Park"
+#&gt; [11] "Barrow Island"                                   
+#&gt; [12] "Thevenard Island"                                
+#&gt; [13] "Ningaloo"                                        
+#&gt; [14] "Onslow"                                          
+#&gt; [15] "Perth Metro"                                     </div><div class='input'><span class='no'>data_area_1</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='no'>odkc_data</span>, <span class='kw'>area_name</span> <span class='kw'>=</span> <span class='st'>"Cape Dommett"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data_area_1</span>$<span class='no'>tracks</span>)</div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='no'>data_area_2</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='no'>odkc_data</span>, <span class='kw'>area_name</span> <span class='kw'>=</span> <span class='no'>area_names</span><span class='kw'>[[</span><span class='fl'>2</span>]])
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data_area_2</span>$<span class='no'>tracks</span>)</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
+
+<span class='co'># Orphans</span>
+<span class='no'>data_orphans</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='no'>odkc_data</span>, <span class='kw'>area_name</span> <span class='kw'>=</span> <span class='st'>"Other"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data_orphans</span>)</div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -254,7 +242,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

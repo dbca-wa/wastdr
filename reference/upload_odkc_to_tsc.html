@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Top level helper to upload all Turtle Nesting Census data to TSC — upload_odkc_to_tsc" />
-<meta property="og:description" content="Top level helper to upload all Turtle Nesting Census data to TSC" />
+<meta property="og:description" content="Encounters and their related observations are uploaded to TSC:" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -162,24 +162,68 @@
     </div>
 
     <div class="ref-description">
-    <p>Top level helper to upload all Turtle Nesting Census data to TSC</p>
+    <p>Encounters and their related observations are uploaded to TSC:</p>
     </div>
 
-    <pre class="usage"><span class='fu'>upload_odkc_to_tsc</span>(<span class='no'>odkc_as_tsc</span>, <span class='no'>existing_tsc_tne</span>)</pre>
+    <pre class="usage"><span class='fu'>upload_odkc_to_tsc</span>(
+  <span class='no'>data</span>,
+  <span class='kw'>update_existing</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
+  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
+  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
+  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>(),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>odkc_as_tsc</th>
-      <td><p>.</p></td>
+      <th>data</th>
+      <td><p>ODKC data transformed into TSC format and split into create,
+update, skip.</p></td>
     </tr>
     <tr>
-      <th>existing_tsc_tne</th>
-      <td><p>.</p></td>
+      <th>update_existing</th>
+      <td><p>Whether to update existing but unchanged records in
+TSC. Default: FALSE.</p></td>
+    </tr>
+    <tr>
+      <th>api_url</th>
+      <td><p>(character) The WAStD API URL,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_url</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_token</th>
+      <td><p>(character) The WAStD API token,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_token</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_un</th>
+      <td><p>(character) A WAStD API username,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_un</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_pw</th>
+      <td><p>(character) A WAStD API password,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list of results from `wastd_create_update_skip`.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>* New encounters will be created
+* Existing but unchanged (status=new) encounters will be updated
+  if `update_existing=TRUE`, else skipped.
+* Existing and value-added encounters (status &gt; new) will be skipped.s</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -196,7 +240,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

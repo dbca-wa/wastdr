@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summarise disturbance by season and cause for ODKC data — disturbance_by_season_odkc • wastdr</title>
+<title>Add calculated egg count, hatching and emergence success to
+`odkc_data$tracks_egg`. — add_hatching_emergence_success_odkc • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -17,23 +18,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -42,10 +47,13 @@
 
 
 
-<meta property="og:title" content="Summarise disturbance by season and cause for ODKC data — disturbance_by_season_odkc" />
-<meta property="og:description" content="Summarise disturbance by season and cause for ODKC data" />
+<meta property="og:title" content="Add calculated egg count, hatching and emergence success to
+`odkc_data$tracks_egg`. — add_hatching_emergence_success_odkc" />
+<meta property="og:description" content="Hatching success as percentage [0..100] after Miller 1999:
+  Hatching success = 100 * no_egg_shells / (
+  no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
+  no_unhatched_term + no_depredated_eggs)" />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -60,10 +68,20 @@
 <![endif]-->
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155735563-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-155735563-2');
+</script>
+
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -77,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -106,7 +124,16 @@
       <a href="../articles/getting-wastd.html">Getting WAStD</a>
     </li>
     <li>
+      <a href="../articles/odkc.html">Turtle Nesting Census ETL</a>
+    </li>
+    <li>
       <a href="../articles/setup.html">Setup</a>
+    </li>
+    <li>
+      <a href="../articles/tsc.html">Threatened Species and Communities (TSC)</a>
+    </li>
+    <li>
+      <a href="../articles/wamtram.html">Turtle Tagging ETL</a>
     </li>
   </ul>
 </li>
@@ -116,7 +143,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/dbca-wa/wastdr">
+  <a href="https://github.com/dbca-wa/wastdr/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -134,36 +161,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summarise disturbance by season and cause for ODKC data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/summarise_dist.R'><code>R/summarise_dist.R</code></a></small>
-    <div class="hidden name"><code>disturbance_by_season_odkc.Rd</code></div>
+    <h1>Add calculated egg count, hatching and emergence success to
+`odkc_data$tracks_egg`.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/summarise_tracks_odkc.R'><code>R/summarise_tracks_odkc.R</code></a></small>
+    <div class="hidden name"><code>add_hatching_emergence_success_odkc.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Summarise disturbance by season and cause for ODKC data</p>
+    <p>Hatching success as percentage [0..100] after Miller 1999:
+  Hatching success = 100 * no_egg_shells / (
+  no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
+  no_unhatched_term + no_depredated_eggs)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>disturbance_by_season_odkc</span>(<span class='no'>value</span>)</pre>
+    <pre class="usage"><span class='fu'>add_hatching_emergence_success_odkc</span>(<span class='no'>data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>value</th>
-      <td><p>The ouput of <code>wastd_GET("disturbance-observations") <!-- %&gt;% -->
-parse_disturbance_observations()</code></p></td>
+      <th>data</th>
+      <td><p>ODKC Track or Nest data annotated with egg counts, e.g.
+`odkc_data$tracks_egg`.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Emergence success as percentage [0..100] after Miller 1999:
+  Emergence success = 100 *
+  (no_egg_shells - no_live_hatchlings - no_dead_hatchlings) / (
+  no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
+   no_unhatched_term + no_depredated_eggs)</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other odkc: 
 <code><a href='add_nest_labels_odkc.html'>add_nest_labels_odkc</a>()</code>,
 <code><a href='exclude_training_species_odkc.html'>exclude_training_species_odkc</a>()</code>,
-<code><a href='filter_alive_odkc.html'>filter_alive_odkc</a>()</code>,
-<code><a href='filter_dead_odkc.html'>filter_dead_odkc</a>()</code>,
-<code><a href='filter_disturbance_odkc.html'>filter_disturbance_odkc</a>()</code>,
-<code><a href='filter_predation_odkc.html'>filter_predation_odkc</a>()</code>,
+<code><a href='general_disturbance_by_season_odkc.html'>general_disturbance_by_season_odkc</a>()</code>,
+<code><a href='hatching_emergence_success_odkc.html'>hatching_emergence_success_odkc</a>()</code>,
+<code><a href='map_dist_odkc.html'>map_dist_odkc</a>()</code>,
+<code><a href='map_mwi_odkc.html'>map_mwi_odkc</a>()</code>,
+<code><a href='map_sv_odkc.html'>map_sv_odkc</a>()</code>,
+<code><a href='map_tracks_odkc.html'>map_tracks_odkc</a>()</code>,
+<code><a href='nest_disturbance_by_season_odkc.html'>nest_disturbance_by_season_odkc</a>()</code>,
 <code><a href='nesting_type_by_area_season_age_species_odkc.html'>nesting_type_by_area_season_age_species_odkc</a>()</code>,
 <code><a href='nesting_type_by_area_season_species_odkc.html'>nesting_type_by_area_season_species_odkc</a>()</code>,
 <code><a href='nesting_type_by_season_age_species_odkc.html'>nesting_type_by_season_age_species_odkc</a>()</code>,
@@ -178,24 +219,21 @@ parse_disturbance_observations()</code></p></td>
 <code><a href='nesting_type_by_site_season_species_odkc.html'>nesting_type_by_site_season_species_odkc</a>()</code></p></div>
 
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#see-also">See also</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
 
       <footer>
       <div class="copyright">
-  <p>Developed by Florian W. Mayer.</p>
+  <p>Developed by Florian W. Mayer, <a href='https://www.dbca.wa.gov.au/science/'><img src='man/figures/dbca_bcs.png' width='150' alt='DBCA'/></a>, <a href='https://flatbacks.dbca.wa.gov.au/'><img src='man/figures/flatbacks.svg' width='150' alt='NWSFTCP'/></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

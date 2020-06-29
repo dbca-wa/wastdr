@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>From a list of unnamed lists, or the data.frame equivalent, extract a field
-or -1. — get_num_field • wastdr</title>
+<title>Download Turtle Tagging data from WAMTRAM2. — download_w2_data • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,12 +46,9 @@ or -1. — get_num_field • wastdr</title>
 
 
 
-<meta property="og:title" content="From a list of unnamed lists, or the data.frame equivalent, extract a field
-or -1. — get_num_field" />
-<meta property="og:description" content="The given list of lists is unlisted,
-  extract_possibly extracts the value of the field or -1,
-  another call to unlist deduplicates, and finally the result is cast to
-  numeric." />
+<meta property="og:title" content="Download Turtle Tagging data from WAMTRAM2. — download_w2_data" />
+<meta property="og:description" content="This function requires an installed ODBC driver for MS SQL Server 2012.
+The database credentials are handled via environment variables." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -95,7 +91,7 @@ or -1. — get_num_field" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -161,79 +157,115 @@ or -1. — get_num_field" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>From a list of unnamed lists, or the data.frame equivalent, extract a field
-or -1.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/get_num_field.R'><code>R/get_num_field.R</code></a></small>
-    <div class="hidden name"><code>get_num_field.Rd</code></div>
+    <h1>Download Turtle Tagging data from WAMTRAM2.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/download_w2_data.R'><code>R/download_w2_data.R</code></a></small>
+    <div class="hidden name"><code>download_w2_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The given list of lists is unlisted,
-  <code><a href='extract_possibly.html'>extract_possibly</a></code> extracts the value of the field or -1,
-  another call to unlist deduplicates, and finally the result is cast to
-  numeric.</p>
+    <p>This function requires an installed ODBC driver for MS SQL Server 2012.
+The database credentials are handled via environment variables.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_num_field</span>(<span class='no'>lol</span>, <span class='no'>field</span>)</pre>
+    <pre class="usage"><span class='fu'>download_w2_data</span>(
+  <span class='kw'>ord</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"YmdHMS"</span>, <span class='st'>"Ymd"</span>),
+  <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"Australia/Perth"</span>,
+  <span class='kw'>db_drv</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"W2_DRV"</span>),
+  <span class='kw'>db_srv</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"W2_SRV"</span>),
+  <span class='kw'>db_name</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"W2_DB"</span>),
+  <span class='kw'>db_user</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"W2_UN"</span>),
+  <span class='kw'>db_pass</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"W2_PW"</span>),
+  <span class='kw'>db_port</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"W2_PT"</span>),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>lol</th>
-      <td><p>(list) A list of lists</p></td>
+      <th>ord</th>
+      <td><p>Lubridate orders, default: `c("YmdHMS", "Ymd")`.</p></td>
     </tr>
     <tr>
-      <th>field</th>
-      <td><p>(chr) The name of a field inside the list of lists</p></td>
+      <th>tz</th>
+      <td><p>Timezone, default: `"Australia/Perth"`.</p></td>
+    </tr>
+    <tr>
+      <th>db_drv</th>
+      <td><p>Database driver, default: `Sys.getenv("W2_DRV")` which should
+resolve to e.g. `"/usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so"`.</p></td>
+    </tr>
+    <tr>
+      <th>db_srv</th>
+      <td><p>Database server, default: `Sys.getenv("W2_SRV")`, which should
+resolve to a valid server hostname, e.g. `"myserver.corporateict.domain"`.</p></td>
+    </tr>
+    <tr>
+      <th>db_name</th>
+      <td><p>The database name, default: `Sys.getenv("W2_DB")`, which should
+resolve to a valid database name, e.g. `turtle_tagging`.</p></td>
+    </tr>
+    <tr>
+      <th>db_user</th>
+      <td><p>The read-permitted database user,
+default: `Sys.getenv("W2_UN")`.</p></td>
+    </tr>
+    <tr>
+      <th>db_pass</th>
+      <td><p>The database user's password, default: `Sys.getenv("W2_PW")`.</p></td>
+    </tr>
+    <tr>
+      <th>db_port</th>
+      <td><p>The database port, default: `Sys.getenv("W2_PT")`, which
+should resolve to a numeric port, e.g. `1234`.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Whether to print verbose help messages,
+default: `wastdr::get_wastdr_verbose()`.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The field value or -1</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other helpers: 
-<code>%&gt;%()</code>,
-<code><a href='add_dates.html'>add_dates</a>()</code>,
-<code><a href='chr2int.html'>chr2int</a>()</code>,
-<code><a href='datetime_as_isoweek.html'>datetime_as_isoweek</a>()</code>,
-<code><a href='datetime_as_seasonweek.html'>datetime_as_seasonweek</a>()</code>,
-<code><a href='datetime_as_season.html'>datetime_as_season</a>()</code>,
-<code><a href='datetime_as_turtle_date.html'>datetime_as_turtle_date</a>()</code>,
-<code><a href='exclude_training_species.html'>exclude_training_species</a>()</code>,
-<code><a href='exclude_training_surveys.html'>exclude_training_surveys</a>()</code>,
-<code><a href='extract_possibly.html'>extract_possibly</a>()</code>,
-<code><a href='fdate_as_tdate.html'>fdate_as_tdate</a>()</code>,
-<code><a href='filter_missing_site.html'>filter_missing_site</a>()</code>,
-<code><a href='filter_missing_survey.html'>filter_missing_survey</a>()</code>,
-<code><a href='filter_surveys_missing_end.html'>filter_surveys_missing_end</a>()</code>,
-<code><a href='filter_surveys_requiring_qa.html'>filter_surveys_requiring_qa</a>()</code>,
-<code><a href='filter_wastd_season.html'>filter_wastd_season</a>()</code>,
-<code><a href='get_more.html'>get_more</a>()</code>,
-<code><a href='httpdate_as_gmt08_turtle_date.html'>httpdate_as_gmt08_turtle_date</a>()</code>,
-<code><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a>()</code>,
-<code><a href='httpdate_as_season.html'>httpdate_as_season</a>()</code>,
-<code><a href='humanize.html'>humanize</a>()</code>,
-<code><a href='join_tsc_sites.html'>join_tsc_sites</a>()</code>,
-<code><a href='map_chr_hack.html'>map_chr_hack</a>()</code>,
-<code><a href='odkc_works.html'>odkc_works</a>()</code>,
-<code><a href='sf_as_tbl.html'>sf_as_tbl</a>()</code>,
-<code><a href='tdate_as_fdate.html'>tdate_as_fdate</a>()</code>,
-<code><a href='tracks_as_geojson.html'>tracks_as_geojson</a>()</code>,
-<code><a href='urlize.html'>urlize</a>()</code>,
-<code><a href='wastd_works.html'>wastd_works</a>()</code>,
-<code><a href='wastdr_msg_abort.html'>wastdr_msg_abort</a>()</code>,
-<code><a href='wastdr_msg_info.html'>wastdr_msg_info</a>()</code>,
-<code><a href='wastdr_msg_noop.html'>wastdr_msg_noop</a>()</code>,
-<code><a href='wastdr_msg_success.html'>wastdr_msg_success</a>()</code>,
-<code><a href='wastdr_msg_warn.html'>wastdr_msg_warn</a>()</code>,
-<code><a href='wastdr_settings.html'>wastdr_settings</a>()</code>,
-<code><a href='wastdr_setup.html'>wastdr_setup</a>()</code></p></div>
+    <p>A named list of sanitised tables from the Turtle Tagging DB:</p>
+<p># Metadata
+  downloaded_on
+  w2_tables</p>
+<p># personnel
+  persons</p>
+<p># Data entry
+  data_entry_batches
+  data_entry
+  data_entry_operators</p>
+<p># Lookups
+  lookup_beach_positions
+  lookup_body_parts
+  lookup_conditions
+  lookup_damage_causes
+  lookup_damage_codes
+  lookup_datum_codes
+  lookup_egg_count_methods
+  lookup_id_types
+  lookup_measurement_types
+  lookup_pit_tag_states
+  lookup_sample_tissue_type
+  lookup_tag_states</p>
+<p># Sites
+  sites</p>
+<p># Encounters
+  enc
+  enc_qa</p>
+<p># Observations
+  obs_flipper_tags
+  obs_pit_tags
+  obs_damages
+  obs_measurements
+  obs_samples</p>
+<p># Reconstructed
+  reconstructed_pit_tags
+  reconstructed_tags
+  reconstructed_turtles</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -250,7 +282,7 @@ or -1.</h1>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
