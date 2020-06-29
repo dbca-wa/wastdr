@@ -30,7 +30,8 @@
 #'   verbose = TRUE)
 #'
 #' # save point for debug
-#' save(atkn, aurl, vbse, updt, odkc_ex, odkc_tf, odkc_up, tsc_data, tsc_users, user_mapping, file="odkc_import.RData")
+#' save(atkn, aurl, vbse, updt, odkc_ex, odkc_tf, odkc_up, tsc_data, tsc_users,
+#'   user_mapping, file="odkc_import.RData")
 #' load("odkc_import.RData")
 #'
 #' wastdr::odkc_plan()
@@ -78,7 +79,7 @@ odkc_plan <- function() {
     tsc_data = download_minimal_tsc_turtledata(
       year = 2019, api_url = aurl, api_token = atkn, verbose = vbse),
     # Skip logic
-    odkc_up = split_create_update_skip(odkc_tf, tsc_data, verbose = vbse),
+    odkc_up = split_create_update_skip(odkc_tf, tsc_data),
     # Upload
     upload_to_tsc = upload_odkc_to_tsc(
       odkc_up, update_existing = updt,

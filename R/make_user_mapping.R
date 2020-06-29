@@ -4,7 +4,7 @@
 #' Extract relevant user names from TSC users.
 #' Map most likely match and export to CSV.
 #' External QA: review mapping, update TSC user aliases to improve the
-#' user matching process. Re-run until optimsed, edit CSV to improve match.
+#' user matching process. Re-run until optimized, edit CSV to improve match.
 #' Return a named list containing the mapping of odkc_reporter and tsc_user_id.
 #'
 #' @param odkc_data The output of `wastdr::download_all_odkc_turtledata_2019`.
