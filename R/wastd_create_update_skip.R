@@ -38,7 +38,7 @@ wastd_create_update_skip <- function(
                 serializer,
                 api_url = api_url,
                 api_token = api_token,
-                verbose = TRUE
+                verbose = verbose
             )
 
         "Uploaded {nrow(data_create)} new {label}" %>%
@@ -59,7 +59,7 @@ wastd_create_update_skip <- function(
                     serializer,
                     api_url = api_url,
                     api_token = api_token,
-                    verbose = TRUE
+                    verbose = verbose
                 )
 
             "Updated {nrow(data_update)} {label}" %>%

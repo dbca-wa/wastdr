@@ -19,16 +19,10 @@
 #' }
 odkc_mwi_as_wastd_ae <- function(data, user_mapping){
     tsc_reporters <- user_mapping %>%
-        dplyr::transmute(
-            reporter = odkc_username,
-            reporter_id = pk
-        )
+        dplyr::transmute(reporter = odkc_username, reporter_id = pk)
 
     tsc_observers <- user_mapping %>%
-        dplyr::transmute(
-            observer = odkc_username,
-            observer_id = pk
-        )
+        dplyr::transmute(observer = odkc_username,observer_id = pk)
 
     data %>%
         sf_as_tbl() %>%
@@ -48,15 +42,12 @@ odkc_mwi_as_wastd_ae <- function(data, user_mapping){
             where = glue::glue("POINT ({incident_observed_at_longitude}",
                                " {incident_observed_at_latitude})"),
             location_accuracy = "10",
-            # TODO: prefer manual incident acc
             location_accuracy_m = ifelse(
                 is.na(incident_observed_at_manual_accuracy),
                 incident_observed_at_accuracy,
                 incident_observed_at_manual_accuracy
             ),
-            xxx_when_inc = paste0(lubridate::format_ISO8601(incident_incident_time),"+08:00"),
-            xxx_when_obs = paste0(lubridate::format_ISO8601(observation_start_time),"+08:00"),
-            when = ifelse(xxx_when_inc == "+08:00", xxx_when_obs, xxx_when_inc),
+            when = paste0(lubridate::format_ISO8601(incident_incident_time),"+08:00"),
             taxon = details_taxon %>% tidyr::replace_na("na"),
             species = details_species %>% tidyr::replace_na("na"),
             health = status_health %>% tidyr::replace_na("na"),
@@ -77,6 +68,6 @@ odkc_mwi_as_wastd_ae <- function(data, user_mapping){
         ) %>%
         dplyr::left_join(tsc_reporters, by = "reporter") %>% # TSC User PK
         dplyr::left_join(tsc_observers, by = "observer") %>% # TSC User PK
-        dplyr::select(-reporter, -observer, -dplyr::starts_with("xxx_")) %>% # drop odkc_username
+        dplyr::select(-reporter, -observer) %>%
         invisible()
 }

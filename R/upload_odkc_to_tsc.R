@@ -22,56 +22,43 @@ upload_odkc_to_tsc <- function(data,
                                api_un = wastdr::get_wastdr_api_un(),
                                api_pw = wastdr::get_wastdr_api_pw(),
                                verbose = wastdr::get_wastdr_verbose()) {
-  # -------------------------------------------------------------------------- #
-  # TNE
-  tne = wastd_create_update_skip(
-    data$tne_create,
-    data$tne_update,
-    data$tne_skip,
-    update_existing = update_existing,
-    serializer = "turtle-nest-encounters",
-    label = "TurtleNestEncounters",
-    api_url = api_url,
-    api_token = api_token,
-    verbose = TRUE
-  )
 
-  # -------------------------------------------------------------------------- #
-  # AE
-  ae_mwi = wastd_create_update_skip(
-    data$ae_mwi_create,
-    data$ae_mwi_update,
-    data$ae_mwi_skip,
-    update_existing = update_existing,
-    serializer = "animal-encounters",
-    label = "AnimalEncounters",
-    api_url = api_url,
-    api_token = api_token,
-    verbose = TRUE
-  )
-
-  # Observation obs_turtlemorph ---------------------------------------------- #
-  # obs_turtlemorph = wastd_create_update_skip(
-  #   data$obs_turtlemorph_create,
-  #   data$obs_turtlemorph_update,
-  #   data$obs_turtlemorph_skip,
-  #   update_existing = update_existing,
-  #   serializer = "turtle-morphometrics",
-  #   label = "TurtleMorphometrics",
-  #   api_url = api_url,
-  #   api_token = api_token,
-  #   verbose = TRUE
-  # )
-
-
-  # -------------------------------------------------------------------------- #
-  # Enc
-  #
-  # others
   list(
-    tne = tne,                         # Tracks TurtleNestEncounters
-    ae_mwi = ae_mwi                   # MWI AnimalEncounters
-    # obs_turtlemorph = obs_turtlemorph # MWI TurtleMorphometrics
-
+    # Tracks > TNE
+    tne = wastd_create_update_skip(
+      data$tne_create,
+      data$tne_update,
+      data$tne_skip,
+      update_existing = update_existing,
+      serializer = "turtle-nest-encounters",
+      label = "TurtleNestEncounters",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
+    # MWI > AE
+    ae_mwi = wastd_create_update_skip(
+      data$ae_mwi_create,
+      data$ae_mwi_update,
+      data$ae_mwi_skip,
+      update_existing = update_existing,
+      serializer = "animal-encounters",
+      label = "AnimalEncounters",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    )
+    # MWI > obs turtlemorph
+    # obs_turtlemorph =  obs_turtlemorph = wastd_create_update_skip(
+    #   data$obs_turtlemorph_create,
+    #   data$obs_turtlemorph_update,
+    #   data$obs_turtlemorph_skip,
+    #   update_existing = update_existing,
+    #   serializer = "turtle-morphometrics",
+    #   label = "TurtleMorphometrics",
+    #   api_url = api_url,
+    #   api_token = api_token,
+    #   verbose = verbose
+    # )
   )
 }

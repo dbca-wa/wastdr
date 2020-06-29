@@ -85,7 +85,7 @@ odkc_plan <- function() {
     upload_to_tsc = upload_odkc_to_tsc(
       odkc_up, update_existing = updt,
       api_url = aurl, api_token = atkn, verbose = vbse)
-    # QA Reports: inspect APi responses for any trouble uploading
+    # QA Reports: inspect API responses for any trouble uploading
     # https://github.com/dbca-wa/wastdr/issues/21
   )
 }

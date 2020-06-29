@@ -17,61 +17,37 @@
 split_create_update_skip <- function(odkc_prep,
                                      tsc_data,
                                      verbose = wastdr::get_wastdr_verbose()) {
-    # Existing and unchanged encounters can be updated without losing edits in TSC
-    # TSC Encounters are considered unchanged if QA status is "new"
+    # WAStD Encounters are considered unchanged if QA status is "new" and
+    # can be updated without losing edits applied in WAStD.
     enc_update <- tsc_data$enc %>% dplyr::filter(status == "new")
 
-    # Existing and value-added data should never be overwritten
-    # TSC Encounters are considered changed if QA status is not "new"
+    # TSC Encounters are considered changed if QA status is not "new" and
+    # should never be overwritten, as that would overwrite edits.
     enc_skip <- tsc_data$enc %>% dplyr::filter(status != "new")
 
-    # TNE with source_id not in TSC at all are candidates for creates
-    tne_create <- odkc_prep$tne %>%
-        dplyr::anti_join(tsc_data$enc, by = "source_id")
-
-    # TNE with source_id occurring in enc_update are candidates for updates
-    tne_update <- odkc_prep$tne %>%
-        dplyr::semi_join(enc_update, by = "source_id")
-
-    # TNE with source_id in enc_skip are candidates for skipping
-    tne_skip <- odkc_prep$tne %>%
-        dplyr::semi_join(enc_skip, by = "source_id")
-
-    # TNE with source_id not in TSC at all are candidates for creates
-    ae_mwi_create <- odkc_prep$ae_mwi %>%
-        dplyr::anti_join(tsc_data$enc, by = "source_id")
-
-    # TNE with source_id occurring in enc_update are candidates for updates
-    ae_mwi_update <- odkc_prep$ae_mwi %>%
-        dplyr::semi_join(enc_update, by = "source_id")
-
-    # TNE with source_id in enc_skip are candidates for skipping
-    ae_mwi_skip <- odkc_prep$ae_mwi %>%
-        dplyr::semi_join(enc_skip, by = "source_id")
-
-
-    # OTM with source_id not in TSC at all are candidates for creates
-    obs_turtlemorph_create <- odkc_prep$obs_turtlemorph %>%
-        dplyr::anti_join(tsc_data$enc, by = "source_id")
-
-    # OTM with source_id occurring in enc_update are candidates for updates
-    obs_turtlemorph_update <- odkc_prep$obs_turtlemorph %>%
-        dplyr::semi_join(enc_update, by = "source_id")
-
-    # OTM with source_id in enc_skip are candidates for skipping
-    obs_turtlemorph_skip <- odkc_prep$obs_turtlemorph %>%
-        dplyr::semi_join(enc_skip, by = "source_id")
-
-
     list(
-        tne_update = tne_update,
-        tne_create = tne_create,
-        tne_skip = tne_skip,
-        ae_mwi_create = ae_mwi_create,
-        ae_mwi_update = ae_mwi_update,
-        ae_mwi_skip = ae_mwi_skip,
-        obs_turtlemorph_create = obs_turtlemorph_create,
-        obs_turtlemorph_update = obs_turtlemorph_update,
-        obs_turtlemorph_skip = obs_turtlemorph_skip
+        # Tracks > TNE
+        tne_create = odkc_prep$tne %>%
+            dplyr::anti_join(tsc_data$enc, by = "source_id"),
+        tne_update = odkc_prep$tne %>%
+            dplyr::semi_join(enc_update, by = "source_id"),
+        tne_skip = odkc_prep$tne %>%
+            dplyr::semi_join(enc_skip, by = "source_id"),
+
+        # MWI > AE
+        ae_mwi_create = odkc_prep$ae_mwi %>%
+            dplyr::anti_join(tsc_data$enc, by = "source_id"),
+        ae_mwi_update = odkc_prep$ae_mwi %>%
+            dplyr::semi_join(enc_update, by = "source_id"),
+        ae_mwi_skip =  odkc_prep$ae_mwi %>%
+            dplyr::semi_join(enc_skip, by = "source_id"),
+
+        # MWI > obs turtlemorph
+        obs_turtlemorph_create = odkc_prep$obs_turtlemorph %>%
+            dplyr::anti_join(tsc_data$enc, by = "source_id"),
+        obs_turtlemorph_update = odkc_prep$obs_turtlemorph %>%
+            dplyr::semi_join(enc_update, by = "source_id"),
+        obs_turtlemorph_skip = odkc_prep$obs_turtlemorph %>%
+            dplyr::semi_join(enc_skip, by = "source_id")
     )
 }

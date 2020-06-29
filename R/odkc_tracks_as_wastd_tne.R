@@ -32,16 +32,10 @@
 odkc_tracks_as_wastd_tne <- function(data, user_mapping) {
 
   tsc_reporters <- user_mapping %>%
-    dplyr::transmute(
-      reporter = odkc_username,
-      reporter_id = pk
-    )
+    dplyr::transmute(reporter = odkc_username, reporter_id = pk)
 
   tsc_observers <- user_mapping %>%
-    dplyr::transmute(
-      observer = odkc_username,
-      observer_id = pk
-    )
+    dplyr::transmute(observer = odkc_username,observer_id = pk)
 
   data %>%
     sf_as_tbl() %>%
