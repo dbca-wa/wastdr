@@ -48,7 +48,7 @@ Imports:
     tidyr (>= 1.0.2),
     rlang (>= 0.4.5)
 Remotes:
-    github::dbca-wa/ruODK,
+    github::dbca-wa/ruODK@main,
     github::ropensci/drake
 Suggests:
     leaflet (>= 2.0.3),
