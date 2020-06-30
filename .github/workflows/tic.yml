@@ -105,7 +105,7 @@ jobs:
 
       - name: "[Stage] [Linux] Install curl"
         if: runner.os == 'Linux'
-        run: sudo apt install libcurl4-openssl-dev
+        run: sudo apt install libcurl4-openssl-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libicu-dev
 
       # sf needs GDAL > 2.0.1, stringr needs libicu-dev
       - name: "[Stage] [Ubuntu Xenial] System packages"
@@ -124,6 +124,7 @@ jobs:
       - name: "[Stage] Prepare & Install (macOS-devel)"
         if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'devel'
         run: |
+          brew install udunits protobuf cairo v8
           echo -e 'options(Ncpus = 4, pkgType = "source", repos = structure(c(CRAN = "https://cloud.r-project.org/")))' > $HOME/.Rprofile
           Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
 
