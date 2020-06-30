@@ -23,15 +23,8 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
     #
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/nest-tag-observations/
-    # tn_tags = odkc_data$tracks$nest_tag... %>% odkc_tracks_as_wastd_nest_tag_obs()
-    #
-    # "status": "resighted",
-    # "flipper_tag_id": "S1234",
-    # "date_nest_laid": "2017-02-01",
-    # "tag_label": "M1",
-    # "comments": null
-    #
-    #
+    tn_tags = odkc_tracks_as_wastd_nesttagobs(odkc_data$tracks),
+
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-excavations/
     # tn-excavations = odkc_data$tracks (egg_count...)

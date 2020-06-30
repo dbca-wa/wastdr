@@ -35,6 +35,19 @@ upload_odkc_to_tsc <- function(data,
       api_token = api_token,
       verbose = verbose
     ),
+
+    tn_tags = wastd_create_update_skip(
+      data$tn_tags_create,
+      data$tn_tags_update,
+      data$tn_tags_skip,
+      update_existing = update_existing,
+      serializer = "nest-tag-observations",
+      label = "TurtleNestTagObservations",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
+
     # MWI > AE
     ae_mwi = wastd_create_update_skip(
       data$ae_mwi_create,

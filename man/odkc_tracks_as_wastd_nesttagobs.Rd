@@ -4,14 +4,10 @@
 \alias{odkc_tracks_as_wastd_nesttagobs}
 \title{Transform odkc_data$tracks into WAStD NestTagObservations.}
 \usage{
-odkc_tracks_as_wastd_nesttagobs(data, user_mapping)
+odkc_tracks_as_wastd_nesttagobs(data)
 }
 \arguments{
 \item{data}{A tibble of tracks,  e.g. \code{odkc_data$tracks}.}
-
-\item{user_mapping}{The output of \code{\link{make_user_mapping}()},
-containing at least columns \code{pk} (WAStD User PK) and
-\code{odkc_username} (as written in odkc data field \code{reporter}).}
 }
 \value{
 A tibble suitable to
@@ -25,8 +21,7 @@ Transform odkc_data$tracks into WAStD NestTagObservations.
 data("odkc_data", package = "wastdr")
 au <- Sys.getenv("WASTDR_API_DEV_URL")
 at <- Sys.getenv("WASTDR_API_DEV_TOKEN")
-user_mapping <- NULL # see odkc_plan for actual user mapping
-x <- odkc_tracks_as_wastd_nesttagobs(odkc_ex$tracks, user_mapping)
+x <- odkc_tracks_as_wastd_nesttagobs(odkc_ex$tracks)
 x \%>\% wastd_POST("nest-tag-observations", api_url = au, api_token = at)
 }
 }
