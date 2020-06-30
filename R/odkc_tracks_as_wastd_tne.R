@@ -51,10 +51,7 @@ odkc_tracks_as_wastd_tne <- function(data, user_mapping) {
       ),
       location_accuracy = "10",
       location_accuracy_m = details_observed_at_accuracy,
-      when = paste0(
-        lubridate::format_ISO8601(observation_start_time),
-        "+08:00"
-      ),
+      when = lubridate::format_ISO8601(observation_start_time, usetz = TRUE),
       nest_age = details_nest_age,
       nest_type = details_nest_type,
       species = details_species,
