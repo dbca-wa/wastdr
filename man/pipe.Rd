@@ -9,7 +9,7 @@ lhs \%>\% rhs
 lhs \%>\% rhs
 }
 \description{
-See \code{\link[magrittr:pipe]{\%>\%}} for details.
+See \code{magrittr::\link[magrittr:pipe]{\%>\%}} for details.
 
 See \code{magrittr::\link[magrittr]{\%>\%}} for details.
 }
@@ -51,5 +51,4 @@ Other helpers:
 \code{\link{wastdr_setup}()}
 }
 \concept{helpers}
-\concept{utilities}
 \keyword{internal}
