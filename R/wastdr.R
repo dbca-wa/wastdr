@@ -196,6 +196,11 @@ utils::globalVariables(
     "morphometrics_maximum_head_width_mm",
     "morphometrics_tail_length_carapace_accuracy",
     "morphometrics_tail_length_carapace_mm", "odkc_ex", "odkc_tf", "odkc_up",
-    "recorder", "status_activity", "status_behaviour", "tsc_users", "updt", "vbse"
+    "recorder", "status_activity", "status_behaviour", "tsc_users", "updt", "vbse",
+    "nest_tag_date_nest_laid",
+    "nest_tag_flipper_tag_id",
+    "nest_tag_status",
+    "nest_tag_tag_comments",
+    "nest_tag_tag_label"
   )
 )
