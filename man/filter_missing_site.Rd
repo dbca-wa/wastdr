@@ -17,7 +17,6 @@ Filter records with missing \code{site_id}
 }
 \seealso{
 Other helpers: 
-\code{\link{\%>\%}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},

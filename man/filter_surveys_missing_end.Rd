@@ -14,7 +14,6 @@ filter_surveys_missing_end(value)
 }
 \seealso{
 Other helpers: 
-\code{\link{\%>\%}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},

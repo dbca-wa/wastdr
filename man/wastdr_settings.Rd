@@ -40,7 +40,6 @@ Get or set wastdr WAStD settings
 \code{\link{get_wastdr_api_pw}}.
 
 Other helpers: 
-\code{\link{\%>\%}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},

@@ -29,7 +29,6 @@ default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
 }
 \seealso{
 Other helpers: 
-\code{\link{\%>\%}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},

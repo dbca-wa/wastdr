@@ -17,7 +17,6 @@ wastdr_msg_success("This is a success message.")
 }
 \seealso{
 Other helpers: 
-\code{\link{\%>\%}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},

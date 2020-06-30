@@ -20,16 +20,10 @@
 #' }
 odkc_mwi_as_wastd_turtlemorph <- function(data, user_mapping) {
   tsc_handlers <- user_mapping %>%
-    dplyr::transmute(
-      handler = odkc_username,
-      handler_id = pk
-    )
+    dplyr::transmute(handler = odkc_username, handler_id = pk)
 
   tsc_recorders <- user_mapping %>%
-    dplyr::transmute(
-      recorder = odkc_username,
-      recorder_id = pk
-    )
+    dplyr::transmute(recorder = odkc_username, recorder_id = pk)
 
   data %>%
     sf_as_tbl() %>%

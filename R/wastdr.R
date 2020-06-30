@@ -16,20 +16,6 @@
 "_PACKAGE"
 
 
-#' Pipe operator
-#'
-#' See \code{magrittr::\link[magrittr]{\%>\%}} for details.
-#'
-#' @name %>%
-#' @rdname pipe
-#' @family helpers
-#' @keywords internal
-#' @export
-#' @importFrom magrittr %>%
-#' @importFrom rlang %||%
-#' @usage lhs \%>\% rhs
-NULL
-
 # Silence R CMD CHECK warning: Use lifecycle somewhere in package
 lifecycle::deprecate_soft
 

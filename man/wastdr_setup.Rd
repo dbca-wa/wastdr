@@ -51,7 +51,6 @@ wastdr_setup(api_token = "c12345asdfqwer")
 }
 \seealso{
 Other helpers: 
-\code{\link{\%>\%}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},

@@ -30,7 +30,6 @@ httpdate_as_season("2017-08-30T06:38:43Z") # 2017
 }
 \seealso{
 Other helpers: 
-\code{\link{\%>\%}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},
