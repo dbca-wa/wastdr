@@ -24,31 +24,6 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-excavations/
     tn_eggs = odkc_tracks_as_wastd_nestobs(odkc_data$tracks),
 
-    # tn-excavations = odkc_data$tracks (egg_count...)
-    #
-    # "observation_name": "turtlenestobservation",
-    # "nest_position": "in-dune-vegetation",
-    # "eggs_laid": false,
-    # "egg_count": null,
-    # "hatching_success": 100.0,
-    # "emergence_success": 100.0,
-    # "no_egg_shells": 10, ## Source fields
-    # "no_live_hatchlings_neck_of_nest": null,
-    # "no_live_hatchlings": 0,
-    # "no_dead_hatchlings": 0,
-    # "no_undeveloped_eggs": 0,
-    # "no_unhatched_eggs": 0,
-    # "no_unhatched_term": 0,
-    # "no_depredated_eggs": 0,
-    # "nest_depth_top": 0,
-    # "nest_depth_bottom": 500,
-    # "sand_temp": null,
-    # "air_temp": null,
-    # "water_temp": null,
-    # "egg_temp": null,
-    # "comments": null
-    #
-    #
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-hatchling-morphometrics/
     # turtle_hatchling_morphometrics = odkc_data$tracks_hatch

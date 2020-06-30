@@ -46,6 +46,14 @@ split_create_update_skip <- function(odkc_prep, tsc_data) {
       dplyr::semi_join(enc_skip, by = "source_id"),
 
 
+    tn_eggs_create = odkc_prep$tn_eggs %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    tn_eggs_update = odkc_prep$tn_eggs %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    tn_eggs_skip = odkc_prep$tn_eggs %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
+
+
     # MWI > AE
     ae_mwi_create = odkc_prep$ae_mwi %>%
       dplyr::anti_join(tsc_data$enc, by = "source_id"),
