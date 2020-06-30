@@ -11,22 +11,19 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/
     tne = odkc_tracks_as_wastd_tne(odkc_data$tracks, user_mapping),
-    #
+
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-disturbance-observations/
-    # tn_dist = odkc_data$tracks_dist,
-    #
-    # "disturbance_cause": "dingo",
-    # "disturbance_cause_confidence": "expert-opinion",
-    # "disturbance_severity": "na",
-    # "comments": null
-    #
+    tn_dist = odkc_tracks_dist_as_wastd_tndistobs(odkc_data$tracks_dist),
+
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/nest-tag-observations/
     tn_tags = odkc_tracks_as_wastd_nesttagobs(odkc_data$tracks),
 
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-excavations/
+    tn_eggs = odkc_tracks_as_wastd_nestobs(odkc_data$tracks),
+
     # tn-excavations = odkc_data$tracks (egg_count...)
     #
     # "observation_name": "turtlenestobservation",

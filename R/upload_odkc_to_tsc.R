@@ -36,6 +36,18 @@ upload_odkc_to_tsc <- function(data,
       verbose = verbose
     ),
 
+    tn_dist = wastd_create_update_skip(
+      data$tn_dist_create,
+      data$tn_dist_update,
+      data$tn_dist_skip,
+      update_existing = update_existing,
+      serializer = "turtle-nest-disturbance-observations",
+      label = "TurtleNestDisturbanceObservations",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
+
     tn_tags = wastd_create_update_skip(
       data$tn_tags_create,
       data$tn_tags_update,

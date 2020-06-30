@@ -1,6 +1,6 @@
 #' Transform odkc_data$tracks into WAStD NestTagObservations.
 #'
-#' @param data A tibble of tracks,  e.g. \code{odkc_data$tracks}.
+#' @param data A tibble of tracks, e.g. \code{odkc_data$tracks}.
 #' @return A tibble suitable to
 #'   \code{\link{wastd_POST}("nest-tag-observations")}
 #' @export

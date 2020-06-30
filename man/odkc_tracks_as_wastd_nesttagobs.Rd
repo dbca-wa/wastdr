@@ -7,7 +7,7 @@
 odkc_tracks_as_wastd_nesttagobs(data)
 }
 \arguments{
-\item{data}{A tibble of tracks,  e.g. \code{odkc_data$tracks}.}
+\item{data}{A tibble of tracks, e.g. \code{odkc_data$tracks}.}
 }
 \value{
 A tibble suitable to

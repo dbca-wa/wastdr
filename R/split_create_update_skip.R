@@ -30,6 +30,14 @@ split_create_update_skip <- function(odkc_prep, tsc_data) {
     tne_skip = odkc_prep$tne %>%
       dplyr::semi_join(enc_skip, by = "source_id"),
 
+
+    tn_dist_create = odkc_prep$tn_dist %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    tn_dist_update = odkc_prep$tn_dist %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    tn_dist_skip = odkc_prep$tn_dist %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
+
     tn_tags_create = odkc_prep$tn_tags %>%
       dplyr::anti_join(tsc_data$enc, by = "source_id"),
     tn_tags_update = odkc_prep$tn_tags %>%
