@@ -29,6 +29,9 @@ jobs:
           - { os: macOS-latest, r: "devel" }
           - { os: macOS-latest, r: "release", pkgdown: "true", latex: "true" }
           - { os: macOS-latest, r: "oldrel" }
+          # Ubuntu-18-04 fails to install ‘jqr’, ‘proj4’, ‘units’, ‘protolite’,
+          # ‘rgeos’, ‘V8’, ‘sf’, ‘geojson’, ‘leafpop’, ‘geojsonio’, ‘ggalt’,
+          # ‘leafem’, ‘mapview’
           # - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release" } # Heisensegfault my old friend
           - { os: ubuntu-latest, r: "oldrel" } # it's nice to see you crash again
