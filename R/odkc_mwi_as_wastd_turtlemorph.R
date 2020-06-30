@@ -32,7 +32,6 @@ odkc_mwi_as_wastd_turtlemorph <- function(data, user_mapping) {
       source_id = id,
       handler = reporter,
       recorder = reporter,
-      comments = glue::glue("Device ID {device_id}\n"),
       # WAStD TurtleMorphometrics has more fields, but MWI only captures:
       curved_carapace_length_mm = morphometrics_curved_carapace_length_mm,
       curved_carapace_length_accuracy = morphometrics_curved_carapace_length_accuracy,
@@ -46,14 +45,10 @@ odkc_mwi_as_wastd_turtlemorph <- function(data, user_mapping) {
     dplyr::left_join(tsc_handlers, by = "handler") %>% # TSC User PK
     dplyr::left_join(tsc_recorders, by = "recorder") %>% # TSC User PK
     dplyr::select(-handler, -recorder) %>% # drop odkc_username
-    tidyr::drop_na(
-      tidyselect::all_of(
-        c(
-          "curved_carapace_length_mm",
-          "curved_carapace_width_mm",
-          "tail_length_carapace_mm",
-          "maximum_head_width_mm"
-        )
-      )
+    dplyr::filter_at(
+      dplyr::vars(-source, -source_id),
+      dplyr::any_vars(!is.na(.))
     )
 }
+
+# usethis::use_test("odkc_mwi_as_wastd_turtlemorph")
