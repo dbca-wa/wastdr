@@ -29,9 +29,7 @@ jobs:
           - { os: macOS-latest, r: "devel" }
           - { os: macOS-latest, r: "release", pkgdown: "true", latex: "true" }
           - { os: macOS-latest, r: "oldrel" }
-          # Ubuntu-18-04 fails to install ‘jqr’, ‘proj4’, ‘units’, ‘protolite’,
-          # ‘rgeos’, ‘V8’, ‘sf’, ‘geojson’, ‘leafpop’, ‘geojsonio’, ‘ggalt’,
-          # ‘leafem’, ‘mapview’
+          # Ubuntu-18-04 fails to install ‘protolite’, ‘geojson’, ‘geojsonio’
           # - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release" } # Heisensegfault my old friend
           - { os: ubuntu-latest, r: "oldrel" } # it's nice to see you crash again
@@ -105,7 +103,7 @@ jobs:
 
       - name: "[Stage] [Linux] Install curl"
         if: runner.os == 'Linux'
-        run: sudo apt install libcurl4-openssl-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libicu-dev libv8-dev libjq-dev libprotobuf-dev
+        run: sudo apt install libcurl4-openssl-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libicu-dev libv8-dev libjq-dev libprotobuf-dev protobuf-compiler
 
       # sf needs GDAL > 2.0.1, stringr needs libicu-dev
       - name: "[Stage] [Ubuntu Xenial] System packages"
@@ -114,7 +112,7 @@ jobs:
           sudo add-apt-repository -y ppa:opencpu/jq
           sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
           sudo apt-get update
-          sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libicu-dev libv8-dev libprotobuf-dev
+          sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libicu-dev libv8-dev libprotobuf-dev r-cran-stringr
 
       - name: "[Stage] Install"
         if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
