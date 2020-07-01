@@ -96,6 +96,18 @@ upload_odkc_to_tsc <- function(data,
       verbose = verbose
     ),
 
+    th_outlier = wastd_create_update_skip(
+      data$th_outlier_create,
+      data$th_outlier_update,
+      data$th_outlier_skip,
+      update_existing = update_existing,
+      serializer = "turtle-nest-hatchling-emergence-outliers",
+      label = "TurtleNestHatchlingEmergenceOutliers",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
+
     # MWI > AE
     ae_mwi = wastd_create_update_skip(
       data$ae_mwi_create,

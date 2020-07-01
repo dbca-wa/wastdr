@@ -218,6 +218,9 @@ utils::globalVariables(
     "fan_angles_path_to_sea_comments",
     "fan_angles_rightmost_track_manual",
     "hatchling_emergence_time_group_hatchling_emergence_time",
-    "hatchling_emergence_time_group_hatchling_emergence_time_source"
+    "hatchling_emergence_time_group_hatchling_emergence_time_source",
+    "bearing_outlier_track_degrees",
+    "outlier_group_size",
+    "outlier_track_comment"
   )
 )

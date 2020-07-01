@@ -35,15 +35,7 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-hatchling-emergence-outliers/
     th_outlier = odkc_tracks_fan_outlier_as_tnheo(odkc_data$tracks_fan_outlier),
-    #
-    # "observation_name": "turtlehatchlingemergenceoutlierobservation",
-    # "latitude": -21.4608516667,
-    # "longitude": 115.02234,
-    # "bearing_outlier_track_degrees": 12.0,
-    # "outlier_group_size": 1,
-    # "outlier_track_comment": null
-    #
-    #
+
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-hatchling-emergence-light-sources/
     # tnhe_light_sources = odkc_data$tracks_light
