@@ -26,14 +26,11 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
 
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-hatchling-morphometrics/
-    # turtle_hatchling_morphometrics = odkc_data$tracks_hatch
-    #
-    # "straight_carapace_length_mm": 12,
-    # "straight_carapace_width_mm": 13,
-    # "body_weight_g": 14
-    #
+    th_morph = odkc_tracks_hatch_as_wastd_thmorph(odkc_data$tracks_hatch),
+
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-hatchling-emergences/
+    th_emerg = odkc_tracks_as_tnhe(odkc_data$tracks),
     # tn_hatchling_emergences = odkc_data$tracks (fan_angle...)
     # "observation_name": "turtlehatchlingemergenceobservation",
     # "latitude": -20.3068016667,

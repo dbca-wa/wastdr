@@ -201,6 +201,10 @@ utils::globalVariables(
     "nest_tag_flipper_tag_id",
     "nest_tag_status",
     "nest_tag_tag_comments",
-    "nest_tag_tag_label"
+    "nest_tag_tag_label",
+    "body_weight_g", "comments", "disturbance_cause_confidence",
+    "disturbance_severity", "egg_count_nest_depth_bottom",
+    "egg_count_nest_depth_top", "straight_carapace_length_mm",
+    "straight_carapace_width_mm"
   )
 )

@@ -72,6 +72,17 @@ upload_odkc_to_tsc <- function(data,
       verbose = verbose
     ),
 
+    th_morph = wastd_create_update_skip(
+      data$th_morph_create,
+      data$th_morph_update,
+      data$th_morph_skip,
+      update_existing = update_existing,
+      serializer = "turtle-hatchling-morphometrics",
+      label = "TurtleHatchlingMorphometrics",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
 
     # MWI > AE
     ae_mwi = wastd_create_update_skip(

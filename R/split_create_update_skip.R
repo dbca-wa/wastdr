@@ -45,12 +45,18 @@ split_create_update_skip <- function(odkc_prep, tsc_data) {
     tn_tags_skip = odkc_prep$tn_tags %>%
       dplyr::semi_join(enc_skip, by = "source_id"),
 
-
     tn_eggs_create = odkc_prep$tn_eggs %>%
       dplyr::anti_join(tsc_data$enc, by = "source_id"),
     tn_eggs_update = odkc_prep$tn_eggs %>%
       dplyr::semi_join(enc_update, by = "source_id"),
     tn_eggs_skip = odkc_prep$tn_eggs %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
+
+    th_morph_create = odkc_prep$th_morph %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    th_morph_update = odkc_prep$th_morph %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    th_morph_skip = odkc_prep$th_morph %>%
       dplyr::semi_join(enc_skip, by = "source_id"),
 
 
