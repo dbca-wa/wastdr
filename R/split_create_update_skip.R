@@ -59,6 +59,13 @@ split_create_update_skip <- function(odkc_prep, tsc_data) {
     th_morph_skip = odkc_prep$th_morph %>%
       dplyr::semi_join(enc_skip, by = "source_id"),
 
+    th_emerg_create = odkc_prep$th_emerg %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    th_emerg_update = odkc_prep$th_emerg %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    th_emerg_skip = odkc_prep$th_emerg %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
+
 
     # MWI > AE
     ae_mwi_create = odkc_prep$ae_mwi %>%

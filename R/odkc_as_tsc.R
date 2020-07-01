@@ -31,27 +31,10 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-hatchling-emergences/
     th_emerg = odkc_tracks_as_tnhe(odkc_data$tracks),
-    # tn_hatchling_emergences = odkc_data$tracks (fan_angle...)
-    # "observation_name": "turtlehatchlingemergenceobservation",
-    # "latitude": -20.3068016667,
-    # "longitude": 118.61307,
-    # "bearing_to_water_degrees": null,
-    # "bearing_leftmost_track_degrees": null,
-    # "bearing_rightmost_track_degrees": null,
-    # "no_tracks_main_group": 1,
-    # "no_tracks_main_group_min": null,
-    # "no_tracks_main_group_max": null,
-    # "outlier_tracks_present": "absent",
-    # "path_to_sea_comments": "clear None",
-    # "hatchling_emergence_time_known": "no",
-    # "light_sources_present": "na",
-    # "hatchling_emergence_time": null,
-    # "hatchling_emergence_time_accuracy": null,
-    # "cloud_cover_at_emergence": null
-    #
+
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-hatchling-emergence-outliers/
-    # tnhe_outlier = odkc_data$tracks_fan_outlier
+    th_outlier = odkc_tracks_fan_outlier_as_tnheo(odkc_data$tracks_fan_outlier),
     #
     # "observation_name": "turtlehatchlingemergenceoutlierobservation",
     # "latitude": -21.4608516667,

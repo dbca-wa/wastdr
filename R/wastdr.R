@@ -205,6 +205,19 @@ utils::globalVariables(
     "body_weight_g", "comments", "disturbance_cause_confidence",
     "disturbance_severity", "egg_count_nest_depth_bottom",
     "egg_count_nest_depth_top", "straight_carapace_length_mm",
-    "straight_carapace_width_mm"
+    "straight_carapace_width_mm",
+    "emergence_climate_cloud_cover_at_emergence",
+    "fan_angles_bearing_to_water_manual",
+    "fan_angles_hatchling_emergence_time_known",
+    "fan_angles_leftmost_track_manual",
+    "fan_angles_light_sources_present",
+    "fan_angles_no_tracks_main_group",
+    "fan_angles_no_tracks_main_group_max",
+    "fan_angles_no_tracks_main_group_min",
+    "fan_angles_outlier_tracks_present",
+    "fan_angles_path_to_sea_comments",
+    "fan_angles_rightmost_track_manual",
+    "hatchling_emergence_time_group_hatchling_emergence_time",
+    "hatchling_emergence_time_group_hatchling_emergence_time_source"
   )
 )
