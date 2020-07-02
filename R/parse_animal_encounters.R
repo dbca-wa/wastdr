@@ -34,6 +34,7 @@
 #'   \item behaviour <chr>
 #'   \item habitat <chr>
 #'   \item activity <chr>
+#'   \item comments <chr>
 #'   \item nesting_event <chr>
 #'   \item checked_for_injuries <chr>
 #'   \item scanned_for_pit_tags <chr>
@@ -123,17 +124,19 @@ parse_animal_encounters <- function(wastd_api_response) {
       season = datetime %>% datetime_as_season(),
       season_week = datetime %>% datetime_as_seasonweek(),
       iso_week = datetime %>% datetime_as_isoweek(),
-      longitude = purrr::map_dbl(
-        ., c("properties", "longitude"),
+      longitude = purrr::map_dbl(., c("properties", "longitude"),
         .default = NA_real_
       ),
-      latitude = purrr::map_dbl(
-        ., c("properties", "latitude"),
+      latitude = purrr::map_dbl(., c("properties", "latitude"),
         .default = NA_real_
       ),
       crs = purrr::map_chr(., c("properties", "crs"), .default = NA),
       location_accuracy = purrr::map_chr(.,
         c("properties", "location_accuracy"),
+        .default = NA
+      ) %>% as.numeric(),
+      location_accuracy_m = purrr::map_chr(.,
+        c("properties", "location_accuracy_m"),
         .default = NA
       ) %>% as.numeric(),
       taxon = purrr::map_chr(., c("properties", "taxon"), .default = NA),
@@ -142,17 +145,17 @@ parse_animal_encounters <- function(wastd_api_response) {
       health = purrr::map_chr(., c("properties", "health"), .default = NA),
       sex = purrr::map_chr(., c("properties", "sex"), .default = NA),
       maturity = purrr::map_chr(., c("properties", "maturity"), .default = NA),
-      # behaviour = purrr::map_chr(., c("properties", "behaviour")),
       habitat = purrr::map_chr(., c("properties", "habitat"), .default = NA),
       activity = purrr::map_chr(., c("properties", "activity"), .default = NA),
+      behaviour = purrr::map_chr(., c("properties", "behaviour"), .default = NA),
+      comments = purrr::map_chr(., c("properties", "comments"), .default = NA),
       nesting_event = purrr::map_chr(.,
         c("properties", "nesting_event"),
         .default = NA
       ),
       checked_for_injuries = purrr::map_chr(.,
         c(
-          "properties",
-          "checked_for_injuries"
+          "properties", "checked_for_injuries"
         ),
         .default = NA
       ),

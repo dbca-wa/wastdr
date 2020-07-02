@@ -7,8 +7,7 @@ test_that("odkc_tsi_as_wastd_ae works", {
     # TSC API shows source and source_id under encounter, resolves users
     odkc_names <- odkc_data$tsi %>%
         odkc_tsi_as_wastd_ae(user_mapping = user_mapping) %>%
-        dplyr::select(-source, -source_id) %>%
-        dplyr::rename(handler = handler_id, recorder = recorder_id) %>%
+        dplyr::select(-source, -source_id, -where, -reporter_id, -observer_id) %>%
         names()
 
     # ODKC data transformed into TSC shape should contain all fields of the

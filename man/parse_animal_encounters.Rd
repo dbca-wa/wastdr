@@ -41,6 +41,7 @@ A \code{tbl_df} with columns:
   \item behaviour <chr>
   \item habitat <chr>
   \item activity <chr>
+  \item comments <chr>
   \item nesting_event <chr>
   \item checked_for_injuries <chr>
   \item scanned_for_pit_tags <chr>
