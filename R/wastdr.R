@@ -221,6 +221,16 @@ utils::globalVariables(
     "hatchling_emergence_time_group_hatchling_emergence_time_source",
     "bearing_outlier_track_degrees",
     "outlier_group_size",
-    "outlier_track_comment"
+    "outlier_track_comment",
+    "encounter_activity",
+    "encounter_maturity",
+    "encounter_observed_at_accuracy",
+    "encounter_sex",
+    "encounter_species",
+    "light_bearing_manual",
+    "light_source_description",
+    "light_source_type",
+    "odkc_mwi_tag_as_wastd_tagobs",
+    "outlier_track_bearing_manual"
   )
 )

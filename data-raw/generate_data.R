@@ -4,7 +4,9 @@ sanitize_names <- . %>%
   dplyr::mutate_at(
     dplyr::vars(
       tidyr::contains("reporter"),
-      tidyr::contains("observer")
+      tidyr::contains("observer"),
+      tidyr::contains("handler"),
+      tidyr::contains("recorder")
     ),
     ~"Name hidden"
   )
@@ -58,10 +60,12 @@ odkc_data <- list(
 usethis::use_data(odkc_data, compress = "xz", overwrite = TRUE)
 
 # WAStD Turtle Data, 10 records each, names sanitised
-wastd_data <- download_wastd_turtledata(max_records = 100)
+wastd_data <- download_wastd_turtledata(max_records = 1000)
 wastd_data$surveys <- wastd_data$surveys %>% sanitize_names()
 wastd_data$animals <- wastd_data$animals %>% sanitize_names()
 wastd_data$turtle_morph <- wastd_data$turtle_morph %>% sanitize_names()
+wastd_data$turtle_tags <- wastd_data$turtle_tags %>% sanitize_names()
+wastd_data$turtle_dmg <- wastd_data$turtle_dmg %>% sanitize_names()
 wastd_data$tracks <- wastd_data$tracks %>% sanitize_names()
 wastd_data$nest_dist <- wastd_data$nest_dist %>% sanitize_names()
 wastd_data$nest_tags <- wastd_data$nest_tags %>% sanitize_names()

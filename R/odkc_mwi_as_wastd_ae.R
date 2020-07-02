@@ -74,3 +74,5 @@ odkc_mwi_as_wastd_ae <- function(data, user_mapping) {
     dplyr::select(-reporter, -observer) %>%
     invisible()
 }
+
+# usethis::use_test("odkc_mwi_as_wastd_ae")

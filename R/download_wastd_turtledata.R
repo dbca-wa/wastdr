@@ -63,6 +63,22 @@ download_wastd_turtledata <- function(max_records = NULL,
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations()
 
+  # tags
+  if (verbose == TRUE) {
+    wastdr_msg_info("Downloading turtle tags...")
+  }
+  turtle_tags <- "tag-observations" %>%
+    wastdr::wastd_GET(max_records = max_records) %>%
+    wastdr::parse_encounterobservations()
+
+  # damages
+  if (verbose == TRUE) {
+  wastdr_msg_info("Downloading turtle damages...")
+  }
+  turtle_dmg <- "turtle-damage-observations" %>%
+    wastdr::wastd_GET(max_records = max_records) %>%
+    wastdr::parse_encounterobservations()
+
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading TurtleNestEncounters...")
   }
@@ -159,6 +175,8 @@ download_wastd_turtledata <- function(max_records = NULL,
       surveys = surveys,
       animals = animals,
       turtle_morph = turtle_morph,
+      turtle_tags = turtle_tags,
+      turtle_dmg = turtle_dmg,
       tracks = tracks,
       nest_dist = nest_dist,
       nest_tags = nest_tags,

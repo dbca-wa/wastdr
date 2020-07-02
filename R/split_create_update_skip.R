@@ -22,14 +22,13 @@ split_create_update_skip <- function(odkc_prep, tsc_data) {
   enc_skip <- tsc_data$enc %>% dplyr::filter(status != "new")
 
   list(
-    # Tracks > TNE
+    # Tracks ------------------------------------------------------------------#
     tne_create = odkc_prep$tne %>%
       dplyr::anti_join(tsc_data$enc, by = "source_id"),
     tne_update = odkc_prep$tne %>%
       dplyr::semi_join(enc_update, by = "source_id"),
     tne_skip = odkc_prep$tne %>%
       dplyr::semi_join(enc_skip, by = "source_id"),
-
 
     tn_dist_create = odkc_prep$tn_dist %>%
       dplyr::anti_join(tsc_data$enc, by = "source_id"),
@@ -73,8 +72,16 @@ split_create_update_skip <- function(odkc_prep, tsc_data) {
     th_outlier_skip = odkc_prep$th_outlier %>%
       dplyr::semi_join(enc_skip, by = "source_id"),
 
+    th_light_create = odkc_prep$th_light %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    th_light_update = odkc_prep$th_light %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    th_light_skip = odkc_prep$th_light %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
 
-    # MWI > AE
+    # tracktally
+
+    # MWI > AE ----------------------------------------------------------------#
     ae_mwi_create = odkc_prep$ae_mwi %>%
       dplyr::anti_join(tsc_data$enc, by = "source_id"),
     ae_mwi_update = odkc_prep$ae_mwi %>%
@@ -88,6 +95,28 @@ split_create_update_skip <- function(odkc_prep, tsc_data) {
     obs_turtlemorph_update = odkc_prep$obs_turtlemorph %>%
       dplyr::semi_join(enc_update, by = "source_id"),
     obs_turtlemorph_skip = odkc_prep$obs_turtlemorph %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
+
+    obs_tagobs_create = odkc_prep$obs_tagobs %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    obs_tagobs_update = odkc_prep$obs_tagobs %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    obs_tagobs_skip = odkc_prep$obs_tagobs %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
+
+    obs_turtledmg_create = odkc_prep$obs_turtledmg %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    obs_turtledmg_update = odkc_prep$obs_turtledmg %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    obs_turtledmg_skip = odkc_prep$obs_turtledmg %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
+
+    # TSI > AE ----------------------------------------------------------------#
+    ae_tsi_create = odkc_prep$ae_tsi %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    ae_tsi_update = odkc_prep$ae_tsi %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    ae_tsi_skip = odkc_prep$ae_tsi %>%
       dplyr::semi_join(enc_skip, by = "source_id")
   )
 }

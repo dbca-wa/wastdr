@@ -38,68 +38,33 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
 
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-hatchling-emergence-light-sources/
-    # tnhe_light_sources = odkc_data$tracks_light
-    #
-    # "observation_name": "lightsourceobservation",
-    # "latitude": -20.306645,
-    # "longitude": 118.613845,
-    # "bearing_light_degrees": 200.0,
-    # "light_source_type": "artificial",
-    # "light_source_description": "Street lights"
-    #
-    #
+    th_light = odkc_tracks_light_as_wastd_tnhels(odkc_data$tracks_light),
+
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/animal-encounters/
     # https://github.com/dbca-wa/wastdr/issues/16
     ae_mwi = odkc_mwi_as_wastd_ae(odkc_data$mwi, user_mapping),
-    # obs_media = odkc_mwi_as_wastd_media(odkc_data$mwi),
 
     # -------------------------------------------------------------------- #
     # mwi_dmg > damageobs
     # https://github.com/dbca-wa/wastdr/issues/16
-    # obs_turtledmg = odkc_mwi_dmg_as_wastd_turtledmg(odkc_data$mwi_dmg, user_mapping),
+    obs_turtledmg = odkc_mwi_dmg_as_wastd_turtledmg(odkc_data$mwi_dmg),
 
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/tag-observations/
-    # obs_tagobs = odkc_mwi_tag_as_wastd_tagobs(odkc_data$mwi_tag, user_mapping),
-    # mwi_tag > tagobs
-    # "tag_type": "flipper-tag",
-    # "name": "WA49138",
-    # "tag_location": "flipper-front-left-1",
-    # "status": "removed",
-    # "comments": ""
+    obs_tagobs = odkc_mwi_tag_as_wastd_tagobs(odkc_data$mwi_tag, user_mapping),
 
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-morphometrics/
     # https://github.com/dbca-wa/wastdr/issues/16
-    obs_turtlemorph = odkc_mwi_as_wastd_turtlemorph(odkc_data$mwi, user_mapping)
+    obs_turtlemorph = odkc_mwi_as_wastd_turtlemorph(odkc_data$mwi, user_mapping),
 
     # -------------------------------------------------------------------- #
     # https://github.com/dbca-wa/wastdr/issues/17
     # https://tsc.dbca.wa.gov.au/api/1/animal-encounters/
     # ae_sightings = odkc_data$tsi
-    # ae_tsi = odkc_tsi_as_wastd_ae(odkc_data$tsi, user_mapping),
-    #
-    # "comments": null,
-    # "crs": "WGS 84",
-    # "location_accuracy": "10",
-    # "when": "2015-01-21T08:00:00+08:00",
-    # "name": null,
-    # "taxon": "Cheloniidae",
-    # "species": "chelonia-mydas",
-    # "health": "dead-disarticulated",
-    # "sex": "na",
-    # "maturity": "juvenile",
-    # "behaviour": "",
-    # "habitat": "beach",
-    # "activity": "na",
-    # "nesting_event": "na",
-    # "checked_for_injuries": "na",
-    # "scanned_for_pit_tags": "na",
-    # "checked_for_flipper_tags": "na",
-    # "cause_of_death": "indeterminate-decomposed",
-    # "cause_of_death_confidence": "expert-opinion",
-    #
+    ae_tsi = odkc_tsi_as_wastd_ae(odkc_data$tsi, user_mapping)
+
     # -------------------------------------------------------------------- #
     # tracktally > line tx enc
     #
