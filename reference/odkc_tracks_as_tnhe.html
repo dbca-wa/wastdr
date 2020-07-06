@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -187,8 +187,10 @@
 <span class='no'>au</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WASTDR_API_DEV_URL"</span>)
 <span class='no'>at</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WASTDR_API_DEV_TOKEN"</span>)
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>odkc_tracks_as_tnhe</span>(<span class='no'>odkc_ex</span>$<span class='no'>tracks</span>)
-<span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='wastd_POST.html'>wastd_POST</a></span>(<span class='kw'>serializer</span> <span class='kw'>=</span> <span class='st'>"turtle-nest-hatchling-emergences"</span>,
-                 <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='no'>au</span>, <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='no'>at</span>)
+<span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='wastd_POST.html'>wastd_POST</a></span>(
+  <span class='kw'>serializer</span> <span class='kw'>=</span> <span class='st'>"turtle-nest-hatchling-emergences"</span>,
+  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='no'>au</span>, <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='no'>at</span>
+)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

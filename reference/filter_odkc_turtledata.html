@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -209,18 +209,17 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 <span class='no'>area_names</span></div><div class='output co'>#&gt;  [1] "Cape Dommett"                                    
 #&gt;  [2] "Smokey Bay Area"                                 
 #&gt;  [3] "Cable Beach Broome"                              
-#&gt;  [4] "Broome"                                          
-#&gt;  [5] "Port Hedland"                                    
-#&gt;  [6] "Delambre Island"                                 
-#&gt;  [7] "Rosemary Island"                                 
-#&gt;  [8] "Conzinc Bay"                                     
-#&gt;  [9] "West Pilbara Turtle Program beaches Wickam"      
-#&gt; [10] "West Pilbara Turtle Program beaches Caravan Park"
-#&gt; [11] "Barrow Island"                                   
-#&gt; [12] "Thevenard Island"                                
-#&gt; [13] "Ningaloo"                                        
-#&gt; [14] "Onslow"                                          
-#&gt; [15] "Perth Metro"                                     </div><div class='input'><span class='no'>data_area_1</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='no'>odkc_data</span>, <span class='kw'>area_name</span> <span class='kw'>=</span> <span class='st'>"Cape Dommett"</span>)
+#&gt;  [4] "Port Hedland"                                    
+#&gt;  [5] "Delambre Island"                                 
+#&gt;  [6] "Rosemary Island"                                 
+#&gt;  [7] "Conzinc Bay"                                     
+#&gt;  [8] "West Pilbara Turtle Program beaches Wickam"      
+#&gt;  [9] "West Pilbara Turtle Program beaches Caravan Park"
+#&gt; [10] "Barrow Island"                                   
+#&gt; [11] "Thevenard Island"                                
+#&gt; [12] "Ningaloo"                                        
+#&gt; [13] "Onslow"                                          
+#&gt; [14] "Perth Metro"                                     </div><div class='input'><span class='no'>data_area_1</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='no'>odkc_data</span>, <span class='kw'>area_name</span> <span class='kw'>=</span> <span class='st'>"Cape Dommett"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data_area_1</span>$<span class='no'>tracks</span>)</div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='no'>data_area_2</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='no'>odkc_data</span>, <span class='kw'>area_name</span> <span class='kw'>=</span> <span class='no'>area_names</span><span class='kw'>[[</span><span class='fl'>2</span>]])
 <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data_area_2</span>$<span class='no'>tracks</span>)</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 
