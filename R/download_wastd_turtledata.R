@@ -73,7 +73,7 @@ download_wastd_turtledata <- function(max_records = NULL,
 
   # damages
   if (verbose == TRUE) {
-  wastdr_msg_info("Downloading turtle damages...")
+    wastdr_msg_info("Downloading turtle damages...")
   }
   turtle_dmg <- "turtle-damage-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
@@ -167,6 +167,13 @@ download_wastd_turtledata <- function(max_records = NULL,
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_surveys()
 
+  if (verbose == TRUE) {
+    wastdr_msg_info("Downloading LoggerEncounters...")
+  }
+  loggers <- "logger-encounters" %>%
+    wastdr::wastd_GET(max_records = max_records) %>%
+    wastdr::wastd_parse()
+
   structure(
     list(
       downloaded_on = Sys.time(),
@@ -184,7 +191,8 @@ download_wastd_turtledata <- function(max_records = NULL,
       hatchling_morph = hatchling_morph,
       nest_fans = nest_fans,
       nest_fan_outliers = nest_fan_outliers,
-      nest_lightsources = nest_lightsources
+      nest_lightsources = nest_lightsources,
+      loggers = loggers
     ),
     class = "wastd_data"
   )

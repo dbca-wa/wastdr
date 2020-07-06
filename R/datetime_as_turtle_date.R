@@ -16,7 +16,6 @@
 #' @param datetime (dttm) A datetime
 #' @return A POSIXct date
 #' @importFrom lubridate hours as_date
-#' @import magrittr
 #' @export
 #' @family helpers
 #' @examples

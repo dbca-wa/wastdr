@@ -26,7 +26,10 @@ odkc_plan()
 Append new users to spreadsheet: username, name, email, phone, role
 users <- here::here("users.csv") \%>\%
   readr::read_csv(col_types = "ccccc") \%>\%
-  wastdr::wastd_bulk_post("users")
+  wastdr::wastd_bulk_post("users",
+  #api_url = Sys.getenv("WASTDR_API_DEV_URL"),
+  #api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"),
+  verbose = TRUE)
 
 users_dev <- here::here("users.csv") \%>\%
   readr::read_csv(col_types = "ccccc") \%>\%

@@ -19,43 +19,43 @@
 #'   )
 #' }
 odkc_tsi_as_wastd_ae <- function(data, user_mapping) {
-    tsc_reporters <- user_mapping %>%
-        dplyr::transmute(reporter = odkc_username, reporter_id = pk)
+  tsc_reporters <- user_mapping %>%
+    dplyr::transmute(reporter = odkc_username, reporter_id = pk)
 
-    tsc_observers <- user_mapping %>%
-        dplyr::transmute(observer = odkc_username, observer_id = pk)
+  tsc_observers <- user_mapping %>%
+    dplyr::transmute(observer = odkc_username, observer_id = pk)
 
-    data %>%
-        sf_as_tbl() %>%
-        dplyr::transmute(
-            source = "odk",
-            source_id = id,
-            observer = reporter,
-            reporter = reporter,
-            comments = glue::glue(
-                "Device ID {device_id}\n",
-                "Observer activity: {encounter_observer_acticity}\n",
-                "Form filled in from {observation_start_time} to ",
-                "{observation_end_time}\n"
-            ),
-            # TODO: prefer incident_observed_at_manual if given
-            where = glue::glue(
-                "POINT ({encounter_observed_at_longitude}",
-                " {encounter_observed_at_latitude})"
-            ),
-            location_accuracy = "10",
-            location_accuracy_m = encounter_observed_at_accuracy,
-            datetime = lubridate::format_ISO8601(observation_start_time, usetz = TRUE),
-            taxon = "Cheloniidae",
-            species = encounter_species %>% tidyr::replace_na("na"),
-            sex = encounter_sex %>% tidyr::replace_na("na"),
-            maturity = encounter_maturity %>% tidyr::replace_na("na"),
-            activity = encounter_activity %>% tidyr::replace_na("na")
-        ) %>%
-        dplyr::left_join(tsc_reporters, by = "reporter") %>% # TSC User PK
-        dplyr::left_join(tsc_observers, by = "observer") %>% # TSC User PK
-        dplyr::select(-reporter, -observer) %>%
-        invisible()
+  data %>%
+    sf_as_tbl() %>%
+    dplyr::transmute(
+      source = "odk",
+      source_id = id,
+      observer = reporter,
+      reporter = reporter,
+      comments = glue::glue(
+        "Device ID {device_id}\n",
+        "Observer activity: {encounter_observer_acticity}\n",
+        "Form filled in from {observation_start_time} to ",
+        "{observation_end_time}\n"
+      ),
+      # TODO: prefer incident_observed_at_manual if given
+      where = glue::glue(
+        "POINT ({encounter_observed_at_longitude}",
+        " {encounter_observed_at_latitude})"
+      ),
+      location_accuracy = "10",
+      location_accuracy_m = encounter_observed_at_accuracy,
+      when = lubridate::format_ISO8601(observation_start_time, usetz = TRUE),
+      taxon = "Cheloniidae",
+      species = encounter_species %>% tidyr::replace_na("na"),
+      sex = encounter_sex %>% tidyr::replace_na("na"),
+      maturity = encounter_maturity %>% tidyr::replace_na("na"),
+      activity = encounter_activity %>% tidyr::replace_na("na")
+    ) %>%
+    dplyr::left_join(tsc_reporters, by = "reporter") %>% # TSC User PK
+    dplyr::left_join(tsc_observers, by = "observer") %>% # TSC User PK
+    dplyr::select(-reporter, -observer) %>%
+    invisible()
 }
 
 # usethis::use_test("odkc_tsi_as_wastd_ae")

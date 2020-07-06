@@ -22,7 +22,9 @@ data("odkc_data", package = "wastdr")
 au <- Sys.getenv("WASTDR_API_DEV_URL")
 at <- Sys.getenv("WASTDR_API_DEV_TOKEN")
 x <- odkc_tracks_as_tnhe(odkc_ex$tracks)
-x \%>\% wastd_POST(serializer = "turtle-nest-hatchling-emergences",
-                 api_url = au, api_token = at)
+x \%>\% wastd_POST(
+  serializer = "turtle-nest-hatchling-emergences",
+  api_url = au, api_token = at
+)
 }
 }

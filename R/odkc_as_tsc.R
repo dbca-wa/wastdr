@@ -41,6 +41,15 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
     th_light = odkc_tracks_light_as_wastd_tnhels(odkc_data$tracks_light),
 
     # -------------------------------------------------------------------- #
+    # https://tsc.dbca.wa.gov.au/api/1/logger-encounters/
+    loggenc = odkc_tracks_log_as_loggerenc(odkc_data$tracks_log, user_mapping),
+
+    # -------------------------------------------------------------------- #
+    # https://tsc.dbca.wa.gov.au/api/1/encounters/
+    de = odkc_dist_as_distenc(odkc_data$dist, user_mapping),
+    tnd_obs = odkc_dist_as_tndo(odkc_data$dist),
+
+    # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/animal-encounters/
     # https://github.com/dbca-wa/wastdr/issues/16
     ae_mwi = odkc_mwi_as_wastd_ae(odkc_data$mwi, user_mapping),

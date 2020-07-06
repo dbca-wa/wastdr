@@ -182,6 +182,44 @@ upload_odkc_to_tsc <- function(data,
       api_url = api_url,
       api_token = api_token,
       verbose = verbose
+    ),
+
+    # tracks_log > LE ---------------------------------------------------------#
+
+    le = wastd_create_update_skip(
+      data$le_create,
+      data$le_update,
+      data$le_skip,
+      update_existing = update_existing,
+      serializer = "logger-encounters",
+      label = "Logger Encounters",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
+
+    de = wastd_create_update_skip(
+      data$de_create,
+      data$de_update,
+      data$de_skip,
+      update_existing = update_existing,
+      serializer = "encounters",
+      label = "Encounters (General Dist)",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
+
+    tnd_obs = wastd_create_update_skip(
+      data$tnd_obs_create,
+      data$tnd_obs_update,
+      data$tnd_obs_skip,
+      update_existing = update_existing,
+      serializer = "turtle-nest-disturbance-observations",
+      label = "TurtleNestDisturbanceObservations (General Dist",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
     )
   )
 }

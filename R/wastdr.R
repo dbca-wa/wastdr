@@ -231,6 +231,17 @@ utils::globalVariables(
     "light_source_description",
     "light_source_type",
     "odkc_mwi_tag_as_wastd_tagobs",
-    "outlier_track_bearing_manual"
+    "outlier_track_bearing_manual",
+    "damage_age",
+    "damage_type",
+    "disturbanceobservation_comments",
+    "disturbanceobservation_disturbance_cause_confidence",
+    "disturbanceobservation_location_accuracy",
+    "logger_id",
+    "odkc_un_trim",
+    "tag_comments",
+    "tag_location",
+    "tag_status",
+    "tag_type"
   )
 )

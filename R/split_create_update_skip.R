@@ -81,6 +81,30 @@ split_create_update_skip <- function(odkc_prep, tsc_data) {
 
     # tracktally
 
+    le_create = odkc_prep$le %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    le_update = odkc_prep$le %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    le_skip = odkc_prep$le %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
+
+    # Disturbance Encounters --------------------------------------------------#
+    de_mwi_create = odkc_prep$de %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    de_mwi_update = odkc_prep$de %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    de_mwi_skip = odkc_prep$de %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
+
+    # Disturbance TND obs
+    tnd_obs_create = odkc_prep$tnd_obs %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    tnd_obs_update = odkc_prep$tnd_obs %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    tnd_obs_skip = odkc_prep$tnd_obs %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
+
+
     # MWI > AE ----------------------------------------------------------------#
     ae_mwi_create = odkc_prep$ae_mwi %>%
       dplyr::anti_join(tsc_data$enc, by = "source_id"),

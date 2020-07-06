@@ -9,7 +9,6 @@
 #'   e.g. '2016-11-20T21:46:57.163000Z' with time zone included
 #' @return The season as int, e.g. 2017
 #' @importFrom lubridate days isoyear
-#' @import magrittr
 #' @export
 #' @family helpers
 #' @examples

@@ -74,6 +74,7 @@ wastd_data$hatchling_morph <- wastd_data$hatchling_morph %>% sanitize_names()
 wastd_data$nest_fans <- wastd_data$nest_fans %>% sanitize_names()
 wastd_data$nest_fan_outliers <- wastd_data$nest_fan_outliers %>% sanitize_names()
 wastd_data$nest_lightsources <- wastd_data$nest_lightsources %>% sanitize_names()
+wastd_data$loggers <- wastd_data$loggers %>% sanitize_names()
 usethis::use_data(wastd_data, compress = "xz", overwrite = TRUE)
 
 # Generate TSC data

@@ -50,10 +50,6 @@
 #'   Requires DBCA SSO when viewed.
 #' }
 #' @export
-#' @import magrittr
-#' @importFrom tibble tibble
-#' @importFrom purrr map map_chr map_dbl
-#' @importFrom lubridate interval as.period
 #' @family wastd
 parse_surveys <- function(
                           wastd_api_response,

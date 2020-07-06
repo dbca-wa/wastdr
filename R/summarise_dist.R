@@ -101,7 +101,6 @@ filter_predation <- function(data) {
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' library(magrittr)
 #' wastd_data$nest_dist %>% wastdr::disturbance_by_season()
 #'
 #' data("odkc_data")

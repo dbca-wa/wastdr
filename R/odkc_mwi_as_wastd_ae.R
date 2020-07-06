@@ -50,7 +50,7 @@ odkc_mwi_as_wastd_ae <- function(data, user_mapping) {
         incident_observed_at_accuracy,
         incident_observed_at_manual_accuracy
       ),
-      datetime = lubridate::format_ISO8601(incident_incident_time, usetz = TRUE),
+      when = lubridate::format_ISO8601(incident_incident_time, usetz = TRUE),
       taxon = details_taxon %>% tidyr::replace_na("na"),
       species = details_species %>% tidyr::replace_na("na"),
       health = status_health %>% tidyr::replace_na("na"),

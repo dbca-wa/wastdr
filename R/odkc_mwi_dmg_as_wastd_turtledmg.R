@@ -13,20 +13,20 @@
 #' x %>% wastd_POST("turtle-damage-observations", api_url = au, api_token = at)
 #' }
 odkc_mwi_dmg_as_wastd_turtledmg <- function(data) {
-    data %>%
-        sf_as_tbl() %>%
-        dplyr::transmute(
-            source = "odk",
-            source_id = id,
-            body_part = body_part,
-            damage_type = damage_type,
-            damage_age = damage_age,
-            description = description
-        ) %>%
-        dplyr::filter_at(
-            dplyr::vars(-source, -source_id),
-            dplyr::any_vars(!is.na(.))
-        )
+  data %>%
+    sf_as_tbl() %>%
+    dplyr::transmute(
+      source = "odk",
+      source_id = id,
+      body_part = body_part,
+      damage_type = damage_type,
+      damage_age = damage_age,
+      description = description
+    ) %>%
+    dplyr::filter_at(
+      dplyr::vars(-source, -source_id),
+      dplyr::any_vars(!is.na(.))
+    )
 }
 
 # usethis::use_test("odkc_mwi_dmg_as_wastd_turtledmg")

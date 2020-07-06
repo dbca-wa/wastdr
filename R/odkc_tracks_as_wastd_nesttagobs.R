@@ -13,28 +13,28 @@
 #' x %>% wastd_POST("nest-tag-observations", api_url = au, api_token = at)
 #' }
 odkc_tracks_as_wastd_nesttagobs <- function(data) {
-    data %>%
-        sf_as_tbl() %>%
-        dplyr::transmute(
-            source = "odk",
-            source_id = id,
-            status = nest_tag_status,
-            flipper_tag_id = nest_tag_flipper_tag_id,
-            tag_label = nest_tag_tag_label,
-            date_nest_laid = ifelse(
-                is.na(nest_tag_date_nest_laid),
-                NA,
-                lubridate::format_ISO8601(
-                    nest_tag_date_nest_laid,
-                    precision = "ymd"
-                )
-            ),
-            comments = nest_tag_tag_comments
-        ) %>%
-        dplyr::filter_at(
-            dplyr::vars(-source, -source_id),
-            dplyr::any_vars(!is.na(.))
+  data %>%
+    sf_as_tbl() %>%
+    dplyr::transmute(
+      source = "odk",
+      source_id = id,
+      status = nest_tag_status,
+      flipper_tag_id = nest_tag_flipper_tag_id,
+      tag_label = nest_tag_tag_label,
+      date_nest_laid = ifelse(
+        is.na(nest_tag_date_nest_laid),
+        NA,
+        lubridate::format_ISO8601(
+          nest_tag_date_nest_laid,
+          precision = "ymd"
         )
+      ),
+      comments = nest_tag_tag_comments
+    ) %>%
+    dplyr::filter_at(
+      dplyr::vars(-source, -source_id),
+      dplyr::any_vars(!is.na(.))
+    )
 }
 
 # usethis::use_test("odkc_tracks_as_wastd_nesttagobs")

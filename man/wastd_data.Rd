@@ -5,7 +5,7 @@
 \alias{wastd_data}
 \title{Turtle Nesting Census data from WAStD}
 \format{
-An object of class \code{wastd_data} of length 16.
+An object of class \code{wastd_data} of length 17.
 }
 \usage{
 wastd_data

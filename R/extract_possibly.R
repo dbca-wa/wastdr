@@ -4,8 +4,6 @@
 #'
 #' @param ... A list and a field name
 #' @seealso \url{https://rdrr.io/cran/purrr/man/safely.html}
-#' @importFrom magrittr extract
-#' @importFrom purrr possibly
 #' @export
 #' @family helpers
 #' @examples

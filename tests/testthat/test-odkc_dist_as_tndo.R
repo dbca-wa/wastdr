@@ -1,9 +1,9 @@
-test_that("odkc_tracks_as_wastd_nesttagobs works", {
+test_that("odkc_dist_as_tndo works", {
   data("odkc_data", package = "wastdr")
   data("wastd_data", package = "wastdr")
 
-  odkc_names <- odkc_data$tracks %>%
-    odkc_tracks_as_wastd_nesttagobs() %>%
+  odkc_names <- odkc_data$dist %>%
+    odkc_dist_as_tndo() %>%
     dplyr::select(-source, -source_id) %>%
     names()
 
@@ -11,8 +11,12 @@ test_that("odkc_tracks_as_wastd_nesttagobs works", {
   # WAStD serializer
   for (n in odkc_names) {
     testthat::expect_true(
-      n %in% names(wastd_data$nest_tags),
-      label = glue::glue("Column \"{n}\" exists in wastd_data$nest_tags")
+      n %in% names(wastd_data$nest_dist),
+      label = glue::glue("Column \"{n}\" exists in wastd_data$nest_dist")
     )
   }
 })
+
+
+
+# usethis::use_r("odkc_dist_as_tndo")

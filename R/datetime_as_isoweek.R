@@ -9,7 +9,6 @@
 #' @param datetime (dttm) A datetime
 #' @return The ISO week as int, e.g. 26
 #' @importFrom lubridate days isoweek
-#' @import magrittr
 #' @export
 #' @family helpers
 #' @examples

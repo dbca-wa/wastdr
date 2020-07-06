@@ -23,6 +23,7 @@ au <- Sys.getenv("WASTDR_API_DEV_URL")
 at <- Sys.getenv("WASTDR_API_DEV_TOKEN")
 x <- odkc_tracks_fan_outlier_as_tnheo(odkc_ex$tracks_fan_outlier)
 x \%>\% wastd_POST("turtle-nest-hatchling-emergence-outliers",
-                 api_url = au, api_token = at)
+  api_url = au, api_token = at
+)
 }
 }

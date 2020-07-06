@@ -10,7 +10,6 @@
 #' @param datetime (dttm) A datetime
 #' @return The season as int, e.g. 2017
 #' @importFrom lubridate days isoyear
-#' @import magrittr
 #' @export
 #' @family helpers
 #' @examples

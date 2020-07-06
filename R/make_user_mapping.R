@@ -26,7 +26,7 @@ make_user_mapping <- function(odkc_data, tsc_users) {
   tibble::tibble(
     odkc_username = odkc_reporters,
     odkc_un_trim = stringr::str_trim(odkc_reporters)
-    ) %>%
+  ) %>%
     fuzzyjoin::stringdist_left_join(
       tsc_users,
       by = c(odkc_un_trim = "tsc_usernames"),

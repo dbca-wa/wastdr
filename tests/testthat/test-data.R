@@ -30,6 +30,8 @@ test_that("wastd_data contains expected tibbles", {
       "surveys",
       "animals",
       "turtle_morph",
+      "turtle_tags",
+      "turtle_dmg",
       "tracks",
       "nest_dist",
       "nest_tags",
@@ -37,7 +39,8 @@ test_that("wastd_data contains expected tibbles", {
       "hatchling_morph",
       "nest_fans",
       "nest_fan_outliers",
-      "nest_lightsources"
+      "nest_lightsources",
+      "loggers"
     )
   )
   # purrr::map(wastd_data, class)
