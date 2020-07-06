@@ -79,8 +79,18 @@ split_create_update_skip <- function(odkc_prep, tsc_data) {
     th_light_skip = odkc_prep$th_light %>%
       dplyr::semi_join(enc_skip, by = "source_id"),
 
-    # tracktally
+    # TrackTally Encounters ---------------------------------------------------#
+    tte_create = odkc_prep$tte %>%
+      dplyr::anti_join(tsc_data$enc, by = "source_id"),
+    tte_update = odkc_prep$tte %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    tte_skip = odkc_prep$tte %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
 
+    # tto
+    # ttd
+
+    # Logger Encounters -------------------------------------------------------#
     le_create = odkc_prep$le %>%
       dplyr::anti_join(tsc_data$enc, by = "source_id"),
     le_update = odkc_prep$le %>%

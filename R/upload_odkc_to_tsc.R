@@ -216,7 +216,19 @@ upload_odkc_to_tsc <- function(data,
       data$tnd_obs_skip,
       update_existing = update_existing,
       serializer = "turtle-nest-disturbance-observations",
-      label = "TurtleNestDisturbanceObservations (General Dist",
+      label = "TurtleNestDisturbanceObservations (General Dist)",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
+
+    tte = wastd_create_update_skip(
+      data$tte_obs_create,
+      data$tte_obs_update,
+      data$tte_obs_skip,
+      update_existing = update_existing,
+      serializer = "line-transect-encounters",
+      label = "LineTransectEncounters (Track Tally)",
       api_url = api_url,
       api_token = api_token,
       verbose = verbose

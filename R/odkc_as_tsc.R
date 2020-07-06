@@ -10,6 +10,8 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
   list(
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/
+    # https://github.com/dbca-wa/wastdr/issues/10
+    # https://github.com/dbca-wa/wastdr/issues/13
     tne = odkc_tracks_as_wastd_tne(odkc_data$tracks, user_mapping),
 
     # -------------------------------------------------------------------- #
@@ -42,7 +44,7 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
 
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/logger-encounters/
-    loggenc = odkc_tracks_log_as_loggerenc(odkc_data$tracks_log, user_mapping),
+    le = odkc_tracks_log_as_loggerenc(odkc_data$tracks_log, user_mapping),
 
     # -------------------------------------------------------------------- #
     # https://tsc.dbca.wa.gov.au/api/1/encounters/
@@ -72,16 +74,19 @@ odkc_as_tsc <- function(odkc_data, user_mapping) {
     # https://github.com/dbca-wa/wastdr/issues/17
     # https://tsc.dbca.wa.gov.au/api/1/animal-encounters/
     # ae_sightings = odkc_data$tsi
-    ae_tsi = odkc_tsi_as_wastd_ae(odkc_data$tsi, user_mapping)
+    ae_tsi = odkc_tsi_as_wastd_ae(odkc_data$tsi, user_mapping),
 
     # -------------------------------------------------------------------- #
-    # tracktally > line tx enc
-    #
+    # tracktally > line tx enc, track tally obs, TN dist tally obs
+    tte = odkc_tt_as_wastd_lte(odkc_data$track_tally, user_mapping)
+    # tto = odkc_tt_as_wastd_tto(odkc_data$track_tally),
+    # ttd = odkc_tt_as_wastd_tndto(odkc_data$track_tally)
+
     # -------------------------------------------------------------------- #
     # https://github.com/dbca-wa/wastdr/issues/15
     # https://tsc.dbca.wa.gov.au/api/1/surveys/
     # make survey end from orphaned sve?
-    # surveys = ddkc_svs_sve_to_wastd_surveys(odkc_data$svs, odkc_data$sve)
+    # surveys = odkc_svs_sve_to_wastd_surveys(odkc_data$svs, odkc_data$sve)
     #
     # ---------------------------------------------------------------------#
     # https://tsc.dbca.wa.gov.au/api/1/media-attachments/
