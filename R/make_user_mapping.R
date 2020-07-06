@@ -21,20 +21,23 @@ make_user_mapping <- function(odkc_data, tsc_users) {
     odkc_data$tsi$reporter
   ))
 
-  tsc_users <- tsc_users %>%
-    dplyr::mutate(tsc_usernames = paste(name, aliases, nickname))
+  tsc_users <- tsc_users %>% dplyr::mutate(tsc_usernames = paste(name, aliases))
 
-  tibble::tibble(odkc_username = odkc_reporters) %>%
-    fuzzyjoin::stringdist_join(
+  tibble::tibble(
+    odkc_username = odkc_reporters,
+    odkc_un_trim = stringr::str_trim(odkc_reporters)
+    ) %>%
+    fuzzyjoin::stringdist_left_join(
       tsc_users,
-      by = c(odkc_username = "tsc_usernames"),
+      by = c(odkc_un_trim = "tsc_usernames"),
       ignore_case = TRUE,
       method = "jw",
-      max_dist = 99,
+      max_dist = 1000,
       distance_col = "dist"
     ) %>%
     dplyr::group_by(odkc_username) %>%
     dplyr::top_n(1, -dist) %>%
     dplyr::arrange(odkc_username) %>%
-    dplyr::ungroup()
+    dplyr::ungroup() %>%
+    dplyr::select(-odkc_un_trim)
 }

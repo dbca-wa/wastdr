@@ -44,8 +44,8 @@ odkc_plan <- function() {
     # ------------------------------------------------------------------------ #
     # SETUP
     #
-    # api_url = wastdr::get_wastdr_api_url(),
-    # api_token = wastdr::get_wastdr_api_token(),
+    # aurl = wastdr::get_wastdr_api_url(),
+    # atkn = wastdr::get_wastdr_api_token(),
     aurl = Sys.getenv("WASTDR_API_DEV_URL"),
     atkn = Sys.getenv("WASTDR_API_DEV_TOKEN"),
     vbse = wastdr::get_wastdr_verbose(),
@@ -64,8 +64,7 @@ odkc_plan <- function() {
     # TRANSFORM
     #
     # User mapping
-    tsc_users = download_tsc_users(
-      api_url = aurl, api_token = atkn, verbose = vbse),
+    tsc_users = download_tsc_users(api_url = aurl, api_token = atkn, verbose = vbse),
     user_mapping = make_user_mapping(odkc_ex, tsc_users),
     # QA Reports: inspect user mappings - flag dissimilar matches
     # https://github.com/dbca-wa/wastdr/issues/21
