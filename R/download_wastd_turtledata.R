@@ -160,6 +160,24 @@ download_wastd_turtledata <- function(max_records = NULL,
     wastdr::parse_encounterobservations() %>%
     dplyr::left_join(tracks_subset, by = "pk")
 
+
+  # Track Tallies -------------------------------------------------------------#
+  if (verbose == TRUE) wastdr_msg_info("Downloading LineTransectEncounters...")
+  linetx <- "line-transect-encounters" %>%
+    wastdr::wastd_GET(max_records = max_records) %>%
+    wastdr::wastd_parse()
+
+  if (verbose == TRUE) wastdr_msg_info("Downloading track tallies...")
+  track_tally <- "track-tally" %>%
+    wastdr::wastd_GET(max_records = max_records) %>%
+    wastdr::parse_encounterobservations()
+
+  if (verbose == TRUE) wastdr_msg_info("Downloading disturbance tallies...")
+  disturbance_tally <- "turtle-nest-disturbance-tally" %>%
+    wastdr::wastd_GET(max_records = max_records) %>%
+    wastdr::parse_encounterobservations()
+
+  # Surveys -------------------------------------------------------------------#
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading surveys...")
   }
@@ -181,9 +199,9 @@ download_wastd_turtledata <- function(max_records = NULL,
       sites = sites,
       surveys = surveys,
       animals = animals,
-      turtle_morph = turtle_morph,
       turtle_tags = turtle_tags,
       turtle_dmg = turtle_dmg,
+      turtle_morph = turtle_morph,
       tracks = tracks,
       nest_dist = nest_dist,
       nest_tags = nest_tags,
@@ -192,6 +210,9 @@ download_wastd_turtledata <- function(max_records = NULL,
       nest_fans = nest_fans,
       nest_fan_outliers = nest_fan_outliers,
       nest_lightsources = nest_lightsources,
+      linetx = linetx,
+      track_tally = track_tally,
+      disturbance_tally = disturbance_tally,
       loggers = loggers
     ),
     class = "wastd_data"
@@ -216,6 +237,8 @@ print.wastd_data <- function(x, ...) {
       "Surveys: {nrow(x$surveys)}\n",
       "Animal Encounters (tags, strandings): {nrow(x$animals)}\n",
       "Turtle Nest Encounters (tracks): {nrow(x$tracks)}\n",
+      "Line Transect Encounters (track tallies) {nrow(x$linetx)}\n",
+      "Logger Encounters {nrow(x$loggers)}\n"
     )
   )
   invisible(x)

@@ -29,9 +29,9 @@ test_that("wastd_data contains expected tibbles", {
       "sites",
       "surveys",
       "animals",
-      "turtle_morph",
       "turtle_tags",
       "turtle_dmg",
+      "turtle_morph",
       "tracks",
       "nest_dist",
       "nest_tags",
@@ -40,6 +40,9 @@ test_that("wastd_data contains expected tibbles", {
       "nest_fans",
       "nest_fan_outliers",
       "nest_lightsources",
+      "linetx",
+      "track_tally",
+      "disturbance_tally",
       "loggers"
     )
   )
