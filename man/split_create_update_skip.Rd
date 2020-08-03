@@ -4,19 +4,19 @@
 \alias{split_create_update_skip}
 \title{Top level helper to split all Turtle Nesting Census data per skip logic}
 \usage{
-split_create_update_skip(odkc_prep, tsc_data)
+split_create_update_skip(odkc_prep, wastd_data)
 }
 \arguments{
-\item{odkc_prep}{ODKC data transformed into TSC format.}
+\item{odkc_prep}{ODKC data transformed into WAStD format.}
 
-\item{tsc_data}{Minimal TSC data to inform skip logic.}
+\item{wastd_data}{Minimal WAStD data to inform skip logic.}
 }
 \value{
 A list of results from the various uploads.
   Each result is a `wastd_api_response` or a tibble of data (`_skip`).
 }
 \description{
-Encounters and their related observations are uploaded to TSC:
+Encounters and their related observations are uploaded to WAStD:
 }
 \details{
 * New encounters will be created

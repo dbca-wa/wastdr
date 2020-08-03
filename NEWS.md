@@ -1,3 +1,11 @@
+# wastdr 0.4.0
+## Major changes
+* The WA Sea Turtles DB (WAStD) has been separated from the Threatened Species and 
+  Communities DB (TSC). This version begins the migration of TSC functionality
+  to a dedicated R package (tscr).
+* TSC can be used with this version of wastdr.
+* Renaming and rebranding will be ongoing.
+
 # wastdr 0.3.2
 * Bugfix: `download_wastd_turtledata` called `parse_encounterobservations`
   which called `add_dates` incorrectly. Dates are now preserved and value-added

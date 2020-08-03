@@ -1,4 +1,4 @@
-#' Map Site Visit Start and End from ODK Central data over TSC Sites.
+#' Map Site Visit Start and End from ODK Central data over WAStD Sites.
 #'
 #' \lifecycle{maturing}
 #'

@@ -31,10 +31,10 @@
 #'   )
 #' }
 odkc_tracks_as_wastd_tne <- function(data, user_mapping) {
-  tsc_reporters <- user_mapping %>%
+  wastd_reporters <- user_mapping %>%
     dplyr::transmute(reporter = odkc_username, reporter_id = pk)
 
-  tsc_observers <- user_mapping %>%
+  wastd_observers <- user_mapping %>%
     dplyr::transmute(observer = odkc_username, observer_id = pk)
 
   data %>%
@@ -63,8 +63,8 @@ odkc_tracks_as_wastd_tne <- function(data, user_mapping) {
       hatchlings_measured = nest_hatchlings_measured %>% tidyr::replace_na("na"),
       fan_angles_measured = nest_fan_angles_measured %>% tidyr::replace_na("na")
     ) %>%
-    dplyr::left_join(tsc_reporters, by = "reporter") %>% # TSC User PK
-    dplyr::left_join(tsc_observers, by = "observer") %>% # TSC User PK
+    dplyr::left_join(wastd_reporters, by = "reporter") %>% # TSC User PK
+    dplyr::left_join(wastd_observers, by = "observer") %>% # TSC User PK
     dplyr::select(-reporter, -observer) # drop odkc_username
 }
 

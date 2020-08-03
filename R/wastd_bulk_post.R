@@ -1,4 +1,4 @@
-#' Post a list of records to a WAStD / TSC API endpoint
+#' Post a list of records to a WAStD or TSC API endpoint
 #'
 #' \lifecycle{maturing}
 #'

@@ -9,7 +9,7 @@ join_tsc_sites(data, sites, prefix = "observed_at_")
 \arguments{
 \item{data}{A dataframe with an optionally prefixed latitude and longitude}
 
-\item{sites}{An sf object of TSC sites}
+\item{sites}{An sf object of WAStD sites}
 
 \item{prefix}{An optional prefix to the longitude/latitude field names,
 default: "observed_at_".}

@@ -19,10 +19,10 @@
 #'   )
 #' }
 odkc_mwi_as_wastd_turtlemorph <- function(data, user_mapping) {
-  tsc_handlers <- user_mapping %>%
+  wastd_handlers <- user_mapping %>%
     dplyr::transmute(handler = odkc_username, handler_id = pk)
 
-  tsc_recorders <- user_mapping %>%
+  wastd_recorders <- user_mapping %>%
     dplyr::transmute(recorder = odkc_username, recorder_id = pk)
 
   data %>%
@@ -42,8 +42,8 @@ odkc_mwi_as_wastd_turtlemorph <- function(data, user_mapping) {
       maximum_head_width_mm = morphometrics_maximum_head_width_mm,
       maximum_head_width_accuracy = morphometrics_maximum_head_width_accuracy
     ) %>%
-    dplyr::left_join(tsc_handlers, by = "handler") %>% # TSC User PK
-    dplyr::left_join(tsc_recorders, by = "recorder") %>% # TSC User PK
+    dplyr::left_join(wastd_handlers, by = "handler") %>% # wastd User PK
+    dplyr::left_join(wastd_recorders, by = "recorder") %>% # wastd User PK
     dplyr::select(-handler, -recorder) %>% # drop odkc_username
     dplyr::filter_at(
       dplyr::vars(-source, -source_id),

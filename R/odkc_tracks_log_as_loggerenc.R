@@ -17,10 +17,10 @@
 #'   jsonlite::toJSON()
 #' }
 odkc_tracks_log_as_loggerenc <- function(data, user_mapping) {
-  tsc_reporters <- user_mapping %>%
+  wastd_reporters <- user_mapping %>%
     dplyr::transmute(reporter = odkc_username, reporter_id = pk)
 
-  tsc_observers <- user_mapping %>%
+  wastd_observers <- user_mapping %>%
     dplyr::transmute(observer = odkc_username, observer_id = pk)
 
   data %>%
@@ -41,8 +41,8 @@ odkc_tracks_log_as_loggerenc <- function(data, user_mapping) {
       deployment_status = "resighted",
       logger_id = logger_id
     ) %>%
-    dplyr::left_join(tsc_reporters, by = "reporter") %>% # TSC User PK
-    dplyr::left_join(tsc_observers, by = "observer") %>% # TSC User PK
+    dplyr::left_join(wastd_reporters, by = "reporter") %>% # wastd User PK
+    dplyr::left_join(wastd_observers, by = "observer") %>% # wastd User PK
     dplyr::select(-reporter, -observer) # drop odkc_username
 }
 

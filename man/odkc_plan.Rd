@@ -8,12 +8,12 @@ odkc_plan()
 }
 \description{
 * Download all ODKC data including attachments
-* Load existing nesting records from TSC: load only a minimal set of
+* Load existing nesting records from WAStD: load only a minimal set of
   source, source ID, QA status to determine later what to
   create / update / skip:
-  * does not exist in TSC: create (POST)
-  * exists in TSC with status "new": update (PATCH)
-  * exists in TSC with status higher than "new": skip (and message)
+  * does not exist in WAStD: create (POST)
+  * exists in WAStD with status "new": update (PATCH)
+  * exists in WAStD with status higher than "new": skip (and message)
   * Make (transform) ODKC to WAStD data
   * Load transformed data into WAStD's API (create/update/skip)
   * No QA
@@ -39,8 +39,8 @@ users_dev <- here::here("users.csv") \%>\%
   verbose = TRUE)
 
 # save point for debug
-save(atkn, aurl, vbse, updt, odkc_ex, odkc_tf, odkc_up, tsc_data, tsc_users,
-  user_mapping, file="odkc_import.RData")
+save(atkn, aurl, vbse, updt, odkc_ex, odkc_tf, odkc_up,
+wastd_data, wastd_users, user_mapping, file="odkc_import.RData")
 load("odkc_import.RData")
 
 wastdr::odkc_plan()

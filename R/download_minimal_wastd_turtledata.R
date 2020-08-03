@@ -1,6 +1,6 @@
-#' Download a minimal dataset of turtle observations from TSC
+#' Download a minimal dataset of turtle observations from WAStD
 #'
-#' @param source The TSC Encounter source, default: "odk".
+#' @param source The WAStD Encounter source, default: "odk".
 #' @param year The earliest calendar year to be returned. Default: NULL.
 #'   This value, if not NULL, will be used to construct a query parameter
 #'   \code{when_year_gte=2019}
@@ -9,13 +9,13 @@
 #' @return A list of tibbles:
 #' \itemize{
 #' \item users A tibble of user names, roles, and contact details which can be
-#'   used to resolve submitted user names to TSC user IDs
+#'   used to resolve submitted user names to WAStD user IDs
 #' \item enc A tibble of encounters (source, source ID, QA status) which can be
 #'   used to determine which encounters to create / update / skip.
 #' \item surveys A tibble of surveys reconstructed from source and year.
 #' }
 #' @export
-download_minimal_tsc_turtledata <- function(
+download_minimal_wastd_turtledata <- function(
                                             source = "odk",
                                             year = NULL,
                                             api_url = wastdr::get_wastdr_api_url(),
@@ -49,7 +49,7 @@ download_minimal_tsc_turtledata <- function(
   ) %>% wastd_parse()
 
   # Areas and sites -----------------------------------------------------------#
-  areas_sf <- wastdr::wastd_GET("area",
+  areas_sf <- wastd_GET("area",
     api_url = api_url,
     api_token = api_token,
     api_un = api_un,

@@ -3,7 +3,7 @@
 #' \lifecycle{stable}
 #'
 #' @param data A dataframe with an optionally prefixed latitude and longitude
-#' @param sites An sf object of TSC sites
+#' @param sites An sf object of WAStD sites
 #' @param prefix An optional prefix to the longitude/latitude field names,
 #'   default: "observed_at_".
 #' @return The dataframe as sf with site/area joined.

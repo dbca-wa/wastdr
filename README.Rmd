@@ -16,9 +16,9 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.path = "man/figures/R
 [![Test coverage](https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg)](https://codecov.io/gh/dbca-wa/wastdr)
 <!-- badges: end -->
 
-The [WA Strandings Database WAStD](https://tsc.dbca.wa.gov.au/) 
+The [WA Strandings Database WAStD](https://wastd.dbca.wa.gov.au/) 
 ([github](https://github.com/dbca-wa/wastd/)) 
-provides a [RESTful API](https://tsc.dbca.wa.gov.au/api/1/). 
+provides a [RESTful API](https://wastd.dbca.wa.gov.au/api/1/). 
 WAStD contains data about turtle strandings, turtle taggings, turtle track 
 and nest encounters, and some ancillary data (areas, surveys, staff).
 WAStD is accessible to authenticated staff of the 
@@ -30,7 +30,7 @@ into any standard-compliant GIS environments, e.g. [Quantum GIS](http://www.qgis
 
 If the data consumer however wishes to analyse data in a statistical package like
 R, the data need to be transformed from a nested list of lists (GeoJSON properties) 
-into a two-dimensional tablular structure. This requires knowledge about the 
+into a two-dimensional tabular structure. This requires knowledge about the 
 structure and content of the nested data from WAStD.
 
 The main purpose of `wastdr` is to facilitate reading, parsing and using WAStD data
@@ -71,13 +71,13 @@ a username / password combination.
 For convenience, `wastdr_setup` sets the correct variables, while 
 `wastdr_settings` retrieves the currently set values.
 
-DBCA staff can find their WAStD API Token at [WAStD](https://tsc.dbca.wa.gov.au/) 
+DBCA staff can find their WAStD API Token at [WAStD](https://wastd.dbca.wa.gov.au/) 
 under "My Profile" and add to their `.Renviron`.
 To use ODK Central turtle data download helpers, also add ODK Central 
 credentials.
 
 ```{r, eval=F}
-WASTDR_API_URL="https://tsc.dbca.wa.gov.au/api/1/"
+WASTDR_API_URL="https://wastd.dbca.wa.gov.au/api/1/"
 WASTDR_API_TOKEN="Token XXX"
 WASTDR_VERBOSE=TRUE
 
@@ -89,7 +89,7 @@ ODKC_PW="..."
 External collaborators can use their allocated WAStD username and password:
 
 ```{r, eval=F}
-WASTDR_API_URL="https://tsc.dbca.wa.gov.au/api/1/"
+WASTDR_API_URL="https://wastd.dbca.wa.gov.au/api/1/"
 WASTDR_API_UN="..."
 WASTDR_API_PW="..."
 WASTDR_VERBOSE=TRUE

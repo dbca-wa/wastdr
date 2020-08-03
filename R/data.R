@@ -2,7 +2,7 @@
 #'
 #' This dataset contains the truncated output from
 #' \code{\link{download_odkc_turtledata_2019}}.
-#' All TSC sites and areas are included, while all other tables are truncated
+#' All WAStD sites and areas are included, while all other tables are truncated
 #' with \code{head()}.
 #' @family included
 "odkc_data"
@@ -12,7 +12,7 @@
 #' This dataset contains the truncated output from
 #' \code{\link{download_wastd_turtledata}}.
 #' Names of observer and reporter are hidden.
-#' All TSC sites and areas are included, while all other tables are truncated
+#' All WAStD sites and areas are included, while all other tables are truncated
 #' with \code{head()}.
 #' @family included
 "wastd_data"

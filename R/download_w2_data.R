@@ -165,8 +165,11 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     janitor::clean_names() %>%
     dplyr::mutate(
       clean_name = paste(first_name, surname) %>%
-        stringr::str_replace_all("[<>()*=?]", "") %>% stringr::str_trim(),
-      clean_email = email %>% stringr::str_replace("NA", "") %>% stringr::str_trim()
+        stringr::str_replace_all("[<>()*=?]", "") %>%
+        stringr::str_trim(),
+      clean_email = email %>%
+        stringr::str_replace("NA", "") %>%
+        stringr::str_trim()
     )
 
   if (verbose == TRUE) {
@@ -374,8 +377,12 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     dplyr::mutate(
       o_date = lubridate::parse_date_time(corrected_date, orders = ord, tz = tz),
       o_time = lubridate::parse_date_time(observation_time, orders = ord, tz = tz),
-      observation_datetime_gmt08 = o_date - lubridate::days(1) + lubridate::hours(lubridate::hour(o_time)) + lubridate::minutes(lubridate::minute(o_time)),
-      observation_datetime_utc = lubridate::with_tz(observation_datetime_gmt08, tz = "UTC")
+      observation_datetime_gmt08 = o_date - lubridate::days(1) +
+        lubridate::hours(lubridate::hour(o_time)) +
+        lubridate::minutes(lubridate::minute(o_time)),
+      observation_datetime_utc = lubridate::with_tz(
+        observation_datetime_gmt08, tz = "UTC"
+      )
     ) %>%
     dplyr::select(
       -observation_date, -observation_date_old, -corrected_date, -observation_time, -o_date, -o_time

@@ -2,20 +2,20 @@
 % Please edit documentation in R/make_user_mapping.R
 \name{make_user_mapping}
 \alias{make_user_mapping}
-\title{Generate a TSC user mapping from a given list of ODKC data}
+\title{Generate a WAStD user mapping from a given list of ODKC data}
 \usage{
-make_user_mapping(odkc_data, tsc_users)
+make_user_mapping(odkc_data, wastd_users)
 }
 \arguments{
 \item{odkc_data}{The output of `wastdr::download_all_odkc_turtledata_2019`.}
 
-\item{tsc_users}{A tibble of TSC users}
+\item{wastd_users}{A tibble of WAStD users}
 }
 \description{
 Extract all unique reporter names from odkc data.
-Extract relevant user names from TSC users.
+Extract relevant user names from WAStD users.
 Map most likely match and export to CSV.
-External QA: review mapping, update TSC user aliases to improve the
+External QA: review mapping, update WAStD user aliases to improve the
 user matching process. Re-run until optimized, edit CSV to improve match.
-Return a named list containing the mapping of odkc_reporter and tsc_user_id.
+Return a named list containing the mapping of odkc_reporter and wastd_user_id.
 }

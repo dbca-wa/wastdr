@@ -1,21 +1,21 @@
-#' Top level helper to upload all Turtle Nesting Census data to TSC
+#' Top level helper to upload all Turtle Nesting Census data to WAStD
 #'
-#' Encounters and their related observations are uploaded to TSC:
+#' Encounters and their related observations are uploaded to WAStD:
 #'
 #' * New encounters will be created
 #' * Existing but unchanged (status=new) encounters will be updated
 #'   if `update_existing=TRUE`, else skipped.
 #' * Existing and value-added encounters (status > new) will be skipped.s
 #'
-#' @param data ODKC data transformed into TSC format and split into create,
+#' @param data ODKC data transformed into WAStD format and split into create,
 #'   update, skip.
 #' @param update_existing Whether to update existing but unchanged records in
-#'   TSC. Default: FALSE.
+#'   WAStD Default: FALSE.
 #' @template param-auth
 #' @template param-verbose
 #' @return A list of results from `wastd_create_update_skip`.
 #' @export
-upload_odkc_to_tsc <- function(data,
+upload_odkc_to_wastd <- function(data,
                                update_existing = FALSE,
                                api_url = wastdr::get_wastdr_api_url(),
                                api_token = wastdr::get_wastdr_api_token(),
@@ -121,6 +121,29 @@ upload_odkc_to_tsc <- function(data,
     ),
 
     # tracktally
+    tte = wastd_create_update_skip(
+      data$tte_obs_create,
+      data$tte_obs_update,
+      data$tte_obs_skip,
+      update_existing = update_existing,
+      serializer = "line-transect-encounters",
+      label = "LineTransectEncounters (Track Tally)",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
+
+    tto = wastd_create_update_skip(
+      data$tto_obs_create,
+      data$tto_obs_update,
+      data$tto_obs_skip,
+      update_existing = update_existing,
+      serializer = "track-tally",
+      label = "LineTransectEncounters (Track Tally) counts",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
 
     # MWI > AE ----------------------------------------------------------------#
     ae_mwi = wastd_create_update_skip(
@@ -217,18 +240,6 @@ upload_odkc_to_tsc <- function(data,
       update_existing = update_existing,
       serializer = "turtle-nest-disturbance-observations",
       label = "TurtleNestDisturbanceObservations (General Dist)",
-      api_url = api_url,
-      api_token = api_token,
-      verbose = verbose
-    ),
-
-    tte = wastd_create_update_skip(
-      data$tte_obs_create,
-      data$tte_obs_update,
-      data$tte_obs_skip,
-      update_existing = update_existing,
-      serializer = "line-transect-encounters",
-      label = "LineTransectEncounters (Track Tally)",
       api_url = api_url,
       api_token = api_token,
       verbose = verbose

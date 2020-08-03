@@ -2,7 +2,7 @@
 % Please edit documentation in R/map_sitevisit.R
 \name{map_sv_odkc}
 \alias{map_sv_odkc}
-\title{Map Site Visit Start and End from ODK Central data over TSC Sites.}
+\title{Map Site Visit Start and End from ODK Central data over WAStD Sites.}
 \usage{
 map_sv_odkc(
   svs,

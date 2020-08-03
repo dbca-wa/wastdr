@@ -46,6 +46,7 @@ odkc_data <- list(
   tracks_fan_outlier = head(odkc$tracks_fan_outlier),
   tracks_light = head(odkc$tracks_light),
   track_tally = head(odkc$track_tally),
+  track_tally_dist = head(odkc$track_tally_dist),
   dist = head(odkc$dist),
   mwi = head(odkc$mwi),
   mwi_dmg = head(odkc$mwi_dmg),
@@ -80,7 +81,7 @@ wastd_data$disturbance_tally <- wastd_data$disturbance_tally %>% sanitize_names(
 wastd_data$loggers <- wastd_data$loggers %>% sanitize_names()
 usethis::use_data(wastd_data, compress = "xz", overwrite = TRUE)
 
-# Generate TSC data
+# Generate data
 get_10 <- . %>%
   wastdr::wastd_GET(max_records = 10) %>%
   wastd_parse()

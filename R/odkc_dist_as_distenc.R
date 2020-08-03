@@ -20,10 +20,10 @@
 #'   jsonlite::toJSON()
 #' }
 odkc_dist_as_distenc <- function(data, user_mapping) {
-  tsc_reporters <- user_mapping %>%
+  wastd_reporters <- user_mapping %>%
     dplyr::transmute(reporter = odkc_username, reporter_id = pk)
 
-  tsc_observers <- user_mapping %>%
+  wastd_observers <- user_mapping %>%
     dplyr::transmute(observer = odkc_username, observer_id = pk)
 
   data %>%
@@ -41,8 +41,8 @@ odkc_dist_as_distenc <- function(data, user_mapping) {
       location_accuracy_m = disturbanceobservation_location_accuracy,
       when = lubridate::format_ISO8601(observation_start_time, usetz = TRUE)
     ) %>%
-    dplyr::left_join(tsc_reporters, by = "reporter") %>% # TSC User PK
-    dplyr::left_join(tsc_observers, by = "observer") %>% # TSC User PK
+    dplyr::left_join(wastd_reporters, by = "reporter") %>% # TSC User PK
+    dplyr::left_join(wastd_observers, by = "observer") %>% # TSC User PK
     dplyr::select(-reporter, -observer) # drop odkc_username
 }
 

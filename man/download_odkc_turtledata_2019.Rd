@@ -64,8 +64,8 @@ An S3 class "odkc_turtledata" with items:
         one row per sighted turtle.
   \item svs Survey start points from form "Site Visit Start 1.3".
   \item sve Survey end points from form "Site Visit End 1.2".
-  \item sites An sf object of known TSC sites.
-  \item areas An sf object of known TSC localities.
+  \item sites An sf object of known WAStD sites.
+  \item areas An sf object of known WAStD localities.
  }
 }
 \description{

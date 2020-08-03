@@ -2,7 +2,7 @@
 % Please edit documentation in R/wastd_bulk_post.R
 \name{wastd_bulk_post}
 \alias{wastd_bulk_post}
-\title{Post a list of records to a WAStD / TSC API endpoint}
+\title{Post a list of records to a WAStD or TSC API endpoint}
 \usage{
 wastd_bulk_post(
   data,

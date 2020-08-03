@@ -15,10 +15,10 @@
 #' x %>% wastd_POST("tag-observations", api_url = au, api_token = at)
 #' }
 odkc_mwi_tag_as_wastd_tagobs <- function(data, user_mapping) {
-  tsc_handlers <- user_mapping %>%
+  wastd_handlers <- user_mapping %>%
     dplyr::transmute(handler = odkc_username, handler_id = pk)
 
-  tsc_recorders <- user_mapping %>%
+  wastd_recorders <- user_mapping %>%
     dplyr::transmute(recorder = odkc_username, recorder_id = pk)
 
   data %>%
@@ -34,8 +34,8 @@ odkc_mwi_tag_as_wastd_tagobs <- function(data, user_mapping) {
       status = tag_status,
       comments = tag_comments
     ) %>%
-    dplyr::left_join(tsc_handlers, by = "handler") %>% # TSC User PK
-    dplyr::left_join(tsc_recorders, by = "recorder") %>% # TSC User PK
+    dplyr::left_join(wastd_handlers, by = "handler") %>% # wastd User PK
+    dplyr::left_join(wastd_recorders, by = "recorder") %>% # wastd User PK
     dplyr::select(-handler, -recorder) %>% # drop odkc_username
     # If data == tracks or mwi, drop all NA subgroups
     # If data == tracks_*, there are only non-NA records

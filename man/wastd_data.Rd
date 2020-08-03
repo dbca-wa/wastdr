@@ -14,7 +14,7 @@ wastd_data
 This dataset contains the truncated output from
 \code{\link{download_wastd_turtledata}}.
 Names of observer and reporter are hidden.
-All TSC sites and areas are included, while all other tables are truncated
+All WAStD sites and areas are included, while all other tables are truncated
 with \code{head()}.
 }
 \seealso{

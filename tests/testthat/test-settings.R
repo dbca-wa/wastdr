@@ -1,6 +1,6 @@
 context("wastdr_settings")
 
-au <- "https://tsc.dbca.wa.gov.au/api/1/"
+au <- "https://wastd.dbca.wa.gov.au/api/1/"
 at <- "c12345asdfqwer"
 un <- "username"
 pw <- "password"

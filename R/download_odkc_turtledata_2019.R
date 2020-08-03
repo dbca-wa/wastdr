@@ -43,8 +43,8 @@
 #'         one row per sighted turtle.
 #'   \item svs Survey start points from form "Site Visit Start 1.3".
 #'   \item sve Survey end points from form "Site Visit End 1.2".
-#'   \item sites An sf object of known TSC sites.
-#'   \item areas An sf object of known TSC localities.
+#'   \item sites An sf object of known WAStD sites.
+#'   \item areas An sf object of known WAStD localities.
 #'  }
 #' @export
 #' @family included
@@ -267,14 +267,25 @@ download_odkc_turtledata_2019 <-
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
 
-
+    # Track Tally (enc and denormalised tt obs)
     ruODK::ru_setup(
       pid = 1,
       fid = "build_Turtle-Track-Tally-0-6_1564387009",
       url = prod
     )
+    ft <- ruODK::odata_service_get()
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     tracktally_prod <- ruODK::odata_submission_get(
+      table = ft$url[1],
+      verbose = verbose,
+      wkt = TRUE,
+      local_dir = local_dir,
+      download = download,
+      odkc_version = odkc_version
+    )
+
+    tracktally_dist_prod <- ruODK::odata_submission_get(
+      table = ft$url[2],
       verbose = verbose,
       wkt = TRUE,
       local_dir = local_dir,
@@ -471,6 +482,8 @@ download_odkc_turtledata_2019 <-
       sf::st_zm() %>%
       sf::st_join(sites)
 
+    track_tally_dist <- tracktally_dist_prod
+
     odkc_turtledata <-
       structure(
         list(
@@ -483,6 +496,7 @@ download_odkc_turtledata_2019 <-
           tracks_fan_outlier = tracks_fan_outlier,
           tracks_light = tracks_light,
           track_tally = track_tally,
+          track_tally_dist = track_tally_dist,
           dist = dist,
           mwi = mwi,
           mwi_dmg = mwi_dmg,
