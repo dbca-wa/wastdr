@@ -245,6 +245,7 @@ utils::globalVariables(
     "tag_type",
     "transect",
     "tx",
-    "wastd_users"
+    "wastd_users",
+    "tally" # var name in track tally
   )
 )

@@ -337,11 +337,12 @@ track_success <- function(tracks) {
 #' track_success(wastd_data$tracks) %>% track_success_by_species()
 track_success_by_species <- function(track_success) {
   track_success %>%
-    group_by(season, species) %>%
+    dplyr::group_by(season, species) %>%
     dplyr::summarise(
       mean_nesting_success = mean(track_success) %>% round(digits = 2),
       sd_nesting_success = stats::sd(track_success) %>% round(digits = 2)
-    )
+    ) %>%
+    dplyr::ungroup()
 }
 
 
