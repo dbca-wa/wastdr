@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -122,9 +122,9 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The <a href="https://tsc.dbca.wa.gov.au/">WA Strandings Database WAStD</a> (<a href="https://github.com/dbca-wa/wastd/">github</a>) provides a <a href="https://tsc.dbca.wa.gov.au/api/1/">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Biodiversity, Conservation and Attractions. The WAStD API uses token and basic authentication, see vignette on details.</p>
+<p>The <a href="https://wastd.dbca.wa.gov.au/">WA Strandings Database WAStD</a> (<a href="https://github.com/dbca-wa/wastd/">github</a>) provides a <a href="https://wastd.dbca.wa.gov.au/api/1/">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Biodiversity, Conservation and Attractions. The WAStD API uses token and basic authentication, see vignette on details.</p>
 <p>The API returns spatially explicit data as GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. <a href="http://www.qgis.org/en/site/">Quantum GIS</a>.</p>
-<p>If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON properties) into a two-dimensional tablular structure. This requires knowledge about the structure and content of the nested data from WAStD.</p>
+<p>If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON properties) into a two-dimensional tabular structure. This requires knowledge about the structure and content of the nested data from WAStD.</p>
 <p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="https://dplyr.tidyverse.org/reference/reexports.html">dplyr::tibble</a></code>.</p>
 <p>The secondary purpose of <code>wastdr</code> is to centralize a collection of commonly used analyses and visualisations of turtle data. As development progresses, example analyses and visualisations will be added to the vignette. Contributions and requests are welcome!</p>
 <p>Lastly, to facilitate collaboration with external stakeholders, <code>wastdr</code> contains some anonymized example data (raw GeoJSON and parsed <code>tibble</code>) of turtle taggings, turtle track counts, and turtle nests.</p>
@@ -145,8 +145,8 @@
 <h2 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h2>
 <p><code>wastdr</code> requires to be configured with the WAStD API URL and an access token or a username / password combination. <code>wastdr</code> functions expect these settings to be available as environment variables. For convenience, <code>wastdr_setup</code> sets the correct variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
-<p>DBCA staff can find their WAStD API Token at <a href="https://tsc.dbca.wa.gov.au/">WAStD</a> under “My Profile” and add to their <code>.Renviron</code>. To use ODK Central turtle data download helpers, also add ODK Central credentials.</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span>
+<p>DBCA staff can find their WAStD API Token at <a href="https://wastd.dbca.wa.gov.au/">WAStD</a> under “My Profile” and add to their <code>.Renviron</code>. To use ODK Central turtle data download helpers, also add ODK Central credentials.</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://wastd.dbca.wa.gov.au/api/1/"</span>
 <span class="no">WASTDR_API_TOKEN</span><span class="kw">=</span><span class="st">"Token XXX"</span>
 <span class="no">WASTDR_VERBOSE</span><span class="kw">=</span><span class="fl">TRUE</span>
 
@@ -154,7 +154,7 @@
 <span class="no">ODKC_UN</span><span class="kw">=</span><span class="st">"..."</span>
 <span class="no">ODKC_PW</span><span class="kw">=</span><span class="st">"..."</span></pre></div>
 <p>External collaborators can use their allocated WAStD username and password:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://wastd.dbca.wa.gov.au/api/1/"</span>
 <span class="no">WASTDR_API_UN</span><span class="kw">=</span><span class="st">"..."</span>
 <span class="no">WASTDR_API_PW</span><span class="kw">=</span><span class="st">"..."</span>
 <span class="no">WASTDR_VERBOSE</span><span class="kw">=</span><span class="fl">TRUE</span>
@@ -166,7 +166,7 @@
 <div class="sourceCode" id="cb4"><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="reference/wastdr_settings.html">wastdr_settings</a></span>()
 <span class="co">#&gt; &lt;wastdr settings&gt;</span>
 <span class="co">#&gt;   WAStD URL:     https://tsc.dbca.wa.gov.au/ </span>
-<span class="co">#&gt;   API URL:       https://tsc.dbca.wa.gov.au/api/1/ </span>
+<span class="co">#&gt;   API URL:       https://wastd.dbca.wa.gov.au/api/1/ </span>
 <span class="co">#&gt;   API Token:     see wastdr::get_wastdr_api_token()</span>
 <span class="co">#&gt;   API Username:  FlorianM </span>
 <span class="co">#&gt;   API Password:  see wastdr::get_wastdr_api_pw()</span>
@@ -198,7 +198,7 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"odkc_data"</span>)
 
 <span class="no">wastd_data</span>$<span class="no">animals</span>
-<span class="co">#&gt; # A tibble: 100 x 43</span>
+<span class="co">#&gt; # A tibble: 1,000 x 46</span>
 <span class="co">#&gt;    area_name area_type area_id site_name site_type site_id survey_id</span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;</span>
 <span class="co">#&gt;  1 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
@@ -211,49 +211,50 @@
 <span class="co">#&gt;  8 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
 <span class="co">#&gt;  9 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
 <span class="co">#&gt; 10 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt; # … with 90 more rows, and 36 more variables: survey_start_time &lt;dttm&gt;,</span>
+<span class="co">#&gt; # … with 990 more rows, and 39 more variables: survey_start_time &lt;dttm&gt;,</span>
 <span class="co">#&gt; #   survey_end_time &lt;dttm&gt;, survey_start_comments &lt;chr&gt;,</span>
 <span class="co">#&gt; #   survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;, calendar_date_awst &lt;chr&gt;,</span>
 <span class="co">#&gt; #   turtle_date &lt;date&gt;, season &lt;dbl&gt;, season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   longitude &lt;dbl&gt;, latitude &lt;dbl&gt;, crs &lt;chr&gt;, location_accuracy &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   taxon &lt;chr&gt;, name &lt;chr&gt;, species &lt;chr&gt;, health &lt;chr&gt;, sex &lt;chr&gt;,</span>
-<span class="co">#&gt; #   maturity &lt;chr&gt;, habitat &lt;chr&gt;, activity &lt;chr&gt;, nesting_event &lt;chr&gt;,</span>
+<span class="co">#&gt; #   location_accuracy_m &lt;dbl&gt;, taxon &lt;chr&gt;, name &lt;chr&gt;, species &lt;chr&gt;,</span>
+<span class="co">#&gt; #   health &lt;chr&gt;, sex &lt;chr&gt;, maturity &lt;chr&gt;, habitat &lt;chr&gt;, activity &lt;chr&gt;,</span>
+<span class="co">#&gt; #   behaviour &lt;chr&gt;, comments &lt;chr&gt;, nesting_event &lt;chr&gt;,</span>
 <span class="co">#&gt; #   checked_for_injuries &lt;chr&gt;, scanned_for_pit_tags &lt;chr&gt;,</span>
 <span class="co">#&gt; #   checked_for_flipper_tags &lt;chr&gt;, cause_of_death &lt;chr&gt;,</span>
 <span class="co">#&gt; #   cause_of_death_confidence &lt;chr&gt;, absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;,</span>
 <span class="co">#&gt; #   source &lt;chr&gt;, source_id &lt;chr&gt;, encounter_type &lt;chr&gt;, status &lt;chr&gt;,</span>
 <span class="co">#&gt; #   observer &lt;chr&gt;, reporter &lt;chr&gt;</span>
 <span class="no">wastd_data</span>$<span class="no">tracks</span>
-<span class="co">#&gt; # A tibble: 100 x 56</span>
-<span class="co">#&gt;    type      pk area_pk area_area_type area_name site_pk site_area_type</span>
-<span class="co">#&gt;    &lt;chr&gt;  &lt;int&gt;   &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;         </span>
-<span class="co">#&gt;  1 Feat… 159497      13 Locality       Port Hed…      35 Site          </span>
-<span class="co">#&gt;  2 Feat… 159498      13 Locality       Port Hed…      35 Site          </span>
-<span class="co">#&gt;  3 Feat… 159499      13 Locality       Port Hed…      35 Site          </span>
-<span class="co">#&gt;  4 Feat…     80      NA &lt;NA&gt;           &lt;NA&gt;           NA &lt;NA&gt;          </span>
-<span class="co">#&gt;  5 Feat…    314      18 Locality       Perth Me…      53 Site          </span>
-<span class="co">#&gt;  6 Feat…    315      18 Locality       Perth Me…      53 Site          </span>
-<span class="co">#&gt;  7 Feat…    316      18 Locality       Perth Me…      33 Site          </span>
-<span class="co">#&gt;  8 Feat…    317      18 Locality       Perth Me…      33 Site          </span>
-<span class="co">#&gt;  9 Feat…    318      18 Locality       Perth Me…      33 Site          </span>
-<span class="co">#&gt; 10 Feat…    319      18 Locality       Perth Me…      33 Site          </span>
-<span class="co">#&gt; # … with 90 more rows, and 49 more variables: site_name &lt;chr&gt;, survey_id &lt;int&gt;,</span>
+<span class="co">#&gt; # A tibble: 1,000 x 56</span>
+<span class="co">#&gt;    type      pk source source_id encounter_type status when  latitude longitude</span>
+<span class="co">#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Feat… 159497 odk    uuid:836… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt;  2 Feat… 159498 odk    uuid:281… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt;  3 Feat… 159499 odk    uuid:19d… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt;  4 Feat…     80 paper  2015-10-… nest           proof… 2015…    -21.6      115.</span>
+<span class="co">#&gt;  5 Feat…    314 odk    uuid:f23… nest           curat… 2016…    -32.1      116.</span>
+<span class="co">#&gt;  6 Feat…    315 odk    uuid:c6f… nest           curat… 2016…    -32.1      116.</span>
+<span class="co">#&gt;  7 Feat…    316 odk    uuid:ef5… nest           new    2016…    -32.0      116.</span>
+<span class="co">#&gt;  8 Feat…    317 odk    uuid:a5c… nest           new    2016…    -32.0      116.</span>
+<span class="co">#&gt;  9 Feat…    318 odk    uuid:c6e… nest           new    2016…    -32.0      116.</span>
+<span class="co">#&gt; 10 Feat…    319 odk    uuid:829… nest           new    2016…    -32.0      116.</span>
+<span class="co">#&gt; # … with 990 more rows, and 47 more variables: crs &lt;chr&gt;,</span>
+<span class="co">#&gt; #   location_accuracy &lt;chr&gt;, leaflet_title &lt;chr&gt;, observer_pk &lt;chr&gt;,</span>
+<span class="co">#&gt; #   observer_username &lt;chr&gt;, observer_name &lt;chr&gt;, reporter_pk &lt;chr&gt;,</span>
+<span class="co">#&gt; #   reporter_username &lt;chr&gt;, reporter_name &lt;chr&gt;, comments &lt;chr&gt;,</span>
+<span class="co">#&gt; #   area_pk &lt;int&gt;, area_area_type &lt;chr&gt;, area_name &lt;chr&gt;, site_pk &lt;int&gt;,</span>
+<span class="co">#&gt; #   site_area_type &lt;chr&gt;, site_name &lt;chr&gt;, survey_id &lt;int&gt;,</span>
 <span class="co">#&gt; #   survey_site_pk &lt;int&gt;, survey_site_area_type &lt;chr&gt;, survey_site_name &lt;chr&gt;,</span>
 <span class="co">#&gt; #   survey_start_time &lt;chr&gt;, survey_end_time &lt;chr&gt;,</span>
 <span class="co">#&gt; #   survey_start_comments &lt;chr&gt;, survey_reporter_pk &lt;chr&gt;,</span>
 <span class="co">#&gt; #   survey_reporter_username &lt;chr&gt;, survey_reporter_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   survey_absolute_admin_url &lt;chr&gt;, survey_production &lt;lgl&gt;, source &lt;chr&gt;,</span>
-<span class="co">#&gt; #   source_id &lt;chr&gt;, encounter_type &lt;chr&gt;, leaflet_title &lt;chr&gt;, status &lt;chr&gt;,</span>
-<span class="co">#&gt; #   observer_pk &lt;chr&gt;, observer_username &lt;chr&gt;, observer_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   reporter_pk &lt;chr&gt;, reporter_username &lt;chr&gt;, reporter_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   comments &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, crs &lt;chr&gt;,</span>
-<span class="co">#&gt; #   location_accuracy &lt;chr&gt;, when &lt;chr&gt;, nest_age &lt;chr&gt;, nest_type &lt;chr&gt;,</span>
-<span class="co">#&gt; #   species &lt;chr&gt;, habitat &lt;chr&gt;, disturbance &lt;chr&gt;, nest_tagged &lt;chr&gt;,</span>
-<span class="co">#&gt; #   logger_found &lt;chr&gt;, eggs_counted &lt;chr&gt;, hatchlings_measured &lt;chr&gt;,</span>
-<span class="co">#&gt; #   fan_angles_measured &lt;chr&gt;, absolute_admin_url &lt;chr&gt;, datetime &lt;dttm&gt;,</span>
-<span class="co">#&gt; #   calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;, season &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, species_colours &lt;chr&gt;,</span>
-<span class="co">#&gt; #   nest_type_text &lt;chr&gt;</span>
+<span class="co">#&gt; #   survey_absolute_admin_url &lt;chr&gt;, survey_production &lt;lgl&gt;, nest_age &lt;chr&gt;,</span>
+<span class="co">#&gt; #   nest_type &lt;chr&gt;, species &lt;chr&gt;, habitat &lt;chr&gt;, disturbance &lt;chr&gt;,</span>
+<span class="co">#&gt; #   nest_tagged &lt;chr&gt;, logger_found &lt;chr&gt;, eggs_counted &lt;chr&gt;,</span>
+<span class="co">#&gt; #   hatchlings_measured &lt;chr&gt;, fan_angles_measured &lt;chr&gt;,</span>
+<span class="co">#&gt; #   absolute_admin_url &lt;chr&gt;, datetime &lt;dttm&gt;, calendar_date_awst &lt;chr&gt;,</span>
+<span class="co">#&gt; #   turtle_date &lt;date&gt;, season &lt;dbl&gt;, season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   species_colours &lt;chr&gt;, nest_type_text &lt;chr&gt;</span>
 
 <span class="no">wastd_data</span>$<span class="no">tracks</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="reference/map_tracks.html">map_tracks</a></span>(<span class="kw">sites</span> <span class="kw">=</span> <span class="no">wastd_data</span>$<span class="no">sites</span>)</pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>

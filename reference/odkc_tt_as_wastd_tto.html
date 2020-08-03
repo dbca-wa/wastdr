@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Top level helper combining all mapped data ODKC to TSC — odkc_as_tsc • wastdr</title>
+<title>Transform odkc_data$track_tally into WAStD TrackTallyObservations. — odkc_tt_as_wastd_tto • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Top level helper combining all mapped data ODKC to TSC — odkc_as_tsc" />
-<meta property="og:description" content="Top level helper combining all mapped data ODKC to TSC" />
+<meta property="og:title" content="Transform odkc_data$track_tally into WAStD TrackTallyObservations. — odkc_tt_as_wastd_tto" />
+<meta property="og:description" content="Transform odkc_data$track_tally into WAStD TrackTallyObservations." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -156,31 +156,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Top level helper combining all mapped data ODKC to TSC</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/odkc_as_tsc.R'><code>R/odkc_as_tsc.R</code></a></small>
-    <div class="hidden name"><code>odkc_as_tsc.Rd</code></div>
+    <h1>Transform odkc_data$track_tally into WAStD TrackTallyObservations.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/odkc_tt_as_wastd_tto.R'><code>R/odkc_tt_as_wastd_tto.R</code></a></small>
+    <div class="hidden name"><code>odkc_tt_as_wastd_tto.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Top level helper combining all mapped data ODKC to TSC</p>
+    <p>Transform odkc_data$track_tally into WAStD TrackTallyObservations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>odkc_as_tsc</span>(<span class='no'>odkc_data</span>, <span class='no'>user_mapping</span>)</pre>
+    <pre class="usage"><span class='fu'>odkc_tt_as_wastd_tto</span>(<span class='no'>data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>odkc_data</th>
-      <td><p>.</p></td>
-    </tr>
-    <tr>
-      <th>user_mapping</th>
-      <td><p>.</p></td>
+      <th>data</th>
+      <td><p>The tibble of Turtle Track Tallies,
+e.g. <code>odkc_data$track_tally</code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A tibble suitable to
+  <code><a href='wastd_POST.html'>wastd_POST</a>("track-tally")</code></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'># data("odkc", package = "turtleviewer")</span>
+<span class='co'># names(odkc$track_tally)</span>
+
+<span class='no'>odkc</span>$<span class='no'>track_tally</span> <span class='kw'>%&gt;%</span>
+ <span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span>() <span class='kw'>%&gt;%</span>
+ <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>starts_with</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"id"</span>, <span class='st'>"fb_"</span>, <span class='st'>"gn_"</span>, <span class='st'>"lh_"</span>, <span class='st'>"hb_"</span>, <span class='st'>"or_"</span>, <span class='st'>"unk_"</span>))) <span class='kw'>%&gt;%</span>
+ <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span>(-<span class='no'>id</span>, <span class='kw'>names_to</span><span class='kw'>=</span><span class='st'>"tracktype"</span>, <span class='kw'>values_to</span><span class='kw'>=</span><span class='st'>"tally"</span>) <span class='kw'>%&gt;%</span>
+ <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span>(<span class='st'>"tracktype"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"species"</span>, <span class='st'>"species2"</span>, <span class='st'>"no"</span>, <span class='st'>"nest_age"</span>, <span class='st'>"nest_type"</span>), <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>, <span class='kw'>extra</span><span class='kw'>=</span><span class='st'>"merge"</span>) <span class='kw'>%&gt;%</span>
+ <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='st'>"species2"</span>, -<span class='st'>"no"</span>) <span class='kw'>%&gt;%</span>
+ <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></span>(<span class='st'>"tally"</span>)
+
+
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"odkc_data"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wastdr"</span>)
+<span class='no'>tto</span> <span class='kw'>&lt;-</span> <span class='fu'>odkc_tt_as_wastd_tto</span>(<span class='no'>odkc_ex</span>$<span class='no'>track_tally</span>)
+
+<span class='no'>tto</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='wastd_POST.html'>wastd_POST</a></span>(<span class='st'>"track-tally"</span>,
+    <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WASTDR_API_DEV_URL"</span>),
+    <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WASTDR_API_DEV_TOKEN"</span>)
+  )
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

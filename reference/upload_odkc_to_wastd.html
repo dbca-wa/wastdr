@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download a minimal dataset of turtle observations from TSC — download_tsc_users • wastdr</title>
+<title>Top level helper to upload all Turtle Nesting Census data to WAStD — upload_odkc_to_wastd • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Download a minimal dataset of turtle observations from TSC — download_tsc_users" />
-<meta property="og:description" content="Download a minimal dataset of turtle observations from TSC" />
+<meta property="og:title" content="Top level helper to upload all Turtle Nesting Census data to WAStD — upload_odkc_to_wastd" />
+<meta property="og:description" content="Encounters and their related observations are uploaded to WAStD:" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -156,16 +156,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download a minimal dataset of turtle observations from TSC</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/download_tsc_users.R'><code>R/download_tsc_users.R</code></a></small>
-    <div class="hidden name"><code>download_tsc_users.Rd</code></div>
+    <h1>Top level helper to upload all Turtle Nesting Census data to WAStD</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/upload_odkc_to_wastd.R'><code>R/upload_odkc_to_wastd.R</code></a></small>
+    <div class="hidden name"><code>upload_odkc_to_wastd.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Download a minimal dataset of turtle observations from TSC</p>
+    <p>Encounters and their related observations are uploaded to WAStD:</p>
     </div>
 
-    <pre class="usage"><span class='fu'>download_tsc_users</span>(
+    <pre class="usage"><span class='fu'>upload_odkc_to_wastd</span>(
+  <span class='no'>data</span>,
+  <span class='kw'>update_existing</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
   <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
   <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
@@ -176,6 +178,16 @@
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>ODKC data transformed into WAStD format and split into create,
+update, skip.</p></td>
+    </tr>
+    <tr>
+      <th>update_existing</th>
+      <td><p>Whether to update existing but unchanged records in
+WAStD Default: FALSE.</p></td>
+    </tr>
     <tr>
       <th>api_url</th>
       <td><p>(character) The WAStD API URL,
@@ -205,8 +217,13 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of user names, roles, and contact details which can be
-  used to resolve submitted user names to TSC user IDs</p>
+    <p>A list of results from `wastd_create_update_skip`.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>* New encounters will be created
+* Existing but unchanged (status=new) encounters will be updated
+  if `update_existing=TRUE`, else skipped.
+* Existing and value-added encounters (status &gt; new) will be skipped.s</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Map Marine Wildlife Incident 0.6 — map_mwi • wastdr</title>
+<title>Download a minimal dataset of turtle observations from WAStD — download_minimal_wastd_turtledata • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Map Marine Wildlife Incident 0.6 — map_mwi" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="Download a minimal dataset of turtle observations from WAStD — download_minimal_wastd_turtledata" />
+<meta property="og:description" content="Download a minimal dataset of turtle observations from WAStD" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -156,119 +156,75 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Map Marine Wildlife Incident 0.6</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/map_mwi.R'><code>R/map_mwi.R</code></a></small>
-    <div class="hidden name"><code>map_mwi.Rd</code></div>
+    <h1>Download a minimal dataset of turtle observations from WAStD</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/download_minimal_wastd_turtledata.R'><code>R/download_minimal_wastd_turtledata.R</code></a></small>
+    <div class="hidden name"><code>download_minimal_wastd_turtledata.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
+    <p>Download a minimal dataset of turtle observations from WAStD</p>
     </div>
 
-    <pre class="usage"><span class='fu'>map_mwi</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>sites</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>wastd_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastd_url</a></span>(),
-  <span class='kw'>fmt</span> <span class='kw'>=</span> <span class='st'>"%d/%m/%Y %H:%M"</span>,
-  <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"Australia/Perth"</span>,
-  <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+    <pre class="usage"><span class='fu'>download_minimal_wastd_turtledata</span>(
+  <span class='kw'>source</span> <span class='kw'>=</span> <span class='st'>"odk"</span>,
+  <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
+  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
+  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
+  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>(),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>AnimalEncounters from WAStD.</p></td>
+      <th>source</th>
+      <td><p>The WAStD Encounter source, default: "odk".</p></td>
     </tr>
     <tr>
-      <th>sites</th>
-      <td><p>An sf object of sites with `site_name` and polygon geom, e.g.
-`turtleviewer::turtledata$sites`.</p></td>
+      <th>year</th>
+      <td><p>The earliest calendar year to be returned. Default: NULL.
+This value, if not NULL, will be used to construct a query parameter
+<code>when_year_gte=2019</code></p></td>
     </tr>
     <tr>
-      <th>wastd_url</th>
-      <td><p>The base URL for WAStD, default: <code><a href='wastdr_settings.html'>get_wastd_url()</a></code></p></td>
+      <th>api_url</th>
+      <td><p>(character) The WAStD API URL,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_url</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
     </tr>
     <tr>
-      <th>fmt</th>
-      <td><p>The desired date format, default: "d/m/Y H:M"</p></td>
+      <th>api_token</th>
+      <td><p>(character) The WAStD API token,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_token</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
     </tr>
     <tr>
-      <th>tz</th>
-      <td><p>The lubridate timezone, default: "Australia/Perth</p></td>
+      <th>api_un</th>
+      <td><p>(character) A WAStD API username,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_un</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
     </tr>
     <tr>
-      <th>cluster</th>
-      <td><p>If TRUE, cluster map markers. Default: FALSE.
-Note: In some places, the aerial background layer does not provide imagery
-at sufficient zoom levels, and therefore restricts the map zoom at levels
-where the cluster markers don't expand. Switch to "Place names" to let
-cluster markers expand.</p></td>
+      <th>api_pw</th>
+      <td><p>(character) A WAStD API password,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A leaflet map</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>A list of tibbles:</p><ul>
+<li><p>users A tibble of user names, roles, and contact details which can be
+  used to resolve submitted user names to WAStD user IDs</p></li>
+<li><p>enc A tibble of encounters (source, source ID, QA status) which can be
+  used to determine which encounters to create / update / skip.</p></li>
+<li><p>surveys A tibble of surveys reconstructed from source and year.</p></li>
+</ul>
 
-    <p>Creates a Leaflet map with an interactive legend offering to toggle
-each species separately. The maps auto-zooms to the extent of data given.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other wastd: 
-<code><a href='add_nest_labels.html'>add_nest_labels</a>()</code>,
-<code><a href='disturbance_by_season.html'>disturbance_by_season</a>()</code>,
-<code><a href='filter_alive.html'>filter_alive</a>()</code>,
-<code><a href='filter_dead.html'>filter_dead</a>()</code>,
-<code><a href='filter_disturbance.html'>filter_disturbance</a>()</code>,
-<code><a href='filter_predation.html'>filter_predation</a>()</code>,
-<code><a href='ggplot_track_success_by_date.html'>ggplot_track_success_by_date</a>()</code>,
-<code><a href='ggplot_track_successrate_by_date.html'>ggplot_track_successrate_by_date</a>()</code>,
-<code><a href='hatching_emergence_success_area.html'>hatching_emergence_success_area</a>()</code>,
-<code><a href='hatching_emergence_success_site.html'>hatching_emergence_success_site</a>()</code>,
-<code><a href='hatching_emergence_success.html'>hatching_emergence_success</a>()</code>,
-<code><a href='list_survey_count.html'>list_survey_count</a>()</code>,
-<code><a href='list_survey_effort.html'>list_survey_effort</a>()</code>,
-<code><a href='map_dist.html'>map_dist</a>()</code>,
-<code><a href='map_nests.html'>map_nests</a>()</code>,
-<code><a href='map_tracks.html'>map_tracks</a>()</code>,
-<code><a href='nesting_type_by_area_season_age_species.html'>nesting_type_by_area_season_age_species</a>()</code>,
-<code><a href='nesting_type_by_area_season_species.html'>nesting_type_by_area_season_species</a>()</code>,
-<code><a href='nesting_type_by_season_age_species.html'>nesting_type_by_season_age_species</a>()</code>,
-<code><a href='nesting_type_by_season_calendarday_age_species.html'>nesting_type_by_season_calendarday_age_species</a>()</code>,
-<code><a href='nesting_type_by_season_calendarday_species.html'>nesting_type_by_season_calendarday_species</a>()</code>,
-<code><a href='nesting_type_by_season_day_species.html'>nesting_type_by_season_day_species</a>()</code>,
-<code><a href='nesting_type_by_season_species.html'>nesting_type_by_season_species</a>()</code>,
-<code><a href='nesting_type_by_season_week_age_species.html'>nesting_type_by_season_week_age_species</a>()</code>,
-<code><a href='nesting_type_by_season_week_site_species.html'>nesting_type_by_season_week_site_species</a>()</code>,
-<code><a href='nesting_type_by_season_week_species.html'>nesting_type_by_season_week_species</a>()</code>,
-<code><a href='nesting_type_by_site_season_age_species.html'>nesting_type_by_site_season_age_species</a>()</code>,
-<code><a href='nesting_type_by_site_season_species.html'>nesting_type_by_site_season_species</a>()</code>,
-<code><a href='parse_animal_encounters.html'>parse_animal_encounters</a>()</code>,
-<code><a href='parse_area_sf.html'>parse_area_sf</a>()</code>,
-<code><a href='parse_area.html'>parse_area</a>()</code>,
-<code><a href='parse_encounterobservations.html'>parse_encounterobservations</a>()</code>,
-<code><a href='parse_surveys.html'>parse_surveys</a>()</code>,
-<code><a href='parse_turtle_nest_encounters.html'>parse_turtle_nest_encounters</a>()</code>,
-<code><a href='plot_survey_count.html'>plot_survey_count</a>()</code>,
-<code><a href='plot_survey_effort.html'>plot_survey_effort</a>()</code>,
-<code><a href='print.wastd_api_response.html'>print.wastd_api_response</a>()</code>,
-<code><a href='summarise_hatching_and_emergence_success.html'>summarise_hatching_and_emergence_success</a>()</code>,
-<code><a href='survey_count_heatmap.html'>survey_count_heatmap</a>()</code>,
-<code><a href='survey_count.html'>survey_count</a>()</code>,
-<code><a href='survey_ground_covered.html'>survey_ground_covered</a>()</code>,
-<code><a href='survey_hours_heatmap.html'>survey_hours_heatmap</a>()</code>,
-<code><a href='survey_hours_per_person.html'>survey_hours_per_person</a>()</code>,
-<code><a href='survey_hours_per_site_name_and_date.html'>survey_hours_per_site_name_and_date</a>()</code>,
-<code><a href='survey_season_site_stats.html'>survey_season_site_stats</a>()</code>,
-<code><a href='survey_season_stats.html'>survey_season_stats</a>()</code>,
-<code><a href='survey_show_detail.html'>survey_show_detail</a>()</code>,
-<code><a href='surveys_per_site_name_and_date.html'>surveys_per_site_name_and_date</a>()</code>,
-<code><a href='track_success_by_species.html'>track_success_by_species</a>()</code>,
-<code><a href='track_success.html'>track_success</a>()</code>,
-<code><a href='tracks_ts.html'>tracks_ts</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

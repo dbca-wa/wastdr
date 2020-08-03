@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -159,6 +159,19 @@
       <small>Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="wastdr-040" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.0">
+<a href="#wastdr-040" class="anchor"></a>wastdr 0.4.0</h1>
+<div id="major-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<ul>
+<li>The WA Sea Turtles DB (WAStD) has been separated from the Threatened Species and Communities DB (TSC). This version begins the migration of TSC functionality to a dedicated R package (tscr).</li>
+<li>TSC can be used with this version of wastdr.</li>
+<li>Renaming and rebranding will be ongoing.</li>
+</ul>
+</div>
+</div>
     <div id="wastdr-032" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.2">
 <a href="#wastdr-032" class="anchor"></a>wastdr 0.3.2</h1>
@@ -278,9 +291,9 @@
     <div id="wastdr-0127" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.27">
 <a href="#wastdr-0127" class="anchor"></a>wastdr 0.1.27</h1>
-<div id="major-changes" class="section level2">
+<div id="major-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Add ODK Central data wrangling.</li>
 <li>Bump to <code>R&gt;=3.5</code>.</li>
@@ -294,9 +307,9 @@
     <div id="wastdr-0123" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.23">
 <a href="#wastdr-0123" class="anchor"></a>wastdr 0.1.23</h1>
-<div id="major-changes-1" class="section level2">
+<div id="major-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-2" class="anchor"></a>Major changes</h2>
 <ul>
 <li>
 <code>wastd_GET</code> drops <code>response</code>, keeps <code>url</code>, <code>date</code>, and <code>status_code</code>. Results now always expected from WAStD in key <code>features</code>, not <code>results</code>.</li>
@@ -323,9 +336,9 @@
     <div id="wastdr-0121" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.21">
 <a href="#wastdr-0121" class="anchor"></a>wastdr 0.1.21</h1>
-<div id="major-changes-2" class="section level2">
+<div id="major-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-2" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-3" class="anchor"></a>Major changes</h2>
 </div>
 <div id="minor-changes-5" class="section level2">
 <h2 class="hasAnchor">
@@ -338,9 +351,9 @@
     <div id="wastdr-0120" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.20">
 <a href="#wastdr-0120" class="anchor"></a>wastdr 0.1.20</h1>
-<div id="major-changes-3" class="section level2">
+<div id="major-changes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-3" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-4" class="anchor"></a>Major changes</h2>
 </div>
 <div id="minor-changes-6" class="section level2">
 <h2 class="hasAnchor">
@@ -385,9 +398,9 @@
     <div id="wastdr-0119" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.19">
 <a href="#wastdr-0119" class="anchor"></a>wastdr 0.1.19</h1>
-<div id="major-changes-4" class="section level2">
+<div id="major-changes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-4" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-5" class="anchor"></a>Major changes</h2>
 <ul>
 <li>All <code>parse_</code> functions return <code>iso_week</code> and <code>season_week</code> instead of <code>week</code>. <code>season_week</code> is a useful grouper in combination with <code>season</code>.</li>
 </ul>
@@ -427,9 +440,9 @@
     <div id="wastdr-0116" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.16">
 <a href="#wastdr-0116" class="anchor"></a>wastdr 0.1.16</h1>
-<div id="major-changes-5" class="section level2">
+<div id="major-changes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-5" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-6" class="anchor"></a>Major changes</h2>
 <ul>
 <li>All <code>parse_</code> functions changed the column <code>date</code> to the more descriptive <code>turtle_date</code>, as in the date (ymd) of “the night before”. Using <code>turtle_date</code> groups turtle tagging (nightfall to sunrise) and tracks (made same night but observed the next morning) under the same date. This change requires code depending on the column <code>date</code> to be updated to <code>turtle_date</code>.</li>
 </ul>

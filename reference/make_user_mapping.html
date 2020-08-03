@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate a TSC user mapping from a given list of ODKC data — make_user_mapping • wastdr</title>
+<title>Generate a WAStD user mapping from a given list of ODKC data — make_user_mapping • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,13 +46,13 @@
 
 
 
-<meta property="og:title" content="Generate a TSC user mapping from a given list of ODKC data — make_user_mapping" />
+<meta property="og:title" content="Generate a WAStD user mapping from a given list of ODKC data — make_user_mapping" />
 <meta property="og:description" content="Extract all unique reporter names from odkc data.
-Extract relevant user names from TSC users.
+Extract relevant user names from WAStD users.
 Map most likely match and export to CSV.
-External QA: review mapping, update TSC user aliases to improve the
+External QA: review mapping, update WAStD user aliases to improve the
 user matching process. Re-run until optimized, edit CSV to improve match.
-Return a named list containing the mapping of odkc_reporter and tsc_user_id." />
+Return a named list containing the mapping of odkc_reporter and wastd_user_id." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -95,7 +95,7 @@ Return a named list containing the mapping of odkc_reporter and tsc_user_id." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -161,21 +161,21 @@ Return a named list containing the mapping of odkc_reporter and tsc_user_id." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate a TSC user mapping from a given list of ODKC data</h1>
+    <h1>Generate a WAStD user mapping from a given list of ODKC data</h1>
     <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/make_user_mapping.R'><code>R/make_user_mapping.R</code></a></small>
     <div class="hidden name"><code>make_user_mapping.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Extract all unique reporter names from odkc data.
-Extract relevant user names from TSC users.
+Extract relevant user names from WAStD users.
 Map most likely match and export to CSV.
-External QA: review mapping, update TSC user aliases to improve the
+External QA: review mapping, update WAStD user aliases to improve the
 user matching process. Re-run until optimized, edit CSV to improve match.
-Return a named list containing the mapping of odkc_reporter and tsc_user_id.</p>
+Return a named list containing the mapping of odkc_reporter and wastd_user_id.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_user_mapping</span>(<span class='no'>odkc_data</span>, <span class='no'>tsc_users</span>)</pre>
+    <pre class="usage"><span class='fu'>make_user_mapping</span>(<span class='no'>odkc_data</span>, <span class='no'>wastd_users</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,8 +185,8 @@ Return a named list containing the mapping of odkc_reporter and tsc_user_id.</p>
       <td><p>The output of `wastdr::download_all_odkc_turtledata_2019`.</p></td>
     </tr>
     <tr>
-      <th>tsc_users</th>
-      <td><p>A tibble of TSC users</p></td>
+      <th>wastd_users</th>
+      <td><p>A tibble of WAStD users</p></td>
     </tr>
     </table>
 
