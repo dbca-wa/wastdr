@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Transform odkc_data$tracks into WAStD TurtleNestHatchlingEmergenceLightSources — odkc_tracks_light_as_wastd_tnhels • wastdr</title>
+<title>Transform odkc_data$track_tally_dist into WAStD
+TurtleNestDisturbanceTallyObservation. — odkc_tt_as_wastd_tndto • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +47,10 @@
 
 
 
-<meta property="og:title" content="Transform odkc_data$tracks into WAStD TurtleNestHatchlingEmergenceLightSources — odkc_tracks_light_as_wastd_tnhels" />
-<meta property="og:description" content="Transform odkc_data$tracks into WAStD TurtleNestHatchlingEmergenceLightSources" />
+<meta property="og:title" content="Transform odkc_data$track_tally_dist into WAStD
+TurtleNestDisturbanceTallyObservation. — odkc_tt_as_wastd_tndto" />
+<meta property="og:description" content="Transform odkc_data$track_tally_dist into WAStD
+TurtleNestDisturbanceTallyObservation." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -156,40 +159,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Transform odkc_data$tracks into WAStD TurtleNestHatchlingEmergenceLightSources</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/odkc_tracks_light_as_wastd_tnhels.R'><code>R/odkc_tracks_light_as_wastd_tnhels.R</code></a></small>
-    <div class="hidden name"><code>odkc_tracks_light_as_wastd_tnhels.Rd</code></div>
+    <h1>Transform odkc_data$track_tally_dist into WAStD
+TurtleNestDisturbanceTallyObservation.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/odkc_tt_as_wastd_tndto.R'><code>R/odkc_tt_as_wastd_tndto.R</code></a></small>
+    <div class="hidden name"><code>odkc_tt_as_wastd_tndto.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Transform odkc_data$tracks into WAStD TurtleNestHatchlingEmergenceLightSources</p>
+    <p>Transform odkc_data$track_tally_dist into WAStD
+TurtleNestDisturbanceTallyObservation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>odkc_tracks_light_as_wastd_tnhels</span>(<span class='no'>data</span>)</pre>
+    <pre class="usage"><span class='fu'>odkc_tt_as_wastd_tndto</span>(<span class='no'>data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A tibble of nest_lightsources,  e.g. <code>odkc_data$tracks_light</code>.</p></td>
+      <td><p>A tibble of track_tally_dist,
+e.g. <code>odkc_data$track_tally_dist</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble suitable to
-  <code><a href='wastd_POST.html'>wastd_POST</a>("turtle-nest-hatchling-emergence-light-sources")</code></p>
+  <code><a href='wastd_POST.html'>wastd_POST</a>("turtle-nest-disturbance-tally")</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"odkc_data"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wastdr"</span>)
 <span class='no'>au</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WASTDR_API_DEV_URL"</span>)
 <span class='no'>at</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WASTDR_API_DEV_TOKEN"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>odkc_tracks_light_as_wastd_tnhels</span>(<span class='no'>odkc_ex</span>$<span class='no'>tracks_light</span>)
-<span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='wastd_POST.html'>wastd_POST</a></span>(<span class='st'>"turtle-nest-hatchling-emergence-light-sources"</span>,
-  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='no'>au</span>, <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='no'>at</span>
-)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>odkc_data</span>$<span class='no'>track_tally_dist</span> <span class='kw'>%&gt;%</span>
+  <span class='no'>odkc_tt_as_wastd_tndto</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='wastd_POST.html'>wastd_POST</a></span>(<span class='st'>"turtle-nest-disturbance-tally"</span>, <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='no'>au</span>, <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='no'>at</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
