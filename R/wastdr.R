@@ -242,6 +242,9 @@ utils::globalVariables(
     "tag_comments",
     "tag_location",
     "tag_status",
-    "tag_type"
+    "tag_type",
+    "transect",
+    "tx",
+    "wastd_users"
   )
 )

@@ -19,20 +19,8 @@ Transform odkc_data$track_tally into WAStD TrackTallyObservations.
 }
 \examples{
 \dontrun{
-# data("odkc", package = "turtleviewer")
-# names(odkc$track_tally)
-
-odkc$track_tally \%>\%
- sf_as_tbl() \%>\%
- dplyr::select(dplyr::starts_with(c("id", "fb_", "gn_", "lh_", "hb_", "or_", "unk_"))) \%>\%
- tidyr::pivot_longer(-id, names_to="tracktype", values_to="tally") \%>\%
- tidyr::separate("tracktype", c("species", "species2", "no", "nest_age", "nest_type"), sep = "_", extra="merge") \%>\%
- dplyr::select(-"species2", -"no") \%>\%
- tidyr::drop_na("tally")
-
-
 data("odkc_data", package = "wastdr")
-tto <- odkc_tt_as_wastd_tto(odkc_ex$track_tally)
+tto <- odkc_tt_as_wastd_tto(odkc_data$track_tally)
 
 tto \%>\%
   wastd_POST("track-tally",

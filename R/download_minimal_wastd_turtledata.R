@@ -15,64 +15,64 @@
 #' \item surveys A tibble of surveys reconstructed from source and year.
 #' }
 #' @export
-download_minimal_wastd_turtledata <- function(
-                                            source = "odk",
-                                            year = NULL,
-                                            api_url = wastdr::get_wastdr_api_url(),
-                                            api_token = wastdr::get_wastdr_api_token(),
-                                            api_un = wastdr::get_wastdr_api_un(),
-                                            api_pw = wastdr::get_wastdr_api_pw(),
-                                            verbose = wastdr::get_wastdr_verbose()) {
+download_minimal_wastd_turtledata <-
+  function(source = "odk",
+           year = NULL,
+           api_url = wastdr::get_wastdr_api_url(),
+           api_token = wastdr::get_wastdr_api_token(),
+           api_un = wastdr::get_wastdr_api_un(),
+           api_pw = wastdr::get_wastdr_api_pw(),
+           verbose = wastdr::get_wastdr_verbose()) {
 
-  # Encounters ----------------------------------------------------------------#
-  qry <- list(source = source)
-  if (!is.null(year)) qry["when__year__gte"] <- year
+    # Encounters ----------------------------------------------------------------#
+    qry <- list(source = source)
+    if (!is.null(year)) qry["when__year__gte"] <- year
 
-  enc <- wastd_GET("encounters-src",
-    query = qry,
-    api_url = api_url,
-    api_token = api_token,
-    api_un = api_un,
-    api_pw = api_pw,
-    verbose = verbose
-  ) %>%
-    wastd_parse() %>%
-    dplyr::select(-geometry)
+    enc <- wastd_GET("encounters-src",
+      query = qry,
+      api_url = api_url,
+      api_token = api_token,
+      api_un = api_un,
+      api_pw = api_pw,
+      verbose = verbose
+    ) %>%
+      wastd_parse() %>%
+      dplyr::select(-geometry)
 
-  # Surveys -------------------------------------------------------------------#
-  surveys <- wastd_GET("surveys",
-    api_url = api_url,
-    api_token = api_token,
-    api_un = api_un,
-    api_pw = api_pw,
-    verbose = verbose
-  ) %>% wastd_parse()
+    # Surveys -------------------------------------------------------------------#
+    surveys <- wastd_GET("surveys",
+      api_url = api_url,
+      api_token = api_token,
+      api_un = api_un,
+      api_pw = api_pw,
+      verbose = verbose
+    ) %>% wastd_parse()
 
-  # Areas and sites -----------------------------------------------------------#
-  areas_sf <- wastd_GET("area",
-    api_url = api_url,
-    api_token = api_token,
-    api_un = api_un,
-    api_pw = api_pw,
-    verbose = verbose
-  ) %>%
-    magrittr::extract2("data") %>%
-    geojsonio::as.json() %>%
-    geojsonsf::geojson_sf()
+    # Areas and sites -----------------------------------------------------------#
+    areas_sf <- wastd_GET("area",
+      api_url = api_url,
+      api_token = api_token,
+      api_un = api_un,
+      api_pw = api_pw,
+      verbose = verbose
+    ) %>%
+      magrittr::extract2("data") %>%
+      geojsonio::as.json() %>%
+      geojsonsf::geojson_sf()
 
-  areas <- areas_sf %>%
-    dplyr::filter(area_type == "Locality") %>%
-    dplyr::transmute(area_id = pk, area_name = name)
+    areas <- areas_sf %>%
+      dplyr::filter(area_type == "Locality") %>%
+      dplyr::transmute(area_id = pk, area_name = name)
 
-  sites <- areas_sf %>%
-    dplyr::filter(area_type == "Site") %>%
-    dplyr::transmute(site_id = pk, site_name = name) %>%
-    sf::st_join(areas)
+    sites <- areas_sf %>%
+      dplyr::filter(area_type == "Site") %>%
+      dplyr::transmute(site_id = pk, site_name = name) %>%
+      sf::st_join(areas)
 
-  list(
-    enc = enc,
-    surveys = surveys,
-    areas = areas,
-    sites = sites
-  )
-}
+    list(
+      enc = enc,
+      surveys = surveys,
+      areas = areas,
+      sites = sites
+    )
+  }

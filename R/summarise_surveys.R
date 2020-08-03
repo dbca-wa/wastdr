@@ -47,7 +47,6 @@ survey_ground_covered <- function(surveys, sid, kms, seas) {
 #' @template param-surveys
 #' @return A tibble with columns season, turtle_date, site_name, n
 #' (number of surveys)
-#' @importFrom dplyr group_by tally ungroup
 #' @export
 #' @family wastd
 #' @examples
@@ -67,7 +66,6 @@ surveys_per_site_name_and_date <- function(surveys) {
 #'
 #' @template param-surveys
 #' @return A tibble with columns season, turtle_date, site_name, hours_surveyed
-#' @importFrom dplyr group_by tally ungroup mutate select
 #' @export
 #' @family wastd
 survey_hours_per_site_name_and_date <- function(surveys) {
@@ -87,7 +85,6 @@ survey_hours_per_site_name_and_date <- function(surveys) {
 #' @template param-surveys
 #' @return A tibble with columns reporter, season, hours_surveyed,
 #' sorted by most to fewest hours.
-#' @importFrom dplyr group_by tally ungroup mutate select
 #' @export
 #' @family wastd
 survey_hours_per_person <- function(surveys) {
