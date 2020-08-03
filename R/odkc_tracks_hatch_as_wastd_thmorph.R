@@ -18,7 +18,7 @@ odkc_tracks_hatch_as_wastd_thmorph <- function(data) {
     sf_as_tbl() %>%
     dplyr::transmute(
       source = "odk",
-      source_id = id,
+      source_id = submissions_id,
       straight_carapace_length_mm = straight_carapace_length_mm,
       straight_carapace_width_mm = straight_carapace_width_mm,
       body_weight_g = body_weight_g

@@ -9,7 +9,7 @@
 #' data("odkc_data", package = "wastdr")
 #' au <- Sys.getenv("WASTDR_API_DEV_URL")
 #' at <- Sys.getenv("WASTDR_API_DEV_TOKEN")
-#' x <- odkc_tracks_light_as_wastd_tnhels(odkc_ex$tracks)
+#' x <- odkc_tracks_light_as_wastd_tnhels(odkc_ex$tracks_light)
 #' x %>% wastd_POST("turtle-nest-hatchling-emergence-light-sources",
 #'   api_url = au, api_token = at
 #' )
@@ -19,7 +19,7 @@ odkc_tracks_light_as_wastd_tnhels <- function(data) {
     sf_as_tbl() %>%
     dplyr::transmute(
       source = "odk",
-      source_id = id,
+      source_id = submissions_id,
       bearing_light_degrees = light_bearing_manual,
       light_source_type = light_source_type,
       light_source_description = light_source_description

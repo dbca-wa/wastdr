@@ -34,7 +34,7 @@ q2 <- list(reporter = 4)
 wastd_surveys_raw <- wastdr::wastd_GET("surveys", query = q2, max_records = 10)
 usethis::use_data(wastd_surveys_raw, compress = "xz", overwrite = TRUE)
 
-# TODO generate odkc data
+# ODKC turtle data, pre-QA
 library(turtleviewer)
 data(odkc, package = "turtleviewer")
 odkc_data <- list(

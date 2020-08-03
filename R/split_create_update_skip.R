@@ -96,6 +96,12 @@ split_create_update_skip <- function(odkc_prep, wastd_data) {
       dplyr::semi_join(enc_skip, by = "source_id"),
 
     # ttd
+    ttd_create = odkc_prep$ttd %>%
+      dplyr::anti_join(wastd_data$enc, by = "source_id"),
+    ttd_update = odkc_prep$ttd %>%
+      dplyr::semi_join(enc_update, by = "source_id"),
+    ttd_skip = odkc_prep$ttd %>%
+      dplyr::semi_join(enc_skip, by = "source_id"),
 
     # Logger Encounters -------------------------------------------------------#
     le_create = odkc_prep$le %>%

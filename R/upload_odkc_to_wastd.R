@@ -145,6 +145,19 @@ upload_odkc_to_wastd <- function(data,
       verbose = verbose
     ),
 
+    ttd = wastd_create_update_skip(
+      data$ttd_obs_create,
+      data$ttd_obs_update,
+      data$ttd_obs_skip,
+      update_existing = update_existing,
+      serializer = "turtle-nest-disturbance-tally",
+      label = "LineTransectEncounters (Track Tally) dist",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ),
+
+
     # MWI > AE ----------------------------------------------------------------#
     ae_mwi = wastd_create_update_skip(
       data$ae_mwi_create,

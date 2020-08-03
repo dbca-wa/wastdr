@@ -21,7 +21,7 @@ Transform odkc_data$tracks into WAStD TurtleNestHatchlingEmergenceLightSources
 data("odkc_data", package = "wastdr")
 au <- Sys.getenv("WASTDR_API_DEV_URL")
 at <- Sys.getenv("WASTDR_API_DEV_TOKEN")
-x <- odkc_tracks_light_as_wastd_tnhels(odkc_ex$tracks)
+x <- odkc_tracks_light_as_wastd_tnhels(odkc_ex$tracks_light)
 x \%>\% wastd_POST("turtle-nest-hatchling-emergence-light-sources",
   api_url = au, api_token = at
 )

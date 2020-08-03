@@ -79,8 +79,8 @@ odkc_as_wastd <- function(odkc_data, user_mapping) {
     # -------------------------------------------------------------------- #
     # tracktally > line tx enc, track tally obs, TN dist tally obs
     tte = odkc_tt_as_wastd_lte(odkc_data$track_tally, user_mapping),
-    tto = odkc_tt_as_wastd_tto(odkc_data$track_tally)
-    # ttd = odkc_tt_as_wastd_tndto(odkc_data$track_tally_dist)
+    tto = odkc_tt_as_wastd_tto(odkc_data$track_tally),
+    ttd = odkc_tt_as_wastd_tndto(odkc_data$track_tally_dist)
 
     # -------------------------------------------------------------------- #
     # https://github.com/dbca-wa/wastdr/issues/15

@@ -246,6 +246,10 @@ utils::globalVariables(
     "transect",
     "tx",
     "wastd_users",
-    "tally" # var name in track tally
+    "tally", # var name in track tally
+    "disturbance_comments",
+    "no_nests_disturbed",
+    "no_tracks_encountered",
+    "submissions_id"
   )
 )
