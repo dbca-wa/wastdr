@@ -32,7 +32,7 @@ odkc_dist_as_tndo <- function(data) {
       comments = disturbanceobservation_comments
     ) %>%
     dplyr::filter_at(
-      dplyr::vars(-source, -source_id),
+      dplyr::vars(-source, -source_id, -encounter_source, -encounter_source_id),
       dplyr::any_vars(!is.na(.))
     )
 }

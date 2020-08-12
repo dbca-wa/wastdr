@@ -26,7 +26,7 @@ odkc_tracks_hatch_as_wastd_thmorph <- function(data) {
       body_weight_g = body_weight_g
     ) %>%
     dplyr::filter_at(
-      dplyr::vars(-source, -source_id),
+      dplyr::vars(-source, -source_id, -encounter_source, -encounter_source_id),
       dplyr::any_vars(!is.na(.))
     )
 }

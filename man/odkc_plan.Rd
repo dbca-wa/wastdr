@@ -49,7 +49,7 @@ wastdr::wastdr_setup(api_url = Sys.getenv("WASTDR_API_TEST_URL"),
                      api_token = Sys.getenv("WASTDR_API_TEST_TOKEN"))
 Sys.setenv(ODKC_IMPORT_UPDATE_EXISTING=FALSE)
 wastdr::odkc_plan()
-drake::vis_drake_graph(odkc_plan())
+drake::vis_drake_graph(wastdr::odkc_plan())
 drake::clean()
 drake::clean(10)
 drake::make(odkc_plan())

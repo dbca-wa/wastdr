@@ -27,7 +27,7 @@ odkc_tracks_light_as_wastd_tnhels <- function(data) {
       light_source_description = light_source_description
     ) %>%
     dplyr::filter_at(
-      dplyr::vars(-source, -source_id),
+      dplyr::vars(-source, -source_id, -encounter_source, -encounter_source_id),
       dplyr::any_vars(!is.na(.))
     )
 }

@@ -26,7 +26,7 @@ odkc_mwi_dmg_as_wastd_turtledmg <- function(data) {
       description = description
     ) %>%
     dplyr::filter_at(
-      dplyr::vars(-source, -source_id),
+      dplyr::vars(-source, -source_id, -encounter_source, -encounter_source_id),
       dplyr::any_vars(!is.na(.))
     )
 }

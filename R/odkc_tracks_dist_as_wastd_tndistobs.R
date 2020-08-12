@@ -30,7 +30,7 @@ odkc_tracks_dist_as_wastd_tndistobs <- function(data) {
       comments = comments
     ) %>%
     dplyr::filter_at(
-      dplyr::vars(-source, -source_id),
+      dplyr::vars(-source, -source_id, -encounter_source, -encounter_source_id),
       dplyr::any_vars(!is.na(.))
     )
 }

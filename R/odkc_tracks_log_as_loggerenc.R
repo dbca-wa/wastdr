@@ -43,7 +43,11 @@ odkc_tracks_log_as_loggerenc <- function(data, user_mapping) {
     ) %>%
     dplyr::left_join(wastd_reporters, by = "reporter") %>% # wastd User PK
     dplyr::left_join(wastd_observers, by = "observer") %>% # wastd User PK
-    dplyr::select(-reporter, -observer) # drop odkc_username
+    dplyr::select(-reporter, -observer) %>% # drop odkc_username
+    dplyr::filter_at(
+      dplyr::vars(logger_id),
+      dplyr::any_vars(!is.na(.))
+    )
 }
 
 # usethis::use_test("odkc_tracks_log_as_loggerenc")

@@ -42,7 +42,7 @@ odkc_mwi_tag_as_wastd_tagobs <- function(data, user_mapping) {
     # If data == tracks or mwi, drop all NA subgroups
     # If data == tracks_*, there are only non-NA records
     dplyr::filter_at(
-      dplyr::vars(-source, -source_id),
+      dplyr::vars(-source, -source_id, -encounter_source, -encounter_source_id),
       dplyr::any_vars(!is.na(.))
     )
 }

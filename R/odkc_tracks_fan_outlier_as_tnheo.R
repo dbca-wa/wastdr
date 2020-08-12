@@ -27,7 +27,7 @@ odkc_tracks_fan_outlier_as_tnheo <- function(data) {
       outlier_track_comment = outlier_track_comment
     ) %>%
     dplyr::filter_at(
-      dplyr::vars(-source, -source_id),
+      dplyr::vars(-source, -source_id, -encounter_source, -encounter_source_id),
       dplyr::any_vars(!is.na(.))
     )
 }

@@ -29,7 +29,7 @@ odkc_tt_as_wastd_tndto <- function(data) {
             comments = disturbance_comments
         ) %>%
         dplyr::filter_at(
-            dplyr::vars(-source, -source_id),
+            dplyr::vars(-source, -source_id, -encounter_source, -encounter_source_id),
             dplyr::any_vars(!is.na(.))
         )
 }

@@ -48,7 +48,7 @@ odkc_mwi_as_wastd_turtlemorph <- function(data, user_mapping) {
     dplyr::left_join(wastd_recorders, by = "recorder") %>% # wastd User PK
     dplyr::select(-handler, -recorder) %>% # drop odkc_username
     dplyr::filter_at(
-      dplyr::vars(-source, -source_id),
+      dplyr::vars(-source, -source_id, -encounter_source, -encounter_source_id),
       dplyr::any_vars(!is.na(.))
     )
 }

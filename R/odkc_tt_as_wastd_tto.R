@@ -60,6 +60,10 @@ odkc_tt_as_wastd_tto <- function(data) {
                 nest_type == "nests" ~ "hatched-nest"
             ),
             tally = tally
+        ) %>%
+        dplyr::filter_at(
+            dplyr::vars(-source, -source_id, -encounter_source, -encounter_source_id),
+            dplyr::any_vars(!is.na(.))
         )
 }
 
