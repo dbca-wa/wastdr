@@ -11,24 +11,27 @@
 #' @param serializer The WAStD API serializer, default: `encounters`.
 #' @template param-auth
 #' @template param-verbose
+#' @export
 #' @return A list of three objects:
 #'
 #' * `created` The WAStD API response for all created records
 #' * `updated` The WAStD API response for all updated records
 #' * `skipped` The original records for all skipped records
-wastd_create_update_skip <- function(
-                                     data_create,
-                                     data_update,
-                                     data_skip,
-                                     update_existing = FALSE,
-                                     label = "records",
-                                     serializer = "encounters",
-                                     api_url = wastdr::get_wastdr_api_url(),
-                                     api_token = wastdr::get_wastdr_api_token(),
-                                     api_un = wastdr::get_wastdr_api_un(),
-                                     api_pw = wastdr::get_wastdr_api_pw(),
-                                     verbose = wastdr::get_wastdr_verbose()) {
-  if (nrow(data_create) > 0) {
+wastd_create_update_skip <-
+  function(
+    data_create,
+    data_update,
+    data_skip,
+    update_existing = FALSE,
+    label = "records",
+    serializer = "encounters",
+    api_url = wastdr::get_wastdr_api_url(),
+    api_token = wastdr::get_wastdr_api_token(),
+    api_un = wastdr::get_wastdr_api_un(),
+    api_pw = wastdr::get_wastdr_api_pw(),
+    verbose = wastdr::get_wastdr_verbose()) {
+
+    if (nrow(data_create) > 0) {
     "Uploading {nrow(data_create)} new {label}" %>%
       glue::glue() %>%
       wastdr_msg_info()

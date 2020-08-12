@@ -27,7 +27,7 @@ odkc_tt_as_wastd_lte <- function(data, user_mapping) {
         dplyr::mutate(transect = sf::st_as_text(tx)) %>%
         sf_as_tbl() %>%
         dplyr::transmute(
-            source = "odk",
+            source = "odk", # wastd.observations.models.SOURCE_CHOICES
             source_id = id,
             reporter = reporter,
             observer = reporter,

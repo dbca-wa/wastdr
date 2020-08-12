@@ -19,8 +19,10 @@ odkc_tt_as_wastd_tndto <- function(data) {
     data %>%
         # sf_as_tbl() %>%
         dplyr::transmute(
-            source = "odk",
-            source_id = submissions_id,
+            source = 2,
+            source_id = id,
+            encounter_source="odk",
+            encounter_source_id = submissions_id,
             disturbance_cause = disturbance_cause,
             no_nests_disturbed = no_nests_disturbed,
             no_tracks_encountered = no_tracks_encountered,

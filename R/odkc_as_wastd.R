@@ -80,13 +80,14 @@ odkc_as_wastd <- function(odkc_data, user_mapping) {
     # tracktally > line tx enc, track tally obs, TN dist tally obs
     tte = odkc_tt_as_wastd_lte(odkc_data$track_tally, user_mapping),
     tto = odkc_tt_as_wastd_tto(odkc_data$track_tally),
-    ttd = odkc_tt_as_wastd_tndto(odkc_data$track_tally_dist)
+    ttd = odkc_tt_as_wastd_tndto(odkc_data$track_tally_dist),
 
     # -------------------------------------------------------------------- #
     # https://github.com/dbca-wa/wastdr/issues/15
     # https://wastd.dbca.wa.gov.au/api/1/surveys/
     # make survey end from orphaned sve?
-    # surveys = odkc_svs_sve_to_wastd_surveys(odkc_data$svs, odkc_data$sve)
+    surveys = odkc_svs_sve_as_wastd_surveys(
+      odkc_data$svs, odkc_data$sve, user_mapping)
     #
     # ---------------------------------------------------------------------#
     # https://wastd.dbca.wa.gov.au/api/1/media-attachments/

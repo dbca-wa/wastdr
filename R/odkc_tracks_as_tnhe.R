@@ -19,8 +19,10 @@ odkc_tracks_as_tnhe <- function(data) {
   data %>%
     sf_as_tbl() %>%
     dplyr::transmute(
-      source = "odk",
+      source = 2,
       source_id = id,
+      encounter_source="odk",
+      encounter_source_id = id,
       # might need replace_na
       bearing_to_water_degrees = fan_angles_bearing_to_water_manual,
       bearing_leftmost_track_degrees = fan_angles_leftmost_track_manual,

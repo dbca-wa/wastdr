@@ -9,8 +9,6 @@ download_minimal_wastd_turtledata(
   year = NULL,
   api_url = wastdr::get_wastdr_api_url(),
   api_token = wastdr::get_wastdr_api_token(),
-  api_un = wastdr::get_wastdr_api_un(),
-  api_pw = wastdr::get_wastdr_api_pw(),
   verbose = wastdr::get_wastdr_verbose()
 )
 }
@@ -27,14 +25,14 @@ default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}
 \item{api_token}{(character) The WAStD API token,
 default \code{\link{get_wastdr_api_token}}, see \code{\link{wastdr_setup}}}
 
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
+
 \item{api_un}{(character) A WAStD API username,
 default \code{\link{get_wastdr_api_un}}, see \code{\link{wastdr_setup}}}
 
 \item{api_pw}{(character) A WAStD API password,
 default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
-
-\item{verbose}{Whether to show debug messages.
-Default: wastdr::get_wastdr_verbose()}
 }
 \value{
 A list of tibbles:

@@ -26,7 +26,7 @@ get_wastdr_verbose()
 }
 \value{
 \code{wastdr_settings} prints your base url and WAStD API key.
-\code{ckanr_setup} sets your production and test settings, while
+\code{wastdr_setup} sets your production and test settings, while
 }
 \description{
 Get or set wastdr WAStD settings

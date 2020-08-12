@@ -20,8 +20,10 @@ odkc_tracks_dist_as_wastd_tndistobs <- function(data) {
   data %>%
     sf_as_tbl() %>%
     dplyr::transmute(
-      source = "odk",
-      source_id = submissions_id,
+      source = 2,
+      source_id = id,
+      encounter_source="odk",
+      encounter_source_id = submissions_id,
       disturbance_cause = disturbance_cause,
       disturbance_cause_confidence = disturbance_cause_confidence,
       disturbance_severity = disturbance_severity,

@@ -37,22 +37,24 @@
 #' wastd_data, wastd_users, user_mapping, file="odkc_import.RData")
 #' load("odkc_import.RData")
 #'
+#' wastdr::wastdr_setup(api_url = Sys.getenv("WASTDR_API_DEV_URL"),
+#'                      api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"))
+#' wastdr::wastdr_setup(api_url = Sys.getenv("WASTDR_API_TEST_URL"),
+#'                      api_token = Sys.getenv("WASTDR_API_TEST_TOKEN"))
+#' Sys.setenv(ODKC_IMPORT_UPDATE_EXISTING=FALSE)
 #' wastdr::odkc_plan()
-#' drake::vis_drake_graph(odkc_plan())
+#' drake::vis_drake_graph(wastdr::odkc_plan())
 #' drake::clean()
+#' drake::clean(10)
 #' drake::make(odkc_plan())
 #' }
 odkc_plan <- function() {
   drake::drake_plan(
     # ------------------------------------------------------------------------ #
     # SETUP
-    #
-    # aurl = wastdr::get_wastdr_api_url(),
-    # atkn = wastdr::get_wastdr_api_token(),
-    aurl = Sys.getenv("WASTDR_API_DEV_URL"),
-    atkn = Sys.getenv("WASTDR_API_DEV_TOKEN"),
-    vbse = wastdr::get_wastdr_verbose(),
-    updt = FALSE,
+    dl_odkc = FALSE,
+    wastd_data_yr = 2019L,
+    up_ex = Sys.getenv("ODKC_IMPORT_UPDATE_EXISTING", unset = FALSE),
 
     # ------------------------------------------------------------------------ #
     # EXTRACT
@@ -64,7 +66,7 @@ odkc_plan <- function() {
     # data(odkc, package = "turtleviewer")
     # odkc_ex <- odkc
     #
-    odkc_ex = download_odkc_turtledata_2019(download = FALSE),
+    odkc_ex = download_odkc_turtledata_2019(download = dl_odkc),
     # QA Reports: data collection problems?
     # https://github.com/dbca-wa/wastdr/issues/21
 
@@ -73,7 +75,6 @@ odkc_plan <- function() {
     #
     # User mapping
     wastd_users = download_wastd_users(),
-      # api_url = aurl, api_token = atkn, verbose = vbse),
     user_mapping = make_user_mapping(odkc_ex, wastd_users),
     # QA Reports: inspect user mappings - flag dissimilar matches
     # https://github.com/dbca-wa/wastdr/issues/21
@@ -84,16 +85,13 @@ odkc_plan <- function() {
     # LOAD
     #
     # Existing data in target DB
-    wastd_data = download_minimal_wastd_turtledata(
-      api_url = aurl, api_token = atkn,
-      year = 2019, verbose = vbse),
+    wastd_data = download_minimal_wastd_turtledata(year = wastd_data_yr),
     # Skip logic
     odkc_up = split_create_update_skip(odkc_tf, wastd_data),
     # Upload
-    upload_to_wastd = upload_odkc_to_wastd(
-      api_url = aurl, api_token = atkn,
-      odkc_up, update_existing = updt, verbose = vbse)
+    upload_to_wastd = upload_odkc_to_wastd(odkc_up, update_existing = up_ex),
     # QA Reports: inspect API responses for any trouble uploading
-    # https://github.com/dbca-wa/wastdr/issues/21
+    # # https://github.com/dbca-wa/wastdr/issues/21
+    # wastd_data_full = download_wastd_turtledata()
   )
 }

@@ -26,7 +26,7 @@ odkc_tracks_log_as_loggerenc <- function(data, user_mapping) {
   data %>%
     sf_as_tbl() %>%
     dplyr::transmute(
-      source = "odk",
+      source = "odk", # wastd.observations.models.SOURCE_CHOICES
       source_id = id,
       reporter = reporter,
       observer = reporter,

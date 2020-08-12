@@ -16,8 +16,10 @@ odkc_tracks_as_wastd_nestobs <- function(data) {
   data %>%
     sf_as_tbl() %>%
     dplyr::transmute(
-      source = "odk",
+      source = 2,
       source_id = id,
+      encounter_source="odk",
+      encounter_source_id = id,
       nest_position = nest_habitat,
       no_egg_shells = egg_count_no_egg_shells,
       no_live_hatchlings = egg_count_no_live_hatchlings,

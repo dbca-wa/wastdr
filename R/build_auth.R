@@ -9,7 +9,9 @@ build_auth <- function(api_token = get_wastdr_api_token(),
                        api_pw = get_wastdr_api_pw(),
                        api_url = get_wastdr_api_url(),
                        verbose = get_wastdr_verbose()) {
-  if (is.null(api_token)) {
+  if (!is.null(api_token)) {
+    auth <- httr::add_headers(c(Authorization = api_token))
+  } else {
     if (verbose == TRUE) {
       wastdr_msg_info("No API token found, using BasicAuth.")
     }
@@ -20,8 +22,6 @@ build_auth <- function(api_token = get_wastdr_api_token(),
       wastdr_msg_abort("BasicAuth requires an API password.")
     }
     auth <- httr::authenticate(api_un, api_pw, type = "basic")
-  } else {
-    auth <- httr::add_headers(c(Authorization = api_token))
   }
 }
 

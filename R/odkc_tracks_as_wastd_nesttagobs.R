@@ -16,8 +16,10 @@ odkc_tracks_as_wastd_nesttagobs <- function(data) {
   data %>%
     sf_as_tbl() %>%
     dplyr::transmute(
-      source = "odk",
+      source = 2,
       source_id = id,
+      encounter_source="odk",
+      encounter_source_id = id,
       status = nest_tag_status,
       flipper_tag_id = nest_tag_flipper_tag_id,
       tag_label = nest_tag_tag_label,

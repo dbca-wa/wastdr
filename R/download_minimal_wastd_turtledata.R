@@ -20,8 +20,6 @@ download_minimal_wastd_turtledata <-
            year = NULL,
            api_url = wastdr::get_wastdr_api_url(),
            api_token = wastdr::get_wastdr_api_token(),
-           api_un = wastdr::get_wastdr_api_un(),
-           api_pw = wastdr::get_wastdr_api_pw(),
            verbose = wastdr::get_wastdr_verbose()) {
 
     # Encounters ----------------------------------------------------------------#
@@ -32,8 +30,6 @@ download_minimal_wastd_turtledata <-
       query = qry,
       api_url = api_url,
       api_token = api_token,
-      api_un = api_un,
-      api_pw = api_pw,
       verbose = verbose
     ) %>%
       wastd_parse() %>%
@@ -43,8 +39,6 @@ download_minimal_wastd_turtledata <-
     surveys <- wastd_GET("surveys",
       api_url = api_url,
       api_token = api_token,
-      api_un = api_un,
-      api_pw = api_pw,
       verbose = verbose
     ) %>% wastd_parse()
 
@@ -52,8 +46,6 @@ download_minimal_wastd_turtledata <-
     areas_sf <- wastd_GET("area",
       api_url = api_url,
       api_token = api_token,
-      api_un = api_un,
-      api_pw = api_pw,
       verbose = verbose
     ) %>%
       magrittr::extract2("data") %>%

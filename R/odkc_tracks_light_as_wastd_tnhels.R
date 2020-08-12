@@ -18,8 +18,10 @@ odkc_tracks_light_as_wastd_tnhels <- function(data) {
   data %>%
     sf_as_tbl() %>%
     dplyr::transmute(
-      source = "odk",
-      source_id = submissions_id,
+      source = 2,
+      source_id = id,
+      encounter_source="odk",
+      encounter_source_id = submissions_id,
       bearing_light_degrees = light_bearing_manual,
       light_source_type = light_source_type,
       light_source_description = light_source_description

@@ -32,6 +32,7 @@
 #' @family included
 download_wastd_turtledata <- function(max_records = NULL,
                                       verbose = get_wastdr_verbose()) {
+  # Areas ---------------------------------------------------------------------#
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading Areas...")
   }
@@ -46,6 +47,7 @@ download_wastd_turtledata <- function(max_records = NULL,
     dplyr::transmute(site_id = pk, site_name = name) %>%
     sf::st_join(areas)
 
+  # AnimalEncounters ----------------------------------------------------------#
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading AnimalEncounters 2016 and on...")
   }
@@ -78,6 +80,8 @@ download_wastd_turtledata <- function(max_records = NULL,
   turtle_dmg <- "turtle-damage-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations()
+
+  # TurtleNestEncounters ------------------------------------------------------#
 
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading TurtleNestEncounters...")
@@ -160,6 +164,13 @@ download_wastd_turtledata <- function(max_records = NULL,
     wastdr::parse_encounterobservations() %>%
     dplyr::left_join(tracks_subset, by = "pk")
 
+  # LoggerEncounters ----------------------------------------------------------#
+  if (verbose == TRUE) {
+    wastdr_msg_info("Downloading LoggerEncounters...")
+  }
+  loggers <- "logger-encounters" %>%
+    wastdr::wastd_GET(max_records = max_records) %>%
+    wastdr::wastd_parse()
 
   # Track Tallies -------------------------------------------------------------#
   if (verbose == TRUE) wastdr_msg_info("Downloading LineTransectEncounters...")
@@ -184,13 +195,6 @@ download_wastd_turtledata <- function(max_records = NULL,
   surveys <- "surveys" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_surveys()
-
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading LoggerEncounters...")
-  }
-  loggers <- "logger-encounters" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::wastd_parse()
 
   structure(
     list(

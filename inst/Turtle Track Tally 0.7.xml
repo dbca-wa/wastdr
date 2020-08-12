@@ -1,0 +1,1010 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>Turtle Track Tally 0.7</h:title>
+    <model>
+      <instance>
+        <data id="build_Turtle-Track-Tally-0-7_1596509970">
+          <meta>
+            <instanceID/>
+          </meta>
+          <observation_start_time/>
+          <reporter/>
+          <device_id/>
+          <overview>
+            <location/>
+            <fb_evidence>
+              absent
+            </fb_evidence>
+            <gn_evidence>
+              absent
+            </gn_evidence>
+            <hb_evidence>
+              absent
+            </hb_evidence>
+            <lh_evidence>
+              absent
+            </lh_evidence>
+            <or_evidence>
+              absent
+            </or_evidence>
+            <unk_evidence>
+              absent
+            </unk_evidence>
+            <predation_evidence>
+              absent
+            </predation_evidence>
+            <training_record>
+              0
+            </training_record>
+          </overview>
+          <fb>
+            <fb_no_old_tracks>
+              0
+            </fb_no_old_tracks>
+            <fb_no_fresh_successful_crawls>
+              0
+            </fb_no_fresh_successful_crawls>
+            <fb_no_fresh_false_crawls>
+              0
+            </fb_no_fresh_false_crawls>
+            <fb_no_fresh_tracks_unsure>
+              0
+            </fb_no_fresh_tracks_unsure>
+            <fb_no_fresh_tracks_not_assessed>
+              0
+            </fb_no_fresh_tracks_not_assessed>
+            <fb_no_hatched_nests>
+              0
+            </fb_no_hatched_nests>
+          </fb>
+          <gn>
+            <gn_no_old_tracks>
+              0
+            </gn_no_old_tracks>
+            <gn_no_fresh_successful_crawls>
+              0
+            </gn_no_fresh_successful_crawls>
+            <gn_no_fresh_false_crawls>
+              0
+            </gn_no_fresh_false_crawls>
+            <gn_no_fresh_tracks_unsure>
+              0
+            </gn_no_fresh_tracks_unsure>
+            <gn_no_fresh_tracks_not_assessed>
+              0
+            </gn_no_fresh_tracks_not_assessed>
+            <gn_no_hatched_nests>
+              0
+            </gn_no_hatched_nests>
+          </gn>
+          <hb>
+            <hb_no_old_tracks>
+              0
+            </hb_no_old_tracks>
+            <hb_no_fresh_successful_crawls>
+              0
+            </hb_no_fresh_successful_crawls>
+            <hb_no_fresh_false_crawls>
+              0
+            </hb_no_fresh_false_crawls>
+            <hb_no_fresh_tracks_unsure>
+              0
+            </hb_no_fresh_tracks_unsure>
+            <hb_no_fresh_tracks_not_assessed>
+              0
+            </hb_no_fresh_tracks_not_assessed>
+            <hb_no_hatched_nests>
+              0
+            </hb_no_hatched_nests>
+          </hb>
+          <lh>
+            <lh_no_old_tracks>
+              0
+            </lh_no_old_tracks>
+            <lh_no_fresh_successful_crawls>
+              0
+            </lh_no_fresh_successful_crawls>
+            <lh_no_fresh_false_crawls>
+              0
+            </lh_no_fresh_false_crawls>
+            <lh_no_fresh_tracks_unsure>
+              0
+            </lh_no_fresh_tracks_unsure>
+            <lh_no_fresh_tracks_not_assessed>
+              0
+            </lh_no_fresh_tracks_not_assessed>
+            <lh_no_hatched_nests>
+              0
+            </lh_no_hatched_nests>
+          </lh>
+          <or>
+            <or_no_old_tracks>
+              0
+            </or_no_old_tracks>
+            <or_no_fresh_successful_crawls>
+              0
+            </or_no_fresh_successful_crawls>
+            <or_no_fresh_false_crawls>
+              0
+            </or_no_fresh_false_crawls>
+            <or_no_fresh_tracks_unsure>
+              0
+            </or_no_fresh_tracks_unsure>
+            <or_no_fresh_tracks_not_assessed>
+              0
+            </or_no_fresh_tracks_not_assessed>
+            <or_no_hatched_nests>
+              0
+            </or_no_hatched_nests>
+          </or>
+          <unk>
+            <unk_no_old_tracks>
+              0
+            </unk_no_old_tracks>
+            <unk_no_fresh_successful_crawls>
+              0
+            </unk_no_fresh_successful_crawls>
+            <unk_no_fresh_false_crawls>
+              0
+            </unk_no_fresh_false_crawls>
+            <unk_no_fresh_tracks_unsure>
+              0
+            </unk_no_fresh_tracks_unsure>
+            <unk_no_fresh_tracks_not_assessed>
+              0
+            </unk_no_fresh_tracks_not_assessed>
+            <unk_no_hatched_nests>
+              0
+            </unk_no_hatched_nests>
+          </unk>
+          <disturbance jr:template="">
+            <disturbance_cause/>
+            <no_nests_disturbed>
+              0
+            </no_nests_disturbed>
+            <no_tracks_encountered/>
+            <disturbance_comments/>
+          </disturbance>
+          <observation_end_time/>
+          <untitled2/>
+          <untitled3>
+          </untitled3>
+          <untitled4/>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="English">
+          <text id="/data/overview:label">
+            <value>Overview</value>
+          </text>
+          <text id="/data/overview/location:label">
+            <value>Survey path</value>
+          </text>
+          <text id="/data/overview/location:hint">
+            <value>Record entire path while keeping paper tally</value>
+          </text>
+          <text id="/data/overview/fb_evidence:label">
+            <value>Flatbacks</value>
+          </text>
+          <text id="/data/overview/fb_evidence:hint">
+            <value></value>
+          </text>
+          <text id="/data/overview/fb_evidence:option0">
+            <value>Confirmed present</value>
+          </text>
+          <text id="/data/overview/fb_evidence:option1">
+            <value>Confirmed absent</value>
+          </text>
+          <text id="/data/overview/gn_evidence:label">
+            <value>Greens</value>
+          </text>
+          <text id="/data/overview/gn_evidence:option0">
+            <value>Confirmed present</value>
+          </text>
+          <text id="/data/overview/gn_evidence:option1">
+            <value>Confirmed absent</value>
+          </text>
+          <text id="/data/overview/hb_evidence:label">
+            <value>Hawksbills</value>
+          </text>
+          <text id="/data/overview/hb_evidence:hint">
+            <value></value>
+          </text>
+          <text id="/data/overview/hb_evidence:option0">
+            <value>Confirmed present</value>
+          </text>
+          <text id="/data/overview/hb_evidence:option1">
+            <value>Confirmed absent</value>
+          </text>
+          <text id="/data/overview/lh_evidence:label">
+            <value>Loggerheads</value>
+          </text>
+          <text id="/data/overview/lh_evidence:hint">
+            <value></value>
+          </text>
+          <text id="/data/overview/lh_evidence:option0">
+            <value>Confirmed present</value>
+          </text>
+          <text id="/data/overview/lh_evidence:option1">
+            <value>Confirmed absent</value>
+          </text>
+          <text id="/data/overview/or_evidence:label">
+            <value>Olive Ridleys</value>
+          </text>
+          <text id="/data/overview/or_evidence:hint">
+            <value></value>
+          </text>
+          <text id="/data/overview/or_evidence:option0">
+            <value>Confirmed present</value>
+          </text>
+          <text id="/data/overview/or_evidence:option1">
+            <value>Confirmed absent</value>
+          </text>
+          <text id="/data/overview/unk_evidence:label">
+            <value>Unknown turtles</value>
+          </text>
+          <text id="/data/overview/unk_evidence:hint">
+            <value></value>
+          </text>
+          <text id="/data/overview/unk_evidence:option0">
+            <value>Confirmed present</value>
+          </text>
+          <text id="/data/overview/unk_evidence:option1">
+            <value>Confirmed absent</value>
+          </text>
+          <text id="/data/overview/predation_evidence:label">
+            <value>Predation, damage or predator presence</value>
+          </text>
+          <text id="/data/overview/predation_evidence:hint">
+            <value></value>
+          </text>
+          <text id="/data/overview/predation_evidence:option0">
+            <value>Confirmed present</value>
+          </text>
+          <text id="/data/overview/predation_evidence:option1">
+            <value>Confirmed absent</value>
+          </text>
+          <text id="/data/overview/training_record:label">
+            <value>Training and testing</value>
+          </text>
+          <text id="/data/overview/training_record:hint">
+            <value>Discard this record as test/training?</value>
+          </text>
+          <text id="/data/overview/training_record:option0">
+            <value>Real record, keep</value>
+          </text>
+          <text id="/data/overview/training_record:option1">
+            <value>Training record, discard</value>
+          </text>
+          <text id="/data/fb:label">
+            <value>Flatback</value>
+          </text>
+          <text id="/data/fb/fb_no_old_tracks:label">
+            <value>Number of old tracks</value>
+          </text>
+          <text id="/data/fb/fb_no_old_tracks:hint">
+            <value>track older than 24h</value>
+          </text>
+          <text id="/data/fb/fb_no_fresh_successful_crawls:label">
+            <value>Number of fresh tracks with nest</value>
+          </text>
+          <text id="/data/fb/fb_no_fresh_successful_crawls:hint">
+            <value>track with nest</value>
+          </text>
+          <text id="/data/fb/fb_no_fresh_false_crawls:label">
+            <value>Number of fresh tracks without nest</value>
+          </text>
+          <text id="/data/fb/fb_no_fresh_false_crawls:hint">
+            <value>track without nest</value>
+          </text>
+          <text id="/data/fb/fb_no_fresh_tracks_unsure:label">
+            <value>Number of fresh tracks unsure of nest</value>
+          </text>
+          <text id="/data/fb/fb_no_fresh_tracks_unsure:hint">
+            <value>did check, couldn't tell</value>
+          </text>
+          <text id="/data/fb/fb_no_fresh_tracks_not_assessed:label">
+            <value>Number of fresh tracks not assessed</value>
+          </text>
+          <text id="/data/fb/fb_no_fresh_tracks_not_assessed:hint">
+            <value>did not check for nest</value>
+          </text>
+          <text id="/data/fb/fb_no_hatched_nests:label">
+            <value>Number of hatched nests</value>
+          </text>
+          <text id="/data/fb/fb_no_hatched_nests:hint">
+            <value></value>
+          </text>
+          <text id="/data/gn:label">
+            <value>Green</value>
+          </text>
+          <text id="/data/gn/gn_no_old_tracks:label">
+            <value>Number of old tracks</value>
+          </text>
+          <text id="/data/gn/gn_no_old_tracks:hint">
+            <value>track older than 24h</value>
+          </text>
+          <text id="/data/gn/gn_no_fresh_successful_crawls:label">
+            <value>Number of fresh tracks with nest</value>
+          </text>
+          <text id="/data/gn/gn_no_fresh_successful_crawls:hint">
+            <value>track with nest</value>
+          </text>
+          <text id="/data/gn/gn_no_fresh_false_crawls:label">
+            <value>Number of fresh tracks without nest</value>
+          </text>
+          <text id="/data/gn/gn_no_fresh_false_crawls:hint">
+            <value>track without nest</value>
+          </text>
+          <text id="/data/gn/gn_no_fresh_tracks_unsure:label">
+            <value>Number of fresh tracks unsure of nest</value>
+          </text>
+          <text id="/data/gn/gn_no_fresh_tracks_unsure:hint">
+            <value>did check, couldn't tell</value>
+          </text>
+          <text id="/data/gn/gn_no_fresh_tracks_not_assessed:label">
+            <value>Number of fresh tracks not assessed</value>
+          </text>
+          <text id="/data/gn/gn_no_fresh_tracks_not_assessed:hint">
+            <value>did not check for nest</value>
+          </text>
+          <text id="/data/gn/gn_no_hatched_nests:label">
+            <value>Number of hatched nests</value>
+          </text>
+          <text id="/data/gn/gn_no_hatched_nests:hint">
+            <value></value>
+          </text>
+          <text id="/data/hb:label">
+            <value>Hawksbill</value>
+          </text>
+          <text id="/data/hb/hb_no_old_tracks:label">
+            <value>Number of old tracks</value>
+          </text>
+          <text id="/data/hb/hb_no_old_tracks:hint">
+            <value>track older than 24h</value>
+          </text>
+          <text id="/data/hb/hb_no_fresh_successful_crawls:label">
+            <value>Number of fresh tracks with nest</value>
+          </text>
+          <text id="/data/hb/hb_no_fresh_successful_crawls:hint">
+            <value>track with nest</value>
+          </text>
+          <text id="/data/hb/hb_no_fresh_false_crawls:label">
+            <value>Number of fresh tracks without nest</value>
+          </text>
+          <text id="/data/hb/hb_no_fresh_false_crawls:hint">
+            <value>track without nest</value>
+          </text>
+          <text id="/data/hb/hb_no_fresh_tracks_unsure:label">
+            <value>Number of fresh tracks unsure of nest</value>
+          </text>
+          <text id="/data/hb/hb_no_fresh_tracks_unsure:hint">
+            <value>did check, couldn't tell</value>
+          </text>
+          <text id="/data/hb/hb_no_fresh_tracks_not_assessed:label">
+            <value>Number of fresh tracks not assessed</value>
+          </text>
+          <text id="/data/hb/hb_no_fresh_tracks_not_assessed:hint">
+            <value>did not check for nest</value>
+          </text>
+          <text id="/data/hb/hb_no_hatched_nests:label">
+            <value>Number of hatched nests</value>
+          </text>
+          <text id="/data/hb/hb_no_hatched_nests:hint">
+            <value></value>
+          </text>
+          <text id="/data/lh:label">
+            <value>Loggerhead</value>
+          </text>
+          <text id="/data/lh/lh_no_old_tracks:label">
+            <value>Number of old tracks</value>
+          </text>
+          <text id="/data/lh/lh_no_old_tracks:hint">
+            <value>track older than 24h</value>
+          </text>
+          <text id="/data/lh/lh_no_fresh_successful_crawls:label">
+            <value>Number of fresh tracks with nest</value>
+          </text>
+          <text id="/data/lh/lh_no_fresh_successful_crawls:hint">
+            <value>track with nest</value>
+          </text>
+          <text id="/data/lh/lh_no_fresh_false_crawls:label">
+            <value>Number of fresh tracks without nest</value>
+          </text>
+          <text id="/data/lh/lh_no_fresh_false_crawls:hint">
+            <value>track without nest</value>
+          </text>
+          <text id="/data/lh/lh_no_fresh_tracks_unsure:label">
+            <value>Number of fresh tracks unsure of nest</value>
+          </text>
+          <text id="/data/lh/lh_no_fresh_tracks_unsure:hint">
+            <value>did check, couldn't tell</value>
+          </text>
+          <text id="/data/lh/lh_no_fresh_tracks_not_assessed:label">
+            <value>Number of fresh tracks not assessed</value>
+          </text>
+          <text id="/data/lh/lh_no_fresh_tracks_not_assessed:hint">
+            <value>did not check for nest</value>
+          </text>
+          <text id="/data/lh/lh_no_hatched_nests:label">
+            <value>Number of hatched nests</value>
+          </text>
+          <text id="/data/lh/lh_no_hatched_nests:hint">
+            <value></value>
+          </text>
+          <text id="/data/or:label">
+            <value>Olive Ridley</value>
+          </text>
+          <text id="/data/or/or_no_old_tracks:label">
+            <value>Number of old tracks</value>
+          </text>
+          <text id="/data/or/or_no_old_tracks:hint">
+            <value>track older than 24h</value>
+          </text>
+          <text id="/data/or/or_no_fresh_successful_crawls:label">
+            <value>Number of fresh tracks with nest</value>
+          </text>
+          <text id="/data/or/or_no_fresh_successful_crawls:hint">
+            <value>track with nest</value>
+          </text>
+          <text id="/data/or/or_no_fresh_false_crawls:label">
+            <value>Number of fresh tracks without nest</value>
+          </text>
+          <text id="/data/or/or_no_fresh_false_crawls:hint">
+            <value>track without nest</value>
+          </text>
+          <text id="/data/or/or_no_fresh_tracks_unsure:label">
+            <value>Number of fresh tracks unsure of nest</value>
+          </text>
+          <text id="/data/or/or_no_fresh_tracks_unsure:hint">
+            <value>did check, couldn't tell</value>
+          </text>
+          <text id="/data/or/or_no_fresh_tracks_not_assessed:label">
+            <value>Number of fresh tracks not assessed</value>
+          </text>
+          <text id="/data/or/or_no_fresh_tracks_not_assessed:hint">
+            <value>did not check for nest</value>
+          </text>
+          <text id="/data/or/or_no_hatched_nests:label">
+            <value>Number of hatched nests</value>
+          </text>
+          <text id="/data/or/or_no_hatched_nests:hint">
+            <value></value>
+          </text>
+          <text id="/data/unk:label">
+            <value>Unknown turtle</value>
+          </text>
+          <text id="/data/unk/unk_no_old_tracks:label">
+            <value>Number of old tracks</value>
+          </text>
+          <text id="/data/unk/unk_no_old_tracks:hint">
+            <value>track older than 24h</value>
+          </text>
+          <text id="/data/unk/unk_no_fresh_successful_crawls:label">
+            <value>Number of fresh tracks with nest</value>
+          </text>
+          <text id="/data/unk/unk_no_fresh_successful_crawls:hint">
+            <value>track with nest</value>
+          </text>
+          <text id="/data/unk/unk_no_fresh_false_crawls:label">
+            <value>Number of fresh tracks without nest</value>
+          </text>
+          <text id="/data/unk/unk_no_fresh_false_crawls:hint">
+            <value>track without nest</value>
+          </text>
+          <text id="/data/unk/unk_no_fresh_tracks_unsure:label">
+            <value>Number of fresh tracks unsure of nest</value>
+          </text>
+          <text id="/data/unk/unk_no_fresh_tracks_unsure:hint">
+            <value>did check, couldn't tell</value>
+          </text>
+          <text id="/data/unk/unk_no_fresh_tracks_not_assessed:label">
+            <value>Number of fresh tracks not assessed</value>
+          </text>
+          <text id="/data/unk/unk_no_fresh_tracks_not_assessed:hint">
+            <value>did not check for nest</value>
+          </text>
+          <text id="/data/unk/unk_no_hatched_nests:label">
+            <value>Number of hatched nests</value>
+          </text>
+          <text id="/data/unk/unk_no_hatched_nests:hint">
+            <value></value>
+          </text>
+          <text id="/data/disturbance:label">
+            <value>Nest predation or disturbance</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:label">
+            <value>Predator or disturbance cause</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:hint">
+            <value>who did it</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option0">
+            <value>Another turtle</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option1">
+            <value>Bandicoot</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option2">
+            <value>Bird</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option3">
+            <value>Crab</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option4">
+            <value>Croc</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option5">
+            <value>Cyclone</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option6">
+            <value>Dingo</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option7">
+            <value>Dog</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option8">
+            <value>Fox</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option9">
+            <value>Goanna</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option10">
+            <value>Human</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option11">
+            <value>Pig</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option12">
+            <value>Tide</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option13">
+            <value>Vehicle</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option14">
+            <value>Unknown</value>
+          </text>
+          <text id="/data/disturbance/disturbance_cause:option15">
+            <value>Other, see comments</value>
+          </text>
+          <text id="/data/disturbance/no_nests_disturbed:label">
+            <value>Number of nests disturbed</value>
+          </text>
+          <text id="/data/disturbance/no_nests_disturbed:hint">
+            <value>nests of all turtle species</value>
+          </text>
+          <text id="/data/disturbance/no_tracks_encountered:label">
+            <value>Number of tracks or signs of presence</value>
+          </text>
+          <text id="/data/disturbance/no_tracks_encountered:hint">
+            <value>if applicable</value>
+          </text>
+          <text id="/data/disturbance/disturbance_comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/untitled3:label">
+            <value></value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/overview/location" type="geotrace" required="true()"/>
+      <bind nodeset="/data/overview/fb_evidence" type="select1" required="true()"/>
+      <bind nodeset="/data/overview/gn_evidence" type="select1" required="true()"/>
+      <bind nodeset="/data/overview/hb_evidence" type="select1" required="true()"/>
+      <bind nodeset="/data/overview/lh_evidence" type="select1" required="true()"/>
+      <bind nodeset="/data/overview/or_evidence" type="select1" required="true()"/>
+      <bind nodeset="/data/overview/unk_evidence" type="select1" required="true()"/>
+      <bind nodeset="/data/overview/predation_evidence" type="select1" required="true()"/>
+      <bind nodeset="/data/overview/training_record" type="select1" required="true()"/>
+      <bind nodeset="/data/fb" relevant="(/data/overview/fb_evidence='present')"/>
+      <bind nodeset="/data/fb/fb_no_old_tracks" type="int" required="true()" relevant="(/data/overview/fb_evidence='present')"/>
+      <bind nodeset="/data/fb/fb_no_fresh_successful_crawls" type="int" required="true()" relevant="(/data/overview/fb_evidence='present')"/>
+      <bind nodeset="/data/fb/fb_no_fresh_false_crawls" type="int" required="true()" relevant="(/data/overview/fb_evidence='present')"/>
+      <bind nodeset="/data/fb/fb_no_fresh_tracks_unsure" type="int" required="true()" relevant="(/data/overview/fb_evidence='present')"/>
+      <bind nodeset="/data/fb/fb_no_fresh_tracks_not_assessed" type="int" required="true()" relevant="(/data/overview/fb_evidence='present')"/>
+      <bind nodeset="/data/fb/fb_no_hatched_nests" type="int" required="true()" relevant="(/data/overview/fb_evidence='present')"/>
+      <bind nodeset="/data/gn" relevant="(/data/overview/gn_evidence='present')"/>
+      <bind nodeset="/data/gn/gn_no_old_tracks" type="int" required="true()" relevant="(/data/overview/gn_evidence='present')"/>
+      <bind nodeset="/data/gn/gn_no_fresh_successful_crawls" type="int" required="true()" relevant="(/data/overview/gn_evidence='present')"/>
+      <bind nodeset="/data/gn/gn_no_fresh_false_crawls" type="int" required="true()" relevant="(/data/overview/gn_evidence='present')"/>
+      <bind nodeset="/data/gn/gn_no_fresh_tracks_unsure" type="int" required="true()" relevant="(/data/overview/gn_evidence='present')"/>
+      <bind nodeset="/data/gn/gn_no_fresh_tracks_not_assessed" type="int" required="true()" relevant="(/data/overview/gn_evidence='present')"/>
+      <bind nodeset="/data/gn/gn_no_hatched_nests" type="int" required="true()" relevant="(/data/overview/gn_evidence='present')"/>
+      <bind nodeset="/data/hb" relevant="(/data/overview/hb_evidence='present')"/>
+      <bind nodeset="/data/hb/hb_no_old_tracks" type="int" required="true()" relevant="(/data/overview/hb_evidence='present')"/>
+      <bind nodeset="/data/hb/hb_no_fresh_successful_crawls" type="int" required="true()" relevant="(/data/overview/hb_evidence='present')"/>
+      <bind nodeset="/data/hb/hb_no_fresh_false_crawls" type="int" required="true()" relevant="(/data/overview/hb_evidence='present')"/>
+      <bind nodeset="/data/hb/hb_no_fresh_tracks_unsure" type="int" required="true()" relevant="(/data/overview/hb_evidence='present')"/>
+      <bind nodeset="/data/hb/hb_no_fresh_tracks_not_assessed" type="int" required="true()" relevant="(/data/overview/hb_evidence='present')"/>
+      <bind nodeset="/data/hb/hb_no_hatched_nests" type="int" required="true()" relevant="(/data/overview/hb_evidence='present')"/>
+      <bind nodeset="/data/lh" relevant="(/data/overview/lh_evidence='present')"/>
+      <bind nodeset="/data/lh/lh_no_old_tracks" type="int" required="true()" relevant="(/data/overview/lh_evidence='present')"/>
+      <bind nodeset="/data/lh/lh_no_fresh_successful_crawls" type="int" required="true()" relevant="(/data/overview/lh_evidence='present')"/>
+      <bind nodeset="/data/lh/lh_no_fresh_false_crawls" type="int" required="true()" relevant="(/data/overview/lh_evidence='present')"/>
+      <bind nodeset="/data/lh/lh_no_fresh_tracks_unsure" type="int" required="true()" relevant="(/data/overview/lh_evidence='present')"/>
+      <bind nodeset="/data/lh/lh_no_fresh_tracks_not_assessed" type="int" required="true()" relevant="(/data/overview/lh_evidence='present')"/>
+      <bind nodeset="/data/lh/lh_no_hatched_nests" type="int" required="true()" relevant="(/data/overview/lh_evidence='present')"/>
+      <bind nodeset="/data/or" relevant="(/data/overview/or_evidence='present')"/>
+      <bind nodeset="/data/or/or_no_old_tracks" type="int" required="true()" relevant="(/data/overview/or_evidence='present')"/>
+      <bind nodeset="/data/or/or_no_fresh_successful_crawls" type="int" required="true()" relevant="(/data/overview/or_evidence='present')"/>
+      <bind nodeset="/data/or/or_no_fresh_false_crawls" type="int" required="true()" relevant="(/data/overview/or_evidence='present')"/>
+      <bind nodeset="/data/or/or_no_fresh_tracks_unsure" type="int" required="true()" relevant="(/data/overview/or_evidence='present')"/>
+      <bind nodeset="/data/or/or_no_fresh_tracks_not_assessed" type="int" required="true()" relevant="(/data/overview/or_evidence='present')"/>
+      <bind nodeset="/data/or/or_no_hatched_nests" type="int" required="true()" relevant="(/data/overview/or_evidence='present')"/>
+      <bind nodeset="/data/unk" relevant="(/data/overview/unk_evidence='present')"/>
+      <bind nodeset="/data/unk/unk_no_old_tracks" type="int" required="true()" relevant="(/data/overview/unk_evidence='present')"/>
+      <bind nodeset="/data/unk/unk_no_fresh_successful_crawls" type="int" required="true()" relevant="(/data/overview/unk_evidence='present')"/>
+      <bind nodeset="/data/unk/unk_no_fresh_false_crawls" type="int" required="true()" relevant="(/data/overview/unk_evidence='present')"/>
+      <bind nodeset="/data/unk/unk_no_fresh_tracks_unsure" type="int" required="true()" relevant="(/data/overview/unk_evidence='present')"/>
+      <bind nodeset="/data/unk/unk_no_fresh_tracks_not_assessed" type="int" required="true()" relevant="(/data/overview/unk_evidence='present')"/>
+      <bind nodeset="/data/unk/unk_no_hatched_nests" type="int" required="true()" relevant="(/data/overview/unk_evidence='present')"/>
+      <bind nodeset="/data/disturbance" relevant="(/data/overview/predation_evidence='present')"/>
+      <bind nodeset="/data/disturbance/disturbance_cause" type="select1" required="true()" relevant="(/data/overview/predation_evidence='present')"/>
+      <bind nodeset="/data/disturbance/no_nests_disturbed" type="int" required="true()" relevant="(/data/overview/predation_evidence='present')"/>
+      <bind nodeset="/data/disturbance/no_tracks_encountered" type="int" relevant="(/data/overview/predation_evidence='present')"/>
+      <bind nodeset="/data/disturbance/disturbance_comments" type="string" relevant="(/data/overview/predation_evidence='present')"/>
+      <bind nodeset="/data/observation_end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
+      <bind nodeset="/data/untitled2" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/untitled4" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/data/overview" appearance="field-list">
+      <label ref="jr:itext('/data/overview:label')"/>
+      <input ref="/data/overview/location">
+        <label ref="jr:itext('/data/overview/location:label')"/>
+        <hint ref="jr:itext('/data/overview/location:hint')"/>
+      </input>
+      <select1 ref="/data/overview/fb_evidence" appearance="horizontal">
+        <label ref="jr:itext('/data/overview/fb_evidence:label')"/>
+        <hint ref="jr:itext('/data/overview/fb_evidence:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/overview/fb_evidence:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/overview/fb_evidence:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/overview/gn_evidence" appearance="horizontal">
+        <label ref="jr:itext('/data/overview/gn_evidence:label')"/>
+        <item>
+          <label ref="jr:itext('/data/overview/gn_evidence:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/overview/gn_evidence:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/overview/hb_evidence" appearance="horizontal">
+        <label ref="jr:itext('/data/overview/hb_evidence:label')"/>
+        <hint ref="jr:itext('/data/overview/hb_evidence:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/overview/hb_evidence:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/overview/hb_evidence:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/overview/lh_evidence" appearance="horizontal">
+        <label ref="jr:itext('/data/overview/lh_evidence:label')"/>
+        <hint ref="jr:itext('/data/overview/lh_evidence:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/overview/lh_evidence:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/overview/lh_evidence:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/overview/or_evidence" appearance="horizontal">
+        <label ref="jr:itext('/data/overview/or_evidence:label')"/>
+        <hint ref="jr:itext('/data/overview/or_evidence:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/overview/or_evidence:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/overview/or_evidence:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/overview/unk_evidence">
+        <label ref="jr:itext('/data/overview/unk_evidence:label')"/>
+        <hint ref="jr:itext('/data/overview/unk_evidence:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/overview/unk_evidence:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/overview/unk_evidence:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/overview/predation_evidence" appearance="horizontal">
+        <label ref="jr:itext('/data/overview/predation_evidence:label')"/>
+        <hint ref="jr:itext('/data/overview/predation_evidence:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/overview/predation_evidence:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/overview/predation_evidence:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/overview/training_record" appearance="horizontal">
+        <label ref="jr:itext('/data/overview/training_record:label')"/>
+        <hint ref="jr:itext('/data/overview/training_record:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/overview/training_record:option0')"/>
+          <value>0</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/overview/training_record:option1')"/>
+          <value>1</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/data/fb" appearance="field-list">
+      <label ref="jr:itext('/data/fb:label')"/>
+      <input ref="/data/fb/fb_no_old_tracks">
+        <label ref="jr:itext('/data/fb/fb_no_old_tracks:label')"/>
+        <hint ref="jr:itext('/data/fb/fb_no_old_tracks:hint')"/>
+      </input>
+      <input ref="/data/fb/fb_no_fresh_successful_crawls">
+        <label ref="jr:itext('/data/fb/fb_no_fresh_successful_crawls:label')"/>
+        <hint ref="jr:itext('/data/fb/fb_no_fresh_successful_crawls:hint')"/>
+      </input>
+      <input ref="/data/fb/fb_no_fresh_false_crawls">
+        <label ref="jr:itext('/data/fb/fb_no_fresh_false_crawls:label')"/>
+        <hint ref="jr:itext('/data/fb/fb_no_fresh_false_crawls:hint')"/>
+      </input>
+      <input ref="/data/fb/fb_no_fresh_tracks_unsure">
+        <label ref="jr:itext('/data/fb/fb_no_fresh_tracks_unsure:label')"/>
+        <hint ref="jr:itext('/data/fb/fb_no_fresh_tracks_unsure:hint')"/>
+      </input>
+      <input ref="/data/fb/fb_no_fresh_tracks_not_assessed">
+        <label ref="jr:itext('/data/fb/fb_no_fresh_tracks_not_assessed:label')"/>
+        <hint ref="jr:itext('/data/fb/fb_no_fresh_tracks_not_assessed:hint')"/>
+      </input>
+      <input ref="/data/fb/fb_no_hatched_nests">
+        <label ref="jr:itext('/data/fb/fb_no_hatched_nests:label')"/>
+        <hint ref="jr:itext('/data/fb/fb_no_hatched_nests:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/gn" appearance="field-list">
+      <label ref="jr:itext('/data/gn:label')"/>
+      <input ref="/data/gn/gn_no_old_tracks">
+        <label ref="jr:itext('/data/gn/gn_no_old_tracks:label')"/>
+        <hint ref="jr:itext('/data/gn/gn_no_old_tracks:hint')"/>
+      </input>
+      <input ref="/data/gn/gn_no_fresh_successful_crawls">
+        <label ref="jr:itext('/data/gn/gn_no_fresh_successful_crawls:label')"/>
+        <hint ref="jr:itext('/data/gn/gn_no_fresh_successful_crawls:hint')"/>
+      </input>
+      <input ref="/data/gn/gn_no_fresh_false_crawls">
+        <label ref="jr:itext('/data/gn/gn_no_fresh_false_crawls:label')"/>
+        <hint ref="jr:itext('/data/gn/gn_no_fresh_false_crawls:hint')"/>
+      </input>
+      <input ref="/data/gn/gn_no_fresh_tracks_unsure">
+        <label ref="jr:itext('/data/gn/gn_no_fresh_tracks_unsure:label')"/>
+        <hint ref="jr:itext('/data/gn/gn_no_fresh_tracks_unsure:hint')"/>
+      </input>
+      <input ref="/data/gn/gn_no_fresh_tracks_not_assessed">
+        <label ref="jr:itext('/data/gn/gn_no_fresh_tracks_not_assessed:label')"/>
+        <hint ref="jr:itext('/data/gn/gn_no_fresh_tracks_not_assessed:hint')"/>
+      </input>
+      <input ref="/data/gn/gn_no_hatched_nests">
+        <label ref="jr:itext('/data/gn/gn_no_hatched_nests:label')"/>
+        <hint ref="jr:itext('/data/gn/gn_no_hatched_nests:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/hb" appearance="field-list">
+      <label ref="jr:itext('/data/hb:label')"/>
+      <input ref="/data/hb/hb_no_old_tracks">
+        <label ref="jr:itext('/data/hb/hb_no_old_tracks:label')"/>
+        <hint ref="jr:itext('/data/hb/hb_no_old_tracks:hint')"/>
+      </input>
+      <input ref="/data/hb/hb_no_fresh_successful_crawls">
+        <label ref="jr:itext('/data/hb/hb_no_fresh_successful_crawls:label')"/>
+        <hint ref="jr:itext('/data/hb/hb_no_fresh_successful_crawls:hint')"/>
+      </input>
+      <input ref="/data/hb/hb_no_fresh_false_crawls">
+        <label ref="jr:itext('/data/hb/hb_no_fresh_false_crawls:label')"/>
+        <hint ref="jr:itext('/data/hb/hb_no_fresh_false_crawls:hint')"/>
+      </input>
+      <input ref="/data/hb/hb_no_fresh_tracks_unsure">
+        <label ref="jr:itext('/data/hb/hb_no_fresh_tracks_unsure:label')"/>
+        <hint ref="jr:itext('/data/hb/hb_no_fresh_tracks_unsure:hint')"/>
+      </input>
+      <input ref="/data/hb/hb_no_fresh_tracks_not_assessed">
+        <label ref="jr:itext('/data/hb/hb_no_fresh_tracks_not_assessed:label')"/>
+        <hint ref="jr:itext('/data/hb/hb_no_fresh_tracks_not_assessed:hint')"/>
+      </input>
+      <input ref="/data/hb/hb_no_hatched_nests">
+        <label ref="jr:itext('/data/hb/hb_no_hatched_nests:label')"/>
+        <hint ref="jr:itext('/data/hb/hb_no_hatched_nests:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/lh" appearance="field-list">
+      <label ref="jr:itext('/data/lh:label')"/>
+      <input ref="/data/lh/lh_no_old_tracks">
+        <label ref="jr:itext('/data/lh/lh_no_old_tracks:label')"/>
+        <hint ref="jr:itext('/data/lh/lh_no_old_tracks:hint')"/>
+      </input>
+      <input ref="/data/lh/lh_no_fresh_successful_crawls">
+        <label ref="jr:itext('/data/lh/lh_no_fresh_successful_crawls:label')"/>
+        <hint ref="jr:itext('/data/lh/lh_no_fresh_successful_crawls:hint')"/>
+      </input>
+      <input ref="/data/lh/lh_no_fresh_false_crawls">
+        <label ref="jr:itext('/data/lh/lh_no_fresh_false_crawls:label')"/>
+        <hint ref="jr:itext('/data/lh/lh_no_fresh_false_crawls:hint')"/>
+      </input>
+      <input ref="/data/lh/lh_no_fresh_tracks_unsure">
+        <label ref="jr:itext('/data/lh/lh_no_fresh_tracks_unsure:label')"/>
+        <hint ref="jr:itext('/data/lh/lh_no_fresh_tracks_unsure:hint')"/>
+      </input>
+      <input ref="/data/lh/lh_no_fresh_tracks_not_assessed">
+        <label ref="jr:itext('/data/lh/lh_no_fresh_tracks_not_assessed:label')"/>
+        <hint ref="jr:itext('/data/lh/lh_no_fresh_tracks_not_assessed:hint')"/>
+      </input>
+      <input ref="/data/lh/lh_no_hatched_nests">
+        <label ref="jr:itext('/data/lh/lh_no_hatched_nests:label')"/>
+        <hint ref="jr:itext('/data/lh/lh_no_hatched_nests:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/or" appearance="field-list">
+      <label ref="jr:itext('/data/or:label')"/>
+      <input ref="/data/or/or_no_old_tracks">
+        <label ref="jr:itext('/data/or/or_no_old_tracks:label')"/>
+        <hint ref="jr:itext('/data/or/or_no_old_tracks:hint')"/>
+      </input>
+      <input ref="/data/or/or_no_fresh_successful_crawls">
+        <label ref="jr:itext('/data/or/or_no_fresh_successful_crawls:label')"/>
+        <hint ref="jr:itext('/data/or/or_no_fresh_successful_crawls:hint')"/>
+      </input>
+      <input ref="/data/or/or_no_fresh_false_crawls">
+        <label ref="jr:itext('/data/or/or_no_fresh_false_crawls:label')"/>
+        <hint ref="jr:itext('/data/or/or_no_fresh_false_crawls:hint')"/>
+      </input>
+      <input ref="/data/or/or_no_fresh_tracks_unsure">
+        <label ref="jr:itext('/data/or/or_no_fresh_tracks_unsure:label')"/>
+        <hint ref="jr:itext('/data/or/or_no_fresh_tracks_unsure:hint')"/>
+      </input>
+      <input ref="/data/or/or_no_fresh_tracks_not_assessed">
+        <label ref="jr:itext('/data/or/or_no_fresh_tracks_not_assessed:label')"/>
+        <hint ref="jr:itext('/data/or/or_no_fresh_tracks_not_assessed:hint')"/>
+      </input>
+      <input ref="/data/or/or_no_hatched_nests">
+        <label ref="jr:itext('/data/or/or_no_hatched_nests:label')"/>
+        <hint ref="jr:itext('/data/or/or_no_hatched_nests:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/unk" appearance="field-list">
+      <label ref="jr:itext('/data/unk:label')"/>
+      <input ref="/data/unk/unk_no_old_tracks">
+        <label ref="jr:itext('/data/unk/unk_no_old_tracks:label')"/>
+        <hint ref="jr:itext('/data/unk/unk_no_old_tracks:hint')"/>
+      </input>
+      <input ref="/data/unk/unk_no_fresh_successful_crawls">
+        <label ref="jr:itext('/data/unk/unk_no_fresh_successful_crawls:label')"/>
+        <hint ref="jr:itext('/data/unk/unk_no_fresh_successful_crawls:hint')"/>
+      </input>
+      <input ref="/data/unk/unk_no_fresh_false_crawls">
+        <label ref="jr:itext('/data/unk/unk_no_fresh_false_crawls:label')"/>
+        <hint ref="jr:itext('/data/unk/unk_no_fresh_false_crawls:hint')"/>
+      </input>
+      <input ref="/data/unk/unk_no_fresh_tracks_unsure">
+        <label ref="jr:itext('/data/unk/unk_no_fresh_tracks_unsure:label')"/>
+        <hint ref="jr:itext('/data/unk/unk_no_fresh_tracks_unsure:hint')"/>
+      </input>
+      <input ref="/data/unk/unk_no_fresh_tracks_not_assessed">
+        <label ref="jr:itext('/data/unk/unk_no_fresh_tracks_not_assessed:label')"/>
+        <hint ref="jr:itext('/data/unk/unk_no_fresh_tracks_not_assessed:hint')"/>
+      </input>
+      <input ref="/data/unk/unk_no_hatched_nests">
+        <label ref="jr:itext('/data/unk/unk_no_hatched_nests:label')"/>
+        <hint ref="jr:itext('/data/unk/unk_no_hatched_nests:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/disturbance">
+      <label ref="jr:itext('/data/disturbance:label')"/>
+      <repeat nodeset="/data/disturbance">
+        <group appearance="field-list">
+          <select1 ref="/data/disturbance/disturbance_cause" appearance="horizontal">
+            <label ref="jr:itext('/data/disturbance/disturbance_cause:label')"/>
+            <hint ref="jr:itext('/data/disturbance/disturbance_cause:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option0')"/>
+              <value>turtle</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option1')"/>
+              <value>bandicoot</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option2')"/>
+              <value>bird</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option3')"/>
+              <value>crab</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option4')"/>
+              <value>croc</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option5')"/>
+              <value>cyclone</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option6')"/>
+              <value>dingo</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option7')"/>
+              <value>dog</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option8')"/>
+              <value>fox</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option9')"/>
+              <value>goanna</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option10')"/>
+              <value>human</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option11')"/>
+              <value>pig</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option12')"/>
+              <value>tide</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option13')"/>
+              <value>vehicle</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option14')"/>
+              <value>unknown</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbance/disturbance_cause:option15')"/>
+              <value>other</value>
+            </item>
+          </select1>
+          <input ref="/data/disturbance/no_nests_disturbed">
+            <label ref="jr:itext('/data/disturbance/no_nests_disturbed:label')"/>
+            <hint ref="jr:itext('/data/disturbance/no_nests_disturbed:hint')"/>
+          </input>
+          <input ref="/data/disturbance/no_tracks_encountered">
+            <label ref="jr:itext('/data/disturbance/no_tracks_encountered:label')"/>
+            <hint ref="jr:itext('/data/disturbance/no_tracks_encountered:hint')"/>
+          </input>
+          <input ref="/data/disturbance/disturbance_comments">
+            <label ref="jr:itext('/data/disturbance/disturbance_comments:label')"/>
+          </input>
+        </group>
+      </repeat>
+    </group>
+    <group ref="/data/untitled3">
+      <label ref="jr:itext('/data/untitled3:label')"/>
+    </group>
+  </h:body>
+</h:html>

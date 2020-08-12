@@ -43,9 +43,15 @@ save(atkn, aurl, vbse, updt, odkc_ex, odkc_tf, odkc_up,
 wastd_data, wastd_users, user_mapping, file="odkc_import.RData")
 load("odkc_import.RData")
 
+wastdr::wastdr_setup(api_url = Sys.getenv("WASTDR_API_DEV_URL"),
+                     api_token = Sys.getenv("WASTDR_API_DEV_TOKEN"))
+wastdr::wastdr_setup(api_url = Sys.getenv("WASTDR_API_TEST_URL"),
+                     api_token = Sys.getenv("WASTDR_API_TEST_TOKEN"))
+Sys.setenv(ODKC_IMPORT_UPDATE_EXISTING=FALSE)
 wastdr::odkc_plan()
 drake::vis_drake_graph(odkc_plan())
 drake::clean()
+drake::clean(10)
 drake::make(odkc_plan())
 }
 }

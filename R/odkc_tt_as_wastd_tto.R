@@ -35,8 +35,10 @@ odkc_tt_as_wastd_tto <- function(data) {
         dplyr::select(-"species2", -"no") %>%
         tidyr::drop_na("tally") %>%
         dplyr::transmute(
-            source = "odk",
+            source = 2,
             source_id = id,
+            encounter_source="odk",
+            encounter_source_id = id,
             species = dplyr::case_when(
                 species == "fb" ~ "natator-depressus",
                 species == "gn" ~ "chelonia-mydas",

@@ -21,8 +21,10 @@ odkc_dist_as_tndo <- function(data) {
   data %>%
     sf_as_tbl() %>%
     dplyr::transmute(
-      source = "odk",
+      source = 2,
       source_id = id,
+      encounter_source="odk",
+      encounter_source_id = id,
       disturbance_cause = disturbanceobservation_disturbance_cause,
       disturbance_cause_confidence = disturbanceobservation_disturbance_cause_confidence,
       # # general dist obs have no related nest and thus no severity:

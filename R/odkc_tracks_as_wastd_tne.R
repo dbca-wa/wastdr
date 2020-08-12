@@ -40,7 +40,7 @@ odkc_tracks_as_wastd_tne <- function(data, user_mapping) {
   data %>%
     sf_as_tbl() %>%
     dplyr::transmute(
-      source = "odk",
+      source = "odk", # wastd.observations.models.SOURCE_CHOICES
       source_id = id,
       reporter = reporter, # user_mapping$odkc_username
       observer = reporter,
