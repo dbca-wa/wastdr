@@ -9,6 +9,7 @@
 #'   WAStD. Default: FALSE.
 #' @param label The model label for verbose messages, default: `records`.
 #' @param serializer The WAStD API serializer, default: `encounters`.
+#' @param chunksize The number of records to post at a time, default: 1000.
 #' @template param-auth
 #' @template param-verbose
 #' @export
@@ -25,10 +26,9 @@ wastd_create_update_skip <-
     update_existing = FALSE,
     label = "records",
     serializer = "encounters",
+    chunksize = 1000,
     api_url = wastdr::get_wastdr_api_url(),
     api_token = wastdr::get_wastdr_api_token(),
-    api_un = wastdr::get_wastdr_api_un(),
-    api_pw = wastdr::get_wastdr_api_pw(),
     verbose = wastdr::get_wastdr_verbose()) {
 
     if (nrow(data_create) > 0) {
@@ -37,8 +37,9 @@ wastd_create_update_skip <-
       wastdr_msg_info()
 
     created <- data_create %>%
-      wastd_POST(
+      wastd_chunk_post(
         serializer,
+        chunksize = chunksize,
         api_url = api_url,
         api_token = api_token,
         verbose = verbose
@@ -61,8 +62,9 @@ wastd_create_update_skip <-
         wastdr_msg_info()
 
       updated <- data_update %>%
-        wastd_POST(
+        wastd_chunk_post(
           serializer,
+          chunksize = chunksize,
           api_url = api_url,
           api_token = api_token,
           verbose = verbose
