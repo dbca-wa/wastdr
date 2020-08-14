@@ -51,7 +51,7 @@ Sys.setenv(ODKC_IMPORT_UPDATE_EXISTING=TRUE)
 wastdr::odkc_plan()
 drake::vis_drake_graph(wastdr::odkc_plan())
 drake::clean()
-drake::clean(10)
-drake::make(odkc_plan())
+drake::clean(5) # after updating WAStD user aliases
+drake::make(odkc_plan(), lock_envir = FALSE)
 }
 }

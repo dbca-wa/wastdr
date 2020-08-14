@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_user_mapping.R
 \name{make_user_mapping}
 \alias{make_user_mapping}
-\title{Generate a WAStD user mapping from a given list of ODKC data}
+\title{Generate a WAStD user mapping from a given list of ODKC data.}
 \usage{
 make_user_mapping(odkc_data, wastd_users)
 }
@@ -12,6 +12,17 @@ make_user_mapping(odkc_data, wastd_users)
 \item{wastd_users}{A tibble of WAStD users}
 }
 \description{
+The matching is done by
+[`fuzzyjoin::stringdist_left_join`](http://varianceexplained.org/fuzzyjoin/reference/stringdist_join.html)
+using the Jaro-Winker distance between the ODKC username and the individual
+WAStD `name`, `username` and `aliases`.
+}
+\details{
+The field `aliases` is where the magic happens. `make_user_mapping` matches
+against each alias after separating the aliases by comma.
+This way, we can add the exact misspelling of an ODK Collect username as
+a new alias, and get a 100% match for it.
+
 Extract all unique reporter names from odkc data.
 Extract relevant user names from WAStD users.
 Map most likely match and export to CSV.
