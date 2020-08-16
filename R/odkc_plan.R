@@ -78,10 +78,10 @@ odkc_plan <- function() {
     user_mapping = make_user_mapping(odkc_ex, wastd_users),
     # QA Reports: inspect user mappings - flag dissimilar matches
     # https://github.com/dbca-wa/wastdr/issues/21
-    user_qa  = rmarkdown::render(
-      input = drake::knitr_in("vignettes/wastd_user_mapping_qa.Rmd"),
-      quiet = TRUE
-    ),
+    # user_qa  = rmarkdown::render(
+    #   input = drake::knitr_in("vignettes/wastd_user_mapping_qa.Rmd"),
+    #   quiet = TRUE
+    # ),
     # Source data transformed into target format
     odkc_tf = odkc_as_wastd(odkc_ex, user_mapping),
 
