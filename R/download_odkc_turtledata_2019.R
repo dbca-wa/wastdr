@@ -82,7 +82,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       )
 
     # SV end
@@ -97,7 +98,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       )
 
     # MWI
@@ -115,7 +117,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       )
 
     mwi_dmg_prod <- ft$url[[2]] %>%
@@ -124,7 +127,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       ) %>%
       dplyr::left_join(mwi_prod, by = c("submissions_id" = "id"))
 
@@ -134,7 +138,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       ) %>%
       dplyr::left_join(mwi_prod, by = c("submissions_id" = "id"))
 
@@ -152,7 +157,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       )
 
     ruODK::ru_setup(
@@ -168,7 +174,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       )
 
     # Dist
@@ -183,7 +190,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       )
 
     # Tracks
@@ -201,7 +209,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       ) %>%
       wastdr::exclude_training_species_odkc() %>%
       wastdr::add_nest_labels_odkc()
@@ -212,7 +221,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
@@ -222,7 +232,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
@@ -232,7 +243,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
@@ -242,7 +254,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
@@ -252,7 +265,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
@@ -262,7 +276,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
@@ -308,7 +323,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       )
     svs_extra <-
       dplyr::anti_join(svs_uat, svs_prod, by = "meta_instance_id")
@@ -325,7 +341,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       )
     sve_extra <-
       dplyr::anti_join(sve_uat, sve_prod, by = "meta_instance_id")
@@ -342,7 +359,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       )
     mwi_extra <-
       dplyr::anti_join(mwi_uat, mwi_prod, by = "meta_instance_id")
@@ -359,7 +377,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       )
     dist_extra <-
       dplyr::anti_join(dist_uat, dist_prod, by = "meta_instance_id")
@@ -378,7 +397,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       ) %>%
       wastdr::exclude_training_species_odkc() %>%
       wastdr::add_nest_labels_odkc()
@@ -391,7 +411,8 @@ download_odkc_turtledata_2019 <-
         verbose = verbose,
         local_dir = local_dir,
         download = download,
-        odkc_version = odkc_version
+        odkc_version = odkc_version,
+        wkt = TRUE
       ) %>%
       dplyr::left_join(tracks_uat, by = c("submissions_id" = "id"))
     tracks_dist_extra <- tracks_dist_uat %>%
