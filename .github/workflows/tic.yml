@@ -23,19 +23,22 @@ jobs:
           # use a different tic template type if you do not want to build on all listed platforms
           - { os: windows-latest, r: "devel" }
           - { os: windows-latest, r: "release" }
-          # - { os: windows-latest, r: "oldrel" } # fails on RTools version
+          - { os: windows-latest, r: "oldrel" } # fails on RTools version
           - { os: windows-2016, r: "devel" }
           - { os: windows-2016, r: "release" }
-          # - { os: macOS-latest, r: "devel" } # fails on rgeos, rgdal > no sf
+          - { os: macOS-latest, r: "devel" } # fails on rgeos, rgdal > no sf
           - { os: macOS-latest, r: "release", pkgdown: "true", latex: "true" }
           - { os: macOS-latest, r: "oldrel" }
           # Ubuntu-18-04 fails to install ‘protolite’, ‘geojson’, ‘geojsonio’
-          # - { os: ubuntu-latest, r: "devel" }
+          - { os: ubuntu-20.04, r: "devel" }
+          - { os: ubuntu-20.04, r: "release" }
+          - { os: ubuntu-20.04, r: "oldrel" }
+          - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release" } # Heisensegfault my old friend
-          # - { os: ubuntu-latest, r: "oldrel" } # it's nice to see you crash again
+          - { os: ubuntu-latest, r: "oldrel" } # it's nice to see you crash again
           # Ubuntu 16.04 fails to install stringr, v8 needs CURL_OPENSSL_4
-          # - { os: ubuntu-16.04, r: "release"}
-          # - { os: ubuntu-16.04, r: "oldrel" }
+          - { os: ubuntu-16.04, r: "release"}
+          - { os: ubuntu-16.04, r: "oldrel" }
 
     env:
       # otherwise remotes::fun() errors cause the build to fail. Example: Unavailability of binaries

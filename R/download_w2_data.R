@@ -381,7 +381,8 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
         lubridate::hours(lubridate::hour(o_time)) +
         lubridate::minutes(lubridate::minute(o_time)),
       observation_datetime_utc = lubridate::with_tz(
-        observation_datetime_gmt08, tz = "UTC"
+        observation_datetime_gmt08,
+        tz = "UTC"
       )
     ) %>%
     dplyr::select(

@@ -5,9 +5,9 @@
 #'   used to resolve submitted user names to WAStD user IDs
 #' @export
 download_wastd_users <- function(
-                               api_url = wastdr::get_wastdr_api_url(),
-                               api_token = wastdr::get_wastdr_api_token(),
-                               verbose = wastdr::get_wastdr_verbose()) {
+                                 api_url = wastdr::get_wastdr_api_url(),
+                                 api_token = wastdr::get_wastdr_api_token(),
+                                 verbose = wastdr::get_wastdr_verbose()) {
   "users" %>%
     wastd_GET(
       api_url = api_url,
