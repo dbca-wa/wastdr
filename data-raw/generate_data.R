@@ -81,35 +81,35 @@ wastd_data$disturbance_tally <- wastd_data$disturbance_tally %>% sanitize_names(
 wastd_data$loggers <- wastd_data$loggers %>% sanitize_names()
 usethis::use_data(wastd_data, compress = "xz", overwrite = TRUE)
 
-# Generate data
-get_10 <- . %>%
-  wastdr::wastd_GET(max_records = 10) %>%
-  wastd_parse()
-get_all <- . %>%
-  wastdr::wastd_GET() %>%
-  wastd_parse()
-
-tsc_data <- list(
-  # Taxonomy
-  taxon = get_all("taxon"),
-  taxon_fast = get_all("taxon-fast"),
-  vernacular = get_all("vernacular"),
-  crossreference = get_all("crossreference"),
-  community = get_all("community"),
-
-  # Conservation listings
-  conservationlist = get_all("conservationlist"),
-  taxon_conservationlisting = get_10("taxon-conservationlisting"),
-  community_conservationlisting = get_10("community-conservationlisting"),
-
-  # Occurrence
-  occ_taxon_areas = get_10("occ-taxon-areas"),
-  occ_taxon_points = get_10("occ-taxon-points"),
-  occ_community_areas = get_10("occ-community-areas"),
-  occ_taxon_points = get_10("occ-community-points"),
-  occ_observation = get_10("occ-observation"),
-
-  # Conservation documents
-  document = get_10("document")
-)
-usethis::use_data(tsc_data, compress = "xz", overwrite = TRUE)
+# # Generate data
+# get_10 <- . %>%
+#   wastdr::wastd_GET(max_records = 10) %>%
+#   wastd_parse()
+# get_all <- . %>%
+#   wastdr::wastd_GET() %>%
+#   wastd_parse()
+#
+# tsc_data <- list(
+#   # Taxonomy
+#   taxon = get_all("taxon"),
+#   taxon_fast = get_all("taxon-fast"),
+#   vernacular = get_all("vernacular"),
+#   crossreference = get_all("crossreference"),
+#   community = get_all("community"),
+#
+#   # Conservation listings
+#   conservationlist = get_all("conservationlist"),
+#   taxon_conservationlisting = get_10("taxon-conservationlisting"),
+#   community_conservationlisting = get_10("community-conservationlisting"),
+#
+#   # Occurrence
+#   occ_taxon_areas = get_10("occ-taxon-areas"),
+#   occ_taxon_points = get_10("occ-taxon-points"),
+#   occ_community_areas = get_10("occ-community-areas"),
+#   occ_taxon_points = get_10("occ-community-points"),
+#   occ_observation = get_10("occ-observation"),
+#
+#   # Conservation documents
+#   document = get_10("document")
+# )
+# usethis::use_data(tsc_data, compress = "xz", overwrite = TRUE)
