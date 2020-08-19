@@ -27,7 +27,7 @@ jobs:
           - { os: windows-2016, r: "devel" }
           - { os: windows-2016, r: "release" }
           - { os: windows-2016, r: "oldrel" }
-          - { os: macOS-latest, r: "devel" } # fails on rgeos, rgdal > no sf
+          # - { os: macOS-latest, r: "devel" } # fails on
           - { os: macOS-latest, r: "release"}
           - { os: macOS-latest, r: "oldrel" }
           # Ubuntu-18-04 fails to install ‘protolite’, ‘geojson’, ‘geojsonio’
@@ -124,7 +124,8 @@ jobs:
 
       - name: "[Stage] Install"
         if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
-        run: Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
+        run: |
+          Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
 
       # macOS devel needs its own stage because we need to work with an option to suppress the usage of binaries
       - name: "[Stage] Prepare & Install (macOS-devel)"
@@ -132,6 +133,9 @@ jobs:
         run: |
           brew install udunits protobuf cairo v8 proj gdal
           echo -e 'options(Ncpus = 4, pkgType = "source", repos = structure(c(CRAN = "https://cloud.r-project.org/")))' > $HOME/.Rprofile
+          echo 'export PATH="/usr/local/opt/expat/bin:$PATH"' >> /Users/runner/.bash_profile
+          echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> /Users/runner/.bash_profile
+          echo 'export PATH="/usr/local/opt/qt/bin:$PATH"' >> /Users/runner/.bash_profile
           Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
 
       - name: "[Stage] Script"
