@@ -9,6 +9,22 @@ template:
   params:
     bootswatch: yeti
     ganalytics: UA-155735563-2
+articles:
+- title: Setup
+  desc: Configure wastdr
+  navbar: Setup
+  contents:
+  - setup
+- title: Access
+  desc: Access WAStD data
+  navbar: Access
+  contents:
+  - access
+- title: Analyze
+  desc: Analyze WAStD data
+  navbar: Analyze
+  contents:
+  - analysis
 reference:
 - title: API access
   contents:
