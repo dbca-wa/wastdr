@@ -119,7 +119,8 @@ jobs:
           sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
           sudo apt-get update
           sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev \
-          libicu-dev libv8-dev libprotobuf-dev r-cran-stringr r-cran-magrittr r-cran-stringi
+          libicu-dev libv8-dev libprotobuf-dev \
+          r-cran-stringi r-api-3 r-cran-crayon r-cran-magrittr r-cran-stringr
 
       - name: "[Stage] Install"
         if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
