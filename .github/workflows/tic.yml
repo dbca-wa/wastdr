@@ -26,15 +26,16 @@ jobs:
           - { os: windows-latest, r: "oldrel" } # fails on RTools version
           - { os: windows-2016, r: "devel" }
           - { os: windows-2016, r: "release" }
+          - { os: windows-2016, r: "oldrel" }
           - { os: macOS-latest, r: "devel" } # fails on rgeos, rgdal > no sf
-          - { os: macOS-latest, r: "release", pkgdown: "true", latex: "true" }
+          - { os: macOS-latest, r: "release"}
           - { os: macOS-latest, r: "oldrel" }
           # Ubuntu-18-04 fails to install ‘protolite’, ‘geojson’, ‘geojsonio’
           - { os: ubuntu-20.04, r: "devel" }
           - { os: ubuntu-20.04, r: "release" }
           - { os: ubuntu-20.04, r: "oldrel" }
           - { os: ubuntu-latest, r: "devel" }
-          - { os: ubuntu-latest, r: "release" } # Heisensegfault my old friend
+          - { os: ubuntu-latest, r: "release", pkgdown: "true", latex: "true" } # Heisensegfault my old friend
           - { os: ubuntu-latest, r: "oldrel" } # it's nice to see you crash again
           # Ubuntu 16.04 fails to install stringr, v8 needs CURL_OPENSSL_4
           - { os: ubuntu-16.04, r: "release"}
@@ -55,13 +56,13 @@ jobs:
       SDKROOT: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
       # use GITHUB_TOKEN from GitHub to workaround rate limits in {remotes}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      ODKC_URL: ${{secrets.ODKC_URL}}
-      ODKC_UN: ${{secrets.ODKC_UN}}
-      ODKC_PW: ${{secrets.ODKC_PW}}
-      WASTDR_API_URL: ${{secrets.WASTDR_API_URL}}
-      WASTDR_API_UN: ${{secrets.WASTDR_API_UN}}
-      WASTDR_API_PW: ${{secrets.WASTDR_API_PW}}
-      WASTDR_API_TOKEN: ${{secrets.WASTDR_API_TOKEN}}
+      ODKC_URL: ${{ secrets.ODKC_URL }}
+      ODKC_UN: ${{ secrets.ODKC_UN }}
+      ODKC_PW: ${{ secrets.ODKC_PW }}
+      WASTDR_API_URL: ${{ secrets.WASTDR_API_URL }}
+      WASTDR_API_UN: ${{ secrets.WASTDR_API_UN }}
+      WASTDR_API_PW: ${{ secrets.WASTDR_API_PW }}
+      WASTDR_API_TOKEN: ${{ secrets.WASTDR_API_TOKEN }}
       WASTDR_SKIP_SLOW_TESTS: ${{ secrets.WASTDR_SKIP_SLOW_TESTS }}
 
     steps:
@@ -105,16 +106,20 @@ jobs:
 
       - name: "[Stage] [Linux] Install curl"
         if: runner.os == 'Linux'
-        run: sudo apt install libcurl4-openssl-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libicu-dev libv8-dev libjq-dev libprotobuf-dev protobuf-compiler
+        run: |
+          sudo apt install libcurl4-openssl-dev libudunits2-dev libgdal-dev \
+          libgeos-dev libproj-dev libicu-dev libv8-dev libjq-dev libprotobuf-dev protobuf-compiler
+          Rscript -e "install.packages('proj4')"
 
       # sf needs GDAL > 2.0.1, stringr needs libicu-dev
-      - name: "[Stage] [Ubuntu Xenial] System packages"
+      - name: "[Custom Stage] [Ubuntu Xenial] System packages"
         if: matrix.config.os == 'ubuntu-16.04'
         run: |
           sudo add-apt-repository -y ppa:opencpu/jq
           sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
           sudo apt-get update
-          sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libicu-dev libv8-dev libprotobuf-dev r-cran-stringr
+          sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev \
+          libicu-dev libv8-dev libprotobuf-dev r-cran-stringr r-cran-magrittr r-cran-stringi
 
       - name: "[Stage] Install"
         if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
