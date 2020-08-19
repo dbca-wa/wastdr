@@ -4,7 +4,7 @@
 #' @param year The earliest calendar year to be returned. Default: NULL.
 #'   This value, if not NULL, will be used to construct a query parameter
 #'   \code{when_year_gte=2019}
-#' @template param-auth
+#' @template param-tokenauth
 #' @template param-verbose
 #' @return A list of tibbles:
 #' \itemize{
@@ -25,7 +25,6 @@ download_minimal_wastd_turtledata <-
     # Encounters ----------------------------------------------------------------#
     qry <- list(source = source)
     if (!is.null(year)) qry["when__year__gte"] <- year
-
     enc <- wastd_GET("encounters-src",
       query = qry,
       api_url = api_url,

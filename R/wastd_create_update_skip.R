@@ -10,7 +10,7 @@
 #' @param label The model label for verbose messages, default: `records`.
 #' @param serializer The WAStD API serializer, default: `encounters`.
 #' @param chunksize The number of records to post at a time, default: 1000.
-#' @template param-auth
+#' @template param-tokenauth
 #' @template param-verbose
 #' @export
 #' @return A list of three objects:

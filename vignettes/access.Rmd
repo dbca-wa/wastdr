@@ -29,7 +29,29 @@ library(listviewer)
 library(ggplot2)
 ```
 
+# All the data
+You can download all the Turtle data from WAStD in one step.
+Be warned, this step will run for about half an hour.
+```{r, eval=FALSE}
+wastd_data <- wastdr::download_wastd_turtledata()
+```
 
+`wastdr` contains a small sample of the above for demonstration purposes.
+
+```{r, echo=FALSE}
+data("wastd_data", package = "wastdr")
+```
+
+`wastd_data` comes with its own print method:
+
+```{r}
+wastd_data
+```
+
+If your workflow
+
+Read the source code of `wastdr::download_wastd_turtledata` to see the individual
+steps. You can use those as starters to download subsets of data.
 
 # Encounters
 ```{r}

@@ -1,5 +1,5 @@
 #' Download Areas of type Site from WAStD
-#' @template param-auth
+#' @template param-tokenauth
 #' @template param-verbose
 #' @return An `sf` dataframe of WAStD Sites joined to Locality details.
 #' @export

@@ -1,5 +1,5 @@
 #' Download a minimal dataset of turtle observations from WAStD
-#' @template param-auth
+#' @template param-tokenauth
 #' @template param-verbose
 #' @return A tibble of user names, roles, and contact details which can be
 #'   used to resolve submitted user names to WAStD user IDs

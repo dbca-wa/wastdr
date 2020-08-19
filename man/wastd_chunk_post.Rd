@@ -32,12 +32,6 @@ default \code{\link{get_wastdr_api_token}}, see \code{\link{wastdr_setup}}}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}
-
-\item{api_un}{(character) A WAStD API username,
-default \code{\link{get_wastdr_api_un}}, see \code{\link{wastdr_setup}}}
-
-\item{api_pw}{(character) A WAStD API password,
-default \code{\link{get_wastdr_api_pw}}, see \code{\link{wastdr_setup}}}
 }
 \value{
 The `wastd_api_response` of the last batch of data.

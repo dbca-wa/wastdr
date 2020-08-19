@@ -5,7 +5,7 @@
 #' @param query An optional query for \code{\link{wastd_POST}},
 #'   default: `list()`.
 #' @param chunksize The number of records to post at a time, default: 1000.
-#' @template param-auth
+#' @template param-tokenauth
 #' @template param-verbose
 #'
 #' @return The `wastd_api_response` of the last batch of data.

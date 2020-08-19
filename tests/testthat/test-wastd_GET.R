@@ -6,10 +6,10 @@ test_that("wastd_GET parses GeoJSON properties", {
   expect_true(class(area$area_name) == "character")
   expect_false("properties" %in% names(area))
 
-  com <- wastdr::wastd_GET("community", max_records = 3) %>%
-    wastdr::wastd_parse()
-  expect_true(class(com$name) == "character")
-  expect_false("properties" %in% names(com))
+  # com <- wastdr::wastd_GET("community", max_records = 3) %>%
+  #   wastdr::wastd_parse()
+  # expect_true(class(com$name) == "character")
+  # expect_false("properties" %in% names(com))
 })
 
 
