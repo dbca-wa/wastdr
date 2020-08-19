@@ -24,22 +24,28 @@ wastdr::wastdr_setup()
 # Data
 
 ## Load data
+Download all the data live. This will take a while, but then allow to produce
+several reports (e.g. for different turtle programs) at once, or serve as data
+for an RShiny app like the turtle data preview.
+
 ```{r load_data, eval=F, echo=T}
 data_wastd <- download_wastd_turtledata()
 ```
 
+For a quick example, rendering this vignette, or skipping WAStD authentication,
+use the packaged data.
 
 ```{r load_data_pkg, echo=T}
 data("wastd_data")
 ```
 
 ## Filter data
-To filter records to one area, we can either filter by area or site ID 
-(once enabled), or simply filter by a bounding box. 
-Additionaly, we'll filter by date.
+To filter records to one area, we can either filter by area or site ID , 
+or simply filter by a bounding box. Additionally, we'll filter by date.
 
-Site names and IDs are only correct at the time of writing. As they could change, please
-double-check the correct spelling of your own place names and their IDs in WAStD.
+Site names and IDs are only correct at the time of writing. 
+As they could change, please double-check the correct spelling of your own 
+place names and their IDs in [WAStD's Areas of type "Locality"](https://wastd.dbca.wa.gov.au/admin/observations/area/?area_type__exact=Locality).
 
 ```{r filter_data}
 seasons <- wastd_data$tracks %>% 
@@ -54,22 +60,21 @@ tracks <- wastd_data$tracks %>% filter_wastd_season(seasons[[1]])
 # Turtle Tracks and Nests
 This section demonstrates the summary and visualisation utilities for tracks.
 
-The data shown here will make absolutely no sense, as it contains training and dummmy data.
-
 ## Maps
-Each track on the map has a popup with a link to the actual record on WAStD.
+Each track on the map has a pop-up with a link to the actual record on WAStD.
 Accessing and editing the record is restricted to authorised DBCA staff members.
 
 Map markers can be grouped or not. 
 
 Non-grouped markers show the actual location more accurately, but can overlap to
-the point where it is not possible to open the popups. 
+the point where it is not possible to open the pop-ups. 
 
 Grouped markers in densely populated locations will expand to prevent the overlap of
-markers and popups.
+markers and pop-ups.
 
 Use "Place names" where the aerial imagery is not available at the zoom level required
 for the grouped markers to expand.
+
 ```{r tracks_maps}
 wastd_data$tracks %>% 
   map_tracks(sites = wastd_data$sites)
@@ -82,6 +87,9 @@ wastd_data$tracks %>% map_tracks(sites = wastd_data$sites, cluster=T)
 ## Nesting success - tracks with nest vs the rest
 Overview tables are available for the most common summaries at the most common
 groupings (season, week, day / area, site).
+
+We show print-optimised `knitr` tables here, but could also use the more refined
+`reactable` (filterable, sortable, searchable) for interactive use.
 
 ```{r tracks_ns}
 wastd_data$tracks %>% nesting_type_by_season_species() %>% knitr::kable()
@@ -119,15 +127,22 @@ wastd_data$nest_excavations %>% hatching_emergence_success_site() %>% knitr::kab
 ```
 
 ## Tagged nests
-```{r taggee_nests}
+```{r tagged_nests}
 wastd_data$nest_tags %>% map_nests()
 ```
 
 
 ## Disturbed nests
 ```{r dist_nests}
-wastd_data$tracks %>% dplyr::filter(disturbance == "present") %>% add_nest_labels() %>% map_tracks(sites = wastd_data$sites)
-wastd_data$tracks %>% dplyr::filter(disturbance == "present") %>% add_nest_labels() %>% map_tracks(sites = wastd_data$sites, cluster=T)
+wastd_data$tracks %>% 
+  dplyr::filter(disturbance == "present") %>% 
+  add_nest_labels() %>% 
+  map_tracks(sites = wastd_data$sites)
+
+wastd_data$tracks %>% 
+  dplyr::filter(disturbance == "present") %>% 
+  add_nest_labels() %>% 
+  map_tracks(sites = wastd_data$sites, cluster=T)
 ```
 
 
@@ -153,6 +168,7 @@ wastd_data$animals %>% filter_dead() %>% map_mwi(sites = wastd_data$sites)
 ```
 
 # Surveys
+
 ```{r surveys, fig.width=7}
 wastd_data$surveys %>% surveys_per_site_name_and_date() %>% knitr::kable()
 wastd_data$surveys %>% survey_hours_per_site_name_and_date() %>% knitr::kable()
@@ -170,4 +186,6 @@ wastd_data$surveys %>% survey_show_detail() %>% reactable::reactable(filterable 
 
 # QA
 
-Coming soon.
+QA products are being developed as part of the ETL pipeline in R package
+[etlTurtleNesting](https://github.com/dbca-wa/etlTurtleNesting).
+
