@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate a WAStD user mapping from a given list of ODKC data — make_user_mapping • wastdr</title>
+<title>POST data to a WAStD API serializer in chunks — wastd_chunk_post • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,13 +46,8 @@
 
 
 
-<meta property="og:title" content="Generate a WAStD user mapping from a given list of ODKC data — make_user_mapping" />
-<meta property="og:description" content="Extract all unique reporter names from odkc data.
-Extract relevant user names from WAStD users.
-Map most likely match and export to CSV.
-External QA: review mapping, update WAStD user aliases to improve the
-user matching process. Re-run until optimized, edit CSV to improve match.
-Return a named list containing the mapping of odkc_reporter and wastd_user_id." />
+<meta property="og:title" content="POST data to a WAStD API serializer in chunks — wastd_chunk_post" />
+<meta property="og:description" content="POST data to a WAStD API serializer in chunks" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -95,7 +90,7 @@ Return a named list containing the mapping of odkc_reporter and wastd_user_id." 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,23 +112,20 @@ Return a named list containing the mapping of odkc_reporter and wastd_user_id." 
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/getting-wastd.html">Getting WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/odkc.html">Turtle Nesting Census ETL</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Setup</li>
     <li>
       <a href="../articles/setup.html">Setup</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Access</li>
     <li>
-      <a href="../articles/tsc.html">Threatened Species and Communities (TSC)</a>
+      <a href="../articles/access.html">Accessing WAStD Data</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Analyze</li>
     <li>
-      <a href="../articles/wamtram.html">Turtle Tagging ETL</a>
+      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
     </li>
   </ul>
 </li>
@@ -161,36 +153,70 @@ Return a named list containing the mapping of odkc_reporter and wastd_user_id." 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate a WAStD user mapping from a given list of ODKC data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/make_user_mapping.R'><code>R/make_user_mapping.R</code></a></small>
-    <div class="hidden name"><code>make_user_mapping.Rd</code></div>
+    <h1>POST data to a WAStD API serializer in chunks</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/wastd_chunk_post.R'><code>R/wastd_chunk_post.R</code></a></small>
+    <div class="hidden name"><code>wastd_chunk_post.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Extract all unique reporter names from odkc data.
-Extract relevant user names from WAStD users.
-Map most likely match and export to CSV.
-External QA: review mapping, update WAStD user aliases to improve the
-user matching process. Re-run until optimized, edit CSV to improve match.
-Return a named list containing the mapping of odkc_reporter and wastd_user_id.</p>
+    <p>POST data to a WAStD API serializer in chunks</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_user_mapping</span>(<span class='no'>odkc_data</span>, <span class='no'>wastd_users</span>)</pre>
+    <pre class="usage"><span class='fu'>wastd_chunk_post</span>(
+  <span class='no'>data</span>,
+  <span class='no'>serializer</span>,
+  <span class='kw'>query</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>chunksize</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
+  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>odkc_data</th>
-      <td><p>The output of `wastdr::download_all_odkc_turtledata_2019`.</p></td>
+      <th>data</th>
+      <td><p>Data to post to the serializer</p></td>
     </tr>
     <tr>
-      <th>wastd_users</th>
-      <td><p>A tibble of WAStD users</p></td>
+      <th>serializer</th>
+      <td><p>A WAStD API serializer, e.g. "encounters"</p></td>
+    </tr>
+    <tr>
+      <th>query</th>
+      <td><p>An optional query for <code><a href='wastd_POST.html'>wastd_POST</a></code>,
+default: `list()`.</p></td>
+    </tr>
+    <tr>
+      <th>chunksize</th>
+      <td><p>The number of records to post at a time, default: 1000.</p></td>
+    </tr>
+    <tr>
+      <th>api_url</th>
+      <td><p>(character) The WAStD API URL,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_url</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>api_token</th>
+      <td><p>(character) The WAStD API token,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_token</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>The `wastd_api_response` of the last batch of data.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'># ODKC data as WAStD data, chunk_post</span>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

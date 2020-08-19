@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Transform odkc_data$mwi_tag into WAStD TagObservations. — odkc_mwi_tag_as_wastd_tagobs • wastdr</title>
+<title>Download Areas of type Site from WAStD — download_wastd_sites • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Transform odkc_data$mwi_tag into WAStD TagObservations. — odkc_mwi_tag_as_wastd_tagobs" />
-<meta property="og:description" content="Transform odkc_data$mwi_tag into WAStD TagObservations." />
+<meta property="og:title" content="Download Areas of type Site from WAStD — download_wastd_sites" />
+<meta property="og:description" content="Download Areas of type Site from WAStD" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -112,23 +112,20 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/getting-wastd.html">Getting WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/odkc.html">Turtle Nesting Census ETL</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Setup</li>
     <li>
       <a href="../articles/setup.html">Setup</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Access</li>
     <li>
-      <a href="../articles/tsc.html">Threatened Species and Communities (TSC)</a>
+      <a href="../articles/access.html">Accessing WAStD Data</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Analyze</li>
     <li>
-      <a href="../articles/wamtram.html">Turtle Tagging ETL</a>
+      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
     </li>
   </ul>
 </li>
@@ -156,46 +153,45 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Transform odkc_data$mwi_tag into WAStD TagObservations.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/odkc_mwi_tag_as_wastd_tagobs.R'><code>R/odkc_mwi_tag_as_wastd_tagobs.R</code></a></small>
-    <div class="hidden name"><code>odkc_mwi_tag_as_wastd_tagobs.Rd</code></div>
+    <h1>Download Areas of type Site from WAStD</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/download_wastd_sites.R'><code>R/download_wastd_sites.R</code></a></small>
+    <div class="hidden name"><code>download_wastd_sites.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Transform odkc_data$mwi_tag into WAStD TagObservations.</p>
+    <p>Download Areas of type Site from WAStD</p>
     </div>
 
-    <pre class="usage"><span class='fu'>odkc_mwi_tag_as_wastd_tagobs</span>(<span class='no'>data</span>, <span class='no'>user_mapping</span>)</pre>
+    <pre class="usage"><span class='fu'>download_wastd_sites</span>(
+  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
+  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>A tibble of tags, e.g. <code>odkc_data$mwi_tag</code>.</p></td>
+      <th>api_url</th>
+      <td><p>(character) The WAStD API URL,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_url</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
     </tr>
     <tr>
-      <th>user_mapping</th>
-      <td><p>The output of <code><a href='make_user_mapping.html'>make_user_mapping</a>()</code>,
-containing at least columns <code>pk</code> (WAStD User PK) and
-<code>odkc_username</code> (as written in odkc data field <code>reporter</code>).</p></td>
+      <th>api_token</th>
+      <td><p>(character) The WAStD API token,
+default <code><a href='wastdr_settings.html'>get_wastdr_api_token</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble suitable to
-  <code><a href='wastd_POST.html'>wastd_POST</a>("tag-observations")</code></p>
+    <p>An `sf` dataframe of WAStD Sites joined to Locality details.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"odkc_data"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wastdr"</span>)
-<span class='no'>au</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WASTDR_API_DEV_URL"</span>)
-<span class='no'>at</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WASTDR_API_DEV_TOKEN"</span>)
-<span class='no'>user_mapping</span> <span class='kw'>&lt;-</span> <span class='kw'>NULL</span> <span class='co'># see odkc_plan for actual user mapping</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>odkc_mwi_tag_as_wastd_tagobs</span>(<span class='no'>odkc_ex</span>$<span class='no'>mwi_tag</span>, <span class='no'>user_mapping</span>)
-<span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='wastd_POST.html'>wastd_POST</a></span>(<span class='st'>"tag-observations"</span>, <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='no'>au</span>, <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='no'>at</span>)
-}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

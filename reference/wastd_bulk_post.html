@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -112,23 +112,20 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/getting-wastd.html">Getting WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/odkc.html">Turtle Nesting Census ETL</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Setup</li>
     <li>
       <a href="../articles/setup.html">Setup</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Access</li>
     <li>
-      <a href="../articles/tsc.html">Threatened Species and Communities (TSC)</a>
+      <a href="../articles/access.html">Accessing WAStD Data</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Analyze</li>
     <li>
-      <a href="../articles/wamtram.html">Turtle Tagging ETL</a>
+      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
     </li>
   </ul>
 </li>
@@ -222,7 +219,7 @@ Default: wastdr::get_wastdr_verbose()</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='no'>odkc_data</span>$<span class='no'>tracks</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='odkc_tracks_as_wastd_tne.html'>odkc_tracks_as_wastd_tne</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'>odkc_tracks_as_wastd_tne</span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>wastd_bulk_post</span>(<span class='st'>"turtle-nest-encounters"</span>)
 }</div></pre>
   </div>

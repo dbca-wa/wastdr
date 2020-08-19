@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -112,23 +112,20 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/getting-wastd.html">Getting WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/odkc.html">Turtle Nesting Census ETL</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Setup</li>
     <li>
       <a href="../articles/setup.html">Setup</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Access</li>
     <li>
-      <a href="../articles/tsc.html">Threatened Species and Communities (TSC)</a>
+      <a href="../articles/access.html">Accessing WAStD Data</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Analyze</li>
     <li>
-      <a href="../articles/wamtram.html">Turtle Tagging ETL</a>
+      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
     </li>
   </ul>
 </li>
@@ -168,8 +165,6 @@
     <pre class="usage"><span class='fu'>download_wastd_users</span>(
   <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
   <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
-  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
-  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>(),
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
 )</pre>
 
@@ -185,16 +180,6 @@ default <code><a href='wastdr_settings.html'>get_wastdr_api_url</a></code>, see 
       <th>api_token</th>
       <td><p>(character) The WAStD API token,
 default <code><a href='wastdr_settings.html'>get_wastdr_api_token</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
-    </tr>
-    <tr>
-      <th>api_un</th>
-      <td><p>(character) A WAStD API username,
-default <code><a href='wastdr_settings.html'>get_wastdr_api_un</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
-    </tr>
-    <tr>
-      <th>api_pw</th>
-      <td><p>(character) A WAStD API password,
-default <code><a href='wastdr_settings.html'>get_wastdr_api_pw</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
     </tr>
     <tr>
       <th>verbose</th>

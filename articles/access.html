@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Getting WAStD • wastdr</title>
+<title>Accessing WAStD Data • wastdr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Getting WAStD">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Accessing WAStD Data">
 <meta property="og:description" content="wastdr">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -66,23 +66,20 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/getting-wastd.html">Getting WAStD</a>
-    </li>
-    <li>
-      <a href="../articles/odkc.html">Turtle Nesting Census ETL</a>
-    </li>
+<li class="divider">
+    <li class="dropdown-header">Setup</li>
     <li>
       <a href="../articles/setup.html">Setup</a>
     </li>
+    <li class="divider">
+    <li class="dropdown-header">Access</li>
     <li>
-      <a href="../articles/tsc.html">Threatened Species and Communities (TSC)</a>
+      <a href="../articles/access.html">Accessing WAStD Data</a>
     </li>
+    <li class="divider">
+    <li class="dropdown-header">Analyze</li>
     <li>
-      <a href="../articles/wamtram.html">Turtle Tagging ETL</a>
+      <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
     </li>
   </ul>
 </li>
@@ -107,16 +104,16 @@
 
       
 
-      </header><script src="getting-wastd_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="access_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Getting WAStD</h1>
+      <h1 data-toc-skip>Accessing WAStD Data</h1>
                         <h4 class="author">Florian Mayer</h4>
             
-            <h4 class="date">2020-08-05</h4>
+            <h4 class="date">2020-08-19</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/getting-wastd.Rmd"><code>vignettes/getting-wastd.Rmd</code></a></small>
-      <div class="hidden name"><code>getting-wastd.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/access.Rmd"><code>vignettes/access.Rmd</code></a></small>
+      <div class="hidden name"><code>access.Rmd</code></div>
 
     </div>
 
@@ -142,10 +139,29 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">listviewer</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)</pre></body></html></div>
 </div>
+<div id="all-the-data" class="section level1">
+<h1 class="hasAnchor">
+<a href="#all-the-data" class="anchor"></a>All the data</h1>
+<p>You can download all the Turtle data from WAStD in one step. Be warned, this step will run for about half an hour.</p>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">wastd_data</span> <span class="kw">&lt;-</span> <span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/download_wastd_turtledata.html">download_wastd_turtledata</a></span>()</pre></body></html></div>
+<p><code>wastdr</code> contains a small sample of the above for demonstration purposes.</p>
+<p><code>wastd_data</code> comes with its own print method:</p>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">wastd_data</span></pre></body></html></div>
+<pre><code>## &lt;WAStD Data&gt; accessed on 2020-08-03 08:39:27
+## Areas: 14
+## Sites: 97
+## Surveys: 1000
+## Animal Encounters (tags, strandings): 1000
+## Turtle Nest Encounters (tracks): 1000
+## Line Transect Encounters (track tallies) 6
+## Logger Encounters 8</code></pre>
+<p>If your workflow</p>
+<p>Read the source code of <code><a href="../reference/download_wastd_turtledata.html">wastdr::download_wastd_turtledata</a></code> to see the individual steps. You can use those as starters to download subsets of data.</p>
+</div>
 <div id="encounters" class="section level1">
 <h1 class="hasAnchor">
 <a href="#encounters" class="anchor"></a>Encounters</h1>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"># Encounters from 2016 onwards (this includes disturbances, animal and turtle 
+<div class="sourceCode" id="cb9"><html><body><pre class="r"># Encounters from 2016 onwards (this includes disturbances, animal and turtle 
 # nest encounters but not their specific details)
 # https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?when__year__gte=2016</pre></body></html></div>
 <div id="filtering-the-results" class="section level2">
@@ -167,13 +183,13 @@
 <div id="animalencounters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#animalencounters" class="anchor"></a>AnimalEncounters</h2>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"># AnimalEncounters of Turtles from 2016 onwards
+<div class="sourceCode" id="cb10"><html><body><pre class="r"># AnimalEncounters of Turtles from 2016 onwards
 # https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</pre></body></html></div>
 </div>
 <div id="turtlenestencounters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#turtlenestencounters" class="anchor"></a>TurtleNestEncounters</h2>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"># https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</pre></body></html></div>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"># https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</pre></body></html></div>
 </div>
 <div id="linetransectencounters" class="section level2">
 <h2 class="hasAnchor">
