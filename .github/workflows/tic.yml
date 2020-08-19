@@ -31,15 +31,15 @@ jobs:
           - { os: macOS-latest, r: "release"}
           - { os: macOS-latest, r: "oldrel" }
           # Ubuntu-18-04 fails to install ‘protolite’, ‘geojson’, ‘geojsonio’
-          - { os: ubuntu-20.04, r: "devel" }
-          - { os: ubuntu-20.04, r: "release" }
+          # - { os: ubuntu-20.04, r: "devel" }
+          # - { os: ubuntu-20.04, r: "release" }
           - { os: ubuntu-20.04, r: "oldrel" }
-          - { os: ubuntu-latest, r: "devel" }
+          # - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release", pkgdown: "true", latex: "true" } # Heisensegfault my old friend
           - { os: ubuntu-latest, r: "oldrel" } # it's nice to see you crash again
           # Ubuntu 16.04 fails to install stringr, v8 needs CURL_OPENSSL_4
-          - { os: ubuntu-16.04, r: "release"}
-          - { os: ubuntu-16.04, r: "oldrel" }
+          # - { os: ubuntu-16.04, r: "release"} # fails to install r-base-*
+          # - { os: ubuntu-16.04, r: "oldrel" }
 
     env:
       # otherwise remotes::fun() errors cause the build to fail. Example: Unavailability of binaries
@@ -109,7 +109,6 @@ jobs:
         run: |
           sudo apt install libcurl4-openssl-dev libudunits2-dev libgdal-dev \
           libgeos-dev libproj-dev libicu-dev libv8-dev libjq-dev libprotobuf-dev protobuf-compiler
-          Rscript -e "install.packages('proj4')"
 
       # sf needs GDAL > 2.0.1, stringr needs libicu-dev
       - name: "[Custom Stage] [Ubuntu Xenial] System packages"
