@@ -162,7 +162,7 @@
     <p>Convert a GeoJSON linestring into an st_linestring</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gj_linestring_to_st_linestring</span>(<span class='no'>gj_ls</span>)</pre>
+    <pre class="usage"><span class='fu'>gj_linestring_to_st_linestring</span>(<span class='kw'>gj_ls</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,17 +178,18 @@
     <p>The linestring as `sf::sfg`</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>gj_ls</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>gj_ls</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(
   <span class='st'>"-14.803659 128.403426 10.9 5.9;"</span>,
   <span class='st'>"-14.803719 128.40326 1.7 1.9;"</span>,
   <span class='st'>"-14.803756 128.40317 1.9 1.7;"</span>,
   <span class='st'>"-14.80383 128.402983 1.7 1.6;"</span>,
   <span class='st'>"-14.803913 128.402786 1.4 1.6;"</span>
 )
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>gj_linestring_to_st_linestring</span>(<span class='no'>gj_ls</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>x</span>) <span class='kw'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"XYZM"</span>, <span class='st'>"LINESTRING"</span>, <span class='st'>"sfg"</span>)
-}</div></pre>
+<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'>gj_linestring_to_st_linestring</span>(<span class='kw'>gj_ls</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='kw'>x</span>) <span class='op'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"XYZM"</span>, <span class='st'>"LINESTRING"</span>, <span class='st'>"sfg"</span>)
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -204,7 +205,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

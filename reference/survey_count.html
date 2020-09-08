@@ -162,7 +162,7 @@
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>survey_count</span>(<span class='no'>surveys</span>, <span class='no'>sid</span>, <span class='no'>seas</span>)</pre>
+    <pre class="usage"><span class='fu'>survey_count</span>(<span class='kw'>surveys</span>, <span class='kw'>sid</span>, <span class='kw'>seas</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -238,9 +238,10 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
-<span class='no'>one_season</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>wastd_data</span>$<span class='no'>surveys</span>$<span class='no'>season</span>)[<span class='fl'>1</span>]
-<span class='no'>one_site_id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>wastd_data</span>$<span class='no'>surveys</span>$<span class='no'>site_id</span>)[<span class='fl'>1</span>]
-<span class='fu'>survey_count</span>(<span class='no'>wastd_data</span>$<span class='no'>surveys</span>, <span class='no'>one_site_id</span>, <span class='no'>one_season</span>)</div><div class='output co'>#&gt; [1] 1</div></pre>
+<span class='kw'>one_season</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='kw'>wastd_data</span><span class='op'>$</span><span class='kw'>surveys</span><span class='op'>$</span><span class='kw'>season</span>)[<span class='fl'>1</span>]
+<span class='kw'>one_site_id</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='kw'>wastd_data</span><span class='op'>$</span><span class='kw'>surveys</span><span class='op'>$</span><span class='kw'>site_id</span>)[<span class='fl'>1</span>]
+<span class='fu'>survey_count</span>(<span class='kw'>wastd_data</span><span class='op'>$</span><span class='kw'>surveys</span>, <span class='kw'>one_site_id</span>, <span class='kw'>one_season</span>)
+</div><div class='output co'>#&gt; [1] 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -256,7 +257,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

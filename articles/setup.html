@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Setup</h1>
                         <h4 class="author">Florian Mayer</h4>
             
-            <h4 class="date">2020-09-07</h4>
+            <h4 class="date">2020-09-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/setup.Rmd"><code>vignettes/setup.Rmd</code></a></small>
       <div class="hidden name"><code>setup.Rmd</code></div>
@@ -123,7 +123,9 @@
 <h1 class="hasAnchor">
 <a href="#authentication" class="anchor"></a>Authentication</h1>
 <p>This vignette explains how to authenticate to the WAStD API.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">wastdr</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="kw"><a href="https://github.com/dbca-wa/wastdr">wastdr</a></span>)
+</pre></div>
 <p>There are two audiences with two different authentication options.</p>
 <p>The first audience, DBCA staff, has access to <a href="https://strandings.dpaw.wa.gov.au">WAStD</a>. On their profile page they will find their own API token.</p>
 <p>The second audience, external collaborators, will be given a username and password. Using these credentials, they can access the <a href="https://strandings.dpaw.wa.gov.au/api/1/">WAStD API</a> both through their browser and from other software like <code>wastdr</code>.</p>
@@ -139,14 +141,18 @@
 </h2>
 <p>For a permanent setup, the environment variables can be set in the user’s <code>.Renviron</code>.</p>
 <p>DBCA staff add to their <code>.Renviron</code>:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span>
-<span class="no">WASTDR_API_UN</span><span class="kw">=</span><span class="st">"XXX"</span>
-<span class="no">WASTDR_API_PW</span><span class="kw">=</span><span class="st">"XXX"</span></pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">WASTDR_API_URL</span><span class="op">=</span><span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span>
+<span class="kw">WASTDR_API_UN</span><span class="op">=</span><span class="st">"XXX"</span>
+<span class="kw">WASTDR_API_PW</span><span class="op">=</span><span class="st">"XXX"</span>
+</pre></div>
 <p>Note that the API token contains the word <code>Token</code> and a whitespace in addition to the actual API token.</p>
 <p>External collaborators add to their <code>.Renviron</code>:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span>
-<span class="no">WASTDR_API_UN</span><span class="kw">=</span><span class="st">"XXX"</span>
-<span class="no">WASTDR_API_PW</span><span class="kw">=</span><span class="st">"XXX"</span></pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">WASTDR_API_URL</span><span class="op">=</span><span class="st">"https://tsc.dbca.wa.gov.au/api/1/"</span>
+<span class="kw">WASTDR_API_UN</span><span class="op">=</span><span class="st">"XXX"</span>
+<span class="kw">WASTDR_API_PW</span><span class="op">=</span><span class="st">"XXX"</span>
+</pre></div>
 <p>In the long term, this last method is the most elegant and persistent way of configuring <code>wastdr</code>.</p>
 </div>
 <div id="per-session" class="section level2">
@@ -155,30 +161,38 @@
 <p>If <code>api_*</code> settings are not provided, <code>wastdr::get_wastd</code> defaults to specifically named environment variables.</p>
 <p>For convenience, <code>wastdr_setup</code> sets these environment variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
 <p>If these variables haven’t been provided through e.g. <code>.Renviron</code>, you may set them on a per session basis:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/wastdr_setup.html">wastdr_setup</a></span>(<span class="kw">api_token</span> <span class="kw">=</span> <span class="st">"Token XXX"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">wastdr</span>::<span class="fu"><a href="../reference/wastdr_setup.html">wastdr_setup</a></span>(api_token = <span class="st">"Token XXX"</span>)
+</pre></div>
 <p>Alternatively you may use your username and password.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/wastdr_setup.html">wastdr_setup</a></span>(<span class="kw">api_un</span> <span class="kw">=</span> <span class="st">"XXX"</span>, <span class="kw">api_pw</span> <span class="kw">=</span> <span class="st">"XXX"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">wastdr</span>::<span class="fu"><a href="../reference/wastdr_setup.html">wastdr_setup</a></span>(api_un = <span class="st">"XXX"</span>, api_pw = <span class="st">"XXX"</span>)
+</pre></div>
 <p>Review the settings with:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/wastdr_settings.html">wastdr_settings</a></span>()
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">wastdr</span>::<span class="fu"><a href="../reference/wastdr_settings.html">wastdr_settings</a></span>()
 <span class="co">#&gt; &lt;wastdr settings&gt;</span>
 <span class="co">#&gt;   WAStD URL:     https://wastd.dbca.wa.gov.au/ </span>
 <span class="co">#&gt;   API URL:       https://wastd.dbca.wa.gov.au/api/1/ </span>
 <span class="co">#&gt;   API Token:     see wastdr::get_wastdr_api_token()</span>
 <span class="co">#&gt;   API Username:  wastd_username </span>
 <span class="co">#&gt;   API Password:  see wastdr::get_wastdr_api_pw()</span>
-<span class="co">#&gt;   Verbose:       FALSE</span></pre></body></html></div>
+<span class="co">#&gt;   Verbose:       FALSE</span>
+</pre></div>
 <p><code>wastdr_setup</code> defaults <code>api_url</code> to the currently only existing API url.</p>
 </div>
 <div id="per-function-call" class="section level2">
 <h2 class="hasAnchor">
 <a href="#per-function-call" class="anchor"></a>Per function call</h2>
 <p>Crendentials can be supplied directly to functions:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/wastd_GET.html">wastd_GET</a></span>(<span class="st">'encounters'</span>,
-                  <span class="kw">api_token</span> <span class="kw">=</span> <span class="st">"Token XXX"</span>)
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">wastdr</span>::<span class="fu"><a href="../reference/wastd_GET.html">wastd_GET</a></span>(<span class="st">'encounters'</span>, 
+                  api_token = <span class="st">"Token XXX"</span>)
 
-<span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/wastd_GET.html">wastd_GET</a></span>(<span class="st">'encounters'</span>,
-                  <span class="kw">api_un</span> <span class="kw">=</span> <span class="st">"XXX"</span>,
-                  <span class="kw">api_pw</span> <span class="kw">=</span> <span class="st">"XXX"</span>)</pre></body></html></div>
+<span class="kw">wastdr</span>::<span class="fu"><a href="../reference/wastd_GET.html">wastd_GET</a></span>(<span class="st">'encounters'</span>,
+                  api_un = <span class="st">"XXX"</span>,
+                  api_pw = <span class="st">"XXX"</span>)
+</pre></div>
 <p>This method overrides any other settings, but leads to verbose code with confidential data (token or password) in plain text.</p>
 </div>
 </div>
@@ -199,7 +213,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

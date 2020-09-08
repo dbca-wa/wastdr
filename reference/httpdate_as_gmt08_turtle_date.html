@@ -162,7 +162,7 @@
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>httpdate_as_gmt08_turtle_date</span>(<span class='no'>datestring</span>)</pre>
+    <pre class="usage"><span class='fu'>httpdate_as_gmt08_turtle_date</span>(<span class='kw'>datestring</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -227,7 +227,9 @@ datetime minus 12 hours.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># These datetimes are turtle date 2016-11-20:</span>
-<span class='fu'>httpdate_as_gmt08_turtle_date</span>(<span class='st'>"2016-11-20T04:00:00Z"</span>) <span class='co'># noon AWST</span></div><div class='output co'>#&gt; [1] "2016-11-20"</div><div class='input'><span class='fu'>httpdate_as_gmt08_turtle_date</span>(<span class='st'>"2016-11-21T03:59:59Z"</span>) <span class='co'># noon AWST - 1 sec</span></div><div class='output co'>#&gt; [1] "2016-11-20"</div></pre>
+<span class='fu'>httpdate_as_gmt08_turtle_date</span>(<span class='st'>"2016-11-20T04:00:00Z"</span>) <span class='co'># noon AWST</span>
+</div><div class='output co'>#&gt; [1] "2016-11-20"</div><div class='input'><span class='fu'>httpdate_as_gmt08_turtle_date</span>(<span class='st'>"2016-11-21T03:59:59Z"</span>) <span class='co'># noon AWST - 1 sec</span>
+</div><div class='output co'>#&gt; [1] "2016-11-20"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -243,7 +245,7 @@ datetime minus 12 hours.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

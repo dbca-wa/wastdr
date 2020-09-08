@@ -163,11 +163,11 @@
     </div>
 
     <pre class="usage"><span class='fu'>wastdr_setup</span>(
-  <span class='kw'>wastd_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastd_url</a></span>(),
-  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
-  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
-  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>()
+  wastd_url = <span class='fu'><a href='wastdr_settings.html'>get_wastd_url</a></span>(),
+  api_url = <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
+  api_token = <span class='kw'>NULL</span>,
+  api_un = <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
+  api_pw = <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -241,19 +241,20 @@ functions default to use the default URL, but require an API key to work.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># WAStD users with a DBCA account can access their WAStD authentication</span>
 <span class='co'># token on their profile page on WAStD:</span>
-<span class='fu'>wastdr_setup</span>(<span class='kw'>api_token</span> <span class='kw'>=</span> <span class='st'>"wastd_token"</span>)
+<span class='fu'>wastdr_setup</span>(api_token = <span class='st'>"wastd_token"</span>)
 
 <span class='co'># Non-DBCA users will have been given a WAStD username and password:</span>
 <span class='fu'>wastdr_setup</span>(
-  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='st'>"wastd_username"</span>,
-  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='st'>"wastd_password"</span>
+  api_un = <span class='st'>"wastd_username"</span>,
+  api_pw = <span class='st'>"wastd_password"</span>
 )
 
 <span class='co'># Not specifying the default WAStD API URL will reset the WAStD URL to its</span>
 <span class='co'># default "https://wastd.dbca.wa.gov.au/api/1/":</span>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>wastdr_setup</span>(<span class='kw'>api_token</span> <span class='kw'>=</span> <span class='st'>"c12345asdfqwer"</span>)
-}</div></pre>
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>wastdr_setup</span>(api_token = <span class='st'>"c12345asdfqwer"</span>)
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -269,7 +270,7 @@ functions default to use the default URL, but require an API key to work.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

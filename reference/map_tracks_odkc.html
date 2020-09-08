@@ -163,13 +163,13 @@
     </div>
 
     <pre class="usage"><span class='fu'>map_tracks_odkc</span>(
-  <span class='no'>tracks</span>,
-  <span class='kw'>sites</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>wastd_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastd_url</a></span>(),
-  <span class='kw'>fmt</span> <span class='kw'>=</span> <span class='st'>"%d/%m/%Y %H:%M"</span>,
-  <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"Australia/Perth"</span>,
-  <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>ts</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>tracks</span>,
+  sites = <span class='kw'>NULL</span>,
+  wastd_url = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastd_url</a></span>(),
+  fmt = <span class='st'>"%d/%m/%Y %H:%M"</span>,
+  tz = <span class='st'>"Australia/Perth"</span>,
+  cluster = <span class='fl'>FALSE</span>,
+  ts = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -245,13 +245,14 @@ each species separately. The maps auto-zooms to the extent of data given.</p>
 <code><a href='nesting_type_by_site_season_species_odkc.html'>nesting_type_by_site_season_species_odkc</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"odkc_data"</span>)
-<span class='fu'>map_tracks_odkc</span>(<span class='no'>odkc_data</span>$<span class='no'>tracks</span>, <span class='kw'>sites</span> <span class='kw'>=</span> <span class='no'>odkc_data</span>$<span class='no'>sites</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>map_tracks_odkc</span>(<span class='no'>odkc_data</span>$<span class='no'>tracks</span>, <span class='kw'>sites</span> <span class='kw'>=</span> <span class='no'>odkc_data</span>$<span class='no'>sites</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>map_tracks_odkc</span>(<span class='no'>odkc_data</span>$<span class='no'>tracks</span>, <span class='kw'>sites</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>map_tracks_odkc</span>(<span class='no'>odkc_data</span>$<span class='no'>tracks</span>, <span class='kw'>sites</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-}</div></pre>
+<span class='fu'>map_tracks_odkc</span>(<span class='kw'>odkc_data</span><span class='op'>$</span><span class='kw'>tracks</span>, sites = <span class='kw'>odkc_data</span><span class='op'>$</span><span class='kw'>sites</span>, cluster = <span class='fl'>TRUE</span>)
+<span class='fu'>map_tracks_odkc</span>(<span class='kw'>odkc_data</span><span class='op'>$</span><span class='kw'>tracks</span>, sites = <span class='kw'>odkc_data</span><span class='op'>$</span><span class='kw'>sites</span>, cluster = <span class='fl'>FALSE</span>)
+<span class='fu'>map_tracks_odkc</span>(<span class='kw'>odkc_data</span><span class='op'>$</span><span class='kw'>tracks</span>, sites = <span class='kw'>NULL</span>, cluster = <span class='fl'>TRUE</span>)
+<span class='fu'>map_tracks_odkc</span>(<span class='kw'>odkc_data</span><span class='op'>$</span><span class='kw'>tracks</span>, sites = <span class='kw'>NULL</span>, cluster = <span class='fl'>FALSE</span>)
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -267,7 +268,7 @@ each species separately. The maps auto-zooms to the extent of data given.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

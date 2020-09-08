@@ -122,20 +122,22 @@
 <p>The <a href="https://wastd.dbca.wa.gov.au/">WA Strandings Database WAStD</a> (<a href="https://github.com/dbca-wa/wastd/">github</a>) provides a <a href="https://wastd.dbca.wa.gov.au/api/1/">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Biodiversity, Conservation and Attractions. The WAStD API uses token and basic authentication, see vignette on details.</p>
 <p>The API returns spatially explicit data as GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. <a href="http://www.qgis.org/en/site/">Quantum GIS</a>.</p>
 <p>If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON properties) into a two-dimensional tabular structure. This requires knowledge about the structure and content of the nested data from WAStD.</p>
-<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="https://dplyr.tidyverse.org/reference/reexports.html">dplyr::tibble</a></code>.</p>
+<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="https://tibble.tidyverse.org/reference/tibble.html">dplyr::tibble</a></code>.</p>
 <p>The secondary purpose of <code>wastdr</code> is to centralize a collection of commonly used analyses and visualisations of turtle data. As development progresses, example analyses and visualisations will be added to the vignette. Contributions and requests are welcome!</p>
 <p>Lastly, to facilitate collaboration with external stakeholders, <code>wastdr</code> contains some anonymized example data (raw GeoJSON and parsed <code>tibble</code>) of turtle taggings, turtle track counts, and turtle nests.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install <code>wastdr</code> from GitHub:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># install.packages("devtools")</span>
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(
     <span class="st">"dbca-wa/wastdr"</span>,
-    <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-    <span class="kw">upgrade</span> <span class="kw">=</span> <span class="st">"always"</span>,
-    <span class="kw">build_vignettes</span> <span class="kw">=</span> <span class="fl">TRUE</span>
-)</pre></div>
+    dependencies = <span class="fl">TRUE</span>,
+    upgrade = <span class="st">"always"</span>,
+    build_vignettes = <span class="fl">TRUE</span>
+)
+</pre></div>
 <p>While the WAStD API is only accessible to a selected audience, and <code>wastdr</code> is under active development, it is not feasible to release <code>wastdr</code> on CRAN yet. Therefore, <code>wastdr</code> will be distributed via GitHub for the time being.</p>
 </div>
 <div id="setup" class="section level2">
@@ -143,40 +145,48 @@
 <a href="#setup" class="anchor"></a>Setup</h2>
 <p><code>wastdr</code> requires to be configured with the WAStD API URL and an access token or a username / password combination. <code>wastdr</code> functions expect these settings to be available as environment variables. For convenience, <code>wastdr_setup</code> sets the correct variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
 <p>DBCA staff can find their WAStD API Token at <a href="https://wastd.dbca.wa.gov.au/">WAStD</a> under “My Profile” and add to their <code>.Renviron</code>. To use ODK Central turtle data download helpers, also add ODK Central credentials.</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://wastd.dbca.wa.gov.au/api/1/"</span>
-<span class="no">WASTDR_API_TOKEN</span><span class="kw">=</span><span class="st">"Token XXX"</span>
-<span class="no">WASTDR_VERBOSE</span><span class="kw">=</span><span class="fl">TRUE</span>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">WASTDR_API_URL</span><span class="op">=</span><span class="st">"https://wastd.dbca.wa.gov.au/api/1/"</span>
+<span class="kw">WASTDR_API_TOKEN</span><span class="op">=</span><span class="st">"Token XXX"</span>
+<span class="kw">WASTDR_VERBOSE</span><span class="op">=</span><span class="fl">TRUE</span>
 
-<span class="no">ODKC_URL</span><span class="kw">=</span><span class="st">"https://odkcentral.dbca.wa.gov.au"</span>
-<span class="no">ODKC_UN</span><span class="kw">=</span><span class="st">"..."</span>
-<span class="no">ODKC_PW</span><span class="kw">=</span><span class="st">"..."</span></pre></div>
+<span class="kw">ODKC_URL</span><span class="op">=</span><span class="st">"https://odkcentral.dbca.wa.gov.au"</span>
+<span class="kw">ODKC_UN</span><span class="op">=</span><span class="st">"..."</span>
+<span class="kw">ODKC_PW</span><span class="op">=</span><span class="st">"..."</span>
+</pre></div>
 <p>External collaborators can use their allocated WAStD username and password:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="no">WASTDR_API_URL</span><span class="kw">=</span><span class="st">"https://wastd.dbca.wa.gov.au/api/1/"</span>
-<span class="no">WASTDR_API_UN</span><span class="kw">=</span><span class="st">"..."</span>
-<span class="no">WASTDR_API_PW</span><span class="kw">=</span><span class="st">"..."</span>
-<span class="no">WASTDR_VERBOSE</span><span class="kw">=</span><span class="fl">TRUE</span>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">WASTDR_API_URL</span><span class="op">=</span><span class="st">"https://wastd.dbca.wa.gov.au/api/1/"</span>
+<span class="kw">WASTDR_API_UN</span><span class="op">=</span><span class="st">"..."</span>
+<span class="kw">WASTDR_API_PW</span><span class="op">=</span><span class="st">"..."</span>
+<span class="kw">WASTDR_VERBOSE</span><span class="op">=</span><span class="fl">TRUE</span>
 
-<span class="no">ODKC_URL</span><span class="kw">=</span><span class="st">"https://odkcentral.dbca.wa.gov.au"</span>
-<span class="no">ODKC_UN</span><span class="kw">=</span><span class="st">"..."</span>
-<span class="no">ODKC_PW</span><span class="kw">=</span><span class="st">"..."</span></pre></div>
+<span class="kw">ODKC_URL</span><span class="op">=</span><span class="st">"https://odkcentral.dbca.wa.gov.au"</span>
+<span class="kw">ODKC_UN</span><span class="op">=</span><span class="st">"..."</span>
+<span class="kw">ODKC_PW</span><span class="op">=</span><span class="st">"..."</span>
+</pre></div>
 <p>Review the settings with:</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="reference/wastdr_settings.html">wastdr_settings</a></span>()
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">wastdr</span>::<span class="fu"><a href="reference/wastdr_settings.html">wastdr_settings</a></span>()
 <span class="co">#&gt; &lt;wastdr settings&gt;</span>
 <span class="co">#&gt;   WAStD URL:     https://tsc.dbca.wa.gov.au/ </span>
 <span class="co">#&gt;   API URL:       https://wastd.dbca.wa.gov.au/api/1/ </span>
 <span class="co">#&gt;   API Token:     see wastdr::get_wastdr_api_token()</span>
 <span class="co">#&gt;   API Username:  FlorianM </span>
 <span class="co">#&gt;   API Password:  see wastdr::get_wastdr_api_pw()</span>
-<span class="co">#&gt;   Verbose:       TRUE</span></pre></div>
+<span class="co">#&gt;   Verbose:       TRUE</span>
+</pre></div>
 <p>For other configuration methods please see the vignette “Setup”.</p>
 </div>
 <div id="get-wastd" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-wastd" class="anchor"></a>Get WAStD</h2>
 <p>Once set up, <code>wastdr</code> can load data from WAStD simply with:</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="no">tracks</span> <span class="kw">&lt;-</span> <span class="st">"turtle-nest-encounters"</span> <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="reference/wastd_GET.html">wastd_GET</a></span>(<span class="kw">max_records</span> <span class="kw">=</span> <span class="fl">10</span>) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>()</pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">tracks</span> <span class="op">&lt;-</span> <span class="st">"turtle-nest-encounters"</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="reference/wastd_GET.html">wastd_GET</a></span>(max_records = <span class="fl">10</span>) <span class="op">%&gt;%</span>  
+    <span class="fu"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span>()
+</pre></div>
 <p>Valid endpoints are listed in the base API URL of WAStD, e.g.:</p>
 <ul>
 <li><code>encounters</code></li>
@@ -189,12 +199,13 @@
 <h2 class="hasAnchor">
 <a href="#or-have-a-pickle" class="anchor"></a>…or have a pickle</h2>
 <p>If you don’t have access to the WAStD API, you can still get a feel for the data by using the pickled example data:</p>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">wastdr</span>)
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/dbca-wa/wastdr">wastdr</a></span>)
 
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"wastd_data"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"odkc_data"</span>)
 
-<span class="no">wastd_data</span>$<span class="no">animals</span>
+<span class="kw">wastd_data</span><span class="op">$</span><span class="kw">animals</span>
 <span class="co">#&gt; # A tibble: 1,000 x 46</span>
 <span class="co">#&gt;    area_name area_type area_id site_name site_type site_id survey_id</span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;</span>
@@ -221,7 +232,7 @@
 <span class="co">#&gt; #   cause_of_death_confidence &lt;chr&gt;, absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;,</span>
 <span class="co">#&gt; #   source &lt;chr&gt;, source_id &lt;chr&gt;, encounter_type &lt;chr&gt;, status &lt;chr&gt;,</span>
 <span class="co">#&gt; #   observer &lt;chr&gt;, reporter &lt;chr&gt;</span>
-<span class="no">wastd_data</span>$<span class="no">tracks</span>
+<span class="kw">wastd_data</span><span class="op">$</span><span class="kw">tracks</span>
 <span class="co">#&gt; # A tibble: 1,000 x 56</span>
 <span class="co">#&gt;    type      pk source source_id encounter_type status when  latitude longitude</span>
 <span class="co">#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span>
@@ -253,17 +264,22 @@
 <span class="co">#&gt; #   turtle_date &lt;date&gt;, season &lt;dbl&gt;, season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   species_colours &lt;chr&gt;, nest_type_text &lt;chr&gt;</span>
 
-<span class="no">wastd_data</span>$<span class="no">tracks</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="reference/map_tracks.html">map_tracks</a></span>(<span class="kw">sites</span> <span class="kw">=</span> <span class="no">wastd_data</span>$<span class="no">sites</span>)</pre></div>
+<span class="kw">wastd_data</span><span class="op">$</span><span class="kw">tracks</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/map_tracks.html">map_tracks</a></span>(sites = <span class="kw">wastd_data</span><span class="op">$</span><span class="kw">sites</span>)
+</pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>
-<div class="sourceCode" id="cb7"><pre class="r"><span class="no">odkc_data</span>$<span class="no">tracks</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="reference/map_tracks_odkc.html">map_tracks_odkc</a></span>(<span class="kw">sites</span> <span class="kw">=</span> <span class="no">odkc_data</span>$<span class="no">sites</span>)</pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">odkc_data</span><span class="op">$</span><span class="kw">tracks</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/map_tracks_odkc.html">map_tracks_odkc</a></span>(sites = <span class="kw">odkc_data</span><span class="op">$</span><span class="kw">sites</span>)
+</pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-2.png"><!-- --></p>
 </div>
 <div id="learn-more" class="section level2">
 <h2 class="hasAnchor">
 <a href="#learn-more" class="anchor"></a>Learn more</h2>
 <p>See the vignette for built-in helpers to transform, analyze and visualize WAStD data.</p>
-<div class="sourceCode" id="cb8"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span>(<span class="st">"getting-wastd"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"wastdr"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span>(<span class="st">"analysis"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"wastdr"</span>)</pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span>(<span class="st">"getting-wastd"</span>, package = <span class="st">"wastdr"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span>(<span class="st">"analysis"</span>, package = <span class="st">"wastdr"</span>)
+</pre></div>
 </div>
 </div>
 <div id="contribute" class="section level1">
@@ -272,17 +288,21 @@
 <p>Every contribution, constructive feedback, or suggestion is welcome!</p>
 <p>Send us your ideas and requests as <a href="https://github.com/dbca-wa/wastdr/issues">issues</a> or submit a pull request.</p>
 <p>Pull requests should eventually pass tests and checks (not introducing new ERRORs, WARNINGs or NOTEs apart from the “New CRAN package” NOTE):</p>
-<div class="sourceCode" id="cb9"><pre class="r"><span class="kw pkg">styler</span><span class="kw ns">:::</span><span class="fu">style_pkg</span>()
-<span class="kw pkg">spelling</span><span class="kw ns">::</span><span class="fu"><a href="https://docs.ropensci.org/spelling/reference/spell_check_package.html">spell_check_package</a></span>()
-<span class="kw pkg">spelling</span><span class="kw ns">::</span><span class="fu"><a href="https://docs.ropensci.org/spelling/reference/wordlist.html">update_wordlist</a></span>()
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">document</span>(<span class="kw">roclets</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"rd"</span>, <span class="st">"collate"</span>, <span class="st">"namespace"</span>, <span class="st">"vignette"</span>))
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">build</span>()
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">test</span>()
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="kw">styler</span>:::<span class="fu">style_pkg</span>()
+<span class="kw">spelling</span>::<span class="fu"><a href="https://docs.ropensci.org/spelling/reference/spell_check_package.html">spell_check_package</a></span>()
+<span class="kw">spelling</span>::<span class="fu"><a href="https://docs.ropensci.org/spelling/reference/wordlist.html">update_wordlist</a></span>()
+<span class="kw">devtools</span>::<span class="fu">document</span>(roclets = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"rd"</span>, <span class="st">"collate"</span>, <span class="st">"namespace"</span>, <span class="st">"vignette"</span>))
+<span class="kw">devtools</span>::<span class="fu">build</span>()
+<span class="kw">devtools</span>::<span class="fu">test</span>()
 <span class="co"># devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))</span>
-<span class="kw pkg">goodpractice</span><span class="kw ns">::</span><span class="fu">goodpractice</span>(<span class="kw">quiet</span> <span class="kw">=</span> <span class="no">F</span>)
-<span class="kw pkg">covr</span><span class="kw ns">::</span><span class="fu"><a href="http://covr.r-lib.org/reference/codecov.html">codecov</a></span>(<span class="kw">token</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"CODECOV_TOKEN"</span>))</pre></div>
+<span class="kw">goodpractice</span>::<span class="fu">goodpractice</span>(quiet = <span class="kw">F</span>)
+<span class="kw">covr</span>::<span class="fu"><a href="http://covr.r-lib.org/reference/codecov.html">codecov</a></span>(token = <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"CODECOV_TOKEN"</span>))
+</pre></div>
 <p>To enable local testing of the API as well as checking and upload of test coverage, add your CODECOV token to your .Renviron:</p>
-<div class="sourceCode" id="cb10"><pre class="r"><span class="no">CODECOV_TOKEN</span> <span class="kw">=</span> <span class="st">"my-codecov-token"</span></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="kw">CODECOV_TOKEN</span> <span class="op">=</span> <span class="st">"my-codecov-token"</span>
+</pre></div>
 <p>The <code>wastdr</code> <a href="https://dbca-wa.github.io/wastdr/">webpage</a> is hosted on gh-pages and generated using <a href="https://github.com/hadley/pkgdown">pkgdown</a>.</p>
 </div>
 
@@ -336,7 +356,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

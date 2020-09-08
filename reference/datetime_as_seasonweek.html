@@ -162,7 +162,7 @@
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>datetime_as_seasonweek</span>(<span class='no'>datetime</span>)</pre>
+    <pre class="usage"><span class='fu'>datetime_as_seasonweek</span>(<span class='kw'>datetime</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -219,7 +219,12 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># These datetimes are turtle season 2017:</span>
-<span class='fu'>datetime_as_seasonweek</span>(<span class='fu'><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a></span>(<span class='st'>"2017-07-02T15:59:59Z"</span>)) <span class='co'># 0</span></div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='fu'>datetime_as_seasonweek</span>(<span class='fu'><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a></span>(<span class='st'>"2017-07-02T16:00:00Z"</span>)) <span class='co'># 1</span></div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>datetime_as_seasonweek</span>(<span class='fu'><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a></span>(<span class='st'>"2017-08-30T06:38:43Z"</span>)) <span class='co'># 9</span></div><div class='output co'>#&gt; [1] 9</div><div class='input'><span class='fu'>datetime_as_seasonweek</span>(<span class='fu'><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a></span>(<span class='st'>"2017-11-01T22:00:00Z"</span>)) <span class='co'># 18</span></div><div class='output co'>#&gt; [1] 18</div><div class='input'><span class='fu'>datetime_as_seasonweek</span>(<span class='fu'><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a></span>(<span class='st'>"2018-11-01T22:00:00Z"</span>)) <span class='co'># 18</span></div><div class='output co'>#&gt; [1] 18</div></pre>
+<span class='fu'>datetime_as_seasonweek</span>(<span class='fu'><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a></span>(<span class='st'>"2017-07-02T15:59:59Z"</span>)) <span class='co'># 0</span>
+</div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='fu'>datetime_as_seasonweek</span>(<span class='fu'><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a></span>(<span class='st'>"2017-07-02T16:00:00Z"</span>)) <span class='co'># 1</span>
+</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>datetime_as_seasonweek</span>(<span class='fu'><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a></span>(<span class='st'>"2017-08-30T06:38:43Z"</span>)) <span class='co'># 9</span>
+</div><div class='output co'>#&gt; [1] 9</div><div class='input'><span class='fu'>datetime_as_seasonweek</span>(<span class='fu'><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a></span>(<span class='st'>"2017-11-01T22:00:00Z"</span>)) <span class='co'># 18</span>
+</div><div class='output co'>#&gt; [1] 18</div><div class='input'><span class='fu'>datetime_as_seasonweek</span>(<span class='fu'><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a></span>(<span class='st'>"2018-11-01T22:00:00Z"</span>)) <span class='co'># 18</span>
+</div><div class='output co'>#&gt; [1] 18</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -235,7 +240,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

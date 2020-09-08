@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Accessing WAStD Data</h1>
                         <h4 class="author">Florian Mayer</h4>
             
-            <h4 class="date">2020-09-07</h4>
+            <h4 class="date">2020-09-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/access.Rmd"><code>vignettes/access.Rmd</code></a></small>
       <div class="hidden name"><code>access.Rmd</code></div>
@@ -125,8 +125,10 @@
 <p>After setting up <code>wastdr</code>’s authentication in vignette “Setup”, we can now retrieve data using <code><a href="../reference/wastd_GET.html">wastdr::wastd_GET()</a></code> to send <code>GET</code> requests to the <code>WAStD</code> API.</p>
 <p>This vignette shows examples of retrieving and parsing data from all existing WAStD API endpoints. The intent of this vignette is to serve as a starting point</p>
 <p>See vignette “get-tsc” for examples of the Threatened Species and Communities side.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">wastdr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/dbca-wa/wastdr">wastdr</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org">dplyr</a></span>)
+</pre></div>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:stats':
@@ -135,18 +137,24 @@
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">leaflet</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">listviewer</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://rstudio.github.io/leaflet">leaflet</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/timelyportfolio/listviewer">listviewer</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span>)
+</pre></div>
 </div>
 <div id="all-the-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#all-the-data" class="anchor"></a>All the data</h1>
 <p>You can download all the Turtle data from WAStD in one step. Be warned, this step will run for about half an hour.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">wastd_data</span> <span class="kw">&lt;-</span> <span class="kw pkg">wastdr</span><span class="kw ns">::</span><span class="fu"><a href="../reference/download_wastd_turtledata.html">download_wastd_turtledata</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">wastd_data</span> <span class="op">&lt;-</span> <span class="kw">wastdr</span>::<span class="fu"><a href="../reference/download_wastd_turtledata.html">download_wastd_turtledata</a></span>()
+</pre></div>
 <p><code>wastdr</code> contains a small sample of the above for demonstration purposes.</p>
 <p><code>wastd_data</code> comes with its own print method:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">wastd_data</span></pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">wastd_data</span>
+</pre></div>
 <pre><code>## &lt;WAStD Data&gt; accessed on 2020-08-19 06:45:47
 ## Areas: 14
 ## Sites: 102
@@ -161,9 +169,11 @@
 <div id="encounters" class="section level1">
 <h1 class="hasAnchor">
 <a href="#encounters" class="anchor"></a>Encounters</h1>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"># Encounters from 2016 onwards (this includes disturbances, animal and turtle 
-# nest encounters but not their specific details)
-# https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?when__year__gte=2016</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="co"># Encounters from 2016 onwards (this includes disturbances, animal and turtle </span>
+<span class="co"># nest encounters but not their specific details)</span>
+<span class="co"># https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?when__year__gte=2016</span>
+</pre></div>
 <div id="filtering-the-results" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filtering-the-results" class="anchor"></a>Filtering the results</h2>
@@ -183,13 +193,17 @@
 <div id="animalencounters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#animalencounters" class="anchor"></a>AnimalEncounters</h2>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"># AnimalEncounters of Turtles from 2016 onwards
-# https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="co"># AnimalEncounters of Turtles from 2016 onwards</span>
+<span class="co"># https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</span>
+</pre></div>
 </div>
 <div id="turtlenestencounters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#turtlenestencounters" class="anchor"></a>TurtleNestEncounters</h2>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"># https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="co"># https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</span>
+</pre></div>
 </div>
 <div id="linetransectencounters" class="section level2">
 <h2 class="hasAnchor">
@@ -217,7 +231,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

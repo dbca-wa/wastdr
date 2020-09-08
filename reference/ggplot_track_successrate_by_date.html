@@ -166,12 +166,12 @@ series</h1>
     </div>
 
     <pre class="usage"><span class='fu'>ggplot_track_successrate_by_date</span>(
-  <span class='no'>tracks</span>,
-  <span class='no'>speciesname</span>,
-  <span class='kw'>placename</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>local_dir</span> <span class='kw'>=</span> <span class='kw pkg'>here</span><span class='kw ns'>::</span><span class='fu'>here</span>(),
-  <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>tracks</span>,
+  <span class='kw'>speciesname</span>,
+  placename = <span class='st'>""</span>,
+  prefix = <span class='st'>""</span>,
+  local_dir = <span class='kw'>here</span>::<span class='fu'>here</span>(),
+  export = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -261,8 +261,9 @@ default: <code>here::here()</code></p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
-<span class='no'>sp</span> <span class='kw'>&lt;-</span> <span class='no'>wastd_data</span>$<span class='no'>tracks</span>$<span class='no'>species</span><span class='kw'>[[</span><span class='fl'>1</span>]]
-<span class='fu'><a href='track_success.html'>track_success</a></span>(<span class='no'>wastd_data</span>$<span class='no'>tracks</span>) <span class='kw'>%&gt;%</span> <span class='fu'>ggplot_track_successrate_by_date</span>(<span class='no'>sp</span>)</div><div class='img'><img src='ggplot_track_successrate_by_date-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='kw'>sp</span> <span class='op'>&lt;-</span> <span class='kw'>wastd_data</span><span class='op'>$</span><span class='kw'>tracks</span><span class='op'>$</span><span class='kw'>species</span>[[<span class='fl'>1</span>]]
+<span class='fu'><a href='track_success.html'>track_success</a></span>(<span class='kw'>wastd_data</span><span class='op'>$</span><span class='kw'>tracks</span>) <span class='op'>%&gt;%</span> <span class='fu'>ggplot_track_successrate_by_date</span>(<span class='kw'>sp</span>)
+</div><div class='img'><img src='ggplot_track_successrate_by_date-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -278,7 +279,7 @@ default: <code>here::here()</code></p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

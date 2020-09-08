@@ -163,9 +163,9 @@
     </div>
 
     <pre class="usage"><span class='fu'>filter_odkc_turtledata</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>area_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
+  <span class='kw'>data</span>,
+  area_name = <span class='kw'>NULL</span>,
+  verbose = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -196,14 +196,16 @@ Default: wastdr::get_wastdr_verbose()</p></td>
     <p>&lt;list&gt; The input data, optionally filtered to a subset of records.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>odkc_data</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>odkc_data</span>)
 
 <span class='co'># All data</span>
-<span class='no'>data_all</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='no'>odkc_data</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data_all</span>$<span class='no'>tracks</span>)</div><div class='output co'>#&gt; [1] 6</div><div class='input'>
+<span class='kw'>data_all</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='kw'>odkc_data</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>data_all</span><span class='op'>$</span><span class='kw'>tracks</span>)
+</div><div class='output co'>#&gt; [1] 6</div><div class='input'>
 <span class='co'># One area</span>
-<span class='no'>area_names</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>odkc_data</span>$<span class='no'>areas</span>$<span class='no'>area_name</span>)
-<span class='no'>area_names</span></div><div class='output co'>#&gt;  [1] "Cape Dommett"                                    
+<span class='kw'>area_names</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='kw'>odkc_data</span><span class='op'>$</span><span class='kw'>areas</span><span class='op'>$</span><span class='kw'>area_name</span>)
+<span class='kw'>area_names</span>
+</div><div class='output co'>#&gt;  [1] "Cape Dommett"                                    
 #&gt;  [2] "Smokey Bay Area"                                 
 #&gt;  [3] "Cable Beach Broome"                              
 #&gt;  [4] "Port Hedland"                                    
@@ -216,13 +218,16 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 #&gt; [11] "Thevenard Island"                                
 #&gt; [12] "Ningaloo"                                        
 #&gt; [13] "Onslow"                                          
-#&gt; [14] "Perth Metro"                                     </div><div class='input'><span class='no'>data_area_1</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='no'>odkc_data</span>, <span class='kw'>area_name</span> <span class='kw'>=</span> <span class='st'>"Cape Dommett"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data_area_1</span>$<span class='no'>tracks</span>)</div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='no'>data_area_2</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='no'>odkc_data</span>, <span class='kw'>area_name</span> <span class='kw'>=</span> <span class='no'>area_names</span><span class='kw'>[[</span><span class='fl'>2</span>]])
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data_area_2</span>$<span class='no'>tracks</span>)</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
+#&gt; [14] "Perth Metro"                                     </div><div class='input'><span class='kw'>data_area_1</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='kw'>odkc_data</span>, area_name = <span class='st'>"Cape Dommett"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>data_area_1</span><span class='op'>$</span><span class='kw'>tracks</span>)
+</div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='kw'>data_area_2</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='kw'>odkc_data</span>, area_name = <span class='kw'>area_names</span>[[<span class='fl'>2</span>]])
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>data_area_2</span><span class='op'>$</span><span class='kw'>tracks</span>)
+</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 
 <span class='co'># Orphans</span>
-<span class='no'>data_orphans</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='no'>odkc_data</span>, <span class='kw'>area_name</span> <span class='kw'>=</span> <span class='st'>"Other"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data_orphans</span>)</div><div class='output co'>#&gt; NULL</div></pre>
+<span class='kw'>data_orphans</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='kw'>odkc_data</span>, area_name = <span class='st'>"Other"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>data_orphans</span>)
+</div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -238,7 +243,7 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

@@ -162,7 +162,7 @@
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>nesting_type_by_site_season_species</span>(<span class='no'>tracks</span>)</pre>
+    <pre class="usage"><span class='fu'>nesting_type_by_site_season_species</span>(<span class='kw'>tracks</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -230,7 +230,8 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
-<span class='fu'>nesting_type_by_site_season_species</span>(<span class='no'>wastd_data</span>$<span class='no'>tracks</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 27 x 10</span><span>
+<span class='fu'>nesting_type_by_site_season_species</span>(<span class='kw'>wastd_data</span><span class='op'>$</span><span class='kw'>tracks</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 27 x 10</span><span>
 #&gt;    area_name site_name season species `false-crawl` `hatched-nest`  nest
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> Perth Me… Florian …   </span><span style='text-decoration: underline;'>2</span><span>016 chelon…             0              0     0
@@ -260,7 +261,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

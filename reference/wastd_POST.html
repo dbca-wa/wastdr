@@ -163,15 +163,15 @@
     </div>
 
     <pre class="usage"><span class='fu'>wastd_POST</span>(
-  <span class='no'>data</span>,
-  <span class='no'>serializer</span>,
-  <span class='kw'>query</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>),
-  <span class='kw'>encode</span> <span class='kw'>=</span> <span class='st'>"json"</span>,
-  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
-  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
-  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
-  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>(),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
+  <span class='kw'>data</span>,
+  <span class='kw'>serializer</span>,
+  query = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(format = <span class='st'>"json"</span>),
+  encode = <span class='st'>"json"</span>,
+  api_url = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
+  api_token = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
+  api_un = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
+  api_pw = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>(),
+  verbose = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -238,17 +238,18 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 <code><a href='wastd_post_one.html'>wastd_post_one</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># One by one</span>
-<span class='no'>gj</span> <span class='kw'>&lt;-</span> <span class='st'>"public:herbie_hbvnames_public"</span> <span class='kw'>%&gt;%</span> <span class='fu'>kmi_getFeature</span>()
-<span class='no'>props</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span>(<span class='no'>gj</span><span class='kw'>[[</span><span class='st'>"features"</span>]], <span class='st'>"properties"</span>)
-<span class='fu'>wastd_POST</span>(<span class='no'>props</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>serializer</span> <span class='kw'>=</span> <span class='st'>"names"</span>)
+<span class='kw'>gj</span> <span class='op'>&lt;-</span> <span class='st'>"public:herbie_hbvnames_public"</span> <span class='op'>%&gt;%</span> <span class='fu'>kmi_getFeature</span>()
+<span class='kw'>props</span> <span class='op'>&lt;-</span> <span class='kw'>purrr</span>::<span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span>(<span class='kw'>gj</span>[[<span class='st'>"features"</span>]], <span class='st'>"properties"</span>)
+<span class='fu'>wastd_POST</span>(<span class='kw'>props</span>[[<span class='fl'>1</span>]], serializer = <span class='st'>"names"</span>)
 
 <span class='co'># All in batch</span>
-<span class='st'>"public:herbie_hbvnames_public"</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>kmi_getFeature</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>wastd_upsert_geojson</span>(<span class='kw'>serializer</span> <span class='kw'>=</span> <span class='st'>"names"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>)
-}</div></pre>
+<span class='st'>"public:herbie_hbvnames_public"</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>kmi_getFeature</span>() <span class='op'>%&gt;%</span>
+  <span class='fu'>wastd_upsert_geojson</span>(serializer = <span class='st'>"names"</span>, verbose = <span class='kw'>T</span>)
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -264,7 +265,7 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

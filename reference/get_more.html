@@ -162,7 +162,7 @@
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_more</span>(<span class='no'>total_count</span>, <span class='no'>limit</span>)</pre>
+    <pre class="usage"><span class='fu'>get_more</span>(<span class='kw'>total_count</span>, <span class='kw'>limit</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -218,10 +218,11 @@
 <code><a href='wastdr_setup.html'>wastdr_setup</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/logical-expectations.html'>expect_true</a></span>(<span class='fu'>get_more</span>(<span class='fl'>0L</span>, <span class='kw'>NULL</span>))
-<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/logical-expectations.html'>expect_true</a></span>(<span class='fu'>get_more</span>(<span class='fl'>1000L</span>, <span class='kw'>NULL</span>))
-<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/logical-expectations.html'>expect_true</a></span>(<span class='fu'>get_more</span>(<span class='fl'>9L</span>, <span class='fl'>10</span>))
-<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/logical-expectations.html'>expect_false</a></span>(<span class='fu'>get_more</span>(<span class='fl'>10L</span>, <span class='fl'>10</span>))</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>testthat</span>::<span class='fu'><a href='https://testthat.r-lib.org/reference/logical-expectations.html'>expect_true</a></span>(<span class='fu'>get_more</span>(<span class='fl'>0L</span>, <span class='kw'>NULL</span>))
+<span class='kw'>testthat</span>::<span class='fu'><a href='https://testthat.r-lib.org/reference/logical-expectations.html'>expect_true</a></span>(<span class='fu'>get_more</span>(<span class='fl'>1000L</span>, <span class='kw'>NULL</span>))
+<span class='kw'>testthat</span>::<span class='fu'><a href='https://testthat.r-lib.org/reference/logical-expectations.html'>expect_true</a></span>(<span class='fu'>get_more</span>(<span class='fl'>9L</span>, <span class='fl'>10</span>))
+<span class='kw'>testthat</span>::<span class='fu'><a href='https://testthat.r-lib.org/reference/logical-expectations.html'>expect_false</a></span>(<span class='fu'>get_more</span>(<span class='fl'>10L</span>, <span class='fl'>10</span>))
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -237,7 +238,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

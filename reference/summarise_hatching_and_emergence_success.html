@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a> — summarise_hatching_and_emergence_success • wastdr</title>
+<title> — summarise_hatching_and_emergence_success • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="<a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a> — summarise_hatching_and_emergence_success" />
+<meta property="og:title" content=" — summarise_hatching_and_emergence_success" />
 <meta property="og:description" content="Utility to summarise a tibble of tracks with nest excavation data.
 If the dataset does not contain variables egg_count or
 egg_count_calculated, they will be added and set to
@@ -172,7 +172,7 @@ WAStD happens to contain all NA in either of these variables, as
 <code><a href='parse_encounterobservations.html'>parse_encounterobservations</a></code> drops columns with all NA.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>summarise_hatching_and_emergence_success</span>(<span class='no'>data</span>)</pre>
+    <pre class="usage"><span class='fu'>summarise_hatching_and_emergence_success</span>(<span class='kw'>data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -250,7 +250,8 @@ WAStD happens to contain all NA in either of these variables, as
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
-<span class='fu'>summarise_hatching_and_emergence_success</span>(<span class='no'>wastd_data</span>$<span class='no'>nest_excavations</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 14</span><span>
+<span class='fu'>summarise_hatching_and_emergence_success</span>(<span class='kw'>wastd_data</span><span class='op'>$</span><span class='kw'>nest_excavations</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 14</span><span>
 #&gt;   count clutch_size_fre… clutch_size_mean clutch_size_sd clutch_size_min
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>1</span><span>000               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>              </span><span style='color: #BB0000;'>NA</span><span>
@@ -274,7 +275,7 @@ WAStD happens to contain all NA in either of these variables, as
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

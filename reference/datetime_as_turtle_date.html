@@ -162,7 +162,7 @@
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>datetime_as_turtle_date</span>(<span class='no'>datetime</span>)</pre>
+    <pre class="usage"><span class='fu'>datetime_as_turtle_date</span>(<span class='kw'>datetime</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -228,11 +228,13 @@ datetime minus 12 hours.</p>
     <pre class="examples"><div class='input'><span class='co'># noon AWST is turtle date "2016-11-20":</span>
 <span class='fu'>datetime_as_turtle_date</span>(
   <span class='fu'><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a></span>(<span class='st'>"2016-11-20T04:00:00Z"</span>)
-)</div><div class='output co'>#&gt; [1] "2016-11-20"</div><div class='input'>
+)
+</div><div class='output co'>#&gt; [1] "2016-11-20"</div><div class='input'>
 <span class='co'># 1 sec before noon AWST is turtle date "2016-11-19":</span>
 <span class='fu'>datetime_as_turtle_date</span>(
   <span class='fu'><a href='httpdate_as_gmt08_turtle_date.html'>httpdate_as_gmt08_turtle_date</a></span>(<span class='st'>"2016-11-20T03:59:59Z"</span>)
-)</div><div class='output co'>#&gt; [1] "2016-11-18"</div></pre>
+)
+</div><div class='output co'>#&gt; [1] "2016-11-18"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -248,7 +250,7 @@ datetime minus 12 hours.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

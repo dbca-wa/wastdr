@@ -169,16 +169,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>wastd_GET</span>(
-  <span class='no'>serializer</span>,
-  <span class='kw'>query</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>,
-  <span class='kw'>max_records</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>chunk_size</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>api_url</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
-  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
-  <span class='kw'>api_un</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
-  <span class='kw'>api_pw</span> <span class='kw'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>(),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>wastdr</span><span class='kw ns'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
+  <span class='kw'>serializer</span>,
+  query = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  format = <span class='st'>"json"</span>,
+  max_records = <span class='kw'>NULL</span>,
+  chunk_size = <span class='fl'>1000</span>,
+  api_url = <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
+  api_token = <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
+  api_un = <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
+  api_pw = <span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_pw</a></span>(),
+  verbose = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -256,13 +256,14 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 <code><a href='wastd_post_one.html'>wastd_post_one</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>track_records</span> <span class='kw'>&lt;-</span> <span class='fu'>wastd_GET</span>(<span class='st'>"turtle-nest-encounters"</span>)
-<span class='no'>tag_records</span> <span class='kw'>&lt;-</span> <span class='fu'>wastd_GET</span>(<span class='st'>"animal-encounters"</span>)
-<span class='no'>hatched_nest_records</span> <span class='kw'>&lt;-</span> <span class='fu'>wastd_GET</span>(<span class='st'>"turtle-nest-encounters"</span>,
-  <span class='kw'>query</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>nest_type</span> <span class='kw'>=</span> <span class='st'>"hatched-nest"</span>)
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>track_records</span> <span class='op'>&lt;-</span> <span class='fu'>wastd_GET</span>(<span class='st'>"turtle-nest-encounters"</span>)
+<span class='kw'>tag_records</span> <span class='op'>&lt;-</span> <span class='fu'>wastd_GET</span>(<span class='st'>"animal-encounters"</span>)
+<span class='kw'>hatched_nest_records</span> <span class='op'>&lt;-</span> <span class='fu'>wastd_GET</span>(<span class='st'>"turtle-nest-encounters"</span>,
+  query = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(nest_type = <span class='st'>"hatched-nest"</span>)
 )
-}</div></pre>
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -278,7 +279,7 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
