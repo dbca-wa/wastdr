@@ -34,14 +34,21 @@ download_minimal_wastd_turtledata <-
       wastd_parse() %>%
       dplyr::select(-geometry)
 
-    # Surveys -------------------------------------------------------------------#
+    # Surveys -----------------------------------------------------------------#
     surveys <- wastd_GET("surveys",
       api_url = api_url,
       api_token = api_token,
       verbose = verbose
     ) %>% wastd_parse()
 
-    # Areas and sites -----------------------------------------------------------#
+    # Media -------------------------------------------------------------------#
+    media <- wastd_GET("media-attachments",
+                         api_url = api_url,
+                         api_token = api_token,
+                         verbose = verbose
+    ) %>% wastd_parse()
+
+    # Areas and sites ---------------------------------------------------------#
     areas_sf <- wastd_GET("area",
       api_url = api_url,
       api_token = api_token,
@@ -64,6 +71,7 @@ download_minimal_wastd_turtledata <-
       enc = enc,
       surveys = surveys,
       areas = areas,
-      sites = sites
+      sites = sites,
+      media = media
     )
   }
