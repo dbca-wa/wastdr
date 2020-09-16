@@ -32,14 +32,14 @@ jobs:
           - { os: macOS-latest, r: "oldrel" }
           # Ubuntu-18-04 fails to install ‘protolite’, ‘geojson’, ‘geojsonio’
           - { os: ubuntu-20.04, r: "devel" }
-          - { os: ubuntu-20.04, r: "release" }
-          - { os: ubuntu-20.04, r: "oldrel" }
+          # - { os: ubuntu-20.04, r: "release" }
+          # - { os: ubuntu-20.04, r: "oldrel" }
           - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release", pkgdown: "true", latex: "true" } # Heisensegfault my old friend
           - { os: ubuntu-latest, r: "oldrel" } # it's nice to see you crash again
           # Ubuntu 16.04 fails to install stringr, v8 needs CURL_OPENSSL_4
-          - { os: ubuntu-16.04, r: "release"} # fails to install r-base-*
-          - { os: ubuntu-16.04, r: "oldrel" }
+          # - { os: ubuntu-16.04, r: "release"} # fails to install r-base-*
+          # - { os: ubuntu-16.04, r: "oldrel" }
 
     env:
       # otherwise remotes::fun() errors cause the build to fail. Example: Unavailability of binaries
