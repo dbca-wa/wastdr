@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>POST data to a WAStD API serializer in chunks — wastd_chunk_post • wastdr</title>
+<title>Filter WAStD turtledata to an area_name — filter_wastd_turtledata • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="POST data to a WAStD API serializer in chunks — wastd_chunk_post" />
-<meta property="og:description" content="POST data to a WAStD API serializer in chunks" />
+<meta property="og:title" content="Filter WAStD turtledata to an area_name — filter_wastd_turtledata" />
+<meta property="og:description" content="Filter WAStD turtledata to an area_name" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -153,78 +153,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>POST data to a WAStD API serializer in chunks</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/wastd_chunk_post.R'><code>R/wastd_chunk_post.R</code></a></small>
-    <div class="hidden name"><code>wastd_chunk_post.Rd</code></div>
+    <h1>Filter WAStD turtledata to an area_name</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/filter_wastd_turtledata.R'><code>R/filter_wastd_turtledata.R</code></a></small>
+    <div class="hidden name"><code>filter_wastd_turtledata.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>POST data to a WAStD API serializer in chunks</p>
+    <p>Filter WAStD turtledata to an area_name</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wastd_chunk_post</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>serializer</span>,
-  query = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  chunksize = <span class='fl'>1000</span>,
-  encode = <span class='st'>"json"</span>,
-  api_url = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
-  api_token = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
-  verbose = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
-)</pre>
+    <pre class="usage"><span class='fu'>filter_wastd_turtledata</span>(<span class='kw'>x</span>, <span class='kw'>area_name</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>Data to post to the serializer</p></td>
+      <th>x</th>
+      <td><p>An object of class `wastd_data` as returned by
+<code><a href='download_wastd_turtledata.html'>download_wastd_turtledata</a></code>. This data can be filtered to
+an area_name (WAStD Area of type Locality).</p></td>
     </tr>
     <tr>
-      <th>serializer</th>
-      <td><p>A WAStD API serializer, e.g. "encounters"</p></td>
-    </tr>
-    <tr>
-      <th>query</th>
-      <td><p>An optional query for <code><a href='wastd_POST.html'>wastd_POST</a></code>,
-default: `list()`.</p></td>
-    </tr>
-    <tr>
-      <th>chunksize</th>
-      <td><p>The number of records to post at a time, default: 1000.</p></td>
-    </tr>
-    <tr>
-      <th>encode</th>
-      <td><p>The parameter <code>encode</code> for <code>link{httr::POST}</code>,
-default: "json".
-Other options: <code><a href='https://rdrr.io/r/base/c.html'>c("multipart", "form", "json", "raw")</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>api_url</th>
-      <td><p>(character) The WAStD API URL,
-default <code><a href='wastdr_settings.html'>get_wastdr_api_url</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
-    </tr>
-    <tr>
-      <th>api_token</th>
-      <td><p>(character) The WAStD API token,
-default <code><a href='wastdr_settings.html'>get_wastdr_api_token</a></code>, see <code><a href='wastdr_setup.html'>wastdr_setup</a></code></p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Whether to show debug messages.
-Default: wastdr::get_wastdr_verbose()</p></td>
+      <th>area_name</th>
+      <td><p>The name of a WAStD Area of type Locality to filter the
+data.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The `wastd_api_response` of the last batch of data.</p>
+    <p>An object of class `wastd_data` filtered to records within
+  `area_name`.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='co'># ODKC data as WAStD data, chunk_post</span>
-}
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -165,6 +165,7 @@
     <pre class="usage"><span class='fu'>wastd_bulk_post</span>(
   <span class='kw'>data</span>,
   <span class='kw'>serializer</span>,
+  encode = <span class='st'>"json"</span>,
   api_url = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_url</a></span>(),
   api_token = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_token</a></span>(),
   api_un = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_api_un</a></span>(),
@@ -184,6 +185,12 @@ fields.</p></td>
       <th>serializer</th>
       <td><p>(character) WAStD API serializer name (required)
 Possible values see <code>https://tsc.dbca.wa.gov.au/api/1/</code></p></td>
+    </tr>
+    <tr>
+      <th>encode</th>
+      <td><p>The parameter <code>encode</code> for <code>link{httr::POST}</code>,
+default: "json".
+Other options: <code><a href='https://rdrr.io/r/base/c.html'>c("multipart", "form", "json", "raw")</a></code>.</p></td>
     </tr>
     <tr>
       <th>api_url</th>
