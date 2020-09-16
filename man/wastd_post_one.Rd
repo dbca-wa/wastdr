@@ -7,6 +7,7 @@
 wastd_post_one(
   data_row,
   serializer,
+  encode = "json",
   api_url = wastdr::get_wastdr_api_url(),
   api_token = wastdr::get_wastdr_api_token(),
   api_un = wastdr::get_wastdr_api_un(),
@@ -20,6 +21,10 @@ fields.}
 
 \item{serializer}{(character) WAStD API serializer name (required)
 Possible values see \code{https://tsc.dbca.wa.gov.au/api/1/}}
+
+\item{encode}{The parameter \code{encode} for \code{link{httr::POST}},
+default: "json".
+Other options: \code{c("multipart", "form", "json", "raw")}.}
 
 \item{api_url}{(character) The WAStD API URL,
 default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}

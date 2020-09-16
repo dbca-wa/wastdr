@@ -5,6 +5,9 @@
 #' @param data_row A row of a data tibble with columns equal to the serializer's
 #'   fields.
 #' @template param-serializer
+#' @param encode The parameter \code{encode} for \code{link{httr::POST}},
+#'   default: "json".
+#'   Other options: \code{c("multipart", "form", "json", "raw")}.
 #' @template param-auth
 #' @template param-verbose
 #' @return The \code{wastd_api_response} from \code{\link{wastd_POST}}.
@@ -12,6 +15,7 @@
 #' @export
 wastd_post_one <- function(data_row,
                            serializer,
+                           encode = "json",
                            api_url = wastdr::get_wastdr_api_url(),
                            api_token = wastdr::get_wastdr_api_token(),
                            api_un = wastdr::get_wastdr_api_un(),
@@ -21,6 +25,7 @@ wastd_post_one <- function(data_row,
     as.list() %>%
     wastdr::wastd_POST(
       serializer = serializer,
+      encode = encode,
       api_url = api_url,
       api_token = api_token,
       api_un = api_un,

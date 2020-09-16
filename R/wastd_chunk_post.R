@@ -5,6 +5,9 @@
 #' @param query An optional query for \code{\link{wastd_POST}},
 #'   default: `list()`.
 #' @param chunksize The number of records to post at a time, default: 1000.
+#' @param encode The parameter \code{encode} for \code{link{httr::POST}},
+#'   default: "json".
+#'   Other options: \code{c("multipart", "form", "json", "raw")}.
 #' @template param-tokenauth
 #' @template param-verbose
 #'
@@ -19,6 +22,7 @@ wastd_chunk_post <- function(data,
                              serializer,
                              query = list(),
                              chunksize = 1000,
+                             encode = "json",
                              api_url = wastdr::get_wastdr_api_url(),
                              api_token = wastdr::get_wastdr_api_token(),
                              verbose = wastdr::get_wastdr_verbose()) {
@@ -42,6 +46,7 @@ wastd_chunk_post <- function(data,
       wastdr::wastd_POST(.,
         serializer = serializer,
         query = query,
+        encode = encode,
         api_url = api_url,
         api_token = api_token,
         verbose = verbose

@@ -9,6 +9,7 @@ wastd_chunk_post(
   serializer,
   query = list(),
   chunksize = 1000,
+  encode = "json",
   api_url = wastdr::get_wastdr_api_url(),
   api_token = wastdr::get_wastdr_api_token(),
   verbose = wastdr::get_wastdr_verbose()
@@ -23,6 +24,10 @@ wastd_chunk_post(
 default: `list()`.}
 
 \item{chunksize}{The number of records to post at a time, default: 1000.}
+
+\item{encode}{The parameter \code{encode} for \code{link{httr::POST}},
+default: "json".
+Other options: \code{c("multipart", "form", "json", "raw")}.}
 
 \item{api_url}{(character) The WAStD API URL,
 default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}
