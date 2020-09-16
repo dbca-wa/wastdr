@@ -31,7 +31,7 @@ jobs:
           - { os: macOS-latest, r: "release"}
           - { os: macOS-latest, r: "oldrel" }
           # Ubuntu-18-04 fails to install ‘protolite’, ‘geojson’, ‘geojsonio’
-          - { os: ubuntu-20.04, r: "devel" }
+          # - { os: ubuntu-20.04, r: "devel" }
           # - { os: ubuntu-20.04, r: "release" }
           # - { os: ubuntu-20.04, r: "oldrel" }
           - { os: ubuntu-latest, r: "devel" }
