@@ -4,8 +4,6 @@
 #' @param x An object of class `wastd_data` as returned by
 #'   \code{\link{download_wastd_turtledata}}. This data can be filtered to
 #'   an area_name (WAStD Area of type Locality).
-#' @param area_name The name of a WAStD Area of type Locality to filter the
-#'   data.
 #' @param outdir The destination to write exported data to,
 #'   default: \code{here::here()}.
 #' @export

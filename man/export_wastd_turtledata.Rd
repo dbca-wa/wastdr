@@ -13,9 +13,6 @@ an area_name (WAStD Area of type Locality).}
 
 \item{outdir}{The destination to write exported data to,
 default: \code{here::here()}.}
-
-\item{area_name}{The name of a WAStD Area of type Locality to filter the
-data.}
 }
 \description{
 Export all WAStD turtledata to CSV and GeoJSON.
