@@ -162,11 +162,11 @@
     <p>Filter odkc_data to a given area_name.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>filter_odkc_turtledata</span>(
-  <span class='kw'>data</span>,
-  area_name = <span class='kw'>NULL</span>,
-  verbose = <span class='kw'>wastdr</span>::<span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span>()
-)</pre>
+    <pre class="usage"><span class='fu'>filter_odkc_turtledata</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  area_name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  verbose <span class='op'>=</span> <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,15 +196,15 @@ Default: wastdr::get_wastdr_verbose()</p></td>
     <p>&lt;list&gt; The input data, optionally filtered to a subset of records.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>odkc_data</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>odkc_data</span><span class='op'>)</span>
 
 <span class='co'># All data</span>
-<span class='kw'>data_all</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='kw'>odkc_data</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>data_all</span><span class='op'>$</span><span class='kw'>tracks</span>)
+<span class='va'>data_all</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span><span class='op'>(</span><span class='va'>odkc_data</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data_all</span><span class='op'>$</span><span class='va'>tracks</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 6</div><div class='input'>
 <span class='co'># One area</span>
-<span class='kw'>area_names</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='kw'>odkc_data</span><span class='op'>$</span><span class='kw'>areas</span><span class='op'>$</span><span class='kw'>area_name</span>)
-<span class='kw'>area_names</span>
+<span class='va'>area_names</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>areas</span><span class='op'>$</span><span class='va'>area_name</span><span class='op'>)</span>
+<span class='va'>area_names</span>
 </div><div class='output co'>#&gt;  [1] "Cape Dommett"                                    
 #&gt;  [2] "Smokey Bay Area"                                 
 #&gt;  [3] "Cable Beach Broome"                              
@@ -218,15 +218,15 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 #&gt; [11] "Thevenard Island"                                
 #&gt; [12] "Ningaloo"                                        
 #&gt; [13] "Onslow"                                          
-#&gt; [14] "Perth Metro"                                     </div><div class='input'><span class='kw'>data_area_1</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='kw'>odkc_data</span>, area_name = <span class='st'>"Cape Dommett"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>data_area_1</span><span class='op'>$</span><span class='kw'>tracks</span>)
-</div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='kw'>data_area_2</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='kw'>odkc_data</span>, area_name = <span class='kw'>area_names</span>[[<span class='fl'>2</span>]])
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>data_area_2</span><span class='op'>$</span><span class='kw'>tracks</span>)
+#&gt; [14] "Perth Metro"                                     </div><div class='input'><span class='va'>data_area_1</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span><span class='op'>(</span><span class='va'>odkc_data</span>, area_name <span class='op'>=</span> <span class='st'>"Cape Dommett"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data_area_1</span><span class='op'>$</span><span class='va'>tracks</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='va'>data_area_2</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span><span class='op'>(</span><span class='va'>odkc_data</span>, area_name <span class='op'>=</span> <span class='va'>area_names</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data_area_2</span><span class='op'>$</span><span class='va'>tracks</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 
 <span class='co'># Orphans</span>
-<span class='kw'>data_orphans</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span>(<span class='kw'>odkc_data</span>, area_name = <span class='st'>"Other"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>data_orphans</span>)
+<span class='va'>data_orphans</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span><span class='op'>(</span><span class='va'>odkc_data</span>, area_name <span class='op'>=</span> <span class='st'>"Other"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data_orphans</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -162,7 +162,7 @@
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>extract_possibly</span>(<span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>extract_possibly</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -212,11 +212,11 @@
 <code><a href='wastdr_setup.html'>wastdr_setup</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>lol</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(field1 = <span class='fl'>1</span>, field2 = <span class='fl'>2</span>, field3 = <span class='fl'>3</span>, field4 = <span class='fl'>4</span>, field5 = <span class='fl'>5</span>)
-<span class='fu'>extract_possibly</span>(<span class='kw'>lol</span>, <span class='st'>"field1"</span>)
+    <pre class="examples"><div class='input'><span class='va'>lol</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>field1 <span class='op'>=</span> <span class='fl'>1</span>, field2 <span class='op'>=</span> <span class='fl'>2</span>, field3 <span class='op'>=</span> <span class='fl'>3</span>, field4 <span class='op'>=</span> <span class='fl'>4</span>, field5 <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+<span class='fu'>extract_possibly</span><span class='op'>(</span><span class='va'>lol</span>, <span class='st'>"field1"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $field1
 #&gt; [1] 1
-#&gt; </div><div class='input'><span class='fu'>extract_possibly</span>(<span class='kw'>lol</span>, <span class='st'>"field8"</span>)
+#&gt; </div><div class='input'><span class='fu'>extract_possibly</span><span class='op'>(</span><span class='va'>lol</span>, <span class='st'>"field8"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $&lt;NA&gt;
 #&gt; NULL
 #&gt; </div></pre>

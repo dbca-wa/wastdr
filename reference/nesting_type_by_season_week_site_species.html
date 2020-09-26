@@ -162,7 +162,7 @@
     <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>nesting_type_by_season_week_site_species</span>(<span class='kw'>tracks</span>)</pre>
+    <pre class="usage"><span class='fu'>nesting_type_by_season_week_site_species</span><span class='op'>(</span><span class='va'>tracks</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -229,8 +229,8 @@
 <code><a href='tracks_ts.html'>tracks_ts</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"wastd_data"</span>)
-<span class='fu'>nesting_type_by_season_week_site_species</span>(<span class='kw'>wastd_data</span><span class='op'>$</span><span class='kw'>tracks</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span>
+<span class='fu'>nesting_type_by_season_week_site_species</span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>tracks</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 45 x 11</span><span>
 #&gt;    season season_week iso_week site_name species `false-crawl` `hatched-nest`
 #&gt;     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

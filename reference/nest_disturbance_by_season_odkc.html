@@ -162,7 +162,7 @@
     <p><img src='figures/lifecycle-deprecated.svg' alt='Deprecated lifecycle' /></p>
     </div>
 
-    <pre class="usage"><span class='fu'>nest_disturbance_by_season_odkc</span>(<span class='kw'>data</span>)</pre>
+    <pre class="usage"><span class='fu'>nest_disturbance_by_season_odkc</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -199,8 +199,8 @@
 <code><a href='nesting_type_by_site_season_species_odkc.html'>nesting_type_by_site_season_species_odkc</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"odkc_data"</span>)
-<span class='kw'>odkc_data</span><span class='op'>$</span><span class='kw'>tracks_dist</span> <span class='op'>%&gt;%</span> <span class='fu'>nest_disturbance_by_season_odkc</span>()
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"odkc_data"</span><span class='op'>)</span>
+<span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>tracks_dist</span> <span class='op'>%&gt;%</span> <span class='fu'>nest_disturbance_by_season_odkc</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 2 x 4</span><span>
 #&gt;   season disturbance_cause     n encounter_type
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         
