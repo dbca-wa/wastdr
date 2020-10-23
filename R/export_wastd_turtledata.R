@@ -53,7 +53,7 @@ export_wastd_turtledata <- function(x,
     x$loggers %>% ruODK::odata_submission_rectangle() %>% readr::write_csv(file = fs::path(outdir, "loggers.csv"))
     if (nrow(x$loggers) > 0) x$loggers %>% geojsonio::geojson_write(file = fs::path(outdir, "loggers.geojson"))
 
-    zip(paste0(filename, ".zip"), fs::dir_ls(outdir), flags = "-jr9X")
+    utils::zip(paste0(filename, ".zip"), fs::dir_ls(outdir), flags = "-jr9X")
 }
 
 
