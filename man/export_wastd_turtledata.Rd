@@ -2,27 +2,32 @@
 % Please edit documentation in R/export_wastd_turtledata.R
 \name{export_wastd_turtledata}
 \alias{export_wastd_turtledata}
-\title{Export all WAStD turtledata to CSV and GeoJSON.}
+\title{Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files.}
 \usage{
-export_wastd_turtledata(x, outdir = here::here())
+export_wastd_turtledata(x, outdir = here::here(), filename = "export")
 }
 \arguments{
 \item{x}{An object of class `wastd_data` as returned by
-\code{\link{download_wastd_turtledata}}. This data can be filtered to
+\code{\link{download_wastd_turtledata}}.
+This data can optionally be filtered to
 an area_name (WAStD Area of type Locality).}
 
 \item{outdir}{The destination to write exported data to,
 default: \code{here::here()}.}
+
+\item{filename}{The filename of the ZIP file, default: `export`.
+The extension `.zip` will be appended and should not be part of `filename`.}
 }
 \description{
-Export all WAStD turtledata to CSV and GeoJSON.
+Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files.
 }
 \examples{
 \dontrun{
 data("wastd_data", package = "wastdr")
 an <- "Ningaloo"
+au <- urlize(an)
 wastd_data \%>\%
 filter_wastd_turtledata(area_name = an) \%>\%
-export_wastd_turtledata(outdir = here::here("inst/export", urlize(an)))
+export_wastd_turtledata(outdir = here::here(au), filename = au)
 }
 }

@@ -4,15 +4,26 @@
 \alias{filter_wastd_turtledata}
 \title{Filter WAStD turtledata to an area_name}
 \usage{
-filter_wastd_turtledata(x, area_name)
+filter_wastd_turtledata(
+  x,
+  area_name = NULL,
+  verbose = wastdr::get_wastdr_verbose()
+)
 }
 \arguments{
 \item{x}{An object of class `wastd_data` as returned by
 \code{\link{download_wastd_turtledata}}. This data can be filtered to
 an area_name (WAStD Area of type Locality).}
 
-\item{area_name}{The name of a WAStD Area of type Locality to filter the
-data.}
+\item{area_name}{<chr> The name of the area to filter the data by. Options:
+* NULL (default): do not filter data, return unfiltered data.
+* "All turtle programs": do not filter data, return unfiltered data.
+* "Other": Filter data to area_name NA.
+* Any name in `unique(wastd_data$areas$area_name)`: return data filtered to
+  this area_name.}
+
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
 }
 \value{
 An object of class `wastd_data` filtered to records within
@@ -20,4 +31,14 @@ An object of class `wastd_data` filtered to records within
 }
 \description{
 Filter WAStD turtledata to an area_name
+}
+\examples{
+\dontrun{
+data(wastd_data)
+first_area <- wastd_data$areas$area_name[[1]]
+wastd_data_filtered <- wastd_data \%>\% filter_wastd_turtledata(first_area)
+wastd_data
+wastd_data_filtered
+unique(wastd_data_filtered$areas$area_name)
+}
 }

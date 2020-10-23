@@ -170,13 +170,23 @@ download_wastd_turtledata <- function(max_records = NULL,
   }
   loggers <- "logger-encounters" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::wastd_parse()
+    wastdr::wastd_parse() %>%
+    tidyr::unnest_wider("observer", names_sep = "_") %>%
+    tidyr::unnest_wider("reporter", names_sep = "_") %>%
+    tidyr::unnest_wider("area", names_sep = "_") %>%
+    tidyr::unnest_wider("site", names_sep = "_") %>%
+    tidyr::unnest_wider("survey", names_sep = "_")
 
   # Track Tallies -------------------------------------------------------------#
   if (verbose == TRUE) wastdr_msg_info("Downloading LineTransectEncounters...")
   linetx <- "line-transect-encounters" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::wastd_parse()
+    wastdr::wastd_parse() %>%
+    tidyr::unnest_wider("observer", names_sep = "_") %>%
+    tidyr::unnest_wider("reporter", names_sep = "_") %>%
+    tidyr::unnest_wider("area", names_sep = "_") %>%
+    tidyr::unnest_wider("site", names_sep = "_") %>%
+    tidyr::unnest_wider("survey", names_sep = "_")
 
   if (verbose == TRUE) wastdr_msg_info("Downloading track tallies...")
   track_tally <- "track-tally" %>%
