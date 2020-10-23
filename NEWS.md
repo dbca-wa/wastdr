@@ -1,3 +1,11 @@
+# wastdr 0.5.0
+Status Oct 2020
+## Documentation
+All ODK forms used to capture data for WAStD are included in `inst/` as 
+ODK Build savefiles, XForm XML (form ID changed to drop `build_` prefix and
+version postfix to allow updating deployed forms on ODK Central 1.0), and 
+XlsForm XLSX.
+
 # wastdr 0.4.0
 ## Major changes
 * The WA Sea Turtles DB (WAStD) has been separated from the Threatened Species and 

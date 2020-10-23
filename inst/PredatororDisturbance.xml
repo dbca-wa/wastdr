@@ -1,0 +1,241 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>Predator or Disturbance</h:title>
+    <model>
+      <instance>
+        <data id="Predator-or-Disturbance">
+          <meta>
+            <instanceID/>
+          </meta>
+          <observation_start_time/>
+          <reporter/>
+          <device_id/>
+          <disturbanceobservation>
+            <location/>
+            <photo_disturbance/>
+            <disturbance_cause>
+              unknown
+            </disturbance_cause>
+            <disturbance_cause_confidence>
+              expert-opinion
+            </disturbance_cause_confidence>
+            <comments/>
+          </disturbanceobservation>
+          <observation_end_time/>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="English">
+          <text id="/data/disturbanceobservation:label">
+            <value>Signs of predators or disturbance</value>
+          </text>
+          <text id="/data/disturbanceobservation/location:label">
+            <value>Location</value>
+          </text>
+          <text id="/data/disturbanceobservation/location:hint">
+            <value></value>
+          </text>
+          <text id="/data/disturbanceobservation/photo_disturbance:label">
+            <value>Predator tracks or disturbance</value>
+          </text>
+          <text id="/data/disturbanceobservation/photo_disturbance:hint">
+            <value>Show tracks or disturbance cause and extent</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:label">
+            <value>Predator or disturbance cause</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:hint">
+            <value></value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option0">
+            <value>Another turtle</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option1">
+            <value>Bandicoot</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option2">
+            <value>Bird</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option3">
+            <value>Cat</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option4">
+            <value>Crab</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option5">
+            <value>Croc</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option6">
+            <value>Cyclone</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option7">
+            <value>Dingo</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option8">
+            <value>Dog</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option9">
+            <value>Fox</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option10">
+            <value>Goanna</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option11">
+            <value>Human</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option12">
+            <value>Pig</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option13">
+            <value>Tide</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option14">
+            <value>Vehicle</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option15">
+            <value>Unknown</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option16">
+            <value>Training or testing</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option17">
+            <value>Other, see comments</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause_confidence:label">
+            <value>Sure about cause?</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause_confidence:hint">
+            <value></value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause_confidence:option0">
+            <value>Guess</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause_confidence:option1">
+            <value>Certain</value>
+          </text>
+          <text id="/data/disturbanceobservation/comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/disturbanceobservation/comments:hint">
+            <value></value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/disturbanceobservation/location" type="geopoint" required="true()"/>
+      <bind nodeset="/data/disturbanceobservation/photo_disturbance" type="binary"/>
+      <bind nodeset="/data/disturbanceobservation/disturbance_cause" type="select1" required="true()"/>
+      <bind nodeset="/data/disturbanceobservation/disturbance_cause_confidence" type="select1" required="true()"/>
+      <bind nodeset="/data/disturbanceobservation/comments" type="string"/>
+      <bind nodeset="/data/observation_end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/data/disturbanceobservation" appearance="field-list">
+      <label ref="jr:itext('/data/disturbanceobservation:label')"/>
+      <input ref="/data/disturbanceobservation/location">
+        <label ref="jr:itext('/data/disturbanceobservation/location:label')"/>
+        <hint ref="jr:itext('/data/disturbanceobservation/location:hint')"/>
+      </input>
+      <upload ref="/data/disturbanceobservation/photo_disturbance" mediatype="image/*">
+        <label ref="jr:itext('/data/disturbanceobservation/photo_disturbance:label')"/>
+        <hint ref="jr:itext('/data/disturbanceobservation/photo_disturbance:hint')"/>
+      </upload>
+      <select1 ref="/data/disturbanceobservation/disturbance_cause" appearance="horizontal">
+        <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:label')"/>
+        <hint ref="jr:itext('/data/disturbanceobservation/disturbance_cause:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option0')"/>
+          <value>turtle</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option1')"/>
+          <value>bandicoot</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option2')"/>
+          <value>bird</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option3')"/>
+          <value>cat</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option4')"/>
+          <value>crab</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option5')"/>
+          <value>croc</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option6')"/>
+          <value>cyclone</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option7')"/>
+          <value>dingo</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option8')"/>
+          <value>dog</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option9')"/>
+          <value>fox</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option10')"/>
+          <value>goanna</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option11')"/>
+          <value>human</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option12')"/>
+          <value>pig</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option13')"/>
+          <value>tide</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option14')"/>
+          <value>vehicle</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option15')"/>
+          <value>unknown</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option16')"/>
+          <value>test</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option17')"/>
+          <value>other</value>
+        </item>
+      </select1>
+      <select1 ref="/data/disturbanceobservation/disturbance_cause_confidence" appearance="horizontal">
+        <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause_confidence:label')"/>
+        <hint ref="jr:itext('/data/disturbanceobservation/disturbance_cause_confidence:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause_confidence:option0')"/>
+          <value>guess</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause_confidence:option1')"/>
+          <value>expert-opinion</value>
+        </item>
+      </select1>
+      <input ref="/data/disturbanceobservation/comments">
+        <label ref="jr:itext('/data/disturbanceobservation/comments:label')"/>
+        <hint ref="jr:itext('/data/disturbanceobservation/comments:hint')"/>
+      </input>
+    </group>
+  </h:body>
+</h:html>

@@ -108,7 +108,8 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt install libcurl4-openssl-dev libudunits2-dev libgdal-dev \
-          libgeos-dev libproj-dev libicu-dev libv8-dev libjq-dev libprotobuf-dev protobuf-compiler
+          libgeos-dev libproj-dev libicu-dev libv8-dev libjq-dev libprotobuf-dev \
+          protobuf-compiler libharfbuzz-dev libfribidi-dev
 
       # sf needs GDAL > 2.0.1, stringr needs libicu-dev
       - name: "[Custom Stage] [Ubuntu Xenial] System packages"

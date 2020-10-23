@@ -1,0 +1,329 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>Turtle Sighting</h:title>
+    <model>
+      <instance>
+        <data id="Turtle-Sighting">
+          <meta>
+            <instanceID/>
+          </meta>
+          <observation_start_time/>
+          <reporter/>
+          <device_id/>
+          <encounter>
+            <observed_at/>
+            <species>
+              cheloniidae-fam
+            </species>
+            <sex>
+              na
+            </sex>
+            <maturity>
+              na
+            </maturity>
+            <activity>
+              na
+            </activity>
+            <observer_acticity>
+              na
+            </observer_acticity>
+            <photo_habitat/>
+          </encounter>
+          <observation_end_time/>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="English">
+          <text id="/data/encounter:label">
+            <value>Turtle sighting</value>
+          </text>
+          <text id="/data/encounter/observed_at:label">
+            <value>Observer location</value>
+          </text>
+          <text id="/data/encounter/observed_at:hint">
+            <value></value>
+          </text>
+          <text id="/data/encounter/species:label">
+            <value>Species</value>
+          </text>
+          <text id="/data/encounter/species:hint">
+            <value></value>
+          </text>
+          <text id="/data/encounter/species:option0">
+            <value>Turtle</value>
+          </text>
+          <text id="/data/encounter/species:option1">
+            <value>Flatback turtle</value>
+          </text>
+          <text id="/data/encounter/species:option2">
+            <value>Green turtle</value>
+          </text>
+          <text id="/data/encounter/species:option3">
+            <value>Hawksbill turtle</value>
+          </text>
+          <text id="/data/encounter/species:option4">
+            <value>Loggerhead turtle</value>
+          </text>
+          <text id="/data/encounter/species:option5">
+            <value>Olive Ridley turtle</value>
+          </text>
+          <text id="/data/encounter/species:option6">
+            <value>Leatherback turtle</value>
+          </text>
+          <text id="/data/encounter/species:option7">
+            <value>Hatchback turtle</value>
+          </text>
+          <text id="/data/encounter/sex:label">
+            <value>Sex</value>
+          </text>
+          <text id="/data/encounter/sex:option0">
+            <value>Female</value>
+          </text>
+          <text id="/data/encounter/sex:option1">
+            <value>Male</value>
+          </text>
+          <text id="/data/encounter/sex:option2">
+            <value>NA</value>
+          </text>
+          <text id="/data/encounter/maturity:label">
+            <value>Maturity</value>
+          </text>
+          <text id="/data/encounter/maturity:option0">
+            <value>Adult</value>
+          </text>
+          <text id="/data/encounter/maturity:option1">
+            <value>Sub-adult</value>
+          </text>
+          <text id="/data/encounter/maturity:option2">
+            <value>Pubsecent immature</value>
+          </text>
+          <text id="/data/encounter/maturity:option3">
+            <value>Pre pubsecent immature</value>
+          </text>
+          <text id="/data/encounter/maturity:option4">
+            <value>Juvenile</value>
+          </text>
+          <text id="/data/encounter/maturity:option5">
+            <value>Post hatchling</value>
+          </text>
+          <text id="/data/encounter/maturity:option6">
+            <value>Hatchling</value>
+          </text>
+          <text id="/data/encounter/maturity:option7">
+            <value>NA</value>
+          </text>
+          <text id="/data/encounter/activity:label">
+            <value>Turtle activity</value>
+          </text>
+          <text id="/data/encounter/activity:hint">
+            <value></value>
+          </text>
+          <text id="/data/encounter/activity:option0">
+            <value>Swimming</value>
+          </text>
+          <text id="/data/encounter/activity:option1">
+            <value>Basking</value>
+          </text>
+          <text id="/data/encounter/activity:option2">
+            <value>Feeding</value>
+          </text>
+          <text id="/data/encounter/activity:option3">
+            <value>General non-nesting activity</value>
+          </text>
+          <text id="/data/encounter/activity:option4">
+            <value>NA</value>
+          </text>
+          <text id="/data/encounter/observer_acticity:label">
+            <value>Observer activity</value>
+          </text>
+          <text id="/data/encounter/observer_acticity:option0">
+            <value>No interaction</value>
+          </text>
+          <text id="/data/encounter/observer_acticity:option1">
+            <value>Rodeo catch failed</value>
+          </text>
+          <text id="/data/encounter/observer_acticity:option2">
+            <value>Net catch failed</value>
+          </text>
+          <text id="/data/encounter/observer_acticity:option3">
+            <value>Rode catch successful</value>
+          </text>
+          <text id="/data/encounter/observer_acticity:option4">
+            <value>Net catch successful</value>
+          </text>
+          <text id="/data/encounter/observer_acticity:option5">
+            <value>NA</value>
+          </text>
+          <text id="/data/encounter/photo_habitat:label">
+            <value>Photo</value>
+          </text>
+          <text id="/data/encounter/photo_habitat:hint">
+            <value>Optional</value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/encounter/observed_at" type="geopoint" required="true()"/>
+      <bind nodeset="/data/encounter/species" type="select1" required="true()"/>
+      <bind nodeset="/data/encounter/sex" type="select1" required="true()"/>
+      <bind nodeset="/data/encounter/maturity" type="select1" required="true()"/>
+      <bind nodeset="/data/encounter/activity" type="select1" required="true()"/>
+      <bind nodeset="/data/encounter/observer_acticity" type="select1" required="true()"/>
+      <bind nodeset="/data/encounter/photo_habitat" type="binary"/>
+      <bind nodeset="/data/observation_end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/data/encounter" appearance="field-list">
+      <label ref="jr:itext('/data/encounter:label')"/>
+      <input ref="/data/encounter/observed_at">
+        <label ref="jr:itext('/data/encounter/observed_at:label')"/>
+        <hint ref="jr:itext('/data/encounter/observed_at:hint')"/>
+      </input>
+      <select1 ref="/data/encounter/species" appearance="horizontal">
+        <label ref="jr:itext('/data/encounter/species:label')"/>
+        <hint ref="jr:itext('/data/encounter/species:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/encounter/species:option0')"/>
+          <value>cheloniidae-fam</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/species:option1')"/>
+          <value>natator-depressus</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/species:option2')"/>
+          <value>chelonia-mydas</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/species:option3')"/>
+          <value>eretmochelys-imbricata</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/species:option4')"/>
+          <value>caretta-caretta</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/species:option5')"/>
+          <value>lepidochelys-olivacea</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/species:option6')"/>
+          <value>dermochelys-coriacea</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/species:option7')"/>
+          <value>corolla-corolla</value>
+        </item>
+      </select1>
+      <select1 ref="/data/encounter/sex" appearance="horizontal">
+        <label ref="jr:itext('/data/encounter/sex:label')"/>
+        <item>
+          <label ref="jr:itext('/data/encounter/sex:option0')"/>
+          <value>female</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/sex:option1')"/>
+          <value>male</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/sex:option2')"/>
+          <value>na</value>
+        </item>
+      </select1>
+      <select1 ref="/data/encounter/maturity" appearance="horizontal">
+        <label ref="jr:itext('/data/encounter/maturity:label')"/>
+        <item>
+          <label ref="jr:itext('/data/encounter/maturity:option0')"/>
+          <value>adult</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/maturity:option1')"/>
+          <value>sub-adult</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/maturity:option2')"/>
+          <value>pubsecent-immature</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/maturity:option3')"/>
+          <value>pre-pubsecent-immature</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/maturity:option4')"/>
+          <value>juvenile</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/maturity:option5')"/>
+          <value>post-hatchling</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/maturity:option6')"/>
+          <value>hatchling</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/maturity:option7')"/>
+          <value>na</value>
+        </item>
+      </select1>
+      <select1 ref="/data/encounter/activity" appearance="horizontal">
+        <label ref="jr:itext('/data/encounter/activity:label')"/>
+        <hint ref="jr:itext('/data/encounter/activity:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/encounter/activity:option0')"/>
+          <value>swimming</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/activity:option1')"/>
+          <value>basking</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/activity:option2')"/>
+          <value>feeding</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/activity:option3')"/>
+          <value>non-breeding</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/activity:option4')"/>
+          <value>na</value>
+        </item>
+      </select1>
+      <select1 ref="/data/encounter/observer_acticity" appearance="horizontal">
+        <label ref="jr:itext('/data/encounter/observer_acticity:label')"/>
+        <item>
+          <label ref="jr:itext('/data/encounter/observer_acticity:option0')"/>
+          <value>no-interaction</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/observer_acticity:option1')"/>
+          <value>rodeo-catch-failed</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/observer_acticity:option2')"/>
+          <value>net-catch-failed</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/observer_acticity:option3')"/>
+          <value>rodeo-catch-successful</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/observer_acticity:option4')"/>
+          <value>net-catch-successful</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/observer_acticity:option5')"/>
+          <value>na</value>
+        </item>
+      </select1>
+      <upload ref="/data/encounter/photo_habitat" mediatype="image/*">
+        <label ref="jr:itext('/data/encounter/photo_habitat:label')"/>
+        <hint ref="jr:itext('/data/encounter/photo_habitat:hint')"/>
+      </upload>
+    </group>
+  </h:body>
+</h:html>

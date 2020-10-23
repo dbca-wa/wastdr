@@ -1,0 +1,1766 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>Turtle Track or Nest</h:title>
+    <model>
+      <instance>
+        <data id="Turtle-Track-or-Nest">
+          <meta>
+            <instanceID/>
+          </meta>
+          <observation_start_time/>
+          <reporter/>
+          <device_id/>
+          <details>
+            <nest_age>
+              fresh
+            </nest_age>
+            <species>
+              cheloniidae-fam
+            </species>
+            <nest_type>
+              track-not-assessed
+            </nest_type>
+            <observed_at/>
+          </details>
+          <track_photos>
+            <photo_track_1/>
+            <photo_track_2/>
+            <max-track-width-front/>
+            <max-track-width-rear/>
+            <carapace-drag-width/>
+            <step-length/>
+            <tail-pokes>
+              na
+            </tail-pokes>
+          </track_photos>
+          <nest_photos>
+            <photo_nest_1/>
+            <photo_nest_2/>
+            <photo_nest_3/>
+          </nest_photos>
+          <nest>
+            <habitat>
+              na
+            </habitat>
+            <disturbance/>
+            <nest_tagged>
+              no
+            </nest_tagged>
+            <logger_found>
+              no
+            </logger_found>
+            <eggs_counted>
+              no
+            </eggs_counted>
+            <hatchlings_measured>
+              no
+            </hatchlings_measured>
+            <fan_angles_measured>
+              no
+            </fan_angles_measured>
+          </nest>
+          <disturbanceobservation jr:template="">
+            <photo_disturbance/>
+            <disturbance_cause>
+              unknown
+            </disturbance_cause>
+            <disturbance_cause_confidence>
+              expert-opinion
+            </disturbance_cause_confidence>
+            <disturbance_severity>
+              na
+            </disturbance_severity>
+            <comments/>
+          </disturbanceobservation>
+          <egg_count>
+            <no_egg_shells/>
+            <no_live_hatchlings/>
+            <no_dead_hatchlings/>
+            <no_undeveloped_eggs/>
+            <no_unhatched_eggs/>
+            <no_unhatched_term/>
+            <no_depredated_eggs/>
+            <nest_depth_top/>
+            <nest_depth_bottom/>
+            <nest_excavation_comments/>
+          </egg_count>
+          <egg_photos jr:template="">
+            <photo_eggs/>
+          </egg_photos>
+          <nest_tag>
+            <status>
+              resighted
+            </status>
+            <flipper_tag_id/>
+            <date_nest_laid/>
+            <tag_label/>
+            <tag_comments/>
+            <photo_tag/>
+          </nest_tag>
+          <logger_details jr:template="">
+            <logger_id/>
+            <photo_logger/>
+            <logger_comments/>
+          </logger_details>
+          <hatchling_measurements jr:template="">
+            <straight_carapace_length_mm/>
+            <straight_carapace_width_mm/>
+            <body_weight_g/>
+          </hatchling_measurements>
+          <fan_angles>
+            <photo_hatchling_tracks_seawards/>
+            <photo_hatchling_tracks_relief/>
+            <bearing_to_water_manual/>
+            <leftmost_track_manual/>
+            <rightmost_track_manual/>
+            <no_tracks_main_group/>
+            <no_tracks_main_group_min/>
+            <no_tracks_main_group_max/>
+            <outlier_tracks_present>
+              na
+            </outlier_tracks_present>
+            <hatchling_path_to_sea/>
+            <path_to_sea_comments/>
+            <hatchling_emergence_time_known>
+              no
+            </hatchling_emergence_time_known>
+            <cloud_cover_at_emergence_known>
+              no
+            </cloud_cover_at_emergence_known>
+            <light_sources_present>
+              na
+            </light_sources_present>
+          </fan_angles>
+          <outlier_track jr:template="">
+            <outlier_track_photo/>
+            <outlier_track_bearing_manual/>
+            <outlier_group_size>
+              1
+            </outlier_group_size>
+            <outlier_track_comment/>
+          </outlier_track>
+          <hatchling_emergence_time_group>
+            <hatchling_emergence_time/>
+            <hatchling_emergence_time_source>
+              na
+            </hatchling_emergence_time_source>
+          </hatchling_emergence_time_group>
+          <emergence_climate>
+            <cloud_cover_at_emergence/>
+          </emergence_climate>
+          <light_source jr:template="">
+            <light_source_photo/>
+            <light_bearing_manual/>
+            <light_source_type>
+              artificial
+            </light_source_type>
+            <light_source_description/>
+          </light_source>
+          <other_light_sources>
+            <other_light_sources_present>
+              na
+            </other_light_sources_present>
+          </other_light_sources>
+          <observation_end_time/>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="English">
+          <text id="/data/details:label">
+            <value>Track or Nest details</value>
+          </text>
+          <text id="/data/details/nest_age:label">
+            <value>Track or nest age</value>
+          </text>
+          <text id="/data/details/nest_age:hint">
+            <value></value>
+          </text>
+          <text id="/data/details/nest_age:option0">
+            <value>made last night</value>
+          </text>
+          <text id="/data/details/nest_age:option1">
+            <value>older</value>
+          </text>
+          <text id="/data/details/nest_age:option2">
+            <value>can't tell</value>
+          </text>
+          <text id="/data/details/nest_age:option3">
+            <value>missed just now</value>
+          </text>
+          <text id="/data/details/species:label">
+            <value>Species</value>
+          </text>
+          <text id="/data/details/species:hint">
+            <value>&quot;Turtle&quot; if unsure</value>
+          </text>
+          <text id="/data/details/species:option0">
+            <value>Turtle (species unsure)</value>
+          </text>
+          <text id="/data/details/species:option1">
+            <value>Flatback turtle</value>
+          </text>
+          <text id="/data/details/species:option2">
+            <value>Green turtle</value>
+          </text>
+          <text id="/data/details/species:option3">
+            <value>Hawksbill turtle</value>
+          </text>
+          <text id="/data/details/species:option4">
+            <value>Loggerhead turtle</value>
+          </text>
+          <text id="/data/details/species:option5">
+            <value>Olive Ridley turtle</value>
+          </text>
+          <text id="/data/details/species:option6">
+            <value>Hatchback turtle</value>
+          </text>
+          <text id="/data/details/nest_type:label">
+            <value>Track or nest type</value>
+          </text>
+          <text id="/data/details/nest_type:hint">
+            <value></value>
+          </text>
+          <text id="/data/details/nest_type:option0">
+            <value>track, not checked for nest</value>
+          </text>
+          <text id="/data/details/nest_type:option1">
+            <value>track without nest</value>
+          </text>
+          <text id="/data/details/nest_type:option2">
+            <value>track with nest</value>
+          </text>
+          <text id="/data/details/nest_type:option3">
+            <value>track, checked for nest, unsure if nest</value>
+          </text>
+          <text id="/data/details/nest_type:option4">
+            <value>nest, unhatched, no track</value>
+          </text>
+          <text id="/data/details/nest_type:option5">
+            <value>nest, hatched</value>
+          </text>
+          <text id="/data/details/nest_type:option6">
+            <value>body pit, no track</value>
+          </text>
+          <text id="/data/details/observed_at:label">
+            <value>Nest or track location</value>
+          </text>
+          <text id="/data/details/observed_at:hint">
+            <value>Nest or last body pit or track apex</value>
+          </text>
+          <text id="/data/details/observed_at:requiredMsg">
+            <value>Location is required</value>
+          </text>
+          <text id="/data/track_photos:label">
+            <value>Track photos and measurements</value>
+          </text>
+          <text id="/data/track_photos/photo_track_1:label">
+            <value>Uptrack</value>
+          </text>
+          <text id="/data/track_photos/photo_track_1:hint">
+            <value>Place ruler across track as length reference</value>
+          </text>
+          <text id="/data/track_photos/photo_track_2:label">
+            <value>Downtrack</value>
+          </text>
+          <text id="/data/track_photos/photo_track_2:hint">
+            <value>Include length reference</value>
+          </text>
+          <text id="/data/track_photos/max-track-width-front:label">
+            <value>Track width front max (mm)</value>
+          </text>
+          <text id="/data/track_photos/max-track-width-front:hint">
+            <value>Max distance between sand touched by front flippers, measure in millimetres</value>
+          </text>
+          <text id="/data/track_photos/max-track-width-front:constraintMsg">
+            <value>That's one big arse turtle, mate.</value>
+          </text>
+          <text id="/data/track_photos/max-track-width-rear:label">
+            <value>Track width rear max (mm)</value>
+          </text>
+          <text id="/data/track_photos/max-track-width-rear:hint">
+            <value>Max distance between sand touched by rear flippers, measure in millimetres</value>
+          </text>
+          <text id="/data/track_photos/max-track-width-rear:constraintMsg">
+            <value>This turtle has either really long rear flippers or the rear max track width is wrong.</value>
+          </text>
+          <text id="/data/track_photos/carapace-drag-width:label">
+            <value>Track width rear min (mm)</value>
+          </text>
+          <text id="/data/track_photos/carapace-drag-width:hint">
+            <value>Min distance between sand touched by rear flippers, measure in millimetres</value>
+          </text>
+          <text id="/data/track_photos/carapace-drag-width:constraintMsg">
+            <value>Rear min track width looks funky.</value>
+          </text>
+          <text id="/data/track_photos/step-length:label">
+            <value>Step length (mm)</value>
+          </text>
+          <text id="/data/track_photos/step-length:hint">
+            <value>Distance between front flipper marks, measure in millimetres</value>
+          </text>
+          <text id="/data/track_photos/step-length:constraintMsg">
+            <value>With legs this long, this turtle should consider a modelling job.</value>
+          </text>
+          <text id="/data/track_photos/tail-pokes:label">
+            <value>Tail pokes</value>
+          </text>
+          <text id="/data/track_photos/tail-pokes:hint">
+            <value>Are regular dips in the middle of the track present?</value>
+          </text>
+          <text id="/data/track_photos/tail-pokes:option0">
+            <value>Absent</value>
+          </text>
+          <text id="/data/track_photos/tail-pokes:option1">
+            <value>Occasional</value>
+          </text>
+          <text id="/data/track_photos/tail-pokes:option2">
+            <value>Regular</value>
+          </text>
+          <text id="/data/track_photos/tail-pokes:option3">
+            <value>NA</value>
+          </text>
+          <text id="/data/nest_photos:label">
+            <value>Nest photos</value>
+          </text>
+          <text id="/data/nest_photos/photo_nest_1:label">
+            <value>Possible nest 1</value>
+          </text>
+          <text id="/data/nest_photos/photo_nest_1:hint">
+            <value>Include length reference, landscape aspect</value>
+          </text>
+          <text id="/data/nest_photos/photo_nest_2:label">
+            <value>Possible nest 2</value>
+          </text>
+          <text id="/data/nest_photos/photo_nest_2:hint">
+            <value>Include length reference, landscape aspect</value>
+          </text>
+          <text id="/data/nest_photos/photo_nest_3:label">
+            <value>Possible nest 3</value>
+          </text>
+          <text id="/data/nest_photos/photo_nest_3:hint">
+            <value>Include length reference, landscape aspect</value>
+          </text>
+          <text id="/data/nest:label">
+            <value>Nest</value>
+          </text>
+          <text id="/data/nest/habitat:label">
+            <value>Habitat</value>
+          </text>
+          <text id="/data/nest/habitat:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/habitat:option0">
+            <value>Below HWM</value>
+          </text>
+          <text id="/data/nest/habitat:option1">
+            <value>Above HWM, below vegetation</value>
+          </text>
+          <text id="/data/nest/habitat:option2">
+            <value>Edge of vegetation</value>
+          </text>
+          <text id="/data/nest/habitat:option3">
+            <value>In vegetation</value>
+          </text>
+          <text id="/data/nest/habitat:option4">
+            <value>Unknown habitat</value>
+          </text>
+          <text id="/data/nest/disturbance:label">
+            <value>Disturbed or predated</value>
+          </text>
+          <text id="/data/nest/disturbance:requiredMsg">
+            <value>Any signs of disturbance or predation?</value>
+          </text>
+          <text id="/data/nest/disturbance:option0">
+            <value>No</value>
+          </text>
+          <text id="/data/nest/disturbance:option1">
+            <value>Yes</value>
+          </text>
+          <text id="/data/nest/nest_tagged:label">
+            <value>Nest tags found</value>
+          </text>
+          <text id="/data/nest/nest_tagged:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/nest_tagged:option0">
+            <value>No</value>
+          </text>
+          <text id="/data/nest/nest_tagged:option1">
+            <value>Yes</value>
+          </text>
+          <text id="/data/nest/logger_found:label">
+            <value>Data logger found</value>
+          </text>
+          <text id="/data/nest/logger_found:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/logger_found:option0">
+            <value>No</value>
+          </text>
+          <text id="/data/nest/logger_found:option1">
+            <value>Yes</value>
+          </text>
+          <text id="/data/nest/eggs_counted:label">
+            <value>Eggs excavated and counted</value>
+          </text>
+          <text id="/data/nest/eggs_counted:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/eggs_counted:option0">
+            <value>No</value>
+          </text>
+          <text id="/data/nest/eggs_counted:option1">
+            <value>Yes</value>
+          </text>
+          <text id="/data/nest/hatchlings_measured:label">
+            <value>Hatchlings measured</value>
+          </text>
+          <text id="/data/nest/hatchlings_measured:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/hatchlings_measured:option0">
+            <value>No</value>
+          </text>
+          <text id="/data/nest/hatchlings_measured:option1">
+            <value>Yes</value>
+          </text>
+          <text id="/data/nest/fan_angles_measured:label">
+            <value>Fan angles measured</value>
+          </text>
+          <text id="/data/nest/fan_angles_measured:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/fan_angles_measured:option0">
+            <value>No</value>
+          </text>
+          <text id="/data/nest/fan_angles_measured:option1">
+            <value>Yes</value>
+          </text>
+          <text id="/data/disturbanceobservation:label">
+            <value>Disturbance observation</value>
+          </text>
+          <text id="/data/disturbanceobservation/photo_disturbance:label">
+            <value>Photo of disturbance</value>
+          </text>
+          <text id="/data/disturbanceobservation/photo_disturbance:hint">
+            <value>Show disturbance cause and extent</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:label">
+            <value>Disturbance cause</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:hint">
+            <value></value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option0">
+            <value>Another turtle</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option1">
+            <value>Bandicoot</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option2">
+            <value>Bird</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option3">
+            <value>Cat</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option4">
+            <value>Crab</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option5">
+            <value>Croc</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option6">
+            <value>Cyclone</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option7">
+            <value>Dingo</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option8">
+            <value>Dog</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option9">
+            <value>Fox</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option10">
+            <value>Goanna</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option11">
+            <value>Human</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option12">
+            <value>Pig</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option13">
+            <value>Tide</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option14">
+            <value>Vehicle</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option15">
+            <value>Unknown</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option16">
+            <value>Training or testing</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause:option17">
+            <value>Other, see comments</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause_confidence:label">
+            <value>Sure about cause?</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause_confidence:hint">
+            <value></value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause_confidence:option0">
+            <value>Guess</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_cause_confidence:option1">
+            <value>Certain</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_severity:label">
+            <value>Destruction extent</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_severity:hint">
+            <value></value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_severity:option0">
+            <value>negligible impact</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_severity:option1">
+            <value>partly destroyed</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_severity:option2">
+            <value>completely destroyed</value>
+          </text>
+          <text id="/data/disturbanceobservation/disturbance_severity:option3">
+            <value>can't tell</value>
+          </text>
+          <text id="/data/disturbanceobservation/comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/disturbanceobservation/comments:hint">
+            <value></value>
+          </text>
+          <text id="/data/egg_count:label">
+            <value>Egg count</value>
+          </text>
+          <text id="/data/egg_count/no_egg_shells:label">
+            <value>Egg shells (S)</value>
+          </text>
+          <text id="/data/egg_count/no_egg_shells:hint">
+            <value>Empty shells &gt; 50% complete</value>
+          </text>
+          <text id="/data/egg_count/no_live_hatchlings:label">
+            <value>Live hatchlings in nest (L)</value>
+          </text>
+          <text id="/data/egg_count/no_live_hatchlings:hint">
+            <value>Live hatchlings left among shells excluding those in neck of nest</value>
+          </text>
+          <text id="/data/egg_count/no_dead_hatchlings:label">
+            <value>Dead hatchlings (D)</value>
+          </text>
+          <text id="/data/egg_count/no_dead_hatchlings:hint">
+            <value>Dead hatchlings that have left their shells</value>
+          </text>
+          <text id="/data/egg_count/no_undeveloped_eggs:label">
+            <value>Undeveloped eggs (UD)</value>
+          </text>
+          <text id="/data/egg_count/no_undeveloped_eggs:hint">
+            <value>Unhatched eggs with no obvious embryo</value>
+          </text>
+          <text id="/data/egg_count/no_unhatched_eggs:label">
+            <value>Unhatched eggs (UH)</value>
+          </text>
+          <text id="/data/egg_count/no_unhatched_eggs:hint">
+            <value> Unhatched eggs with obvious, not yet full term, embryo</value>
+          </text>
+          <text id="/data/egg_count/no_unhatched_term:label">
+            <value>Unhatched term (UHT)</value>
+          </text>
+          <text id="/data/egg_count/no_unhatched_term:hint">
+            <value>Unhatched, apparently full term embryo or pipped with little external yolk</value>
+          </text>
+          <text id="/data/egg_count/no_depredated_eggs:label">
+            <value>Depredated eggs (P)</value>
+          </text>
+          <text id="/data/egg_count/no_depredated_eggs:hint">
+            <value>Open, nearly complete shells containing egg residue</value>
+          </text>
+          <text id="/data/egg_count/nest_depth_top:label">
+            <value>Nest depth (top) mm</value>
+          </text>
+          <text id="/data/egg_count/nest_depth_top:hint">
+            <value>Depth of sand above the eggs in mm, optional</value>
+          </text>
+          <text id="/data/egg_count/nest_depth_bottom:label">
+            <value>Nest depth (bottom) mm</value>
+          </text>
+          <text id="/data/egg_count/nest_depth_bottom:hint">
+            <value>Depth of the lowest eggs in mm, optional</value>
+          </text>
+          <text id="/data/egg_count/nest_excavation_comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/egg_count/nest_excavation_comments:hint">
+            <value></value>
+          </text>
+          <text id="/data/egg_photos:label">
+            <value>Photographs of eggs</value>
+          </text>
+          <text id="/data/egg_photos/photo_eggs:label">
+            <value>Photo of eggs</value>
+          </text>
+          <text id="/data/egg_photos/photo_eggs:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest_tag:label">
+            <value>Nest Tag</value>
+          </text>
+          <text id="/data/nest_tag/status:label">
+            <value>Action undertaken with nest tag</value>
+          </text>
+          <text id="/data/nest_tag/status:option0">
+            <value>deployed new</value>
+          </text>
+          <text id="/data/nest_tag/status:option1">
+            <value>resighted</value>
+          </text>
+          <text id="/data/nest_tag/status:option2">
+            <value>replaced missing or damaged</value>
+          </text>
+          <text id="/data/nest_tag/flipper_tag_id:label">
+            <value>Exactly one flipper tag ID if available</value>
+          </text>
+          <text id="/data/nest_tag/flipper_tag_id:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest_tag/date_nest_laid:label">
+            <value>Calendar date of nesting event if available</value>
+          </text>
+          <text id="/data/nest_tag/date_nest_laid:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest_tag/tag_label:label">
+            <value>Nest name if no tag and date available</value>
+          </text>
+          <text id="/data/nest_tag/tag_label:hint">
+            <value>Enter the date in the field above</value>
+          </text>
+          <text id="/data/nest_tag/tag_comments:label">
+            <value>Additional info about tag</value>
+          </text>
+          <text id="/data/nest_tag/tag_comments:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest_tag/photo_tag:label">
+            <value>Photo of tag</value>
+          </text>
+          <text id="/data/logger_details:label">
+            <value>Logger details</value>
+          </text>
+          <text id="/data/logger_details/logger_id:label">
+            <value>Unique logger ID</value>
+          </text>
+          <text id="/data/logger_details/logger_id:hint">
+            <value></value>
+          </text>
+          <text id="/data/logger_details/photo_logger:label">
+            <value>Photo of logger ID</value>
+          </text>
+          <text id="/data/logger_details/photo_logger:hint">
+            <value></value>
+          </text>
+          <text id="/data/logger_details/logger_comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/logger_details/logger_comments:hint">
+            <value></value>
+          </text>
+          <text id="/data/hatchling_measurements:label">
+            <value>Hatchling measurement</value>
+          </text>
+          <text id="/data/hatchling_measurements/straight_carapace_length_mm:label">
+            <value>Straight carapace length (mm)</value>
+          </text>
+          <text id="/data/hatchling_measurements/straight_carapace_width_mm:label">
+            <value>Straight carapace width (mm)</value>
+          </text>
+          <text id="/data/hatchling_measurements/body_weight_g:label">
+            <value>Body weight (g)</value>
+          </text>
+          <text id="/data/fan_angles:label">
+            <value>Hatchling track fan angles</value>
+          </text>
+          <text id="/data/fan_angles/photo_hatchling_tracks_seawards:label">
+            <value>Photo from behind nest towards sea</value>
+          </text>
+          <text id="/data/fan_angles/photo_hatchling_tracks_seawards:hint">
+            <value>From 1m behind nest, include length reference</value>
+          </text>
+          <text id="/data/fan_angles/photo_hatchling_tracks_relief:label">
+            <value>Photo from best lighting angle</value>
+          </text>
+          <text id="/data/fan_angles/photo_hatchling_tracks_relief:hint">
+            <value>Include length reference</value>
+          </text>
+          <text id="/data/fan_angles/bearing_to_water_manual:label">
+            <value>Bearing to water</value>
+          </text>
+          <text id="/data/fan_angles/bearing_to_water_manual:hint">
+            <value>Shortest path to water</value>
+          </text>
+          <text id="/data/fan_angles/leftmost_track_manual:label">
+            <value>Leftmost track bearing of main fan</value>
+          </text>
+          <text id="/data/fan_angles/leftmost_track_manual:hint">
+            <value>Excluding outlier tracks, 5m from nest or at HWM</value>
+          </text>
+          <text id="/data/fan_angles/rightmost_track_manual:label">
+            <value>Rightmost track bearing of main fan</value>
+          </text>
+          <text id="/data/fan_angles/rightmost_track_manual:hint">
+            <value>Excluding outlier tracks, 5m from nest or at HWM</value>
+          </text>
+          <text id="/data/fan_angles/no_tracks_main_group:label">
+            <value>Number of tracks in main fan</value>
+          </text>
+          <text id="/data/fan_angles/no_tracks_main_group:hint">
+            <value>Exact count or best estimate</value>
+          </text>
+          <text id="/data/fan_angles/no_tracks_main_group_min:label">
+            <value>Min number of tracks in main fan</value>
+          </text>
+          <text id="/data/fan_angles/no_tracks_main_group_min:hint">
+            <value>Lowest estimate</value>
+          </text>
+          <text id="/data/fan_angles/no_tracks_main_group_max:label">
+            <value>Max number of tracks in main fan</value>
+          </text>
+          <text id="/data/fan_angles/no_tracks_main_group_max:hint">
+            <value>Highest estimate</value>
+          </text>
+          <text id="/data/fan_angles/outlier_tracks_present:label">
+            <value>Outlier tracks present?</value>
+          </text>
+          <text id="/data/fan_angles/outlier_tracks_present:hint">
+            <value></value>
+          </text>
+          <text id="/data/fan_angles/outlier_tracks_present:requiredMsg">
+            <value></value>
+          </text>
+          <text id="/data/fan_angles/outlier_tracks_present:option0">
+            <value>Unknown</value>
+          </text>
+          <text id="/data/fan_angles/outlier_tracks_present:option1">
+            <value>No</value>
+          </text>
+          <text id="/data/fan_angles/outlier_tracks_present:option2">
+            <value>Yes</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_path_to_sea:label">
+            <value>Hatchling path to sea</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_path_to_sea:hint">
+            <value>Select all applicable options</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_path_to_sea:requiredMsg">
+            <value>Describe hatchling path to sea</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_path_to_sea:option0">
+            <value>Unobstructed and even</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_path_to_sea:option1">
+            <value>Steep inclines, e.g. dunes</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_path_to_sea:option2">
+            <value>Uneven ground, e.g. body pits</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_path_to_sea:option3">
+            <value>Natural obstacles, e.g. vegetation or rocks</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_path_to_sea:option4">
+            <value>Man-made obstacles, e.g. boats</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_path_to_sea:option5">
+            <value>Other, see comments</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_path_to_sea:option6">
+            <value>Unknown</value>
+          </text>
+          <text id="/data/fan_angles/path_to_sea_comments:label">
+            <value>Comments on path to sea</value>
+          </text>
+          <text id="/data/fan_angles/path_to_sea_comments:hint">
+            <value>Optional</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_emergence_time_known:label">
+            <value>Hatchling emergence time known?</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_emergence_time_known:hint">
+            <value></value>
+          </text>
+          <text id="/data/fan_angles/hatchling_emergence_time_known:option0">
+            <value>No</value>
+          </text>
+          <text id="/data/fan_angles/hatchling_emergence_time_known:option1">
+            <value>Yes</value>
+          </text>
+          <text id="/data/fan_angles/cloud_cover_at_emergence_known:label">
+            <value>Cloud cover at emergence known?</value>
+          </text>
+          <text id="/data/fan_angles/cloud_cover_at_emergence_known:option0">
+            <value>No</value>
+          </text>
+          <text id="/data/fan_angles/cloud_cover_at_emergence_known:option1">
+            <value>Yes</value>
+          </text>
+          <text id="/data/fan_angles/light_sources_present:label">
+            <value>Light sources present during emergence?</value>
+          </text>
+          <text id="/data/fan_angles/light_sources_present:hint">
+            <value></value>
+          </text>
+          <text id="/data/fan_angles/light_sources_present:option0">
+            <value>Unknown</value>
+          </text>
+          <text id="/data/fan_angles/light_sources_present:option1">
+            <value>No</value>
+          </text>
+          <text id="/data/fan_angles/light_sources_present:option2">
+            <value>Yes</value>
+          </text>
+          <text id="/data/outlier_track:label">
+            <value>Outlier track or group</value>
+          </text>
+          <text id="/data/outlier_track/outlier_track_photo:label">
+            <value>Photo</value>
+          </text>
+          <text id="/data/outlier_track/outlier_track_photo:hint">
+            <value>Show nest, outlier and length reference</value>
+          </text>
+          <text id="/data/outlier_track/outlier_track_bearing_manual:label">
+            <value>Bearing</value>
+          </text>
+          <text id="/data/outlier_track/outlier_track_bearing_manual:hint">
+            <value>Aim at track 5m from nest or high water mark</value>
+          </text>
+          <text id="/data/outlier_track/outlier_track_bearing_manual:requiredMsg">
+            <value>Outlier track bearing is required</value>
+          </text>
+          <text id="/data/outlier_track/outlier_group_size:label">
+            <value>Number of tracks in outlier group</value>
+          </text>
+          <text id="/data/outlier_track/outlier_track_comment:label">
+            <value>Comment</value>
+          </text>
+          <text id="/data/hatchling_emergence_time_group:label">
+            <value>Hatchling emergence time</value>
+          </text>
+          <text id="/data/hatchling_emergence_time_group/hatchling_emergence_time:label">
+            <value>Hatchling emergence time</value>
+          </text>
+          <text id="/data/hatchling_emergence_time_group/hatchling_emergence_time:hint">
+            <value>Supply best estimate</value>
+          </text>
+          <text id="/data/hatchling_emergence_time_group/hatchling_emergence_time_source:label">
+            <value>Emergence time accuracy</value>
+          </text>
+          <text id="/data/hatchling_emergence_time_group/hatchling_emergence_time_source:hint">
+            <value></value>
+          </text>
+          <text id="/data/hatchling_emergence_time_group/hatchling_emergence_time_source:requiredMsg">
+            <value>Emergence time accuracy is required</value>
+          </text>
+          <text id="/data/hatchling_emergence_time_group/hatchling_emergence_time_source:option0">
+            <value>Sometime that night</value>
+          </text>
+          <text id="/data/hatchling_emergence_time_group/hatchling_emergence_time_source:option1">
+            <value>Plusminus 2h of estimate</value>
+          </text>
+          <text id="/data/hatchling_emergence_time_group/hatchling_emergence_time_source:option2">
+            <value>Correct to the hour</value>
+          </text>
+          <text id="/data/emergence_climate:label">
+            <value>Weather during hatchling emergence</value>
+          </text>
+          <text id="/data/emergence_climate/cloud_cover_at_emergence:label">
+            <value>Cloud cover at emergence</value>
+          </text>
+          <text id="/data/emergence_climate/cloud_cover_at_emergence:hint">
+            <value>If known, in eights</value>
+          </text>
+          <text id="/data/light_source:label">
+            <value>Light source</value>
+          </text>
+          <text id="/data/light_source/light_source_photo:label">
+            <value>Photo</value>
+          </text>
+          <text id="/data/light_source/light_source_photo:hint">
+            <value>Optional but nice to have</value>
+          </text>
+          <text id="/data/light_source/light_bearing_manual:label">
+            <value>Bearing to light source</value>
+          </text>
+          <text id="/data/light_source/light_bearing_manual:hint">
+            <value>Give best estimate</value>
+          </text>
+          <text id="/data/light_source/light_bearing_manual:requiredMsg">
+            <value>Bearing is required, even if only your best estimate</value>
+          </text>
+          <text id="/data/light_source/light_source_type:label">
+            <value>Type of light source</value>
+          </text>
+          <text id="/data/light_source/light_source_type:requiredMsg">
+            <value>Type of light source is required</value>
+          </text>
+          <text id="/data/light_source/light_source_type:option0">
+            <value>Natural</value>
+          </text>
+          <text id="/data/light_source/light_source_type:option1">
+            <value>Artificial</value>
+          </text>
+          <text id="/data/light_source/light_source_description:label">
+            <value>Description</value>
+          </text>
+          <text id="/data/light_source/light_source_description:hint">
+            <value>What is the source of the light?</value>
+          </text>
+          <text id="/data/other_light_sources:label">
+            <value>Other light sources</value>
+          </text>
+          <text id="/data/other_light_sources/other_light_sources_present:label">
+            <value>Other light sources present during emergence?</value>
+          </text>
+          <text id="/data/other_light_sources/other_light_sources_present:hint">
+            <value>If yes, go back and add them</value>
+          </text>
+          <text id="/data/other_light_sources/other_light_sources_present:option0">
+            <value>Unknown</value>
+          </text>
+          <text id="/data/other_light_sources/other_light_sources_present:option1">
+            <value>No</value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/details/nest_age" type="select1" required="true()"/>
+      <bind nodeset="/data/details/species" type="select1" required="true()"/>
+      <bind nodeset="/data/details/nest_type" type="select1" required="true()"/>
+      <bind nodeset="/data/details/observed_at" type="geopoint" required="true()" jr:requiredMsg="jr:itext('/data/details/observed_at:requiredMsg')"/>
+      <bind nodeset="/data/track_photos" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
+      <bind nodeset="/data/track_photos/photo_track_1" type="binary" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
+      <bind nodeset="/data/track_photos/photo_track_2" type="binary" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
+      <bind nodeset="/data/track_photos/max-track-width-front" type="int" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))" constraint="(. &gt;= '0') and (. &lt;= '2000')" jr:constraintMsg="jr:itext('/data/track_photos/max-track-width-front:constraintMsg')"/>
+      <bind nodeset="/data/track_photos/max-track-width-rear" type="int" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))" constraint="(. &gt;= '0') and (. &lt;= '2000')" jr:constraintMsg="jr:itext('/data/track_photos/max-track-width-rear:constraintMsg')"/>
+      <bind nodeset="/data/track_photos/carapace-drag-width" type="int" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))" constraint="(. &gt;= '0') and (. &lt;= '1000')" jr:constraintMsg="jr:itext('/data/track_photos/carapace-drag-width:constraintMsg')"/>
+      <bind nodeset="/data/track_photos/step-length" type="int" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))" constraint="(. &gt;= '0') and (. &lt;= '1000')" jr:constraintMsg="jr:itext('/data/track_photos/step-length:constraintMsg')"/>
+      <bind nodeset="/data/track_photos/tail-pokes" type="select1" required="true()" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
+      <bind nodeset="/data/nest_photos" relevant="(/data/details/nest_type = 'track-unsure')"/>
+      <bind nodeset="/data/nest_photos/photo_nest_1" type="binary" relevant="(/data/details/nest_type = 'track-unsure')"/>
+      <bind nodeset="/data/nest_photos/photo_nest_2" type="binary" relevant="(/data/details/nest_type = 'track-unsure')"/>
+      <bind nodeset="/data/nest_photos/photo_nest_3" type="binary" relevant="(/data/details/nest_type = 'track-unsure')"/>
+      <bind nodeset="/data/nest" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
+      <bind nodeset="/data/nest/habitat" type="select1" required="true()" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
+      <bind nodeset="/data/nest/disturbance" type="select1" required="true()" jr:requiredMsg="jr:itext('/data/nest/disturbance:requiredMsg')" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
+      <bind nodeset="/data/nest/nest_tagged" type="select1" required="true()" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
+      <bind nodeset="/data/nest/logger_found" type="select1" required="true()" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
+      <bind nodeset="/data/nest/eggs_counted" type="select1" required="true()" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
+      <bind nodeset="/data/nest/hatchlings_measured" type="select1" required="true()" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
+      <bind nodeset="/data/nest/fan_angles_measured" type="select1" required="true()" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
+      <bind nodeset="/data/disturbanceobservation" relevant="(/data/nest/disturbance = 'present')"/>
+      <bind nodeset="/data/disturbanceobservation/photo_disturbance" type="binary" required="true()" relevant="(/data/nest/disturbance = 'present')"/>
+      <bind nodeset="/data/disturbanceobservation/disturbance_cause" type="select1" required="true()" relevant="(/data/nest/disturbance = 'present')"/>
+      <bind nodeset="/data/disturbanceobservation/disturbance_cause_confidence" type="select1" required="true()" relevant="(/data/nest/disturbance = 'present')"/>
+      <bind nodeset="/data/disturbanceobservation/disturbance_severity" type="select1" required="true()" relevant="(/data/nest/disturbance = 'present')"/>
+      <bind nodeset="/data/disturbanceobservation/comments" type="string" relevant="(/data/nest/disturbance = 'present')"/>
+      <bind nodeset="/data/egg_count" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_count/no_egg_shells" type="int" required="true()" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_count/no_live_hatchlings" type="int" required="true()" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_count/no_dead_hatchlings" type="int" required="true()" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_count/no_undeveloped_eggs" type="int" required="true()" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_count/no_unhatched_eggs" type="int" required="true()" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_count/no_unhatched_term" type="int" required="true()" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_count/no_depredated_eggs" type="int" required="true()" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_count/nest_depth_top" type="int" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_count/nest_depth_bottom" type="int" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_count/nest_excavation_comments" type="string" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_photos" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/egg_photos/photo_eggs" type="binary" required="true()" relevant="(/data/nest/eggs_counted = 'yes')"/>
+      <bind nodeset="/data/nest_tag" relevant="(/data/nest/nest_tagged = 'yes')"/>
+      <bind nodeset="/data/nest_tag/status" type="select1" required="true()" relevant="(/data/nest/nest_tagged = 'yes')"/>
+      <bind nodeset="/data/nest_tag/flipper_tag_id" type="string" relevant="(/data/nest/nest_tagged = 'yes')"/>
+      <bind nodeset="/data/nest_tag/date_nest_laid" type="date" relevant="(/data/nest/nest_tagged = 'yes')"/>
+      <bind nodeset="/data/nest_tag/tag_label" type="string" relevant="(/data/nest/nest_tagged = 'yes')"/>
+      <bind nodeset="/data/nest_tag/tag_comments" type="string" relevant="(/data/nest/nest_tagged = 'yes')"/>
+      <bind nodeset="/data/nest_tag/photo_tag" type="binary" relevant="(/data/nest/nest_tagged = 'yes')"/>
+      <bind nodeset="/data/logger_details" relevant="(/data/nest/logger_found = 'yes')"/>
+      <bind nodeset="/data/logger_details/logger_id" type="string" required="true()" relevant="(/data/nest/logger_found = 'yes')"/>
+      <bind nodeset="/data/logger_details/photo_logger" type="binary" relevant="(/data/nest/logger_found = 'yes')"/>
+      <bind nodeset="/data/logger_details/logger_comments" type="string" relevant="(/data/nest/logger_found = 'yes')"/>
+      <bind nodeset="/data/hatchling_measurements" relevant="(/data/nest/hatchlings_measured = 'yes')"/>
+      <bind nodeset="/data/hatchling_measurements/straight_carapace_length_mm" type="int" relevant="(/data/nest/hatchlings_measured = 'yes')"/>
+      <bind nodeset="/data/hatchling_measurements/straight_carapace_width_mm" type="int" relevant="(/data/nest/hatchlings_measured = 'yes')"/>
+      <bind nodeset="/data/hatchling_measurements/body_weight_g" type="int" relevant="(/data/nest/hatchlings_measured = 'yes')"/>
+      <bind nodeset="/data/fan_angles" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
+      <bind nodeset="/data/fan_angles/photo_hatchling_tracks_seawards" type="binary" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
+      <bind nodeset="/data/fan_angles/photo_hatchling_tracks_relief" type="binary" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
+      <bind nodeset="/data/fan_angles/bearing_to_water_manual" type="decimal" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
+      <bind nodeset="/data/fan_angles/leftmost_track_manual" type="decimal" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
+      <bind nodeset="/data/fan_angles/rightmost_track_manual" type="decimal" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
+      <bind nodeset="/data/fan_angles/no_tracks_main_group" type="int" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt; '0') and (. &lt;= '500')" jr:constraintMsg="Value must be between 0 and 500"/>
+      <bind nodeset="/data/fan_angles/no_tracks_main_group_min" type="int" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt; '0') and (. &lt;= '500')" jr:constraintMsg="Value must be between 0 and 500"/>
+      <bind nodeset="/data/fan_angles/no_tracks_main_group_max" type="int" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt; '0') and (. &lt;= '500')" jr:constraintMsg="Value must be between 0 and 500"/>
+      <bind nodeset="/data/fan_angles/outlier_tracks_present" type="select1" required="true()" jr:requiredMsg="jr:itext('/data/fan_angles/outlier_tracks_present:requiredMsg')" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
+      <bind nodeset="/data/fan_angles/hatchling_path_to_sea" type="select" required="true()" jr:requiredMsg="jr:itext('/data/fan_angles/hatchling_path_to_sea:requiredMsg')" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
+      <bind nodeset="/data/fan_angles/path_to_sea_comments" type="string" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
+      <bind nodeset="/data/fan_angles/hatchling_emergence_time_known" type="select1" required="true()" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
+      <bind nodeset="/data/fan_angles/cloud_cover_at_emergence_known" type="select1" required="true()" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
+      <bind nodeset="/data/fan_angles/light_sources_present" type="select1" required="true()" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
+      <bind nodeset="/data/outlier_track" relevant="(/data/fan_angles/outlier_tracks_present = 'present')"/>
+      <bind nodeset="/data/outlier_track/outlier_track_photo" type="binary" relevant="(/data/fan_angles/outlier_tracks_present = 'present')"/>
+      <bind nodeset="/data/outlier_track/outlier_track_bearing_manual" type="decimal" required="true()" jr:requiredMsg="jr:itext('/data/outlier_track/outlier_track_bearing_manual:requiredMsg')" relevant="(/data/fan_angles/outlier_tracks_present = 'present')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
+      <bind nodeset="/data/outlier_track/outlier_group_size" type="int" required="true()" relevant="(/data/fan_angles/outlier_tracks_present = 'present')" constraint="(. &gt;= '1') and (. &lt;= '100')" jr:constraintMsg="Value must be between 1 and 100"/>
+      <bind nodeset="/data/outlier_track/outlier_track_comment" type="string" relevant="(/data/fan_angles/outlier_tracks_present = 'present')"/>
+      <bind nodeset="/data/hatchling_emergence_time_group" relevant="(/data/fan_angles/hatchling_emergence_time_known = 'yes')"/>
+      <bind nodeset="/data/hatchling_emergence_time_group/hatchling_emergence_time" type="dateTime" relevant="(/data/fan_angles/hatchling_emergence_time_known = 'yes')"/>
+      <bind nodeset="/data/hatchling_emergence_time_group/hatchling_emergence_time_source" type="select1" required="true()" jr:requiredMsg="jr:itext('/data/hatchling_emergence_time_group/hatchling_emergence_time_source:requiredMsg')" relevant="(/data/fan_angles/hatchling_emergence_time_known = 'yes')"/>
+      <bind nodeset="/data/emergence_climate" relevant="(/data/fan_angles/cloud_cover_at_emergence_known = 'yes')"/>
+      <bind nodeset="/data/emergence_climate/cloud_cover_at_emergence" type="int" relevant="(/data/fan_angles/cloud_cover_at_emergence_known = 'yes')"/>
+      <bind nodeset="/data/light_source" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
+      <bind nodeset="/data/light_source/light_source_photo" type="binary" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
+      <bind nodeset="/data/light_source/light_bearing_manual" type="decimal" required="true()" jr:requiredMsg="jr:itext('/data/light_source/light_bearing_manual:requiredMsg')" relevant="(/data/fan_angles/light_sources_present = 'present')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
+      <bind nodeset="/data/light_source/light_source_type" type="select1" required="true()" jr:requiredMsg="jr:itext('/data/light_source/light_source_type:requiredMsg')" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
+      <bind nodeset="/data/light_source/light_source_description" type="string" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
+      <bind nodeset="/data/other_light_sources" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
+      <bind nodeset="/data/other_light_sources/other_light_sources_present" type="select1" required="true()" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
+      <bind nodeset="/data/observation_end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/data/details" appearance="field-list">
+      <label ref="jr:itext('/data/details:label')"/>
+      <select1 ref="/data/details/nest_age" appearance="horizontal">
+        <label ref="jr:itext('/data/details/nest_age:label')"/>
+        <hint ref="jr:itext('/data/details/nest_age:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/details/nest_age:option0')"/>
+          <value>fresh</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/nest_age:option1')"/>
+          <value>old</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/nest_age:option2')"/>
+          <value>unknown</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/nest_age:option3')"/>
+          <value>missed</value>
+        </item>
+      </select1>
+      <select1 ref="/data/details/species" appearance="horizontal">
+        <label ref="jr:itext('/data/details/species:label')"/>
+        <hint ref="jr:itext('/data/details/species:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/details/species:option0')"/>
+          <value>cheloniidae-fam</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/species:option1')"/>
+          <value>natator-depressus</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/species:option2')"/>
+          <value>chelonia-mydas</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/species:option3')"/>
+          <value>eretmochelys-imbricata</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/species:option4')"/>
+          <value>caretta-caretta</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/species:option5')"/>
+          <value>lepidochelys-olivacea</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/species:option6')"/>
+          <value>corolla-corolla</value>
+        </item>
+      </select1>
+      <select1 ref="/data/details/nest_type" appearance="horizontal">
+        <label ref="jr:itext('/data/details/nest_type:label')"/>
+        <hint ref="jr:itext('/data/details/nest_type:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/details/nest_type:option0')"/>
+          <value>track-not-assessed</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/nest_type:option1')"/>
+          <value>false-crawl</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/nest_type:option2')"/>
+          <value>successful-crawl</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/nest_type:option3')"/>
+          <value>track-unsure</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/nest_type:option4')"/>
+          <value>nest</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/nest_type:option5')"/>
+          <value>hatched-nest</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/nest_type:option6')"/>
+          <value>body-pit</value>
+        </item>
+      </select1>
+      <input ref="/data/details/observed_at">
+        <label ref="jr:itext('/data/details/observed_at:label')"/>
+        <hint ref="jr:itext('/data/details/observed_at:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/track_photos" appearance="field-list">
+      <label ref="jr:itext('/data/track_photos:label')"/>
+      <upload ref="/data/track_photos/photo_track_1" mediatype="image/*">
+        <label ref="jr:itext('/data/track_photos/photo_track_1:label')"/>
+        <hint ref="jr:itext('/data/track_photos/photo_track_1:hint')"/>
+      </upload>
+      <upload ref="/data/track_photos/photo_track_2" mediatype="image/*">
+        <label ref="jr:itext('/data/track_photos/photo_track_2:label')"/>
+        <hint ref="jr:itext('/data/track_photos/photo_track_2:hint')"/>
+      </upload>
+      <input ref="/data/track_photos/max-track-width-front">
+        <label ref="jr:itext('/data/track_photos/max-track-width-front:label')"/>
+        <hint ref="jr:itext('/data/track_photos/max-track-width-front:hint')"/>
+      </input>
+      <input ref="/data/track_photos/max-track-width-rear">
+        <label ref="jr:itext('/data/track_photos/max-track-width-rear:label')"/>
+        <hint ref="jr:itext('/data/track_photos/max-track-width-rear:hint')"/>
+      </input>
+      <input ref="/data/track_photos/carapace-drag-width">
+        <label ref="jr:itext('/data/track_photos/carapace-drag-width:label')"/>
+        <hint ref="jr:itext('/data/track_photos/carapace-drag-width:hint')"/>
+      </input>
+      <input ref="/data/track_photos/step-length">
+        <label ref="jr:itext('/data/track_photos/step-length:label')"/>
+        <hint ref="jr:itext('/data/track_photos/step-length:hint')"/>
+      </input>
+      <select1 ref="/data/track_photos/tail-pokes" appearance="horizontal">
+        <label ref="jr:itext('/data/track_photos/tail-pokes:label')"/>
+        <hint ref="jr:itext('/data/track_photos/tail-pokes:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/track_photos/tail-pokes:option0')"/>
+          <value>absent</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/track_photos/tail-pokes:option1')"/>
+          <value>occasional</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/track_photos/tail-pokes:option2')"/>
+          <value>regular</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/track_photos/tail-pokes:option3')"/>
+          <value>na</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/data/nest_photos" appearance="field-list">
+      <label ref="jr:itext('/data/nest_photos:label')"/>
+      <upload ref="/data/nest_photos/photo_nest_1" mediatype="image/*">
+        <label ref="jr:itext('/data/nest_photos/photo_nest_1:label')"/>
+        <hint ref="jr:itext('/data/nest_photos/photo_nest_1:hint')"/>
+      </upload>
+      <upload ref="/data/nest_photos/photo_nest_2" mediatype="image/*">
+        <label ref="jr:itext('/data/nest_photos/photo_nest_2:label')"/>
+        <hint ref="jr:itext('/data/nest_photos/photo_nest_2:hint')"/>
+      </upload>
+      <upload ref="/data/nest_photos/photo_nest_3" mediatype="image/*">
+        <label ref="jr:itext('/data/nest_photos/photo_nest_3:label')"/>
+        <hint ref="jr:itext('/data/nest_photos/photo_nest_3:hint')"/>
+      </upload>
+    </group>
+    <group ref="/data/nest" appearance="field-list">
+      <label ref="jr:itext('/data/nest:label')"/>
+      <select1 ref="/data/nest/habitat" appearance="horizontal">
+        <label ref="jr:itext('/data/nest/habitat:label')"/>
+        <hint ref="jr:itext('/data/nest/habitat:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/habitat:option0')"/>
+          <value>beach-below-high-water</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/habitat:option1')"/>
+          <value>beach-above-high-water</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/habitat:option2')"/>
+          <value>beach-edge-of-vegetation</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/habitat:option3')"/>
+          <value>in-dune-vegetation</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/habitat:option4')"/>
+          <value>na</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/disturbance" appearance="horizontal">
+        <label ref="jr:itext('/data/nest/disturbance:label')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/disturbance:option0')"/>
+          <value>absent</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/disturbance:option1')"/>
+          <value>present</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/nest_tagged" appearance="horizontal">
+        <label ref="jr:itext('/data/nest/nest_tagged:label')"/>
+        <hint ref="jr:itext('/data/nest/nest_tagged:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/nest_tagged:option0')"/>
+          <value>no</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/nest_tagged:option1')"/>
+          <value>yes</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/logger_found" appearance="horizontal">
+        <label ref="jr:itext('/data/nest/logger_found:label')"/>
+        <hint ref="jr:itext('/data/nest/logger_found:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/logger_found:option0')"/>
+          <value>no</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/logger_found:option1')"/>
+          <value>yes</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/eggs_counted" appearance="horizontal">
+        <label ref="jr:itext('/data/nest/eggs_counted:label')"/>
+        <hint ref="jr:itext('/data/nest/eggs_counted:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/eggs_counted:option0')"/>
+          <value>no</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/eggs_counted:option1')"/>
+          <value>yes</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/hatchlings_measured" appearance="horizontal">
+        <label ref="jr:itext('/data/nest/hatchlings_measured:label')"/>
+        <hint ref="jr:itext('/data/nest/hatchlings_measured:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/hatchlings_measured:option0')"/>
+          <value>no</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/hatchlings_measured:option1')"/>
+          <value>yes</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/fan_angles_measured" appearance="horizontal">
+        <label ref="jr:itext('/data/nest/fan_angles_measured:label')"/>
+        <hint ref="jr:itext('/data/nest/fan_angles_measured:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/fan_angles_measured:option0')"/>
+          <value>no</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/fan_angles_measured:option1')"/>
+          <value>yes</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/data/disturbanceobservation">
+      <label ref="jr:itext('/data/disturbanceobservation:label')"/>
+      <repeat nodeset="/data/disturbanceobservation">
+        <group appearance="field-list">
+          <upload ref="/data/disturbanceobservation/photo_disturbance" mediatype="image/*">
+            <label ref="jr:itext('/data/disturbanceobservation/photo_disturbance:label')"/>
+            <hint ref="jr:itext('/data/disturbanceobservation/photo_disturbance:hint')"/>
+          </upload>
+          <select1 ref="/data/disturbanceobservation/disturbance_cause" appearance="horizontal">
+            <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:label')"/>
+            <hint ref="jr:itext('/data/disturbanceobservation/disturbance_cause:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option0')"/>
+              <value>turtle</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option1')"/>
+              <value>bandicoot</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option2')"/>
+              <value>bird</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option3')"/>
+              <value>cat</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option4')"/>
+              <value>crab</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option5')"/>
+              <value>croc</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option6')"/>
+              <value>cyclone</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option7')"/>
+              <value>dingo</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option8')"/>
+              <value>dog</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option9')"/>
+              <value>fox</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option10')"/>
+              <value>goanna</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option11')"/>
+              <value>human</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option12')"/>
+              <value>pig</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option13')"/>
+              <value>tide</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option14')"/>
+              <value>vehicle</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option15')"/>
+              <value>unknown</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option16')"/>
+              <value>test</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause:option17')"/>
+              <value>other</value>
+            </item>
+          </select1>
+          <select1 ref="/data/disturbanceobservation/disturbance_cause_confidence" appearance="horizontal">
+            <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause_confidence:label')"/>
+            <hint ref="jr:itext('/data/disturbanceobservation/disturbance_cause_confidence:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause_confidence:option0')"/>
+              <value>guess</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_cause_confidence:option1')"/>
+              <value>expert-opinion</value>
+            </item>
+          </select1>
+          <select1 ref="/data/disturbanceobservation/disturbance_severity" appearance="horizontal">
+            <label ref="jr:itext('/data/disturbanceobservation/disturbance_severity:label')"/>
+            <hint ref="jr:itext('/data/disturbanceobservation/disturbance_severity:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_severity:option0')"/>
+              <value>negligible</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_severity:option1')"/>
+              <value>partly</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_severity:option2')"/>
+              <value>completely</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/disturbanceobservation/disturbance_severity:option3')"/>
+              <value>na</value>
+            </item>
+          </select1>
+          <input ref="/data/disturbanceobservation/comments">
+            <label ref="jr:itext('/data/disturbanceobservation/comments:label')"/>
+            <hint ref="jr:itext('/data/disturbanceobservation/comments:hint')"/>
+          </input>
+        </group>
+      </repeat>
+    </group>
+    <group ref="/data/egg_count" appearance="field-list">
+      <label ref="jr:itext('/data/egg_count:label')"/>
+      <input ref="/data/egg_count/no_egg_shells">
+        <label ref="jr:itext('/data/egg_count/no_egg_shells:label')"/>
+        <hint ref="jr:itext('/data/egg_count/no_egg_shells:hint')"/>
+      </input>
+      <input ref="/data/egg_count/no_live_hatchlings">
+        <label ref="jr:itext('/data/egg_count/no_live_hatchlings:label')"/>
+        <hint ref="jr:itext('/data/egg_count/no_live_hatchlings:hint')"/>
+      </input>
+      <input ref="/data/egg_count/no_dead_hatchlings">
+        <label ref="jr:itext('/data/egg_count/no_dead_hatchlings:label')"/>
+        <hint ref="jr:itext('/data/egg_count/no_dead_hatchlings:hint')"/>
+      </input>
+      <input ref="/data/egg_count/no_undeveloped_eggs">
+        <label ref="jr:itext('/data/egg_count/no_undeveloped_eggs:label')"/>
+        <hint ref="jr:itext('/data/egg_count/no_undeveloped_eggs:hint')"/>
+      </input>
+      <input ref="/data/egg_count/no_unhatched_eggs">
+        <label ref="jr:itext('/data/egg_count/no_unhatched_eggs:label')"/>
+        <hint ref="jr:itext('/data/egg_count/no_unhatched_eggs:hint')"/>
+      </input>
+      <input ref="/data/egg_count/no_unhatched_term">
+        <label ref="jr:itext('/data/egg_count/no_unhatched_term:label')"/>
+        <hint ref="jr:itext('/data/egg_count/no_unhatched_term:hint')"/>
+      </input>
+      <input ref="/data/egg_count/no_depredated_eggs">
+        <label ref="jr:itext('/data/egg_count/no_depredated_eggs:label')"/>
+        <hint ref="jr:itext('/data/egg_count/no_depredated_eggs:hint')"/>
+      </input>
+      <input ref="/data/egg_count/nest_depth_top">
+        <label ref="jr:itext('/data/egg_count/nest_depth_top:label')"/>
+        <hint ref="jr:itext('/data/egg_count/nest_depth_top:hint')"/>
+      </input>
+      <input ref="/data/egg_count/nest_depth_bottom">
+        <label ref="jr:itext('/data/egg_count/nest_depth_bottom:label')"/>
+        <hint ref="jr:itext('/data/egg_count/nest_depth_bottom:hint')"/>
+      </input>
+      <input ref="/data/egg_count/nest_excavation_comments">
+        <label ref="jr:itext('/data/egg_count/nest_excavation_comments:label')"/>
+        <hint ref="jr:itext('/data/egg_count/nest_excavation_comments:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/egg_photos">
+      <label ref="jr:itext('/data/egg_photos:label')"/>
+      <repeat nodeset="/data/egg_photos">
+        <group appearance="field-list">
+          <upload ref="/data/egg_photos/photo_eggs" mediatype="image/*">
+            <label ref="jr:itext('/data/egg_photos/photo_eggs:label')"/>
+            <hint ref="jr:itext('/data/egg_photos/photo_eggs:hint')"/>
+          </upload>
+        </group>
+      </repeat>
+    </group>
+    <group ref="/data/nest_tag" appearance="field-list">
+      <label ref="jr:itext('/data/nest_tag:label')"/>
+      <select1 ref="/data/nest_tag/status" appearance="horizontal">
+        <label ref="jr:itext('/data/nest_tag/status:label')"/>
+        <item>
+          <label ref="jr:itext('/data/nest_tag/status:option0')"/>
+          <value>applied-new</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest_tag/status:option1')"/>
+          <value>resighted</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest_tag/status:option2')"/>
+          <value>reclinched</value>
+        </item>
+      </select1>
+      <input ref="/data/nest_tag/flipper_tag_id">
+        <label ref="jr:itext('/data/nest_tag/flipper_tag_id:label')"/>
+        <hint ref="jr:itext('/data/nest_tag/flipper_tag_id:hint')"/>
+      </input>
+      <input ref="/data/nest_tag/date_nest_laid">
+        <label ref="jr:itext('/data/nest_tag/date_nest_laid:label')"/>
+        <hint ref="jr:itext('/data/nest_tag/date_nest_laid:hint')"/>
+      </input>
+      <input ref="/data/nest_tag/tag_label">
+        <label ref="jr:itext('/data/nest_tag/tag_label:label')"/>
+        <hint ref="jr:itext('/data/nest_tag/tag_label:hint')"/>
+      </input>
+      <input ref="/data/nest_tag/tag_comments">
+        <label ref="jr:itext('/data/nest_tag/tag_comments:label')"/>
+        <hint ref="jr:itext('/data/nest_tag/tag_comments:hint')"/>
+      </input>
+      <upload ref="/data/nest_tag/photo_tag" mediatype="image/*">
+        <label ref="jr:itext('/data/nest_tag/photo_tag:label')"/>
+      </upload>
+    </group>
+    <group ref="/data/logger_details">
+      <label ref="jr:itext('/data/logger_details:label')"/>
+      <repeat nodeset="/data/logger_details">
+        <group appearance="field-list">
+          <input ref="/data/logger_details/logger_id">
+            <label ref="jr:itext('/data/logger_details/logger_id:label')"/>
+            <hint ref="jr:itext('/data/logger_details/logger_id:hint')"/>
+          </input>
+          <upload ref="/data/logger_details/photo_logger" mediatype="image/*">
+            <label ref="jr:itext('/data/logger_details/photo_logger:label')"/>
+            <hint ref="jr:itext('/data/logger_details/photo_logger:hint')"/>
+          </upload>
+          <input ref="/data/logger_details/logger_comments">
+            <label ref="jr:itext('/data/logger_details/logger_comments:label')"/>
+            <hint ref="jr:itext('/data/logger_details/logger_comments:hint')"/>
+          </input>
+        </group>
+      </repeat>
+    </group>
+    <group ref="/data/hatchling_measurements">
+      <label ref="jr:itext('/data/hatchling_measurements:label')"/>
+      <repeat nodeset="/data/hatchling_measurements">
+        <group appearance="field-list">
+          <input ref="/data/hatchling_measurements/straight_carapace_length_mm">
+            <label ref="jr:itext('/data/hatchling_measurements/straight_carapace_length_mm:label')"/>
+          </input>
+          <input ref="/data/hatchling_measurements/straight_carapace_width_mm">
+            <label ref="jr:itext('/data/hatchling_measurements/straight_carapace_width_mm:label')"/>
+          </input>
+          <input ref="/data/hatchling_measurements/body_weight_g">
+            <label ref="jr:itext('/data/hatchling_measurements/body_weight_g:label')"/>
+          </input>
+        </group>
+      </repeat>
+    </group>
+    <group ref="/data/fan_angles" appearance="field-list">
+      <label ref="jr:itext('/data/fan_angles:label')"/>
+      <upload ref="/data/fan_angles/photo_hatchling_tracks_seawards" mediatype="image/*">
+        <label ref="jr:itext('/data/fan_angles/photo_hatchling_tracks_seawards:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/photo_hatchling_tracks_seawards:hint')"/>
+      </upload>
+      <upload ref="/data/fan_angles/photo_hatchling_tracks_relief" mediatype="image/*">
+        <label ref="jr:itext('/data/fan_angles/photo_hatchling_tracks_relief:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/photo_hatchling_tracks_relief:hint')"/>
+      </upload>
+      <input ref="/data/fan_angles/bearing_to_water_manual">
+        <label ref="jr:itext('/data/fan_angles/bearing_to_water_manual:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/bearing_to_water_manual:hint')"/>
+      </input>
+      <input ref="/data/fan_angles/leftmost_track_manual">
+        <label ref="jr:itext('/data/fan_angles/leftmost_track_manual:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/leftmost_track_manual:hint')"/>
+      </input>
+      <input ref="/data/fan_angles/rightmost_track_manual">
+        <label ref="jr:itext('/data/fan_angles/rightmost_track_manual:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/rightmost_track_manual:hint')"/>
+      </input>
+      <input ref="/data/fan_angles/no_tracks_main_group">
+        <label ref="jr:itext('/data/fan_angles/no_tracks_main_group:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/no_tracks_main_group:hint')"/>
+      </input>
+      <input ref="/data/fan_angles/no_tracks_main_group_min">
+        <label ref="jr:itext('/data/fan_angles/no_tracks_main_group_min:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/no_tracks_main_group_min:hint')"/>
+      </input>
+      <input ref="/data/fan_angles/no_tracks_main_group_max">
+        <label ref="jr:itext('/data/fan_angles/no_tracks_main_group_max:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/no_tracks_main_group_max:hint')"/>
+      </input>
+      <select1 ref="/data/fan_angles/outlier_tracks_present" appearance="horizontal">
+        <label ref="jr:itext('/data/fan_angles/outlier_tracks_present:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/outlier_tracks_present:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/outlier_tracks_present:option0')"/>
+          <value>na</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/outlier_tracks_present:option1')"/>
+          <value>absent</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/outlier_tracks_present:option2')"/>
+          <value>present</value>
+        </item>
+      </select1>
+      <select ref="/data/fan_angles/hatchling_path_to_sea" appearance="horizontal">
+        <label ref="jr:itext('/data/fan_angles/hatchling_path_to_sea:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/hatchling_path_to_sea:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/hatchling_path_to_sea:option0')"/>
+          <value>clear</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/hatchling_path_to_sea:option1')"/>
+          <value>steep-inclines</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/hatchling_path_to_sea:option2')"/>
+          <value>uneven-ground</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/hatchling_path_to_sea:option3')"/>
+          <value>natural-obstacles</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/hatchling_path_to_sea:option4')"/>
+          <value>man-made-obstacles</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/hatchling_path_to_sea:option5')"/>
+          <value>other</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/hatchling_path_to_sea:option6')"/>
+          <value>na</value>
+        </item>
+      </select>
+      <input ref="/data/fan_angles/path_to_sea_comments">
+        <label ref="jr:itext('/data/fan_angles/path_to_sea_comments:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/path_to_sea_comments:hint')"/>
+      </input>
+      <select1 ref="/data/fan_angles/hatchling_emergence_time_known" appearance="horizontal">
+        <label ref="jr:itext('/data/fan_angles/hatchling_emergence_time_known:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/hatchling_emergence_time_known:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/hatchling_emergence_time_known:option0')"/>
+          <value>no</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/hatchling_emergence_time_known:option1')"/>
+          <value>yes</value>
+        </item>
+      </select1>
+      <select1 ref="/data/fan_angles/cloud_cover_at_emergence_known" appearance="horizontal">
+        <label ref="jr:itext('/data/fan_angles/cloud_cover_at_emergence_known:label')"/>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/cloud_cover_at_emergence_known:option0')"/>
+          <value>no</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/cloud_cover_at_emergence_known:option1')"/>
+          <value>yes</value>
+        </item>
+      </select1>
+      <select1 ref="/data/fan_angles/light_sources_present" appearance="horizontal">
+        <label ref="jr:itext('/data/fan_angles/light_sources_present:label')"/>
+        <hint ref="jr:itext('/data/fan_angles/light_sources_present:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/light_sources_present:option0')"/>
+          <value>na</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/light_sources_present:option1')"/>
+          <value>absent</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/fan_angles/light_sources_present:option2')"/>
+          <value>present</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/data/outlier_track">
+      <label ref="jr:itext('/data/outlier_track:label')"/>
+      <repeat nodeset="/data/outlier_track">
+        <group appearance="field-list">
+          <upload ref="/data/outlier_track/outlier_track_photo" mediatype="image/*">
+            <label ref="jr:itext('/data/outlier_track/outlier_track_photo:label')"/>
+            <hint ref="jr:itext('/data/outlier_track/outlier_track_photo:hint')"/>
+          </upload>
+          <input ref="/data/outlier_track/outlier_track_bearing_manual">
+            <label ref="jr:itext('/data/outlier_track/outlier_track_bearing_manual:label')"/>
+            <hint ref="jr:itext('/data/outlier_track/outlier_track_bearing_manual:hint')"/>
+          </input>
+          <input ref="/data/outlier_track/outlier_group_size">
+            <label ref="jr:itext('/data/outlier_track/outlier_group_size:label')"/>
+          </input>
+          <input ref="/data/outlier_track/outlier_track_comment">
+            <label ref="jr:itext('/data/outlier_track/outlier_track_comment:label')"/>
+          </input>
+        </group>
+      </repeat>
+    </group>
+    <group ref="/data/hatchling_emergence_time_group" appearance="field-list">
+      <label ref="jr:itext('/data/hatchling_emergence_time_group:label')"/>
+      <input ref="/data/hatchling_emergence_time_group/hatchling_emergence_time">
+        <label ref="jr:itext('/data/hatchling_emergence_time_group/hatchling_emergence_time:label')"/>
+        <hint ref="jr:itext('/data/hatchling_emergence_time_group/hatchling_emergence_time:hint')"/>
+      </input>
+      <select1 ref="/data/hatchling_emergence_time_group/hatchling_emergence_time_source">
+        <label ref="jr:itext('/data/hatchling_emergence_time_group/hatchling_emergence_time_source:label')"/>
+        <hint ref="jr:itext('/data/hatchling_emergence_time_group/hatchling_emergence_time_source:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/hatchling_emergence_time_group/hatchling_emergence_time_source:option0')"/>
+          <value>same-night</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/hatchling_emergence_time_group/hatchling_emergence_time_source:option1')"/>
+          <value>plusminus-2h</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/hatchling_emergence_time_group/hatchling_emergence_time_source:option2')"/>
+          <value>plusminus-30m</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/data/emergence_climate" appearance="field-list">
+      <label ref="jr:itext('/data/emergence_climate:label')"/>
+      <range ref="/data/emergence_climate/cloud_cover_at_emergence" start="0" end="8" step="1">
+        <label ref="jr:itext('/data/emergence_climate/cloud_cover_at_emergence:label')"/>
+        <hint ref="jr:itext('/data/emergence_climate/cloud_cover_at_emergence:hint')"/>
+      </range>
+    </group>
+    <group ref="/data/light_source">
+      <label ref="jr:itext('/data/light_source:label')"/>
+      <repeat nodeset="/data/light_source">
+        <group appearance="field-list">
+          <upload ref="/data/light_source/light_source_photo" mediatype="image/*">
+            <label ref="jr:itext('/data/light_source/light_source_photo:label')"/>
+            <hint ref="jr:itext('/data/light_source/light_source_photo:hint')"/>
+          </upload>
+          <input ref="/data/light_source/light_bearing_manual">
+            <label ref="jr:itext('/data/light_source/light_bearing_manual:label')"/>
+            <hint ref="jr:itext('/data/light_source/light_bearing_manual:hint')"/>
+          </input>
+          <select1 ref="/data/light_source/light_source_type" appearance="horizontal">
+            <label ref="jr:itext('/data/light_source/light_source_type:label')"/>
+            <item>
+              <label ref="jr:itext('/data/light_source/light_source_type:option0')"/>
+              <value>natural</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/light_source/light_source_type:option1')"/>
+              <value>artificial</value>
+            </item>
+          </select1>
+          <input ref="/data/light_source/light_source_description">
+            <label ref="jr:itext('/data/light_source/light_source_description:label')"/>
+            <hint ref="jr:itext('/data/light_source/light_source_description:hint')"/>
+          </input>
+        </group>
+      </repeat>
+    </group>
+    <group ref="/data/other_light_sources" appearance="field-list">
+      <label ref="jr:itext('/data/other_light_sources:label')"/>
+      <select1 ref="/data/other_light_sources/other_light_sources_present">
+        <label ref="jr:itext('/data/other_light_sources/other_light_sources_present:label')"/>
+        <hint ref="jr:itext('/data/other_light_sources/other_light_sources_present:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/other_light_sources/other_light_sources_present:option0')"/>
+          <value>na</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/other_light_sources/other_light_sources_present:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+    </group>
+  </h:body>
+</h:html>

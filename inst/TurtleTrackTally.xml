@@ -1,9 +1,9 @@
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
   <h:head>
-    <h:title>Turtle Track Tally 0.7</h:title>
+    <h:title>Turtle Track Tally</h:title>
     <model>
       <instance>
-        <data id="build_Turtle-Track-Tally-0-7_1596509970">
+        <data id="Turtle-Track-Tally">
           <meta>
             <instanceID/>
           </meta>
@@ -166,10 +166,6 @@
             <disturbance_comments/>
           </disturbance>
           <observation_end_time/>
-          <untitled2/>
-          <untitled3>
-          </untitled3>
-          <untitled4/>
         </data>
       </instance>
       <itext>
@@ -582,9 +578,6 @@
           <text id="/data/disturbance/disturbance_comments:label">
             <value>Comments</value>
           </text>
-          <text id="/data/untitled3:label">
-            <value></value>
-          </text>
         </translation>
       </itext>
       <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
@@ -648,8 +641,6 @@
       <bind nodeset="/data/disturbance/no_tracks_encountered" type="int" relevant="(/data/overview/predation_evidence='present')"/>
       <bind nodeset="/data/disturbance/disturbance_comments" type="string" relevant="(/data/overview/predation_evidence='present')"/>
       <bind nodeset="/data/observation_end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
-      <bind nodeset="/data/untitled2" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
-      <bind nodeset="/data/untitled4" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
     </model>
   </h:head>
   <h:body>
@@ -1002,9 +993,6 @@
           </input>
         </group>
       </repeat>
-    </group>
-    <group ref="/data/untitled3">
-      <label ref="jr:itext('/data/untitled3:label')"/>
     </group>
   </h:body>
 </h:html>
