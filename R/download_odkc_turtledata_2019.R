@@ -308,6 +308,32 @@ download_odkc_turtledata_2019 <-
       odkc_version = odkc_version
     )
 
+    # Track Tally 0.7
+    ruODK::ru_setup(
+      pid = 1,
+      fid = "build_Turtle-Track-Tally-0-7_1596509970",
+      url = prod
+    )
+    ft <- ruODK::odata_service_get()
+    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    tracktally07_prod <- ruODK::odata_submission_get(
+      table = ft$url[1],
+      verbose = verbose,
+      wkt = FALSE,
+      local_dir = local_dir,
+      download = download,
+      odkc_version = odkc_version
+    )
+
+    tracktally07_dist_prod <- ruODK::odata_submission_get(
+      table = ft$url[2],
+      verbose = verbose,
+      wkt = FALSE,
+      local_dir = local_dir,
+      download = download,
+      odkc_version = odkc_version
+    )
+
     #--------------------------------------------------------------------------#
     # Fix error: PROD used UAT db for a week - what's in UAT but not in PROD?
 
@@ -492,7 +518,7 @@ download_odkc_turtledata_2019 <-
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates(parse_date = FALSE)
 
-    track_tally <- tracktally_prod %>%
+    track_tally <- dplyr::bind_rows(tracktally_prod, tracktally07_prod) %>%
       dplyr::mutate(
         tx = purrr::map(
           overview_location,
@@ -503,7 +529,8 @@ download_odkc_turtledata_2019 <-
       sf::st_zm() %>%
       sf::st_join(sites)
 
-    track_tally_dist <- tracktally_dist_prod
+    track_tally_dist <- dplyr::bind_rows(tracktally_dist_prod,
+                                         tracktally07_dist_prod)
 
     odkc_turtledata <-
       structure(
