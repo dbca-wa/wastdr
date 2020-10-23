@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Export all WAStD turtledata to CSV and GeoJSON. — export_wastd_turtledata • wastdr</title>
+<title>Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files. — export_wastd_turtledata • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Export all WAStD turtledata to CSV and GeoJSON. — export_wastd_turtledata" />
-<meta property="og:description" content="Export all WAStD turtledata to CSV and GeoJSON." />
+<meta property="og:title" content="Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files. — export_wastd_turtledata" />
+<meta property="og:description" content="Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9005</span>
       </span>
     </div>
 
@@ -153,16 +153,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Export all WAStD turtledata to CSV and GeoJSON.</h1>
+    <h1>Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files.</h1>
     <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/export_wastd_turtledata.R'><code>R/export_wastd_turtledata.R</code></a></small>
     <div class="hidden name"><code>export_wastd_turtledata.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Export all WAStD turtledata to CSV and GeoJSON.</p>
+    <p>Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>export_wastd_turtledata</span><span class='op'>(</span><span class='va'>x</span>, outdir <span class='op'>=</span> <span class='fu'>here</span><span class='fu'>::</span><span class='fu'>here</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>export_wastd_turtledata</span><span class='op'>(</span><span class='va'>x</span>, outdir <span class='op'>=</span> <span class='fu'>here</span><span class='fu'>::</span><span class='fu'>here</span><span class='op'>(</span><span class='op'>)</span>, filename <span class='op'>=</span> <span class='st'>"export"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,13 +170,19 @@
     <tr>
       <th>x</th>
       <td><p>An object of class `wastd_data` as returned by
-<code><a href='download_wastd_turtledata.html'>download_wastd_turtledata</a></code>. This data can be filtered to
+<code><a href='download_wastd_turtledata.html'>download_wastd_turtledata</a></code>.
+This data can optionally be filtered to
 an area_name (WAStD Area of type Locality).</p></td>
     </tr>
     <tr>
       <th>outdir</th>
       <td><p>The destination to write exported data to,
 default: <code>here::here()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>filename</th>
+      <td><p>The filename of the ZIP file, default: `export`.
+The extension `.zip` will be appended and should not be part of `filename`.</p></td>
     </tr>
     </table>
 
@@ -185,9 +191,10 @@ default: <code>here::here()</code>.</p></td>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span>, package <span class='op'>=</span> <span class='st'>"wastdr"</span><span class='op'>)</span>
 <span class='va'>an</span> <span class='op'>&lt;-</span> <span class='st'>"Ningaloo"</span>
+<span class='va'>au</span> <span class='op'>&lt;-</span> <span class='fu'><a href='urlize.html'>urlize</a></span><span class='op'>(</span><span class='va'>an</span><span class='op'>)</span>
 <span class='va'>wastd_data</span> <span class='op'>%&gt;%</span>
 <span class='fu'><a href='filter_wastd_turtledata.html'>filter_wastd_turtledata</a></span><span class='op'>(</span>area_name <span class='op'>=</span> <span class='va'>an</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>export_wastd_turtledata</span><span class='op'>(</span>outdir <span class='op'>=</span> <span class='fu'>here</span><span class='fu'>::</span><span class='fu'>here</span><span class='op'>(</span><span class='st'>"inst/export"</span>, <span class='fu'><a href='urlize.html'>urlize</a></span><span class='op'>(</span><span class='va'>an</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>export_wastd_turtledata</span><span class='op'>(</span>outdir <span class='op'>=</span> <span class='fu'>here</span><span class='fu'>::</span><span class='fu'>here</span><span class='op'>(</span><span class='va'>au</span><span class='op'>)</span>, filename <span class='op'>=</span> <span class='va'>au</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
