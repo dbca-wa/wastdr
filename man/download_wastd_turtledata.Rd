@@ -43,6 +43,7 @@ An S3 class "wastd_data" with items:
 \seealso{
 Other included: 
 \code{\link{download_odkc_turtledata_2019}()},
+\code{\link{download_odkc_turtledata_2020}()},
 \code{\link{odkc_data}},
 \code{\link{print.odkc_turtledata}()},
 \code{\link{print.wastd_data}()},

@@ -19,6 +19,7 @@ Prints a short representation of data returned by
 \seealso{
 Other included: 
 \code{\link{download_odkc_turtledata_2019}()},
+\code{\link{download_odkc_turtledata_2020}()},
 \code{\link{download_wastd_turtledata}()},
 \code{\link{odkc_data}},
 \code{\link{print.odkc_turtledata}()},
