@@ -30,10 +30,9 @@ jobs:
           # - { os: macOS-latest, r: "devel" } # fails on
           - { os: macOS-latest, r: "release"}
           - { os: macOS-latest, r: "oldrel" }
-          # Ubuntu-18-04 fails to install ‘protolite’, ‘geojson’, ‘geojsonio’
-          # - { os: ubuntu-20.04, r: "devel" }
-          # - { os: ubuntu-20.04, r: "release" }
-          # - { os: ubuntu-20.04, r: "oldrel" }
+          - { os: ubuntu-20.04, r: "devel" }
+          - { os: ubuntu-20.04, r: "release" }
+          - { os: ubuntu-20.04, r: "oldrel" }
           - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release", pkgdown: "true", latex: "true" } # Heisensegfault my old friend
           - { os: ubuntu-latest, r: "oldrel" } # it's nice to see you crash again
@@ -109,7 +108,7 @@ jobs:
         run: |
           sudo apt install libcurl4-openssl-dev libudunits2-dev libgdal-dev \
           libgeos-dev libproj-dev libicu-dev libv8-dev libjq-dev libprotobuf-dev \
-          protobuf-compiler libharfbuzz-dev libfribidi-dev
+          protobuf-compiler libharfbuzz-dev libfribidi-dev libgit2-dev
 
       # sf needs GDAL > 2.0.1, stringr needs libicu-dev
       - name: "[Custom Stage] [Ubuntu Xenial] System packages"

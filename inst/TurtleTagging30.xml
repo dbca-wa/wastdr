@@ -1,0 +1,2720 @@
+<h:html
+  xmlns="http://www.w3.org/2002/xforms"
+  xmlns:h="http://www.w3.org/1999/xhtml"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:jr="http://openrosa.org/javarosa"
+  xmlns:ev="http://www.w3.org/2001/xml-events"
+  xmlns:odk="http://www.opendatakit.org/xforms">
+  <h:head>
+    <h:title>Turtle Tagging</h:title>
+    <model>
+      <instance>
+        <data id ="Turtle-Tagging-3-0" version="1606982420">
+          <meta>
+            <instanceID/>
+            <instanceName/>
+          </meta>
+          <observation_start_time/>
+          <start_location/>
+          <reporter/>
+          <device_id/>
+          <encounter>
+            <reporter_repeat/>
+            <capture_mode>
+              paper
+            </capture_mode>
+            <datasheet_id/>
+            <handler/>
+          </encounter>
+          <realtime>
+            <nest_location/>
+            <start_time_repeat/>
+          </realtime>
+          <manual>
+            <nest_location_lat/>
+            <nest_location_lon/>
+            <nest_location_map/>
+            <time>
+              now()
+            </time>
+          </manual>
+          <pit>
+            <pit_left_name/>
+            <pit1_status>
+              resighted
+            </pit1_status>
+            <pit2_name/>
+            <pit2_status>
+              resighted
+            </pit2_status>
+            <pit3_name/>
+            <pit3_status>
+              resighted
+            </pit3_status>
+            <pit3_location>
+              shoulder-left
+            </pit3_location>
+          </pit>
+          <ft1>
+            <tag_scar_locations/>
+            <tag_sighted_but_unread/>
+            <ft1_name/>
+            <ft1_status>
+              resighted
+            </ft1_status>
+            <ft1_location>
+              flipper-front-left-1
+            </ft1_location>
+            <tag_1_barnacles>
+              absent
+            </tag_1_barnacles>
+            <tag_1_fix>
+              yes
+            </tag_1_fix>
+            <ft1_comments/>
+            <ft1_handled_by/>
+            <ft1_photo/>
+          </ft1>
+          <ft2>
+            <ft2_name/>
+            <ft2_status>
+              resighted
+            </ft2_status>
+            <ft2_location>
+              flipper-front-right-1
+            </ft2_location>
+            <tag_2_barnacles>
+              absent
+            </tag_2_barnacles>
+            <tag_2_fix>
+              yes
+            </tag_2_fix>
+            <ft2_comments/>
+            <ft2_handled_by/>
+            <ft2_photo/>
+          </ft2>
+          <ft3>
+            <ft3_name/>
+            <ft3_status>
+              resighted
+            </ft3_status>
+            <ft3_location/>
+            <tag_3_barnacles>
+              absent
+            </tag_3_barnacles>
+            <tag_3_fix>
+              yes
+            </tag_3_fix>
+            <ft3_comments/>
+            <ft3_handled_by/>
+            <ft3_photo/>
+          </ft3>
+          <biopsy>
+            <biopsy_name/>
+            <biopsy_location>
+              flipper-rear-left
+            </biopsy_location>
+            <biopsy_comments/>
+            <biopsy_photo/>
+          </biopsy>
+          <morphometrics>
+            <curved_carapace_length_min_mm/>
+            <curved_carapace_length_max_mm/>
+            <curved_carapace_width_mm/>
+            <weight/>
+            <maximum_head_width_mm/>
+            <tail_length_carapace_mm/>
+            <tail_length_plastron_mm/>
+            <tail_length_vent_mm/>
+            <morphometrics_handled_by/>
+          </morphometrics>
+          <nest>
+            <species>
+              natator-depressus
+            </species>
+            <sex>
+              female
+            </sex>
+            <observed_nesting_success/>
+            <nesting_disturbed>
+              absent
+            </nesting_disturbed>
+            <nesting_disturbance_cause/>
+            <habitat>
+              na
+            </habitat>
+            <eggs_counted>
+              no
+            </eggs_counted>
+            <egg_count/>
+            <egg_count_accuracy>
+              estimated
+            </egg_count_accuracy>
+            <nest_tag_date/>
+            <nest_tag_label/>
+            <nest_tag_comments/>
+            <damage_seen>
+              absent
+            </damage_seen>
+            <more_tags>
+              absent
+            </more_tags>
+            <more_loggers>
+              absent
+            </more_loggers>
+          </nest>
+          <damage_observation jr:template="">
+            <damage_type>
+              other
+            </damage_type>
+            <body_part>
+              other
+            </body_part>
+            <damage_age>
+              fresh
+            </damage_age>
+            <description/>
+            <photo_damage/>
+          </damage_observation>
+          <tag_observation jr:template="">
+            <tag_name/>
+            <tag_type>
+              flipper-tag
+            </tag_type>
+            <tag_status>
+              applied-new
+            </tag_status>
+            <tag_location>
+              other
+            </tag_location>
+            <tag_barnacles>
+              absent
+            </tag_barnacles>
+            <tag_fix>
+              yes
+            </tag_fix>
+            <tag_comments/>
+            <tag_handled_by/>
+            <tag_photo/>
+          </tag_observation>
+          <logger_observation jr:template="">
+            <logger_name/>
+            <logger_type>
+              temperature-logger
+            </logger_type>
+            <logger_status>
+              applied-new
+            </logger_status>
+            <logger_comments/>
+            <logger_photo/>
+          </logger_observation>
+          <datasheet>
+            <photo_datasheet_front/>
+            <photo_datasheet_rear/>
+            <datasheet_comments/>
+          </datasheet>
+          <observation_end_time/>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="English">
+          <text id="/data/encounter:label">
+            <value>Minimal record</value>
+          </text>
+          <text id="/data/encounter/reporter_repeat:label">
+            <value>Reporter</value>
+          </text>
+          <text id="/data/encounter/reporter_repeat:hint">
+            <value>Not you or empty? Discard this form and set ODK Collect Username.</value>
+            <value form="guidance"> Exit this form with the back button, Discard changes, General Settings &gt; User and device identity &gt; Form metadata &gt; Username.</value>
+          </text>
+          <text id="/data/encounter/capture_mode:label">
+            <value>Data capture mode</value>
+          </text>
+          <text id="/data/encounter/capture_mode:hint">
+            <value></value>
+          </text>
+          <text id="/data/encounter/capture_mode:option0">
+            <value>Resume on paper</value>
+          </text>
+          <text id="/data/encounter/capture_mode:option1">
+            <value>Continue here</value>
+          </text>
+          <text id="/data/encounter/capture_mode:option2">
+            <value>New record with manual nest location</value>
+          </text>
+          <text id="/data/encounter/datasheet_id:label">
+            <value>Paper datasheet ID</value>
+          </text>
+          <text id="/data/encounter/datasheet_id:hint">
+            <value>Required if resuming on paper.</value>
+            <value form="guidance">The datasheet ID becomes part of the saved form's name and links this record, until entirely backfilled, to the paper datasheet.</value>
+          </text>
+          <text id="/data/encounter/handler:label">
+            <value>Prefilled name of Handler</value>
+          </text>
+          <text id="/data/encounter/handler:hint">
+            <value>Person applying most tags and measuring.</value>
+            <value form="guidance">Once you proceed in the form, the &quot;Handler&quot; fields will be pre-filled with this name. You can still change each handler field as required later.</value>
+          </text>
+          <text id="/data/realtime:label">
+            <value>Data capture during turtle encounter</value>
+          </text>
+          <text id="/data/realtime/nest_location:label">
+            <value>Nest or turtle location</value>
+          </text>
+          <text id="/data/realtime/nest_location:hint">
+            <value>Nest or last location of turtle activity. Tap navigation arrow top right to view in decimal degrees.</value>
+          </text>
+          <text id="/data/realtime/nest_location:requiredMsg">
+            <value>If nest or turtle location is not available, record your current location.</value>
+          </text>
+          <text id="/data/realtime/start_time_repeat:label">
+            <value>Recorded time (read-only)</value>
+          </text>
+          <text id="/data/realtime/start_time_repeat:hint">
+            <value>Use as nesting time on datasheet.</value>
+            <value form="guidance">This timestamp is read-only and only shown for backfilling a paper datasheet. You are not supposed or required to edit it here.</value>
+          </text>
+          <text id="/data/manual:label">
+            <value>Backfilled </value>
+          </text>
+          <text id="/data/manual/nest_location_lat:label">
+            <value>Latitude from GPS</value>
+          </text>
+          <text id="/data/manual/nest_location_lat:hint">
+            <value>Lat in signed decimal degrees WGS84 if originally captured on handheld GPS.</value>
+          </text>
+          <text id="/data/manual/nest_location_lon:label">
+            <value>Longitude from GPS</value>
+          </text>
+          <text id="/data/manual/nest_location_lon:hint">
+            <value>Lon in decimal degrees WGS84 if originally captured on handheld GPS.</value>
+          </text>
+          <text id="/data/manual/nest_location_map:label">
+            <value>Nest location fallback</value>
+          </text>
+          <text id="/data/manual/nest_location_map:hint">
+            <value>If no GPS coords available.</value>
+            <value form="guidance">Offline maps showing aerial imagery and study sites are available from the layers button in the map widget.</value>
+          </text>
+          <text id="/data/manual/time:label">
+            <value>Date and time of nesting</value>
+          </text>
+          <text id="/data/manual/time:hint">
+            <value>Backfill from datasheet.</value>
+          </text>
+          <text id="/data/pit:label">
+            <value>PIT tags</value>
+          </text>
+          <text id="/data/pit/pit_left_name:label">
+            <value>Left PIT tag ID</value>
+          </text>
+          <text id="/data/pit/pit_left_name:hint">
+            <value>The complete PIT tag ID. Leave blank if NA.</value>
+            <value form="guidance">Additional PIT and Flipper tags can be added at the end of this form. Use paper to quickly write down tag IDs if it's getting hectic.</value>
+          </text>
+          <text id="/data/pit/pit_left_name:constraintMsg">
+            <value>Left PIT tag ID must be 15 digits</value>
+          </text>
+          <text id="/data/pit/pit1_status:label">
+            <value>Left PIT tag status</value>
+          </text>
+          <text id="/data/pit/pit1_status:hint">
+            <value></value>
+          </text>
+          <text id="/data/pit/pit1_status:option0">
+            <value>applied new</value>
+          </text>
+          <text id="/data/pit/pit1_status:option1">
+            <value>re-sighted associated with animal</value>
+          </text>
+          <text id="/data/pit/pit1_status:option2">
+            <value>applied new, no read, assumed lost</value>
+          </text>
+          <text id="/data/pit/pit2_name:label">
+            <value>Right PIT tag ID</value>
+          </text>
+          <text id="/data/pit/pit2_name:hint">
+            <value>Leave blank if NA.</value>
+          </text>
+          <text id="/data/pit/pit2_name:constraintMsg">
+            <value>Right PIT tag ID must be 15 digits</value>
+          </text>
+          <text id="/data/pit/pit2_status:label">
+            <value>Right PIT tag status</value>
+          </text>
+          <text id="/data/pit/pit2_status:hint">
+            <value></value>
+          </text>
+          <text id="/data/pit/pit2_status:option0">
+            <value>applied new</value>
+          </text>
+          <text id="/data/pit/pit2_status:option1">
+            <value>re-sighted associated with animal</value>
+          </text>
+          <text id="/data/pit/pit2_status:option2">
+            <value>applied new, no read, assumed lost</value>
+          </text>
+          <text id="/data/pit/pit3_name:label">
+            <value>Third PIT tag ID</value>
+          </text>
+          <text id="/data/pit/pit3_name:hint">
+            <value>Leave blank if NA.</value>
+          </text>
+          <text id="/data/pit/pit3_name:constraintMsg">
+            <value>Third PIT tag ID must be 15 digits</value>
+          </text>
+          <text id="/data/pit/pit3_status:label">
+            <value>Third PIT tag status</value>
+          </text>
+          <text id="/data/pit/pit3_status:hint">
+            <value></value>
+          </text>
+          <text id="/data/pit/pit3_status:option0">
+            <value>applied new</value>
+          </text>
+          <text id="/data/pit/pit3_status:option1">
+            <value>re-sighted associated with animal</value>
+          </text>
+          <text id="/data/pit/pit3_status:option2">
+            <value>applied new, no read, assumed lost</value>
+          </text>
+          <text id="/data/pit/pit3_location:label">
+            <value>Third Pit tag location</value>
+          </text>
+          <text id="/data/pit/pit3_location:hint">
+            <value>PIT tag location in turtle body.</value>
+          </text>
+          <text id="/data/pit/pit3_location:option0">
+            <value>neck</value>
+          </text>
+          <text id="/data/pit/pit3_location:option1">
+            <value>left shoulder</value>
+          </text>
+          <text id="/data/pit/pit3_location:option2">
+            <value>right shoulder</value>
+          </text>
+          <text id="/data/pit/pit3_location:option3">
+            <value>other</value>
+          </text>
+          <text id="/data/ft1:label">
+            <value>Flipper tag 1</value>
+          </text>
+          <text id="/data/ft1/tag_scar_locations:label">
+            <value>Tag scar locations</value>
+          </text>
+          <text id="/data/ft1/tag_scar_locations:hint">
+            <value>Select all locations of tag scars if present.</value>
+          </text>
+          <text id="/data/ft1/tag_scar_locations:option0">
+            <value>front left flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_scar_locations:option1">
+            <value>front left flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_scar_locations:option2">
+            <value>front left flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_scar_locations:option3">
+            <value>front right flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_scar_locations:option4">
+            <value>front right flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_scar_locations:option5">
+            <value>front right flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_scar_locations:option6">
+            <value>no tag scars</value>
+          </text>
+          <text id="/data/ft1/tag_sighted_but_unread:label">
+            <value>Tags sighted but not read</value>
+          </text>
+          <text id="/data/ft1/tag_sighted_but_unread:hint">
+            <value>Select all locations of tags you couldn't read in time.</value>
+          </text>
+          <text id="/data/ft1/tag_sighted_but_unread:option0">
+            <value>front left flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_sighted_but_unread:option1">
+            <value>front left flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_sighted_but_unread:option2">
+            <value>front left flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_sighted_but_unread:option3">
+            <value>front right flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_sighted_but_unread:option4">
+            <value>front right flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_sighted_but_unread:option5">
+            <value>front right flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_sighted_but_unread:option6">
+            <value>no tags unread</value>
+          </text>
+          <text id="/data/ft1/ft1_name:label">
+            <value>Tag ID</value>
+          </text>
+          <text id="/data/ft1/ft1_name:hint">
+            <value>Leave blank if NA. Capitalisation and whitespace do not matter.</value>
+            <value form="guidance">Type the tag ID without whitespace to prevent auto-correct. If choosing &quot;WB&quot; from auto-complete suggestions, the introduced whitespace can be kept.</value>
+          </text>
+          <text id="/data/ft1/ft1_name:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/ft1/ft1_status:label">
+            <value>Tag status</value>
+          </text>
+          <text id="/data/ft1/ft1_status:hint">
+            <value>New tag?</value>
+          </text>
+          <text id="/data/ft1/ft1_status:option0">
+            <value>Y - tag applied new</value>
+          </text>
+          <text id="/data/ft1/ft1_status:option1">
+            <value>N - tag re-sighted associated with animal</value>
+          </text>
+          <text id="/data/ft1/ft1_status:option2">
+            <value>tag re-sighted and reclinched on animal</value>
+          </text>
+          <text id="/data/ft1/ft1_status:option3">
+            <value>tag taken off animal</value>
+          </text>
+          <text id="/data/ft1/ft1_location:label">
+            <value>Tag location</value>
+          </text>
+          <text id="/data/ft1/ft1_location:option0">
+            <value>front left flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/ft1/ft1_location:option1">
+            <value>front left flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/ft1/ft1_location:option2">
+            <value>front left flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/ft1/ft1_location:option3">
+            <value>front right flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/ft1/ft1_location:option4">
+            <value>front right flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/ft1/ft1_location:option5">
+            <value>front right flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/ft1/tag_1_barnacles:label">
+            <value>Barnacles</value>
+          </text>
+          <text id="/data/ft1/tag_1_barnacles:hint">
+            <value></value>
+          </text>
+          <text id="/data/ft1/tag_1_barnacles:option0">
+            <value>Present</value>
+          </text>
+          <text id="/data/ft1/tag_1_barnacles:option1">
+            <value>Absent</value>
+          </text>
+          <text id="/data/ft1/tag_1_fix:label">
+            <value>Tag fix</value>
+          </text>
+          <text id="/data/ft1/tag_1_fix:hint">
+            <value>Was the tag securely fixed after the encounter?</value>
+            <value form="guidance">Yes if already secure, reclinched, or applied correctly. No if still loose when turtle left.</value>
+          </text>
+          <text id="/data/ft1/tag_1_fix:option0">
+            <value>Yes - securely fixed</value>
+          </text>
+          <text id="/data/ft1/tag_1_fix:option1">
+            <value>No - was not securely fixed</value>
+          </text>
+          <text id="/data/ft1/ft1_comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/ft1/ft1_comments:hint">
+            <value>Any clarification or additional detail</value>
+          </text>
+          <text id="/data/ft1/ft1_comments:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/ft1/ft1_handled_by:label">
+            <value>Tag applied or read by</value>
+          </text>
+          <text id="/data/ft1/ft1_handled_by:hint">
+            <value>Full given and surname</value>
+          </text>
+          <text id="/data/ft1/ft1_photo:label">
+            <value>Photo of tag</value>
+          </text>
+          <text id="/data/ft1/ft1_photo:hint">
+            <value>Show tag ID if conditions allow photo.</value>
+          </text>
+          <text id="/data/ft2:label">
+            <value>Flipper tag 2</value>
+          </text>
+          <text id="/data/ft2/ft2_name:label">
+            <value>Tag ID</value>
+          </text>
+          <text id="/data/ft2/ft2_name:hint">
+            <value>Leave blank if NA.</value>
+          </text>
+          <text id="/data/ft2/ft2_name:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/ft2/ft2_status:label">
+            <value>Tag status</value>
+          </text>
+          <text id="/data/ft2/ft2_status:hint">
+            <value>New tag?</value>
+          </text>
+          <text id="/data/ft2/ft2_status:option0">
+            <value>Y - tag applied new</value>
+          </text>
+          <text id="/data/ft2/ft2_status:option1">
+            <value>N - tag re-sighted associated with animal</value>
+          </text>
+          <text id="/data/ft2/ft2_status:option2">
+            <value>tag re-sighted and reclinched on animal</value>
+          </text>
+          <text id="/data/ft2/ft2_status:option3">
+            <value>tag taken off animal</value>
+          </text>
+          <text id="/data/ft2/ft2_location:label">
+            <value>Tag location</value>
+          </text>
+          <text id="/data/ft2/ft2_location:option0">
+            <value>front left flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/ft2/ft2_location:option1">
+            <value>front left flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/ft2/ft2_location:option2">
+            <value>front left flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/ft2/ft2_location:option3">
+            <value>front right flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/ft2/ft2_location:option4">
+            <value>front right flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/ft2/ft2_location:option5">
+            <value>front right flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/ft2/tag_2_barnacles:label">
+            <value>Barnacles</value>
+          </text>
+          <text id="/data/ft2/tag_2_barnacles:option0">
+            <value>Present</value>
+          </text>
+          <text id="/data/ft2/tag_2_barnacles:option1">
+            <value>Absent</value>
+          </text>
+          <text id="/data/ft2/tag_2_fix:label">
+            <value>Tag fix</value>
+          </text>
+          <text id="/data/ft2/tag_2_fix:hint">
+            <value>Was the tag securely fixed after the encounter?</value>
+            <value form="guidance">Yes if already secure, reclinched, or applied correctly. No if still loose when turtle left.</value>
+          </text>
+          <text id="/data/ft2/tag_2_fix:option0">
+            <value>Yes - securely fixed</value>
+          </text>
+          <text id="/data/ft2/tag_2_fix:option1">
+            <value>No - was not securely fixed</value>
+          </text>
+          <text id="/data/ft2/ft2_comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/ft2/ft2_comments:hint">
+            <value>Any clarification or additional detail</value>
+          </text>
+          <text id="/data/ft2/ft2_comments:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/ft2/ft2_handled_by:label">
+            <value>Tag applied or read by</value>
+          </text>
+          <text id="/data/ft2/ft2_handled_by:hint">
+            <value>Full given and surname</value>
+          </text>
+          <text id="/data/ft2/ft2_photo:label">
+            <value>Photo of tag</value>
+          </text>
+          <text id="/data/ft2/ft2_photo:hint">
+            <value>Show tag ID if conditions allow photo.</value>
+          </text>
+          <text id="/data/ft3:label">
+            <value>Flipper tag 3</value>
+          </text>
+          <text id="/data/ft3/ft3_name:label">
+            <value>Tag ID</value>
+          </text>
+          <text id="/data/ft3/ft3_name:hint">
+            <value>Leave blank if NA. </value>
+          </text>
+          <text id="/data/ft3/ft3_name:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/ft3/ft3_status:label">
+            <value>Tag status</value>
+          </text>
+          <text id="/data/ft3/ft3_status:hint">
+            <value>The tag status after the encounter</value>
+          </text>
+          <text id="/data/ft3/ft3_status:option0">
+            <value>tag applied new</value>
+          </text>
+          <text id="/data/ft3/ft3_status:option1">
+            <value>tag re-sighted associated with animal</value>
+          </text>
+          <text id="/data/ft3/ft3_status:option2">
+            <value>tag re-sighted and reclinched on animal</value>
+          </text>
+          <text id="/data/ft3/ft3_status:option3">
+            <value>tag taken off animal</value>
+          </text>
+          <text id="/data/ft3/ft3_location:label">
+            <value>Tag location</value>
+          </text>
+          <text id="/data/ft3/ft3_location:option0">
+            <value>front left flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/ft3/ft3_location:option1">
+            <value>front left flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/ft3/ft3_location:option2">
+            <value>front left flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/ft3/ft3_location:option3">
+            <value>front right flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/ft3/ft3_location:option4">
+            <value>front right flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/ft3/ft3_location:option5">
+            <value>front right flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/ft3/tag_3_barnacles:label">
+            <value>Barnacles on tag</value>
+          </text>
+          <text id="/data/ft3/tag_3_barnacles:option0">
+            <value>Present</value>
+          </text>
+          <text id="/data/ft3/tag_3_barnacles:option1">
+            <value>Absent</value>
+          </text>
+          <text id="/data/ft3/tag_3_fix:label">
+            <value>Tag fix</value>
+          </text>
+          <text id="/data/ft3/tag_3_fix:hint">
+            <value>Was the tag securely fixed after the encounter?</value>
+            <value form="guidance">Yes if already secure, reclinched, or applied correctly. No if still loose when turtle left.</value>
+          </text>
+          <text id="/data/ft3/tag_3_fix:option0">
+            <value>Yes - securely fixed</value>
+          </text>
+          <text id="/data/ft3/tag_3_fix:option1">
+            <value>No - was not securely fixed</value>
+          </text>
+          <text id="/data/ft3/ft3_comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/ft3/ft3_comments:hint">
+            <value>Any clarification or additional detail</value>
+          </text>
+          <text id="/data/ft3/ft3_comments:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/ft3/ft3_handled_by:label">
+            <value>Tag applied or read by</value>
+          </text>
+          <text id="/data/ft3/ft3_handled_by:hint">
+            <value>Full given and surname</value>
+          </text>
+          <text id="/data/ft3/ft3_photo:label">
+            <value>Photo of tag</value>
+          </text>
+          <text id="/data/ft3/ft3_photo:hint">
+            <value>Show tag ID if visible, optional</value>
+          </text>
+          <text id="/data/biopsy:label">
+            <value>Biopsy</value>
+          </text>
+          <text id="/data/biopsy/biopsy_name:label">
+            <value>Biopsy sample ID</value>
+          </text>
+          <text id="/data/biopsy/biopsy_name:hint">
+            <value></value>
+          </text>
+          <text id="/data/biopsy/biopsy_name:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/biopsy/biopsy_location:label">
+            <value>Biopsy taken from</value>
+          </text>
+          <text id="/data/biopsy/biopsy_location:option0">
+            <value>rear left flipper</value>
+          </text>
+          <text id="/data/biopsy/biopsy_location:option1">
+            <value>rear right flipper</value>
+          </text>
+          <text id="/data/biopsy/biopsy_location:option2">
+            <value>other</value>
+          </text>
+          <text id="/data/biopsy/biopsy_comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/biopsy/biopsy_comments:hint">
+            <value>Any clarification or additional detail. Additional samples can be recorded later.</value>
+          </text>
+          <text id="/data/biopsy/biopsy_comments:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/biopsy/biopsy_photo:label">
+            <value>Photo of biopsy sample</value>
+          </text>
+          <text id="/data/biopsy/biopsy_photo:hint">
+            <value>If available, optional.</value>
+          </text>
+          <text id="/data/morphometrics:label">
+            <value>Morphometrics</value>
+          </text>
+          <text id="/data/morphometrics/curved_carapace_length_min_mm:label">
+            <value>CCL curved carapace length (min)</value>
+          </text>
+          <text id="/data/morphometrics/curved_carapace_length_min_mm:hint">
+            <value>CCL min in mm</value>
+          </text>
+          <text id="/data/morphometrics/curved_carapace_length_min_mm:constraintMsg">
+            <value>CCL must be positive and below 3 m (3000 mm)</value>
+          </text>
+          <text id="/data/morphometrics/curved_carapace_length_max_mm:label">
+            <value>CCL curved carapace length (max)</value>
+          </text>
+          <text id="/data/morphometrics/curved_carapace_length_max_mm:hint">
+            <value>CCL max in mm, Hawksbill only</value>
+          </text>
+          <text id="/data/morphometrics/curved_carapace_length_max_mm:constraintMsg">
+            <value>CCL must be positive and below 3 m (3000 mm)</value>
+          </text>
+          <text id="/data/morphometrics/curved_carapace_width_mm:label">
+            <value>CCW curved carapace width</value>
+          </text>
+          <text id="/data/morphometrics/curved_carapace_width_mm:hint">
+            <value>CCW in mm</value>
+          </text>
+          <text id="/data/morphometrics/curved_carapace_width_mm:constraintMsg">
+            <value>CCW must be positive and below 2 m (2000 mm)</value>
+          </text>
+          <text id="/data/morphometrics/weight:label">
+            <value>Weight in kg</value>
+          </text>
+          <text id="/data/morphometrics/maximum_head_width_mm:label">
+            <value>MHW maximum head width</value>
+          </text>
+          <text id="/data/morphometrics/maximum_head_width_mm:hint">
+            <value>MHW in mm</value>
+          </text>
+          <text id="/data/morphometrics/maximum_head_width_mm:constraintMsg">
+            <value>MHW must be positive and below 1 m (1000 mm)</value>
+          </text>
+          <text id="/data/morphometrics/tail_length_carapace_mm:label">
+            <value>TC tail length from carapace</value>
+          </text>
+          <text id="/data/morphometrics/tail_length_carapace_mm:hint">
+            <value>TC in mm</value>
+          </text>
+          <text id="/data/morphometrics/tail_length_carapace_mm:constraintMsg">
+            <value>TC must be positive and below 1 m (1000 mm)</value>
+          </text>
+          <text id="/data/morphometrics/tail_length_plastron_mm:label">
+            <value>TP tail length from plastron</value>
+          </text>
+          <text id="/data/morphometrics/tail_length_plastron_mm:hint">
+            <value>TP in mm</value>
+          </text>
+          <text id="/data/morphometrics/tail_length_plastron_mm:constraintMsg">
+            <value>TPmust be positive and below 1 m (1000 mm)</value>
+          </text>
+          <text id="/data/morphometrics/tail_length_vent_mm:label">
+            <value>TV tail length from vent</value>
+          </text>
+          <text id="/data/morphometrics/tail_length_vent_mm:hint">
+            <value>TV in mm</value>
+          </text>
+          <text id="/data/morphometrics/tail_length_vent_mm:constraintMsg">
+            <value>TV must be positive and below 1 m (1000 mm)</value>
+          </text>
+          <text id="/data/morphometrics/morphometrics_handled_by:label">
+            <value>Measured by</value>
+          </text>
+          <text id="/data/morphometrics/morphometrics_handled_by:hint">
+            <value>Full given and surname</value>
+          </text>
+          <text id="/data/nest:label">
+            <value>Turtle nesting event</value>
+          </text>
+          <text id="/data/nest/species:label">
+            <value>Species</value>
+          </text>
+          <text id="/data/nest/species:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/species:option0">
+            <value>Turtle</value>
+          </text>
+          <text id="/data/nest/species:option1">
+            <value>Flatback turtle</value>
+          </text>
+          <text id="/data/nest/species:option2">
+            <value>Green turtle</value>
+          </text>
+          <text id="/data/nest/species:option3">
+            <value>Hawksbill turtle</value>
+          </text>
+          <text id="/data/nest/species:option4">
+            <value>Loggerhead turtle</value>
+          </text>
+          <text id="/data/nest/species:option5">
+            <value>Olive Ridley turtle</value>
+          </text>
+          <text id="/data/nest/species:option6">
+            <value>Leatherback turtle</value>
+          </text>
+          <text id="/data/nest/species:option7">
+            <value>Hatchback turtle</value>
+          </text>
+          <text id="/data/nest/sex:label">
+            <value>Sex</value>
+          </text>
+          <text id="/data/nest/sex:option0">
+            <value>Female</value>
+          </text>
+          <text id="/data/nest/sex:option1">
+            <value>Male</value>
+          </text>
+          <text id="/data/nest/sex:option2">
+            <value>Unknown</value>
+          </text>
+          <text id="/data/nest/observed_nesting_success:label">
+            <value>Observed nesting success</value>
+          </text>
+          <text id="/data/nest/observed_nesting_success:option0">
+            <value>Nest with eggs - witnessed egg drop</value>
+          </text>
+          <text id="/data/nest/observed_nesting_success:option1">
+            <value>Nest unsure of eggs - found covered up nest mound</value>
+          </text>
+          <text id="/data/nest/observed_nesting_success:option2">
+            <value>Unsure if nest - can't tell whether nest mound present or not</value>
+          </text>
+          <text id="/data/nest/observed_nesting_success:option3">
+            <value>No nest - witnessed aborted nest or found track with no nest</value>
+          </text>
+          <text id="/data/nest/observed_nesting_success:option4">
+            <value>Did not check</value>
+          </text>
+          <text id="/data/nest/nesting_disturbed:label">
+            <value>Was nesting disturbed?</value>
+          </text>
+          <text id="/data/nest/nesting_disturbed:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/nesting_disturbed:option0">
+            <value>Yes</value>
+          </text>
+          <text id="/data/nest/nesting_disturbed:option1">
+            <value>No</value>
+          </text>
+          <text id="/data/nest/nesting_disturbance_cause:label">
+            <value>What disturbed the turtle?</value>
+          </text>
+          <text id="/data/nest/habitat:label">
+            <value>Nest habitat</value>
+          </text>
+          <text id="/data/nest/habitat:hint">
+            <value>What's underneath and around the nest?</value>
+          </text>
+          <text id="/data/nest/habitat:option0">
+            <value>beach below high water mark</value>
+          </text>
+          <text id="/data/nest/habitat:option1">
+            <value>beach above high water mark and dune</value>
+          </text>
+          <text id="/data/nest/habitat:option2">
+            <value>edge of vegetation</value>
+          </text>
+          <text id="/data/nest/habitat:option3">
+            <value>inside vegetation</value>
+          </text>
+          <text id="/data/nest/habitat:option4">
+            <value>not specified</value>
+          </text>
+          <text id="/data/nest/eggs_counted:label">
+            <value>Were eggs counted?</value>
+          </text>
+          <text id="/data/nest/eggs_counted:option0">
+            <value>During laying</value>
+          </text>
+          <text id="/data/nest/eggs_counted:option1">
+            <value>After laying</value>
+          </text>
+          <text id="/data/nest/eggs_counted:option2">
+            <value>Nah</value>
+          </text>
+          <text id="/data/nest/egg_count:label">
+            <value>Number of eggs laid</value>
+          </text>
+          <text id="/data/nest/egg_count:hint">
+            <value>If available</value>
+          </text>
+          <text id="/data/nest/egg_count_accuracy:label">
+            <value>Egg count accuracy</value>
+          </text>
+          <text id="/data/nest/egg_count_accuracy:option0">
+            <value>Estimated</value>
+          </text>
+          <text id="/data/nest/egg_count_accuracy:option1">
+            <value>Counted</value>
+          </text>
+          <text id="/data/nest/nest_tag_date:label">
+            <value>Nest tag date</value>
+          </text>
+          <text id="/data/nest/nest_tag_date:hint">
+            <value>Date nest laid.</value>
+            <value form="guidance">The date shown here should be part of the physical tag label in/on the nest.</value>
+          </text>
+          <text id="/data/nest/nest_tag_label:label">
+            <value>Nest tag ID</value>
+          </text>
+          <text id="/data/nest/nest_tag_label:hint">
+            <value>Leave blank if no nest tag deployed.</value>
+            <value form="guidance">Format: initials and running number. Omit nest tag date here but include on physical nest tag.</value>
+          </text>
+          <text id="/data/nest/nest_tag_comments:label">
+            <value>Additional info about nest tag, optional.</value>
+          </text>
+          <text id="/data/nest/nest_tag_comments:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/damage_seen:label">
+            <value>Damage or distinguishing features?</value>
+          </text>
+          <text id="/data/nest/damage_seen:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/damage_seen:option0">
+            <value>Present, let me add more</value>
+          </text>
+          <text id="/data/nest/damage_seen:option1">
+            <value>Absent</value>
+          </text>
+          <text id="/data/nest/more_tags:label">
+            <value>Additional tags or samples?</value>
+          </text>
+          <text id="/data/nest/more_tags:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/more_tags:option0">
+            <value>Yes, let me add more</value>
+          </text>
+          <text id="/data/nest/more_tags:option1">
+            <value>No</value>
+          </text>
+          <text id="/data/nest/more_loggers:label">
+            <value>Any loggers deployed or collected?</value>
+          </text>
+          <text id="/data/nest/more_loggers:hint">
+            <value></value>
+          </text>
+          <text id="/data/nest/more_loggers:option0">
+            <value>Yes, let me add more</value>
+          </text>
+          <text id="/data/nest/more_loggers:option1">
+            <value>No</value>
+          </text>
+          <text id="/data/damage_observation:label">
+            <value>Damage or Distinguishing Feature</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:label">
+            <value>Damage type</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:hint">
+            <value>What's wrong or unusual?</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:option0">
+            <value>Amputation</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:option1">
+            <value>Algal growth</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:option2">
+            <value>Barnacles</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:option3">
+            <value>Cuts</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:option4">
+            <value>Deformity</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:option5">
+            <value>Entanglement</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:option6">
+            <value>Propeller strike</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:option7">
+            <value>Tumor</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:option8">
+            <value>Scratches</value>
+          </text>
+          <text id="/data/damage_observation/damage_type:option9">
+            <value>Other</value>
+          </text>
+          <text id="/data/damage_observation/body_part:label">
+            <value>Body part</value>
+          </text>
+          <text id="/data/damage_observation/body_part:hint">
+            <value>Affected body part.</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option0">
+            <value>head</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option1">
+            <value>eyes</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option2">
+            <value>neck</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option3">
+            <value>plastron</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option4">
+            <value>carapace</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option5">
+            <value>internals</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option6">
+            <value>cloaca</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option7">
+            <value>tail</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option8">
+            <value>front left flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option9">
+            <value>front left flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option10">
+            <value>front left flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option11">
+            <value>front left flipper</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option12">
+            <value>front right flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option13">
+            <value>front right flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option14">
+            <value>front right flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option15">
+            <value>front right flipper</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option16">
+            <value>rear left flipper</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option17">
+            <value>rear right flipper</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option18">
+            <value>left shoulder</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option19">
+            <value>right shoulder</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option20">
+            <value>whole animal</value>
+          </text>
+          <text id="/data/damage_observation/body_part:option21">
+            <value>other</value>
+          </text>
+          <text id="/data/damage_observation/damage_age:label">
+            <value>Damage age</value>
+          </text>
+          <text id="/data/damage_observation/damage_age:hint">
+            <value>How recent does the damage appear?</value>
+          </text>
+          <text id="/data/damage_observation/damage_age:option0">
+            <value>entirely healed</value>
+          </text>
+          <text id="/data/damage_observation/damage_age:option1">
+            <value>partially healed</value>
+          </text>
+          <text id="/data/damage_observation/damage_age:option2">
+            <value>fresh</value>
+          </text>
+          <text id="/data/damage_observation/description:label">
+            <value>Description</value>
+          </text>
+          <text id="/data/damage_observation/description:hint">
+            <value>Any further clarification if required.</value>
+          </text>
+          <text id="/data/damage_observation/description:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/damage_observation/photo_damage:label">
+            <value>Photo of damage or feature</value>
+          </text>
+          <text id="/data/damage_observation/photo_damage:hint">
+            <value>Show entire feature in good detail if photo possible.</value>
+            <value form="guidance">If this form is backfilled from a paper datasheet, you can take a photo of the damage sketch.</value>
+          </text>
+          <text id="/data/tag_observation:label">
+            <value>Additional Tags or Samples</value>
+          </text>
+          <text id="/data/tag_observation/tag_name:label">
+            <value>ID</value>
+          </text>
+          <text id="/data/tag_observation/tag_name:hint">
+            <value>The alphanumeric tag or sample ID.</value>
+            <value form="guidance">To delete this group, go to hierarchy view and tap the trash icon.</value>
+          </text>
+          <text id="/data/tag_observation/tag_name:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/tag_observation/tag_type:label">
+            <value>Type</value>
+          </text>
+          <text id="/data/tag_observation/tag_type:hint">
+            <value></value>
+          </text>
+          <text id="/data/tag_observation/tag_type:option0">
+            <value>Flipper tag</value>
+          </text>
+          <text id="/data/tag_observation/tag_type:option1">
+            <value>PIT tag</value>
+          </text>
+          <text id="/data/tag_observation/tag_type:option2">
+            <value>Satellite tag</value>
+          </text>
+          <text id="/data/tag_observation/tag_type:option3">
+            <value>Blood sample</value>
+          </text>
+          <text id="/data/tag_observation/tag_type:option4">
+            <value>Biopsy sample</value>
+          </text>
+          <text id="/data/tag_observation/tag_type:option5">
+            <value>Stomach content sample</value>
+          </text>
+          <text id="/data/tag_observation/tag_type:option6">
+            <value>Physical sample</value>
+          </text>
+          <text id="/data/tag_observation/tag_type:option7">
+            <value>Egg sample</value>
+          </text>
+          <text id="/data/tag_observation/tag_status:label">
+            <value>Status</value>
+          </text>
+          <text id="/data/tag_observation/tag_status:hint">
+            <value></value>
+          </text>
+          <text id="/data/tag_observation/tag_status:option0">
+            <value>applied new</value>
+          </text>
+          <text id="/data/tag_observation/tag_status:option1">
+            <value>re-sighted associated with animal</value>
+          </text>
+          <text id="/data/tag_observation/tag_status:option2">
+            <value>re-sighted and reclinched on animal</value>
+          </text>
+          <text id="/data/tag_observation/tag_status:option3">
+            <value>tag or sample taken off animal</value>
+          </text>
+          <text id="/data/tag_observation/tag_status:option4">
+            <value>tag applied, no read, assumed lost</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:label">
+            <value>Tag location or sample origin</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option0">
+            <value>head</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option1">
+            <value>eyes</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option2">
+            <value>neck</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option3">
+            <value>plastron</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option4">
+            <value>carapace</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option5">
+            <value>internals</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option6">
+            <value>cloaca</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option7">
+            <value>tail</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option8">
+            <value>front left flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option9">
+            <value>front left flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option10">
+            <value>front left flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option11">
+            <value>front left flipper</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option12">
+            <value>front right flipper, 1st scale from body</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option13">
+            <value>front right flipper, 2nd scale from body</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option14">
+            <value>front right flipper, 3rd scale from body</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option15">
+            <value>front right flipper</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option16">
+            <value>rear left flipper</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option17">
+            <value>rear right flipper</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option18">
+            <value>left shoulder</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option19">
+            <value>right shoulder</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option20">
+            <value>whole turtle</value>
+          </text>
+          <text id="/data/tag_observation/tag_location:option21">
+            <value>other</value>
+          </text>
+          <text id="/data/tag_observation/tag_barnacles:label">
+            <value>Barnacles on tag</value>
+          </text>
+          <text id="/data/tag_observation/tag_barnacles:hint">
+            <value>Only applies to flipper tags.</value>
+          </text>
+          <text id="/data/tag_observation/tag_barnacles:option0">
+            <value>Present</value>
+          </text>
+          <text id="/data/tag_observation/tag_barnacles:option1">
+            <value>Absent</value>
+          </text>
+          <text id="/data/tag_observation/tag_fix:label">
+            <value>Tag fix</value>
+          </text>
+          <text id="/data/tag_observation/tag_fix:hint">
+            <value>Was the tag securely fixed after the encounter?</value>
+            <value form="guidance">Yes if already secure, reclinched, or applied correctly. No if still loose when turtle left.</value>
+          </text>
+          <text id="/data/tag_observation/tag_fix:option0">
+            <value>Yes - securely fixed</value>
+          </text>
+          <text id="/data/tag_observation/tag_fix:option1">
+            <value>No - was not securely fixed</value>
+          </text>
+          <text id="/data/tag_observation/tag_comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/tag_observation/tag_comments:hint">
+            <value>Any clarification or additional detail.</value>
+          </text>
+          <text id="/data/tag_observation/tag_comments:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/tag_observation/tag_handled_by:label">
+            <value>Tag or sample handled by</value>
+          </text>
+          <text id="/data/tag_observation/tag_handled_by:hint">
+            <value>Full given and surname.</value>
+          </text>
+          <text id="/data/tag_observation/tag_photo:label">
+            <value>Photo of tag or sample ID</value>
+          </text>
+          <text id="/data/tag_observation/tag_photo:hint">
+            <value>Show tag ID if visible or sample ID.</value>
+          </text>
+          <text id="/data/logger_observation:label">
+            <value>Additional Loggers</value>
+          </text>
+          <text id="/data/logger_observation/logger_name:label">
+            <value>ID</value>
+          </text>
+          <text id="/data/logger_observation/logger_name:hint">
+            <value>The logger ID.</value>
+            <value form="guidance">To delete this group, go to hierarchy view and tap the trash icon.</value>
+          </text>
+          <text id="/data/logger_observation/logger_name:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/logger_observation/logger_type:label">
+            <value>Type</value>
+          </text>
+          <text id="/data/logger_observation/logger_type:hint">
+            <value></value>
+          </text>
+          <text id="/data/logger_observation/logger_type:option0">
+            <value>Temperature logger</value>
+          </text>
+          <text id="/data/logger_observation/logger_type:option1">
+            <value>Data logger</value>
+          </text>
+          <text id="/data/logger_observation/logger_type:option2">
+            <value>CTD data logger</value>
+          </text>
+          <text id="/data/logger_observation/logger_status:label">
+            <value>Status</value>
+          </text>
+          <text id="/data/logger_observation/logger_status:hint">
+            <value></value>
+          </text>
+          <text id="/data/logger_observation/logger_status:option0">
+            <value>deployed</value>
+          </text>
+          <text id="/data/logger_observation/logger_status:option1">
+            <value>collected</value>
+          </text>
+          <text id="/data/logger_observation/logger_comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/logger_observation/logger_comments:hint">
+            <value>Any clarification or additional detail.</value>
+          </text>
+          <text id="/data/logger_observation/logger_comments:constraintMsg">
+            <value></value>
+          </text>
+          <text id="/data/logger_observation/logger_photo:label">
+            <value>Photo of logger ID</value>
+          </text>
+          <text id="/data/logger_observation/logger_photo:hint">
+            <value>Show logger ID if visible.</value>
+          </text>
+          <text id="/data/datasheet:label">
+            <value>Datasheet</value>
+          </text>
+          <text id="/data/datasheet/photo_datasheet_front:label">
+            <value>Photo datasheet front</value>
+          </text>
+          <text id="/data/datasheet/photo_datasheet_front:hint">
+            <value>Capture entire datasheet holding device in portrait orientation.</value>
+            <value form="guidance"> Tilt the device slightly up so that the camera stays in portrait orientation.</value>
+          </text>
+          <text id="/data/datasheet/photo_datasheet_rear:label">
+            <value>Photo datasheet rear</value>
+          </text>
+          <text id="/data/datasheet/photo_datasheet_rear:hint">
+            <value>Capture rear side of datasheet if marked.</value>
+          </text>
+          <text id="/data/datasheet/datasheet_comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/datasheet/datasheet_comments:hint">
+            <value>Any clarifications on datasheets or further observations?</value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/meta/instanceName" type="string" calculate="concat('Turtle Tagging ', /data/encounter/datasheet_id)"/>
+      <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/data/start_location" type="geopoint" />
+      <odk:setgeopoint event="odk-instance-first-load" ref="/data/start_location" />
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/encounter/reporter_repeat" type="string" readonly="true()" calculate="/data/reporter"/>
+      <bind nodeset="/data/encounter/capture_mode" type="select1" required="true()"/>
+      <bind nodeset="/data/encounter/datasheet_id" type="string"/>
+      <bind nodeset="/data/encounter/handler" type="string" calculate="once(/data/reporter)"/>
+      <bind nodeset="/data/realtime" relevant="(/data/encounter/capture_mode != 'new')"/>
+      <bind nodeset="/data/realtime/nest_location" type="geopoint" required="true()" jr:requiredMsg="jr:itext('/data/realtime/nest_location:requiredMsg')" relevant="(/data/encounter/capture_mode != 'new')"/>
+      <bind nodeset="/data/realtime/start_time_repeat" type="dateTime" readonly="true()" calculate="/data/observation_start_time" relevant="(/data/encounter/capture_mode != 'new')"/>
+      <bind nodeset="/data/manual" relevant="(/data/encounter/capture_mode = 'new')"/>
+      <bind nodeset="/data/manual/nest_location_lat" type="decimal" relevant="(/data/encounter/capture_mode = 'new')" constraint="(. &gt;= '-45') and (. &lt;= '0')" jr:constraintMsg="Value must be between -45 and 0"/>
+      <bind nodeset="/data/manual/nest_location_lon" type="decimal" relevant="(/data/encounter/capture_mode = 'new')" constraint="(. &gt;= '100') and (. &lt; '130')" jr:constraintMsg="Value must be between 100 and 130"/>
+      <bind nodeset="/data/manual/nest_location_map" type="geopoint" relevant="(/data/encounter/capture_mode = 'new')"/>
+      <bind nodeset="/data/manual/time" type="dateTime" required="true()" relevant="(/data/encounter/capture_mode = 'new')"/>
+      <bind nodeset="/data/pit" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/pit/pit_left_name" type="string" relevant="(/data/encounter/capture_mode != 'paper')" constraint="(string-length(.)=15)" jr:constraintMsg="jr:itext('/data/pit/pit_left_name:constraintMsg')"/>
+      <bind nodeset="/data/pit/pit1_status" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/pit/pit2_name" type="string" relevant="(/data/encounter/capture_mode != 'paper')" constraint="(string-length(.)=15)" jr:constraintMsg="jr:itext('/data/pit/pit2_name:constraintMsg')"/>
+      <bind nodeset="/data/pit/pit2_status" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/pit/pit3_name" type="string" relevant="(/data/encounter/capture_mode != 'paper')" constraint="(string-length(.)=15)" jr:constraintMsg="jr:itext('/data/pit/pit3_name:constraintMsg')"/>
+      <bind nodeset="/data/pit/pit3_status" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/pit/pit3_location" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft1/tag_scar_locations" type="select" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft1/tag_sighted_but_unread" type="select" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft1/ft1_name" type="string" relevant="(/data/encounter/capture_mode != 'paper')" jr:constraintMsg="jr:itext('/data/ft1/ft1_name:constraintMsg')"/>
+      <bind nodeset="/data/ft1/ft1_status" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft1/ft1_location" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft1/tag_1_barnacles" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft1/tag_1_fix" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft1/ft1_comments" type="string" relevant="(/data/encounter/capture_mode != 'paper')" jr:constraintMsg="jr:itext('/data/ft1/ft1_comments:constraintMsg')"/>
+      <bind nodeset="/data/ft1/ft1_handled_by" type="string" calculate="once(/data/encounter/handler)" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft1/ft1_photo" type="binary" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft2" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft2/ft2_name" type="string" relevant="(/data/encounter/capture_mode != 'paper')" jr:constraintMsg="jr:itext('/data/ft2/ft2_name:constraintMsg')"/>
+      <bind nodeset="/data/ft2/ft2_status" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft2/ft2_location" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft2/tag_2_barnacles" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft2/tag_2_fix" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft2/ft2_comments" type="string" relevant="(/data/encounter/capture_mode != 'paper')" jr:constraintMsg="jr:itext('/data/ft2/ft2_comments:constraintMsg')"/>
+      <bind nodeset="/data/ft2/ft2_handled_by" type="string" calculate="once(/data/encounter/handler)" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft2/ft2_photo" type="binary" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft3" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft3/ft3_name" type="string" relevant="(/data/encounter/capture_mode != 'paper')" jr:constraintMsg="jr:itext('/data/ft3/ft3_name:constraintMsg')"/>
+      <bind nodeset="/data/ft3/ft3_status" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft3/ft3_location" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft3/tag_3_barnacles" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft3/tag_3_fix" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft3/ft3_comments" type="string" relevant="(/data/encounter/capture_mode != 'paper')" jr:constraintMsg="jr:itext('/data/ft3/ft3_comments:constraintMsg')"/>
+      <bind nodeset="/data/ft3/ft3_handled_by" type="string" calculate="once(/data/encounter/handler)" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/ft3/ft3_photo" type="binary" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/biopsy" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/biopsy/biopsy_name" type="string" relevant="(/data/encounter/capture_mode != 'paper')" jr:constraintMsg="jr:itext('/data/biopsy/biopsy_name:constraintMsg')"/>
+      <bind nodeset="/data/biopsy/biopsy_location" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/biopsy/biopsy_comments" type="string" relevant="(/data/encounter/capture_mode != 'paper')" jr:constraintMsg="jr:itext('/data/biopsy/biopsy_comments:constraintMsg')"/>
+      <bind nodeset="/data/biopsy/biopsy_photo" type="binary" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/morphometrics" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/morphometrics/curved_carapace_length_min_mm" type="int" relevant="(/data/encounter/capture_mode != 'paper')" constraint="(. &gt; '0') and (. &lt;= '3000')" jr:constraintMsg="jr:itext('/data/morphometrics/curved_carapace_length_min_mm:constraintMsg')"/>
+      <bind nodeset="/data/morphometrics/curved_carapace_length_max_mm" type="int" relevant="(/data/encounter/capture_mode != 'paper')" constraint="(. &gt; '0') and (. &lt;= '3000')" jr:constraintMsg="jr:itext('/data/morphometrics/curved_carapace_length_max_mm:constraintMsg')"/>
+      <bind nodeset="/data/morphometrics/curved_carapace_width_mm" type="int" relevant="(/data/encounter/capture_mode != 'paper')" constraint="(. &gt; '0') and (. &lt;= '2000')" jr:constraintMsg="jr:itext('/data/morphometrics/curved_carapace_width_mm:constraintMsg')"/>
+      <bind nodeset="/data/morphometrics/weight" type="decimal" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/morphometrics/maximum_head_width_mm" type="int" relevant="(/data/encounter/capture_mode != 'paper')" constraint="(. &gt; '0') and (. &lt;= '1000')" jr:constraintMsg="jr:itext('/data/morphometrics/maximum_head_width_mm:constraintMsg')"/>
+      <bind nodeset="/data/morphometrics/tail_length_carapace_mm" type="int" relevant="(/data/encounter/capture_mode != 'paper')" constraint="(. &gt; '0') and (. &lt;= '1000')" jr:constraintMsg="jr:itext('/data/morphometrics/tail_length_carapace_mm:constraintMsg')"/>
+      <bind nodeset="/data/morphometrics/tail_length_plastron_mm" type="int" relevant="(/data/encounter/capture_mode != 'paper')" constraint="(. &gt; '0') and (. &lt;= '1000')" jr:constraintMsg="jr:itext('/data/morphometrics/tail_length_plastron_mm:constraintMsg')"/>
+      <bind nodeset="/data/morphometrics/tail_length_vent_mm" type="int" relevant="(/data/encounter/capture_mode != 'paper')" constraint="(. &gt; '0') and (. &lt;= '1000')" jr:constraintMsg="jr:itext('/data/morphometrics/tail_length_vent_mm:constraintMsg')"/>
+      <bind nodeset="/data/morphometrics/morphometrics_handled_by" type="string" calculate="once(/data/encounter/handler)" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/species" type="select1" required="true()" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/sex" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/observed_nesting_success" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/nesting_disturbed" type="select1" required="true()" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/nesting_disturbance_cause" type="string" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/habitat" type="select1" required="true()" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/eggs_counted" type="select1" required="true()" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/egg_count" type="int" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/egg_count_accuracy" type="select1" required="true()" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/nest_tag_date" type="date" calculate="/data/observation_start_time" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/nest_tag_label" type="string" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/nest_tag_comments" type="string" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/damage_seen" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/more_tags" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/more_loggers" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/damage_observation" relevant="(/data/nest/damage_seen = 'present')"/>
+      <bind nodeset="/data/damage_observation/damage_type" type="select1" required="true()" relevant="(/data/nest/damage_seen = 'present')"/>
+      <bind nodeset="/data/damage_observation/body_part" type="select1" required="true()" relevant="(/data/nest/damage_seen = 'present')"/>
+      <bind nodeset="/data/damage_observation/damage_age" type="select1" required="true()" relevant="(/data/nest/damage_seen = 'present')"/>
+      <bind nodeset="/data/damage_observation/description" type="string" relevant="(/data/nest/damage_seen = 'present')" jr:constraintMsg="jr:itext('/data/damage_observation/description:constraintMsg')"/>
+      <bind nodeset="/data/damage_observation/photo_damage" type="binary" relevant="(/data/nest/damage_seen = 'present')"/>
+      <bind nodeset="/data/tag_observation" relevant="(/data/nest/more_tags = 'present')"/>
+      <bind nodeset="/data/tag_observation/tag_name" type="string" relevant="(/data/nest/more_tags = 'present')" jr:constraintMsg="jr:itext('/data/tag_observation/tag_name:constraintMsg')"/>
+      <bind nodeset="/data/tag_observation/tag_type" type="select1" required="true()" relevant="(/data/nest/more_tags = 'present')"/>
+      <bind nodeset="/data/tag_observation/tag_status" type="select1" required="true()" relevant="(/data/nest/more_tags = 'present')"/>
+      <bind nodeset="/data/tag_observation/tag_location" type="select1" required="true()" relevant="(/data/nest/more_tags = 'present')"/>
+      <bind nodeset="/data/tag_observation/tag_barnacles" type="select1" relevant="(/data/nest/more_tags = 'present')"/>
+      <bind nodeset="/data/tag_observation/tag_fix" type="select1" relevant="(/data/nest/more_tags = 'present')"/>
+      <bind nodeset="/data/tag_observation/tag_comments" type="string" relevant="(/data/nest/more_tags = 'present')" jr:constraintMsg="jr:itext('/data/tag_observation/tag_comments:constraintMsg')"/>
+      <bind nodeset="/data/tag_observation/tag_handled_by" type="string" calculate="once(/data/encounter/handler)" relevant="(/data/nest/more_tags = 'present')"/>
+      <bind nodeset="/data/tag_observation/tag_photo" type="binary" relevant="(/data/nest/more_tags = 'present')"/>
+      <bind nodeset="/data/logger_observation" relevant="(/data/nest/more_loggers = 'present')"/>
+      <bind nodeset="/data/logger_observation/logger_name" type="string" relevant="(/data/nest/more_loggers = 'present')" jr:constraintMsg="jr:itext('/data/logger_observation/logger_name:constraintMsg')"/>
+      <bind nodeset="/data/logger_observation/logger_type" type="select1" required="true()" relevant="(/data/nest/more_loggers = 'present')"/>
+      <bind nodeset="/data/logger_observation/logger_status" type="select1" required="true()" relevant="(/data/nest/more_loggers = 'present')"/>
+      <bind nodeset="/data/logger_observation/logger_comments" type="string" relevant="(/data/nest/more_loggers = 'present')" jr:constraintMsg="jr:itext('/data/logger_observation/logger_comments:constraintMsg')"/>
+      <bind nodeset="/data/logger_observation/logger_photo" type="binary" relevant="(/data/nest/more_loggers = 'present')"/>
+      <bind nodeset="/data/datasheet" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/datasheet/photo_datasheet_front" type="binary" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/datasheet/photo_datasheet_rear" type="binary" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/datasheet/datasheet_comments" type="string" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/observation_end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/data/encounter" appearance="field-list">
+      <label ref="jr:itext('/data/encounter:label')"/>
+      <input ref="/data/encounter/reporter_repeat">
+        <label ref="jr:itext('/data/encounter/reporter_repeat:label')"/>
+        <hint ref="jr:itext('/data/encounter/reporter_repeat:hint')"/>
+      </input>
+      <select1 ref="/data/encounter/capture_mode" appearance="horizontal">
+        <label ref="jr:itext('/data/encounter/capture_mode:label')"/>
+        <hint ref="jr:itext('/data/encounter/capture_mode:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/encounter/capture_mode:option0')"/>
+          <value>paper</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/capture_mode:option1')"/>
+          <value>electronic</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/encounter/capture_mode:option2')"/>
+          <value>new</value>
+        </item>
+      </select1>
+      <input ref="/data/encounter/datasheet_id">
+        <label ref="jr:itext('/data/encounter/datasheet_id:label')"/>
+        <hint ref="jr:itext('/data/encounter/datasheet_id:hint')"/>
+      </input>
+      <input ref="/data/encounter/handler">
+        <label ref="jr:itext('/data/encounter/handler:label')"/>
+        <hint ref="jr:itext('/data/encounter/handler:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/realtime" appearance="field-list">
+      <label ref="jr:itext('/data/realtime:label')"/>
+      <input ref="/data/realtime/nest_location">
+        <label ref="jr:itext('/data/realtime/nest_location:label')"/>
+        <hint ref="jr:itext('/data/realtime/nest_location:hint')"/>
+      </input>
+      <input ref="/data/realtime/start_time_repeat">
+        <label ref="jr:itext('/data/realtime/start_time_repeat:label')"/>
+        <hint ref="jr:itext('/data/realtime/start_time_repeat:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/manual" appearance="field-list">
+      <label ref="jr:itext('/data/manual:label')"/>
+      <input ref="/data/manual/nest_location_lat">
+        <label ref="jr:itext('/data/manual/nest_location_lat:label')"/>
+        <hint ref="jr:itext('/data/manual/nest_location_lat:hint')"/>
+      </input>
+      <input ref="/data/manual/nest_location_lon">
+        <label ref="jr:itext('/data/manual/nest_location_lon:label')"/>
+        <hint ref="jr:itext('/data/manual/nest_location_lon:hint')"/>
+      </input>
+      <input ref="/data/manual/nest_location_map" appearance="placement-map">
+        <label ref="jr:itext('/data/manual/nest_location_map:label')"/>
+        <hint ref="jr:itext('/data/manual/nest_location_map:hint')"/>
+      </input>
+      <input ref="/data/manual/time">
+        <label ref="jr:itext('/data/manual/time:label')"/>
+        <hint ref="jr:itext('/data/manual/time:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/pit" appearance="field-list">
+      <label ref="jr:itext('/data/pit:label')"/>
+      <input ref="/data/pit/pit_left_name">
+        <label ref="jr:itext('/data/pit/pit_left_name:label')"/>
+        <hint ref="jr:itext('/data/pit/pit_left_name:hint')"/>
+      </input>
+      <select1 ref="/data/pit/pit1_status">
+        <label ref="jr:itext('/data/pit/pit1_status:label')"/>
+        <hint ref="jr:itext('/data/pit/pit1_status:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/pit/pit1_status:option0')"/>
+          <value>applied-new</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/pit/pit1_status:option1')"/>
+          <value>resighted</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/pit/pit1_status:option2')"/>
+          <value>applied-no-read</value>
+        </item>
+      </select1>
+      <input ref="/data/pit/pit2_name">
+        <label ref="jr:itext('/data/pit/pit2_name:label')"/>
+        <hint ref="jr:itext('/data/pit/pit2_name:hint')"/>
+      </input>
+      <select1 ref="/data/pit/pit2_status">
+        <label ref="jr:itext('/data/pit/pit2_status:label')"/>
+        <hint ref="jr:itext('/data/pit/pit2_status:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/pit/pit2_status:option0')"/>
+          <value>applied-new</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/pit/pit2_status:option1')"/>
+          <value>resighted</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/pit/pit2_status:option2')"/>
+          <value>applied-no-read</value>
+        </item>
+      </select1>
+      <input ref="/data/pit/pit3_name">
+        <label ref="jr:itext('/data/pit/pit3_name:label')"/>
+        <hint ref="jr:itext('/data/pit/pit3_name:hint')"/>
+      </input>
+      <select1 ref="/data/pit/pit3_status">
+        <label ref="jr:itext('/data/pit/pit3_status:label')"/>
+        <hint ref="jr:itext('/data/pit/pit3_status:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/pit/pit3_status:option0')"/>
+          <value>applied-new</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/pit/pit3_status:option1')"/>
+          <value>resighted</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/pit/pit3_status:option2')"/>
+          <value>applied-no-read</value>
+        </item>
+      </select1>
+      <select1 ref="/data/pit/pit3_location">
+        <label ref="jr:itext('/data/pit/pit3_location:label')"/>
+        <hint ref="jr:itext('/data/pit/pit3_location:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/pit/pit3_location:option0')"/>
+          <value>neck</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/pit/pit3_location:option1')"/>
+          <value>shoulder-left</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/pit/pit3_location:option2')"/>
+          <value>shoulder-right</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/pit/pit3_location:option3')"/>
+          <value>other</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/data/ft1" appearance="field-list">
+      <label ref="jr:itext('/data/ft1:label')"/>
+      <select ref="/data/ft1/tag_scar_locations" appearance="minimal">
+        <label ref="jr:itext('/data/ft1/tag_scar_locations:label')"/>
+        <hint ref="jr:itext('/data/ft1/tag_scar_locations:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_scar_locations:option0')"/>
+          <value>flipper-front-left-1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_scar_locations:option1')"/>
+          <value>flipper-front-left-2</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_scar_locations:option2')"/>
+          <value>flipper-front-left-3</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_scar_locations:option3')"/>
+          <value>flipper-front-right-1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_scar_locations:option4')"/>
+          <value>flipper-front-right-2</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_scar_locations:option5')"/>
+          <value>flipper-front-right-3</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_scar_locations:option6')"/>
+          <value>none</value>
+        </item>
+      </select>
+      <select ref="/data/ft1/tag_sighted_but_unread" appearance="minimal">
+        <label ref="jr:itext('/data/ft1/tag_sighted_but_unread:label')"/>
+        <hint ref="jr:itext('/data/ft1/tag_sighted_but_unread:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_sighted_but_unread:option0')"/>
+          <value>flipper-front-left-1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_sighted_but_unread:option1')"/>
+          <value>flipper-front-left-2</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_sighted_but_unread:option2')"/>
+          <value>flipper-front-left-3</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_sighted_but_unread:option3')"/>
+          <value>flipper-front-right-1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_sighted_but_unread:option4')"/>
+          <value>flipper-front-right-2</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_sighted_but_unread:option5')"/>
+          <value>flipper-front-right-3</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_sighted_but_unread:option6')"/>
+          <value>none</value>
+        </item>
+      </select>
+      <input ref="/data/ft1/ft1_name">
+        <label ref="jr:itext('/data/ft1/ft1_name:label')"/>
+        <hint ref="jr:itext('/data/ft1/ft1_name:hint')"/>
+      </input>
+      <select1 ref="/data/ft1/ft1_status">
+        <label ref="jr:itext('/data/ft1/ft1_status:label')"/>
+        <hint ref="jr:itext('/data/ft1/ft1_status:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/ft1/ft1_status:option0')"/>
+          <value>applied-new</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/ft1_status:option1')"/>
+          <value>resighted</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/ft1_status:option2')"/>
+          <value>reclinched</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/ft1_status:option3')"/>
+          <value>removed</value>
+        </item>
+      </select1>
+      <select1 ref="/data/ft1/ft1_location" appearance="minimal">
+        <label ref="jr:itext('/data/ft1/ft1_location:label')"/>
+        <item>
+          <label ref="jr:itext('/data/ft1/ft1_location:option0')"/>
+          <value>flipper-front-left-1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/ft1_location:option1')"/>
+          <value>flipper-front-left-2</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/ft1_location:option2')"/>
+          <value>flipper-front-left-3</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/ft1_location:option3')"/>
+          <value>flipper-front-right-1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/ft1_location:option4')"/>
+          <value>flipper-front-right-2</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/ft1_location:option5')"/>
+          <value>flipper-front-right-3</value>
+        </item>
+      </select1>
+      <select1 ref="/data/ft1/tag_1_barnacles">
+        <label ref="jr:itext('/data/ft1/tag_1_barnacles:label')"/>
+        <hint ref="jr:itext('/data/ft1/tag_1_barnacles:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_1_barnacles:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_1_barnacles:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/ft1/tag_1_fix">
+        <label ref="jr:itext('/data/ft1/tag_1_fix:label')"/>
+        <hint ref="jr:itext('/data/ft1/tag_1_fix:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_1_fix:option0')"/>
+          <value>yes</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft1/tag_1_fix:option1')"/>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/data/ft1/ft1_comments">
+        <label ref="jr:itext('/data/ft1/ft1_comments:label')"/>
+        <hint ref="jr:itext('/data/ft1/ft1_comments:hint')"/>
+      </input>
+      <input ref="/data/ft1/ft1_handled_by">
+        <label ref="jr:itext('/data/ft1/ft1_handled_by:label')"/>
+        <hint ref="jr:itext('/data/ft1/ft1_handled_by:hint')"/>
+      </input>
+      <upload ref="/data/ft1/ft1_photo" mediatype="image/*">
+        <label ref="jr:itext('/data/ft1/ft1_photo:label')"/>
+        <hint ref="jr:itext('/data/ft1/ft1_photo:hint')"/>
+      </upload>
+    </group>
+    <group ref="/data/ft2" appearance="field-list">
+      <label ref="jr:itext('/data/ft2:label')"/>
+      <input ref="/data/ft2/ft2_name">
+        <label ref="jr:itext('/data/ft2/ft2_name:label')"/>
+        <hint ref="jr:itext('/data/ft2/ft2_name:hint')"/>
+      </input>
+      <select1 ref="/data/ft2/ft2_status">
+        <label ref="jr:itext('/data/ft2/ft2_status:label')"/>
+        <hint ref="jr:itext('/data/ft2/ft2_status:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/ft2/ft2_status:option0')"/>
+          <value>applied-new</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft2/ft2_status:option1')"/>
+          <value>resighted</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft2/ft2_status:option2')"/>
+          <value>reclinched</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft2/ft2_status:option3')"/>
+          <value>removed</value>
+        </item>
+      </select1>
+      <select1 ref="/data/ft2/ft2_location" appearance="minimal">
+        <label ref="jr:itext('/data/ft2/ft2_location:label')"/>
+        <item>
+          <label ref="jr:itext('/data/ft2/ft2_location:option0')"/>
+          <value>flipper-front-left-1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft2/ft2_location:option1')"/>
+          <value>flipper-front-left-2</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft2/ft2_location:option2')"/>
+          <value>flipper-front-left-3</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft2/ft2_location:option3')"/>
+          <value>flipper-front-right-1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft2/ft2_location:option4')"/>
+          <value>flipper-front-right-2</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft2/ft2_location:option5')"/>
+          <value>flipper-front-right-3</value>
+        </item>
+      </select1>
+      <select1 ref="/data/ft2/tag_2_barnacles">
+        <label ref="jr:itext('/data/ft2/tag_2_barnacles:label')"/>
+        <item>
+          <label ref="jr:itext('/data/ft2/tag_2_barnacles:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft2/tag_2_barnacles:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/ft2/tag_2_fix">
+        <label ref="jr:itext('/data/ft2/tag_2_fix:label')"/>
+        <hint ref="jr:itext('/data/ft2/tag_2_fix:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/ft2/tag_2_fix:option0')"/>
+          <value>yes</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft2/tag_2_fix:option1')"/>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/data/ft2/ft2_comments">
+        <label ref="jr:itext('/data/ft2/ft2_comments:label')"/>
+        <hint ref="jr:itext('/data/ft2/ft2_comments:hint')"/>
+      </input>
+      <input ref="/data/ft2/ft2_handled_by">
+        <label ref="jr:itext('/data/ft2/ft2_handled_by:label')"/>
+        <hint ref="jr:itext('/data/ft2/ft2_handled_by:hint')"/>
+      </input>
+      <upload ref="/data/ft2/ft2_photo" mediatype="image/*">
+        <label ref="jr:itext('/data/ft2/ft2_photo:label')"/>
+        <hint ref="jr:itext('/data/ft2/ft2_photo:hint')"/>
+      </upload>
+    </group>
+    <group ref="/data/ft3" appearance="field-list">
+      <label ref="jr:itext('/data/ft3:label')"/>
+      <input ref="/data/ft3/ft3_name">
+        <label ref="jr:itext('/data/ft3/ft3_name:label')"/>
+        <hint ref="jr:itext('/data/ft3/ft3_name:hint')"/>
+      </input>
+      <select1 ref="/data/ft3/ft3_status" appearance="horizontal">
+        <label ref="jr:itext('/data/ft3/ft3_status:label')"/>
+        <hint ref="jr:itext('/data/ft3/ft3_status:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/ft3/ft3_status:option0')"/>
+          <value>applied-new</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft3/ft3_status:option1')"/>
+          <value>resighted</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft3/ft3_status:option2')"/>
+          <value>reclinched</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft3/ft3_status:option3')"/>
+          <value>removed</value>
+        </item>
+      </select1>
+      <select1 ref="/data/ft3/ft3_location" appearance="minimal">
+        <label ref="jr:itext('/data/ft3/ft3_location:label')"/>
+        <item>
+          <label ref="jr:itext('/data/ft3/ft3_location:option0')"/>
+          <value>flipper-front-left-1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft3/ft3_location:option1')"/>
+          <value>flipper-front-left-2</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft3/ft3_location:option2')"/>
+          <value>flipper-front-left-3</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft3/ft3_location:option3')"/>
+          <value>flipper-front-right-1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft3/ft3_location:option4')"/>
+          <value>flipper-front-right-2</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft3/ft3_location:option5')"/>
+          <value>flipper-front-right-3</value>
+        </item>
+      </select1>
+      <select1 ref="/data/ft3/tag_3_barnacles">
+        <label ref="jr:itext('/data/ft3/tag_3_barnacles:label')"/>
+        <item>
+          <label ref="jr:itext('/data/ft3/tag_3_barnacles:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft3/tag_3_barnacles:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/ft3/tag_3_fix">
+        <label ref="jr:itext('/data/ft3/tag_3_fix:label')"/>
+        <hint ref="jr:itext('/data/ft3/tag_3_fix:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/ft3/tag_3_fix:option0')"/>
+          <value>yes</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/ft3/tag_3_fix:option1')"/>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/data/ft3/ft3_comments">
+        <label ref="jr:itext('/data/ft3/ft3_comments:label')"/>
+        <hint ref="jr:itext('/data/ft3/ft3_comments:hint')"/>
+      </input>
+      <input ref="/data/ft3/ft3_handled_by">
+        <label ref="jr:itext('/data/ft3/ft3_handled_by:label')"/>
+        <hint ref="jr:itext('/data/ft3/ft3_handled_by:hint')"/>
+      </input>
+      <upload ref="/data/ft3/ft3_photo" mediatype="image/*">
+        <label ref="jr:itext('/data/ft3/ft3_photo:label')"/>
+        <hint ref="jr:itext('/data/ft3/ft3_photo:hint')"/>
+      </upload>
+    </group>
+    <group ref="/data/biopsy" appearance="field-list">
+      <label ref="jr:itext('/data/biopsy:label')"/>
+      <input ref="/data/biopsy/biopsy_name">
+        <label ref="jr:itext('/data/biopsy/biopsy_name:label')"/>
+        <hint ref="jr:itext('/data/biopsy/biopsy_name:hint')"/>
+      </input>
+      <select1 ref="/data/biopsy/biopsy_location" appearance="horizontal">
+        <label ref="jr:itext('/data/biopsy/biopsy_location:label')"/>
+        <item>
+          <label ref="jr:itext('/data/biopsy/biopsy_location:option0')"/>
+          <value>flipper-rear-left</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/biopsy/biopsy_location:option1')"/>
+          <value>flipper-rear-right</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/biopsy/biopsy_location:option2')"/>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/data/biopsy/biopsy_comments">
+        <label ref="jr:itext('/data/biopsy/biopsy_comments:label')"/>
+        <hint ref="jr:itext('/data/biopsy/biopsy_comments:hint')"/>
+      </input>
+      <upload ref="/data/biopsy/biopsy_photo" mediatype="image/*">
+        <label ref="jr:itext('/data/biopsy/biopsy_photo:label')"/>
+        <hint ref="jr:itext('/data/biopsy/biopsy_photo:hint')"/>
+      </upload>
+    </group>
+    <group ref="/data/morphometrics" appearance="field-list">
+      <label ref="jr:itext('/data/morphometrics:label')"/>
+      <input ref="/data/morphometrics/curved_carapace_length_min_mm">
+        <label ref="jr:itext('/data/morphometrics/curved_carapace_length_min_mm:label')"/>
+        <hint ref="jr:itext('/data/morphometrics/curved_carapace_length_min_mm:hint')"/>
+      </input>
+      <input ref="/data/morphometrics/curved_carapace_length_max_mm">
+        <label ref="jr:itext('/data/morphometrics/curved_carapace_length_max_mm:label')"/>
+        <hint ref="jr:itext('/data/morphometrics/curved_carapace_length_max_mm:hint')"/>
+      </input>
+      <input ref="/data/morphometrics/curved_carapace_width_mm">
+        <label ref="jr:itext('/data/morphometrics/curved_carapace_width_mm:label')"/>
+        <hint ref="jr:itext('/data/morphometrics/curved_carapace_width_mm:hint')"/>
+      </input>
+      <input ref="/data/morphometrics/weight">
+        <label ref="jr:itext('/data/morphometrics/weight:label')"/>
+      </input>
+      <input ref="/data/morphometrics/maximum_head_width_mm">
+        <label ref="jr:itext('/data/morphometrics/maximum_head_width_mm:label')"/>
+        <hint ref="jr:itext('/data/morphometrics/maximum_head_width_mm:hint')"/>
+      </input>
+      <input ref="/data/morphometrics/tail_length_carapace_mm">
+        <label ref="jr:itext('/data/morphometrics/tail_length_carapace_mm:label')"/>
+        <hint ref="jr:itext('/data/morphometrics/tail_length_carapace_mm:hint')"/>
+      </input>
+      <input ref="/data/morphometrics/tail_length_plastron_mm">
+        <label ref="jr:itext('/data/morphometrics/tail_length_plastron_mm:label')"/>
+        <hint ref="jr:itext('/data/morphometrics/tail_length_plastron_mm:hint')"/>
+      </input>
+      <input ref="/data/morphometrics/tail_length_vent_mm">
+        <label ref="jr:itext('/data/morphometrics/tail_length_vent_mm:label')"/>
+        <hint ref="jr:itext('/data/morphometrics/tail_length_vent_mm:hint')"/>
+      </input>
+      <input ref="/data/morphometrics/morphometrics_handled_by">
+        <label ref="jr:itext('/data/morphometrics/morphometrics_handled_by:label')"/>
+        <hint ref="jr:itext('/data/morphometrics/morphometrics_handled_by:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/nest" appearance="field-list">
+      <label ref="jr:itext('/data/nest:label')"/>
+      <select1 ref="/data/nest/species" appearance="minimal">
+        <label ref="jr:itext('/data/nest/species:label')"/>
+        <hint ref="jr:itext('/data/nest/species:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/species:option0')"/>
+          <value>cheloniidae-fam</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/species:option1')"/>
+          <value>natator-depressus</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/species:option2')"/>
+          <value>chelonia-mydas</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/species:option3')"/>
+          <value>eretmochelys-imbricata</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/species:option4')"/>
+          <value>caretta-caretta</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/species:option5')"/>
+          <value>lepidochelys-olivacea</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/species:option6')"/>
+          <value>dermochelys-coriacea</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/species:option7')"/>
+          <value>corolla-corolla</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/sex" appearance="minimal">
+        <label ref="jr:itext('/data/nest/sex:label')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/sex:option0')"/>
+          <value>female</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/sex:option1')"/>
+          <value>male</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/sex:option2')"/>
+          <value>unknown</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/observed_nesting_success">
+        <label ref="jr:itext('/data/nest/observed_nesting_success:label')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/observed_nesting_success:option0')"/>
+          <value>nest-with-eggs</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/observed_nesting_success:option1')"/>
+          <value>nest-unsure-of-eggs</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/observed_nesting_success:option2')"/>
+          <value>unsure-if-nest</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/observed_nesting_success:option3')"/>
+          <value>no-nest</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/observed_nesting_success:option4')"/>
+          <value>na</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/nesting_disturbed">
+        <label ref="jr:itext('/data/nest/nesting_disturbed:label')"/>
+        <hint ref="jr:itext('/data/nest/nesting_disturbed:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/nesting_disturbed:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/nesting_disturbed:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <input ref="/data/nest/nesting_disturbance_cause">
+        <label ref="jr:itext('/data/nest/nesting_disturbance_cause:label')"/>
+      </input>
+      <select1 ref="/data/nest/habitat">
+        <label ref="jr:itext('/data/nest/habitat:label')"/>
+        <hint ref="jr:itext('/data/nest/habitat:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/habitat:option0')"/>
+          <value>beach-below-high-water</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/habitat:option1')"/>
+          <value>beach-above-high-water</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/habitat:option2')"/>
+          <value>beach-edge-of-vegetation</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/habitat:option3')"/>
+          <value>in-dune-vegetation</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/habitat:option4')"/>
+          <value>na</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/eggs_counted">
+        <label ref="jr:itext('/data/nest/eggs_counted:label')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/eggs_counted:option0')"/>
+          <value>during-laying</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/eggs_counted:option1')"/>
+          <value>after-laying</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/eggs_counted:option2')"/>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/data/nest/egg_count">
+        <label ref="jr:itext('/data/nest/egg_count:label')"/>
+        <hint ref="jr:itext('/data/nest/egg_count:hint')"/>
+      </input>
+      <select1 ref="/data/nest/egg_count_accuracy">
+        <label ref="jr:itext('/data/nest/egg_count_accuracy:label')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/egg_count_accuracy:option0')"/>
+          <value>estimated</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/egg_count_accuracy:option1')"/>
+          <value>counted</value>
+        </item>
+      </select1>
+      <input ref="/data/nest/nest_tag_date">
+        <label ref="jr:itext('/data/nest/nest_tag_date:label')"/>
+        <hint ref="jr:itext('/data/nest/nest_tag_date:hint')"/>
+      </input>
+      <input ref="/data/nest/nest_tag_label">
+        <label ref="jr:itext('/data/nest/nest_tag_label:label')"/>
+        <hint ref="jr:itext('/data/nest/nest_tag_label:hint')"/>
+      </input>
+      <input ref="/data/nest/nest_tag_comments">
+        <label ref="jr:itext('/data/nest/nest_tag_comments:label')"/>
+        <hint ref="jr:itext('/data/nest/nest_tag_comments:hint')"/>
+      </input>
+      <select1 ref="/data/nest/damage_seen">
+        <label ref="jr:itext('/data/nest/damage_seen:label')"/>
+        <hint ref="jr:itext('/data/nest/damage_seen:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/damage_seen:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/damage_seen:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/more_tags">
+        <label ref="jr:itext('/data/nest/more_tags:label')"/>
+        <hint ref="jr:itext('/data/nest/more_tags:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/more_tags:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/more_tags:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+      <select1 ref="/data/nest/more_loggers">
+        <label ref="jr:itext('/data/nest/more_loggers:label')"/>
+        <hint ref="jr:itext('/data/nest/more_loggers:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/more_loggers:option0')"/>
+          <value>present</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/more_loggers:option1')"/>
+          <value>absent</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/data/damage_observation">
+      <label ref="jr:itext('/data/damage_observation:label')"/>
+      <repeat nodeset="/data/damage_observation">
+        <group appearance="field-list">
+          <select1 ref="/data/damage_observation/damage_type" appearance="minimal">
+            <label ref="jr:itext('/data/damage_observation/damage_type:label')"/>
+            <hint ref="jr:itext('/data/damage_observation/damage_type:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_type:option0')"/>
+              <value>amputation</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_type:option1')"/>
+              <value>algal-growth</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_type:option2')"/>
+              <value>barnacles</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_type:option3')"/>
+              <value>cuts</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_type:option4')"/>
+              <value>deformity</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_type:option5')"/>
+              <value>entanglement</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_type:option6')"/>
+              <value>boat-strike</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_type:option7')"/>
+              <value>tumor</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_type:option8')"/>
+              <value>scratches</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_type:option9')"/>
+              <value>other</value>
+            </item>
+          </select1>
+          <select1 ref="/data/damage_observation/body_part" appearance="minimal">
+            <label ref="jr:itext('/data/damage_observation/body_part:label')"/>
+            <hint ref="jr:itext('/data/damage_observation/body_part:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option0')"/>
+              <value>head</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option1')"/>
+              <value>eyes</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option2')"/>
+              <value>neck</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option3')"/>
+              <value>plastron</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option4')"/>
+              <value>carapace</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option5')"/>
+              <value>internals</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option6')"/>
+              <value>cloaca</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option7')"/>
+              <value>tail</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option8')"/>
+              <value>flipper-front-left-1</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option9')"/>
+              <value>flipper-front-left-2</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option10')"/>
+              <value>flipper-front-left-3</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option11')"/>
+              <value>flipper-front-left</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option12')"/>
+              <value>flipper-front-right-1</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option13')"/>
+              <value>flipper-front-right-2</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option14')"/>
+              <value>flipper-front-right-3</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option15')"/>
+              <value>flipper-front-right</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option16')"/>
+              <value>flipper-rear-left</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option17')"/>
+              <value>flipper-rear-right</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option18')"/>
+              <value>shoulder-left</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option19')"/>
+              <value>shoulder-right</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option20')"/>
+              <value>whole</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/body_part:option21')"/>
+              <value>other</value>
+            </item>
+          </select1>
+          <select1 ref="/data/damage_observation/damage_age">
+            <label ref="jr:itext('/data/damage_observation/damage_age:label')"/>
+            <hint ref="jr:itext('/data/damage_observation/damage_age:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_age:option0')"/>
+              <value>healed-entirely</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_age:option1')"/>
+              <value>healed-partially</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/damage_observation/damage_age:option2')"/>
+              <value>fresh</value>
+            </item>
+          </select1>
+          <input ref="/data/damage_observation/description">
+            <label ref="jr:itext('/data/damage_observation/description:label')"/>
+            <hint ref="jr:itext('/data/damage_observation/description:hint')"/>
+          </input>
+          <upload ref="/data/damage_observation/photo_damage" mediatype="image/*">
+            <label ref="jr:itext('/data/damage_observation/photo_damage:label')"/>
+            <hint ref="jr:itext('/data/damage_observation/photo_damage:hint')"/>
+          </upload>
+        </group>
+      </repeat>
+    </group>
+    <group ref="/data/tag_observation">
+      <label ref="jr:itext('/data/tag_observation:label')"/>
+      <repeat nodeset="/data/tag_observation">
+        <group appearance="field-list">
+          <input ref="/data/tag_observation/tag_name">
+            <label ref="jr:itext('/data/tag_observation/tag_name:label')"/>
+            <hint ref="jr:itext('/data/tag_observation/tag_name:hint')"/>
+          </input>
+          <select1 ref="/data/tag_observation/tag_type" appearance="minimal">
+            <label ref="jr:itext('/data/tag_observation/tag_type:label')"/>
+            <hint ref="jr:itext('/data/tag_observation/tag_type:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_type:option0')"/>
+              <value>flipper-tag</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_type:option1')"/>
+              <value>pit-tag</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_type:option2')"/>
+              <value>sat-tag</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_type:option3')"/>
+              <value>blood-sample</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_type:option4')"/>
+              <value>biopsy-sample</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_type:option5')"/>
+              <value>stomach-content-sample</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_type:option6')"/>
+              <value>physical-sample</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_type:option7')"/>
+              <value>egg-sample</value>
+            </item>
+          </select1>
+          <select1 ref="/data/tag_observation/tag_status" appearance="minimal">
+            <label ref="jr:itext('/data/tag_observation/tag_status:label')"/>
+            <hint ref="jr:itext('/data/tag_observation/tag_status:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_status:option0')"/>
+              <value>applied-new</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_status:option1')"/>
+              <value>resighted</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_status:option2')"/>
+              <value>reclinched</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_status:option3')"/>
+              <value>removed</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_status:option4')"/>
+              <value>applied-no-read</value>
+            </item>
+          </select1>
+          <select1 ref="/data/tag_observation/tag_location" appearance="minimal">
+            <label ref="jr:itext('/data/tag_observation/tag_location:label')"/>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option0')"/>
+              <value>head</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option1')"/>
+              <value>eyes</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option2')"/>
+              <value>neck</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option3')"/>
+              <value>plastron</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option4')"/>
+              <value>carapace</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option5')"/>
+              <value>internals</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option6')"/>
+              <value>cloaca</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option7')"/>
+              <value>tail</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option8')"/>
+              <value>flipper-front-left-1</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option9')"/>
+              <value>flipper-front-left-2</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option10')"/>
+              <value>flipper-front-left-3</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option11')"/>
+              <value>flipper-front-left</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option12')"/>
+              <value>flipper-front-right-1</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option13')"/>
+              <value>flipper-front-right-2</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option14')"/>
+              <value>flipper-front-right-3</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option15')"/>
+              <value>flipper-front-right</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option16')"/>
+              <value>flipper-rear-left</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option17')"/>
+              <value>flipper-rear-right</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option18')"/>
+              <value>shoulder-left</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option19')"/>
+              <value>shoulder-right</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option20')"/>
+              <value>whole</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_location:option21')"/>
+              <value>other</value>
+            </item>
+          </select1>
+          <select1 ref="/data/tag_observation/tag_barnacles">
+            <label ref="jr:itext('/data/tag_observation/tag_barnacles:label')"/>
+            <hint ref="jr:itext('/data/tag_observation/tag_barnacles:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_barnacles:option0')"/>
+              <value>present</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_barnacles:option1')"/>
+              <value>absent</value>
+            </item>
+          </select1>
+          <select1 ref="/data/tag_observation/tag_fix">
+            <label ref="jr:itext('/data/tag_observation/tag_fix:label')"/>
+            <hint ref="jr:itext('/data/tag_observation/tag_fix:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_fix:option0')"/>
+              <value>yes</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/tag_observation/tag_fix:option1')"/>
+              <value>no</value>
+            </item>
+          </select1>
+          <input ref="/data/tag_observation/tag_comments">
+            <label ref="jr:itext('/data/tag_observation/tag_comments:label')"/>
+            <hint ref="jr:itext('/data/tag_observation/tag_comments:hint')"/>
+          </input>
+          <input ref="/data/tag_observation/tag_handled_by">
+            <label ref="jr:itext('/data/tag_observation/tag_handled_by:label')"/>
+            <hint ref="jr:itext('/data/tag_observation/tag_handled_by:hint')"/>
+          </input>
+          <upload ref="/data/tag_observation/tag_photo" mediatype="image/*">
+            <label ref="jr:itext('/data/tag_observation/tag_photo:label')"/>
+            <hint ref="jr:itext('/data/tag_observation/tag_photo:hint')"/>
+          </upload>
+        </group>
+      </repeat>
+    </group>
+    <group ref="/data/logger_observation">
+      <label ref="jr:itext('/data/logger_observation:label')"/>
+      <repeat nodeset="/data/logger_observation">
+        <group appearance="field-list">
+          <input ref="/data/logger_observation/logger_name">
+            <label ref="jr:itext('/data/logger_observation/logger_name:label')"/>
+            <hint ref="jr:itext('/data/logger_observation/logger_name:hint')"/>
+          </input>
+          <select1 ref="/data/logger_observation/logger_type" appearance="minimal">
+            <label ref="jr:itext('/data/logger_observation/logger_type:label')"/>
+            <hint ref="jr:itext('/data/logger_observation/logger_type:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/logger_observation/logger_type:option0')"/>
+              <value>temperature-logger</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/logger_observation/logger_type:option1')"/>
+              <value>data-logger</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/logger_observation/logger_type:option2')"/>
+              <value>ctd-data-logger</value>
+            </item>
+          </select1>
+          <select1 ref="/data/logger_observation/logger_status" appearance="minimal">
+            <label ref="jr:itext('/data/logger_observation/logger_status:label')"/>
+            <hint ref="jr:itext('/data/logger_observation/logger_status:hint')"/>
+            <item>
+              <label ref="jr:itext('/data/logger_observation/logger_status:option0')"/>
+              <value>applied-new</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/logger_observation/logger_status:option1')"/>
+              <value>removed</value>
+            </item>
+          </select1>
+          <input ref="/data/logger_observation/logger_comments">
+            <label ref="jr:itext('/data/logger_observation/logger_comments:label')"/>
+            <hint ref="jr:itext('/data/logger_observation/logger_comments:hint')"/>
+          </input>
+          <upload ref="/data/logger_observation/logger_photo" mediatype="image/*">
+            <label ref="jr:itext('/data/logger_observation/logger_photo:label')"/>
+            <hint ref="jr:itext('/data/logger_observation/logger_photo:hint')"/>
+          </upload>
+        </group>
+      </repeat>
+    </group>
+    <group ref="/data/datasheet" appearance="field-list">
+      <label ref="jr:itext('/data/datasheet:label')"/>
+      <upload ref="/data/datasheet/photo_datasheet_front" mediatype="image/*">
+        <label ref="jr:itext('/data/datasheet/photo_datasheet_front:label')"/>
+        <hint ref="jr:itext('/data/datasheet/photo_datasheet_front:hint')"/>
+      </upload>
+      <upload ref="/data/datasheet/photo_datasheet_rear" mediatype="image/*">
+        <label ref="jr:itext('/data/datasheet/photo_datasheet_rear:label')"/>
+        <hint ref="jr:itext('/data/datasheet/photo_datasheet_rear:hint')"/>
+      </upload>
+      <input ref="/data/datasheet/datasheet_comments">
+        <label ref="jr:itext('/data/datasheet/datasheet_comments:label')"/>
+        <hint ref="jr:itext('/data/datasheet/datasheet_comments:hint')"/>
+      </input>
+    </group>
+  </h:body>
+</h:html>

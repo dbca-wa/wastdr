@@ -1,0 +1,137 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>Tomfoolery</h:title>
+    <model>
+      <instance>
+        <data id="Turtelly-Unexpected-Tomfoolery" version="build_Turtelly-Unexpected-Tomfoolery_1606988776">
+          <meta>
+            <instanceID/>
+          </meta>
+          <device_id/>
+          <reporter/>
+          <encountered_on/>
+          <details>
+            <location/>
+            <event_type/>
+            <photo/>
+            <description/>
+          </details>
+          <end_time/>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="English">
+          <text id="/data/details:label">
+            <value>Details</value>
+          </text>
+          <text id="/data/details/location:label">
+            <value>Location</value>
+          </text>
+          <text id="/data/details/event_type:label">
+            <value>Tomfoolery type</value>
+          </text>
+          <text id="/data/details/event_type:hint">
+            <value>What kind of tomfoolery are we talking about</value>
+          </text>
+          <text id="/data/details/event_type:option0">
+            <value>A turtle got too friendly</value>
+          </text>
+          <text id="/data/details/event_type:option1">
+            <value>Bec got into trouble</value>
+          </text>
+          <text id="/data/details/event_type:option2">
+            <value>Bec melts her PC runningVortex</value>
+          </text>
+          <text id="/data/details/event_type:option3">
+            <value>Snackcident</value>
+          </text>
+          <text id="/data/details/event_type:option4">
+            <value>Dad joking hazard</value>
+          </text>
+          <text id="/data/details/event_type:option5">
+            <value>Oil and/or Gas</value>
+          </text>
+          <text id="/data/details/event_type:option6">
+            <value>Flo fixes something, but it still works</value>
+          </text>
+          <text id="/data/details/event_type:option7">
+            <value>Miscellaneous tomfoolery</value>
+          </text>
+          <text id="/data/details/photo:label">
+            <value>Pics or it didn't happen</value>
+          </text>
+          <text id="/data/details/photo:hint">
+            <value>unless it's dark, too dark to see</value>
+          </text>
+          <text id="/data/details/description:label">
+            <value>So what exactly went down</value>
+          </text>
+          <text id="/data/details/description:hint">
+            <value>spare no detail</value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/encountered_on" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/data/details/location" type="geopoint" required="true()"/>
+      <bind nodeset="/data/details/event_type" type="select1"/>
+      <bind nodeset="/data/details/photo" type="binary"/>
+      <bind nodeset="/data/details/description" type="string"/>
+      <bind nodeset="/data/end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/data/details" appearance="field-list">
+      <label ref="jr:itext('/data/details:label')"/>
+      <input ref="/data/details/location" appearance="placement-map">
+        <label ref="jr:itext('/data/details/location:label')"/>
+      </input>
+      <select1 ref="/data/details/event_type">
+        <label ref="jr:itext('/data/details/event_type:label')"/>
+        <hint ref="jr:itext('/data/details/event_type:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/details/event_type:option0')"/>
+          <value>turtle-too-close</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/event_type:option1')"/>
+          <value>bec-incident</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/event_type:option2')"/>
+          <value>becstinction</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/event_type:option3')"/>
+          <value>snackcident</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/event_type:option4')"/>
+          <value>dad-joking-hazard</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/event_type:option5')"/>
+          <value>oil-and-gas</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/event_type:option6')"/>
+          <value>fingernail-of-destruction</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/details/event_type:option7')"/>
+          <value>other</value>
+        </item>
+      </select1>
+      <upload ref="/data/details/photo" mediatype="image/*">
+        <label ref="jr:itext('/data/details/photo:label')"/>
+        <hint ref="jr:itext('/data/details/photo:hint')"/>
+      </upload>
+      <input ref="/data/details/description">
+        <label ref="jr:itext('/data/details/description:label')"/>
+        <hint ref="jr:itext('/data/details/description:hint')"/>
+      </input>
+    </group>
+  </h:body>
+</h:html>
