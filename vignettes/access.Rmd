@@ -2,7 +2,9 @@
 title: "Accessing WAStD Data"
 author: "Florian Mayer"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    self_contained: false
 vignette: >
   %\VignetteIndexEntry{access}
   %\VignetteEngine{knitr::rmarkdown}

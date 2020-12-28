@@ -1,6 +1,8 @@
 ---
 title: "Data analysis - Producing insight from WAStD"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    self_contained: false
 vignette: >
     %\VignetteIndexEntry{analysis}
     %\VignetteEngine{knitr::rmarkdown}

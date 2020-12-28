@@ -1,6 +1,8 @@
 ---
 title: "Threatened Species and Communities (TSC)"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    self_contained: false
 vignette: >
   %\VignetteIndexEntry{Threatened Species and Communities (TSC)}
   %\VignetteEngine{knitr::rmarkdown}

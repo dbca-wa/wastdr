@@ -1,6 +1,8 @@
 ---
 title: "Turtle Tagging ETL"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    self_contained: false
 vignette: >
   %\VignetteIndexEntry{Turtle Tagging ETL}
   %\VignetteEngine{knitr::rmarkdown}
