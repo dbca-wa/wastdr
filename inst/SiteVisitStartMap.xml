@@ -1,0 +1,97 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>Site Visit Start (map)</h:title>
+    <model>
+      <instance>
+        <data id="Site-Visit-Start-map" version="1.2">
+          <meta>
+            <instanceID/>
+          </meta>
+          <reporter/>
+          <survey_start_time/>
+          <device_id/>
+          <site_visit>
+            <reporter_repeat/>
+            <location/>
+            <site_conditions/>
+            <team/>
+            <comments/>
+          </site_visit>
+          <end_time/>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="English">
+          <text id="/data/site_visit:label">
+            <value>Site Visit Details</value>
+          </text>
+          <text id="/data/site_visit/reporter_repeat:label">
+            <value>Primary reporter</value>
+          </text>
+          <text id="/data/site_visit/reporter_repeat:hint">
+            <value>Not your name? Exit this form and discard changes, then update General Settings &gt; User and Device Identity &gt; Form metadata &gt; Username</value>
+          </text>
+          <text id="/data/site_visit/location:label">
+            <value>Location</value>
+          </text>
+          <text id="/data/site_visit/location:hint">
+            <value>Select a location inside the correct nesting beach</value>
+          </text>
+          <text id="/data/site_visit/site_conditions:label">
+            <value>Site conditions</value>
+          </text>
+          <text id="/data/site_visit/site_conditions:hint">
+            <value>Take photo in landscape mode</value>
+          </text>
+          <text id="/data/site_visit/team:label">
+            <value>Other data collectors in survey</value>
+          </text>
+          <text id="/data/site_visit/team:hint">
+            <value>Full names, comma separated, do not include primary reporter (set in Username)</value>
+          </text>
+          <text id="/data/site_visit/comments:label">
+            <value>Comments</value>
+          </text>
+          <text id="/data/site_visit/comments:hint">
+            <value>Conditions impacting protocol, irregularities</value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/survey_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/site_visit/reporter_repeat" type="string" jr:preload="property" jr:preloadParams="username" readonly="true()"/>
+      <bind nodeset="/data/site_visit/location" type="geopoint" required="true()"/>
+      <bind nodeset="/data/site_visit/site_conditions" type="binary"/>
+      <bind nodeset="/data/site_visit/team" type="string"/>
+      <bind nodeset="/data/site_visit/comments" type="string"/>
+      <bind nodeset="/data/end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/data/site_visit" appearance="field-list">
+      <label ref="jr:itext('/data/site_visit:label')"/>
+      <input ref="/data/site_visit/reporter_repeat">
+        <label ref="jr:itext('/data/site_visit/reporter_repeat:label')"/>
+        <hint ref="jr:itext('/data/site_visit/reporter_repeat:hint')"/>
+      </input>
+      <input ref="/data/site_visit/location" appearance="placement-map">
+        <label ref="jr:itext('/data/site_visit/location:label')"/>
+        <hint ref="jr:itext('/data/site_visit/location:hint')"/>
+      </input>
+      <upload ref="/data/site_visit/site_conditions" mediatype="image/*">
+        <label ref="jr:itext('/data/site_visit/site_conditions:label')"/>
+        <hint ref="jr:itext('/data/site_visit/site_conditions:hint')"/>
+      </upload>
+      <input ref="/data/site_visit/team">
+        <label ref="jr:itext('/data/site_visit/team:label')"/>
+        <hint ref="jr:itext('/data/site_visit/team:hint')"/>
+      </input>
+      <input ref="/data/site_visit/comments">
+        <label ref="jr:itext('/data/site_visit/comments:label')"/>
+        <hint ref="jr:itext('/data/site_visit/comments:hint')"/>
+      </input>
+    </group>
+  </h:body>
+</h:html>

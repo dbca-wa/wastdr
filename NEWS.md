@@ -1,5 +1,8 @@
 # wastdr 0.5.0
 Status Oct 2020
+## Minor fixes
+* `download_odkc_turtledata_2020` now includes Site Visit Start (Map)
+
 ## Documentation
 All ODK forms used to capture data for WAStD are included in `inst/` as 
 ODK Build savefiles, XForm XML (form ID changed to drop `build_` prefix and

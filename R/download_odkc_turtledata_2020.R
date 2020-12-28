@@ -62,7 +62,8 @@ download_odkc_turtledata_2020 <-
             pid = 1,
             url = prod,
             un = ruODK::get_default_un(),
-            pw = ruODK::get_default_pw()
+            pw = ruODK::get_default_pw(),
+            odkc_version = 1.0
         )
         pl <- ruODK::project_list()
         # pl
@@ -78,6 +79,22 @@ download_odkc_turtledata_2020 <-
         )
         message(glue::glue("Downloading {ruODK::get_default_fid()}"))
         svs_prod <-
+            ruODK::odata_submission_get(
+                verbose = verbose,
+                local_dir = local_dir,
+                download = download,
+                odkc_version = odkc_version,
+                wkt = FALSE
+            )
+
+        # SV start (map)
+        ruODK::ru_setup(
+            pid = 1,
+            fid = "Site-Visit-Start-map",
+            url = prod
+        )
+        message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+        svs_prod_map <-
             ruODK::odata_submission_get(
                 verbose = verbose,
                 local_dir = local_dir,
@@ -282,7 +299,8 @@ download_odkc_turtledata_2020 <-
             download = download,
             odkc_version = odkc_version
         ) %>%
-        sf::st_as_sf(wkt="overview_location")
+        dplyr::rename(tx = overview_location) %>%
+        sf::st_as_sf(wkt="tx")
 
         tracktally_dist_prod <- ruODK::odata_submission_get(
             table = ft$url[2],
@@ -326,6 +344,7 @@ download_odkc_turtledata_2020 <-
             wastdr::add_dates(parse_date = FALSE)
 
         svs <- svs_prod %>%
+            dplyr::bind_rows(svs_prod_map) %>%
             wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
             wastdr::add_dates(date_col = "survey_start_time", parse_date = FALSE)
 

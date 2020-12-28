@@ -1,13 +1,21 @@
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+<h:html
+  xmlns="http://www.w3.org/2002/xforms"
+  xmlns:h="http://www.w3.org/1999/xhtml"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:jr="http://openrosa.org/javarosa"
+  xmlns:ev="http://www.w3.org/2001/xml-events"
+  xmlns:odk="http://www.opendatakit.org/xforms"
+>
   <h:head>
     <h:title>Turtle Track or Nest</h:title>
     <model>
       <instance>
-        <data id="Turtle-Track-or-Nest">
+        <data id="Turtle-Track-or-Nest" version="1.4">
           <meta>
             <instanceID/>
           </meta>
           <observation_start_time/>
+          <start_location />
           <reporter/>
           <device_id/>
           <details>
@@ -98,8 +106,14 @@
             <photo_tag/>
           </nest_tag>
           <logger_details jr:template="">
+            <logger_type>
+              temperature-logger
+            </logger_type>
             <logger_id/>
             <photo_logger/>
+            <logger_status>
+              resighted
+            </logger_status>
             <logger_comments/>
           </logger_details>
           <hatchling_measurements jr:template="">
@@ -389,7 +403,7 @@
             <value>Yes</value>
           </text>
           <text id="/data/nest/logger_found:label">
-            <value>Data logger found</value>
+            <value>Data logger found or deployed</value>
           </text>
           <text id="/data/nest/logger_found:hint">
             <value></value>
@@ -658,6 +672,18 @@
           <text id="/data/logger_details:label">
             <value>Logger details</value>
           </text>
+          <text id="/data/logger_details/logger_type:label">
+            <value>Logger type</value>
+          </text>
+          <text id="/data/logger_details/logger_type:option0">
+            <value>Temperature Logger</value>
+          </text>
+          <text id="/data/logger_details/logger_type:option1">
+            <value>Data Logger</value>
+          </text>
+          <text id="/data/logger_details/logger_type:option2">
+            <value>Conductivity, Temperature, Depth SR Data Logger</value>
+          </text>
           <text id="/data/logger_details/logger_id:label">
             <value>Unique logger ID</value>
           </text>
@@ -669,6 +695,18 @@
           </text>
           <text id="/data/logger_details/photo_logger:hint">
             <value></value>
+          </text>
+          <text id="/data/logger_details/logger_status:label">
+            <value>Action undertaken with logger</value>
+          </text>
+          <text id="/data/logger_details/logger_status:option0">
+            <value>deployed</value>
+          </text>
+          <text id="/data/logger_details/logger_status:option1">
+            <value>resighted</value>
+          </text>
+          <text id="/data/logger_details/logger_status:option2">
+            <value>retrieved</value>
           </text>
           <text id="/data/logger_details/logger_comments:label">
             <value>Comments</value>
@@ -944,6 +982,8 @@
       </itext>
       <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
       <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/data/start_location" type="geopoint" />
+      <odk:setgeopoint event="odk-instance-first-load" ref="/data/start_location" />
       <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
       <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
       <bind nodeset="/data/details/nest_age" type="select1" required="true()"/>
@@ -997,8 +1037,10 @@
       <bind nodeset="/data/nest_tag/tag_comments" type="string" relevant="(/data/nest/nest_tagged = 'yes')"/>
       <bind nodeset="/data/nest_tag/photo_tag" type="binary" relevant="(/data/nest/nest_tagged = 'yes')"/>
       <bind nodeset="/data/logger_details" relevant="(/data/nest/logger_found = 'yes')"/>
+      <bind nodeset="/data/logger_details/logger_type" type="select1" required="true()" relevant="(/data/nest/logger_found = 'yes')"/>
       <bind nodeset="/data/logger_details/logger_id" type="string" required="true()" relevant="(/data/nest/logger_found = 'yes')"/>
       <bind nodeset="/data/logger_details/photo_logger" type="binary" relevant="(/data/nest/logger_found = 'yes')"/>
+      <bind nodeset="/data/logger_details/logger_status" type="select1" required="true()" relevant="(/data/nest/logger_found = 'yes')"/>
       <bind nodeset="/data/logger_details/logger_comments" type="string" relevant="(/data/nest/logger_found = 'yes')"/>
       <bind nodeset="/data/hatchling_measurements" relevant="(/data/nest/hatchlings_measured = 'yes')"/>
       <bind nodeset="/data/hatchling_measurements/straight_carapace_length_mm" type="int" relevant="(/data/nest/hatchlings_measured = 'yes')"/>
@@ -1509,6 +1551,21 @@
       <label ref="jr:itext('/data/logger_details:label')"/>
       <repeat nodeset="/data/logger_details">
         <group appearance="field-list">
+          <select1 ref="/data/logger_details/logger_type">
+            <label ref="jr:itext('/data/logger_details/logger_type:label')"/>
+            <item>
+              <label ref="jr:itext('/data/logger_details/logger_type:option0')"/>
+              <value>temperature-logger</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/logger_details/logger_type:option1')"/>
+              <value>data-logger</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/logger_details/logger_type:option2')"/>
+              <value>ctd-data-logger</value>
+            </item>
+          </select1>
           <input ref="/data/logger_details/logger_id">
             <label ref="jr:itext('/data/logger_details/logger_id:label')"/>
             <hint ref="jr:itext('/data/logger_details/logger_id:hint')"/>
@@ -1517,6 +1574,21 @@
             <label ref="jr:itext('/data/logger_details/photo_logger:label')"/>
             <hint ref="jr:itext('/data/logger_details/photo_logger:hint')"/>
           </upload>
+          <select1 ref="/data/logger_details/logger_status" appearance="horizontal">
+            <label ref="jr:itext('/data/logger_details/logger_status:label')"/>
+            <item>
+              <label ref="jr:itext('/data/logger_details/logger_status:option0')"/>
+              <value>deployed</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/logger_details/logger_status:option1')"/>
+              <value>resighted</value>
+            </item>
+            <item>
+              <label ref="jr:itext('/data/logger_details/logger_status:option2')"/>
+              <value>retrieved</value>
+            </item>
+          </select1>
           <input ref="/data/logger_details/logger_comments">
             <label ref="jr:itext('/data/logger_details/logger_comments:label')"/>
             <hint ref="jr:itext('/data/logger_details/logger_comments:hint')"/>
