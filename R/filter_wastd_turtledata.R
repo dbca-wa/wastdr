@@ -82,7 +82,7 @@ filter_wastd_turtledata <- function(x,
       areas = x$areas,
       sites = x$sites %>% my_filter(),
       surveys = x$surveys %>%
-        dplyr::left_join(x$sites, by = c("site_id", "site_name")) %>%
+        dplyr::left_join(x$sites, by = "site_id", "site_name") %>%
         my_filter(),
 
       animals = x$animals %>% my_filter(),
