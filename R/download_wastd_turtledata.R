@@ -27,6 +27,8 @@
 #'   \item nest_fans Hatchling emergence tracks - main fan.
 #'   \item nest_fan_outliers Hatchling emergence tracks - individual outliers.
 #'   \item nest_lightsources - Light sources present during hatchling emergence.
+#'   \item nest_loggers - Temperature loggers inside the nest. LoggerEncounters
+#'         were migrated to become LoggerObservations.
 #' }
 #' @export
 #' @family included
@@ -164,6 +166,14 @@ download_wastd_turtledata <- function(max_records = NULL,
     wastdr::parse_encounterobservations() %>%
     dplyr::left_join(tracks_subset, by = "pk")
 
+  if (verbose == TRUE) {
+    wastdr_msg_info("Downloading logger observations...")
+  }
+  nest_loggers <- "logger-observations" %>%
+    wastdr::wastd_GET(max_records = max_records) %>%
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by = "pk")
+
   # LoggerEncounters ----------------------------------------------------------#
   if (verbose == TRUE) {
     wastdr_msg_info("Downloading LoggerEncounters...")
@@ -224,6 +234,7 @@ download_wastd_turtledata <- function(max_records = NULL,
       nest_fans = nest_fans,
       nest_fan_outliers = nest_fan_outliers,
       nest_lightsources = nest_lightsources,
+      nest_loggers = nest_loggers,
       linetx = linetx,
       track_tally = track_tally,
       disturbance_tally = disturbance_tally,
@@ -252,7 +263,7 @@ print.wastd_data <- function(x, ...) {
       "Animal Encounters (tags, strandings): {nrow(x$animals)}\n",
       "Turtle Nest Encounters (tracks): {nrow(x$tracks)}\n",
       "Line Transect Encounters (track tallies) {nrow(x$linetx)}\n",
-      "Logger Encounters {nrow(x$loggers)}\n"
+      "Logger Observations {nrow(x$nest_loggers)}\n"
     )
   )
   invisible(x)

@@ -35,6 +35,8 @@ An S3 class "wastd_data" with items:
   \item nest_fans Hatchling emergence tracks - main fan.
   \item nest_fan_outliers Hatchling emergence tracks - individual outliers.
   \item nest_lightsources - Light sources present during hatchling emergence.
+  \item nest_loggers - Temperature loggers inside the nest. LoggerEncounters
+        were migrated to become LoggerObservations.
 }
 }
 \description{

@@ -3,10 +3,13 @@ library(sf)
 sanitize_names <- . %>%
   dplyr::mutate_at(
     dplyr::vars(
-      tidyr::contains("reporter"),
-      tidyr::contains("observer"),
-      tidyr::contains("handler"),
-      tidyr::contains("recorder")
+      tidyr::contains(
+        c("reporter",
+          "observer",
+          "handler",
+          "recorder",
+          "system_submitter_name")
+      ),
     ),
     ~"Name hidden"
   )
@@ -35,29 +38,46 @@ wastd_surveys_raw <- wastdr::wastd_GET("surveys", query = q2, max_records = 10)
 usethis::use_data(wastd_surveys_raw, compress = "xz", overwrite = TRUE)
 
 # ODKC turtle data, pre-QA
-library(turtleviewer)
-data(odkc, package = "turtleviewer")
-odkc_data <- list(
-  tracks = head(odkc$tracks),
-  tracks_dist = head(odkc$tracks_dist),
-  tracks_egg = head(odkc$tracks_egg),
-  tracks_log = head(odkc$tracks_log),
-  tracks_hatch = head(odkc$tracks_hatch),
-  tracks_fan_outlier = head(odkc$tracks_fan_outlier),
-  tracks_light = head(odkc$tracks_light),
-  track_tally = head(odkc$track_tally),
-  track_tally_dist = head(odkc$track_tally_dist),
-  dist = head(odkc$dist),
-  mwi = head(odkc$mwi),
-  mwi_dmg = head(odkc$mwi_dmg),
-  mwi_tag = head(odkc$mwi_tag),
-  tsi = head(odkc$tsi),
-  svs = head(odkc$svs),
-  sve = head(odkc$sve),
-  sites = odkc$sites,
-  areas = odkc$areas,
-  downloaded_on = odkc$downloaded_on
-)
+# library(turtleviewer)
+# data(odkc, package = "turtleviewer")
+# odkc_data <- list(
+#   tracks = head(odkc$tracks),
+#   tracks_dist = head(odkc$tracks_dist),
+#   tracks_egg = head(odkc$tracks_egg),
+#   tracks_log = head(odkc$tracks_log),
+#   tracks_hatch = head(odkc$tracks_hatch),
+#   tracks_fan_outlier = head(odkc$tracks_fan_outlier),
+#   tracks_light = head(odkc$tracks_light),
+#   track_tally = head(odkc$track_tally),
+#   track_tally_dist = head(odkc$track_tally_dist),
+#   dist = head(odkc$dist),
+#   mwi = head(odkc$mwi),
+#   mwi_dmg = head(odkc$mwi_dmg),
+#   mwi_tag = head(odkc$mwi_tag),
+#   tsi = head(odkc$tsi),
+#   svs = head(odkc$svs),
+#   sve = head(odkc$sve),
+#   sites = odkc$sites,
+#   areas = odkc$areas,
+#   downloaded_on = odkc$downloaded_on
+# )
+odkc_data <- wastdr::download_odkc_turtledata_2020(download = FALSE, verbose = FALSE)
+# x <- odkc_data %>% wastdr::filter_odkc_turtledata(area_name = "Perth Metro")
+odkc_data$tracks <- odkc_data$tracks %>% head(n=100) %>% sanitize_names()
+odkc_data$tracks_dist <- odkc_data$tracks_dist %>% head(n=100) %>% sanitize_names()
+odkc_data$tracks_log <- odkc_data$tracks_log %>% head(n=100) %>% sanitize_names()
+odkc_data$tracks_egg <- odkc_data$tracks_egg %>% head(n=100) %>% sanitize_names()
+odkc_data$tracks_hatch <- odkc_data$tracks_hatch %>% head(n=100) %>% sanitize_names()
+odkc_data$tracks_fan_outlier <- odkc_data$tracks_fan_outlier %>% head(n=100) %>% sanitize_names()
+odkc_data$track_tally <- odkc_data$track_tally %>% head(n=100) %>% sanitize_names()
+odkc_data$dist <- odkc_data$dist %>% head(n=100) %>% sanitize_names()
+odkc_data$mwi <- odkc_data$mwi %>% head(n=100) %>% sanitize_names()
+odkc_data$mwi_dmg <- odkc_data$mwi_dmg %>% head(n=100) %>% sanitize_names()
+odkc_data$mwi_tag <- odkc_data$mwi_tag %>% head(n=100) %>% sanitize_names()
+odkc_data$tsi <- odkc_data$tsi %>% head(n=100) %>% sanitize_names()
+odkc_data$svs <- odkc_data$svs %>% head(n=100) %>% sanitize_names()
+odkc_data$sve <- odkc_data$sve %>% head(n=100) %>% sanitize_names()
+
 usethis::use_data(odkc_data, compress = "xz", overwrite = TRUE)
 
 # WAStD Turtle Data, 10 records each, names sanitised

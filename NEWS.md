@@ -1,3 +1,13 @@
+# wastdr 0.5.1
+## Data
+* `odkc_data` is not generated from `wastdr::download_odkc_turtledata2020()`.
+  The first 100 records of each element are retained and sanitised of PII 
+  (names).
+* `download_wastd_turtledata()` was extended to include LoggerObservations 
+  as `nest_loggers` in addition to the superseded LoggerEncounters.
+  This prepares etlTurtleNesting to migrate the reports from using LoggerEnc to 
+  LoggerObs.
+
 # wastdr 0.5.0
 Status Oct 2020
 ## Minor fixes
