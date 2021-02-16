@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9006</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -156,6 +156,20 @@
       <small>Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="wastdr-051" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.1">
+<a href="#wastdr-051" class="anchor"></a>wastdr 0.5.1</h1>
+<div id="data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data" class="anchor"></a>Data</h2>
+<ul>
+<li>
+<code>odkc_data</code> is not generated from <code>wastdr::download_odkc_turtledata2020()</code>. The first 100 records of each element are retained and sanitised of PII (names).</li>
+<li>
+<code><a href="../reference/download_wastd_turtledata.html">download_wastd_turtledata()</a></code> was extended to include LoggerObservations as <code>nest_loggers</code> in addition to the superseded LoggerEncounters. This prepares etlTurtleNesting to migrate the reports from using LoggerEnc to LoggerObs.</li>
+</ul>
+</div>
+</div>
     <div id="wastdr-050" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.0">
 <a href="#wastdr-050" class="anchor"></a>wastdr 0.5.0</h1>
