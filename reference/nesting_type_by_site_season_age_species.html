@@ -231,7 +231,21 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span>
 <span class='fu'>nesting_type_by_site_season_age_species</span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>tracks</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in gsub(finish, start, ..., fixed = TRUE): zero-length pattern</span></div></pre>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 43 x 11</span><span>
+#&gt;    area_name  site_name    season species  nest_age `false-crawl` `hatched-nest`
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Perth Met… Florian May…   </span><span style='text-decoration: underline;'>2</span><span>016 cheloni… fresh                0              0
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Perth Met… Florian May…   </span><span style='text-decoration: underline;'>2</span><span>016 corolla… fresh                0              0
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Perth Met… Kensington …   </span><span style='text-decoration: underline;'>2</span><span>016 cheloni… fresh                0              0
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Perth Met… Kensington …   </span><span style='text-decoration: underline;'>2</span><span>016 cheloni… fresh                0              0
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Perth Met… Kensington …   </span><span style='text-decoration: underline;'>2</span><span>016 eretmoc… fresh                0              0
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Perth Met… Kensington …   </span><span style='text-decoration: underline;'>2</span><span>016 natator… fresh                0              0
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Perth Met… </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='text-decoration: underline;'>2</span><span>016 corolla… fresh                1              0
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Port Hedl… Port Hedlan…   </span><span style='text-decoration: underline;'>2</span><span>009 natator… fresh                2              2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Port Hedl… Port Hedlan…   </span><span style='text-decoration: underline;'>2</span><span>009 natator… old                  0              1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Port Hedl… Port Hedlan…   </span><span style='text-decoration: underline;'>2</span><span>009 natator… unknown              0              1
+#&gt; </span><span style='color: #949494;'># … with 33 more rows, and 4 more variables: nest &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   successful-crawl &lt;dbl&gt;, track-not-assessed &lt;dbl&gt;, track-unsure &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

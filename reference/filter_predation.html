@@ -240,18 +240,137 @@
 <span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>nest_dist</span> <span class='op'>%&gt;%</span>
   <span class='fu'>filter_predation</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in gsub(finish, start, ..., fixed = TRUE): zero-length pattern</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 60</span><span>
+#&gt;      pk source source_id        encounter_pk encounter_area_… encounter_area_ar…
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>  </span><span style='text-decoration: underline;'>5</span><span>550      0 280ed802-d6b8-1…         </span><span style='text-decoration: underline;'>4</span><span>908              148 Locality          
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>  </span><span style='text-decoration: underline;'>5</span><span>552      0 280ed802-d6b8-1…         </span><span style='text-decoration: underline;'>4</span><span>909              148 Locality          
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span>  </span><span style='text-decoration: underline;'>5</span><span>555      0 280ed802-d6b8-1…         </span><span style='text-decoration: underline;'>4</span><span>913              148 Locality          
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span>  </span><span style='text-decoration: underline;'>5</span><span>556      0 280ed802-d6b8-1…         </span><span style='text-decoration: underline;'>4</span><span>915              148 Locality          
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span>  </span><span style='text-decoration: underline;'>5</span><span>557      0 280ed802-d6b8-1…         </span><span style='text-decoration: underline;'>4</span><span>916              148 Locality          
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span>  </span><span style='text-decoration: underline;'>5</span><span>559      0 280ed802-d6b8-1…         </span><span style='text-decoration: underline;'>4</span><span>917              148 Locality          
+#&gt; </span><span style='color: #949494;'># … with 54 more variables: encounter_area_name &lt;chr&gt;, encounter_site_pk &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_site_area_type &lt;chr&gt;, encounter_site_name &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_survey_id &lt;int&gt;, encounter_survey_start_time &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_survey_end_time &lt;chr&gt;, encounter_survey_start_comments &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_survey_end_comments &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_survey_absolute_admin_url &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_survey_production &lt;lgl&gt;, encounter_observer_pk &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_observer_username &lt;chr&gt;, encounter_observer_name &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_reporter_pk &lt;chr&gt;, encounter_reporter_username &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_reporter_name &lt;chr&gt;, encounter_status &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_source &lt;chr&gt;, encounter_source_id &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_encounter_type &lt;chr&gt;, encounter_when &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_leaflet_title &lt;chr&gt;, encounter_location_accuracy &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_latitude &lt;dbl&gt;, encounter_longitude &lt;dbl&gt;, encounter_crs &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_absolute_admin_url &lt;chr&gt;, encounter_comments &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_name &lt;chr&gt;, encounter_location_accuracy_m &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbance_cause &lt;chr&gt;, disturbance_cause_confidence &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbance_severity &lt;chr&gt;, comments &lt;chr&gt;, datetime &lt;dttm&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;, season &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, nest_age &lt;chr&gt;, nest_type &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   species &lt;chr&gt;, habitat &lt;chr&gt;, disturbance &lt;chr&gt;, nest_tagged &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   logger_found &lt;chr&gt;, eggs_counted &lt;chr&gt;, hatchlings_measured &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_measured &lt;chr&gt;, absolute_admin_url &lt;chr&gt;, species_colours &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nest_type_text &lt;chr&gt;</span><span></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"odkc_data"</span><span class='op'>)</span>
 <span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>tracks_dist</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>filter_predation</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in gsub(finish, start, ..., fixed = TRUE): zero-length pattern</span></div><div class='input'>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 101</span><span>
+#&gt;   id        submissions_id   photo_disturban… disturbance_cau… disturbance_caus…
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 355dd8f1… uuid:9a08f771-c… 1613255835047.j… crab             expert-opinion   
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> b086169e… uuid:501918a6-c… 1613257795564.j… crab             guess            
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 089ed379… uuid:0b535b6e-9… 1613171967670.j… crab             guess            
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 46e27df5… uuid:c87e5081-f… 1613168721222.j… crab             expert-opinion   
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> c5e9fc56… uuid:cb559a28-8… 1611962170778.j… dingo            expert-opinion   
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> 5323adf8… uuid:12cd0b17-4… 1610403497978.j… dingo            expert-opinion   
+#&gt; </span><span style='color: #949494;'># … with 96 more variables: disturbance_severity &lt;chr&gt;, comments &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   odata_context.x &lt;chr&gt;, observation_start_time &lt;dttm&gt;, reporter &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   device_id &lt;chr&gt;, observation_end_time &lt;dttm&gt;, system_submission_date &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   system_submitter_id &lt;chr&gt;, system_submitter_name &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   system_attachments_present &lt;int&gt;, system_attachments_expected &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   meta_instance_id &lt;chr&gt;, details_nest_age &lt;chr&gt;, details_species &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   details_nest_type &lt;chr&gt;, details_observed_at_longitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   details_observed_at_latitude &lt;dbl&gt;, details_observed_at_altitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   details_observed_at_accuracy &lt;dbl&gt;, details_observed_at &lt;list&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nest_habitat &lt;chr&gt;, nest_disturbance &lt;chr&gt;, nest_nest_tagged &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nest_logger_found &lt;chr&gt;, nest_eggs_counted &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nest_hatchlings_measured &lt;chr&gt;, nest_fan_angles_measured &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   start_location_longitude &lt;dbl&gt;, start_location_latitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   start_location_altitude &lt;dbl&gt;, start_location_accuracy &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   start_location &lt;list&gt;, track_photos_tail_pokes &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   track_photos_photo_track_1 &lt;chr&gt;, track_photos_photo_track_2 &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   track_photos_max_track_width_front &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   track_photos_max_track_width_rear &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   track_photos_carapace_drag_width &lt;int&gt;, track_photos_step_length &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbanceobservation_odata_navigation_link &lt;chr&gt;, nest_tag_status &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nest_tag_date_nest_laid &lt;dttm&gt;, nest_tag_tag_label &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nest_tag_tag_comments &lt;chr&gt;, nest_tag_photo_tag &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nest_tag_flipper_tag_id &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_photo_hatchling_tracks_seawards &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_photo_hatchling_tracks_relief &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_leftmost_track_manual &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_rightmost_track_manual &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_no_tracks_main_group &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_no_tracks_main_group_min &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_no_tracks_main_group_max &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_outlier_tracks_present &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_hatchling_path_to_sea &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_hatchling_emergence_time_known &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_cloud_cover_at_emergence_known &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_light_sources_present &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_bearing_to_water_manual &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_path_to_sea_comments &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   outlier_track_odata_navigation_link &lt;chr&gt;, egg_count_no_egg_shells &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   egg_count_no_live_hatchlings &lt;int&gt;, egg_count_no_dead_hatchlings &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   egg_count_no_undeveloped_eggs &lt;int&gt;, egg_count_no_unhatched_eggs &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   egg_count_no_unhatched_term &lt;int&gt;, egg_count_no_depredated_eggs &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   egg_count_nest_depth_top &lt;int&gt;, egg_count_nest_depth_bottom &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   egg_count_nest_excavation_comments &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   logger_details_odata_navigation_link &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   egg_photos_odata_navigation_link &lt;chr&gt;, nest_photos_photo_nest_1 &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nest_photos_photo_nest_2 &lt;chr&gt;, nest_photos_photo_nest_3 &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   light_source_odata_navigation_link &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   other_light_sources_other_light_sources_present &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   hatchling_measurements_odata_navigation_link &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   emergence_climate_cloud_cover_at_emergence &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   hatchling_emergence_time_group_hatchling_emergence_time &lt;dttm&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   hatchling_emergence_time_group_hatchling_emergence_time_source &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   odata_context.y &lt;chr&gt;, species_colours &lt;chr&gt;, nest_type_text &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   site_id &lt;dbl&gt;, site_name &lt;chr&gt;, area_id &lt;dbl&gt;, area_name &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   datetime &lt;dttm&gt;, calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   season &lt;dbl&gt;, season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;</span><span></div><div class='input'>
 <span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>dist</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>filter_predation</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in gsub(finish, start, ..., fixed = TRUE): zero-length pattern</span></div></pre>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 31</span><span>
+#&gt;   id             observation_start_t… reporter  device_id    observation_end_ti…
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>             
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> uuid:069c3c5f… 2021-02-14 </span><span style='color: #949494;'>06:16:50</span><span>  Name hid… collect:alM… 2021-02-14 </span><span style='color: #949494;'>06:17:20</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> uuid:91e4cce9… 2021-02-14 </span><span style='color: #949494;'>06:44:24</span><span>  Name hid… collect:Gih… 2021-02-14 </span><span style='color: #949494;'>06:45:30</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> uuid:0f58516f… 2021-02-13 </span><span style='color: #949494;'>07:46:00</span><span>  Name hid… collect:Xq1… 2021-02-13 </span><span style='color: #949494;'>07:46:47</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> uuid:8d577beb… 2021-02-13 </span><span style='color: #949494;'>06:34:05</span><span>  Name hid… collect:Xq1… 2021-02-13 </span><span style='color: #949494;'>06:34:28</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> uuid:2eb9c57a… 2021-02-13 </span><span style='color: #949494;'>07:49:33</span><span>  Name hid… collect:0T9… 2021-02-13 </span><span style='color: #949494;'>07:50:46</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> uuid:e8d2c91f… 2021-02-13 </span><span style='color: #949494;'>07:44:37</span><span>  Name hid… collect:0T9… 2021-02-13 </span><span style='color: #949494;'>07:45:38</span><span>
+#&gt; </span><span style='color: #949494;'># … with 26 more variables: system_submission_date &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   system_submitter_id &lt;chr&gt;, system_submitter_name &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   system_attachments_present &lt;int&gt;, system_attachments_expected &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   meta_instance_id &lt;chr&gt;, disturbanceobservation_location_longitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbanceobservation_location_latitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbanceobservation_location_altitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbanceobservation_location_accuracy &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbanceobservation_location &lt;list&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbanceobservation_photo_disturbance &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbanceobservation_disturbance_cause &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbanceobservation_disturbance_cause_confidence &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbanceobservation_comments &lt;chr&gt;, odata_context &lt;chr&gt;, site_id &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   site_name &lt;chr&gt;, area_id &lt;dbl&gt;, area_name &lt;chr&gt;, datetime &lt;dttm&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;, season &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

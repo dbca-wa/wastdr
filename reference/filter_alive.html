@@ -238,13 +238,77 @@ e.g. <code>wastd_data$animals</code> with column <code>health</code> or
 <span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>animals</span> <span class='op'>%&gt;%</span>
   <span class='fu'>filter_alive</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in gsub(finish, start, ..., fixed = TRUE): zero-length pattern</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 46</span><span>
+#&gt;   area_name       area_type area_id site_name site_type site_id survey_id
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Barrow Island   Locality       41 </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Barrow Island   Locality       41 </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Mundabullangana Site           42 </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Mundabullangana Site           42 </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Mundabullangana Site           42 </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> Barrow Island   Locality       41 </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #949494;'># … with 39 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;, season &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, longitude &lt;dbl&gt;, latitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   crs &lt;chr&gt;, location_accuracy &lt;dbl&gt;, location_accuracy_m &lt;dbl&gt;, taxon &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   name &lt;chr&gt;, species &lt;chr&gt;, health &lt;chr&gt;, sex &lt;chr&gt;, maturity &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   habitat &lt;chr&gt;, activity &lt;chr&gt;, behaviour &lt;chr&gt;, comments &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nesting_event &lt;chr&gt;, checked_for_injuries &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   scanned_for_pit_tags &lt;chr&gt;, checked_for_flipper_tags &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   cause_of_death &lt;chr&gt;, cause_of_death_confidence &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_type &lt;chr&gt;, status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;</span><span></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"odkc_data"</span><span class='op'>)</span>
 <span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>mwi</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>filter_alive</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in gsub(finish, start, ..., fixed = TRUE): zero-length pattern</span></div></pre>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 68</span><span>
+#&gt;   id     observation_start_… reporter device_id phone_number observation_end_ti…
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>             
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> uuid:… 2021-02-13 </span><span style='color: #949494;'>07:34:08</span><span> Name hi… collect:… </span><span style='color: #BB0000;'>NA</span><span>           2021-02-13 </span><span style='color: #949494;'>07:36:22</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> uuid:… 2021-02-10 </span><span style='color: #949494;'>07:20:11</span><span> Name hi… collect:… 0450624969   2021-02-10 </span><span style='color: #949494;'>07:23:39</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> uuid:… 2021-01-31 </span><span style='color: #949494;'>08:38:53</span><span> Name hi… collect:… </span><span style='color: #BB0000;'>NA</span><span>           2021-01-31 </span><span style='color: #949494;'>08:54:56</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> uuid:… 2021-01-31 </span><span style='color: #949494;'>07:09:34</span><span> Name hi… collect:… </span><span style='color: #BB0000;'>NA</span><span>           2021-01-31 </span><span style='color: #949494;'>07:19:43</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> uuid:… 2020-12-10 </span><span style='color: #949494;'>04:12:46</span><span> Name hi… e249db9e… </span><span style='color: #BB0000;'>NA</span><span>           2020-12-17 </span><span style='color: #949494;'>23:03:14</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> uuid:… 2020-12-18 </span><span style='color: #949494;'>18:04:11</span><span> Name hi… 1d368230… </span><span style='color: #BB0000;'>NA</span><span>           2020-12-18 </span><span style='color: #949494;'>18:10:59</span><span>
+#&gt; </span><span style='color: #949494;'># … with 62 more variables: system_submission_date &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   system_submitter_id &lt;chr&gt;, system_submitter_name &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   system_attachments_present &lt;int&gt;, system_attachments_expected &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   meta_instance_id &lt;chr&gt;, incident_observed_at_longitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   incident_observed_at_latitude &lt;dbl&gt;, incident_observed_at_altitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   incident_observed_at_accuracy &lt;dbl&gt;, incident_observed_at &lt;list&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   incident_incident_time &lt;dttm&gt;, incident_habitat &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   incident_photo_habitat &lt;chr&gt;, incident_location_comment &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   incident_observed_at_manual_longitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   incident_observed_at_manual_latitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   incident_observed_at_manual_altitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   incident_observed_at_manual_accuracy &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   incident_observed_at_manual &lt;list&gt;, details_taxon &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   details_species &lt;chr&gt;, details_maturity &lt;chr&gt;, details_sex &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   status_activity &lt;chr&gt;, status_health &lt;chr&gt;, status_behaviour &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   death_cause_of_death &lt;chr&gt;, death_cause_of_death_confidence &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   checks_checked_for_injuries &lt;chr&gt;, checks_scanned_for_pit_tags &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   checks_checked_for_flipper_tags &lt;chr&gt;, checks_samples_taken &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   habitat_photos_photo_habitat_3 &lt;chr&gt;, habitat_photos_photo_habitat_2 &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   habitat_photos_photo_habitat_4 &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   animal_fate_animal_fate_comment &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   photos_turtle_photo_carapace_top &lt;chr&gt;, photos_turtle_photo_head_top &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   photos_turtle_photo_head_side &lt;chr&gt;, photos_turtle_photo_head_front &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   morphometrics_curved_carapace_length_mm &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   morphometrics_curved_carapace_length_accuracy &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   morphometrics_curved_carapace_width_mm &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   morphometrics_curved_carapace_width_accuracy &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   morphometrics_tail_length_carapace_accuracy &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   morphometrics_maximum_head_width_accuracy &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   morphometrics_tail_length_carapace_mm &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   morphometrics_maximum_head_width_mm &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   damage_observation_odata_navigation_link &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   tag_observation_odata_navigation_link &lt;chr&gt;, odata_context &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   site_id &lt;dbl&gt;, site_name &lt;chr&gt;, area_id &lt;dbl&gt;, area_name &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   datetime &lt;dttm&gt;, calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   season &lt;dbl&gt;, season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
