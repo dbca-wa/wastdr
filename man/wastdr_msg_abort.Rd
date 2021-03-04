@@ -7,7 +7,7 @@
 wastdr_msg_abort(message)
 }
 \arguments{
-\item{message}{<chr> A message to print}
+\item{message}{(chr) A message to print}
 }
 \description{
 rlang::abort() with a red error message with a cross symbol.

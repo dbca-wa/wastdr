@@ -5,7 +5,7 @@
 \alias{wastd_tne}
 \title{WAStD TurtleNestEncounters, parsed, test data captured by author}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 100 rows and 58 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 100 rows and 59 columns.
 }
 \usage{
 wastd_tne
@@ -15,9 +15,6 @@ WAStD TurtleNestEncounters, parsed, test data captured by author
 }
 \seealso{
 Other included: 
-\code{\link{download_odkc_turtledata_2019}()},
-\code{\link{download_odkc_turtledata_2020}()},
-\code{\link{download_wastd_turtledata}()},
 \code{\link{odkc_data}},
 \code{\link{print.odkc_turtledata}()},
 \code{\link{print.wastd_data}()},

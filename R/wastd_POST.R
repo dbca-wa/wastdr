@@ -5,11 +5,11 @@
 #'
 #' @param data (JSON) A list of lists (JSON) to post to WAStD.
 #' @template param-serializer
-#' @param query <list> A list of POST parameters,
-#'   default: \code{list(format="json")}.
-#' @param encode The parameter \code{encode} for \code{link{httr::POST}},
+#' @param query (list) A list of POST parameters,
+#'   default: `list(format="json")`.
+#' @param encode The parameter `encode` for `\link{httr::POST}`,
 #'   default: "json".
-#'   Other options: \code{c("multipart", "form", "json", "raw")}.
+#'   Other options: `c("multipart", "form", "json", "raw")`.
 #' @template param-auth
 #' @template param-verbose
 #' @template return-wastd-api-response

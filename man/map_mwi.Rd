@@ -16,8 +16,8 @@ map_mwi(
 \arguments{
 \item{data}{AnimalEncounters from WAStD.}
 
-\item{sites}{An sf object of sites with `site_name` and polygon geom, e.g.
-`turtleviewer::turtledata$sites`.}
+\item{sites}{An sf object of sites with \code{site_name} and polygon geom, e.g.
+\code{turtleviewer::turtledata$sites}.}
 
 \item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
 

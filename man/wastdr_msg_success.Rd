@@ -7,7 +7,7 @@
 wastdr_msg_success(message)
 }
 \arguments{
-\item{message}{<chr> A message to print}
+\item{message}{(chr) A message to print}
 }
 \description{
 Print a green success message with a tick symbol.

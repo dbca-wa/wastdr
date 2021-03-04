@@ -2,13 +2,16 @@
 #'
 #' \lifecycle{maturing}
 #'
-#' @param max_records <int> The max number of records to retrieve,
-#'   default: NULL (all).
+#' See also `??wastdr::export_wastd_turtledata` for a detailed explanation of
+#' the data tables.
+#'
+#' @param max_records (int) The max number of records to retrieve,
+#'   default: NULL (download all).
 #' @template param-verbose
 #'
 #' @return An S3 class "wastd_data" with items:
 #' \itemize{
-#'   \item downloaded_on An UTC POSIXct timestamp of the data snapshot generated
+#'   \item downloaded_on A UTC POSIXct timestamp of the data snapshot generated
 #'         by \code{\link{Sys.time}}.
 #'   \item sites An sf object of known WAStD sites.
 #'   \item areas An sf object of known WAStD localities.
@@ -29,9 +32,14 @@
 #'   \item nest_lightsources - Light sources present during hatchling emergence.
 #'   \item nest_loggers - Temperature loggers inside the nest. LoggerEncounters
 #'         were migrated to become LoggerObservations.
+#'   \item linetx LineTransects of Turtle Track Tally counts.
+#'   \item track_tally Tally of track type/species, many per linetx.
+#'   \item disturbance_tally Tally of dist/pred, many per linetx.
+#'   \item loggers LoggerEncounters, deprecated, will be migrated to LoggerObs
+#'         associated with Encounters.
 #' }
 #' @export
-#' @family included
+#' @family api
 download_wastd_turtledata <- function(max_records = NULL,
                                       verbose = get_wastdr_verbose()) {
   # Areas ---------------------------------------------------------------------#

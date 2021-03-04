@@ -13,7 +13,7 @@ add_nest_labels_odkc(nests)
 }
 \value{
 The dataframe with two new columns, \code{species_colours} and
-  \code{nest_type_text}.
+\code{nest_type_text}.
 }
 \description{
 Adds two columns, two new columns, \code{species_colours} and
@@ -29,7 +29,10 @@ to create \code{leaflet} markers with
 \seealso{
 Other odkc: 
 \code{\link{add_hatching_emergence_success_odkc}()},
+\code{\link{download_odkc_turtledata_2019}()},
+\code{\link{download_odkc_turtledata_2020}()},
 \code{\link{exclude_training_species_odkc}()},
+\code{\link{filter_odkc_turtledata}()},
 \code{\link{general_disturbance_by_season_odkc}()},
 \code{\link{hatching_emergence_success_odkc}()},
 \code{\link{map_dist_odkc}()},

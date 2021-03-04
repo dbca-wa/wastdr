@@ -7,8 +7,8 @@
 download_wastd_turtledata(max_records = NULL, verbose = get_wastdr_verbose())
 }
 \arguments{
-\item{max_records}{<int> The max number of records to retrieve,
-default: NULL (all).}
+\item{max_records}{(int) The max number of records to retrieve,
+default: NULL (download all).}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}
@@ -16,46 +16,51 @@ Default: wastdr::get_wastdr_verbose()}
 \value{
 An S3 class "wastd_data" with items:
 \itemize{
-  \item downloaded_on An UTC POSIXct timestamp of the data snapshot generated
-        by \code{\link{Sys.time}}.
-  \item sites An sf object of known WAStD sites.
-  \item areas An sf object of known WAStD localities.
-  \item surveys A tibble of surveys, reconstructed by WAStD from
-        Site Visit Start and End records (where given) and
-        (TurtleNest)Encounters.
-  \item animals A tibble of AnimalEncounters, which includes live sightings,
-        rescues, strandings, and other incidents, and turtle tagging.
-        Data is included from 2016 and onwards.
-  \item tracks Turtle tracks and nests.
-  \item nest_dist Turtle Nest and General disturbance / predation.
-  \item nest_tags Turtle Nest Tags.
-  \item nest_excavations Turtle Nest Excavations - hatching and emergence
-        success.
-  \item hatchling_morph Hatchling morphometrics from next exacavations.
-  \item nest_fans Hatchling emergence tracks - main fan.
-  \item nest_fan_outliers Hatchling emergence tracks - individual outliers.
-  \item nest_lightsources - Light sources present during hatchling emergence.
-  \item nest_loggers - Temperature loggers inside the nest. LoggerEncounters
-        were migrated to become LoggerObservations.
+\item downloaded_on A UTC POSIXct timestamp of the data snapshot generated
+by \code{\link{Sys.time}}.
+\item sites An sf object of known WAStD sites.
+\item areas An sf object of known WAStD localities.
+\item surveys A tibble of surveys, reconstructed by WAStD from
+Site Visit Start and End records (where given) and
+(TurtleNest)Encounters.
+\item animals A tibble of AnimalEncounters, which includes live sightings,
+rescues, strandings, and other incidents, and turtle tagging.
+Data is included from 2016 and onwards.
+\item tracks Turtle tracks and nests.
+\item nest_dist Turtle Nest and General disturbance / predation.
+\item nest_tags Turtle Nest Tags.
+\item nest_excavations Turtle Nest Excavations - hatching and emergence
+success.
+\item hatchling_morph Hatchling morphometrics from next exacavations.
+\item nest_fans Hatchling emergence tracks - main fan.
+\item nest_fan_outliers Hatchling emergence tracks - individual outliers.
+\item nest_lightsources - Light sources present during hatchling emergence.
+\item nest_loggers - Temperature loggers inside the nest. LoggerEncounters
+were migrated to become LoggerObservations.
+\item linetx LineTransects of Turtle Track Tally counts.
+\item track_tally Tally of track type/species, many per linetx.
+\item disturbance_tally Tally of dist/pred, many per linetx.
+\item loggers LoggerEncounters, deprecated, will be migrated to LoggerObs
+associated with Encounters.
 }
 }
 \description{
 \lifecycle{maturing}
 }
-\seealso{
-Other included: 
-\code{\link{download_odkc_turtledata_2019}()},
-\code{\link{download_odkc_turtledata_2020}()},
-\code{\link{odkc_data}},
-\code{\link{print.odkc_turtledata}()},
-\code{\link{print.wastd_data}()},
-\code{\link{tsc_data}},
-\code{\link{wastd_ae_raw}},
-\code{\link{wastd_ae}},
-\code{\link{wastd_area_raw}},
-\code{\link{wastd_data}},
-\code{\link{wastd_surveys_raw}},
-\code{\link{wastd_tne_raw}},
-\code{\link{wastd_tne}}
+\details{
+See also \code{??wastdr::export_wastd_turtledata} for a detailed explanation of
+the data tables.
 }
-\concept{included}
+\seealso{
+Other api: 
+\code{\link{download_minimal_wastd_turtledata}()},
+\code{\link{download_wastd_sites}()},
+\code{\link{download_wastd_users}()},
+\code{\link{export_wastd_turtledata}()},
+\code{\link{filter_wastd_turtledata}()},
+\code{\link{wastd_GET}()},
+\code{\link{wastd_POST}()},
+\code{\link{wastd_parse}()},
+\code{\link{wastd_post_one}()}
+}
+\concept{api}

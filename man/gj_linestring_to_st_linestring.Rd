@@ -10,7 +10,7 @@ gj_linestring_to_st_linestring(gj_ls)
 \item{gj_ls}{A GeoJSON linestring}
 }
 \value{
-The linestring as `sf::sfg`
+The linestring as \code{sf::sfg}
 }
 \description{
 Convert a GeoJSON linestring into an st_linestring

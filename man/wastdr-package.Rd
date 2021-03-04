@@ -14,11 +14,13 @@ and to turn the received 'GeoJSON' into R 'tibbles'.
 \code{\link{wastdr}} will grow alongside implemented
 use cases of retrieving and analysing 'WAStD' data.
 
-  Please see the `wastdr` website for full documentation:
-  * <https://dbca-wa.github.io/wastdr/>
+Please see the \code{wastdr} website for full documentation:
+\itemize{
+\item \url{https://dbca-wa.github.io/wastdr/}
+}
 
-  `ruODK` is "pipe-friendly" and re-exports `%>%`, but does not
-  require their use.
+\code{ruODK} is "pipe-friendly" and re-exports \verb{\%>\%}, but does not
+require their use.
 }
 \seealso{
 Useful links:

@@ -11,20 +11,22 @@ filter_odkc_turtledata(
 )
 }
 \arguments{
-\item{data}{<list> The output of data("odkc_data"), a list of tibbles and sf}
+\item{data}{(list) The output of data("odkc_data"), a list of tibbles and sf}
 
-\item{area_name}{<chr> The name of the area to filter the data by. Options:
-* NULL (default): do not filter data, return unfiltered data.
-* "All turtle programs": do not filter data, return unfiltered data.
-* "Other": Filter data to area_name NA.
-* Any name in `unique(odkc_data$areas$area_name)`: return data filtered to
-  this area_name.}
+\item{area_name}{(chr) The name of the area to filter the data by. Options:
+\itemize{
+\item NULL (default): do not filter data, return unfiltered data.
+\item "All turtle programs": do not filter data, return unfiltered data.
+\item "Other": Filter data to area_name NA.
+\item Any name in \code{unique(odkc_data$areas$area_name)}: return data filtered to
+this area_name.
+}}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}
 }
 \value{
-<list> The input data, optionally filtered to a subset of records.
+(list) The input data, optionally filtered to a subset of records.
 }
 \description{
 Filter odkc_data to a given area_name.
@@ -49,3 +51,31 @@ nrow(data_area_2$tracks)
 data_orphans <- filter_odkc_turtledata(odkc_data, area_name = "Other")
 nrow(data_orphans)
 }
+\seealso{
+Other odkc: 
+\code{\link{add_hatching_emergence_success_odkc}()},
+\code{\link{add_nest_labels_odkc}()},
+\code{\link{download_odkc_turtledata_2019}()},
+\code{\link{download_odkc_turtledata_2020}()},
+\code{\link{exclude_training_species_odkc}()},
+\code{\link{general_disturbance_by_season_odkc}()},
+\code{\link{hatching_emergence_success_odkc}()},
+\code{\link{map_dist_odkc}()},
+\code{\link{map_mwi_odkc}()},
+\code{\link{map_sv_odkc}()},
+\code{\link{map_tracks_odkc}()},
+\code{\link{nest_disturbance_by_season_odkc}()},
+\code{\link{nesting_type_by_area_season_age_species_odkc}()},
+\code{\link{nesting_type_by_area_season_species_odkc}()},
+\code{\link{nesting_type_by_season_age_species_odkc}()},
+\code{\link{nesting_type_by_season_calendarday_age_species_odkc}()},
+\code{\link{nesting_type_by_season_calendarday_species_odkc}()},
+\code{\link{nesting_type_by_season_day_species_odkc}()},
+\code{\link{nesting_type_by_season_species_odkc}()},
+\code{\link{nesting_type_by_season_week_age_species_odkc}()},
+\code{\link{nesting_type_by_season_week_site_species_odkc}()},
+\code{\link{nesting_type_by_season_week_species_odkc}()},
+\code{\link{nesting_type_by_site_season_age_species_odkc}()},
+\code{\link{nesting_type_by_site_season_species_odkc}()}
+}
+\concept{odkc}

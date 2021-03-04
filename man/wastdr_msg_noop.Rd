@@ -7,7 +7,7 @@
 wastdr_msg_noop(message)
 }
 \arguments{
-\item{message}{<chr> A message to print}
+\item{message}{(chr) A message to print}
 }
 \description{
 Print a green noop message with a filled circle symbol.

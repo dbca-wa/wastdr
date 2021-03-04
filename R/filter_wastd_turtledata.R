@@ -3,7 +3,7 @@
 #' @param x An object of class `wastd_data` as returned by
 #'   \code{\link{download_wastd_turtledata}}. This data can be filtered to
 #'   an area_name (WAStD Area of type Locality).
-#' @param area_name <chr> The name of the area to filter the data by. Options:
+#' @param area_name (chr) The name of the area to filter the data by. Options:
 #'   * NULL (default): do not filter data, return unfiltered data.
 #'   * "All turtle programs": do not filter data, return unfiltered data.
 #'   * "Other": Filter data to area_name NA.
@@ -13,6 +13,7 @@
 #' @return An object of class `wastd_data` filtered to records within
 #'   `area_name`.
 #' @export
+#' @family api
 #' @examples
 #' \dontrun{
 #' data(wastd_data)
@@ -82,7 +83,10 @@ filter_wastd_turtledata <- function(x,
       areas = x$areas,
       sites = x$sites %>% my_filter(),
       surveys = x$surveys %>%
-        dplyr::left_join(x$sites, by = "site_id", "site_name") %>%
+        dplyr::left_join(
+          x$sites,
+          by = "area_id", "area_name", "site_id", "site_name"
+        ) %>%
         my_filter(),
 
       animals = x$animals %>% my_filter(),
@@ -98,6 +102,7 @@ filter_wastd_turtledata <- function(x,
       nest_fans = x$nest_fans %>% obs_filter(),
       nest_fan_outliers = x$nest_fan_outliers %>% obs_filter(),
       nest_lightsources = x$nest_lightsources %>% obs_filter(),
+      nest_loggers = x$nest_loggers %>% obs_filter(),
 
       linetx = x$linetx %>% my_filter(), # TODO: filter doesn't work yet
       track_tally = x$track_tally %>% obs_filter(),

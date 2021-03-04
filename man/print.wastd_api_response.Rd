@@ -7,10 +7,10 @@
 \method{print}{wastd_api_response}(x, ...)
 }
 \arguments{
-\item{x}{An object of class `wastd_api_response` as returned by
+\item{x}{An object of class \code{wastd_api_response} as returned by
 \code{\link{wastd_GET}}.}
 
-\item{...}{Extra parameters for `print`}
+\item{...}{Extra parameters for \code{print}}
 }
 \description{
 Prints a short representation of data returned by

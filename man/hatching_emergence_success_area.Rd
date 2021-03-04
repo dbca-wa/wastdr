@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{hatching_emergence_success_area}
 \alias{hatching_emergence_success_area}
-\title{Summarize HS and ES for excavations of hatched nests grouped by `area_name`}
+\title{Summarize HS and ES for excavations of hatched nests grouped by \code{area_name}}
 \usage{
 hatching_emergence_success_area(data)
 }

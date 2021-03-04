@@ -3,31 +3,34 @@
 \name{add_hatching_emergence_success_odkc}
 \alias{add_hatching_emergence_success_odkc}
 \title{Add calculated egg count, hatching and emergence success to
-`odkc_data$tracks_egg`.}
+\code{odkc_data$tracks_egg}.}
 \usage{
 add_hatching_emergence_success_odkc(data)
 }
 \arguments{
 \item{data}{ODKC Track or Nest data annotated with egg counts, e.g.
-`odkc_data$tracks_egg`.}
+\code{odkc_data$tracks_egg}.}
 }
 \description{
-Hatching success as percentage [0..100] after Miller 1999:
-  Hatching success = 100 * no_egg_shells / (
-  no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
-  no_unhatched_term + no_depredated_eggs)
+Hatching success as percentage \link{0..100} after Miller 1999:
+Hatching success = 100 * no_egg_shells / (
+no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
+no_unhatched_term + no_depredated_eggs)
 }
 \details{
-Emergence success as percentage [0..100] after Miller 1999:
-  Emergence success = 100 *
-  (no_egg_shells - no_live_hatchlings - no_dead_hatchlings) / (
-  no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
-   no_unhatched_term + no_depredated_eggs)
+Emergence success as percentage \link{0..100} after Miller 1999:
+Emergence success = 100 *
+(no_egg_shells - no_live_hatchlings - no_dead_hatchlings) / (
+no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
+no_unhatched_term + no_depredated_eggs)
 }
 \seealso{
 Other odkc: 
 \code{\link{add_nest_labels_odkc}()},
+\code{\link{download_odkc_turtledata_2019}()},
+\code{\link{download_odkc_turtledata_2020}()},
 \code{\link{exclude_training_species_odkc}()},
+\code{\link{filter_odkc_turtledata}()},
 \code{\link{general_disturbance_by_season_odkc}()},
 \code{\link{hatching_emergence_success_odkc}()},
 \code{\link{map_dist_odkc}()},

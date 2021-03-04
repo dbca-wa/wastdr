@@ -7,12 +7,12 @@
 get_more(total_count, limit)
 }
 \arguments{
-\item{total_count}{<int> The total count of downloaded records}
+\item{total_count}{(int) The total count of downloaded records}
 
-\item{limit}{<int> or NULL The max count of records to download}
+\item{limit}{(int) or NULL The max count of records to download}
 }
 \value{
-<lgl> TRUE if limit has not been reached or limit is NULL, else FALSE
+(lgl) TRUE if limit has not been reached or limit is NULL, else FALSE
 }
 \description{
 \lifecycle{stable}

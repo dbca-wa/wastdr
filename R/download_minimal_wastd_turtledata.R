@@ -15,6 +15,7 @@
 #' \item surveys A tibble of surveys reconstructed from source and year.
 #' }
 #' @export
+#' @family api
 download_minimal_wastd_turtledata <-
   function(source = "odk",
            year = NULL,

@@ -21,16 +21,16 @@ wastd_GET(
 \item{serializer}{(character) WAStD API serializer name (required)
 Possible values see \code{https://tsc.dbca.wa.gov.au/api/1/}}
 
-\item{query}{<list> A list of GET parameters, default: list().
+\item{query}{A list of GET parameters, default: list().
 The \code{format} is specified in a separate top-level param.}
 
-\item{format}{<chr> The desired API output format, default: "json".}
+\item{format}{The desired API output format, default: "json".}
 
-\item{max_records}{<int> The maximum number of records retrieved.
+\item{max_records}{The maximum number of records retrieved.
 If left at default (NULL), all records are returned.
 Default: NULL.}
 
-\item{chunk_size}{<int> The number of records to retrieve in each paginated
+\item{chunk_size}{The number of records to retrieve in each paginated
 response. A specified but smaller \code{limit} will override
 \code{chunk_size}.
 Adjust \code{chunk_size} down if getting timeouts from the API.
@@ -54,17 +54,17 @@ Default: wastdr::get_wastdr_verbose()}
 \value{
 An S3 object of class 'wastd_api_response' containing:
 
-  features: The sent GeoJSON features
+features: The sent GeoJSON features
 
-  serializer: The called serializer, e.g. 'supra'
+serializer: The called serializer, e.g. 'supra'
 
-  response: The API HTTP response with all metadata
+response: The API HTTP response with all metadata
 }
 \description{
 Call the WAStD API serializer's list view with given GET
-  parameters, parse the response's features into a nested list.
-  This function requires the WAStD API to return the results in a key
-  `features` (if GeoJSON) or `data` (if JSON).
+parameters, parse the response's features into a nested list.
+This function requires the WAStD API to return the results in a key
+\code{features} (if GeoJSON) or \code{data} (if JSON).
 }
 \details{
 \lifecycle{stable}
@@ -80,6 +80,12 @@ hatched_nest_records <- wastd_GET("turtle-nest-encounters",
 }
 \seealso{
 Other api: 
+\code{\link{download_minimal_wastd_turtledata}()},
+\code{\link{download_wastd_sites}()},
+\code{\link{download_wastd_turtledata}()},
+\code{\link{download_wastd_users}()},
+\code{\link{export_wastd_turtledata}()},
+\code{\link{filter_wastd_turtledata}()},
 \code{\link{wastd_POST}()},
 \code{\link{wastd_parse}()},
 \code{\link{wastd_post_one}()}

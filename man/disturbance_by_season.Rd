@@ -9,13 +9,13 @@ disturbance_by_season(data)
 \arguments{
 \item{data}{A dataframe with column "disturbance_cause", e.g. the ouput of
 \code{
-\link{wastd_GET}("turtle-nest-disturbance-observations") %>%
-\link{parse_encounterobservations}()
-} or \code{data("wastd_data"); wastd_data$nest_dist}}
+  \link{wastd_GET}("turtle-nest-disturbance-observations") %>%
+  \link{parse_encounterobservations}()
+  } or \code{data("wastd_data"); wastd_data$nest_dist}}
 }
 \value{
-A tibble with columns `season`, `disturbance_cause`,
- `encounter_type`, and a tally `n`.
+A tibble with columns \code{season}, \code{disturbance_cause},
+\code{encounter_type}, and a tally \code{n}.
 }
 \description{
 \lifecycle{stable}

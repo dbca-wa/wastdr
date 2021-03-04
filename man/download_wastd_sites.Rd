@@ -21,8 +21,21 @@ default \code{\link{get_wastdr_api_token}}, see \code{\link{wastdr_setup}}}
 Default: wastdr::get_wastdr_verbose()}
 }
 \value{
-An `sf` dataframe of WAStD Sites joined to Locality details.
+An \code{sf} dataframe of WAStD Sites joined to Locality details.
 }
 \description{
 Download Areas of type Site from WAStD
 }
+\seealso{
+Other api: 
+\code{\link{download_minimal_wastd_turtledata}()},
+\code{\link{download_wastd_turtledata}()},
+\code{\link{download_wastd_users}()},
+\code{\link{export_wastd_turtledata}()},
+\code{\link{filter_wastd_turtledata}()},
+\code{\link{wastd_GET}()},
+\code{\link{wastd_POST}()},
+\code{\link{wastd_parse}()},
+\code{\link{wastd_post_one}()}
+}
+\concept{api}

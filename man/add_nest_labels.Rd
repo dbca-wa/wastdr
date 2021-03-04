@@ -13,7 +13,7 @@ add_nest_labels(nests)
 }
 \value{
 The dataframe with two new columns, \code{species_colours} and
-  \code{nest_type_text}.
+\code{nest_type_text}.
 }
 \description{
 Adds two columns, two new columns, \code{species_colours} and

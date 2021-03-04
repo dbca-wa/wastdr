@@ -15,14 +15,14 @@ map_sv_odkc(
 )
 }
 \arguments{
-\item{svs}{The output of `turtleviewer::turtledata$svs` - data from ODK form
-`Site Visit Start 0.3`.}
+\item{svs}{The output of \code{turtleviewer::turtledata$svs} - data from ODK form
+\verb{Site Visit Start 0.3}.}
 
-\item{sve}{The output of `turtleviewer::turtledata$sve` - data from ODK form
-`Site Visit End 0.2`.}
+\item{sve}{The output of \code{turtleviewer::turtledata$sve} - data from ODK form
+\verb{Site Visit End 0.2}.}
 
-\item{sites}{An sf object of sites with `site_name` and polygon geom, e.g.
-`turtleviewer::turtledata$sites`.}
+\item{sites}{An sf object of sites with \code{site_name} and polygon geom, e.g.
+\code{turtleviewer::turtledata$sites}.}
 
 \item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
 
@@ -56,7 +56,10 @@ map_sv_odkc(odkc_data$svs, odkc_data$sve, sites = odkc_data$sites)
 Other odkc: 
 \code{\link{add_hatching_emergence_success_odkc}()},
 \code{\link{add_nest_labels_odkc}()},
+\code{\link{download_odkc_turtledata_2019}()},
+\code{\link{download_odkc_turtledata_2020}()},
 \code{\link{exclude_training_species_odkc}()},
+\code{\link{filter_odkc_turtledata}()},
 \code{\link{general_disturbance_by_season_odkc}()},
 \code{\link{hatching_emergence_success_odkc}()},
 \code{\link{map_dist_odkc}()},

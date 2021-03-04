@@ -27,9 +27,9 @@ wastd_create_update_skip(
 \item{update_existing}{Whether to update existing but unchanged records in
 WAStD. Default: FALSE.}
 
-\item{label}{The model label for verbose messages, default: `records`.}
+\item{label}{The model label for verbose messages, default: \code{records}.}
 
-\item{serializer}{The WAStD API serializer, default: `encounters`.}
+\item{serializer}{The WAStD API serializer, default: \code{encounters}.}
 
 \item{chunksize}{The number of records to post at a time, default: 1000.}
 
@@ -44,10 +44,11 @@ Default: wastdr::get_wastdr_verbose()}
 }
 \value{
 A list of three objects:
-
-* `created` The WAStD API response for all created records
-* `updated` The WAStD API response for all updated records
-* `skipped` The original records for all skipped records
+\itemize{
+\item \code{created} The WAStD API response for all created records
+\item \code{updated} The WAStD API response for all updated records
+\item \code{skipped} The original records for all skipped records
+}
 }
 \description{
 Handles empty data, verbose notifications.

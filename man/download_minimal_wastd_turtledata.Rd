@@ -32,12 +32,25 @@ Default: wastdr::get_wastdr_verbose()}
 A list of tibbles:
 \itemize{
 \item users A tibble of user names, roles, and contact details which can be
-  used to resolve submitted user names to WAStD user IDs
+used to resolve submitted user names to WAStD user IDs
 \item enc A tibble of encounters (source, source ID, QA status) which can be
-  used to determine which encounters to create / update / skip.
+used to determine which encounters to create / update / skip.
 \item surveys A tibble of surveys reconstructed from source and year.
 }
 }
 \description{
 Download a minimal dataset of turtle observations from WAStD
 }
+\seealso{
+Other api: 
+\code{\link{download_wastd_sites}()},
+\code{\link{download_wastd_turtledata}()},
+\code{\link{download_wastd_users}()},
+\code{\link{export_wastd_turtledata}()},
+\code{\link{filter_wastd_turtledata}()},
+\code{\link{wastd_GET}()},
+\code{\link{wastd_POST}()},
+\code{\link{wastd_parse}()},
+\code{\link{wastd_post_one}()}
+}
+\concept{api}

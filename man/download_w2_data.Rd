@@ -17,79 +17,90 @@ download_w2_data(
 )
 }
 \arguments{
-\item{ord}{Lubridate orders, default: `c("YmdHMS", "Ymd")`.}
+\item{ord}{Lubridate orders, default: \code{c("YmdHMS", "Ymd")}.}
 
-\item{tz}{Timezone, default: `"Australia/Perth"`.}
+\item{tz}{Timezone, default: \code{"Australia/Perth"}.}
 
-\item{db_drv}{Database driver, default: `Sys.getenv("W2_DRV")` which should
-resolve to e.g. `"/usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so"`.}
+\item{db_drv}{Database driver, default: \code{Sys.getenv("W2_DRV")} which should
+resolve to e.g. \code{"/usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so"}.}
 
-\item{db_srv}{Database server, default: `Sys.getenv("W2_SRV")`, which should
-resolve to a valid server hostname, e.g. `"myserver.corporateict.domain"`.}
+\item{db_srv}{Database server, default: \code{Sys.getenv("W2_SRV")}, which should
+resolve to a valid server hostname, e.g. \code{"myserver.corporateict.domain"}.}
 
-\item{db_name}{The database name, default: `Sys.getenv("W2_DB")`, which should
-resolve to a valid database name, e.g. `turtle_tagging`.}
+\item{db_name}{The database name, default: \code{Sys.getenv("W2_DB")}, which should
+resolve to a valid database name, e.g. \code{turtle_tagging}.}
 
 \item{db_user}{The read-permitted database user,
-default: `Sys.getenv("W2_UN")`.}
+default: \code{Sys.getenv("W2_UN")}.}
 
-\item{db_pass}{The database user's password, default: `Sys.getenv("W2_PW")`.}
+\item{db_pass}{The database user's password, default: \code{Sys.getenv("W2_PW")}.}
 
-\item{db_port}{The database port, default: `Sys.getenv("W2_PT")`, which
-should resolve to a numeric port, e.g. `1234`.}
+\item{db_port}{The database port, default: \code{Sys.getenv("W2_PT")}, which
+should resolve to a numeric port, e.g. \code{1234}.}
 
 \item{verbose}{Whether to print verbose help messages,
-default: `wastdr::get_wastdr_verbose()`.}
+default: \code{wastdr::get_wastdr_verbose()}.}
 }
 \value{
 A named list of sanitised tables from the Turtle Tagging DB:
-
-  # Metadata
-  downloaded_on
-  w2_tables
-
-  # personnel
-  persons
-
-  # Data entry
-  data_entry_batches
-  data_entry
-  data_entry_operators
-
-  # Lookups
-  lookup_beach_positions
-  lookup_body_parts
-  lookup_conditions
-  lookup_damage_causes
-  lookup_damage_codes
-  lookup_datum_codes
-  lookup_egg_count_methods
-  lookup_id_types
-  lookup_measurement_types
-  lookup_pit_tag_states
-  lookup_sample_tissue_type
-  lookup_tag_states
-
-  # Sites
-  sites
-
-  # Encounters
-  enc
-  enc_qa
-
-  # Observations
-  obs_flipper_tags
-  obs_pit_tags
-  obs_damages
-  obs_measurements
-  obs_samples
-
-  # Reconstructed
-  reconstructed_pit_tags
-  reconstructed_tags
-  reconstructed_turtles
+\itemize{
+\item Metadata:
+\itemize{
+\item downloaded_on
+\item w2_tables
+}
+\item Personnel:
+\itemize{
+\item persons
+}
+\item Data entry:
+\itemize{
+\item data_entry_batches
+\item data_entry
+\item data_entry_operators
+}
+\item Lookups:
+\itemize{
+\item lookup_beach_positions
+\item lookup_body_parts
+\item lookup_conditions
+\item lookup_damage_causes
+\item lookup_damage_codes
+\item lookup_datum_codes
+\item lookup_egg_count_methods
+\item lookup_id_types
+\item lookup_measurement_types
+\item lookup_pit_tag_states
+\item lookup_sample_tissue_type
+\item lookup_tag_states
+}
+\item Places:
+\itemize{
+\item sites
+}
+\item Encounters:
+\itemize{
+\item enc
+\item enc_qa
+}
+\item Observations:
+\itemize{
+\item obs_flipper_tags
+\item obs_pit_tags
+\item obs_damages
+\item obs_measurements
+\item obs_samples
+}
+\item Reconstructed:
+\itemize{
+\item reconstructed_pit_tags
+\item reconstructed_tags
+\item reconstructed_turtles
+}
+}
 }
 \description{
 This function requires an installed ODBC driver for MS SQL Server 2012.
 The database credentials are handled via environment variables.
 }
+\concept{wamtram}

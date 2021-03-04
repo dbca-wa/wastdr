@@ -14,21 +14,27 @@ wastd_parse(wastd_api_response, payload = "data")
 }
 \value{
 A tibble with one row per record and columns corresponding to each
-  record's fields.
+record's fields.
 }
 \description{
 From a \code{wastd_api_response}, turn the key \code{payload}
-  (default: "features") into a \code{tibble:tibble}, and
-  \code{tidyr::unnest_wider} the tibble into columns equivalent to the fields
-  of the WAStD API serializer.
-  If GeoJSON is found, the keys `geometry` (including `coordinates`) will
-  remain unchanged, but the key `properties` will be unnested.
+(default: "features") into a \code{tibble:tibble}, and
+\code{tidyr::unnest_wider} the tibble into columns equivalent to the fields
+of the WAStD API serializer.
+If GeoJSON is found, the keys \code{geometry} (including \code{coordinates}) will
+remain unchanged, but the key \code{properties} will be unnested.
 }
 \details{
 \lifecycle{stable}
 }
 \seealso{
 Other api: 
+\code{\link{download_minimal_wastd_turtledata}()},
+\code{\link{download_wastd_sites}()},
+\code{\link{download_wastd_turtledata}()},
+\code{\link{download_wastd_users}()},
+\code{\link{export_wastd_turtledata}()},
+\code{\link{filter_wastd_turtledata}()},
 \code{\link{wastd_GET}()},
 \code{\link{wastd_POST}()},
 \code{\link{wastd_post_one}()}

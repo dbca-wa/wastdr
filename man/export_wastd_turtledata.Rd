@@ -7,7 +7,7 @@
 export_wastd_turtledata(x, outdir = here::here(), filename = "export")
 }
 \arguments{
-\item{x}{An object of class `wastd_data` as returned by
+\item{x}{An object of class \code{wastd_data} as returned by
 \code{\link{download_wastd_turtledata}}.
 This data can optionally be filtered to
 an area_name (WAStD Area of type Locality).}
@@ -15,8 +15,153 @@ an area_name (WAStD Area of type Locality).}
 \item{outdir}{The destination to write exported data to,
 default: \code{here::here()}.}
 
-\item{filename}{The filename of the ZIP file, default: `export`.
-The extension `.zip` will be appended and should not be part of `filename`.}
+\item{filename}{The filename of the ZIP file, default: \code{export}.
+The extension \code{.zip} will be appended and should not be part of \code{filename}.}
+}
+\value{
+A set of files in the folder \code{outdir}.
+GeoJSON files can be opened in any GIS, such as Quantum GIS or ESRI ArcGIS.
+CSV files can be opened in any spreasheet program, such as MS Excel or
+LibreOffice Calc.
+\itemize{
+\item \code{areas.geojson} WAStD Areas, or Localities.
+\itemize{
+\item Typically one locality per monitoring program.
+}
+\item \code{sites.geojson} WAStD Sites.
+\itemize{
+\item Each Survey and Encounter can be linked to one Site.
+}
+\item \code{surveys.csv} Surveys.
+\itemize{
+\item Each row is one Survey.
+\item Training and duplicate Surveys are distinguished from production (real)
+Surveys by the column \code{production} (TRUE or FALSE).
+}
+\item \code{animals.csv} AnimalEncounters.
+\itemize{
+\item This includes encounters with animals during turtle tagging,
+as well as strandings and rescues. Mind that stranded turtles can be
+tagged, but are not always encountered during dedicated surveys.
+\item Survey details are repeated for convenience.
+\item One record can have several additional observations, which are included
+as separate CSVs.
+}
+\item \code{turtle_tags.csv} Tags recorded during an AnimalEncounter.
+\itemize{
+\item Each record concerns exactly one Tag.
+\item One Animal can carry multiple Tags.
+\item Details of the overarching AnimalEncounter are repeated for
+convenience.
+}
+\item \code{turtle_dmg.csv} Damages or distinguishing features observed during an
+AnimalEncounter.
+\itemize{
+\item Each record concerns exactly one Damage.
+\item One Animal can show multiple Damages or distinguishing features.
+\item Details of the overarching AnimalEncounter are repeated for
+convenience.
+}
+\item \code{turtle_morph.csv} Morphological measurements taken during an
+AnimalEncounter.
+\itemize{
+\item Each record concerns exactly one set of measurements.
+\item One Animal could have multiple sets of measurements, although normally
+only one set of morphological measurements is taken.
+\item Details of the overarching AnimalEncounter are repeated for
+convenience.
+}
+\item \code{tracks.csv} TurtleNestEncounters, which include turtle tracks without
+nests ("false crawls"), nests with tracks ("successful crawls"), and
+any shade of doubt or negligent data capture in between.
+\itemize{
+\item One record is exactly one Track or Nest.
+\item Survey details are repeated for convenience.
+\item One record can have several additional observations, which are included
+as separate CSVs.
+}
+\item \code{nest_dist.csv} TurtleNestDisturbanceObservations are recorded either
+linked to a nest (predated or damaged turtle nest), or standalone as
+general disturbance or predator presence.
+\itemize{
+\item Disturbed or predated nests are distinguished from general disturbance
+or predator presence through the column \code{encounter_type}
+("nest" or "other").
+\item Details of the overarching TurtleNestEncounter are repeated for
+convenience.
+}
+\item \code{nest_tags.csv} NestTagObservations.
+A stick with an ID scribbled on it stuck in the sand next to a nest.
+\itemize{
+\item Not to be confused with data loggers,
+which also carry an ID and are associated with a turtle nest for a while.
+\item Details of the overarching TurtleNestEncounter are repeated for
+convenience.
+}
+\item \code{nest_excavations.csv} Excavations of a turtle nest, resulting in a count
+of eggs and leftovers grouped into categories, plus egg chamber details.
+\itemize{
+\item Details of the overarching TurtleNestEncounter are repeated for
+convenience.
+}
+\item \code{hatchling_morph.csv} Morphometric measurements of a single turtle
+hatchling.
+\itemize{
+\item There can be several per nest.
+\item Details of the overarching TurtleNestEncounter are repeated for
+convenience.
+}
+\item \code{nest_fans.csv} Measurements of turtle hatchling emergence track fans.
+\itemize{
+\item Multiple measurements of fan angles per nest are possible, but not
+expected.
+\item Details of the overarching TurtleNestEncounter are repeated for
+convenience.
+}
+\item \code{nest_fan_outliers.csv} Individual hatchling tracks outside of the main
+fan of hatchling tracks.
+\itemize{
+\item There can be several per nest.
+\item Details of the overarching TurtleNestEncounter are repeated for
+convenience.
+}
+\item \code{nest_lightsources.csv} Individual known lightsources during hatching.
+\itemize{
+\item There can be several per nest.
+\item Details of the overarching TurtleNestEncounter are repeated for
+convenience.
+}
+\item \code{nest_loggers.csv} Deployed or re-sighted data loggers in a turtle nest.
+\itemize{
+\item There can be several per nest.
+\item Details of the overarching TurtleNestEncounter are repeated for
+convenience.
+}
+\item \code{line_transects.geojson} Tallies turtle tracks along a transect,
+recorded during one LineTransectEncounter.
+\itemize{
+\item One record per transect.
+\item A transect can be crossed by many individual tracks.
+}
+\item \code{track_tally.csv} Tally of tracks by type and species crossing a transect.
+\itemize{
+\item There can be many tallies per transect.
+\item Details of the overarching LineTransectEncounter are repeated for
+convenience.
+}
+\item \code{disturbance_tally.csv} Tally of general disturbances or predator presence
+encountered during one LineTransectEncounter.
+\itemize{
+\item There can be several per transect.
+\item Details of the overarching LineTransectEncounter are repeated for
+convenience.
+}
+\item \code{loggers.csv} Encounters with Data Loggers, deprecated.
+\itemize{
+\item Data to be migrated to LoggerObservations.
+}
+\item \code{loggers.geojson} Loggers.csv as GeoJSON.
+}
 }
 \description{
 Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files.
@@ -31,3 +176,16 @@ filter_wastd_turtledata(area_name = an) \%>\%
 export_wastd_turtledata(outdir = here::here(au), filename = au)
 }
 }
+\seealso{
+Other api: 
+\code{\link{download_minimal_wastd_turtledata}()},
+\code{\link{download_wastd_sites}()},
+\code{\link{download_wastd_turtledata}()},
+\code{\link{download_wastd_users}()},
+\code{\link{filter_wastd_turtledata}()},
+\code{\link{wastd_GET}()},
+\code{\link{wastd_POST}()},
+\code{\link{wastd_parse}()},
+\code{\link{wastd_post_one}()}
+}
+\concept{api}

@@ -21,7 +21,7 @@ wastd_chunk_post(
 \item{serializer}{A WAStD API serializer, e.g. "encounters"}
 
 \item{query}{An optional query for \code{\link{wastd_POST}},
-default: `list()`.}
+default: \code{list()}.}
 
 \item{chunksize}{The number of records to post at a time, default: 1000.}
 
@@ -39,7 +39,7 @@ default \code{\link{get_wastdr_api_token}}, see \code{\link{wastdr_setup}}}
 Default: wastdr::get_wastdr_verbose()}
 }
 \value{
-The `wastd_api_response` of the last batch of data.
+The \code{wastd_api_response} of the last batch of data.
 }
 \description{
 POST data to a WAStD API serializer in chunks

@@ -11,7 +11,7 @@ map_chr_hack(.x, .f, ...)
 
 \item{.f}{A function to map over the data}
 
-\item{...}{Extra arguments to `map()`}
+\item{...}{Extra arguments to \code{map()}}
 }
 \description{
 \lifecycle{deprecated}

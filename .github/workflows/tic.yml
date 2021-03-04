@@ -27,9 +27,9 @@ jobs:
           - { os: windows-2016, r: "devel" }
           - { os: windows-2016, r: "release" }
           - { os: windows-2016, r: "oldrel" }
-          # - { os: macOS-latest, r: "devel" } # fails on
+          - { os: macOS-latest, r: "devel" }
           - { os: macOS-latest, r: "release"}
-          - { os: macOS-latest, r: "oldrel" }
+          # - { os: macOS-latest, r: "oldrel" } # missing udunits2
           - { os: ubuntu-20.04, r: "devel" }
           - { os: ubuntu-20.04, r: "release" }
           - { os: ubuntu-20.04, r: "oldrel" }
@@ -136,6 +136,11 @@ jobs:
           echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> /Users/runner/.bash_profile
           echo 'export PATH="/usr/local/opt/qt/bin:$PATH"' >> /Users/runner/.bash_profile
           Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
+
+      - name: "[Stage] Prepare & Install (macOS-oldrel)"
+        if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'oldrel'
+        run: |
+          brew install udunits
 
       - name: "[Stage] Script"
         run: Rscript -e 'tic::script()'

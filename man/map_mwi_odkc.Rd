@@ -14,11 +14,11 @@ map_mwi_odkc(
 )
 }
 \arguments{
-\item{data}{The output of `turtleviewer::turtledata$mwi` from ODK form
-`Marine Wildlife Incident 0.6`.}
+\item{data}{The output of \code{turtleviewer::turtledata$mwi} from ODK form
+\verb{Marine Wildlife Incident 0.6}.}
 
-\item{sites}{An sf object of sites with `site_name` and polygon geom, e.g.
-`turtleviewer::turtledata$sites`.}
+\item{sites}{An sf object of sites with \code{site_name} and polygon geom, e.g.
+\code{turtleviewer::turtledata$sites}.}
 
 \item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
 
@@ -56,7 +56,10 @@ map_mwi_odkc(data = NULL, sites = odkc_data$sites)
 Other odkc: 
 \code{\link{add_hatching_emergence_success_odkc}()},
 \code{\link{add_nest_labels_odkc}()},
+\code{\link{download_odkc_turtledata_2019}()},
+\code{\link{download_odkc_turtledata_2020}()},
 \code{\link{exclude_training_species_odkc}()},
+\code{\link{filter_odkc_turtledata}()},
 \code{\link{general_disturbance_by_season_odkc}()},
 \code{\link{hatching_emergence_success_odkc}()},
 \code{\link{map_dist_odkc}()},

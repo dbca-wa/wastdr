@@ -13,47 +13,47 @@ parse_animal_encounters(wastd_api_response)
 \value{
 A \code{tbl_df} with columns:
 \itemize{
-  \item area_name <chr>
-  \item area_type <chr>
-  \item area_id <int>
-  \item site_name <chr>
-  \item site_type <chr>
-  \item site_id <int>
-  \item survey_id <int>
-  \item survey_start_time <dttm>
-  \item survey_end_time <dttm>
-  \item survey_start_comments <chr>
-  \item survey_end_comments <chr>
-  \item datetime <dttm>
-  \item turtle_date <date>
-  \item season <int>
-  \item season_week <int> Number of completed weeks since fiscal year start
-  \item iso_week <int> Number of completed weeks since calendar year start
-  \item longitude <chr>
-  \item latitude <chr>
-  \item crs <chr>
-  \item location_accuracy <dbl>
-  \item name <chr>
-  \item species <chr>
-  \item health <chr>
-  \item sex <chr>
-  \item maturity <chr>
-  \item behaviour <chr>
-  \item habitat <chr>
-  \item activity <chr>
-  \item comments <chr>
-  \item nesting_event <chr>
-  \item checked_for_injuries <chr>
-  \item scanned_for_pit_tags <chr>
-  \item checked_for_flipper_tags <chr>
-  \item cause_of_death <chr>
-  \item cause_of_death_confidence <chr>
-  \item absolute_admin_url <chr>
-  \item obs <list>
-  \item source <chr>
-  \item source_id <chr>
-  \item encounter_type <chr>
-  \item status <chr>
+\item area_name (chr)
+\item area_type (chr)
+\item area_id (int)
+\item site_name (chr)
+\item site_type (chr)
+\item site_id (int)
+\item survey_id (int)
+\item survey_start_time (dttm)
+\item survey_end_time (dttm)
+\item survey_start_comments (chr)
+\item survey_end_comments (chr)
+\item datetime (dttm)
+\item turtle_date (date)
+\item season (int)
+\item season_week (int) Number of completed weeks since fiscal year start
+\item iso_week (int) Number of completed weeks since calendar year start
+\item longitude (chr)
+\item latitude (chr)
+\item crs (chr)
+\item location_accuracy (dbl)
+\item name (chr)
+\item species (chr)
+\item health (chr)
+\item sex (chr)
+\item maturity (chr)
+\item behaviour (chr)
+\item habitat (chr)
+\item activity (chr)
+\item comments (chr)
+\item nesting_event (chr)
+\item checked_for_injuries (chr)
+\item scanned_for_pit_tags (chr)
+\item checked_for_flipper_tags (chr)
+\item cause_of_death (chr)
+\item cause_of_death_confidence (chr)
+\item absolute_admin_url (chr)
+\item obs (list)
+\item source (chr)
+\item source_id (chr)
+\item encounter_type (chr)
+\item status (chr)
 }
 }
 \description{

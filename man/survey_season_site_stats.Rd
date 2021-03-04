@@ -14,8 +14,8 @@ survey_season_site_stats(surveys)
 }
 \details{
 Surveys, gruped by \code{season} and \code{site_name},
-  summarised as first and last day of surveys, season length in days,
-  number and total hours of surveys.
+summarised as first and last day of surveys, season length in days,
+number and total hours of surveys.
 }
 \seealso{
 Other wastd: 

@@ -15,47 +15,48 @@ parse_surveys(wastd_api_response, wastd_url = wastdr::get_wastd_url())
 \value{
 A \code{tbl_df} with columns:
 \itemize{
-  \item site_name <chr>
-  \item site_type <chr>
-  \item site_id <int>
-  \item reporter <chr>
-  \item reporter_username <chr>
-  \item reporter_id <chr>
-  \item start_time <dttm> The actual start time of the survey.
-  \item end_time <dttm> The actual, automatically guessed (if 6h later), or
-  human guessed end time.
-  \item start_comments <chr> Comments at start plus QA messages from username
-  guessing
-  \item end_comments <chr> Comments at end plus QA messages from username
-  guessing. A mismatch
-        of original usernames can indicate an incorrectly picked Site Visit
-        End point.
-  \item turtle_date <dttm> The "turtle date" of the survey.
-  \item season_week <int> The number of completed weeks since fiscal year
-  start
-  \item iso_week <int> The number of completed weeks since calendar year
-  start
-  \item season <int> The "turtle season" of the survey, rolling over with
-  Fiscal Year.
-  \item source <chr> Where this record was born.
-  \item source_id <chr> The ODK record UID of the Site Visit Start.
-  \item end_source_id <chr> The ODK record UID of the Site Visit End.
-  \item status <chr> The QA status of the Survey. "Proofread" or "Curated"
-  indicate human QA edits.
-  \item device_id <chr> The unique ID of the device the Site Visit Start was
-  captured on.
-  \item end_device_id <chr> The unique ID of the device the Site Visit End
-  was captured on.
-  \item status <chr> QA status of the survey.
-  \item id <int> WAStD ID of the survey.
-  \item is_production <bool> Whether this survey is a real (production) or
-    a training survey.
-  \item absolute_admin_url <chr> The absolute URL path to edit the survey in
-  WAStD. Append this to the base `WASTD_URL`.
-  \item start_photo_url <chr> The URL of the start photo, if given.
-  Requires DBCA SSO when viewed.
-  \item end_photo_url <chr> The URL of the end photo, if given.
-  Requires DBCA SSO when viewed.
+\item area_name (chr) The name of the Locality this Survey took place in.
+\item area_id (int) The ID of the Locality this Survey took place in.
+\item site_name (chr) The name of the Site this Survey took place in.
+\item site_id (int) The ID of the Site this Survey took place in.
+\item reporter (chr)
+\item reporter_username (chr)
+\item reporter_id (chr)
+\item start_time (dttm) The actual start time of the survey.
+\item end_time (dttm) The actual, automatically guessed (if 6h later), or
+human guessed end time.
+\item start_comments (chr) Comments at start plus QA messages from username
+guessing
+\item end_comments (chr) Comments at end plus QA messages from username
+guessing. A mismatch
+of original usernames can indicate an incorrectly picked Site Visit
+End point.
+\item turtle_date (dttm) The "turtle date" of the survey.
+\item season_week (int) The number of completed weeks since fiscal year
+start
+\item iso_week (int) The number of completed weeks since calendar year
+start
+\item season (int) The "turtle season" of the survey, rolling over with
+Fiscal Year.
+\item source (chr) Where this record was born.
+\item source_id (chr) The ODK record UID of the Site Visit Start.
+\item end_source_id (chr) The ODK record UID of the Site Visit End.
+\item status (chr) The QA status of the Survey. "Proofread" or "Curated"
+indicate human QA edits.
+\item device_id (chr) The unique ID of the device the Site Visit Start was
+captured on.
+\item end_device_id (chr) The unique ID of the device the Site Visit End
+was captured on.
+\item status (chr) QA status of the survey.
+\item id (int) WAStD ID of the survey.
+\item is_production (bool) Whether this survey is a real (production) or
+a training survey.
+\item absolute_admin_url (chr) The absolute URL path to edit the survey in
+WAStD. Append this to the base \code{WASTD_URL}.
+\item start_photo_url (chr) The URL of the start photo, if given.
+Requires DBCA SSO when viewed.
+\item end_photo_url (chr) The URL of the end photo, if given.
+Requires DBCA SSO when viewed.
 }
 }
 \description{

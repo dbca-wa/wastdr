@@ -38,9 +38,9 @@ reference:
 - title: Turtle Nesting Census import
   contents:
   - has_concept("tnc")
-- title: Threatened Species and Communities DB
+- title: Turtle Tagging DB import
   contents:
-  - has_concept("tsc")
+  - has_concept("wamtram")
 - title: WACensus access
   contents:
   - has_concept("wacensus")

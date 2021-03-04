@@ -22,8 +22,21 @@ Default: wastdr::get_wastdr_verbose()}
 }
 \value{
 A tibble of user names, roles, and contact details which can be
-  used to resolve submitted user names to WAStD user IDs
+used to resolve submitted user names to WAStD user IDs
 }
 \description{
 Download a minimal dataset of turtle observations from WAStD
 }
+\seealso{
+Other api: 
+\code{\link{download_minimal_wastd_turtledata}()},
+\code{\link{download_wastd_sites}()},
+\code{\link{download_wastd_turtledata}()},
+\code{\link{export_wastd_turtledata}()},
+\code{\link{filter_wastd_turtledata}()},
+\code{\link{wastd_GET}()},
+\code{\link{wastd_POST}()},
+\code{\link{wastd_parse}()},
+\code{\link{wastd_post_one}()}
+}
+\concept{api}

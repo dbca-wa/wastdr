@@ -9,8 +9,7 @@
 #' default: "https://odkc.dbca.wa.gov.au".
 #' @template param-tz
 #' @param odkc_version The numeric ODK Central version, e.g. 0.7 or 0.8.
-#' @param download <lgl> Whether to download attachments to `local_dir` or not,
-#' # @param exclude_training Whether to exclude training records, default: TRUE.
+#' @param download (lgl) Whether to download attachments to `local_dir` or not,
 #' @template param-verbose
 #'
 #' @return An S3 class "odkc_turtledata" with items:
@@ -46,7 +45,7 @@
 #'   \item areas An sf object of known WAStD localities.
 #'  }
 #' @export
-#' @family included
+#' @family odkc
 download_odkc_turtledata_2020 <-
     function(local_dir = here::here("media"),
              prod = "https://odkc.dbca.wa.gov.au",

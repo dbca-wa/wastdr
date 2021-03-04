@@ -14,29 +14,30 @@ parse_encounterobservations(wastd_api_response)
 \value{
 A \code{tbl_df} with non-repetitive columns of:
 \itemize{
-  \item Encounter
-  \item Survey
-  \item Area
-  \item Site
-  \item Observation
+\item Encounter
+\item Survey
+\item Area
+\item Site
+\item Observation
 }
 }
 \description{
 \lifecycle{stable}
 }
 \details{
-WAStD provides all subclasses of `wastd.observations.observation` together
+WAStD provides all subclasses of \code{wastd.observations.observation} together
 with their encounter (survey, site, area, reporter, observer) via its API
 as GeoJSON FeatureCollections.
 
 This function acts as a generic parser for
-
-* "turtle-nest-hatchling-emergences"
-* "turtle-nest-hatchling-emergence-outliers"
-* "turtle-nest-hatchling-emergence-light-sources"
-* "turtle-nest-excavations"
-* "turtle-nest-tag-observations"
-* "turtle-nest-disturbance-observations"
+\itemize{
+\item "turtle-nest-hatchling-emergences"
+\item "turtle-nest-hatchling-emergence-outliers"
+\item "turtle-nest-hatchling-emergence-light-sources"
+\item "turtle-nest-excavations"
+\item "turtle-nest-tag-observations"
+\item "turtle-nest-disturbance-observations"
+}
 }
 \seealso{
 Other wastd: 

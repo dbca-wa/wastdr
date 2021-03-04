@@ -1,3 +1,18 @@
+# wastdr 0.5.2
+## Data
+* WAStD API changes: Surveys now contain in addition to the surveyed `site` also 
+  the Locality (`area`), e.g. "Ningaloo". 
+  This allows filtering to whole monitoring programs.
+* WAStD API changes: Users now include `is_active` to indicate whether they are
+  a closed duplicate profile or an active one. This is useful to exclude
+  duplicate profiles from user name mapping (e.g. in `etlTurtleNesting`).
+
+## Docs
+* All functions are now shown in Reference sorted by function family.
+* Reference docs now support Markdown. Bullet point lists are easier to write 
+  now.
+
+
 # wastdr 0.5.1
 ## Data
 * `odkc_data` is not generated from `wastdr::download_odkc_turtledata2020()`.

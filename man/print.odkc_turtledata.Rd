@@ -7,10 +7,10 @@
 \method{print}{odkc_turtledata}(x, ...)
 }
 \arguments{
-\item{x}{An object of class `wastd_data` as returned by
+\item{x}{An object of class \code{wastd_data} as returned by
 \code{\link{download_odkc_turtledata_2019}}.}
 
-\item{...}{Extra parameters for `print`}
+\item{...}{Extra parameters for \code{print}}
 }
 \description{
 Prints a short representation of data returned by
@@ -18,9 +18,6 @@ Prints a short representation of data returned by
 }
 \seealso{
 Other included: 
-\code{\link{download_odkc_turtledata_2019}()},
-\code{\link{download_odkc_turtledata_2020}()},
-\code{\link{download_wastd_turtledata}()},
 \code{\link{odkc_data}},
 \code{\link{print.wastd_data}()},
 \code{\link{tsc_data}},

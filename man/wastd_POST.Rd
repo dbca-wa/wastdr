@@ -22,10 +22,10 @@ wastd_POST(
 \item{serializer}{(character) WAStD API serializer name (required)
 Possible values see \code{https://tsc.dbca.wa.gov.au/api/1/}}
 
-\item{query}{<list> A list of POST parameters,
+\item{query}{(list) A list of POST parameters,
 default: \code{list(format="json")}.}
 
-\item{encode}{The parameter \code{encode} for \code{link{httr::POST}},
+\item{encode}{The parameter \code{encode} for \verb{\link{httr::POST}},
 default: "json".
 Other options: \code{c("multipart", "form", "json", "raw")}.}
 
@@ -47,11 +47,11 @@ Default: wastdr::get_wastdr_verbose()}
 \value{
 An S3 object of class 'wastd_api_response' containing:
 
-  features: The sent GeoJSON features
+features: The sent GeoJSON features
 
-  serializer: The called serializer, e.g. 'supra'
+serializer: The called serializer, e.g. 'supra'
 
-  response: The API HTTP response with all metadata
+response: The API HTTP response with all metadata
 }
 \description{
 \lifecycle{stable}
@@ -71,6 +71,12 @@ wastd_POST(props[[1]], serializer = "names")
 }
 \seealso{
 Other api: 
+\code{\link{download_minimal_wastd_turtledata}()},
+\code{\link{download_wastd_sites}()},
+\code{\link{download_wastd_turtledata}()},
+\code{\link{download_wastd_users}()},
+\code{\link{export_wastd_turtledata}()},
+\code{\link{filter_wastd_turtledata}()},
 \code{\link{wastd_GET}()},
 \code{\link{wastd_parse}()},
 \code{\link{wastd_post_one}()}

@@ -19,52 +19,45 @@
 #' @param verbose Whether to print verbose help messages,
 #'   default: `wastdr::get_wastdr_verbose()`.
 #' @return A named list of sanitised tables from the Turtle Tagging DB:
-#'
-#'   # Metadata
-#'   downloaded_on
-#'   w2_tables
-#'
-#'   # personnel
-#'   persons
-#'
-#'   # Data entry
-#'   data_entry_batches
-#'   data_entry
-#'   data_entry_operators
-#'
-#'   # Lookups
-#'   lookup_beach_positions
-#'   lookup_body_parts
-#'   lookup_conditions
-#'   lookup_damage_causes
-#'   lookup_damage_codes
-#'   lookup_datum_codes
-#'   lookup_egg_count_methods
-#'   lookup_id_types
-#'   lookup_measurement_types
-#'   lookup_pit_tag_states
-#'   lookup_sample_tissue_type
-#'   lookup_tag_states
-#'
-#'   # Sites
-#'   sites
-#'
-#'   # Encounters
-#'   enc
-#'   enc_qa
-#'
-#'   # Observations
-#'   obs_flipper_tags
-#'   obs_pit_tags
-#'   obs_damages
-#'   obs_measurements
-#'   obs_samples
-#'
-#'   # Reconstructed
-#'   reconstructed_pit_tags
-#'   reconstructed_tags
-#'   reconstructed_turtles
+#'   * Metadata:
+#'     * downloaded_on
+#'     * w2_tables
+#'   * Personnel:
+#'     * persons
+#'   * Data entry:
+#'     * data_entry_batches
+#'     * data_entry
+#'     * data_entry_operators
+#'   * Lookups:
+#'     * lookup_beach_positions
+#'     * lookup_body_parts
+#'     * lookup_conditions
+#'     * lookup_damage_causes
+#'     * lookup_damage_codes
+#'     * lookup_datum_codes
+#'     * lookup_egg_count_methods
+#'     * lookup_id_types
+#'     * lookup_measurement_types
+#'     * lookup_pit_tag_states
+#'     * lookup_sample_tissue_type
+#'     * lookup_tag_states
+#'   * Places:
+#'     * sites
+#'   * Encounters:
+#'     * enc
+#'     * enc_qa
+#'   * Observations:
+#'     * obs_flipper_tags
+#'     * obs_pit_tags
+#'     * obs_damages
+#'     * obs_measurements
+#'     * obs_samples
+#'   * Reconstructed:
+#'     * reconstructed_pit_tags
+#'     * reconstructed_tags
+#'     * reconstructed_turtles
 #' @export
+#' @family wamtram
 download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
                              tz = "Australia/Perth",
                              db_drv = Sys.getenv("W2_DRV"),

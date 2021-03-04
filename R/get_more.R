@@ -2,9 +2,9 @@
 #'
 #' \lifecycle{stable}
 #'
-#' @param total_count <int> The total count of downloaded records
-#' @param limit <int> or NULL The max count of records to download
-#' @return <lgl> TRUE if limit has not been reached or limit is NULL, else FALSE
+#' @param total_count (int) The total count of downloaded records
+#' @param limit (int) or NULL The max count of records to download
+#' @return (lgl) TRUE if limit has not been reached or limit is NULL, else FALSE
 #' @export
 #' @family helpers
 #' @examples

@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{hatching_emergence_success_site}
 \alias{hatching_emergence_success_site}
-\title{Summarize HS and ES for excavations of hatched nests grouped by `site_name`}
+\title{Summarize HS and ES for excavations of hatched nests grouped by \code{site_name}}
 \usage{
 hatching_emergence_success_site(data)
 }

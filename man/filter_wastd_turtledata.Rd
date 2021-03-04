@@ -11,23 +11,25 @@ filter_wastd_turtledata(
 )
 }
 \arguments{
-\item{x}{An object of class `wastd_data` as returned by
+\item{x}{An object of class \code{wastd_data} as returned by
 \code{\link{download_wastd_turtledata}}. This data can be filtered to
 an area_name (WAStD Area of type Locality).}
 
-\item{area_name}{<chr> The name of the area to filter the data by. Options:
-* NULL (default): do not filter data, return unfiltered data.
-* "All turtle programs": do not filter data, return unfiltered data.
-* "Other": Filter data to area_name NA.
-* Any name in `unique(wastd_data$areas$area_name)`: return data filtered to
-  this area_name.}
+\item{area_name}{(chr) The name of the area to filter the data by. Options:
+\itemize{
+\item NULL (default): do not filter data, return unfiltered data.
+\item "All turtle programs": do not filter data, return unfiltered data.
+\item "Other": Filter data to area_name NA.
+\item Any name in \code{unique(wastd_data$areas$area_name)}: return data filtered to
+this area_name.
+}}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}
 }
 \value{
-An object of class `wastd_data` filtered to records within
-  `area_name`.
+An object of class \code{wastd_data} filtered to records within
+\code{area_name}.
 }
 \description{
 Filter WAStD turtledata to an area_name
@@ -42,3 +44,16 @@ wastd_data_filtered
 unique(wastd_data_filtered$areas$area_name)
 }
 }
+\seealso{
+Other api: 
+\code{\link{download_minimal_wastd_turtledata}()},
+\code{\link{download_wastd_sites}()},
+\code{\link{download_wastd_turtledata}()},
+\code{\link{download_wastd_users}()},
+\code{\link{export_wastd_turtledata}()},
+\code{\link{wastd_GET}()},
+\code{\link{wastd_POST}()},
+\code{\link{wastd_parse}()},
+\code{\link{wastd_post_one}()}
+}
+\concept{api}

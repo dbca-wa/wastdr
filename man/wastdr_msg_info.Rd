@@ -7,7 +7,7 @@
 wastdr_msg_info(message)
 }
 \arguments{
-\item{message}{<chr> A message to print}
+\item{message}{(chr) A message to print}
 }
 \description{
 Print a blue info message with an info symbol.

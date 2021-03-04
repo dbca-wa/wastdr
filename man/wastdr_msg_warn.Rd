@@ -7,7 +7,7 @@
 wastdr_msg_warn(message)
 }
 \arguments{
-\item{message}{<chr> A message to print}
+\item{message}{(chr) A message to print}
 }
 \description{
 rlang::warn() with a yellow warning message with a warning symbol.

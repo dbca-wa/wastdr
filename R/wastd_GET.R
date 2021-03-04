@@ -8,13 +8,13 @@
 #'   `features` (if GeoJSON) or `data` (if JSON).
 #'
 #' @template param-serializer
-#' @param query <list> A list of GET parameters, default: list().
+#' @param query A list of GET parameters, default: list().
 #'   The \code{format} is specified in a separate top-level param.
-#' @param format <chr> The desired API output format, default: "json".
-#' @param max_records <int> The maximum number of records retrieved.
+#' @param format The desired API output format, default: "json".
+#' @param max_records The maximum number of records retrieved.
 #'   If left at default (NULL), all records are returned.
 #'   Default: NULL.
-#' @param chunk_size <int> The number of records to retrieve in each paginated
+#' @param chunk_size The number of records to retrieve in each paginated
 #'   response. A specified but smaller \code{limit} will override
 #'   \code{chunk_size}.
 #'   Adjust \code{chunk_size} down if getting timeouts from the API.

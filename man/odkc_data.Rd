@@ -18,9 +18,6 @@ with \code{head()}.
 }
 \seealso{
 Other included: 
-\code{\link{download_odkc_turtledata_2019}()},
-\code{\link{download_odkc_turtledata_2020}()},
-\code{\link{download_wastd_turtledata}()},
 \code{\link{print.odkc_turtledata}()},
 \code{\link{print.wastd_data}()},
 \code{\link{tsc_data}},

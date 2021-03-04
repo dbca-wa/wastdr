@@ -1,15 +1,16 @@
 #' Filter odkc_data to a given area_name.
 #'
-#' @param data <list> The output of data("odkc_data"), a list of tibbles and sf
-#' @param area_name <chr> The name of the area to filter the data by. Options:
+#' @param data (list) The output of data("odkc_data"), a list of tibbles and sf
+#' @param area_name (chr) The name of the area to filter the data by. Options:
 #'   * NULL (default): do not filter data, return unfiltered data.
 #'   * "All turtle programs": do not filter data, return unfiltered data.
 #'   * "Other": Filter data to area_name NA.
 #'   * Any name in `unique(odkc_data$areas$area_name)`: return data filtered to
 #'     this area_name.
 #' @template param-verbose
-#' @return <list> The input data, optionally filtered to a subset of records.
+#' @return (list) The input data, optionally filtered to a subset of records.
 #' @export
+#' @family odkc
 #' @examples
 #' data(odkc_data)
 #'
