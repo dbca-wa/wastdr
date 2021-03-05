@@ -204,7 +204,9 @@ download_wastd_turtledata <- function(max_records = NULL,
     tidyr::unnest_wider("reporter", names_sep = "_") %>%
     tidyr::unnest_wider("area", names_sep = "_") %>%
     tidyr::unnest_wider("site", names_sep = "_") %>%
-    tidyr::unnest_wider("survey", names_sep = "_")
+    tidyr::unnest_wider("survey", names_sep = "_") %>%
+    tidyr::unnest_wider("survey_reporter", names_sep = "_") %>%
+    tidyr::unnest_wider("survey_site", names_sep = "_")
 
   if (verbose == TRUE) wastdr_msg_info("Downloading track tallies...")
   track_tally <- "track-tally" %>%

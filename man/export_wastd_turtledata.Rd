@@ -137,12 +137,16 @@ convenience.
 \item Details of the overarching TurtleNestEncounter are repeated for
 convenience.
 }
-\item \code{line_transects.geojson} Tallies turtle tracks along a transect,
+\item \code{line_transects.csv} Tallies turtle tracks along a transect,
 recorded during one LineTransectEncounter.
 \itemize{
 \item One record per transect.
+\item Latitude and Longitude are extracted from the first waypoint of the line
+transect.
 \item A transect can be crossed by many individual tracks.
 }
+\item \code{line_transects.geojson} Data from \code{line_transects.csv} as GeoJSON.
+Currently excluded.
 \item \code{track_tally.csv} Tally of tracks by type and species crossing a transect.
 \itemize{
 \item There can be many tallies per transect.

@@ -95,10 +95,14 @@
 #'    * There can be several per nest.
 #'    * Details of the overarching TurtleNestEncounter are repeated for
 #'      convenience.
-#'  * `line_transects.geojson` Tallies turtle tracks along a transect,
+#'  * `line_transects.csv` Tallies turtle tracks along a transect,
 #'    recorded during one LineTransectEncounter.
 #'    * One record per transect.
+#'    * Latitude and Longitude are extracted from the first waypoint of the line
+#'      transect.
 #'    * A transect can be crossed by many individual tracks.
+#'  * `line_transects.geojson` Data from `line_transects.csv` as GeoJSON.
+#'    Currently excluded.
 #'  * `track_tally.csv` Tally of tracks by type and species crossing a transect.
 #'    * There can be many tallies per transect.
 #'    * Details of the overarching LineTransectEncounter are repeated for
@@ -150,7 +154,13 @@ export_wastd_turtledata <- function(x,
     x$nest_lightsources %>% readr::write_csv(file = fs::path(outdir, "light_sources.csv"))
     x$nest_loggers %>% readr::write_csv(file = fs::path(outdir, "nest_loggers.csv"))
 
-    if (nrow(x$linetx) > 0) x$linetx %>% sf::write_sf(fs::path(outdir, "line_transects.geojson"))
+    if (nrow(x$linetx) > 0) x$linetx %>%
+        dplyr::select(-geometry, -transect) %>%
+        readr::write_csv(file = fs::path(outdir, "line_transects.csv"))
+    # if (nrow(x$linetx) > 0) x$linetx %>%
+    #     geojsonio::as.json() %>%
+    #     geojsonsf::geojson_sf() %>%
+    #     sf::write_sf(fs::path(outdir, "line_transects.geojson"))
     x$track_tally %>% readr::write_csv(file = fs::path(outdir, "track_tally.csv"))
     x$disturbance_tally %>% readr::write_csv(file = fs::path(outdir, "disturbance_tally.csv"))
 
