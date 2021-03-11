@@ -115,6 +115,7 @@
 #'  * `loggers.csv` Encounters with Data Loggers, deprecated.
 #'    * Data to be migrated to LoggerObservations.
 #'  * `loggers.geojson` Loggers.csv as GeoJSON.
+#'  * `wastd_data.RData` The entire data as `RData`, ready to be loaded into R.
 #' @export
 #' @family api
 #' @examples
@@ -137,6 +138,8 @@ export_wastd_turtledata <- function(x,
   }
 
   if (!fs::dir_exists(outdir)) fs::dir_create(outdir, recurse = TRUE)
+
+  x %>% save(file = fs::path(outdir, "wastd_data.RData"))
 
   x$areas %>% geojsonio::geojson_write(file = fs::path(outdir, "areas.geojson"))
   x$sites %>% geojsonio::geojson_write(file = fs::path(outdir, "sites.geojson"))
@@ -174,10 +177,13 @@ export_wastd_turtledata <- function(x,
   x$track_tally %>% readr::write_csv(file = fs::path(outdir, "track_tally.csv"))
   x$disturbance_tally %>% readr::write_csv(file = fs::path(outdir, "disturbance_tally.csv"))
 
-  x$loggers %>%
-    ruODK::odata_submission_rectangle() %>%
-    readr::write_csv(file = fs::path(outdir, "loggers.csv"))
-  if (nrow(x$loggers) > 0) x$loggers %>% geojsonio::geojson_write(file = fs::path(outdir, "loggers.geojson"))
+  if (nrow(x$loggers) > 0){
+    x$loggers %>%
+      ruODK::odata_submission_rectangle() %>%
+      readr::write_csv(file = fs::path(outdir, "loggers.csv"))
+    x$loggers %>%
+      geojsonio::geojson_write(file = fs::path(outdir, "loggers.geojson"))
+   }
 
   utils::zip(paste0(filename, ".zip"), fs::dir_ls(outdir), flags = "-jr9X")
 }

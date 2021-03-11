@@ -165,6 +165,7 @@ convenience.
 \item Data to be migrated to LoggerObservations.
 }
 \item \code{loggers.geojson} Loggers.csv as GeoJSON.
+\item \code{wastd_data.RData} The entire data as \code{RData}, ready to be loaded into R.
 }
 }
 \description{

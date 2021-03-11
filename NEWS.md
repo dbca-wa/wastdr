@@ -1,3 +1,16 @@
+# wastdr (development version)
+## Major fixes
+## Minor fixes
+## Docs
+## Data
+
+# wastdr 0.5.3
+## Major fixes
+## Minor fixes
+## Docs
+## Data
+* `export_wastd_turtledata` now also exports all data to an RData file.
+
 # wastdr 0.5.2
 ## Data
 * WAStD API changes: Surveys now contain in addition to the surveyed `site` also 
