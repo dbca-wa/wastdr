@@ -21,7 +21,7 @@ The extension \code{.zip} will be appended and should not be part of \code{filen
 \value{
 A set of files in the folder \code{outdir}.
 GeoJSON files can be opened in any GIS, such as Quantum GIS or ESRI ArcGIS.
-CSV files can be opened in any spreasheet program, such as MS Excel or
+CSV files can be opened in any spreadsheet program, such as MS Excel or
 LibreOffice Calc.
 \itemize{
 \item \code{areas.geojson} WAStD Areas, or Localities.
@@ -176,8 +176,8 @@ data("wastd_data", package = "wastdr")
 an <- "Ningaloo"
 au <- urlize(an)
 wastd_data \%>\%
-filter_wastd_turtledata(area_name = an) \%>\%
-export_wastd_turtledata(outdir = here::here(au), filename = au)
+  filter_wastd_turtledata(area_name = an) \%>\%
+  export_wastd_turtledata(outdir = here::here(au), filename = au)
 }
 }
 \seealso{

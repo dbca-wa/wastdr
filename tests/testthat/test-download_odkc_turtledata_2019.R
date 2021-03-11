@@ -7,7 +7,7 @@ test_that("download_odkc_turtledata_2019 works", {
     url = ruODK::get_default_url(),
     un = ruODK::get_default_un(),
     pw = ruODK::get_default_pw(),
-    odkc_version = 0.7L,
+    odkc_version = 0.7,
     verbose = ruODK::get_ru_verbose()
   )
   testthat::skip_if_not(odkc_works(), message = "ODKC offline or wrong auth")

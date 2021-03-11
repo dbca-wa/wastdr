@@ -1,5 +1,4 @@
 test_that("tracks_ts works", {
-
   testthat::skip("ggalt requires libproj.so.19")
   data("wastd_data")
   x <- tracks_ts(

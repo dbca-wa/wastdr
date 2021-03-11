@@ -226,6 +226,10 @@ download_wastd_turtledata <- function(max_records = NULL,
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_surveys()
 
+  survey_media <- "survey-media-attachments" %>%
+    wastdr::wastd_GET(max_records = max_records) %>%
+    wastdr::wastd_parse()
+
   structure(
     list(
       downloaded_on = Sys.time(),

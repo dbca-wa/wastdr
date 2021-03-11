@@ -10,7 +10,7 @@ download_odkc_turtledata_2019(
   uat = "https://odkcentral-uat.dbca.wa.gov.au",
   tz = "Australia/Perth",
   download = TRUE,
-  odkc_version = ruODK::get_default_odkc_version(),
+  odkc_version = 0.6,
   verbose = wastdr::get_wastdr_verbose()
 )
 }

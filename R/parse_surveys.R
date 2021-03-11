@@ -98,9 +98,7 @@ parse_surveys <- function(
         ) %>% as.logical(),
         absolute_admin_url = map_chr_hack(
           ., c("properties", "absolute_admin_url")
-        ),
-        start_photo_url = map_chr_hack(., c("properties", "start_photo")),
-        end_photo_url = map_chr_hack(., c("properties", "end_photo")),
+        )
         # transect, start_location, end_location, team
       )
     } %>%

@@ -4,11 +4,13 @@ sanitize_names <- . %>%
   dplyr::mutate_at(
     dplyr::vars(
       tidyr::contains(
-        c("reporter",
+        c(
+          "reporter",
           "observer",
           "handler",
           "recorder",
-          "system_submitter_name")
+          "system_submitter_name"
+        )
       ),
     ),
     ~"Name hidden"
@@ -63,26 +65,55 @@ usethis::use_data(wastd_surveys_raw, compress = "xz", overwrite = TRUE)
 # )
 odkc_data <- wastdr::download_odkc_turtledata_2020(download = FALSE, verbose = FALSE)
 # x <- odkc_data %>% wastdr::filter_odkc_turtledata(area_name = "Perth Metro")
-odkc_data$tracks <- odkc_data$tracks %>% head(n=100) %>% sanitize_names()
-odkc_data$tracks_dist <- odkc_data$tracks_dist %>% head(n=100) %>% sanitize_names()
-odkc_data$tracks_log <- odkc_data$tracks_log %>% head(n=100) %>% sanitize_names()
-odkc_data$tracks_egg <- odkc_data$tracks_egg %>% head(n=100) %>% sanitize_names()
-odkc_data$tracks_hatch <- odkc_data$tracks_hatch %>% head(n=100) %>% sanitize_names()
-odkc_data$tracks_fan_outlier <- odkc_data$tracks_fan_outlier %>% head(n=100) %>% sanitize_names()
-odkc_data$track_tally <- odkc_data$track_tally %>% head(n=100) %>% sanitize_names()
-odkc_data$dist <- odkc_data$dist %>% head(n=100) %>% sanitize_names()
-odkc_data$mwi <- odkc_data$mwi %>% head(n=100) %>% sanitize_names()
-odkc_data$mwi_dmg <- odkc_data$mwi_dmg %>% head(n=100) %>% sanitize_names()
-odkc_data$mwi_tag <- odkc_data$mwi_tag %>% head(n=100) %>% sanitize_names()
-odkc_data$tsi <- odkc_data$tsi %>% head(n=100) %>% sanitize_names()
-odkc_data$svs <- odkc_data$svs %>% head(n=100) %>% sanitize_names()
-odkc_data$sve <- odkc_data$sve %>% head(n=100) %>% sanitize_names()
+odkc_data$tracks <- odkc_data$tracks %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$tracks_dist <- odkc_data$tracks_dist %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$tracks_log <- odkc_data$tracks_log %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$tracks_egg <- odkc_data$tracks_egg %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$tracks_hatch <- odkc_data$tracks_hatch %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$tracks_fan_outlier <- odkc_data$tracks_fan_outlier %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$track_tally <- odkc_data$track_tally %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$dist <- odkc_data$dist %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$mwi <- odkc_data$mwi %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$mwi_dmg <- odkc_data$mwi_dmg %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$mwi_tag <- odkc_data$mwi_tag %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$tsi <- odkc_data$tsi %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$svs <- odkc_data$svs %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$sve <- odkc_data$sve %>%
+  head(n = 100) %>%
+  sanitize_names()
 
 usethis::use_data(odkc_data, compress = "xz", overwrite = TRUE)
 
 # WAStD Turtle Data, 10 records each, names sanitised
 wastd_data <- download_wastd_turtledata(max_records = 1000)
 wastd_data$surveys <- wastd_data$surveys %>% sanitize_names()
+wastd_data$survey_media <- wastd_data$survey_media %>% sanitize_names()
 wastd_data$animals <- wastd_data$animals %>% sanitize_names()
 wastd_data$turtle_morph <- wastd_data$turtle_morph %>% sanitize_names()
 wastd_data$turtle_tags <- wastd_data$turtle_tags %>% sanitize_names()

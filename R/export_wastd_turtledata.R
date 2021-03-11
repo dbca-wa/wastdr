@@ -11,7 +11,7 @@
 #'   The extension `.zip` will be appended and should not be part of `filename`.
 #' @return A set of files in the folder `outdir`.
 #'   GeoJSON files can be opened in any GIS, such as Quantum GIS or ESRI ArcGIS.
-#'   CSV files can be opened in any spreasheet program, such as MS Excel or
+#'   CSV files can be opened in any spreadsheet program, such as MS Excel or
 #'   LibreOffice Calc.
 #'
 #'   * `areas.geojson` WAStD Areas, or Localities.
@@ -123,51 +123,63 @@
 #' an <- "Ningaloo"
 #' au <- urlize(an)
 #' wastd_data %>%
-#' filter_wastd_turtledata(area_name = an) %>%
-#' export_wastd_turtledata(outdir = here::here(au), filename = au)
+#'   filter_wastd_turtledata(area_name = an) %>%
+#'   export_wastd_turtledata(outdir = here::here(au), filename = au)
 #' }
 export_wastd_turtledata <- function(x,
                                     outdir = here::here(),
-                                    filename = "export"){
-    if (class(x) != "wastd_data") wastdr_msg_abort(glue::glue(
-        "The first argument needs to be an object of class \"wastd_data\", ",
-        "e.g. the output of wastdr::download_wastd_turtledata."))
+                                    filename = "export") {
+  if (class(x) != "wastd_data") {
+    wastdr_msg_abort(glue::glue(
+      "The first argument needs to be an object of class \"wastd_data\", ",
+      "e.g. the output of wastdr::download_wastd_turtledata."
+    ))
+  }
 
-    if (!fs::dir_exists(outdir)) fs::dir_create(outdir, recurse = TRUE)
+  if (!fs::dir_exists(outdir)) fs::dir_create(outdir, recurse = TRUE)
 
-    x$areas %>% geojsonio::geojson_write(file = fs::path(outdir, "areas.geojson"))
-    x$sites %>% geojsonio::geojson_write(file = fs::path(outdir, "sites.geojson"))
-    x$surveys %>% readr::write_csv(file = fs::path(outdir, "surveys.csv"))
+  x$areas %>% geojsonio::geojson_write(file = fs::path(outdir, "areas.geojson"))
+  x$sites %>% geojsonio::geojson_write(file = fs::path(outdir, "sites.geojson"))
+  x$surveys %>% readr::write_csv(file = fs::path(outdir, "surveys.csv"))
 
-    x$animals %>% dplyr::select(-obs) %>% readr::write_csv(file = fs::path(outdir, "animals.csv"))
-    x$turtle_tags %>% ruODK::odata_submission_rectangle() %>%  readr::write_csv(file = fs::path(outdir, "turtle_tags.csv"))
-    x$turtle_dmg %>%  readr::write_csv(file = fs::path(outdir, "turtle_dmg.csv"))
-    x$turtle_morph %>%  readr::write_csv(file = fs::path(outdir, "turtle_morph.csv"))
+  x$animals %>%
+    dplyr::select(-obs) %>%
+    readr::write_csv(file = fs::path(outdir, "animals.csv"))
+  x$turtle_tags %>%
+    ruODK::odata_submission_rectangle() %>%
+    readr::write_csv(file = fs::path(outdir, "turtle_tags.csv"))
+  x$turtle_dmg %>% readr::write_csv(file = fs::path(outdir, "turtle_dmg.csv"))
+  x$turtle_morph %>% readr::write_csv(file = fs::path(outdir, "turtle_morph.csv"))
 
-    x$tracks %>% readr::write_csv(file = fs::path(outdir, "tracks.csv"))
-    x$nest_dist %>% readr::write_csv(file = fs::path(outdir, "nest_dist.csv"))
-    x$nest_tags %>% readr::write_csv(file = fs::path(outdir, "nest_tags.csv"))
-    x$nest_excavations %>% readr::write_csv(file = fs::path(outdir, "nest_excavations.csv"))
-    x$hatchling_morph %>% readr::write_csv(file = fs::path(outdir, "hatchling_morph.csv"))
-    x$nest_fans %>% readr::write_csv(file = fs::path(outdir, "nest_fans.csv"))
-    x$nest_fan_outliers %>% readr::write_csv(file = fs::path(outdir, "nest_fan_outliers.csv"))
-    x$nest_lightsources %>% readr::write_csv(file = fs::path(outdir, "light_sources.csv"))
-    x$nest_loggers %>% readr::write_csv(file = fs::path(outdir, "nest_loggers.csv"))
+  x$tracks %>% readr::write_csv(file = fs::path(outdir, "tracks.csv"))
+  x$nest_dist %>% readr::write_csv(file = fs::path(outdir, "nest_dist.csv"))
+  x$nest_tags %>% readr::write_csv(file = fs::path(outdir, "nest_tags.csv"))
+  x$nest_excavations %>% readr::write_csv(file = fs::path(outdir, "nest_excavations.csv"))
+  x$hatchling_morph %>% readr::write_csv(file = fs::path(outdir, "hatchling_morph.csv"))
+  x$nest_fans %>% readr::write_csv(file = fs::path(outdir, "nest_fans.csv"))
+  x$nest_fan_outliers %>% readr::write_csv(file = fs::path(outdir, "nest_fan_outliers.csv"))
+  x$nest_lightsources %>% readr::write_csv(file = fs::path(outdir, "light_sources.csv"))
+  x$nest_loggers %>% readr::write_csv(file = fs::path(outdir, "nest_loggers.csv"))
 
-    if (nrow(x$linetx) > 0) x$linetx %>%
-        dplyr::select(-geometry, -transect) %>%
-        readr::write_csv(file = fs::path(outdir, "line_transects.csv"))
-    # if (nrow(x$linetx) > 0) x$linetx %>%
-    #     geojsonio::as.json() %>%
-    #     geojsonsf::geojson_sf() %>%
-    #     sf::write_sf(fs::path(outdir, "line_transects.geojson"))
-    x$track_tally %>% readr::write_csv(file = fs::path(outdir, "track_tally.csv"))
-    x$disturbance_tally %>% readr::write_csv(file = fs::path(outdir, "disturbance_tally.csv"))
+  if (nrow(x$linetx) > 0) {
+    x$linetx %>%
+      dplyr::select(-geometry, -transect) %>%
+      readr::write_csv(file = fs::path(outdir, "line_transects.csv"))
+  }
+  # if (nrow(x$linetx) > 0) x$linetx %>%
+  #     geojsonio::as.json() %>%
+  #     geojsonsf::geojson_sf() %>%
+  #     sf::write_sf(fs::path(outdir, "line_transects.geojson"))
+  # This works: sf::st_as_sf(odkc_ex$track_tally, wkt="tx")
+  x$track_tally %>% readr::write_csv(file = fs::path(outdir, "track_tally.csv"))
+  x$disturbance_tally %>% readr::write_csv(file = fs::path(outdir, "disturbance_tally.csv"))
 
-    x$loggers %>% ruODK::odata_submission_rectangle() %>% readr::write_csv(file = fs::path(outdir, "loggers.csv"))
-    if (nrow(x$loggers) > 0) x$loggers %>% geojsonio::geojson_write(file = fs::path(outdir, "loggers.geojson"))
+  x$loggers %>%
+    ruODK::odata_submission_rectangle() %>%
+    readr::write_csv(file = fs::path(outdir, "loggers.csv"))
+  if (nrow(x$loggers) > 0) x$loggers %>% geojsonio::geojson_write(file = fs::path(outdir, "loggers.geojson"))
 
-    utils::zip(paste0(filename, ".zip"), fs::dir_ls(outdir), flags = "-jr9X")
+  utils::zip(paste0(filename, ".zip"), fs::dir_ls(outdir), flags = "-jr9X")
 }
 
 

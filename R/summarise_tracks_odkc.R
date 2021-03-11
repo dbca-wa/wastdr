@@ -228,12 +228,12 @@ nesting_type_by_season_calendarday_age_species_odkc <- . %>%
 #' `odkc_data$tracks_egg`.
 #'
 #'
-#' Hatching success as percentage [0..100] after Miller 1999:
+#' Hatching success as percentage (0..100) after Miller 1999:
 #'   Hatching success = 100 * no_egg_shells / (
 #'   no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
 #'   no_unhatched_term + no_depredated_eggs)
 #'
-#' Emergence success as percentage [0..100] after Miller 1999:
+#' Emergence success as percentage (0..100) after Miller 1999:
 #'   Emergence success = 100 *
 #'   (no_egg_shells - no_live_hatchlings - no_dead_hatchlings) / (
 #'   no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +

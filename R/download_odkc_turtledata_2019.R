@@ -55,7 +55,7 @@ download_odkc_turtledata_2019 <-
            uat = "https://odkcentral-uat.dbca.wa.gov.au",
            tz = "Australia/Perth",
            download = TRUE,
-           odkc_version = ruODK::get_default_odkc_version(),
+           odkc_version = 0.6,
            verbose = wastdr::get_wastdr_verbose()) {
     if (download == TRUE) fs::dir_create(local_dir, recurse = TRUE)
 
@@ -530,8 +530,10 @@ download_odkc_turtledata_2019 <-
       sf::st_zm() %>%
       sf::st_join(sites)
 
-    track_tally_dist <- dplyr::bind_rows(tracktally_dist_prod,
-                                         tracktally07_dist_prod)
+    track_tally_dist <- dplyr::bind_rows(
+      tracktally_dist_prod,
+      tracktally07_dist_prod
+    )
 
     odkc_turtledata <-
       structure(

@@ -22,11 +22,13 @@ download_minimal_wastd_turtledata <-
            api_url = wastdr::get_wastdr_api_url(),
            api_token = wastdr::get_wastdr_api_token(),
            verbose = wastdr::get_wastdr_verbose()) {
-
     # Encounters ----------------------------------------------------------------#
     qry <- list(source = source)
-    if (!is.null(year)) qry["when__year__gte"] <- year
-    enc <- wastd_GET("encounters-src",
+    if (!is.null(year)) {
+      qry["when__year__gte"] <- year
+    }
+    enc <- wastd_GET(
+      "encounters-src",
       query = qry,
       api_url = api_url,
       api_token = api_token,
@@ -36,17 +38,26 @@ download_minimal_wastd_turtledata <-
       dplyr::select(-geometry)
 
     # Surveys -----------------------------------------------------------------#
-    surveys <- wastd_GET("surveys",
+    surveys <- wastd_GET(
+      "surveys",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
+    ) %>% wastd_parse()
+
+    survey_media <- wastd_GET(
+      "survey-media-attachments",
       api_url = api_url,
       api_token = api_token,
       verbose = verbose
     ) %>% wastd_parse()
 
     # Media -------------------------------------------------------------------#
-    media <- wastd_GET("media-attachments",
-                         api_url = api_url,
-                         api_token = api_token,
-                         verbose = verbose
+    media <- wastd_GET(
+      "media-attachments",
+      api_url = api_url,
+      api_token = api_token,
+      verbose = verbose
     ) %>% wastd_parse()
 
     # Areas and sites ---------------------------------------------------------#
