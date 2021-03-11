@@ -122,14 +122,14 @@ jobs:
           r-cran-stringi r-api-3 r-cran-crayon r-cran-magrittr r-cran-stringr
 
       - name: "[Stage] Install"
-        if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
+        if: matrix.config.os != 'macOS-latest' && matrix.config.r != 'devel'
         run: |
           Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
 
       # libfreetype.so.6 not found on macOS-devel / r-oldrel
       # https://stackoverflow.com/a/28488213/2813717
       - name: "[Custom block] [macOS-devel][r-devel] Install system pkgs"
-        if: matrix.config.os == 'macOS-latest' || matrix.config.r != 'devel'
+        if: matrix.config.os == 'macOS-latest' && matrix.config.r != 'devel'
         run: |
           rm '/usr/local/bin/gfortran' || true
           brew install freetype
