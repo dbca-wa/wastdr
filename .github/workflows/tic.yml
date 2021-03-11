@@ -21,16 +21,16 @@ jobs:
       matrix:
         config:
           # use a different tic template type if you do not want to build on all listed platforms
-          - { os: windows-latest, r: "devel" }
+          # - { os: windows-latest, r: "devel" } # can't find tic
           - { os: windows-latest, r: "release" }
           - { os: windows-latest, r: "oldrel" } # fails on RTools version
-          - { os: windows-2016, r: "devel" }
+          # - { os: windows-2016, r: "devel" } # can't find tic
           - { os: windows-2016, r: "release" }
           - { os: windows-2016, r: "oldrel" }
           - { os: macOS-latest, r: "devel" }
           - { os: macOS-latest, r: "release"}
           # - { os: macOS-latest, r: "oldrel" } # missing udunits2
-          - { os: ubuntu-20.04, r: "devel" }
+          # - { os: ubuntu-20.04, r: "devel" } # sf needs libproj.12.so
           - { os: ubuntu-20.04, r: "release" }
           - { os: ubuntu-20.04, r: "oldrel" }
           - { os: ubuntu-latest, r: "devel" }
