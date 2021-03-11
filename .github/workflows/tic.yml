@@ -126,21 +126,26 @@ jobs:
         run: |
           Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
 
+      # libfreetype.so.6 not found on macOS-devel / r-oldrel
+      # https://stackoverflow.com/a/28488213/2813717
+      - name: "[Custom block] [macOS-devel][r-devel] Install system pkgs"
+        if: matrix.config.os == 'macOS-latest' || matrix.config.r != 'devel'
+        run: |
+          rm '/usr/local/bin/gfortran' || true
+          brew install freetype
+          brew link --overwrite freetype
+          brew install gdal proj geos udunits cairo libpng libgit2
+
       # macOS devel needs its own stage because we need to work with an option to suppress the usage of binaries
       - name: "[Stage] Prepare & Install (macOS-devel)"
         if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'devel'
         run: |
-          brew install udunits protobuf cairo v8 proj gdal
+          brew install udunits protobuf cairo v8 proj gdal libgit2
           echo -e 'options(Ncpus = 4, pkgType = "source", repos = structure(c(CRAN = "https://cloud.r-project.org/")))' > $HOME/.Rprofile
           echo 'export PATH="/usr/local/opt/expat/bin:$PATH"' >> /Users/runner/.bash_profile
           echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> /Users/runner/.bash_profile
           echo 'export PATH="/usr/local/opt/qt/bin:$PATH"' >> /Users/runner/.bash_profile
           Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
-
-      - name: "[Stage] Prepare & Install (macOS-oldrel)"
-        if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'oldrel'
-        run: |
-          brew install udunits
 
       - name: "[Stage] Script"
         run: Rscript -e 'tic::script()'
