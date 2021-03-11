@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -188,12 +188,12 @@ Possible values see <code>https://tsc.dbca.wa.gov.au/api/1/</code></p></td>
     </tr>
     <tr>
       <th>query</th>
-      <td><p>&lt;list&gt; A list of POST parameters,
+      <td><p>(list) A list of POST parameters,
 default: <code><a href='https://rdrr.io/r/base/list.html'>list(format="json")</a></code>.</p></td>
     </tr>
     <tr>
       <th>encode</th>
-      <td><p>The parameter <code>encode</code> for <code>link{httr::POST}</code>,
+      <td><p>The parameter <code>encode</code> for <code>\link{httr::POST}</code>,
 default: "json".
 Other options: <code><a href='https://rdrr.io/r/base/c.html'>c("multipart", "form", "json", "raw")</a></code>.</p></td>
     </tr>
@@ -233,6 +233,12 @@ Default: wastdr::get_wastdr_verbose()</p></td>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other api: 
+<code><a href='download_minimal_wastd_turtledata.html'>download_minimal_wastd_turtledata</a>()</code>,
+<code><a href='download_wastd_sites.html'>download_wastd_sites</a>()</code>,
+<code><a href='download_wastd_turtledata.html'>download_wastd_turtledata</a>()</code>,
+<code><a href='download_wastd_users.html'>download_wastd_users</a>()</code>,
+<code><a href='export_wastd_turtledata.html'>export_wastd_turtledata</a>()</code>,
+<code><a href='filter_wastd_turtledata.html'>filter_wastd_turtledata</a>()</code>,
 <code><a href='wastd_GET.html'>wastd_GET</a>()</code>,
 <code><a href='wastd_parse.html'>wastd_parse</a>()</code>,
 <code><a href='wastd_post_one.html'>wastd_post_one</a>()</code></p></div>

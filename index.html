@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -131,6 +131,24 @@
 <p>Install <code>wastdr</code> from GitHub:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="co"># </span>
+<span class="co"># https://github.com/r-spatial/mapview/issues/312</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>
+    <span class="st">"r-spatial/mapview"</span>,
+    dependencies <span class="op">=</span> <span class="cn">TRUE</span>,
+    upgrade <span class="op">=</span> <span class="st">"always"</span>,
+    force <span class="op">=</span> <span class="cn">TRUE</span>,
+    build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span>
+
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>
+    <span class="st">"ropensci/ruODK"</span>,
+    dependencies <span class="op">=</span> <span class="cn">TRUE</span>,
+    upgrade <span class="op">=</span> <span class="st">"always"</span>,
+    force <span class="op">=</span> <span class="cn">TRUE</span>,
+    build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span>
+
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>
     <span class="st">"dbca-wa/wastdr"</span>,
     dependencies <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -166,7 +184,7 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">wastdr</span><span class="fu">::</span><span class="fu"><a href="reference/wastdr_settings.html">wastdr_settings</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; &lt;wastdr settings&gt;</span>
-<span class="co">#&gt;   WAStD URL:     https://tsc.dbca.wa.gov.au/ </span>
+<span class="co">#&gt;   WAStD URL:     https://wastd.dbca.wa.gov.au/ </span>
 <span class="co">#&gt;   API URL:       https://wastd.dbca.wa.gov.au/api/1/ </span>
 <span class="co">#&gt;   API Token:     see wastdr::get_wastdr_api_token()</span>
 <span class="co">#&gt;   API Username:  FlorianM </span>
@@ -202,18 +220,18 @@
 
 <span class="va">wastd_data</span><span class="op">$</span><span class="va">animals</span>
 <span class="co">#&gt; # A tibble: 1,000 x 46</span>
-<span class="co">#&gt;    area_name area_type area_id site_name site_type site_id survey_id</span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;</span>
-<span class="co">#&gt;  1 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt;  2 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt;  3 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt;  4 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt;  5 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt;  6 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt;  7 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt;  8 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt;  9 Barrow I… Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
-<span class="co">#&gt; 10 Mundabul… Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;    area_name       area_type area_id site_name site_type site_id survey_id</span>
+<span class="co">#&gt;    &lt;chr&gt;           &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;     &lt;int&gt;</span>
+<span class="co">#&gt;  1 Barrow Island   Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  2 Barrow Island   Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  3 Mundabullangana Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  4 Mundabullangana Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  5 Mundabullangana Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  6 Barrow Island   Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  7 Barrow Island   Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  8 Barrow Island   Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt;  9 Barrow Island   Locality       41 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
+<span class="co">#&gt; 10 Mundabullangana Site           42 &lt;NA&gt;      &lt;NA&gt;           NA        NA</span>
 <span class="co">#&gt; # … with 990 more rows, and 39 more variables: survey_start_time &lt;dttm&gt;,</span>
 <span class="co">#&gt; #   survey_end_time &lt;dttm&gt;, survey_start_comments &lt;chr&gt;,</span>
 <span class="co">#&gt; #   survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;, calendar_date_awst &lt;chr&gt;,</span>
@@ -228,36 +246,38 @@
 <span class="co">#&gt; #   source &lt;chr&gt;, source_id &lt;chr&gt;, encounter_type &lt;chr&gt;, status &lt;chr&gt;,</span>
 <span class="co">#&gt; #   observer &lt;chr&gt;, reporter &lt;chr&gt;</span>
 <span class="va">wastd_data</span><span class="op">$</span><span class="va">tracks</span>
-<span class="co">#&gt; # A tibble: 1,000 x 56</span>
-<span class="co">#&gt;    type      pk source source_id encounter_type status when  latitude longitude</span>
-<span class="co">#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 Feat… 159497 odk    uuid:836… nest           new    2010…    -20.3      119.</span>
-<span class="co">#&gt;  2 Feat… 159498 odk    uuid:281… nest           new    2010…    -20.3      119.</span>
-<span class="co">#&gt;  3 Feat… 159499 odk    uuid:19d… nest           new    2010…    -20.3      119.</span>
-<span class="co">#&gt;  4 Feat…     80 paper  2015-10-… nest           proof… 2015…    -21.6      115.</span>
-<span class="co">#&gt;  5 Feat…    314 odk    uuid:f23… nest           curat… 2016…    -32.1      116.</span>
-<span class="co">#&gt;  6 Feat…    315 odk    uuid:c6f… nest           curat… 2016…    -32.1      116.</span>
-<span class="co">#&gt;  7 Feat…    316 odk    uuid:ef5… nest           new    2016…    -32.0      116.</span>
-<span class="co">#&gt;  8 Feat…    317 odk    uuid:a5c… nest           new    2016…    -32.0      116.</span>
-<span class="co">#&gt;  9 Feat…    318 odk    uuid:c6e… nest           new    2016…    -32.0      116.</span>
-<span class="co">#&gt; 10 Feat…    319 odk    uuid:829… nest           new    2016…    -32.0      116.</span>
-<span class="co">#&gt; # … with 990 more rows, and 47 more variables: crs &lt;chr&gt;,</span>
+<span class="co">#&gt; # A tibble: 1,000 x 60</span>
+<span class="co">#&gt;    type       pk source source_id encounter_type status when  latitude longitude</span>
+<span class="co">#&gt;    &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Featu… 159497 odk    uuid:836… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt;  2 Featu… 159498 odk    uuid:281… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt;  3 Featu… 159499 odk    uuid:19d… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt;  4 Featu… 182644 odk    uuid:c92… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt;  5 Featu… 182643 odk    uuid:557… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt;  6 Featu… 182642 odk    uuid:e0c… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt;  7 Featu… 182641 odk    uuid:566… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt;  8 Featu… 182640 odk    uuid:19b… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt;  9 Featu… 182639 odk    uuid:89f… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt; 10 Featu… 182638 odk    uuid:afe… nest           new    2010…    -20.3      119.</span>
+<span class="co">#&gt; # … with 990 more rows, and 51 more variables: crs &lt;chr&gt;,</span>
 <span class="co">#&gt; #   location_accuracy &lt;chr&gt;, leaflet_title &lt;chr&gt;, observer_pk &lt;chr&gt;,</span>
 <span class="co">#&gt; #   observer_username &lt;chr&gt;, observer_name &lt;chr&gt;, reporter_pk &lt;chr&gt;,</span>
 <span class="co">#&gt; #   reporter_username &lt;chr&gt;, reporter_name &lt;chr&gt;, comments &lt;chr&gt;,</span>
 <span class="co">#&gt; #   area_pk &lt;int&gt;, area_area_type &lt;chr&gt;, area_name &lt;chr&gt;, site_pk &lt;int&gt;,</span>
 <span class="co">#&gt; #   site_area_type &lt;chr&gt;, site_name &lt;chr&gt;, survey_id &lt;int&gt;,</span>
-<span class="co">#&gt; #   survey_site_pk &lt;int&gt;, survey_site_area_type &lt;chr&gt;, survey_site_name &lt;chr&gt;,</span>
 <span class="co">#&gt; #   survey_start_time &lt;chr&gt;, survey_end_time &lt;chr&gt;,</span>
 <span class="co">#&gt; #   survey_start_comments &lt;chr&gt;, survey_reporter_pk &lt;chr&gt;,</span>
 <span class="co">#&gt; #   survey_reporter_username &lt;chr&gt;, survey_reporter_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   survey_absolute_admin_url &lt;chr&gt;, survey_production &lt;lgl&gt;, nest_age &lt;chr&gt;,</span>
+<span class="co">#&gt; #   survey_absolute_admin_url &lt;chr&gt;, survey_production &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   survey_area &lt;int&gt;, survey_site_pk &lt;int&gt;, survey_site_area_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   survey_site_name &lt;chr&gt;, survey_end_comments &lt;chr&gt;, nest_age &lt;chr&gt;,</span>
 <span class="co">#&gt; #   nest_type &lt;chr&gt;, species &lt;chr&gt;, habitat &lt;chr&gt;, disturbance &lt;chr&gt;,</span>
 <span class="co">#&gt; #   nest_tagged &lt;chr&gt;, logger_found &lt;chr&gt;, eggs_counted &lt;chr&gt;,</span>
 <span class="co">#&gt; #   hatchlings_measured &lt;chr&gt;, fan_angles_measured &lt;chr&gt;,</span>
-<span class="co">#&gt; #   absolute_admin_url &lt;chr&gt;, datetime &lt;dttm&gt;, calendar_date_awst &lt;chr&gt;,</span>
-<span class="co">#&gt; #   turtle_date &lt;date&gt;, season &lt;dbl&gt;, season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   species_colours &lt;chr&gt;, nest_type_text &lt;chr&gt;</span>
+<span class="co">#&gt; #   absolute_admin_url &lt;chr&gt;, location_accuracy_m &lt;dbl&gt;, name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   datetime &lt;dttm&gt;, calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;,</span>
+<span class="co">#&gt; #   season &lt;dbl&gt;, season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, species_colours &lt;chr&gt;,</span>
+<span class="co">#&gt; #   nest_type_text &lt;chr&gt;</span>
 
 <span class="va">wastd_data</span><span class="op">$</span><span class="va">tracks</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/map_tracks.html">map_tracks</a></span><span class="op">(</span>sites <span class="op">=</span> <span class="va">wastd_data</span><span class="op">$</span><span class="va">sites</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>
@@ -287,7 +307,8 @@
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span>roclets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rd"</span>, <span class="st">"collate"</span>, <span class="st">"namespace"</span>, <span class="st">"vignette"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">build</span><span class="op">(</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="op">)</span>
-<span class="co"># devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span>force_suggests <span class="op">=</span> <span class="cn">T</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"--as-cran"</span>, <span class="st">"--timings"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">rcmdcheck</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rcmdcheck/man/rcmdcheck.html">rcmdcheck</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">goodpractice</span><span class="fu">::</span><span class="fu">goodpractice</span><span class="op">(</span>quiet <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
 <span class="fu">covr</span><span class="fu">::</span><span class="fu"><a href="http://covr.r-lib.org/reference/codecov.html">codecov</a></span><span class="op">(</span>token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"CODECOV_TOKEN"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>To enable local testing of the API as well as checking and upload of test coverage, add your CODECOV token to your .Renviron:</p>

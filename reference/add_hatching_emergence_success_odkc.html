@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Add calculated egg count, hatching and emergence success to
-`odkc_data$tracks_egg`. — add_hatching_emergence_success_odkc • wastdr</title>
+odkc_data$tracks_egg. — add_hatching_emergence_success_odkc • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,11 +48,11 @@
 
 
 <meta property="og:title" content="Add calculated egg count, hatching and emergence success to
-`odkc_data$tracks_egg`. — add_hatching_emergence_success_odkc" />
-<meta property="og:description" content="Hatching success as percentage [0..100] after Miller 1999:
-  Hatching success = 100 * no_egg_shells / (
-  no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
-  no_unhatched_term + no_depredated_eggs)" />
+odkc_data$tracks_egg. — add_hatching_emergence_success_odkc" />
+<meta property="og:description" content="Hatching success as percentage (0..100) after Miller 1999:
+Hatching success = 100 * no_egg_shells / (
+no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
+no_unhatched_term + no_depredated_eggs)" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -95,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -159,16 +159,16 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Add calculated egg count, hatching and emergence success to
-`odkc_data$tracks_egg`.</h1>
+<code>odkc_data$tracks_egg</code>.</h1>
     <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/summarise_tracks_odkc.R'><code>R/summarise_tracks_odkc.R</code></a></small>
     <div class="hidden name"><code>add_hatching_emergence_success_odkc.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Hatching success as percentage [0..100] after Miller 1999:
-  Hatching success = 100 * no_egg_shells / (
-  no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
-  no_unhatched_term + no_depredated_eggs)</p>
+    <p>Hatching success as percentage (0..100) after Miller 1999:
+Hatching success = 100 * no_egg_shells / (
+no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
+no_unhatched_term + no_depredated_eggs)</p>
     </div>
 
     <pre class="usage"><span class='fu'>add_hatching_emergence_success_odkc</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span></pre>
@@ -179,22 +179,25 @@
     <tr>
       <th>data</th>
       <td><p>ODKC Track or Nest data annotated with egg counts, e.g.
-`odkc_data$tracks_egg`.</p></td>
+<code>odkc_data$tracks_egg</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Emergence success as percentage [0..100] after Miller 1999:
-  Emergence success = 100 *
-  (no_egg_shells - no_live_hatchlings - no_dead_hatchlings) / (
-  no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
-   no_unhatched_term + no_depredated_eggs)</p>
+    <p>Emergence success as percentage (0..100) after Miller 1999:
+Emergence success = 100 *
+(no_egg_shells - no_live_hatchlings - no_dead_hatchlings) / (
+no_egg_shells + no_undeveloped_eggs + no_unhatched_eggs +
+no_unhatched_term + no_depredated_eggs)</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other odkc: 
 <code><a href='add_nest_labels_odkc.html'>add_nest_labels_odkc</a>()</code>,
+<code><a href='download_odkc_turtledata_2019.html'>download_odkc_turtledata_2019</a>()</code>,
+<code><a href='download_odkc_turtledata_2020.html'>download_odkc_turtledata_2020</a>()</code>,
 <code><a href='exclude_training_species_odkc.html'>exclude_training_species_odkc</a>()</code>,
+<code><a href='filter_odkc_turtledata.html'>filter_odkc_turtledata</a>()</code>,
 <code><a href='general_disturbance_by_season_odkc.html'>general_disturbance_by_season_odkc</a>()</code>,
 <code><a href='hatching_emergence_success_odkc.html'>hatching_emergence_success_odkc</a>()</code>,
 <code><a href='map_dist_odkc.html'>map_dist_odkc</a>()</code>,

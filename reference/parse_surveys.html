@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -181,47 +181,48 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>tbl_df</code> with columns:</p><ul>
-<li><p>site_name &lt;chr&gt;</p></li>
-<li><p>site_type &lt;chr&gt;</p></li>
-<li><p>site_id &lt;int&gt;</p></li>
-<li><p>reporter &lt;chr&gt;</p></li>
-<li><p>reporter_username &lt;chr&gt;</p></li>
-<li><p>reporter_id &lt;chr&gt;</p></li>
-<li><p>start_time &lt;dttm&gt; The actual start time of the survey.</p></li>
-<li><p>end_time &lt;dttm&gt; The actual, automatically guessed (if 6h later), or
-  human guessed end time.</p></li>
-<li><p>start_comments &lt;chr&gt; Comments at start plus QA messages from username
-  guessing</p></li>
-<li><p>end_comments &lt;chr&gt; Comments at end plus QA messages from username
-  guessing. A mismatch
-        of original usernames can indicate an incorrectly picked Site Visit
-        End point.</p></li>
-<li><p>turtle_date &lt;dttm&gt; The "turtle date" of the survey.</p></li>
-<li><p>season_week &lt;int&gt; The number of completed weeks since fiscal year
-  start</p></li>
-<li><p>iso_week &lt;int&gt; The number of completed weeks since calendar year
-  start</p></li>
-<li><p>season &lt;int&gt; The "turtle season" of the survey, rolling over with
-  Fiscal Year.</p></li>
-<li><p>source &lt;chr&gt; Where this record was born.</p></li>
-<li><p>source_id &lt;chr&gt; The ODK record UID of the Site Visit Start.</p></li>
-<li><p>end_source_id &lt;chr&gt; The ODK record UID of the Site Visit End.</p></li>
-<li><p>status &lt;chr&gt; The QA status of the Survey. "Proofread" or "Curated"
-  indicate human QA edits.</p></li>
-<li><p>device_id &lt;chr&gt; The unique ID of the device the Site Visit Start was
-  captured on.</p></li>
-<li><p>end_device_id &lt;chr&gt; The unique ID of the device the Site Visit End
-  was captured on.</p></li>
-<li><p>status &lt;chr&gt; QA status of the survey.</p></li>
-<li><p>id &lt;int&gt; WAStD ID of the survey.</p></li>
-<li><p>is_production &lt;bool&gt; Whether this survey is a real (production) or
-    a training survey.</p></li>
-<li><p>absolute_admin_url &lt;chr&gt; The absolute URL path to edit the survey in
-  WAStD. Append this to the base `WASTD_URL`.</p></li>
-<li><p>start_photo_url &lt;chr&gt; The URL of the start photo, if given.
-  Requires DBCA SSO when viewed.</p></li>
-<li><p>end_photo_url &lt;chr&gt; The URL of the end photo, if given.
-  Requires DBCA SSO when viewed.</p></li>
+<li><p>area_name (chr) The name of the Locality this Survey took place in.</p></li>
+<li><p>area_id (int) The ID of the Locality this Survey took place in.</p></li>
+<li><p>site_name (chr) The name of the Site this Survey took place in.</p></li>
+<li><p>site_id (int) The ID of the Site this Survey took place in.</p></li>
+<li><p>reporter (chr)</p></li>
+<li><p>reporter_username (chr)</p></li>
+<li><p>reporter_id (chr)</p></li>
+<li><p>start_time (dttm) The actual start time of the survey.</p></li>
+<li><p>end_time (dttm) The actual, automatically guessed (if 6h later), or
+human guessed end time.</p></li>
+<li><p>start_comments (chr) Comments at start plus QA messages from username
+guessing</p></li>
+<li><p>end_comments (chr) Comments at end plus QA messages from username
+guessing. A mismatch
+of original usernames can indicate an incorrectly picked Site Visit
+End point.</p></li>
+<li><p>turtle_date (dttm) The "turtle date" of the survey.</p></li>
+<li><p>season_week (int) The number of completed weeks since fiscal year
+start</p></li>
+<li><p>iso_week (int) The number of completed weeks since calendar year
+start</p></li>
+<li><p>season (int) The "turtle season" of the survey, rolling over with
+Fiscal Year.</p></li>
+<li><p>source (chr) Where this record was born.</p></li>
+<li><p>source_id (chr) The ODK record UID of the Site Visit Start.</p></li>
+<li><p>end_source_id (chr) The ODK record UID of the Site Visit End.</p></li>
+<li><p>status (chr) The QA status of the Survey. "Proofread" or "Curated"
+indicate human QA edits.</p></li>
+<li><p>device_id (chr) The unique ID of the device the Site Visit Start was
+captured on.</p></li>
+<li><p>end_device_id (chr) The unique ID of the device the Site Visit End
+was captured on.</p></li>
+<li><p>status (chr) QA status of the survey.</p></li>
+<li><p>id (int) WAStD ID of the survey.</p></li>
+<li><p>is_production (bool) Whether this survey is a real (production) or
+a training survey.</p></li>
+<li><p>absolute_admin_url (chr) The absolute URL path to edit the survey in
+WAStD. Append this to the base <code>WASTD_URL</code>.</p></li>
+<li><p>start_photo_url (chr) The URL of the start photo, if given.
+Requires DBCA SSO when viewed.</p></li>
+<li><p>end_photo_url (chr) The URL of the end photo, if given.
+Requires DBCA SSO when viewed.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>

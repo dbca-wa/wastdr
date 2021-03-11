@@ -91,7 +91,7 @@ The database credentials are handled via environment variables." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -181,88 +181,98 @@ The database credentials are handled via environment variables.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>ord</th>
-      <td><p>Lubridate orders, default: `c("YmdHMS", "Ymd")`.</p></td>
+      <td><p>Lubridate orders, default: <code><a href='https://rdrr.io/r/base/c.html'>c("YmdHMS", "Ymd")</a></code>.</p></td>
     </tr>
     <tr>
       <th>tz</th>
-      <td><p>Timezone, default: `"Australia/Perth"`.</p></td>
+      <td><p>Timezone, default: <code>"Australia/Perth"</code>.</p></td>
     </tr>
     <tr>
       <th>db_drv</th>
-      <td><p>Database driver, default: `Sys.getenv("W2_DRV")` which should
-resolve to e.g. `"/usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so"`.</p></td>
+      <td><p>Database driver, default: <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv("W2_DRV")</a></code> which should
+resolve to e.g. <code>"/usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so"</code>.</p></td>
     </tr>
     <tr>
       <th>db_srv</th>
-      <td><p>Database server, default: `Sys.getenv("W2_SRV")`, which should
-resolve to a valid server hostname, e.g. `"myserver.corporateict.domain"`.</p></td>
+      <td><p>Database server, default: <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv("W2_SRV")</a></code>, which should
+resolve to a valid server hostname, e.g. <code>"myserver.corporateict.domain"</code>.</p></td>
     </tr>
     <tr>
       <th>db_name</th>
-      <td><p>The database name, default: `Sys.getenv("W2_DB")`, which should
-resolve to a valid database name, e.g. `turtle_tagging`.</p></td>
+      <td><p>The database name, default: <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv("W2_DB")</a></code>, which should
+resolve to a valid database name, e.g. <code>turtle_tagging</code>.</p></td>
     </tr>
     <tr>
       <th>db_user</th>
       <td><p>The read-permitted database user,
-default: `Sys.getenv("W2_UN")`.</p></td>
+default: <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv("W2_UN")</a></code>.</p></td>
     </tr>
     <tr>
       <th>db_pass</th>
-      <td><p>The database user's password, default: `Sys.getenv("W2_PW")`.</p></td>
+      <td><p>The database user's password, default: <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv("W2_PW")</a></code>.</p></td>
     </tr>
     <tr>
       <th>db_port</th>
-      <td><p>The database port, default: `Sys.getenv("W2_PT")`, which
-should resolve to a numeric port, e.g. `1234`.</p></td>
+      <td><p>The database port, default: <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv("W2_PT")</a></code>, which
+should resolve to a numeric port, e.g. <code>1234</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
       <td><p>Whether to print verbose help messages,
-default: `wastdr::get_wastdr_verbose()`.</p></td>
+default: <code><a href='wastdr_settings.html'>wastdr::get_wastdr_verbose()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A named list of sanitised tables from the Turtle Tagging DB:</p>
-<p># Metadata
-  downloaded_on
-  w2_tables</p>
-<p># personnel
-  persons</p>
-<p># Data entry
-  data_entry_batches
-  data_entry
-  data_entry_operators</p>
-<p># Lookups
-  lookup_beach_positions
-  lookup_body_parts
-  lookup_conditions
-  lookup_damage_causes
-  lookup_damage_codes
-  lookup_datum_codes
-  lookup_egg_count_methods
-  lookup_id_types
-  lookup_measurement_types
-  lookup_pit_tag_states
-  lookup_sample_tissue_type
-  lookup_tag_states</p>
-<p># Sites
-  sites</p>
-<p># Encounters
-  enc
-  enc_qa</p>
-<p># Observations
-  obs_flipper_tags
-  obs_pit_tags
-  obs_damages
-  obs_measurements
-  obs_samples</p>
-<p># Reconstructed
-  reconstructed_pit_tags
-  reconstructed_tags
-  reconstructed_turtles</p>
+    <p>A named list of sanitised tables from the Turtle Tagging DB:</p><ul>
+<li><p>Metadata:</p><ul>
+<li><p>downloaded_on</p></li>
+<li><p>w2_tables</p></li>
+</ul></li>
+<li><p>Personnel:</p><ul>
+<li><p>persons</p></li>
+</ul></li>
+<li><p>Data entry:</p><ul>
+<li><p>data_entry_batches</p></li>
+<li><p>data_entry</p></li>
+<li><p>data_entry_operators</p></li>
+</ul></li>
+<li><p>Lookups:</p><ul>
+<li><p>lookup_beach_positions</p></li>
+<li><p>lookup_body_parts</p></li>
+<li><p>lookup_conditions</p></li>
+<li><p>lookup_damage_causes</p></li>
+<li><p>lookup_damage_codes</p></li>
+<li><p>lookup_datum_codes</p></li>
+<li><p>lookup_egg_count_methods</p></li>
+<li><p>lookup_id_types</p></li>
+<li><p>lookup_measurement_types</p></li>
+<li><p>lookup_pit_tag_states</p></li>
+<li><p>lookup_sample_tissue_type</p></li>
+<li><p>lookup_tag_states</p></li>
+</ul></li>
+<li><p>Places:</p><ul>
+<li><p>sites</p></li>
+</ul></li>
+<li><p>Encounters:</p><ul>
+<li><p>enc</p></li>
+<li><p>enc_qa</p></li>
+</ul></li>
+<li><p>Observations:</p><ul>
+<li><p>obs_flipper_tags</p></li>
+<li><p>obs_pit_tags</p></li>
+<li><p>obs_damages</p></li>
+<li><p>obs_measurements</p></li>
+<li><p>obs_samples</p></li>
+</ul></li>
+<li><p>Reconstructed:</p><ul>
+<li><p>reconstructed_pit_tags</p></li>
+<li><p>reconstructed_tags</p></li>
+<li><p>reconstructed_turtles</p></li>
+</ul></li>
+</ul>
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

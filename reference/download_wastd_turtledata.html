@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -169,8 +169,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>max_records</th>
-      <td><p>&lt;int&gt; The max number of records to retrieve,
-default: NULL (all).</p></td>
+      <td><p>(int) The max number of records to retrieve,
+default: NULL (download all).</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -182,45 +182,50 @@ Default: wastdr::get_wastdr_verbose()</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An S3 class "wastd_data" with items:</p><ul>
-<li><p>downloaded_on An UTC POSIXct timestamp of the data snapshot generated
-        by <code><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></code>.</p></li>
+<li><p>downloaded_on A UTC POSIXct timestamp of the data snapshot generated
+by <code><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></code>.</p></li>
 <li><p>sites An sf object of known WAStD sites.</p></li>
 <li><p>areas An sf object of known WAStD localities.</p></li>
 <li><p>surveys A tibble of surveys, reconstructed by WAStD from
-        Site Visit Start and End records (where given) and
-        (TurtleNest)Encounters.</p></li>
+Site Visit Start and End records (where given) and
+(TurtleNest)Encounters.</p></li>
 <li><p>animals A tibble of AnimalEncounters, which includes live sightings,
-        rescues, strandings, and other incidents, and turtle tagging.
-        Data is included from 2016 and onwards.</p></li>
+rescues, strandings, and other incidents, and turtle tagging.
+Data is included from 2016 and onwards.</p></li>
 <li><p>tracks Turtle tracks and nests.</p></li>
 <li><p>nest_dist Turtle Nest and General disturbance / predation.</p></li>
 <li><p>nest_tags Turtle Nest Tags.</p></li>
 <li><p>nest_excavations Turtle Nest Excavations - hatching and emergence
-        success.</p></li>
+success.</p></li>
 <li><p>hatchling_morph Hatchling morphometrics from next exacavations.</p></li>
 <li><p>nest_fans Hatchling emergence tracks - main fan.</p></li>
 <li><p>nest_fan_outliers Hatchling emergence tracks - individual outliers.</p></li>
 <li><p>nest_lightsources - Light sources present during hatchling emergence.</p></li>
 <li><p>nest_loggers - Temperature loggers inside the nest. LoggerEncounters
-        were migrated to become LoggerObservations.</p></li>
+were migrated to become LoggerObservations.</p></li>
+<li><p>linetx LineTransects of Turtle Track Tally counts.</p></li>
+<li><p>track_tally Tally of track type/species, many per linetx.</p></li>
+<li><p>disturbance_tally Tally of dist/pred, many per linetx.</p></li>
+<li><p>loggers LoggerEncounters, deprecated, will be migrated to LoggerObs
+associated with Encounters.</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>See also <code>??wastdr::export_wastd_turtledata</code> for a detailed explanation of
+the data tables.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other included: 
-<code><a href='download_odkc_turtledata_2019.html'>download_odkc_turtledata_2019</a>()</code>,
-<code><a href='download_odkc_turtledata_2020.html'>download_odkc_turtledata_2020</a>()</code>,
-<code><a href='odkc_data.html'>odkc_data</a></code>,
-<code><a href='print.odkc_turtledata.html'>print.odkc_turtledata</a>()</code>,
-<code><a href='print.wastd_data.html'>print.wastd_data</a>()</code>,
-<code><a href='tsc_data.html'>tsc_data</a></code>,
-<code><a href='wastd_ae_raw.html'>wastd_ae_raw</a></code>,
-<code><a href='wastd_ae.html'>wastd_ae</a></code>,
-<code><a href='wastd_area_raw.html'>wastd_area_raw</a></code>,
-<code><a href='wastd_data.html'>wastd_data</a></code>,
-<code><a href='wastd_surveys_raw.html'>wastd_surveys_raw</a></code>,
-<code><a href='wastd_tne_raw.html'>wastd_tne_raw</a></code>,
-<code><a href='wastd_tne.html'>wastd_tne</a></code></p></div>
+    <div class='dont-index'><p>Other api: 
+<code><a href='download_minimal_wastd_turtledata.html'>download_minimal_wastd_turtledata</a>()</code>,
+<code><a href='download_wastd_sites.html'>download_wastd_sites</a>()</code>,
+<code><a href='download_wastd_users.html'>download_wastd_users</a>()</code>,
+<code><a href='export_wastd_turtledata.html'>export_wastd_turtledata</a>()</code>,
+<code><a href='filter_wastd_turtledata.html'>filter_wastd_turtledata</a>()</code>,
+<code><a href='wastd_GET.html'>wastd_GET</a>()</code>,
+<code><a href='wastd_POST.html'>wastd_POST</a>()</code>,
+<code><a href='wastd_parse.html'>wastd_parse</a>()</code>,
+<code><a href='wastd_post_one.html'>wastd_post_one</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

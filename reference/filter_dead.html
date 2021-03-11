@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -263,38 +263,35 @@ e.g. <code>wastd_data$animals</code> with column <code>health</code> or
   <span class='fu'>filter_dead</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 68</span><span>
-#&gt;   id     observation_start_… reporter device_id phone_number observation_end_ti…
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> uuid:… 2021-02-14 </span><span style='color: #949494;'>06:57:13</span><span> Name hi… collect:… 0418534897   2021-02-14 </span><span style='color: #949494;'>07:00:40</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> uuid:… 2021-02-14 </span><span style='color: #949494;'>05:57:16</span><span> Name hi… collect:… 0418534897   2021-02-14 </span><span style='color: #949494;'>06:03:41</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> uuid:… 2021-02-06 </span><span style='color: #949494;'>09:08:06</span><span> Name hi… collect:… </span><span style='color: #BB0000;'>NA</span><span>           2021-02-06 </span><span style='color: #949494;'>09:12:10</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> uuid:… 2021-02-02 </span><span style='color: #949494;'>13:50:48</span><span> Name hi… collect:… </span><span style='color: #BB0000;'>NA</span><span>           2021-02-02 </span><span style='color: #949494;'>14:00:11</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> uuid:… 2021-02-04 </span><span style='color: #949494;'>10:17:15</span><span> Name hi… collect:… </span><span style='color: #BB0000;'>NA</span><span>           2021-02-04 </span><span style='color: #949494;'>10:28:26</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> uuid:… 2020-12-03 </span><span style='color: #949494;'>21:49:22</span><span> Name hi… e249db9e… </span><span style='color: #BB0000;'>NA</span><span>           2020-12-03 </span><span style='color: #949494;'>21:57:30</span><span>
-#&gt; </span><span style='color: #949494;'># … with 62 more variables: system_submission_date &lt;chr&gt;,</span><span>
+#&gt;   id             observation_start_t… reporter  device_id    observation_end_ti…
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>             
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> uuid:c6c229cd… 2021-02-14 </span><span style='color: #949494;'>08:01:45</span><span>  Name hid… collect:YZ6… 2021-02-16 </span><span style='color: #949494;'>10:31:03</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> uuid:aee82a1a… 2021-02-14 </span><span style='color: #949494;'>07:39:09</span><span>  Name hid… collect:YZ6… 2021-02-16 </span><span style='color: #949494;'>10:30:03</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> uuid:7bf58c82… 2021-02-14 </span><span style='color: #949494;'>06:57:13</span><span>  Name hid… collect:fmy… 2021-02-14 </span><span style='color: #949494;'>07:00:40</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> uuid:c34b2d1e… 2021-02-14 </span><span style='color: #949494;'>05:57:16</span><span>  Name hid… collect:fmy… 2021-02-14 </span><span style='color: #949494;'>06:03:41</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> uuid:9ff3abaf… 2021-02-06 </span><span style='color: #949494;'>09:08:06</span><span>  Name hid… collect:RbO… 2021-02-06 </span><span style='color: #949494;'>09:12:10</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> uuid:8d60f333… 2021-02-02 </span><span style='color: #949494;'>13:50:48</span><span>  Name hid… collect:fmy… 2021-02-02 </span><span style='color: #949494;'>14:00:11</span><span>
+#&gt; </span><span style='color: #949494;'># … with 63 more variables: system_submission_date &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   system_submitter_id &lt;chr&gt;, system_submitter_name &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   system_attachments_present &lt;int&gt;, system_attachments_expected &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   meta_instance_id &lt;chr&gt;, incident_observed_at_longitude &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   incident_observed_at_latitude &lt;dbl&gt;, incident_observed_at_altitude &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   incident_observed_at_accuracy &lt;dbl&gt;, incident_observed_at &lt;list&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   incident_incident_time &lt;dttm&gt;, incident_habitat &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   incident_photo_habitat &lt;chr&gt;, incident_location_comment &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   incident_location_comment &lt;chr&gt;, incident_incident_time &lt;dttm&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   incident_habitat &lt;chr&gt;, incident_photo_habitat &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   incident_observed_at_manual_longitude &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   incident_observed_at_manual_latitude &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   incident_observed_at_manual_altitude &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   incident_observed_at_manual_accuracy &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   incident_observed_at_manual &lt;list&gt;, details_taxon &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   details_species &lt;chr&gt;, details_maturity &lt;chr&gt;, details_sex &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   status_activity &lt;chr&gt;, status_health &lt;chr&gt;, status_behaviour &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   death_cause_of_death &lt;chr&gt;, death_cause_of_death_confidence &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   checks_checked_for_injuries &lt;chr&gt;, checks_scanned_for_pit_tags &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   checks_checked_for_flipper_tags &lt;chr&gt;, checks_samples_taken &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   habitat_photos_photo_habitat_3 &lt;chr&gt;, habitat_photos_photo_habitat_2 &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   habitat_photos_photo_habitat_4 &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   animal_fate_animal_fate_comment &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   photos_turtle_photo_carapace_top &lt;chr&gt;, photos_turtle_photo_head_top &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   photos_turtle_photo_head_side &lt;chr&gt;, photos_turtle_photo_head_front &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   morphometrics_curved_carapace_length_mm &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   photos_turtle_photo_carapace_top &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   photos_turtle_photo_head_front &lt;chr&gt;, photos_turtle_photo_head_top &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   photos_turtle_photo_head_side &lt;chr&gt;, status_activity &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   status_health &lt;chr&gt;, status_behaviour &lt;chr&gt;, death_cause_of_death &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   death_cause_of_death_confidence &lt;chr&gt;, checks_checked_for_injuries &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   checks_scanned_for_pit_tags &lt;chr&gt;, checks_checked_for_flipper_tags &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   checks_samples_taken &lt;chr&gt;, morphometrics_curved_carapace_length_mm &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   morphometrics_curved_carapace_length_accuracy &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   morphometrics_curved_carapace_width_mm &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   morphometrics_curved_carapace_width_accuracy &lt;chr&gt;,</span><span>
@@ -302,6 +299,9 @@ e.g. <code>wastd_data$animals</code> with column <code>health</code> or
 #&gt; </span><span style='color: #949494;'>#   morphometrics_maximum_head_width_accuracy &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   morphometrics_tail_length_carapace_mm &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   morphometrics_maximum_head_width_mm &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   habitat_photos_photo_habitat_2 &lt;chr&gt;, habitat_photos_photo_habitat_3 &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   habitat_photos_photo_habitat_4 &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   animal_fate_animal_fate_comment &lt;chr&gt;, phone_number &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   damage_observation_odata_navigation_link &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   tag_observation_odata_navigation_link &lt;chr&gt;, odata_context &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   site_id &lt;dbl&gt;, site_name &lt;chr&gt;, area_id &lt;dbl&gt;, area_name &lt;chr&gt;,</span><span>

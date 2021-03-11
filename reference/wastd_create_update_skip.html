@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -197,11 +197,11 @@ WAStD. Default: FALSE.</p></td>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>The model label for verbose messages, default: `records`.</p></td>
+      <td><p>The model label for verbose messages, default: <code>records</code>.</p></td>
     </tr>
     <tr>
       <th>serializer</th>
-      <td><p>The WAStD API serializer, default: `encounters`.</p></td>
+      <td><p>The WAStD API serializer, default: <code>encounters</code>.</p></td>
     </tr>
     <tr>
       <th>chunksize</th>
@@ -226,10 +226,12 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of three objects:</p>
-<p>* `created` The WAStD API response for all created records
-* `updated` The WAStD API response for all updated records
-* `skipped` The original records for all skipped records</p>
+    <p>A list of three objects:</p><ul>
+<li><p><code>created</code> The WAStD API response for all created records</p></li>
+<li><p><code>updated</code> The WAStD API response for all updated records</p></li>
+<li><p><code>skipped</code> The original records for all skipped records</p></li>
+</ul>
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

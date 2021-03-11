@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -156,12 +156,32 @@
       <small>Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="wastdr-051" class="section level1">
-<h1 class="page-header" data-toc-text="0.5.1">
-<a href="#wastdr-051" class="anchor"></a>wastdr 0.5.1</h1>
+    <div id="wastdr-052" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.2">
+<a href="#wastdr-052" class="anchor"></a>wastdr 0.5.2</h1>
 <div id="data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data" class="anchor"></a>Data</h2>
+<ul>
+<li>WAStD API changes: Surveys now contain in addition to the surveyed <code>site</code> also the Locality (<code>area</code>), e.g. “Ningaloo”. This allows filtering to whole monitoring programs.</li>
+<li>WAStD API changes: Users now include <code>is_active</code> to indicate whether they are a closed duplicate profile or an active one. This is useful to exclude duplicate profiles from user name mapping (e.g. in <code>etlTurtleNesting</code>).</li>
+</ul>
+</div>
+<div id="docs" class="section level2">
+<h2 class="hasAnchor">
+<a href="#docs" class="anchor"></a>Docs</h2>
+<ul>
+<li>All functions are now shown in Reference sorted by function family.</li>
+<li>Reference docs now support Markdown. Bullet point lists are easier to write now.</li>
+</ul>
+</div>
+</div>
+    <div id="wastdr-051" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.1">
+<a href="#wastdr-051" class="anchor"></a>wastdr 0.5.1</h1>
+<div id="data-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-1" class="anchor"></a>Data</h2>
 <ul>
 <li>
 <code>odkc_data</code> is not generated from <code>wastdr::download_odkc_turtledata2020()</code>. The first 100 records of each element are retained and sanitised of PII (names).</li>

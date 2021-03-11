@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -173,16 +173,17 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>&lt;list&gt; The output of data("odkc_data"), a list of tibbles and sf</p></td>
+      <td><p>(list) The output of data("odkc_data"), a list of tibbles and sf</p></td>
     </tr>
     <tr>
       <th>area_name</th>
-      <td><p>&lt;chr&gt; The name of the area to filter the data by. Options:
-* NULL (default): do not filter data, return unfiltered data.
-* "All turtle programs": do not filter data, return unfiltered data.
-* "Other": Filter data to area_name NA.
-* Any name in `unique(odkc_data$areas$area_name)`: return data filtered to
-  this area_name.</p></td>
+      <td><p>(chr) The name of the area to filter the data by. Options:</p><ul>
+<li><p>NULL (default): do not filter data, return unfiltered data.</p></li>
+<li><p>"All turtle programs": do not filter data, return unfiltered data.</p></li>
+<li><p>"Other": Filter data to area_name NA.</p></li>
+<li><p>Any name in <code><a href='https://rdrr.io/r/base/unique.html'>unique(odkc_data$areas$area_name)</a></code>: return data filtered to
+this area_name.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -193,7 +194,34 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>&lt;list&gt; The input data, optionally filtered to a subset of records.</p>
+    <p>(list) The input data, optionally filtered to a subset of records.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other odkc: 
+<code><a href='add_hatching_emergence_success_odkc.html'>add_hatching_emergence_success_odkc</a>()</code>,
+<code><a href='add_nest_labels_odkc.html'>add_nest_labels_odkc</a>()</code>,
+<code><a href='download_odkc_turtledata_2019.html'>download_odkc_turtledata_2019</a>()</code>,
+<code><a href='download_odkc_turtledata_2020.html'>download_odkc_turtledata_2020</a>()</code>,
+<code><a href='exclude_training_species_odkc.html'>exclude_training_species_odkc</a>()</code>,
+<code><a href='general_disturbance_by_season_odkc.html'>general_disturbance_by_season_odkc</a>()</code>,
+<code><a href='hatching_emergence_success_odkc.html'>hatching_emergence_success_odkc</a>()</code>,
+<code><a href='map_dist_odkc.html'>map_dist_odkc</a>()</code>,
+<code><a href='map_mwi_odkc.html'>map_mwi_odkc</a>()</code>,
+<code><a href='map_sv_odkc.html'>map_sv_odkc</a>()</code>,
+<code><a href='map_tracks_odkc.html'>map_tracks_odkc</a>()</code>,
+<code><a href='nest_disturbance_by_season_odkc.html'>nest_disturbance_by_season_odkc</a>()</code>,
+<code><a href='nesting_type_by_area_season_age_species_odkc.html'>nesting_type_by_area_season_age_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_area_season_species_odkc.html'>nesting_type_by_area_season_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_age_species_odkc.html'>nesting_type_by_season_age_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_calendarday_age_species_odkc.html'>nesting_type_by_season_calendarday_age_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_calendarday_species_odkc.html'>nesting_type_by_season_calendarday_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_day_species_odkc.html'>nesting_type_by_season_day_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_species_odkc.html'>nesting_type_by_season_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_week_age_species_odkc.html'>nesting_type_by_season_week_age_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_week_site_species_odkc.html'>nesting_type_by_season_week_site_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_week_species_odkc.html'>nesting_type_by_season_week_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_site_season_age_species_odkc.html'>nesting_type_by_site_season_age_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_site_season_species_odkc.html'>nesting_type_by_site_season_species_odkc</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>odkc_data</span><span class='op'>)</span>

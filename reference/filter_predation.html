@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -171,9 +171,9 @@
       <th>data</th>
       <td><p>A dataframe with column "disturbance_cause", e.g. the ouput of
 <code>
-<a href='wastd_GET.html'>wastd_GET</a>("turtle-nest-disturbance-observations") <!-- %&gt;% -->
-<a href='parse_encounterobservations.html'>parse_encounterobservations</a>()
-</code> or <code><a href='https://rdrr.io/r/utils/data.html'>data("wastd_data"); wastd_data$nest_dist</a></code></p></td>
+  <a href='wastd_GET.html'>wastd_GET</a>("turtle-nest-disturbance-observations") <!-- %&gt;% -->
+  <a href='parse_encounterobservations.html'>parse_encounterobservations</a>()
+  </code> or <code><a href='https://rdrr.io/r/utils/data.html'>data("wastd_data"); wastd_data$nest_dist</a></code></p></td>
     </tr>
     </table>
 
@@ -240,7 +240,7 @@
 <span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>nest_dist</span> <span class='op'>%&gt;%</span>
   <span class='fu'>filter_predation</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 60</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 61</span><span>
 #&gt;      pk source source_id        encounter_pk encounter_area_… encounter_area_ar…
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>  </span><span style='text-decoration: underline;'>5</span><span>550      0 280ed802-d6b8-1…         </span><span style='text-decoration: underline;'>4</span><span>908              148 Locality          
@@ -249,11 +249,11 @@
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span>  </span><span style='text-decoration: underline;'>5</span><span>556      0 280ed802-d6b8-1…         </span><span style='text-decoration: underline;'>4</span><span>915              148 Locality          
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span>  </span><span style='text-decoration: underline;'>5</span><span>557      0 280ed802-d6b8-1…         </span><span style='text-decoration: underline;'>4</span><span>916              148 Locality          
 #&gt; </span><span style='color: #BCBCBC;'>6</span><span>  </span><span style='text-decoration: underline;'>5</span><span>559      0 280ed802-d6b8-1…         </span><span style='text-decoration: underline;'>4</span><span>917              148 Locality          
-#&gt; </span><span style='color: #949494;'># … with 54 more variables: encounter_area_name &lt;chr&gt;, encounter_site_pk &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'># … with 55 more variables: encounter_area_name &lt;chr&gt;, encounter_site_pk &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   encounter_site_area_type &lt;chr&gt;, encounter_site_name &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   encounter_survey_id &lt;int&gt;, encounter_survey_start_time &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   encounter_survey_end_time &lt;chr&gt;, encounter_survey_start_comments &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   encounter_survey_end_comments &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_survey_id &lt;int&gt;, encounter_survey_area &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_survey_start_time &lt;chr&gt;, encounter_survey_end_time &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   encounter_survey_start_comments &lt;chr&gt;, encounter_survey_end_comments &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   encounter_survey_absolute_admin_url &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   encounter_survey_production &lt;lgl&gt;, encounter_observer_pk &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   encounter_observer_username &lt;chr&gt;, encounter_observer_name &lt;chr&gt;,</span><span>
@@ -301,17 +301,8 @@
 #&gt; </span><span style='color: #949494;'>#   nest_hatchlings_measured &lt;chr&gt;, nest_fan_angles_measured &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   start_location_longitude &lt;dbl&gt;, start_location_latitude &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   start_location_altitude &lt;dbl&gt;, start_location_accuracy &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   start_location &lt;list&gt;, track_photos_tail_pokes &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   track_photos_photo_track_1 &lt;chr&gt;, track_photos_photo_track_2 &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   track_photos_max_track_width_front &lt;int&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   track_photos_max_track_width_rear &lt;int&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   track_photos_carapace_drag_width &lt;int&gt;, track_photos_step_length &lt;int&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   disturbanceobservation_odata_navigation_link &lt;chr&gt;, nest_tag_status &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   nest_tag_date_nest_laid &lt;dttm&gt;, nest_tag_tag_label &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   nest_tag_tag_comments &lt;chr&gt;, nest_tag_photo_tag &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   nest_tag_flipper_tag_id &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   fan_angles_photo_hatchling_tracks_seawards &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   fan_angles_photo_hatchling_tracks_relief &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   start_location &lt;list&gt;, fan_angles_photo_hatchling_tracks_seawards &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_bearing_to_water_manual &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   fan_angles_leftmost_track_manual &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   fan_angles_rightmost_track_manual &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   fan_angles_no_tracks_main_group &lt;int&gt;,</span><span>
@@ -322,16 +313,23 @@
 #&gt; </span><span style='color: #949494;'>#   fan_angles_hatchling_emergence_time_known &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   fan_angles_cloud_cover_at_emergence_known &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   fan_angles_light_sources_present &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   fan_angles_bearing_to_water_manual &lt;int&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   fan_angles_path_to_sea_comments &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   outlier_track_odata_navigation_link &lt;chr&gt;, egg_count_no_egg_shells &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_photo_hatchling_tracks_relief &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   fan_angles_path_to_sea_comments &lt;chr&gt;, egg_count_no_egg_shells &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   egg_count_no_live_hatchlings &lt;int&gt;, egg_count_no_dead_hatchlings &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   egg_count_no_undeveloped_eggs &lt;int&gt;, egg_count_no_unhatched_eggs &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   egg_count_no_unhatched_term &lt;int&gt;, egg_count_no_depredated_eggs &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   egg_count_nest_depth_top &lt;int&gt;, egg_count_nest_depth_bottom &lt;int&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   egg_count_nest_excavation_comments &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   logger_details_odata_navigation_link &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   egg_photos_odata_navigation_link &lt;chr&gt;, nest_photos_photo_nest_1 &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   egg_photos_odata_navigation_link &lt;chr&gt;, nest_tag_status &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nest_tag_date_nest_laid &lt;dttm&gt;, nest_tag_tag_label &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nest_tag_tag_comments &lt;chr&gt;, nest_tag_photo_tag &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   nest_tag_flipper_tag_id &lt;chr&gt;, logger_details_odata_navigation_link &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   track_photos_tail_pokes &lt;chr&gt;, track_photos_photo_track_1 &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   track_photos_photo_track_2 &lt;chr&gt;, track_photos_max_track_width_front &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   track_photos_max_track_width_rear &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   track_photos_carapace_drag_width &lt;int&gt;, track_photos_step_length &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   disturbanceobservation_odata_navigation_link &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   outlier_track_odata_navigation_link &lt;chr&gt;, nest_photos_photo_nest_1 &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   nest_photos_photo_nest_2 &lt;chr&gt;, nest_photos_photo_nest_3 &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   light_source_odata_navigation_link &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   other_light_sources_other_light_sources_present &lt;chr&gt;,</span><span>
@@ -350,12 +348,12 @@
 </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 31</span><span>
 #&gt;   id             observation_start_t… reporter  device_id    observation_end_ti…
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> uuid:069c3c5f… 2021-02-14 </span><span style='color: #949494;'>06:16:50</span><span>  Name hid… collect:alM… 2021-02-14 </span><span style='color: #949494;'>06:17:20</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> uuid:91e4cce9… 2021-02-14 </span><span style='color: #949494;'>06:44:24</span><span>  Name hid… collect:Gih… 2021-02-14 </span><span style='color: #949494;'>06:45:30</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> uuid:0f58516f… 2021-02-13 </span><span style='color: #949494;'>07:46:00</span><span>  Name hid… collect:Xq1… 2021-02-13 </span><span style='color: #949494;'>07:46:47</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> uuid:8d577beb… 2021-02-13 </span><span style='color: #949494;'>06:34:05</span><span>  Name hid… collect:Xq1… 2021-02-13 </span><span style='color: #949494;'>06:34:28</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> uuid:2eb9c57a… 2021-02-13 </span><span style='color: #949494;'>07:49:33</span><span>  Name hid… collect:0T9… 2021-02-13 </span><span style='color: #949494;'>07:50:46</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> uuid:e8d2c91f… 2021-02-13 </span><span style='color: #949494;'>07:44:37</span><span>  Name hid… collect:0T9… 2021-02-13 </span><span style='color: #949494;'>07:45:38</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> uuid:22064177… 2021-02-28 </span><span style='color: #949494;'>06:30:06</span><span>  Name hid… collect:Xq1… 2021-02-28 </span><span style='color: #949494;'>06:30:46</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> uuid:3aae7909… 2021-02-27 </span><span style='color: #949494;'>07:21:50</span><span>  Name hid… collect:Xq1… 2021-02-27 </span><span style='color: #949494;'>07:22:12</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> uuid:069c3c5f… 2021-02-14 </span><span style='color: #949494;'>06:16:50</span><span>  Name hid… collect:alM… 2021-02-14 </span><span style='color: #949494;'>06:17:20</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> uuid:91e4cce9… 2021-02-14 </span><span style='color: #949494;'>06:44:24</span><span>  Name hid… collect:Gih… 2021-02-14 </span><span style='color: #949494;'>06:45:30</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> uuid:0f58516f… 2021-02-13 </span><span style='color: #949494;'>07:46:00</span><span>  Name hid… collect:Xq1… 2021-02-13 </span><span style='color: #949494;'>07:46:47</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> uuid:8d577beb… 2021-02-13 </span><span style='color: #949494;'>06:34:05</span><span>  Name hid… collect:Xq1… 2021-02-13 </span><span style='color: #949494;'>06:34:28</span><span>
 #&gt; </span><span style='color: #949494;'># … with 26 more variables: system_submission_date &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   system_submitter_id &lt;chr&gt;, system_submitter_name &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   system_attachments_present &lt;int&gt;, system_attachments_expected &lt;int&gt;,</span><span>

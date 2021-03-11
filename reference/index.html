@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -176,6 +176,42 @@
       
       
       <tr>
+        
+        <td>
+          <p><code><a href="download_minimal_wastd_turtledata.html">download_minimal_wastd_turtledata()</a></code> </p>
+        </td>
+        <td><p>Download a minimal dataset of turtle observations from WAStD</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="download_wastd_sites.html">download_wastd_sites()</a></code> </p>
+        </td>
+        <td><p>Download Areas of type Site from WAStD</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="download_wastd_turtledata.html">download_wastd_turtledata()</a></code> </p>
+        </td>
+        <td><p>Download all turtle data from WAStD</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="download_wastd_users.html">download_wastd_users()</a></code> </p>
+        </td>
+        <td><p>Download a minimal dataset of turtle observations from WAStD</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="export_wastd_turtledata.html">export_wastd_turtledata()</a></code> </p>
+        </td>
+        <td><p>Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_wastd_turtledata.html">filter_wastd_turtledata()</a></code> </p>
+        </td>
+        <td><p>Filter WAStD turtledata to an area_name</p></td>
+      </tr><tr>
         
         <td>
           <p><code><a href="wastd_GET.html">wastd_GET()</a></code> </p>
@@ -273,13 +309,13 @@ series</p></td>
         <td>
           <p><code><a href="hatching_emergence_success_area.html">hatching_emergence_success_area()</a></code> </p>
         </td>
-        <td><p>Summarize HS and ES for excavations of hatched nests grouped by `area_name`</p></td>
+        <td><p>Summarize HS and ES for excavations of hatched nests grouped by <code>area_name</code></p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="hatching_emergence_success_site.html">hatching_emergence_success_site()</a></code> </p>
         </td>
-        <td><p>Summarize HS and ES for excavations of hatched nests grouped by `site_name`</p></td>
+        <td><p>Summarize HS and ES for excavations of hatched nests grouped by <code>site_name</code></p></td>
       </tr><tr>
         
         <td>
@@ -551,7 +587,7 @@ of <code>parse_surveys</code></p></td>
           <p><code><a href="add_hatching_emergence_success_odkc.html">add_hatching_emergence_success_odkc()</a></code> </p>
         </td>
         <td><p>Add calculated egg count, hatching and emergence success to
-`odkc_data$tracks_egg`.</p></td>
+<code>odkc_data$tracks_egg</code>.</p></td>
       </tr><tr>
         
         <td>
@@ -562,9 +598,27 @@ of <code>parse_surveys</code></p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="download_odkc_turtledata_2019.html">download_odkc_turtledata_2019()</a></code> </p>
+        </td>
+        <td><p>Download all turtle data from DBCA's ODK Central</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="download_odkc_turtledata_2020.html">download_odkc_turtledata_2020()</a></code> </p>
+        </td>
+        <td><p>Download all turtle data from DBCA's ODK Central 2020</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="exclude_training_species_odkc.html">exclude_training_species_odkc()</a></code> </p>
         </td>
         <td><p>Exclude ODKC records with <code>species</code> "corolla-corolla".</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_odkc_turtledata.html">filter_odkc_turtledata()</a></code> </p>
+        </td>
+        <td><p>Filter odkc_data to a given area_name.</p></td>
       </tr><tr>
         
         <td>
@@ -703,7 +757,7 @@ ODKC data</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-threatened-species-and-communities-db" class="hasAnchor"><a href="#section-threatened-species-and-communities-db" class="anchor"></a>Threatened Species and Communities DB</h2>
+          <h2 id="section-turtle-tagging-db-import" class="hasAnchor"><a href="#section-turtle-tagging-db-import" class="anchor"></a>Turtle Tagging DB import</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -712,7 +766,13 @@ ODKC data</p></td>
     </tbody><tbody>
       
       
-      
+      <tr>
+        
+        <td>
+          <p><code><a href="download_w2_data.html">download_w2_data()</a></code> </p>
+        </td>
+        <td><p>Download Turtle Tagging data from WAMTRAM2.</p></td>
+      </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
@@ -755,7 +815,7 @@ ODKC data</p></td>
         <td>
           <p><code><a href="add_dates.html">add_dates()</a></code> </p>
         </td>
-        <td><p>Add turtle dates to a dataframe with datetime col `observation_start_time`.</p></td>
+        <td><p>Add turtle dates to a dataframe with datetime col <code>observation_start_time</code>.</p></td>
       </tr><tr>
         
         <td>
@@ -969,24 +1029,6 @@ ODKC data</p></td>
       
       
       <tr>
-        
-        <td>
-          <p><code><a href="download_odkc_turtledata_2019.html">download_odkc_turtledata_2019()</a></code> </p>
-        </td>
-        <td><p>Download all turtle data from DBCA's ODK Central</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="download_odkc_turtledata_2020.html">download_odkc_turtledata_2020()</a></code> </p>
-        </td>
-        <td><p>Download all turtle data from DBCA's ODK Central 2020</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="download_wastd_turtledata.html">download_wastd_turtledata()</a></code> </p>
-        </td>
-        <td><p>Download all turtle data from WAStD</p></td>
-      </tr><tr>
         
         <td>
           <p><code><a href="odkc_data.html">odkc_data</a></code> </p>

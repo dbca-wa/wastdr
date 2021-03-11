@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -169,7 +169,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class `wastd_data` as returned by
+      <td><p>An object of class <code>wastd_data</code> as returned by
 <code><a href='download_wastd_turtledata.html'>download_wastd_turtledata</a></code>.
 This data can optionally be filtered to
 an area_name (WAStD Area of type Locality).</p></td>
@@ -181,11 +181,152 @@ default: <code>here::here()</code>.</p></td>
     </tr>
     <tr>
       <th>filename</th>
-      <td><p>The filename of the ZIP file, default: `export`.
-The extension `.zip` will be appended and should not be part of `filename`.</p></td>
+      <td><p>The filename of the ZIP file, default: <code>export</code>.
+The extension <code>.zip</code> will be appended and should not be part of <code>filename</code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A set of files in the folder <code>outdir</code>.
+GeoJSON files can be opened in any GIS, such as Quantum GIS or ESRI ArcGIS.
+CSV files can be opened in any spreadsheet program, such as MS Excel or
+LibreOffice Calc.</p><ul>
+<li><p><code>areas.geojson</code> WAStD Areas, or Localities.</p><ul>
+<li><p>Typically one locality per monitoring program.</p></li>
+</ul></li>
+<li><p><code>sites.geojson</code> WAStD Sites.</p><ul>
+<li><p>Each Survey and Encounter can be linked to one Site.</p></li>
+</ul></li>
+<li><p><code>surveys.csv</code> Surveys.</p><ul>
+<li><p>Each row is one Survey.</p></li>
+<li><p>Training and duplicate Surveys are distinguished from production (real)
+Surveys by the column <code>production</code> (TRUE or FALSE).</p></li>
+</ul></li>
+<li><p><code>animals.csv</code> AnimalEncounters.</p><ul>
+<li><p>This includes encounters with animals during turtle tagging,
+as well as strandings and rescues. Mind that stranded turtles can be
+tagged, but are not always encountered during dedicated surveys.</p></li>
+<li><p>Survey details are repeated for convenience.</p></li>
+<li><p>One record can have several additional observations, which are included
+as separate CSVs.</p></li>
+</ul></li>
+<li><p><code>turtle_tags.csv</code> Tags recorded during an AnimalEncounter.</p><ul>
+<li><p>Each record concerns exactly one Tag.</p></li>
+<li><p>One Animal can carry multiple Tags.</p></li>
+<li><p>Details of the overarching AnimalEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>turtle_dmg.csv</code> Damages or distinguishing features observed during an
+AnimalEncounter.</p><ul>
+<li><p>Each record concerns exactly one Damage.</p></li>
+<li><p>One Animal can show multiple Damages or distinguishing features.</p></li>
+<li><p>Details of the overarching AnimalEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>turtle_morph.csv</code> Morphological measurements taken during an
+AnimalEncounter.</p><ul>
+<li><p>Each record concerns exactly one set of measurements.</p></li>
+<li><p>One Animal could have multiple sets of measurements, although normally
+only one set of morphological measurements is taken.</p></li>
+<li><p>Details of the overarching AnimalEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>tracks.csv</code> TurtleNestEncounters, which include turtle tracks without
+nests ("false crawls"), nests with tracks ("successful crawls"), and
+any shade of doubt or negligent data capture in between.</p><ul>
+<li><p>One record is exactly one Track or Nest.</p></li>
+<li><p>Survey details are repeated for convenience.</p></li>
+<li><p>One record can have several additional observations, which are included
+as separate CSVs.</p></li>
+</ul></li>
+<li><p><code>nest_dist.csv</code> TurtleNestDisturbanceObservations are recorded either
+linked to a nest (predated or damaged turtle nest), or standalone as
+general disturbance or predator presence.</p><ul>
+<li><p>Disturbed or predated nests are distinguished from general disturbance
+or predator presence through the column <code>encounter_type</code>
+("nest" or "other").</p></li>
+<li><p>Details of the overarching TurtleNestEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>nest_tags.csv</code> NestTagObservations.
+A stick with an ID scribbled on it stuck in the sand next to a nest.</p><ul>
+<li><p>Not to be confused with data loggers,
+which also carry an ID and are associated with a turtle nest for a while.</p></li>
+<li><p>Details of the overarching TurtleNestEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>nest_excavations.csv</code> Excavations of a turtle nest, resulting in a count
+of eggs and leftovers grouped into categories, plus egg chamber details.</p><ul>
+<li><p>Details of the overarching TurtleNestEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>hatchling_morph.csv</code> Morphometric measurements of a single turtle
+hatchling.</p><ul>
+<li><p>There can be several per nest.</p></li>
+<li><p>Details of the overarching TurtleNestEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>nest_fans.csv</code> Measurements of turtle hatchling emergence track fans.</p><ul>
+<li><p>Multiple measurements of fan angles per nest are possible, but not
+expected.</p></li>
+<li><p>Details of the overarching TurtleNestEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>nest_fan_outliers.csv</code> Individual hatchling tracks outside of the main
+fan of hatchling tracks.</p><ul>
+<li><p>There can be several per nest.</p></li>
+<li><p>Details of the overarching TurtleNestEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>nest_lightsources.csv</code> Individual known lightsources during hatching.</p><ul>
+<li><p>There can be several per nest.</p></li>
+<li><p>Details of the overarching TurtleNestEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>nest_loggers.csv</code> Deployed or re-sighted data loggers in a turtle nest.</p><ul>
+<li><p>There can be several per nest.</p></li>
+<li><p>Details of the overarching TurtleNestEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>line_transects.csv</code> Tallies turtle tracks along a transect,
+recorded during one LineTransectEncounter.</p><ul>
+<li><p>One record per transect.</p></li>
+<li><p>Latitude and Longitude are extracted from the first waypoint of the line
+transect.</p></li>
+<li><p>A transect can be crossed by many individual tracks.</p></li>
+</ul></li>
+<li><p><code>line_transects.geojson</code> Data from <code>line_transects.csv</code> as GeoJSON.
+Currently excluded.</p></li>
+<li><p><code>track_tally.csv</code> Tally of tracks by type and species crossing a transect.</p><ul>
+<li><p>There can be many tallies per transect.</p></li>
+<li><p>Details of the overarching LineTransectEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>disturbance_tally.csv</code> Tally of general disturbances or predator presence
+encountered during one LineTransectEncounter.</p><ul>
+<li><p>There can be several per transect.</p></li>
+<li><p>Details of the overarching LineTransectEncounter are repeated for
+convenience.</p></li>
+</ul></li>
+<li><p><code>loggers.csv</code> Encounters with Data Loggers, deprecated.</p><ul>
+<li><p>Data to be migrated to LoggerObservations.</p></li>
+</ul></li>
+<li><p><code>loggers.geojson</code> Loggers.csv as GeoJSON.</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other api: 
+<code><a href='download_minimal_wastd_turtledata.html'>download_minimal_wastd_turtledata</a>()</code>,
+<code><a href='download_wastd_sites.html'>download_wastd_sites</a>()</code>,
+<code><a href='download_wastd_turtledata.html'>download_wastd_turtledata</a>()</code>,
+<code><a href='download_wastd_users.html'>download_wastd_users</a>()</code>,
+<code><a href='filter_wastd_turtledata.html'>filter_wastd_turtledata</a>()</code>,
+<code><a href='wastd_GET.html'>wastd_GET</a>()</code>,
+<code><a href='wastd_POST.html'>wastd_POST</a>()</code>,
+<code><a href='wastd_parse.html'>wastd_parse</a>()</code>,
+<code><a href='wastd_post_one.html'>wastd_post_one</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
@@ -193,8 +334,8 @@ The extension `.zip` will be appended and should not be part of `filename`.</p><
 <span class='va'>an</span> <span class='op'>&lt;-</span> <span class='st'>"Ningaloo"</span>
 <span class='va'>au</span> <span class='op'>&lt;-</span> <span class='fu'><a href='urlize.html'>urlize</a></span><span class='op'>(</span><span class='va'>an</span><span class='op'>)</span>
 <span class='va'>wastd_data</span> <span class='op'>%&gt;%</span>
-<span class='fu'><a href='filter_wastd_turtledata.html'>filter_wastd_turtledata</a></span><span class='op'>(</span>area_name <span class='op'>=</span> <span class='va'>an</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>export_wastd_turtledata</span><span class='op'>(</span>outdir <span class='op'>=</span> <span class='fu'>here</span><span class='fu'>::</span><span class='fu'>here</span><span class='op'>(</span><span class='va'>au</span><span class='op'>)</span>, filename <span class='op'>=</span> <span class='va'>au</span><span class='op'>)</span>
+  <span class='fu'><a href='filter_wastd_turtledata.html'>filter_wastd_turtledata</a></span><span class='op'>(</span>area_name <span class='op'>=</span> <span class='va'>an</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>export_wastd_turtledata</span><span class='op'>(</span>outdir <span class='op'>=</span> <span class='fu'>here</span><span class='fu'>::</span><span class='fu'>here</span><span class='op'>(</span><span class='va'>au</span><span class='op'>)</span>, filename <span class='op'>=</span> <span class='va'>au</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

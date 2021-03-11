@@ -48,9 +48,9 @@
 
 <meta property="og:title" content="Return GeoJSON features from a WAStD API endpoint — wastd_GET" />
 <meta property="og:description" content="Call the WAStD API serializer's list view with given GET
-  parameters, parse the response's features into a nested list.
-  This function requires the WAStD API to return the results in a key
-  `features` (if GeoJSON) or `data` (if JSON)." />
+parameters, parse the response's features into a nested list.
+This function requires the WAStD API to return the results in a key
+features (if GeoJSON) or data (if JSON)." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -93,7 +93,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -163,9 +163,9 @@
 
     <div class="ref-description">
     <p>Call the WAStD API serializer's list view with given GET
-  parameters, parse the response's features into a nested list.
-  This function requires the WAStD API to return the results in a key
-  `features` (if GeoJSON) or `data` (if JSON).</p>
+parameters, parse the response's features into a nested list.
+This function requires the WAStD API to return the results in a key
+<code>features</code> (if GeoJSON) or <code>data</code> (if JSON).</p>
     </div>
 
     <pre class="usage"><span class='fu'>wastd_GET</span><span class='op'>(</span>
@@ -191,22 +191,22 @@ Possible values see <code>https://tsc.dbca.wa.gov.au/api/1/</code></p></td>
     </tr>
     <tr>
       <th>query</th>
-      <td><p>&lt;list&gt; A list of GET parameters, default: list().
+      <td><p>A list of GET parameters, default: list().
 The <code>format</code> is specified in a separate top-level param.</p></td>
     </tr>
     <tr>
       <th>format</th>
-      <td><p>&lt;chr&gt; The desired API output format, default: "json".</p></td>
+      <td><p>The desired API output format, default: "json".</p></td>
     </tr>
     <tr>
       <th>max_records</th>
-      <td><p>&lt;int&gt; The maximum number of records retrieved.
+      <td><p>The maximum number of records retrieved.
 If left at default (NULL), all records are returned.
 Default: NULL.</p></td>
     </tr>
     <tr>
       <th>chunk_size</th>
-      <td><p>&lt;int&gt; The number of records to retrieve in each paginated
+      <td><p>The number of records to retrieve in each paginated
 response. A specified but smaller <code>limit</code> will override
 <code>chunk_size</code>.
 Adjust <code>chunk_size</code> down if getting timeouts from the API.
@@ -251,6 +251,12 @@ Default: wastdr::get_wastdr_verbose()</p></td>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other api: 
+<code><a href='download_minimal_wastd_turtledata.html'>download_minimal_wastd_turtledata</a>()</code>,
+<code><a href='download_wastd_sites.html'>download_wastd_sites</a>()</code>,
+<code><a href='download_wastd_turtledata.html'>download_wastd_turtledata</a>()</code>,
+<code><a href='download_wastd_users.html'>download_wastd_users</a>()</code>,
+<code><a href='export_wastd_turtledata.html'>export_wastd_turtledata</a>()</code>,
+<code><a href='filter_wastd_turtledata.html'>filter_wastd_turtledata</a>()</code>,
 <code><a href='wastd_POST.html'>wastd_POST</a>()</code>,
 <code><a href='wastd_parse.html'>wastd_parse</a>()</code>,
 <code><a href='wastd_post_one.html'>wastd_post_one</a>()</code></p></div>

@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -173,18 +173,19 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class `wastd_data` as returned by
+      <td><p>An object of class <code>wastd_data</code> as returned by
 <code><a href='download_wastd_turtledata.html'>download_wastd_turtledata</a></code>. This data can be filtered to
 an area_name (WAStD Area of type Locality).</p></td>
     </tr>
     <tr>
       <th>area_name</th>
-      <td><p>&lt;chr&gt; The name of the area to filter the data by. Options:
-* NULL (default): do not filter data, return unfiltered data.
-* "All turtle programs": do not filter data, return unfiltered data.
-* "Other": Filter data to area_name NA.
-* Any name in `unique(wastd_data$areas$area_name)`: return data filtered to
-  this area_name.</p></td>
+      <td><p>(chr) The name of the area to filter the data by. Options:</p><ul>
+<li><p>NULL (default): do not filter data, return unfiltered data.</p></li>
+<li><p>"All turtle programs": do not filter data, return unfiltered data.</p></li>
+<li><p>"Other": Filter data to area_name NA.</p></li>
+<li><p>Any name in <code><a href='https://rdrr.io/r/base/unique.html'>unique(wastd_data$areas$area_name)</a></code>: return data filtered to
+this area_name.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -195,8 +196,20 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class `wastd_data` filtered to records within
-  `area_name`.</p>
+    <p>An object of class <code>wastd_data</code> filtered to records within
+<code>area_name</code>.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other api: 
+<code><a href='download_minimal_wastd_turtledata.html'>download_minimal_wastd_turtledata</a>()</code>,
+<code><a href='download_wastd_sites.html'>download_wastd_sites</a>()</code>,
+<code><a href='download_wastd_turtledata.html'>download_wastd_turtledata</a>()</code>,
+<code><a href='download_wastd_users.html'>download_wastd_users</a>()</code>,
+<code><a href='export_wastd_turtledata.html'>export_wastd_turtledata</a>()</code>,
+<code><a href='wastd_GET.html'>wastd_GET</a>()</code>,
+<code><a href='wastd_POST.html'>wastd_POST</a>()</code>,
+<code><a href='wastd_parse.html'>wastd_parse</a>()</code>,
+<code><a href='wastd_post_one.html'>wastd_post_one</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -191,8 +191,7 @@ default: "https://odkc.dbca.wa.gov.au".</p></td>
     </tr>
     <tr>
       <th>download</th>
-      <td><p>&lt;lgl&gt; Whether to download attachments to `local_dir` or not,
-# @param exclude_training Whether to exclude training records, default: TRUE.</p></td>
+      <td><p>(lgl) Whether to download attachments to <code>local_dir</code> or not,</p></td>
     </tr>
     <tr>
       <th>odkc_version</th>
@@ -210,29 +209,29 @@ Default: wastdr::get_wastdr_verbose()</p></td>
     <p>An S3 class "odkc_turtledata" with items:</p><ul>
 <li><p>downloaded_on An UTC POSIXct timestamp of the data snapshot.</p></li>
 <li><p>tracks The turtle tracks and nests from form
-        "Turtle Track or Nest 1.0".</p></li>
+"Turtle Track or Nest 1.0".</p></li>
 <li><p>tracks_dist Individual disturbances recorded against tracks,
-        one row per disturbance.</p></li>
+one row per disturbance.</p></li>
 <li><p>tracks_log Individual nest tags recorded against nests,
-        one row per tag.</p></li>
+one row per tag.</p></li>
 <li><p>tracks_egg Next excavation photos, one row per photo.</p></li>
 <li><p>tracks_hatch Turtle hatchling morphometrics, one row per measured
-        hatchling.</p></li>
+hatchling.</p></li>
 <li><p>tracks_fan_outlier Individual hatchling track outliers recorded
-        against hatched nests, one row per outlier.</p></li>
+against hatched nests, one row per outlier.</p></li>
 <li><p>tracks_light Individual light sources known at hatchling emergence,
-        one row per light source.</p></li>
+one row per light source.</p></li>
 <li><p>track_tally A line transect tally of turtle tracks from form
-        "Track Tally 0.6".</p></li>
+"Track Tally 0.6".</p></li>
 <li><p>dist The disturbance and predation records from form
-        "Predator or Disturbance 1.1".</p></li>
+"Predator or Disturbance 1.1".</p></li>
 <li><p>mwi Strandings and rescues from the form
-        "Marine Wildlife Incident 0.6 ".</p></li>
+"Marine Wildlife Incident 0.6 ".</p></li>
 <li><p>mwi_dmg Individual injuries recorded against mwi,
-        one record per injury.</p></li>
+one record per injury.</p></li>
 <li><p>mwi_tag Individual tags sighted during an mwi, one record per tag.</p></li>
 <li><p>tsi Turtle Sightings from form "Turtle Sighting 0.1/0.2",
-        one row per sighted turtle.</p></li>
+one row per sighted turtle.</p></li>
 <li><p>svs Survey start points from form "Site Visit Start 1.3".</p></li>
 <li><p>sve Survey end points from form "Site Visit End 1.2".</p></li>
 <li><p>sites An sf object of known WAStD sites.</p></li>
@@ -241,20 +240,31 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other included: 
+    <div class='dont-index'><p>Other odkc: 
+<code><a href='add_hatching_emergence_success_odkc.html'>add_hatching_emergence_success_odkc</a>()</code>,
+<code><a href='add_nest_labels_odkc.html'>add_nest_labels_odkc</a>()</code>,
 <code><a href='download_odkc_turtledata_2019.html'>download_odkc_turtledata_2019</a>()</code>,
-<code><a href='download_wastd_turtledata.html'>download_wastd_turtledata</a>()</code>,
-<code><a href='odkc_data.html'>odkc_data</a></code>,
-<code><a href='print.odkc_turtledata.html'>print.odkc_turtledata</a>()</code>,
-<code><a href='print.wastd_data.html'>print.wastd_data</a>()</code>,
-<code><a href='tsc_data.html'>tsc_data</a></code>,
-<code><a href='wastd_ae_raw.html'>wastd_ae_raw</a></code>,
-<code><a href='wastd_ae.html'>wastd_ae</a></code>,
-<code><a href='wastd_area_raw.html'>wastd_area_raw</a></code>,
-<code><a href='wastd_data.html'>wastd_data</a></code>,
-<code><a href='wastd_surveys_raw.html'>wastd_surveys_raw</a></code>,
-<code><a href='wastd_tne_raw.html'>wastd_tne_raw</a></code>,
-<code><a href='wastd_tne.html'>wastd_tne</a></code></p></div>
+<code><a href='exclude_training_species_odkc.html'>exclude_training_species_odkc</a>()</code>,
+<code><a href='filter_odkc_turtledata.html'>filter_odkc_turtledata</a>()</code>,
+<code><a href='general_disturbance_by_season_odkc.html'>general_disturbance_by_season_odkc</a>()</code>,
+<code><a href='hatching_emergence_success_odkc.html'>hatching_emergence_success_odkc</a>()</code>,
+<code><a href='map_dist_odkc.html'>map_dist_odkc</a>()</code>,
+<code><a href='map_mwi_odkc.html'>map_mwi_odkc</a>()</code>,
+<code><a href='map_sv_odkc.html'>map_sv_odkc</a>()</code>,
+<code><a href='map_tracks_odkc.html'>map_tracks_odkc</a>()</code>,
+<code><a href='nest_disturbance_by_season_odkc.html'>nest_disturbance_by_season_odkc</a>()</code>,
+<code><a href='nesting_type_by_area_season_age_species_odkc.html'>nesting_type_by_area_season_age_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_area_season_species_odkc.html'>nesting_type_by_area_season_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_age_species_odkc.html'>nesting_type_by_season_age_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_calendarday_age_species_odkc.html'>nesting_type_by_season_calendarday_age_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_calendarday_species_odkc.html'>nesting_type_by_season_calendarday_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_day_species_odkc.html'>nesting_type_by_season_day_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_species_odkc.html'>nesting_type_by_season_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_week_age_species_odkc.html'>nesting_type_by_season_week_age_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_week_site_species_odkc.html'>nesting_type_by_season_week_site_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_season_week_species_odkc.html'>nesting_type_by_season_week_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_site_season_age_species_odkc.html'>nesting_type_by_site_season_age_species_odkc</a>()</code>,
+<code><a href='nesting_type_by_site_season_species_odkc.html'>nesting_type_by_site_season_species_odkc</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
