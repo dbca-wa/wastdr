@@ -5,7 +5,7 @@
 \alias{wastd_ae}
 \title{WAStD AnimalEncounters, parsed, test data captured by author}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 18 rows and 46 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 18 rows and 65 columns.
 }
 \usage{
 wastd_ae

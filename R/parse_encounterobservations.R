@@ -31,63 +31,19 @@
 parse_encounterobservations <- function(wastd_api_response) {
   wastd_api_response %>%
     wastdr::wastd_parse() %>%
-    # dplyr::select(
-    #   -"geometry",
-    # -"type",
-    #   -dplyr::ends_with("latitude"),
-    #   -dplyr::ends_with("longitude")
-    # ) %>%
-    tidyr::unnest_wider("encounter",
-      names_repair = "universal"
-    ) %>%
+    tidyr::unnest_wider("encounter", names_repair = "universal") %>%
     dplyr::select(-"geometry", -"type") %>%
     dplyr::rename(encounter = properties) %>%
-    tidyr::unnest_wider("encounter",
-      names_repair = "universal",
-      names_sep = "_"
-    ) %>%
-    {
-      if ("encounter_area" %in% colnames(.)) {
-        tidyr::unnest_wider(.,
-          "encounter_area",
-          names_repair = "universal",
-          names_sep = "_"
-        )
-      } else {
-        .
-      }
-    } %>%
-    {
-      if ("encounter_site" %in% colnames(.)) {
-        tidyr::unnest_wider(.,
-          "encounter_site",
-          names_repair = "universal",
-          names_sep = "_"
-        )
-      } else {
-        .
-      }
-    } %>%
-    {
-      if ("encounter_survey" %in% colnames(.)) {
-        tidyr::unnest_wider(.,
-          "encounter_survey",
-          names_repair = "universal",
-          names_sep = "_"
-        )
-      } else {
-        .
-      }
-    } %>%
-    tidyr::unnest_wider("encounter_observer",
-      names_repair = "universal",
-      names_sep = "_"
-    ) %>%
-    tidyr::unnest_wider("encounter_reporter",
-      names_repair = "universal",
-      names_sep = "_"
-    ) %>%
+    tun("encounter") %>%
+    tun("encounter_area") %>%
+    tun("encounter_site")%>%
+    tun("encounter_survey") %>%
+    tun("encounter_observer") %>%
+    tun("encounter_reporter") %>%
+    tun("handler") %>%
+    tun("recorder") %>%
     dplyr::select(
+      -tidyr::contains("encounter_survey_area"),
       -tidyr::contains("encounter_survey_site"),
       -tidyr::contains("encounter_survey_reporter"),
       -tidyr::contains("encounter_photographs"),

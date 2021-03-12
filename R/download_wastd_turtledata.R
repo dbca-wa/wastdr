@@ -189,24 +189,28 @@ download_wastd_turtledata <- function(max_records = NULL,
   loggers <- "logger-encounters" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::wastd_parse() %>%
-    tidyr::unnest_wider("observer", names_sep = "_") %>%
-    tidyr::unnest_wider("reporter", names_sep = "_") %>%
-    tidyr::unnest_wider("area", names_sep = "_") %>%
-    tidyr::unnest_wider("site", names_sep = "_") %>%
-    tidyr::unnest_wider("survey", names_sep = "_")
+    tun("observer") %>%
+    tun("reporter") %>%
+    tun("area") %>%
+    tun("site") %>%
+    tun("survey") %>%
+    tun("survey_area") %>%
+    tun("survey_site") %>%
+    dplyr::select(-"geometry")
 
   # Track Tallies -------------------------------------------------------------#
   if (verbose == TRUE) wastdr_msg_info("Downloading LineTransectEncounters...")
   linetx <- "line-transect-encounters" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::wastd_parse() %>%
-    tidyr::unnest_wider("observer", names_sep = "_") %>%
-    tidyr::unnest_wider("reporter", names_sep = "_") %>%
-    tidyr::unnest_wider("area", names_sep = "_") %>%
-    tidyr::unnest_wider("site", names_sep = "_") %>%
-    tidyr::unnest_wider("survey", names_sep = "_") %>%
-    tidyr::unnest_wider("survey_reporter", names_sep = "_") %>%
-    tidyr::unnest_wider("survey_site", names_sep = "_")
+    tun("observer") %>%
+    tun("reporter") %>%
+    tun("area") %>%
+    tun("site") %>%
+    tun("survey") %>%
+    tun("survey_reporter") %>%
+    tun("survey_site") %>%
+    tun("survey_area")
 
   if (verbose == TRUE) wastdr_msg_info("Downloading track tallies...")
   track_tally <- "track-tally" %>%
@@ -236,6 +240,7 @@ download_wastd_turtledata <- function(max_records = NULL,
       areas = areas,
       sites = sites,
       surveys = surveys,
+      survey_media = survey_media,
       animals = animals,
       turtle_tags = turtle_tags,
       turtle_dmg = turtle_dmg,

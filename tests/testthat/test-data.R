@@ -8,10 +8,7 @@ test_that("wastd_ae_raw parses correctly to animals", {
   expect_equal(nrow(fresh_animals), nrow(wastd_ae))
 
   # Compare pickled and fresh animals excluding list columns (like obs)
-  expect_equal(
-    fresh_animals %>% dplyr::select(-obs),
-    wastd_ae %>% dplyr::select(-obs)
-  )
+  expect_equal(fresh_animals, wastd_ae)
 })
 
 test_that("wastd_api_response prints something", {
@@ -28,6 +25,7 @@ test_that("wastd_data contains expected tibbles", {
       "areas",
       "sites",
       "surveys",
+      "survey_media",
       "animals",
       "turtle_tags",
       "turtle_dmg",

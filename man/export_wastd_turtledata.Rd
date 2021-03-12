@@ -2,7 +2,7 @@
 % Please edit documentation in R/export_wastd_turtledata.R
 \name{export_wastd_turtledata}
 \alias{export_wastd_turtledata}
-\title{Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files.}
+\title{Export all WAStD turtledata to CSV and GeoJSON files}
 \usage{
 export_wastd_turtledata(x, outdir = here::here(), filename = "export")
 }
@@ -15,8 +15,7 @@ an area_name (WAStD Area of type Locality).}
 \item{outdir}{The destination to write exported data to,
 default: \code{here::here()}.}
 
-\item{filename}{The filename of the ZIP file, default: \code{export}.
-The extension \code{.zip} will be appended and should not be part of \code{filename}.}
+\item{filename}{The filename for the ZIP archive, default: \code{export}.}
 }
 \value{
 A set of files in the folder \code{outdir}.
@@ -169,7 +168,7 @@ convenience.
 }
 }
 \description{
-Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files.
+Export all WAStD turtledata to CSV and GeoJSON files
 }
 \examples{
 \dontrun{

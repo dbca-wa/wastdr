@@ -4,6 +4,13 @@
 ## Docs
 ## Data
 
+# wastdr 0.5.4
+## Major fixes
+* Improved parsing of WAStD data
+## Minor fixes
+## Docs
+## Data
+
 # wastdr 0.5.3
 ## Major fixes
 ## Minor fixes

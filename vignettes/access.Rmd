@@ -11,6 +11,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r}
+options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+
 ## Get WAStD
 
 After setting up `wastdr`'s authentication in vignette "Setup", 

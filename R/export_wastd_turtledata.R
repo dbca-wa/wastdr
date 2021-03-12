@@ -1,5 +1,5 @@
 
-#' Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files.
+#' Export all WAStD turtledata to CSV and GeoJSON files
 #'
 #' @param x An object of class `wastd_data` as returned by
 #'   \code{\link{download_wastd_turtledata}}.
@@ -7,8 +7,7 @@
 #'   an area_name (WAStD Area of type Locality).
 #' @param outdir The destination to write exported data to,
 #'   default: \code{here::here()}.
-#' @param filename The filename of the ZIP file, default: `export`.
-#'   The extension `.zip` will be appended and should not be part of `filename`.
+#' @param filename The filename for the ZIP archive, default: `export`.
 #' @return A set of files in the folder `outdir`.
 #'   GeoJSON files can be opened in any GIS, such as Quantum GIS or ESRI ArcGIS.
 #'   CSV files can be opened in any spreadsheet program, such as MS Excel or
@@ -145,12 +144,8 @@ export_wastd_turtledata <- function(x,
   x$sites %>% geojsonio::geojson_write(file = fs::path(outdir, "sites.geojson"))
   x$surveys %>% readr::write_csv(file = fs::path(outdir, "surveys.csv"))
 
-  x$animals %>%
-    dplyr::select(-obs) %>%
-    readr::write_csv(file = fs::path(outdir, "animals.csv"))
-  x$turtle_tags %>%
-    ruODK::odata_submission_rectangle() %>%
-    readr::write_csv(file = fs::path(outdir, "turtle_tags.csv"))
+  x$animals %>% readr::write_csv(file = fs::path(outdir, "animals.csv"))
+  x$turtle_tags %>% readr::write_csv(file = fs::path(outdir, "turtle_tags.csv"))
   x$turtle_dmg %>% readr::write_csv(file = fs::path(outdir, "turtle_dmg.csv"))
   x$turtle_morph %>% readr::write_csv(file = fs::path(outdir, "turtle_morph.csv"))
 
@@ -179,7 +174,6 @@ export_wastd_turtledata <- function(x,
 
   if (nrow(x$loggers) > 0){
     x$loggers %>%
-      ruODK::odata_submission_rectangle() %>%
       readr::write_csv(file = fs::path(outdir, "loggers.csv"))
     x$loggers %>%
       geojsonio::geojson_write(file = fs::path(outdir, "loggers.geojson"))
@@ -187,20 +181,5 @@ export_wastd_turtledata <- function(x,
 
   utils::zip(paste0(filename, ".zip"), fs::dir_ls(outdir), flags = "-jr9X")
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # use_test("export_wastd_turtledata")

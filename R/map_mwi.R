@@ -7,7 +7,7 @@
 #'
 #' @param data AnimalEncounters from WAStD.
 #' @param sites An sf object of sites with `site_name` and polygon geom, e.g.
-#'  `turtleviewer::turtledata$sites`.
+#'  `wastdr::wastd_data$sites`.
 #' @template param-wastd_url
 #' @template param-fmt
 #' @template param-tz
@@ -65,9 +65,9 @@ map_mwi <- function(data,
 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 {format(datetime, fmt)} AWST<br/>
 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-{observer}<br/>
+{observer_name}<br/>
 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-{reporter}<br/>
+{reporter_name}<br/>
 
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 Cause of death: {humanize(cause_of_death)}<br/>

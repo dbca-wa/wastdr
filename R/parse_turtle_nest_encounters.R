@@ -55,33 +55,20 @@ parse_turtle_nest_encounters <- function(wastd_api_response) {
   wastd_api_response %>%
     wastdr::wastd_parse() %>%
     dplyr::select(-"geometry") %>%
-    tidyr::unnest_wider(
-      "area",
-      names_repair = "universal", names_sep = "_"
-    ) %>%
-    tidyr::unnest_wider(
-      "site",
-      names_repair = "universal", names_sep = "_"
-    ) %>%
-    tidyr::unnest_wider(
-      "survey",
-      names_repair = "universal", names_sep = "_"
-    ) %>%
-    tidyr::unnest_wider(
-      "survey_site",
-      names_repair = "universal", names_sep = "_"
-    ) %>%
-    tidyr::unnest_wider(
-      "survey_reporter",
-      names_repair = "universal", names_sep = "_"
-    ) %>%
-    tidyr::unnest_wider(
-      "observer",
-      names_repair = "universal", names_sep = "_"
-    ) %>%
-    tidyr::unnest_wider(
-      "reporter",
-      names_repair = "universal", names_sep = "_"
+    tun("area") %>%
+    tun("site") %>%
+    tun("survey") %>%
+    tun("survey_area") %>%
+    tun("survey_site") %>%
+    tun("survey_reporter") %>%
+    tun("observer") %>%
+    tun("reporter") %>%
+    dplyr::select(
+      -tidyr::contains("encounter_survey_area"),
+      -tidyr::contains("encounter_survey_site"),
+      -tidyr::contains("encounter_survey_reporter"),
+      # -tidyr::contains("encounter_photographs"),
+    #   -tidyr::contains("encounter_tx_logs")
     ) %>%
     wastdr::add_dates(date_col = "when") %>%
     wastdr::add_nest_labels()
