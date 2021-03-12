@@ -196,6 +196,7 @@ download_wastd_turtledata <- function(max_records = NULL,
     tun("survey") %>%
     tun("survey_area") %>%
     tun("survey_site") %>%
+    tun("survey_reporter") %>%
     dplyr::select(-"geometry")
 
   # Track Tallies -------------------------------------------------------------#
