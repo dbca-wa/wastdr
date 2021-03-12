@@ -28,12 +28,12 @@ jobs:
           - { os: windows-2016, r: "release" }
           - { os: windows-2016, r: "oldrel" }
           - { os: macOS-latest, r: "devel" }
-          - { os: macOS-latest, r: "release"}
+          # - { os: macOS-latest, r: "release"}
           # - { os: macOS-latest, r: "oldrel" } # missing udunits2
           # - { os: ubuntu-20.04, r: "devel" } # sf needs libproj.12.so
           - { os: ubuntu-20.04, r: "release" }
           - { os: ubuntu-20.04, r: "oldrel" }
-          - { os: ubuntu-latest, r: "devel" }
+          # - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release", pkgdown: "true", latex: "true" } # Heisensegfault my old friend
           - { os: ubuntu-latest, r: "oldrel" } # it's nice to see you crash again
           # Ubuntu 16.04 fails to install stringr, v8 needs CURL_OPENSSL_4
