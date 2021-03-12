@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get or set wastdr WAStD settings — wastdr_settings • wastdr</title>
+<title>A wrapper for tidyr::unnest_wider — tun • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Get or set wastdr WAStD settings — wastdr_settings" />
-<meta property="og:description" content="Get or set wastdr WAStD settings" />
+<meta property="og:title" content="A wrapper for tidyr::unnest_wider — tun" />
+<meta property="og:description" content="This function saves repetition by currying tidyr::unnest_wider with default
+parameters names_repair = &quot;universal&quot;, names_sep = &quot;_&quot;." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -153,76 +154,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get or set wastdr WAStD settings</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/wastdr_settings.R'><code>R/wastdr_settings.R</code></a></small>
-    <div class="hidden name"><code>wastdr_settings.Rd</code></div>
+    <h1>A wrapper for <code>tidyr::unnest_wider</code></h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/tun.R'><code>R/tun.R</code></a></small>
+    <div class="hidden name"><code>tun.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get or set wastdr WAStD settings</p>
+    <p>This function saves repetition by currying tidyr::unnest_wider with default
+parameters <code>names_repair = "universal", names_sep = "_"</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wastdr_settings</span><span class='op'>(</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>tun</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>col</span><span class='op'>)</span></pre>
 
-<span class='fu'>get_wastd_url</span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'>get_wastdr_api_url</span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'>get_wastdr_api_token</span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'>get_wastdr_api_un</span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'>get_wastdr_api_pw</span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'>get_wastdr_verbose</span><span class='op'>(</span><span class='op'>)</span></pre>
-
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>The data frame to be unnested.</p></td>
+    </tr>
+    <tr>
+      <th>col</th>
+      <td><p>The column name to be unnested as string.</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>wastdr_settings</code> prints your base url and WAStD API key.
-<code>wastdr_setup</code> sets your production and test settings, while</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='wastdr_setup.html'>wastdr_setup</a></code>,
-<code>get_wastd_url</code>,
-<code>get_wastdr_api_url</code>,
-<code>get_wastdr_api_token</code>,
-<code>get_wastdr_api_un</code>, and
-<code>get_wastdr_api_pw</code>.</p>
-<p>Other helpers: 
-<code><a href='add_dates.html'>add_dates</a>()</code>,
-<code><a href='datetime_as_isoweek.html'>datetime_as_isoweek</a>()</code>,
-<code><a href='datetime_as_seasonweek.html'>datetime_as_seasonweek</a>()</code>,
-<code><a href='datetime_as_season.html'>datetime_as_season</a>()</code>,
-<code><a href='datetime_as_turtle_date.html'>datetime_as_turtle_date</a>()</code>,
-<code><a href='exclude_training_species.html'>exclude_training_species</a>()</code>,
-<code><a href='exclude_training_surveys.html'>exclude_training_surveys</a>()</code>,
-<code><a href='extract_possibly.html'>extract_possibly</a>()</code>,
-<code><a href='fdate_as_tdate.html'>fdate_as_tdate</a>()</code>,
-<code><a href='filter_missing_site.html'>filter_missing_site</a>()</code>,
-<code><a href='filter_missing_survey.html'>filter_missing_survey</a>()</code>,
-<code><a href='filter_surveys_missing_end.html'>filter_surveys_missing_end</a>()</code>,
-<code><a href='filter_surveys_requiring_qa.html'>filter_surveys_requiring_qa</a>()</code>,
-<code><a href='filter_wastd_season.html'>filter_wastd_season</a>()</code>,
-<code><a href='get_more.html'>get_more</a>()</code>,
-<code><a href='httpdate_as_gmt08_turtle_date.html'>httpdate_as_gmt08_turtle_date</a>()</code>,
-<code><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a>()</code>,
-<code><a href='httpdate_as_season.html'>httpdate_as_season</a>()</code>,
-<code><a href='humanize.html'>humanize</a>()</code>,
-<code><a href='join_tsc_sites.html'>join_tsc_sites</a>()</code>,
-<code><a href='map_chr_hack.html'>map_chr_hack</a>()</code>,
-<code><a href='odkc_works.html'>odkc_works</a>()</code>,
-<code><a href='sf_as_tbl.html'>sf_as_tbl</a>()</code>,
-<code><a href='tdate_as_fdate.html'>tdate_as_fdate</a>()</code>,
-<code><a href='tracks_as_geojson.html'>tracks_as_geojson</a>()</code>,
-<code><a href='urlize.html'>urlize</a>()</code>,
-<code><a href='wastd_works.html'>wastd_works</a>()</code>,
-<code><a href='wastdr_msg_abort.html'>wastdr_msg_abort</a>()</code>,
-<code><a href='wastdr_msg_info.html'>wastdr_msg_info</a>()</code>,
-<code><a href='wastdr_msg_noop.html'>wastdr_msg_noop</a>()</code>,
-<code><a href='wastdr_msg_success.html'>wastdr_msg_success</a>()</code>,
-<code><a href='wastdr_msg_warn.html'>wastdr_msg_warn</a>()</code>,
-<code><a href='wastdr_setup.html'>wastdr_setup</a>()</code></p></div>
+    <p>The data frame <code>data</code> with column <code>col</code> replaced by its unnested
+components.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

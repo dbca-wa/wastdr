@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.4</span>
       </span>
     </div>
 
@@ -238,25 +238,25 @@ e.g. <code>wastd_data$animals</code> with column <code>health</code> or
 <span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>animals</span> <span class='op'>%&gt;%</span>
   <span class='fu'>filter_dead</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 46</span><span>
-#&gt;   area_name   area_type area_id site_name site_type site_id survey_id
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Perth Metro Locality       18 </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>             </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #949494;'># … with 39 more variables: survey_start_time &lt;dttm&gt;, survey_end_time &lt;dttm&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   survey_start_comments &lt;chr&gt;, survey_end_comments &lt;chr&gt;, datetime &lt;dttm&gt;,</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 47</span><span>
+#&gt;   id     type     pk source encounter_type status when  latitude longitude crs  
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> cet-1… Feat…  </span><span style='text-decoration: underline;'>4</span><span>410 cet    stranding      new    2016…    -</span><span style='color: #BB0000;'>29.9</span><span>      115. WGS …
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> cet-1… Feat…  </span><span style='text-decoration: underline;'>4</span><span>424 cet    stranding      new    2016…    -</span><span style='color: #BB0000;'>35</span><span>        120  WGS …
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> cet-1… Feat…  </span><span style='text-decoration: underline;'>4</span><span>436 cet    stranding      new    2016…    -</span><span style='color: #BB0000;'>33.9</span><span>      115. WGS …
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> cet-1… Feat…  </span><span style='text-decoration: underline;'>4</span><span>448 cet    stranding      new    2016…    -</span><span style='color: #BB0000;'>32.1</span><span>      116. WGS …
+#&gt; </span><span style='color: #949494;'># … with 37 more variables: location_accuracy &lt;chr&gt;, name &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   leaflet_title &lt;chr&gt;, observer_pk &lt;chr&gt;, observer_username &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   observer_name &lt;chr&gt;, reporter_pk &lt;chr&gt;, reporter_username &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   reporter_name &lt;chr&gt;, area_pk &lt;int&gt;, area_area_type &lt;chr&gt;, area_name &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   taxon &lt;chr&gt;, species &lt;chr&gt;, health &lt;chr&gt;, sex &lt;chr&gt;, maturity &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   habitat &lt;chr&gt;, activity &lt;chr&gt;, nesting_event &lt;chr&gt;, laparoscopy &lt;lgl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   checked_for_injuries &lt;chr&gt;, scanned_for_pit_tags &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   checked_for_flipper_tags &lt;chr&gt;, cause_of_death &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   cause_of_death_confidence &lt;chr&gt;, absolute_admin_url &lt;chr&gt;, behaviour &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   site_pk &lt;int&gt;, site_area_type &lt;chr&gt;, site_name &lt;chr&gt;, datetime &lt;dttm&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   calendar_date_awst &lt;chr&gt;, turtle_date &lt;date&gt;, season &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, longitude &lt;dbl&gt;, latitude &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   crs &lt;chr&gt;, location_accuracy &lt;dbl&gt;, location_accuracy_m &lt;dbl&gt;, taxon &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   name &lt;chr&gt;, species &lt;chr&gt;, health &lt;chr&gt;, sex &lt;chr&gt;, maturity &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   habitat &lt;chr&gt;, activity &lt;chr&gt;, behaviour &lt;chr&gt;, comments &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   nesting_event &lt;chr&gt;, checked_for_injuries &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   scanned_for_pit_tags &lt;chr&gt;, checked_for_flipper_tags &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   cause_of_death &lt;chr&gt;, cause_of_death_confidence &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   absolute_admin_url &lt;chr&gt;, obs &lt;list&gt;, source &lt;chr&gt;, source_id &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   encounter_type &lt;chr&gt;, status &lt;chr&gt;, observer &lt;chr&gt;, reporter &lt;chr&gt;</span><span></div><div class='input'>
+#&gt; </span><span style='color: #949494;'>#   season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;</span><span></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"odkc_data"</span><span class='op'>)</span>
 <span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>mwi</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>

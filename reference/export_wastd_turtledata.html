@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files. — export_wastd_turtledata • wastdr</title>
+<title>Export all WAStD turtledata to CSV and GeoJSON files — export_wastd_turtledata • wastdr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files. — export_wastd_turtledata" />
-<meta property="og:description" content="Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files." />
+<meta property="og:title" content="Export all WAStD turtledata to CSV and GeoJSON files — export_wastd_turtledata" />
+<meta property="og:description" content="Export all WAStD turtledata to CSV and GeoJSON files" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.4</span>
       </span>
     </div>
 
@@ -153,13 +153,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files.</h1>
+    <h1>Export all WAStD turtledata to CSV and GeoJSON files</h1>
     <small class="dont-index">Source: <a href='https://github.com/dbca-wa/wastdr/blob/master/R/export_wastd_turtledata.R'><code>R/export_wastd_turtledata.R</code></a></small>
     <div class="hidden name"><code>export_wastd_turtledata.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Export all WAStD turtledata to a ZIP file of CSV and GeoJSON files.</p>
+    <p>Export all WAStD turtledata to CSV and GeoJSON files</p>
     </div>
 
     <pre class="usage"><span class='fu'>export_wastd_turtledata</span><span class='op'>(</span><span class='va'>x</span>, outdir <span class='op'>=</span> <span class='fu'>here</span><span class='fu'>::</span><span class='fu'>here</span><span class='op'>(</span><span class='op'>)</span>, filename <span class='op'>=</span> <span class='st'>"export"</span><span class='op'>)</span></pre>
@@ -181,8 +181,7 @@ default: <code>here::here()</code>.</p></td>
     </tr>
     <tr>
       <th>filename</th>
-      <td><p>The filename of the ZIP file, default: <code>export</code>.
-The extension <code>.zip</code> will be appended and should not be part of <code>filename</code>.</p></td>
+      <td><p>The filename for the ZIP archive, default: <code>export</code>.</p></td>
     </tr>
     </table>
 
