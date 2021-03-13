@@ -293,3 +293,5 @@ hatching_emergence_success_odkc <- function(data) {
     dplyr::group_by(season, details_species) %>%
     summarise_hatching_and_emergence_success(.)
 }
+
+# usethis::use_test("summarise_tracks_odkc")

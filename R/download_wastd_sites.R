@@ -24,3 +24,5 @@ download_wastd_sites <- function(
 
   sites
 }
+
+# usethis::use_test("download_wastd_sites")

@@ -71,25 +71,28 @@ filter_odkc_turtledata <- function(data,
     my_filter <- . %>% dplyr::filter(area_name == !!area_name)
   }
 
-  list(
-    downloaded_on = data$downloaded_on,
-    tracks = data$tracks %>% my_filter(),
-    # tracks_gj = data$tracks %>% my_filter() %>% ts_gj(),
-    tracks_dist = data$tracks_dist %>% my_filter(),
-    tracks_log = data$tracks_log %>% my_filter(),
-    tracks_egg = data$tracks_egg %>% my_filter(),
-    tracks_hatch = data$tracks_hatch %>% my_filter(),
-    tracks_fan_outlier = data$tracks_fan_outlier %>% my_filter(),
-    track_tally = data$track_tally %>% my_filter(),
-    dist = data$dist %>% my_filter(),
-    mwi = data$mwi %>% my_filter(),
-    mwi_dmg = data$mwi_dmg %>% my_filter(),
-    mwi_tag = data$mwi_tag %>% my_filter(),
-    tsi = data$tsi %>% my_filter(),
-    svs = data$svs %>% my_filter(),
-    sve = data$sve %>% my_filter(),
-    sites = data$sites %>% my_filter(),
-    areas = data$areas
+  structure(
+    list(
+      downloaded_on = data$downloaded_on,
+      tracks = data$tracks %>% my_filter(),
+      # tracks_gj = data$tracks %>% my_filter() %>% ts_gj(),
+      tracks_dist = data$tracks_dist %>% my_filter(),
+      tracks_log = data$tracks_log %>% my_filter(),
+      tracks_egg = data$tracks_egg %>% my_filter(),
+      tracks_hatch = data$tracks_hatch %>% my_filter(),
+      tracks_fan_outlier = data$tracks_fan_outlier %>% my_filter(),
+      track_tally = data$track_tally %>% my_filter(),
+      dist = data$dist %>% my_filter(),
+      mwi = data$mwi %>% my_filter(),
+      mwi_dmg = data$mwi_dmg %>% my_filter(),
+      mwi_tag = data$mwi_tag %>% my_filter(),
+      tsi = data$tsi %>% my_filter(),
+      svs = data$svs %>% my_filter(),
+      sve = data$sve %>% my_filter(),
+      sites = data$sites %>% my_filter(),
+      areas = data$areas
+    ),
+    class = "odkc_data"
   )
 }
 
