@@ -17,3 +17,5 @@ download_wastd_users <- function(
     ) %>%
     wastd_parse()
 }
+
+# usethis::use_test("download_wastd_users") # nolint

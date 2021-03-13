@@ -35,6 +35,16 @@ filter_odkc_turtledata <- function(data,
                                    verbose = wastdr::get_wastdr_verbose()) {
   requireNamespace("sf") # overrides dplyr::filter with spatial equivalents
 
+  # Error handling
+  if (class(data) != "odkc_turtledata") {
+    wastdr_msg_abort(
+      glue::glue(
+        "The first argument needs to be an object of class \"odkc_turtledata\", ",
+        "e.g. the output of wastdr::download_odkc_turtledata_2020()."
+      )
+    )
+  }
+
   if (is.null(area_name)) {
     if (verbose == TRUE) {
       wastdr::wastdr_msg_success(
