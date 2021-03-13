@@ -16,7 +16,7 @@ test_that("filter_wastd_turtledata requires a wastd_data object", {
 test_that("filter_wastd_turtledata returns all areas by default", {
   data("wastd_data")
   testthat::expect_message(
-    x <- wastd_data %>% filter_wastd_turtledata()
+    x <- wastd_data %>% filter_wastd_turtledata(verbose = TRUE)
   )
 })
 
@@ -24,7 +24,7 @@ test_that("filter_wastd_turtledata returns all areas when asked", {
   data("wastd_data")
   testthat::expect_message(
     x <- wastd_data %>%
-      filter_wastd_turtledata(area_name = "All turtle programs")
+      filter_wastd_turtledata(area_name = "All turtle programs", verbose = TRUE)
   )
 })
 

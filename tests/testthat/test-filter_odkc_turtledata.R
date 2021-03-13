@@ -19,7 +19,7 @@ test_that("filter_odkc_turtledata requires a odkc_data object", {
 test_that("filter_odkc_turtledata returns all areas by default", {
     data("odkc_data")
     testthat::expect_message(
-        x <- odkc_data %>% filter_odkc_turtledata()
+        x <- odkc_data %>% filter_odkc_turtledata(verbose = TRUE)
     )
 })
 
@@ -27,7 +27,8 @@ test_that("filter_odkc_turtledata returns all areas when asked", {
     data("odkc_data")
     testthat::expect_message(
         x <- odkc_data %>%
-            filter_odkc_turtledata(area_name = "All turtle programs")
+            filter_odkc_turtledata(area_name = "All turtle programs",
+                                   verbose = TRUE)
     )
 })
 
@@ -35,7 +36,8 @@ test_that("filter_odkc_turtledata returns data outside areas when asked", {
     data("odkc_data")
     testthat::expect_message(
         x <- odkc_data %>%
-            filter_odkc_turtledata(area_name = "Other")
+            filter_odkc_turtledata(area_name = "Other",
+                                   verbose = TRUE)
     )
     # Data have all areas as NA
     # testthat::expect_true(unique(x$tracks$area_name) == character(0))
