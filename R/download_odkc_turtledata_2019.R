@@ -57,7 +57,7 @@ download_odkc_turtledata_2019 <-
            download = TRUE,
            odkc_version = 0.6,
            verbose = wastdr::get_wastdr_verbose()) {
-    if (download == TRUE) fs::dir_create(local_dir, recurse = TRUE)
+    if (download == TRUE) fs::dir_create(local_dir, recurse = TRUE) # nocov
 
     ruODK::ru_setup(
       pid = 1,

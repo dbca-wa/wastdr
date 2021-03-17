@@ -36,7 +36,7 @@ parse_encounterobservations <- function(wastd_api_response) {
     dplyr::rename(encounter = properties) %>%
     tun("encounter") %>%
     tun("encounter_area") %>%
-    tun("encounter_site")%>%
+    tun("encounter_site") %>%
     tun("encounter_survey") %>%
     tun("encounter_observer") %>%
     tun("encounter_reporter") %>%

@@ -172,12 +172,12 @@ export_wastd_turtledata <- function(x,
   x$track_tally %>% readr::write_csv(file = fs::path(outdir, "track_tally.csv"))
   x$disturbance_tally %>% readr::write_csv(file = fs::path(outdir, "disturbance_tally.csv"))
 
-  if (nrow(x$loggers) > 0){
+  if (nrow(x$loggers) > 0) {
     x$loggers %>%
       readr::write_csv(file = fs::path(outdir, "loggers.csv"))
     x$loggers %>%
       geojsonio::geojson_write(file = fs::path(outdir, "loggers.geojson"))
-   }
+  }
 
   utils::zip(paste0(filename, ".zip"), fs::dir_ls(outdir), flags = "-jr9X")
 }

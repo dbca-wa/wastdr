@@ -68,6 +68,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
                              db_port = Sys.getenv("W2_PT"),
                              verbose = wastdr::get_wastdr_verbose()) {
   # Open a database connection
+  # nocov start
   if (DBI::dbCanConnect(
     odbc::odbc(),
     Driver   = db_drv,
@@ -464,4 +465,5 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     reconstructed_tags = tags,
     reconstructed_turtles = turtles
   )
+  # nocov end
 }

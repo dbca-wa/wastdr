@@ -12,10 +12,12 @@ test_that("download_odkc_turtledata_2019 works", {
   )
   testthat::skip_if_not(odkc_works(), message = "ODKC offline or wrong auth")
 
+  destdir <- fs::path(tempdir(), "odkc2019")
+  if (fs::dir_exists(destdir)) fs::dir_delete(destdir)
 
   x <- suppressWarnings(
     download_odkc_turtledata_2019(
-      local_dir = tempdir(),
+      local_dir = destdir,
       download = FALSE,
       verbose = TRUE # pin for debugging GHA error
     )

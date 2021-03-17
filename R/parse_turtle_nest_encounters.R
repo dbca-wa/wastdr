@@ -68,7 +68,7 @@ parse_turtle_nest_encounters <- function(wastd_api_response) {
       -tidyr::contains("encounter_survey_site"),
       -tidyr::contains("encounter_survey_reporter"),
       # -tidyr::contains("encounter_photographs"),
-    #   -tidyr::contains("encounter_tx_logs")
+      #   -tidyr::contains("encounter_tx_logs")
     ) %>%
     wastdr::add_dates(date_col = "when") %>%
     wastdr::add_nest_labels()

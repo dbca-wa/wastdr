@@ -8,14 +8,14 @@
 #'   components.
 #' @export
 tun <- function(data, col) {
-    if (col %in% colnames(data)) {
-        tidyr::unnest_wider(
-            data,
-            col,
-            names_repair = "universal",
-            names_sep = "_"
-        )
-    } else {
-        data
-    }
+  if (col %in% colnames(data)) {
+    tidyr::unnest_wider(
+      data,
+      col,
+      names_repair = "universal",
+      names_sep = "_"
+    )
+  } else {
+    data
+  }
 }

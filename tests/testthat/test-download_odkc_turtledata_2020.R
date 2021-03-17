@@ -12,10 +12,13 @@ test_that("download_odkc_turtledata_2020 works", {
     # verbose = ruODK::get_ru_verbose()
   )
 
+  destdir <- fs::path(tempdir(), "odkc2020")
+  if (fs::dir_exists(destdir)) fs::dir_delete(destdir)
+  # can't really test this as it would download hundreds of GB of attachments
 
   x <- suppressWarnings(
     download_odkc_turtledata_2020(
-      # local_dir = tempdir(),
+      local_dir = destdir,
       download = FALSE,
       verbose = TRUE # pin for debugging GHA error
     )

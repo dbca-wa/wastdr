@@ -175,6 +175,7 @@ taxomony
 tbl
 tibble
 tibbles
+tidyr
 timeseries
 tne
 trigram
@@ -186,6 +187,7 @@ turtlenestencounter
 turtleviewer
 tz
 uat
+unnest
 unnested
 unparsed
 visualisation

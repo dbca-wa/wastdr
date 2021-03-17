@@ -172,6 +172,16 @@ test_that("disturbance_by_season works", {
   )
 })
 
+test_that("disturbance_by_season works on odkc_data", {
+  data("odkc_data")
+  x1 <- odkc_data$tracks_dist %>% disturbance_by_season()
+  expect_true(tibble::is_tibble(x1))
+  expect_equivalent(
+    names(x1),
+    c("season", "disturbance_cause", "encounter_type", "n", "geometry")
+  )
+})
+
 test_that("nest_disturbance_by_season_odkc works", {
   data("odkc_data")
   x2 <- odkc_data$tracks_dist %>% nest_disturbance_by_season_odkc()

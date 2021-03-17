@@ -275,6 +275,29 @@ test_that("summarise_hatching_and_emergence_success returns a tibble", {
   expect_true("emergence_success_max" %in% names(x))
 })
 
+test_that("hatching_emergence_success returns a tibble", {
+  data("wastd_data")
+  x <- hatching_emergence_success(wastd_data$nest_excavations)
+
+  expect_true(tibble::is_tibble(x))
+  expect_true("season" %in% names(x))
+  expect_true("species" %in% names(x))
+  expect_true("count" %in% names(x))
+  expect_true("clutch_size_fresh" %in% names(x))
+  expect_true("clutch_size_mean" %in% names(x))
+  expect_true("clutch_size_sd" %in% names(x))
+  expect_true("clutch_size_min" %in% names(x))
+  expect_true("clutch_size_max" %in% names(x))
+  expect_true("hatching_success_mean" %in% names(x))
+  expect_true("hatching_success_sd" %in% names(x))
+  expect_true("hatching_success_min" %in% names(x))
+  expect_true("hatching_success_max" %in% names(x))
+  expect_true("emergence_success_mean" %in% names(x))
+  expect_true("emergence_success_sd" %in% names(x))
+  expect_true("emergence_success_min" %in% names(x))
+  expect_true("emergence_success_max" %in% names(x))
+})
+
 test_that("hatching_emergence_success_area returns a tibble", {
   data("wastd_data")
 

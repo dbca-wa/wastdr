@@ -82,6 +82,7 @@ download_minimal_wastd_turtledata <-
     list(
       enc = enc,
       surveys = surveys,
+      survey_media = survey_media,
       areas = areas,
       sites = sites,
       media = media
@@ -89,4 +90,3 @@ download_minimal_wastd_turtledata <-
   }
 
 # usethis::use_test("download_minimal_wastd_turtledata")
-
