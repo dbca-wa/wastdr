@@ -6,7 +6,7 @@ test_that("export_wastd_turtledata works", {
 
   wastd_data %>%
     export_wastd_turtledata(outdir = destdir, filename = "test")
-  testthat::expect_true(length(fs::dir_ls(t)) > 0)
+  testthat::expect_true(length(fs::dir_ls(destdir)) > 0)
 })
 
 test_that("export_wastd_turtledata requires a wastd_data object", {

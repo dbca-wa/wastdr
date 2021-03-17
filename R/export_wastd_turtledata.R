@@ -179,7 +179,9 @@ export_wastd_turtledata <- function(x,
       geojsonio::geojson_write(file = fs::path(outdir, "loggers.geojson"))
   }
 
-  utils::zip(paste0(filename, ".zip"), fs::dir_ls(outdir), flags = "-jr9X")
+  zipfile <- paste0(filename, ".zip")
+  utils::zip(zipfile, fs::dir_ls(outdir), flags = "-jr9X")
+  fs::file_move(zipfile, new_path = outdir)
 }
 
 # use_test("export_wastd_turtledata")
