@@ -4,5 +4,5 @@
 #' @importFrom lifecycle deprecate_soft
 #' @keywords internal
 lifecycle_shim <- function() {
-  lifecycle::deprecate_soft(when = "1.0", what = "lifecycle_shim()")
+  lifecycle::deprecate_soft(when = "1.0", what = "lifecycle_shim()") # nocov
 }
