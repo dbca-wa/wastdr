@@ -3,3 +3,7 @@
 rsconnect
 tracks.Rda
 *.png
+access_files
+analysis_files
+tsc_files
+wamtram_files
