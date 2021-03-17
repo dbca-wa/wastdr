@@ -22,7 +22,7 @@ jobs:
         config:
           - { os: windows-latest, r: "devel" } # can't find tic
           - { os: windows-latest, r: "release" }
-          - { os: windows-latest, r: "oldrel" } # fails on RTools version
+          - { os: windows-latest, r: "oldrel" }
           - { os: windows-2016, r: "devel" } # can't find tic
           - { os: windows-2016, r: "release" }
           - { os: windows-2016, r: "oldrel" }
