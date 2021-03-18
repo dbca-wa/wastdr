@@ -2,15 +2,18 @@
 % Please edit documentation in R/wastdr_msg.R
 \name{wastdr_msg_warn}
 \alias{wastdr_msg_warn}
-\title{rlang::warn() with a yellow warning message with a warning symbol.}
+\title{rlang::warn() with a yellow warning message with a warning symbol if verbose.}
 \usage{
-wastdr_msg_warn(message)
+wastdr_msg_warn(message, verbose = wastdr::get_wastdr_verbose())
 }
 \arguments{
 \item{message}{(chr) A message to print}
+
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
 }
 \description{
-rlang::warn() with a yellow warning message with a warning symbol.
+rlang::warn() with a yellow warning message with a warning symbol if verbose.
 }
 \examples{
 \dontrun{

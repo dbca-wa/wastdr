@@ -2,15 +2,18 @@
 % Please edit documentation in R/wastdr_msg.R
 \name{wastdr_msg_success}
 \alias{wastdr_msg_success}
-\title{Print a green success message with a tick symbol.}
+\title{Print a green success message with a tick symbol if verbose.}
 \usage{
-wastdr_msg_success(message)
+wastdr_msg_success(message, verbose = wastdr::get_wastdr_verbose())
 }
 \arguments{
 \item{message}{(chr) A message to print}
+
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
 }
 \description{
-Print a green success message with a tick symbol.
+Print a green success message with a tick symbol if verbose.
 }
 \examples{
 wastdr_msg_success("This is a success message.")

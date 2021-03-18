@@ -1,47 +1,57 @@
-#' Print a blue info message with an info symbol.
+#' Print a blue info message with an info symbol if verbose.
 #'
 #' @param message (chr) A message to print
+#' @template param-verbose
 #' @return NULL
 #' @export
 #' @family helpers
 #' @examples
 #' wastdr_msg_info("This is an info message.")
-wastdr_msg_info <- function(message) {
+wastdr_msg_info <- function(message,
+                            verbose = wastdr::get_wastdr_verbose()) {
+  if (verbose == FALSE) return(NULL)
   x <- clisymbols::symbol$info
   message(crayon::cyan(glue::glue("{x} {message}\n")))
 }
 
-#' Print a green success message with a tick symbol.
+#' Print a green success message with a tick symbol if verbose.
 #'
 #' @param message (chr) A message to print
+#' @template param-verbose
 #' @return NULL
 #' @export
 #' @family helpers
 #' @examples
 #' wastdr_msg_success("This is a success message.")
-wastdr_msg_success <- function(message) {
+wastdr_msg_success <- function(message,
+                               verbose = wastdr::get_wastdr_verbose()) {
+  if (verbose == FALSE) return(NULL)
   x <- clisymbols::symbol$tick
   message(crayon::green(glue::glue("{x} {message}\n")))
 }
 
 
-#' Print a green noop message with a filled circle symbol.
+#' Print a green noop message with a filled circle symbol if verbose.
 #'
 #' @param message (chr) A message to print
+#' @template param-verbose
 #' @return NULL
 #' @export
 #' @family helpers
 #' @examples
 #' wastdr_msg_noop("This is a noop message.")
-wastdr_msg_noop <- function(message) {
+wastdr_msg_noop <- function(message,
+                            verbose = wastdr::get_wastdr_verbose()) {
+  if (verbose == FALSE) return(NULL)
   x <- clisymbols::symbol$circle_filled
   message(crayon::green(glue::glue("{x} {message}\n")))
 }
 
 
-#' rlang::warn() with a yellow warning message with a warning symbol.
+#' rlang::warn() with a yellow warning message with a warning symbol if verbose.
 #'
 #' @param message (chr) A message to print
+#' @template param-verbose
 #' @return NULL
 #' @export
 #' @family helpers
@@ -49,7 +59,9 @@ wastdr_msg_noop <- function(message) {
 #' \dontrun{
 #' wastdr_msg_warn("This is a warning.")
 #' }
-wastdr_msg_warn <- function(message) {
+wastdr_msg_warn <- function(message,
+                            verbose = wastdr::get_wastdr_verbose()) {
+  if (verbose == FALSE) return(NULL)
   x <- clisymbols::symbol$warning
   rlang::warn(crayon::yellow(glue::glue("{x} {message}\n")))
 }

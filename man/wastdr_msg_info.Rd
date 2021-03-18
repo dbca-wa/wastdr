@@ -2,15 +2,18 @@
 % Please edit documentation in R/wastdr_msg.R
 \name{wastdr_msg_info}
 \alias{wastdr_msg_info}
-\title{Print a blue info message with an info symbol.}
+\title{Print a blue info message with an info symbol if verbose.}
 \usage{
-wastdr_msg_info(message)
+wastdr_msg_info(message, verbose = wastdr::get_wastdr_verbose())
 }
 \arguments{
 \item{message}{(chr) A message to print}
+
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
 }
 \description{
-Print a blue info message with an info symbol.
+Print a blue info message with an info symbol if verbose.
 }
 \examples{
 wastdr_msg_info("This is an info message.")

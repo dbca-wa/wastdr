@@ -16,16 +16,16 @@
 #' @param db_pass The database user's password, default: `Sys.getenv("W2_PW")`.
 #' @param db_port The database port, default: `Sys.getenv("W2_PT")`, which
 #'   should resolve to a numeric port, e.g. `1234`.
-#' @param verbose Whether to print verbose help messages,
-#'   default: `wastdr::get_wastdr_verbose()`.
-#' @return A named list of sanitised tables from the Turtle Tagging DB:
+#' @template param-verbose
+#' @return A structure of class "wamtram_data" containing a named list of
+#'   sanitised tables from the Turtle Tagging DB:
 #'   * Metadata:
 #'     * downloaded_on
 #'     * w2_tables
 #'   * Personnel:
 #'     * persons
 #'   * Data entry:
-#'     * data_entry_batches
+#'     * data_entry_batches "TRT_ENTRY_BATCHES"
 #'     * data_entry
 #'     * data_entry_operators
 #'   * Lookups:
@@ -79,13 +79,11 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     Port     = db_port
   )) {
     wastdr::wastdr_msg_success("Database credentials verified")
-  } else {
-    wastdr_msg_abort("Database credentials invalid, aborting")
-  }
+  } else wastdr_msg_abort("Database credentials invalid, aborting")
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Opening database connection...")
-  }
+
+  wastdr_msg_info("Opening database connection...")
+
   con <- DBI::dbConnect(
     odbc::odbc(),
     Driver   = db_drv,
@@ -97,63 +95,51 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
   )
 
   # Extract all relevant tables into a named list.
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Reading tables...")
-  }
+  wastdr_msg_info("Reading tables...")
 
   # Metadata
   downloaded_on <- Sys.time()
   w2_tables <- DBI::dbListTables(con)
 
   # Tables
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Processing Table TRT_ENTRY_BATCHES")
-  }
+  wastdr_msg_info("Processing Table TRT_ENTRY_BATCHES")
   data_entry_batches <- "TRT_ENTRY_BATCHES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Processing Table TRT_DATA_ENTRY")
-  }
+  wastdr_msg_info("Processing Table TRT_DATA_ENTRY")
   data_entry <- "TRT_DATA_ENTRY" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Personnel Table TRT_DATA_ENTRY_PERSONS")
-  }
+  wastdr_msg_info("Personnel Table TRT_DATA_ENTRY_PERSONS")
   data_entry_operators <- "TRT_DATA_ENTRY_PERSONS" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Sites Table TRT_PLACES")
-  }
+  wastdr_msg_info("Sites Table TRT_PLACES")
   sites <- "TRT_PLACES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
     dplyr::rename(
       prefix = location_code,
-      name = place_code,
+      code = place_code,
       label = place_name,
       is_rookery = rookery,
+      beach_approach = beach_approach,
       beach_aspect = aspect,
       site_datum = datum_code,
       site_latitude = latitude,
-      site_longitude = longitude
+      site_longitude = longitude,
+      description = comments
     )
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_TAG_STATES")
-  }
+  wastdr_msg_info("Lookup Table TRT_TAG_STATES")
   tag_states <- "TRT_TAG_STATES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Data Table TRT_PERSONS")
-  }
+  wastdr_msg_info("Data Table TRT_PERSONS")
   persons <- "TRT_PERSONS" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
@@ -166,9 +152,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
         stringr::str_trim()
     )
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_ACTIVITIES")
-  }
+  wastdr_msg_info("Lookup Table TRT_ACTIVITIES")
   activities <- "TRT_ACTIVITIES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
@@ -179,9 +163,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       display_this_observation = display_observation
     )
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_BEACH_POSITIONS")
-  }
+  wastdr_msg_info("Lookup Table TRT_BEACH_POSITIONS")
   beach_positions <- "TRT_BEACH_POSITIONS" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
@@ -190,17 +172,13 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       beach_position_label = new_code
     )
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_CONDITION_CODES")
-  }
+  wastdr_msg_info("Lookup Table TRT_CONDITION_CODES")
   conditions <- "TRT_CONDITION_CODES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
     dplyr::rename(condition_label = description)
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_EGG_COUNT_METHODS")
-  }
+  wastdr_msg_info("Lookup Table TRT_EGG_COUNT_METHODS")
   egg_count_methods <- "TRT_EGG_COUNT_METHODS" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
@@ -209,9 +187,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       egg_count_method_label = description
     )
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_BODY_PARTS")
-  }
+  wastdr_msg_info("Lookup Table TRT_BODY_PARTS")
   body_parts <- "TRT_BODY_PARTS" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
@@ -222,17 +198,13 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     )
 
   # use native datum conversion instead
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_DATUM_CODES")
-  }
+  wastdr_msg_info("Lookup Table TRT_DATUM_CODES")
   datum_codes <- "TRT_DATUM_CODES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
   # Tag types
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_IDENTIFICATION_TYPES")
-  }
+  wastdr_msg_info("Lookup Table TRT_IDENTIFICATION_TYPES")
   id_types <- "TRT_IDENTIFICATION_TYPES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
@@ -241,10 +213,8 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       id_type_label = description
     )
 
-  # 252k+ records
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Data Table TRT_RECORDED_TAGS")
-  }
+  # 260k+ records
+  wastdr_msg_info("Data Table TRT_RECORDED_TAGS")
   recorded_tags <- "TRT_RECORDED_TAGS" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
@@ -255,64 +225,48 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     ) %>%
     dplyr::arrange(desc(tag_name))
 
-  # 58k+ inferred turtle identities, reconstructed from encounters.
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Data Table TRT_TURTLES")
-  }
+  # 60k+ inferred turtle identities, reconstructed from encounters.
+  wastdr_msg_info("Data Table TRT_TURTLES")
   turtles <- "TRT_TURTLES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
-  # 124k+ Synthesised information about tags,
+  # 127k+ Synthesised information about tags,
   # reconstructed from recorded_tags and other tag asset management operations.
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Data Table TRT_TAGS")
-  }
+  wastdr_msg_info("Data Table TRT_TAGS")
   tags <- "TRT_TAGS" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
     dplyr::arrange(desc(tag_id))
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Data Table TRT_SAMPLES")
-  }
+  wastdr_msg_info("Data Table TRT_SAMPLES")
   samples <- "TRT_SAMPLES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_TISSUE_TYPES")
-  }
+  wastdr_msg_info("Lookup Table TRT_TISSUE_TYPES")
   sample_tissue_type <- "TRT_TISSUE_TYPES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
   # 22k+ PIT tags
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Data Table TRT_PIT_TAGS")
-  }
+  wastdr_msg_info("Data Table TRT_PIT_TAGS")
   pit_tags <- "TRT_PIT_TAGS" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
   # 70k+ PIT tag encounters
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Table TRT_RECORDED_PIT_TAGS")
-  }
+  wastdr_msg_info("Table TRT_RECORDED_PIT_TAGS")
   recorded_pit_tags <- "TRT_RECORDED_PIT_TAGS" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_PIT_TAG_STATES")
-  }
+  wastdr_msg_info("Lookup Table TRT_PIT_TAG_STATES")
   pit_tag_states <- "TRT_PIT_TAG_STATES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_MEASUREMENT_TYPES")
-  }
+  wastdr_msg_info("Lookup Table TRT_MEASUREMENT_TYPES")
   measurement_types <- "TRT_MEASUREMENT_TYPES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
@@ -323,9 +277,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     )
 
   # 191k+ Morphometric Measurements
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Data Table TRT_MEASUREMENTS")
-  }
+  wastdr_msg_info("Data Table TRT_MEASUREMENTS")
   measurements <- "TRT_MEASUREMENTS" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names() %>%
@@ -334,39 +286,29 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     )
 
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_DAMAGE_CODES")
-  }
+  wastdr_msg_info("Lookup Table TRT_DAMAGE_CODES")
   damage_codes <- "TRT_DAMAGE_CODES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Lookup Table TRT_DAMAGE_CAUSE_CODES")
-  }
+  wastdr_msg_info("Lookup Table TRT_DAMAGE_CAUSE_CODES")
   damage_causes <- "TRT_DAMAGE_CAUSE_CODES" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
   # 38k+ TurtleDamageObservations
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Data Table TRT_DAMAGE")
-  }
+  wastdr_msg_info("Data Table TRT_DAMAGE")
   damages <- "TRT_DAMAGE" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
   # 167k+ AnimalEncounters (raw)
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Data Table TRT_OBSERVATIONS")
-  }
+  wastdr_msg_info("Data Table TRT_OBSERVATIONS")
   obs <- "TRT_OBSERVATIONS" %>%
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Parsing TRT_OBSERVATIONS")
-  }
+  wastdr_msg_info("Parsing TRT_OBSERVATIONS")
   o <- obs %>%
     dplyr::mutate(
       o_date = lubridate::parse_date_time(corrected_date, orders = ord, tz = tz),
@@ -380,7 +322,12 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       )
     ) %>%
     dplyr::select(
-      -observation_date, -observation_date_old, -corrected_date, -observation_time, -o_date, -o_time
+      -observation_date,
+      -observation_date_old,
+      -corrected_date,
+      -observation_time,
+      -o_date,
+      -o_time
     ) %>%
     dplyr::left_join(activities, by = "activity_code") %>%
     # left_join(person_names, by=c("MEASURER_PERSON_ID" = "PERSON_ID")) %>%
@@ -391,7 +338,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     # rename(tagged_by=name) %>%
     # left_join(person_names, by=c("REPORTER_PERSON_ID" = "PERSON_ID")) %>%
     # rename(reported_by=name) %>%
-    dplyr::left_join(sites, by = c("place_code" = "name")) %>%
+    dplyr::left_join(sites, by = c("place_code" = "code")) %>%
     dplyr::left_join(turtles, by = "turtle_id") %>%
     dplyr::mutate(
       latitude = ifelse(is.na(latitude), site_latitude, latitude),
@@ -411,59 +358,61 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       is.na(latitude) | is.na(observation_datetime_utc)) %>%
     dplyr::arrange(desc(observation_datetime_utc))
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_info("Done, closing DB connection.")
-  }
-  DBI::dbDisconnect(con)
+  wastdr_msg_info("Done, closing DB connection.")
+  wastdr_msg_success("Returning data")
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_success("Returning data")
-  }
-  list(
-    # Metadata
-    downloaded_on = downloaded_on,
-    w2_tables = w2_tables,
+  wamtram_data <- structure(
+    list(
+      # Metadata
+      downloaded_on = downloaded_on,
+      w2_tables = w2_tables,
 
-    # personnel
-    persons = persons,
+      # personnel
+      persons = persons,
 
-    # Data entry
-    data_entry_batches = data_entry_batches,
-    data_entry = data_entry,
-    data_entry_operators = data_entry_operators,
+      # Data entry
+      data_entry_batches = data_entry_batches,
+      data_entry = data_entry,
+      data_entry_operators = data_entry_operators,
 
-    # Lookups
-    lookup_beach_positions = beach_positions,
-    lookup_body_parts = body_parts,
-    lookup_conditions = conditions,
-    lookup_damage_causes = damage_causes,
-    lookup_damage_codes = damage_codes,
-    lookup_datum_codes = datum_codes,
-    lookup_egg_count_methods = egg_count_methods,
-    lookup_id_types = id_types,
-    lookup_measurement_types = measurement_types,
-    lookup_pit_tag_states = pit_tag_states,
-    lookup_sample_tissue_type = sample_tissue_type,
-    lookup_tag_states = tag_states,
+      # Lookups
+      lookup_beach_positions = beach_positions,
+      lookup_body_parts = body_parts,
+      lookup_conditions = conditions,
+      lookup_damage_causes = damage_causes,
+      lookup_damage_codes = damage_codes,
+      lookup_datum_codes = datum_codes,
+      lookup_egg_count_methods = egg_count_methods,
+      lookup_id_types = id_types,
+      lookup_measurement_types = measurement_types,
+      lookup_pit_tag_states = pit_tag_states,
+      lookup_sample_tissue_type = sample_tissue_type,
+      lookup_tag_states = tag_states,
 
-    # Sites
-    sites = sites,
+      # Sites
+      sites = sites,
 
-    # Encounters
-    enc = encounters,
-    enc_qa = encounters_missing,
+      # Encounters
+      enc = encounters,
+      enc_qa = encounters_missing,
 
-    # Observations
-    obs_flipper_tags = recorded_tags,
-    obs_pit_tags = recorded_pit_tags,
-    obs_damages = damages,
-    obs_measurements = measurements,
-    obs_samples = samples,
+      # Observations
+      obs_flipper_tags = recorded_tags,
+      obs_pit_tags = recorded_pit_tags,
+      obs_damages = damages,
+      obs_measurements = measurements,
+      obs_samples = samples,
 
-    # Reconstructed
-    reconstructed_pit_tags = pit_tags,
-    reconstructed_tags = tags,
-    reconstructed_turtles = turtles
+      # Reconstructed
+      reconstructed_pit_tags = pit_tags,
+      reconstructed_tags = tags,
+      reconstructed_turtles = turtles
+    ),
+    class = "wamtram_data"
   )
+
+  wamtram_data
   # nocov end
 }
+
+# usethis::use_test("download_w2_data")  # nolint

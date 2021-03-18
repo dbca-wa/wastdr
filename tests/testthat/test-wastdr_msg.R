@@ -4,16 +4,21 @@ test_that("wastdr_msg_abort works", {
 
 test_that("wastdr_msg_warn works", {
   expect_warning(wastdr_msg_warn("This is a warning!"))
+
+  expect_null(wastdr_msg_warn("This is a warning!", verbose = FALSE))
 })
 
 test_that("wastdr_msg_noop works", {
   expect_message(wastdr_msg_noop("This is a noop message!"))
+  expect_null(wastdr_msg_noop("This is a noop message!", verbose = FALSE))
 })
 
 test_that("wastdr_msg_info works", {
   expect_message(wastdr_msg_info("This is an info!"))
+  expect_null(wastdr_msg_info("This is an info!", verbose = FALSE))
 })
 
 test_that("wastdr_msg_successworks", {
   expect_message(wastdr_msg_success("This is a success message!"))
+  expect_null(wastdr_msg_success("This is a success message!", verbose = FALSE))
 })

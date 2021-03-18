@@ -4,6 +4,15 @@
 ## Docs
 ## Data
 
+# wastdr 0.5.5
+## Major fixes
+* Updated turtle tagging database extractor `download_w2_data()`. (#29)
+## Minor fixes
+* `wastdr_msg_*` has new parameter `verbose = get_wastdr_verbose()` because we
+  always want to make message verbosity conditional.
+## Docs
+## Data
+
 # wastdr 0.5.4
 ## Major fixes
 * Improved parsing of WAStD data

@@ -2,15 +2,18 @@
 % Please edit documentation in R/wastdr_msg.R
 \name{wastdr_msg_noop}
 \alias{wastdr_msg_noop}
-\title{Print a green noop message with a filled circle symbol.}
+\title{Print a green noop message with a filled circle symbol if verbose.}
 \usage{
-wastdr_msg_noop(message)
+wastdr_msg_noop(message, verbose = wastdr::get_wastdr_verbose())
 }
 \arguments{
 \item{message}{(chr) A message to print}
+
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
 }
 \description{
-Print a green noop message with a filled circle symbol.
+Print a green noop message with a filled circle symbol if verbose.
 }
 \examples{
 wastdr_msg_noop("This is a noop message.")

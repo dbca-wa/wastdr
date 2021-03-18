@@ -38,11 +38,12 @@ default: \code{Sys.getenv("W2_UN")}.}
 \item{db_port}{The database port, default: \code{Sys.getenv("W2_PT")}, which
 should resolve to a numeric port, e.g. \code{1234}.}
 
-\item{verbose}{Whether to print verbose help messages,
-default: \code{wastdr::get_wastdr_verbose()}.}
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
 }
 \value{
-A named list of sanitised tables from the Turtle Tagging DB:
+A structure of class "wamtram_data" containing a named list of
+sanitised tables from the Turtle Tagging DB:
 \itemize{
 \item Metadata:
 \itemize{
@@ -55,7 +56,7 @@ A named list of sanitised tables from the Turtle Tagging DB:
 }
 \item Data entry:
 \itemize{
-\item data_entry_batches
+\item data_entry_batches "TRT_ENTRY_BATCHES"
 \item data_entry
 \item data_entry_operators
 }
