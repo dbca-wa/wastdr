@@ -57,6 +57,12 @@
 #'     * reconstructed_tags
 #'     * reconstructed_turtles
 #' @export
+#' @examples
+#' \dontrun{
+#' # Credentials are set in .Renviron
+#'
+#' wamtram_data <- download_w2_data()
+#' }
 #' @family wamtram
 download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
                              tz = "Australia/Perth",
@@ -171,6 +177,12 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       beach_position_description = description,
       beach_position_label = new_code
     )
+
+  wastdr_msg_info("Lookup Table TRT_CAUSE_OF_DEATH")
+  cause_of_death <- "TRT_CAUSE_OF_DEATH" %>%
+    DBI::dbReadTable(con, .) %>%
+    janitor::clean_names()
+    # %>% dplyr::rename(code = cause_of_death)
 
   wastdr_msg_info("Lookup Table TRT_CONDITION_CODES")
   conditions <- "TRT_CONDITION_CODES" %>%
@@ -302,6 +314,11 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
+  wastdr_msg_info("Data Table TRT_IDENTIFICATION")
+  identifications <- "TRT_IDENTIFICATION" %>%
+    DBI::dbReadTable(con, .) %>%
+    janitor::clean_names()
+
   # 167k+ AnimalEncounters (raw)
   wastdr_msg_info("Data Table TRT_OBSERVATIONS")
   obs <- "TRT_OBSERVATIONS" %>%
@@ -359,8 +376,8 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     dplyr::arrange(desc(observation_datetime_utc))
 
   wastdr_msg_info("Done, closing DB connection.")
-  wastdr_msg_success("Returning data")
 
+  wastdr_msg_success("Returning data")
   wamtram_data <- structure(
     list(
       # Metadata
@@ -376,8 +393,10 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       data_entry_operators = data_entry_operators,
 
       # Lookups
+      lookup_activities = activities,
       lookup_beach_positions = beach_positions,
       lookup_body_parts = body_parts,
+      lookup_cause_of_death = cause_of_death,
       lookup_conditions = conditions,
       lookup_damage_causes = damage_causes,
       lookup_damage_codes = damage_codes,
@@ -402,6 +421,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       obs_damages = damages,
       obs_measurements = measurements,
       obs_samples = samples,
+      identifications = identifications,
 
       # Reconstructed
       reconstructed_pit_tags = pit_tags,
