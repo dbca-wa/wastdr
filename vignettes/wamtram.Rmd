@@ -39,4 +39,8 @@ the WA Sea Turtle Database (WAStD).
   e.g. tally across factor levels (species, health, tag status). 
   At least compare: same number of sightings of same tag?
 
+```{r, eval=FALSE}
+x <- download_w2_data()
+```
+
 

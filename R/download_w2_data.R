@@ -62,6 +62,22 @@
 #' # Credentials are set in .Renviron
 #'
 #' wamtram_data <- download_w2_data()
+#'
+#'
+#' # develop:
+#' ord = c("YmdHMS", "Ymd")
+#' tz = "Australia/Perth"
+#' verbose = wastdr::get_wastdr_verbose()
+#'
+#' con <- DBI::dbConnect(
+#' odbc::odbc(),
+#' Driver   = Sys.getenv("W2_DRV"),
+#' Server   = Sys.getenv("W2_SRV"),
+#' Database = Sys.getenv("W2_DB"),
+#' UID      = Sys.getenv("W2_UN"),
+#' PWD      = Sys.getenv("W2_PW"),
+#' Port     = Sys.getenv("W2_PT"))
+#'
 #' }
 #' @family wamtram
 download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
@@ -178,6 +194,16 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       beach_position_label = new_code
     )
 
+  wastdr_msg_info("Lookup Table TRT_BODY_PARTS")
+  body_parts <- "TRT_BODY_PARTS" %>%
+    DBI::dbReadTable(con, .) %>%
+    janitor::clean_names() %>%
+    dplyr::rename(
+      body_part_code = body_part,
+      body_part_label = description,
+      is_flipper = flipper
+    )
+
   wastdr_msg_info("Lookup Table TRT_CAUSE_OF_DEATH")
   cause_of_death <- "TRT_CAUSE_OF_DEATH" %>%
     DBI::dbReadTable(con, .) %>%
@@ -197,16 +223,6 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     dplyr::rename(
       egg_count_method_code = egg_count_method,
       egg_count_method_label = description
-    )
-
-  wastdr_msg_info("Lookup Table TRT_BODY_PARTS")
-  body_parts <- "TRT_BODY_PARTS" %>%
-    DBI::dbReadTable(con, .) %>%
-    janitor::clean_names() %>%
-    dplyr::rename(
-      body_part_code = body_part,
-      body_part_label = description,
-      is_flipper = flipper
     )
 
   # use native datum conversion instead
@@ -379,34 +395,48 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
 
   wastdr_msg_success("Returning data")
   wamtram_data <- structure(
+    # [41] "TRT_NESTING_SEASON" "TRT_NESTING"  "TRT_DEFAULT" "TRT_YES_NO"
+    # [61] "TRV_INTERSEASON_MIGRATION"
+    # [63] "TRV_OBSERVATION_SUMMARY" "TRT_OBSERVATIONS"  "View_1"
+
     list(
       # Metadata
       downloaded_on = downloaded_on,
       w2_tables = w2_tables,
+      # trt_nesting = rookeries > attribute on sites
+      # trt_nesting_season > lookup for FY
 
       # personnel
-      persons = persons,
+      persons = persons, # TRT_PERSONS
 
-      # Data entry
-      data_entry_batches = data_entry_batches,
-      data_entry = data_entry,
-      data_entry_operators = data_entry_operators,
+      # TRT_LOCATIONS
+      # TRT_PLACES
+
+      # Data entry and QA
+      # TRT_DATA_CHANGED TODO
+      # TRT_DATA_ENTRY_EXCEPTIONS TODO
+      data_entry_batches = data_entry_batches,      # TRT_ENTRY_BATCHES
+      data_entry = data_entry,                      # TRT_DATA_ENTRY
+      data_entry_operators = data_entry_operators,  # TRT_DATA_ENTRY_PERSONS
 
       # Lookups
-      lookup_activities = activities,
-      lookup_beach_positions = beach_positions,
-      lookup_body_parts = body_parts,
-      lookup_cause_of_death = cause_of_death,
-      lookup_conditions = conditions,
-      lookup_damage_causes = damage_causes,
-      lookup_damage_codes = damage_codes,
-      lookup_datum_codes = datum_codes,
-      lookup_egg_count_methods = egg_count_methods,
-      lookup_id_types = id_types,
-      lookup_measurement_types = measurement_types,
-      lookup_pit_tag_states = pit_tag_states,
-      lookup_sample_tissue_type = sample_tissue_type,
-      lookup_tag_states = tag_states,
+      lookup_activities = activities,               # TRT_ACTIVITIES
+      lookup_beach_positions = beach_positions,     # TRT_BEACH_POSITIONS
+      lookup_body_parts = body_parts,               # TRT_BODY_PARTS
+      lookup_cause_of_death = cause_of_death,       # TRT_CAUSE_OF_DEATH
+      lookup_conditions = conditions,               # TRT_CONDITION_CODES
+                                                    # TRT_DAMAGE_CAUSE is empty
+      lookup_damage_causes = damage_causes,         # TRT_DAMAGE_CAUSE_CODES
+      lookup_damage_codes = damage_codes,           # TRT_DAMAGE_CODES
+      lookup_datum_codes = datum_codes,             # TRT_DATUM_CODES
+      lookup_egg_count_methods = egg_count_methods, # TRT_EGG_COUNT_METHODS
+      lookup_id_types = id_types,                   # TRT_IDENTIFICATION_TYPES
+      lookup_measurement_types = measurement_types, # TRT_MEASUREMENT_TYPES
+      lookup_pit_tag_states = pit_tag_states,       # TRT_PIT_TAG_STATES
+      # pit tag status TODO
+      lookup_sample_tissue_type = sample_tissue_type, # TRT_TISSUE_TYPES
+      lookup_tag_states = tag_states,               # TRT_TAG_STATES
+      # TRT_TURTLE_STATUS TODO
 
       # Sites
       sites = sites,
@@ -416,17 +446,26 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       enc_qa = encounters_missing,
 
       # Observations
-      obs_flipper_tags = recorded_tags,
-      obs_pit_tags = recorded_pit_tags,
-      obs_damages = damages,
-      obs_measurements = measurements,
-      obs_samples = samples,
-      identifications = identifications,
+      obs_flipper_tags = recorded_tags,             # TRT_RECORDED_TAGS
+      obs_pit_tags = recorded_pit_tags,             # TRT_RECORDED_PIT_TAGS
+      obs_damages = damages,                        # TRT_DAMAGE
+      obs_measurements = measurements,              # TRT_MEASUREMENTS
+      obs_samples = samples,                        # TRT_SAMPLES
+      identifications = identifications,            # TRT_IDENTIFICATION
+      # TRT_SIGHTING is empty
+      # TRT_RECORDED_IDENTIFICATION
+
+      # TRT_TAG_ORDERS
+      # TRT_TAG_STATUS
+      # TRT_TURTLE_STATUS
+      # TRT_SPECIES
+
+      # "TRT_DOCUMENT_TYPES" "TRT_DOCUMENTS"
 
       # Reconstructed
-      reconstructed_pit_tags = pit_tags,
-      reconstructed_tags = tags,
-      reconstructed_turtles = turtles
+      reconstructed_pit_tags = pit_tags,            # TRT_PIT_TAGS
+      reconstructed_tags = tags,                    # TRT_TAGS
+      reconstructed_turtles = turtles               # TRT_TURTLES
     ),
     class = "wamtram_data"
   )
