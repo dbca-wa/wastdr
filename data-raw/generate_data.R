@@ -115,6 +115,8 @@ wastd_data <- download_wastd_turtledata(max_records = 1000)
 wastd_data$surveys <- wastd_data$surveys %>% sanitize_names()
 wastd_data$survey_media <- wastd_data$survey_media %>% sanitize_names()
 wastd_data$animals <- wastd_data$animals %>% sanitize_names()
+wastd_data$animals$location_accuracy_m <- 10L # avoid NULL being dropped
+wastd_data$animals$comments <- "Placeholder comment" # avoid NULL being dropped
 wastd_data$turtle_morph <- wastd_data$turtle_morph %>% sanitize_names()
 wastd_data$turtle_tags <- wastd_data$turtle_tags %>% sanitize_names()
 wastd_data$turtle_dmg <- wastd_data$turtle_dmg %>% sanitize_names()
