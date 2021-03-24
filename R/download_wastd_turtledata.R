@@ -5,9 +5,10 @@
 #' See also `??wastdr::export_wastd_turtledata` for a detailed explanation of
 #' the data tables.
 #'
+#' Verbosity is governed by `wastdr::get_wastdr_verbose()`.
+#'
 #' @param max_records (int) The max number of records to retrieve,
 #'   default: NULL (download all).
-#' @template param-verbose
 #'
 #' @return An S3 class "wastd_data" with items:
 #' \itemize{
@@ -40,12 +41,9 @@
 #' }
 #' @export
 #' @family api
-download_wastd_turtledata <- function(max_records = NULL,
-                                      verbose = get_wastdr_verbose()) {
+download_wastd_turtledata <- function(max_records = NULL) {
   # Areas ---------------------------------------------------------------------#
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading Areas...")
-  }
+  wastdr_msg_info("Downloading Areas...")
   areas_sf <- wastdr::wastd_GET("area") %>% parse_area_sf()
 
   areas <- areas_sf %>%
@@ -58,44 +56,31 @@ download_wastd_turtledata <- function(max_records = NULL,
     sf::st_join(areas)
 
   # AnimalEncounters ----------------------------------------------------------#
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading AnimalEncounters 2016 and on...")
-  }
+  wastdr_msg_info("Downloading AnimalEncounters 2016 and on...")
   animals <- "animal-encounters" %>%
-    wastdr::wastd_GET(
-      query = list(when__year__gte = 2016),
-      max_records = max_records
-    ) %>%
+    wastdr::wastd_GET(query = list(when__year__gte = 2016),
+                      max_records = max_records) %>%
     wastdr::parse_animal_encounters()
 
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading turtle morphometrics...")
-  }
+  wastdr_msg_info("Downloading turtle morphometrics...")
   turtle_morph <- "turtle-morphometrics" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations()
 
   # tags
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading turtle tags...")
-  }
+  wastdr_msg_info("Downloading turtle tags...")
   turtle_tags <- "tag-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations()
 
   # damages
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading turtle damages...")
-  }
+  wastdr_msg_info("Downloading turtle damages...")
   turtle_dmg <- "turtle-damage-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations()
 
   # TurtleNestEncounters ------------------------------------------------------#
-
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading TurtleNestEncounters...")
-  }
+  wastdr_msg_info("Downloading TurtleNestEncounters...")
   tracks <- "turtle-nest-encounters" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_turtle_nest_encounters()
@@ -103,6 +88,8 @@ download_wastd_turtledata <- function(max_records = NULL,
   tracks_subset <-
     tracks %>% dplyr::select(
       pk,
+      source,
+      source_id,
       nest_age,
       nest_type,
       species,
@@ -118,74 +105,50 @@ download_wastd_turtledata <- function(max_records = NULL,
       nest_type_text
     )
 
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading nest disturbances...")
-  }
+  wastdr_msg_info("Downloading nest disturbances...")
   nest_dist <- "turtle-nest-disturbance-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by = "pk")
+    wastdr::parse_encounterobservations()
 
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading nest tags...")
-  }
+  wastdr_msg_info("Downloading nest tags...")
   nest_tags <- "nest-tag-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by = "pk")
+    wastdr::parse_encounterobservations()
 
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading nest excavations...")
-  }
+  wastdr_msg_info("Downloading nest excavations...")
   nest_excavations <- "turtle-nest-excavations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by = "pk")
+    wastdr::parse_encounterobservations()
 
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading hatchling morph...")
-  }
+  wastdr_msg_info("Downloading hatchling morph...")
   hatchling_morph <- "turtle-hatchling-morphometrics" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by = "pk")
+    wastdr::parse_encounterobservations()
 
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading hatchling fans...")
-  }
+  wastdr_msg_info("Downloading hatchling fans...")
   nest_fans <- "turtle-nest-hatchling-emergences" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by = "pk")
+    wastdr::parse_encounterobservations()
 
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading hatchling fan outliers...")
-  }
-  nest_fan_outliers <- "turtle-nest-hatchling-emergence-outliers" %>%
+  wastdr_msg_info("Downloading hatchling fan outliers...")
+  nest_fan_outliers <-
+    "turtle-nest-hatchling-emergence-outliers" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by = "pk")
+    wastdr::parse_encounterobservations()
 
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading light sources...")
-  }
-  nest_lightsources <- "turtle-nest-hatchling-emergence-light-sources" %>%
+  wastdr_msg_info("Downloading light sources...")
+  nest_lightsources <-
+    "turtle-nest-hatchling-emergence-light-sources" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by = "pk")
+    wastdr::parse_encounterobservations()
 
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading logger observations...")
-  }
+  wastdr_msg_info("Downloading logger observations...")
   nest_loggers <- "logger-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by = "pk")
+    wastdr::parse_encounterobservations()
 
   # LoggerEncounters ----------------------------------------------------------#
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading LoggerEncounters...")
-  }
+  wastdr_msg_info("Downloading LoggerEncounters...")
   loggers <- "logger-encounters" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::wastd_parse() %>%
@@ -200,7 +163,7 @@ download_wastd_turtledata <- function(max_records = NULL,
     dplyr::select(-"geometry")
 
   # Track Tallies -------------------------------------------------------------#
-  if (verbose == TRUE) wastdr_msg_info("Downloading LineTransectEncounters...")
+  wastdr_msg_info("Downloading LineTransectEncounters...")
   linetx <- "line-transect-encounters" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::wastd_parse() %>%
@@ -213,20 +176,18 @@ download_wastd_turtledata <- function(max_records = NULL,
     tun("survey_site") %>%
     tun("survey_area")
 
-  if (verbose == TRUE) wastdr_msg_info("Downloading track tallies...")
+  wastdr_msg_info("Downloading track tallies...")
   track_tally <- "track-tally" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations()
 
-  if (verbose == TRUE) wastdr_msg_info("Downloading disturbance tallies...")
+  wastdr_msg_info("Downloading disturbance tallies...")
   disturbance_tally <- "turtle-nest-disturbance-tally" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations()
 
   # Surveys -------------------------------------------------------------------#
-  if (verbose == TRUE) {
-    wastdr_msg_info("Downloading surveys...")
-  }
+  wastdr_msg_info("Downloading surveys...")
   surveys <- "surveys" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_surveys()

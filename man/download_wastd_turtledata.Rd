@@ -4,14 +4,11 @@
 \alias{download_wastd_turtledata}
 \title{Download all turtle data from WAStD}
 \usage{
-download_wastd_turtledata(max_records = NULL, verbose = get_wastdr_verbose())
+download_wastd_turtledata(max_records = NULL)
 }
 \arguments{
 \item{max_records}{(int) The max number of records to retrieve,
 default: NULL (download all).}
-
-\item{verbose}{Whether to show debug messages.
-Default: wastdr::get_wastdr_verbose()}
 }
 \value{
 An S3 class "wastd_data" with items:
@@ -50,6 +47,8 @@ associated with Encounters.
 \details{
 See also \code{??wastdr::export_wastd_turtledata} for a detailed explanation of
 the data tables.
+
+Verbosity is governed by \code{wastdr::get_wastdr_verbose()}.
 }
 \seealso{
 Other api: 

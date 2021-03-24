@@ -4,6 +4,15 @@
 ## Docs
 ## Data
 
+# wastdr (development version)
+## Major fixes
+* Bugfix: `download_wastd_turtledata()` now shows correct encounter details for 
+  nested observations like nest tags, nest loggers etc.
+## Minor fixes
+* `download_wastd_turtledata()` infers verbosity from `get_wastdr_verbose()`.
+## Docs
+## Data
+
 # wastdr 0.5.5
 ## Major fixes
 * Updated turtle tagging database extractor `download_w2_data()`. (#29)
