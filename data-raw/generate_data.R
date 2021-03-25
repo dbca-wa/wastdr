@@ -111,7 +111,7 @@ odkc_data$sve <- odkc_data$sve %>%
 usethis::use_data(odkc_data, compress = "xz", overwrite = TRUE)
 
 # WAStD Turtle Data, 10 records each, names sanitised
-wastd_data <- download_wastd_turtledata(max_records = 1000)
+wastd_data <- download_wastd_turtledata(max_records = 1000, min_year = 2021)
 wastd_data$surveys <- wastd_data$surveys %>% sanitize_names()
 wastd_data$survey_media <- wastd_data$survey_media %>% sanitize_names()
 wastd_data$animals <- wastd_data$animals %>% sanitize_names()
