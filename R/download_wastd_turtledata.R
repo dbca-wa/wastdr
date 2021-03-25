@@ -64,7 +64,7 @@ download_wastd_turtledata <- function(max_records = NULL) {
 
   enc_subset <- enc %>%
     dplyr::select(-source, -pk, -encounter_type, -geometry,
-                  -area, -site, -observer, -reporter)
+                  -area, -site, -survey, -observer, -reporter, -comments)
 
   # AnimalEncounters ----------------------------------------------------------#
   wastdr_msg_info("Downloading AnimalEncounters 2016 and on...")
