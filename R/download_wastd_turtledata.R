@@ -55,6 +55,17 @@ download_wastd_turtledata <- function(max_records = NULL) {
     dplyr::transmute(site_id = pk, site_name = name) %>%
     sf::st_join(areas)
 
+  # Encounters ----------------------------------------------------------------#
+  wastdr_msg_info("Downloading Encounters 2016 and on...")
+  enc <- "encounters-fast" %>%
+    wastdr::wastd_GET(query = list(when__year__gte = 2016),
+                      max_records = max_records) %>%
+    wastdr::wastd_parse()
+
+  enc_subset <- enc %>%
+    dplyr::select(-source, -pk, -encounter_type, -geometry,
+                  -area, -site, -observer, -reporter)
+
   # AnimalEncounters ----------------------------------------------------------#
   wastdr_msg_info("Downloading AnimalEncounters 2016 and on...")
   animals <- "animal-encounters" %>%
@@ -62,22 +73,33 @@ download_wastd_turtledata <- function(max_records = NULL) {
                       max_records = max_records) %>%
     wastdr::parse_animal_encounters()
 
+  animals_subset <- animals %>%
+    dplyr::select(
+      source_id,
+      taxon, species, health, maturity, activity, nesting_event, laparoscopy,
+      checked_for_injuries,scanned_for_pit_tags, checked_for_flipper_tags,
+      cause_of_death,cause_of_death_confidence, absolute_admin_url
+    )
+
   wastdr_msg_info("Downloading turtle morphometrics...")
   turtle_morph <- "turtle-morphometrics" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(animals_subset, by=c("encounter_source_id" = "source_id"))
 
   # tags
   wastdr_msg_info("Downloading turtle tags...")
   turtle_tags <- "tag-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(animals_subset, by=c("encounter_source_id" = "source_id"))
 
   # damages
   wastdr_msg_info("Downloading turtle damages...")
   turtle_dmg <- "turtle-damage-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(animals_subset, by=c("encounter_source_id" = "source_id"))
 
   # TurtleNestEncounters ------------------------------------------------------#
   wastdr_msg_info("Downloading TurtleNestEncounters...")
@@ -87,8 +109,8 @@ download_wastd_turtledata <- function(max_records = NULL) {
 
   tracks_subset <-
     tracks %>% dplyr::select(
-      pk,
-      source,
+      # pk,
+      # source,
       source_id,
       nest_age,
       nest_type,
@@ -108,44 +130,53 @@ download_wastd_turtledata <- function(max_records = NULL) {
   wastdr_msg_info("Downloading nest disturbances...")
   nest_dist <- "turtle-nest-disturbance-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id")) %>%
+    dplyr::left_join(enc_subset, by=c("encounter_source_id" = "source_id"))
 
   wastdr_msg_info("Downloading nest tags...")
   nest_tags <- "nest-tag-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
 
   wastdr_msg_info("Downloading nest excavations...")
   nest_excavations <- "turtle-nest-excavations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
 
   wastdr_msg_info("Downloading hatchling morph...")
   hatchling_morph <- "turtle-hatchling-morphometrics" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
 
   wastdr_msg_info("Downloading hatchling fans...")
   nest_fans <- "turtle-nest-hatchling-emergences" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
 
   wastdr_msg_info("Downloading hatchling fan outliers...")
   nest_fan_outliers <-
     "turtle-nest-hatchling-emergence-outliers" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
 
   wastdr_msg_info("Downloading light sources...")
   nest_lightsources <-
     "turtle-nest-hatchling-emergence-light-sources" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
 
   wastdr_msg_info("Downloading logger observations...")
   nest_loggers <- "logger-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
 
   # LoggerEncounters ----------------------------------------------------------#
   wastdr_msg_info("Downloading LoggerEncounters...")

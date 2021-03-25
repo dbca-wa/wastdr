@@ -4,7 +4,17 @@
 ## Docs
 ## Data
 
-# wastdr (development version)
+# wastdr 0.5.7
+## Major fixes
+## Minor fixes
+* Join essential Encounter details to nested tables in 
+  `download_wastd_turtledata()`. This should restore behaviour of analysis 
+  functions to 0.5.5.
+## Docs
+## Data`download_wastd_turtledata()`
+* Rebuild `wastd_data`.
+
+# wastdr 0.5.6
 ## Major fixes
 * Bugfix: `download_wastd_turtledata()` now shows correct encounter details for 
   nested observations like nest tags, nest loggers etc.

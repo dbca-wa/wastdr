@@ -69,7 +69,8 @@ parse_animal_encounters <- function(wastd_api_response) {
       # -tidyr::contains("encounter_photographs"),
       #   -tidyr::contains("encounter_tx_logs")
     ) %>%
-    wastdr::add_dates(date_col = "when")
+    wastdr::add_dates(date_col = "when") %>%
+    dplyr::rename(source_id = id) # Serializer: id_field="source_id"
 
   #     {
   #     tibble::tibble(

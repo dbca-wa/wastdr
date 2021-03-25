@@ -43,4 +43,6 @@ the WA Sea Turtle Database (WAStD).
 x <- download_w2_data()
 ```
 
+The current ETL process is being built in the R package [etlTurtleNesting](https://github.com/dbca-wa/etlTurtleNesting). 
+Progress is tracked at [wastdr](https://github.com/dbca-wa/wastdr/milestone/2).
 
