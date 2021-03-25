@@ -4,11 +4,13 @@
 \alias{download_wastd_turtledata}
 \title{Download all turtle data from WAStD}
 \usage{
-download_wastd_turtledata(max_records = NULL)
+download_wastd_turtledata(max_records = NULL, min_year = 2016)
 }
 \arguments{
 \item{max_records}{(int) The max number of records to retrieve,
 default: NULL (download all).}
+
+\item{min_year}{(int) The earliest year to include.}
 }
 \value{
 An S3 class "wastd_data" with items:

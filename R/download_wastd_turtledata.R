@@ -9,6 +9,7 @@
 #'
 #' @param max_records (int) The max number of records to retrieve,
 #'   default: NULL (download all).
+#' @param min_year (int) The earliest year to include.
 #'
 #' @return An S3 class "wastd_data" with items:
 #' \itemize{
@@ -41,7 +42,7 @@
 #' }
 #' @export
 #' @family api
-download_wastd_turtledata <- function(max_records = NULL) {
+download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
   # Areas ---------------------------------------------------------------------#
   wastdr_msg_info("Downloading Areas...")
   areas_sf <- wastdr::wastd_GET("area") %>% parse_area_sf()
@@ -56,9 +57,10 @@ download_wastd_turtledata <- function(max_records = NULL) {
     sf::st_join(areas)
 
   # Encounters ----------------------------------------------------------------#
-  wastdr_msg_info("Downloading Encounters 2016 and on...")
+  "Downloading Encounters {min_year} and on..." %>%
+    glue::glue() %>% wastdr_msg_info()
   enc <- "encounters-fast" %>%
-    wastdr::wastd_GET(query = list(when__year__gte = 2016),
+    wastdr::wastd_GET(query = list(when__year__gte = min_year),
                       max_records = max_records) %>%
     wastdr::wastd_parse()
 
@@ -67,9 +69,10 @@ download_wastd_turtledata <- function(max_records = NULL) {
                   -area, -site, -survey, -observer, -reporter, -comments)
 
   # AnimalEncounters ----------------------------------------------------------#
-  wastdr_msg_info("Downloading AnimalEncounters 2016 and on...")
+  "Downloading AnimalEncounters {min_year} and on..." %>%
+    glue::glue() %>% wastdr_msg_info()
   animals <- "animal-encounters" %>%
-    wastdr::wastd_GET(query = list(when__year__gte = 2016),
+    wastdr::wastd_GET(query = list(when__year__gte = min_year),
                       max_records = max_records) %>%
     wastdr::parse_animal_encounters()
 

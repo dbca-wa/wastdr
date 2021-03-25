@@ -8,7 +8,7 @@ test_that("download_wastd_turtledata works", {
   # Bad things will happen if all records have all NULL area or site
   # This can break tests with `max_records = 1`
   # We get 10 records to lower the risk of picking the few with NULL area/sites
-  x <- suppressWarnings(download_wastd_turtledata(max_records = 100))
+  x <- suppressWarnings(download_wastd_turtledata(max_records = 100, min_year = 2021))
 
   expect_equal(class(x), "wastd_data")
   expect_equal(length(x), 22) # This will change if we add more data
@@ -28,7 +28,7 @@ test_that("download_wastd_turtledata emits verbose messages", {
 
   verbose <- wastdr::get_wastdr_verbose()
   Sys.setenv(WASTDR_VERBOSE=TRUE)
-  testthat::expect_message(download_wastd_turtledata(max_records = 100))
+  testthat::expect_message(download_wastd_turtledata(max_records = 100, min_year = 2021))
   Sys.setenv(WASTDR_VERBOSE=verbose)
 })
 
