@@ -169,8 +169,12 @@ export_wastd_turtledata <- function(x,
   #     geojsonsf::geojson_sf() %>%
   #     sf::write_sf(fs::path(outdir, "line_transects.geojson"))
   # This works: sf::st_as_sf(odkc_ex$track_tally, wkt="tx")
-  x$track_tally %>% readr::write_csv(file = fs::path(outdir, "track_tally.csv"))
-  x$disturbance_tally %>% readr::write_csv(file = fs::path(outdir, "disturbance_tally.csv"))
+  x$track_tally %>%
+    dplyr::select(-encounter_transect) %>%
+    readr::write_csv(file = fs::path(outdir, "track_tally.csv"))
+  x$disturbance_tally %>%
+    dplyr::select(-encounter_transect) %>%
+    readr::write_csv(file = fs::path(outdir, "disturbance_tally.csv"))
 
   if (nrow(x$loggers) > 0) {
     x$loggers %>%

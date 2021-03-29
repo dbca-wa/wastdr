@@ -5,11 +5,42 @@
 #' @param value A tibble with a column "species".
 #' @export
 #' @family helpers
-exclude_training_species <- . %>% dplyr::filter(species != "corolla-corolla")
+exclude_training_species <- . %>%
+  {
+    if ("species" %in% names(.)) {
+      dplyr::filter(., species != "corolla-corolla")
+    }
+    else {
+      .
+    }
+  } %>%
+  {
+    if ("encounter_species" %in% names(.)) {
+      dplyr::filter(., encounter_species != "corolla-corolla")
+    }
+    else {
+      .
+    }
+  }
 
 #' @export
 #' @rdname exclude_training_species
-filter_realspecies <- . %>% dplyr::filter(species != "corolla-corolla")
+filter_realspecies <- . %>% {
+  if ("species" %in% names(.)) {
+    dplyr::filter(., species != "corolla-corolla")
+  }
+  else {
+    .
+  }
+} %>%
+  {
+    if ("encounter_species" %in% names(.)) {
+      dplyr::filter(., encounter_species != "corolla-corolla")
+    }
+    else {
+      .
+    }
+  }
 
 
 #' Exclude ODKC records with \code{species} "corolla-corolla".
