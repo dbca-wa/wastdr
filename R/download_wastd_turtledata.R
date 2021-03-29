@@ -87,10 +87,11 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
   wastdr_msg_info("Downloading turtle morphometrics...")
   turtle_morph <- "turtle-morphometrics" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(animals_subset, by=c("encounter_source_id" = "source_id"))
+    wastdr::parse_encounterobservations()
 
   # tags
+  # Tags are joined to Encounters, as they can be observed during inventory
+  # while not associated to an AnimalEncounter.
   wastdr_msg_info("Downloading turtle tags...")
   turtle_tags <- "tag-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
@@ -101,8 +102,7 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
   wastdr_msg_info("Downloading turtle damages...")
   turtle_dmg <- "turtle-damage-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(animals_subset, by=c("encounter_source_id" = "source_id"))
+    wastdr::parse_encounterobservations()
 
   # TurtleNestEncounters ------------------------------------------------------#
   wastdr_msg_info("Downloading TurtleNestEncounters...")
@@ -140,40 +140,34 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
   wastdr_msg_info("Downloading nest tags...")
   nest_tags <- "nest-tag-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
+    wastdr::parse_encounterobservations()
 
   wastdr_msg_info("Downloading nest excavations...")
   nest_excavations <- "turtle-nest-excavations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
+    wastdr::parse_encounterobservations()
 
   wastdr_msg_info("Downloading hatchling morph...")
   hatchling_morph <- "turtle-hatchling-morphometrics" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
+    wastdr::parse_encounterobservations()
 
   wastdr_msg_info("Downloading hatchling fans...")
   nest_fans <- "turtle-nest-hatchling-emergences" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
+    wastdr::parse_encounterobservations()
 
   wastdr_msg_info("Downloading hatchling fan outliers...")
   nest_fan_outliers <-
     "turtle-nest-hatchling-emergence-outliers" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
+    wastdr::parse_encounterobservations()
 
   wastdr_msg_info("Downloading light sources...")
   nest_lightsources <-
     "turtle-nest-hatchling-emergence-light-sources" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
+    wastdr::parse_encounterobservations()
 
   wastdr_msg_info("Downloading logger observations...")
   nest_loggers <- "logger-observations" %>%
@@ -182,6 +176,7 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
     dplyr::left_join(tracks_subset, by=c("encounter_source_id" = "source_id"))
 
   # LoggerEncounters ----------------------------------------------------------#
+  # Pending shut-down and replacement with LoggerObs
   wastdr_msg_info("Downloading LoggerEncounters...")
   loggers <- "logger-encounters" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
@@ -253,7 +248,7 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
       linetx = linetx,
       track_tally = track_tally,
       disturbance_tally = disturbance_tally,
-      loggers = loggers
+      loggers = loggers # pending shut-down
     ),
     class = "wastd_data"
   )
@@ -276,9 +271,21 @@ print.wastd_data <- function(x, ...) {
       "Sites: {nrow(x$sites)}\n",
       "Surveys: {nrow(x$surveys)}\n",
       "Animal Encounters (tags, strandings): {nrow(x$animals)}\n",
+      "  Turtle Tags {nrow(x$turtle_tags)}\n",
+      "  Turtle Damages {nrow(x$turtle_dmg)}\n",
+      "  Turtle Morphometrics {nrow(x$turtle_morph)}\n",
       "Turtle Nest Encounters (tracks): {nrow(x$tracks)}\n",
-      "Line Transect Encounters (track tallies) {nrow(x$linetx)}\n",
-      "Logger Observations {nrow(x$nest_loggers)}\n"
+      "  Logger Observations: {nrow(x$nest_loggers)}\n",
+      "  Nest Tags: {nrow(x$nest_tags)}\n",
+      "  Nest Excavations: {nrow(x$nest_excavations)}\n",
+      "  Hatchling Morphometrics {nrow(x$hatchling_morph)}\n",
+      "  Hatchling Emergence Fans: {nrow(x$nest_fans)}\n",
+      "  Hatchling Emergence Outliers: {nrow(x$nest_fan_outliers)}\n",
+      "  Hatchling Emergence Light Sources: {nrow(x$nest_lightsources)}\n",
+      "Line Transect Encounters (track tallies): {nrow(x$linetx)}\n",
+      "  Track Tallies: {nrow(x$track_tally)}\n",
+      "  Disturbance Tallies: {nrow(x$disturbance_tally)}\n",
+      "Dist/Pred (nest/general): {nrow(x$nest_dist)}\n"
     )
   )
   invisible(x)

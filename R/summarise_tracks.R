@@ -518,6 +518,8 @@ summarise_hatching_and_emergence_success <- function(data) {
         .
       }
     } %>%
+    # TODO need to filter tracks without nests? will these bias HS/ES?
+    # dplyr::filter(is.na(egg_count)) %>%
     dplyr::summarize(
       "count" = dplyr::n(),
       "clutch_size_fresh" = mean(egg_count) %>% round(digits = 2),
@@ -550,7 +552,7 @@ summarise_hatching_and_emergence_success <- function(data) {
 hatching_emergence_success <- function(data) {
   data %>%
     dplyr::filter(hatching_success >= 0) %>%
-    dplyr::group_by(season, species) %>%
+    dplyr::group_by(season, encounter_species) %>%
     summarise_hatching_and_emergence_success(.)
 }
 
@@ -567,7 +569,7 @@ hatching_emergence_success <- function(data) {
 hatching_emergence_success_area <- function(data) {
   data %>%
     dplyr::filter(hatching_success >= 0) %>%
-    dplyr::group_by(encounter_area_name, season, species) %>%
+    dplyr::group_by(encounter_area_name, season, encounter_species) %>%
     summarise_hatching_and_emergence_success(.)
 }
 
@@ -584,7 +586,7 @@ hatching_emergence_success_area <- function(data) {
 hatching_emergence_success_site <- function(data) {
   data %>%
     dplyr::filter(hatching_success >= 0) %>%
-    dplyr::group_by(encounter_site_name, season, species) %>%
+    dplyr::group_by(encounter_site_name, season, encounter_species) %>%
     summarise_hatching_and_emergence_success(.)
 }
 # usethis::use_test("summarise_tracks")

@@ -16,7 +16,7 @@ test_that("download_wastd_turtledata works", {
   xout <- capture.output(print(x))
   expect_true(stringr::str_detect(xout[[1]], "WAStD Data"))
   expect_true(stringr::str_detect(xout[[2]], "Areas"))
-  expect_equal(length(xout), 8) # This will change if we add more data
+  expect_equal(length(xout), 20) # This will change if we print more stats
 })
 
 test_that("download_wastd_turtledata emits verbose messages", {

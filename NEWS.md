@@ -4,6 +4,35 @@
 ## Docs
 ## Data
 
+# wastdr 0.6.0
+## Major fixes
+* WAStD API changes:
+  * Observation serializers now include the most detailed feasible `Encounter`
+    class. Those Observations which only ever are recorded against 
+    `AnimalEncounter`, `TurtleNestEncounter`, or `LineTransectEncounter`, will
+    show now their details in the `encounter` group. This simply adds more 
+    fields.
+    * `parse_encounterobservations()` now includes these details. 
+    * Mapping and summary helpers use the changed names (prefixed encounter_).
+    * `download_wastd_turtledata()` now doesn't have to merge AE/TNE/LTE details
+      against Observation tables.
+    * Some observations, namely `TurtleTagObservation` and 
+      `TurtleNestDisturbanceObservation`, could also happen when not associated
+      with an animal or turtle nest, and therefore only include the `Encounter`
+      details in the WAStD API.
+* `TurtleNestObservation.nest_position` has been replaced and merged with the 
+  already existing `TurtleNestEncounter.habitat` in WAStD.
+  This simplifies the contents of the WAStD table `TurtleNestObservation`, which
+  is aptly named `turtle-nest-excavation` in the API to include only excavation
+  data (egg counts, HS/ES, nest depth, ambient temperatures). 
+  "Nest habitat-only" records have been deleted from `TurtleNestObservation`.
+  The calculation of HS and ES is also rectified to now exclude a false `0` for 
+  "Nest habitat-only" records (which are deleted and not coming back anyways).
+    
+## Minor fixes
+## Docs
+## Data
+
 # wastdr 0.5.7
 ## Major fixes
 ## Minor fixes

@@ -22,7 +22,7 @@ map_nests <- function(data,
                       fmt = "%d/%m/%Y %H:%M",
                       cluster = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
-  pal <- leaflet::colorFactor(palette = "RdYlBu", domain = data$status)
+  pal <- leaflet::colorFactor(palette = "RdYlBu", domain = data$encounter_status)
   url <- sub("/$", "", wastd_url)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
@@ -35,11 +35,11 @@ map_nests <- function(data,
       lat = ~encounter_latitude,
       icon = leaflet::makeAwesomeIcon(
         icon = "tag",
-        text = ~ toupper(substring(data$status, 1, 1)),
-        markerColor = ~ pal(status)
+        text = ~ toupper(substring(data$encounter_status, 1, 1)),
+        markerColor = ~ pal(encounter_status)
       ),
       label = ~ glue::glue(
-        "{datetime} {status} {flipper_tag_id} {date_nest_laid} {tag_label}"
+        "{datetime} {encounter_status} {flipper_tag_id} {date_nest_laid} {tag_label}"
       ),
       popup = ~ glue::glue('
 <h3>{flipper_tag_id} {date_nest_laid} {tag_label}</h3>
@@ -56,7 +56,7 @@ map_nests <- function(data,
 {encounter_reporter_name}<br/>
 
 <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-{humanize(status)}<br/>
+{humanize(encounter_status)}<br/>
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 {encounter_comments} {comments}<br/>
 
@@ -67,7 +67,7 @@ class="btn btn-xs btn-secondary" target="_" rel="nofollow">
 Edit survey in WAStD</a>
 
 <p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
-href="{url}{absolute_admin_url}">Edit on WAStD</a></p>
+href="{url}{encounter_absolute_admin_url}">Edit on WAStD</a></p>
       '),
       group = "Nests",
       clusterOptions = co
