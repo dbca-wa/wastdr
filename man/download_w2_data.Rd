@@ -112,19 +112,19 @@ wamtram_data <- download_w2_data()
 
 
 # develop:
-ord = c("YmdHMS", "Ymd")
-tz = "Australia/Perth"
-verbose = wastdr::get_wastdr_verbose()
+ord <- c("YmdHMS", "Ymd")
+tz <- "Australia/Perth"
+verbose <- wastdr::get_wastdr_verbose()
 
 con <- DBI::dbConnect(
-odbc::odbc(),
-Driver   = Sys.getenv("W2_DRV"),
-Server   = Sys.getenv("W2_SRV"),
-Database = Sys.getenv("W2_DB"),
-UID      = Sys.getenv("W2_UN"),
-PWD      = Sys.getenv("W2_PW"),
-Port     = Sys.getenv("W2_PT"))
-
+  odbc::odbc(),
+  Driver   = Sys.getenv("W2_DRV"),
+  Server   = Sys.getenv("W2_SRV"),
+  Database = Sys.getenv("W2_DB"),
+  UID      = Sys.getenv("W2_UN"),
+  PWD      = Sys.getenv("W2_PW"),
+  Port     = Sys.getenv("W2_PT")
+)
 }
 }
 \concept{wamtram}

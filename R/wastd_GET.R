@@ -56,7 +56,9 @@ wastd_GET <- function(serializer,
   auth <- build_auth(api_token = api_token, api_un = api_un, api_pw = api_pw)
 
   # First batch of results and error handling
-  if (verbose == TRUE) wastdr_msg_info(glue::glue("Fetching {url}"))
+  "Fetching {url}" %>%
+    glue::glue() %>%
+    wastdr_msg_info(verbose = verbose)
   res <- httr::GET(url, auth, ua, query = query)
 
   handle_http_status(res)
@@ -119,9 +121,9 @@ wastd_GET <- function(serializer,
     }
   }
 
-  if (verbose == TRUE) {
-    wastdr::wastdr_msg_success(glue::glue("Done fetching {res$url}"))
-  }
+  "Done fetching {res$url}" %>%
+    glue::glue() %>%
+    wastdr_msg_success(verbose = verbose)
 
   structure(
     list(

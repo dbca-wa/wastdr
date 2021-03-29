@@ -22,6 +22,20 @@ lifecycle::deprecate_soft
 # CMD check silencer
 utils::globalVariables(
   c(
+    "activity",
+    "area",
+    "beach_approach",
+    "cause_of_death",
+    "cause_of_death_confidence",
+    "checked_for_flipper_tags",
+    "checked_for_injuries",
+    "laparoscopy",
+    "maturity",
+    "nesting_event",
+    "scanned_for_pit_tags",
+    "site",
+    "survey",
+    "taxon",
     ".",
     "absolute_admin_url",
     "aes",

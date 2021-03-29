@@ -12,9 +12,7 @@ build_auth <- function(api_token = get_wastdr_api_token(),
   if (!is.null(api_token)) {
     auth <- httr::add_headers(c(Authorization = api_token))
   } else {
-    if (verbose == TRUE) {
-      wastdr_msg_info("No API token found, using BasicAuth.")
-    }
+    wastdr_msg_info("No API token found, using BasicAuth.", verbose = verbose)
     if (is.null(api_un)) {
       wastdr_msg_abort("BasicAuth requires an API username.")
     }

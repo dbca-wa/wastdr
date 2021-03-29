@@ -1,3 +1,4 @@
+AE
 AWST
 AnimalEncounter
 AnimalEncounters
@@ -18,6 +19,7 @@ GetFeature
 Hatchling
 JSON
 KMI
+LTE
 LineTransectEncounter
 LineTransectEncounters
 LineTransects
@@ -48,6 +50,8 @@ Renviron
 SSO
 SimpleFeatures
 Strandings
+TNE
+TRT
 TSC
 TSC's
 TokenAuth
@@ -161,6 +165,7 @@ savefiles
 sd
 serializer
 serializer's
+serializers
 sortable
 sourceID
 strandings

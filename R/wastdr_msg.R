@@ -9,7 +9,9 @@
 #' wastdr_msg_info("This is an info message.")
 wastdr_msg_info <- function(message,
                             verbose = wastdr::get_wastdr_verbose()) {
-  if (verbose == FALSE) return(NULL)
+  if (verbose == FALSE) {
+    return(NULL)
+  }
   x <- clisymbols::symbol$info
   message(crayon::cyan(glue::glue("{x} {message}\n")))
 }
@@ -25,7 +27,9 @@ wastdr_msg_info <- function(message,
 #' wastdr_msg_success("This is a success message.")
 wastdr_msg_success <- function(message,
                                verbose = wastdr::get_wastdr_verbose()) {
-  if (verbose == FALSE) return(NULL)
+  if (verbose == FALSE) {
+    return(NULL)
+  }
   x <- clisymbols::symbol$tick
   message(crayon::green(glue::glue("{x} {message}\n")))
 }
@@ -42,7 +46,9 @@ wastdr_msg_success <- function(message,
 #' wastdr_msg_noop("This is a noop message.")
 wastdr_msg_noop <- function(message,
                             verbose = wastdr::get_wastdr_verbose()) {
-  if (verbose == FALSE) return(NULL)
+  if (verbose == FALSE) {
+    return(NULL)
+  }
   x <- clisymbols::symbol$circle_filled
   message(crayon::green(glue::glue("{x} {message}\n")))
 }
@@ -61,7 +67,9 @@ wastdr_msg_noop <- function(message,
 #' }
 wastdr_msg_warn <- function(message,
                             verbose = wastdr::get_wastdr_verbose()) {
-  if (verbose == FALSE) return(NULL)
+  if (verbose == FALSE) {
+    return(NULL)
+  }
   x <- clisymbols::symbol$warning
   rlang::warn(crayon::yellow(glue::glue("{x} {message}\n")))
 }

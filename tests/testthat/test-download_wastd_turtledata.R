@@ -27,9 +27,9 @@ test_that("download_wastd_turtledata emits verbose messages", {
   testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
 
   verbose <- wastdr::get_wastdr_verbose()
-  Sys.setenv(WASTDR_VERBOSE=TRUE)
+  Sys.setenv(WASTDR_VERBOSE = TRUE)
   testthat::expect_message(download_wastd_turtledata(max_records = 100, min_year = 2021))
-  Sys.setenv(WASTDR_VERBOSE=verbose)
+  Sys.setenv(WASTDR_VERBOSE = verbose)
 })
 
 # usethis::use_r("download_wastd_turtledata")

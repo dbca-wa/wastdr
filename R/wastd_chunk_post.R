@@ -26,11 +26,9 @@ wastd_chunk_post <- function(data,
                              api_url = wastdr::get_wastdr_api_url(),
                              api_token = wastdr::get_wastdr_api_token(),
                              verbose = wastdr::get_wastdr_verbose()) {
-  if (verbose) {
-    "[chunk_post][{Sys.time()}] Updating {api_url}{serializer}..." %>%
-      glue::glue() %>%
-      wastdr::wastdr_msg_info()
-  }
+  "[chunk_post][{Sys.time()}] Updating {api_url}{serializer}..." %>%
+    glue::glue() %>%
+    wastdr::wastdr_msg_info(verbose = verbose)
 
   len <- nrow(data)
   res <- NULL

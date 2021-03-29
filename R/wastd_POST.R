@@ -42,7 +42,9 @@ wastd_POST <- function(data,
   url <- httr::build_url(url_parts)
   auth <- build_auth(api_token = api_token, api_un = api_un, api_pw = api_pw)
 
-  if (verbose == TRUE) wastdr_msg_info(glue::glue("[wastd_POST] {url}"))
+  "[wastd_POST] {url}" %>%
+    glue::glue() %>%
+    wastdr_msg_info(verbose = verbose)
 
   res <- httr::POST(url, auth, ua, encode = encode, body = data, query = query)
 
@@ -60,9 +62,9 @@ wastd_POST <- function(data,
     res_parsed <- text
   }
 
-  if (verbose == TRUE) {
-    wastdr_msg_success(glue::glue("[wastd_POST] {res$status}"))
-  }
+  "[wastd_POST] {res$status}" %>%
+    glue::glue() %>%
+    wastdr_msg_success(verbose = verbose)
 
   structure(
     list(

@@ -39,38 +39,28 @@ filter_wastd_turtledata <- function(x,
   }
 
   if (is.null(area_name)) {
-    if (verbose == TRUE) {
-      wastdr::wastdr_msg_success(
-        "No area_name name given, returning all data."
-      )
-    }
+    "No area_name name given, returning all data." %>%
+      glue::glue() %>%
+      wastdr_msg_success(verbose = verbose)
     return(x)
   }
   if (area_name == "All turtle programs") {
-    if (verbose == TRUE) {
-      wastdr::wastdr_msg_success(
-        "All areas requested, returning all data."
-      )
-    }
+    "All areas requested, returning all data." %>%
+      glue::glue() %>%
+      wastdr_msg_success(verbose = verbose)
     return(x)
   }
 
   if (area_name == "Other") {
-    if (verbose == TRUE) {
-      wastdr::wastdr_msg_success(
-        "Orphaned areas requested, returning data outside known areas."
-      )
-    }
+    "Orphaned areas requested, returning data outside known areas." %>%
+      glue::glue() %>%
+      wastdr_msg_success(verbose = verbose)
     my_filter <- . %>% dplyr::filter(is.na(area_name))
     obs_filter <- . %>% dplyr::filter(is.na(area_name))
   } else {
-    if (verbose == TRUE) {
-      wastdr::wastdr_msg_success(
-        glue::glue(
-          "Area {area_name} requested, returning filtered data."
-        )
-      )
-    }
+    "Area {area_name} requested, returning filtered data." %>%
+      glue::glue() %>%
+      wastdr_msg_success(verbose = verbose)
     my_filter <- . %>% dplyr::filter(area_name == !!area_name)
     obs_filter <- . %>% dplyr::filter(encounter_area_name == !!area_name)
   }
