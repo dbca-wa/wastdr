@@ -93,7 +93,7 @@ jobs:
 
       - name: "[Stage] [Linux] Install curl and libgit2"
         if: runner.os == 'Linux'
-        run: sudo apt install libcurl4-openssl-dev libgit2-dev
+        run: sudo apt install libcurl4-openssl-dev libgit2-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libnode-dev
 
       - name: "[Stage] [macOS] Install libgit2"
         if: runner.os == 'macOS'
@@ -106,14 +106,6 @@ jobs:
       - name: "[Stage] [Linux] Install system libs for pkgdown"
         if: runner.os == 'Linux' && matrix.config.pkgdown != ''
         run: sudo apt install libharfbuzz-dev libfribidi-dev
-
-      - name: "Add Ubuntu Bionic sysreqs"
-        if: runner.os == 'Linux'
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
-        run: |
-          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sudo -s eval "$sysreqs"
 
       - name: "[Stage] Install"
         if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
