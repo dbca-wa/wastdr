@@ -20,24 +20,26 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          # - { os: windows-latest, r: "devel" } # can't find tic
+          # use a different tic template type if you do not want to build on all listed platforms
+          # See https://github.com/actions/virtual-environments
+          # - { os: windows-latest, r: "devel" } # windows-2019
           - { os: windows-latest, r: "release" }
-          - { os: windows-latest, r: "oldrel" }
-          # - { os: windows-2016, r: "devel" } # can't find tic
+          # - { os: windows-latest, r: "oldrel" } # fails to install drake
+          # - { os: windows-2016, r: "devel" }
           - { os: windows-2016, r: "release" }
-          - { os: windows-2016, r: "oldrel" }
-          # - { os: macOS-latest, r: "devel" }
+          # - { os: windows-2016, r: "oldrel" } # fails to install drake
+          # - { os: macOS-latest, r: "devel" } # macos-10.15 # fails to install geojsonio
           - { os: macOS-latest, r: "release"}
-          - { os: macOS-latest, r: "oldrel" } # missing udunits2
-          # - { os: ubuntu-20.04, r: "devel" } # sf needs libproj.12.so
-          - { os: ubuntu-20.04, r: "release" }
-          - { os: ubuntu-20.04, r: "oldrel" }
-          # - { os: ubuntu-latest, r: "devel" }
-          - { os: ubuntu-latest, r: "release", pkgdown: "true", latex: "true" } # Heisensegfault my old friend
-          - { os: ubuntu-latest, r: "oldrel" } # it's nice to see you crash again
-          # Ubuntu 16.04 fails to install stringr, v8 needs CURL_OPENSSL_4
-          # - { os: ubuntu-16.04, r: "release"} # fails to install r-base-*
-          # - { os: ubuntu-16.04, r: "oldrel" }
+          # - { os: macOS-latest, r: "devel" }
+          # - { os: ubuntu-20.04, r: "devel" } # # not released yet
+          # - { os: ubuntu-20.04, r: "release"} # not released yet
+          # - { os: ubuntu-20.04, r: "oldrel" } # not released yet
+          - { os: ubuntu-latest, r: "devel" } # fails setup-r
+          - { os: ubuntu-latest, r: "release", , pkgdown: "true", latex: "true"} # ubuntu-18.04
+          - { os: ubuntu-latest, r: "oldrel" }
+          # - { os: ubuntu-16.04, r: "devel" } # fails setup-r
+          - { os: ubuntu-16.04, r: "release"} # fails setup-r
+          # - { os: ubuntu-16.04, r: "oldrel" } # fails setup-r
 
     env:
       # otherwise remotes::fun() errors cause the build to fail. Example: Unavailability of binaries
@@ -53,14 +55,14 @@ jobs:
       # macOS >= 10.15.4 linking
       SDKROOT: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
       # use GITHUB_TOKEN from GitHub to workaround rate limits in {remotes}
-      GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
-      ODKC_URL: ${{ secrets.ODKC_URL }}
-      ODKC_UN: ${{ secrets.ODKC_UN }}
-      ODKC_PW: ${{ secrets.ODKC_PW }}
-      WASTDR_API_URL: ${{ secrets.WASTDR_API_URL }}
-      WASTDR_API_UN: ${{ secrets.WASTDR_API_UN }}
-      WASTDR_API_PW: ${{ secrets.WASTDR_API_PW }}
-      WASTDR_API_TOKEN: ${{ secrets.WASTDR_API_TOKEN }}
+      GITHUB_PAT: ${{secrets.GITHUB_PAT}}
+      ODKC_URL: ${{secrets.ODKC_URL}}
+      ODKC_UN: ${{secrets.ODKC_UN}}
+      ODKC_PW: ${{secrets.ODKC_PW}}
+      WASTDR_API_URL: ${{secrets.WASTDR_API_URL}}
+      WASTDR_API_UN: ${{secrets.WASTDR_API_UN}}
+      WASTDR_API_PW: ${{secrets.WASTDR_API_PW}}
+      WASTDR_API_TOKEN: ${{secrets.WASTDR_API_TOKEN}}
       WASTDR_SKIP_SLOW_TESTS: ${{ secrets.WASTDR_SKIP_SLOW_TESTS }}
 
     steps:
@@ -102,55 +104,26 @@ jobs:
           Rscript -e "if (!requireNamespace('remotes')) install.packages('remotes', type = 'source')"
           Rscript -e "if (getRversion() < '3.2' && !requireNamespace('curl')) install.packages('curl', type = 'source')"
 
-      - name: "[Stage] [Linux] Install system dependencies"
+      - name: "[Stage] [Linux] Install curl"
         if: runner.os == 'Linux'
-        run: |
-          sudo apt install libcurl4-openssl-dev libudunits2-dev libgdal-dev \
-          libgeos-dev libproj-dev libicu-dev libv8-dev libjq-dev libprotobuf-dev \
-          protobuf-compiler libharfbuzz-dev libfribidi-dev libgit2-dev
-
-      # sf needs GDAL > 2.0.1, stringr needs libicu-dev
-      - name: "[Custom Stage] [Ubuntu Xenial] System packages"
-        if: matrix.config.os == 'ubuntu-16.04'
-        run: |
-          sudo add-apt-repository -y ppa:opencpu/jq
-          sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
-          sudo apt-get update
-          sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev \
-          libicu-dev libv8-dev libprotobuf-dev \
-          r-cran-stringi r-api-3 r-cran-crayon r-cran-magrittr r-cran-stringr
+        run: sudo apt install libcurl4-openssl-dev
 
       - name: "[Stage] Install"
-        if: matrix.config.os != 'macOS-latest' && matrix.config.r != 'devel'
-        run: |
-          Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
-
-      # libfreetype.so.6 not found on macOS-devel / r-oldrel
-      # https://stackoverflow.com/a/28488213/2813717
-      - name: "[Custom block] [macOS-devel][r-devel] Install system pkgs"
-        if: matrix.config.os == 'macOS-latest' && matrix.config.r != 'devel'
-        run: |
-          rm '/usr/local/bin/gfortran' || true
-          brew install freetype
-          brew link --overwrite freetype
-          brew install gdal proj geos udunits cairo libpng libgit2
+        if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
+        run: Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
 
       # macOS devel needs its own stage because we need to work with an option to suppress the usage of binaries
       - name: "[Stage] Prepare & Install (macOS-devel)"
         if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'devel'
         run: |
-          brew install udunits protobuf cairo v8 proj gdal libgit2
           echo -e 'options(Ncpus = 4, pkgType = "source", repos = structure(c(CRAN = "https://cloud.r-project.org/")))' > $HOME/.Rprofile
-          echo 'export PATH="/usr/local/opt/expat/bin:$PATH"' >> /Users/runner/.bash_profile
-          echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> /Users/runner/.bash_profile
-          echo 'export PATH="/usr/local/opt/qt/bin:$PATH"' >> /Users/runner/.bash_profile
           Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
 
       - name: "[Stage] Script"
         run: Rscript -e 'tic::script()'
 
       - name: "[Stage] After Success"
-        if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
+        if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'release'
         run: Rscript -e "tic::after_success()"
 
       - name: "[Stage] Upload R CMD check artifacts"
@@ -159,12 +132,3 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
-      - name: "[Stage] Before Deploy"
-        run: |
-          Rscript -e "tic::before_deploy()"
-
-      - name: "[Stage] Deploy"
-        run: Rscript -e "tic::deploy()"
-
-      - name: "[Stage] After Deploy"
-        run: Rscript -e "tic::after_deploy()"

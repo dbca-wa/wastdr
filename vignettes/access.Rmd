@@ -55,18 +55,8 @@ data("wastd_data", package = "wastdr")
 wastd_data
 ```
 
-If your workflow
 
-Read the source code of `wastdr::download_wastd_turtledata` to see the individual
-steps. You can use those as starters to download subsets of data.
-
-# Encounters
-```{r}
-# Encounters from 2016 onwards (this includes disturbances, animal and turtle 
-# nest encounters but not their specific details)
-# https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?when__year__gte=2016
-
-```
+Read the source code of `wastdr::download_wastd_turtledata` to see the individual steps. You can use those as starters to download subsets of data.
 
 ## Filtering the results
 See examples of filter parameters and possible filter values on:
