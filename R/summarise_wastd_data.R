@@ -54,7 +54,7 @@
 #'     encountered in-water. Note that turtle tagging is currently recorded
 #'     in the Turtle Tagging database, a legacy system pending sunsetting.
 #'   * `mortalities` The total number of encounters with dead animals. This
-#'     includes strandings and other indicents where the animal is dead at the
+#'     includes strandings and other incidents where the animal is dead at the
 #'     time of encounter or soon after.
 #'   * `track_tallies` The total number of line transects, during which tallies
 #'     of turtle tracks and disturbance or predation may be recorded.
@@ -75,73 +75,79 @@
 #'   wastdr::filter_wastd_turtledata(area_name = "Eco Beach") %>%
 #'   summarise_wastd_data_per_day_site()
 #' }
-summarise_wastd_data_per_day_site <- function(x){
-    svy <- x$surveys %>%
-        filter_realsurveys() %>%
-        dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
-        dplyr::tally(name = "no_surveys") %>%
-        dplyr::arrange(by_group=TRUE) %>%
-        dplyr::ungroup()
+summarise_wastd_data_per_day_site <- function(x) {
+  svy <- x$surveys %>%
+    filter_realsurveys() %>%
+    dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
+    dplyr::tally(name = "no_surveys") %>%
+    dplyr::arrange(by_group = TRUE) %>%
+    dplyr::ungroup()
 
-    trk <- x$tracks %>%
-        filter_realspecies() %>%
-        dplyr::mutate(
-            nest_type = stringr::str_replace_all(nest_type, "-", "_")
-        ) %>%
-        dplyr::group_by(area_name, site_name, calendar_date_awst, nest_type) %>%
-        dplyr::tally() %>%
-        dplyr::ungroup() %>%
-        tidyr::spread(nest_type, n, fill = 0)
+  trk <- x$tracks %>%
+    filter_realspecies() %>%
+    dplyr::mutate(
+      nest_type = stringr::str_replace_all(nest_type, "-", "_")
+    ) %>%
+    dplyr::group_by(area_name, site_name, calendar_date_awst, nest_type) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(nest_type, n, fill = 0)
 
-    dst <- x$nest_dist %>%
-        dplyr::rename(area_name = encounter_area_name,
-                      site_name = encounter_site_name,
-                      encounter_type = encounter_encounter_type) %>%
-        dplyr::group_by(
-            area_name, site_name, calendar_date_awst, encounter_type
-        ) %>%
-        dplyr::tally() %>%
-        dplyr::ungroup() %>%
-        tidyr::spread(encounter_type, n, fill = 0) %>%
-        {
-            if ("nest" %in% names(.)){
-                dplyr::rename(., disturbed_nests = nest)
-            } else {.}
-        } %>%
-        {
-            if ("other" %in% names(.)){
-                dplyr::rename(., general_dist = other)
-            } else {.}
-        }
+  dst <- x$nest_dist %>%
+    dplyr::rename(
+      area_name = encounter_area_name,
+      site_name = encounter_site_name,
+      encounter_type = encounter_encounter_type
+    ) %>%
+    dplyr::group_by(
+      area_name, site_name, calendar_date_awst, encounter_type
+    ) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    tidyr::spread(encounter_type, n, fill = 0) %>%
+    {
+      if ("nest" %in% names(.)) {
+        dplyr::rename(., disturbed_nests = nest)
+      } else {
+        .
+      }
+    } %>%
+    {
+      if ("other" %in% names(.)) {
+        dplyr::rename(., general_dist = other)
+      } else {
+        .
+      }
+    }
 
 
-    ani <- x$animals %>%
-        filter_realspecies() %>%
-        filter_alive() %>%
-        dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
-        dplyr::tally(name = "live_sightings") %>%
-        dplyr::ungroup()
+  ani <- x$animals %>%
+    filter_realspecies() %>%
+    filter_alive() %>%
+    dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
+    dplyr::tally(name = "live_sightings") %>%
+    dplyr::ungroup()
 
-    ded <- x$animals %>%
-        filter_realspecies() %>%
-        filter_dead() %>%
-        dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
-        dplyr::tally(name = "mortalities") %>%
-        dplyr::ungroup()
+  ded <- x$animals %>%
+    filter_realspecies() %>%
+    filter_dead() %>%
+    dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
+    dplyr::tally(name = "mortalities") %>%
+    dplyr::ungroup()
 
-    tal <- x$linetx %>%
-        dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
-        dplyr::tally(name = "track_tallies") %>%
-        dplyr::ungroup()
+  tal <- x$linetx %>%
+    dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
+    dplyr::tally(name = "track_tallies") %>%
+    dplyr::ungroup()
 
-    common_vars <- c("area_name", "site_name", "calendar_date_awst")
+  common_vars <- c("area_name", "site_name", "calendar_date_awst")
 
-    svy %>%
-        dplyr::left_join(trk, by=common_vars) %>%
-        dplyr::left_join(dst, by=common_vars) %>%
-        dplyr::left_join(ani, by=common_vars) %>%
-        dplyr::left_join(ded, by=common_vars) %>%
-        dplyr::left_join(tal, by=common_vars)
+  svy %>%
+    dplyr::left_join(trk, by = common_vars) %>%
+    dplyr::left_join(dst, by = common_vars) %>%
+    dplyr::left_join(ani, by = common_vars) %>%
+    dplyr::left_join(ded, by = common_vars) %>%
+    dplyr::left_join(tal, by = common_vars)
 }
 
 # usethis::use_test("summarise_wastd_data_per_day_site")  # nolint

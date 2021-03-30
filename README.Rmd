@@ -48,7 +48,8 @@ turtle track counts, and turtle nests.
 
 ## Installation
 
-Install `wastdr` from GitHub:
+Install `wastdr` from GitHub. See also the top level `tic.R` file for other 
+dependencies.
 
 ```{r, eval=FALSE}
 # install.packages("devtools")
@@ -151,6 +152,8 @@ library(wastdr)
 data("wastd_data")
 data("odkc_data")
 
+wastd_data
+
 wastd_data$animals
 wastd_data$tracks
 
@@ -159,7 +162,7 @@ odkc_data$tracks %>% map_tracks_odkc(sites = odkc_data$sites)
 ```
 
 ## Learn more
-See the vignette for built-in helpers to transform, analyze and visualize 
+See the vignettes for built-in helpers to transform, analyse and visualize 
 WAStD data.
 
 ```{r, eval=FALSE}

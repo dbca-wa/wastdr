@@ -50,10 +50,12 @@ Renviron
 SSO
 SimpleFeatures
 Strandings
+Summarise
 TNE
 TRT
 TSC
 TSC's
+Thevenard
 TokenAuth
 TurtleNest
 TurtleNestDisturbanceObservations
@@ -157,6 +159,7 @@ pred
 predation
 qa
 rebranding
+resighting
 rlang
 roundtrip
 ruODK
@@ -173,6 +176,7 @@ subclasses
 successrate
 summarise
 summarised
+sunsetting
 sve
 svs
 taggings

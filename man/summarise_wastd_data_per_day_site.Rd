@@ -68,7 +68,7 @@ outcome. This includes tagged turtles, rescued turtles, turtles
 encountered in-water. Note that turtle tagging is currently recorded
 in the Turtle Tagging database, a legacy system pending sunsetting.
 \item \code{mortalities} The total number of encounters with dead animals. This
-includes strandings and other indicents where the animal is dead at the
+includes strandings and other incidents where the animal is dead at the
 time of encounter or soon after.
 \item \code{track_tallies} The total number of line transects, during which tallies
 of turtle tracks and disturbance or predation may be recorded.

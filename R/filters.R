@@ -25,14 +25,15 @@ exclude_training_species <- . %>%
 
 #' @export
 #' @rdname exclude_training_species
-filter_realspecies <- . %>% {
-  if ("species" %in% names(.)) {
-    dplyr::filter(., species != "corolla-corolla")
-  }
-  else {
-    .
-  }
-} %>%
+filter_realspecies <- . %>%
+  {
+    if ("species" %in% names(.)) {
+      dplyr::filter(., species != "corolla-corolla")
+    }
+    else {
+      .
+    }
+  } %>%
   {
     if ("encounter_species" %in% names(.)) {
       dplyr::filter(., encounter_species != "corolla-corolla")
