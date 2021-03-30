@@ -56,6 +56,7 @@ Other wastd:
 \code{\link{plot_survey_count}()},
 \code{\link{plot_survey_effort}()},
 \code{\link{summarise_hatching_and_emergence_success}()},
+\code{\link{summarise_wastd_data_per_day_site}()},
 \code{\link{survey_count_heatmap}()},
 \code{\link{survey_count}()},
 \code{\link{survey_ground_covered}()},

@@ -4,6 +4,13 @@
 ## Docs
 ## Data
 
+# wastdr 0.6.1
+## Major fixes
+## Minor fixes
+* New summary for `wastd_data`: `summarise_wastd_data_per_day_site()`
+## Docs
+## Data
+
 # wastdr 0.6.0
 ## Major fixes
 * WAStD API changes:

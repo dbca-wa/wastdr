@@ -202,8 +202,8 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
   # Track Tallies -------------------------------------------------------------#
   wastdr_msg_info("Downloading LineTransectEncounters...")
   linetx <- "line-transect-encounters" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::wastd_parse() %>%
+    wastd_GET(max_records = max_records) %>%
+    wastd_parse() %>%
     tun("observer") %>%
     tun("reporter") %>%
     tun("area") %>%
@@ -211,7 +211,8 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
     tun("survey") %>%
     tun("survey_reporter") %>%
     tun("survey_site") %>%
-    tun("survey_area")
+    tun("survey_area") %>%
+    add_dates(date_col = "when")
 
   wastdr_msg_info("Downloading track tallies...")
   track_tally <- "track-tally" %>%
@@ -275,25 +276,25 @@ print.wastd_data <- function(x, ...) {
   print(
     glue::glue(
       "<WAStD Data> accessed on {x$downloaded_on}\n",
-      "Areas: {nrow(x$areas)}\n",
-      "Sites: {nrow(x$sites)}\n",
+      "Areas:   {nrow(x$areas)}\n",
+      "Sites:   {nrow(x$sites)}\n",
       "Surveys: {nrow(x$surveys)}\n",
-      "Animal Encounters (tags, strandings): {nrow(x$animals)}\n",
-      "  Turtle Tags {nrow(x$turtle_tags)}\n",
-      "  Turtle Damages {nrow(x$turtle_dmg)}\n",
-      "  Turtle Morphometrics {nrow(x$turtle_morph)}\n",
-      "Turtle Nest Encounters (tracks): {nrow(x$tracks)}\n",
-      "  Logger Observations: {nrow(x$nest_loggers)}\n",
-      "  Nest Tags: {nrow(x$nest_tags)}\n",
-      "  Nest Excavations: {nrow(x$nest_excavations)}\n",
-      "  Hatchling Morphometrics {nrow(x$hatchling_morph)}\n",
-      "  Hatchling Emergence Fans: {nrow(x$nest_fans)}\n",
-      "  Hatchling Emergence Outliers: {nrow(x$nest_fan_outliers)}\n",
-      "  Hatchling Emergence Light Sources: {nrow(x$nest_lightsources)}\n",
-      "Line Transect Encounters (track tallies): {nrow(x$linetx)}\n",
-      "  Track Tallies: {nrow(x$track_tally)}\n",
-      "  Disturbance Tallies: {nrow(x$disturbance_tally)}\n",
-      "Dist/Pred (nest/general): {nrow(x$nest_dist)}\n"
+      "Animals (tags, incidents): {nrow(x$animals)}\n",
+      "  Turtle Tags:             {nrow(x$turtle_tags)}\n",
+      "  Turtle Damages:          {nrow(x$turtle_dmg)}\n",
+      "  Turtle Morphometrics:    {nrow(x$turtle_morph)}\n",
+      "Turtle Nest Encounters:    {nrow(x$tracks)}\n",
+      "  Logger Observations:     {nrow(x$nest_loggers)}\n",
+      "  Nest Tags:               {nrow(x$nest_tags)}\n",
+      "  Nest Excavations:        {nrow(x$nest_excavations)}\n",
+      "  Hatchling Morph:         {nrow(x$hatchling_morph)}\n",
+      "  Hatchling Fans:          {nrow(x$nest_fans)}\n",
+      "  Hatchling Outliers:      {nrow(x$nest_fan_outliers)}\n",
+      "  Light Sources:           {nrow(x$nest_lightsources)}\n",
+      "Line Transect Encounters:  {nrow(x$linetx)}\n",
+      "  Track Tallies:           {nrow(x$track_tally)}\n",
+      "  Disturbance Tallies:     {nrow(x$disturbance_tally)}\n",
+      "Dist/Pred (nest/general):  {nrow(x$nest_dist)}\n"
     )
   )
   invisible(x)
