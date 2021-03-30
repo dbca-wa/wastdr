@@ -1,6 +1,7 @@
 ## tic GitHub Actions template: linux-macos-windows-deploy
-## revision date: 2020-06-14
+## revision date: 2020-12-11
 on:
+  workflow_dispatch:
   push:
   pull_request:
   # for now, CRON jobs only run on the default branch of the repo (i.e. usually on master)
@@ -21,25 +22,10 @@ jobs:
       matrix:
         config:
           # use a different tic template type if you do not want to build on all listed platforms
-          # See https://github.com/actions/virtual-environments
-          # - { os: windows-latest, r: "devel" } # windows-2019
           - { os: windows-latest, r: "release" }
-          # - { os: windows-latest, r: "oldrel" } # fails to install drake
-          # - { os: windows-2016, r: "devel" }
-          - { os: windows-2016, r: "release" }
-          # - { os: windows-2016, r: "oldrel" } # fails to install drake
-          # - { os: macOS-latest, r: "devel" } # macos-10.15 # fails to install geojsonio
           - { os: macOS-latest, r: "release"}
-          # - { os: macOS-latest, r: "devel" }
-          # - { os: ubuntu-20.04, r: "devel" } # # not released yet
-          # - { os: ubuntu-20.04, r: "release"} # not released yet
-          # - { os: ubuntu-20.04, r: "oldrel" } # not released yet
-          - { os: ubuntu-latest, r: "devel" } # fails setup-r
-          - { os: ubuntu-latest, r: "release", , pkgdown: "true", latex: "true"} # ubuntu-18.04
-          - { os: ubuntu-latest, r: "oldrel" }
-          # - { os: ubuntu-16.04, r: "devel" } # fails setup-r
-          - { os: ubuntu-16.04, r: "release"} # fails setup-r
-          # - { os: ubuntu-16.04, r: "oldrel" } # fails setup-r
+          - { os: ubuntu-latest, r: "devel" }
+          - { os: ubuntu-latest, r: "release", pkgdown: "true", latex: "true" }
 
     env:
       # otherwise remotes::fun() errors cause the build to fail. Example: Unavailability of binaries
@@ -56,6 +42,7 @@ jobs:
       SDKROOT: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
       # use GITHUB_TOKEN from GitHub to workaround rate limits in {remotes}
       GITHUB_PAT: ${{secrets.GITHUB_PAT}}
+      # wastdr vars
       ODKC_URL: ${{secrets.ODKC_URL}}
       ODKC_UN: ${{secrets.ODKC_UN}}
       ODKC_PW: ${{secrets.ODKC_PW}}
@@ -66,7 +53,7 @@ jobs:
       WASTDR_SKIP_SLOW_TESTS: ${{ secrets.WASTDR_SKIP_SLOW_TESTS }}
 
     steps:
-      - uses: actions/checkout@v2.1.1
+      - uses: actions/checkout@v2.3.4
 
       - uses: r-lib/actions/setup-r@master
         with:
@@ -92,7 +79,7 @@ jobs:
 
       - name: "[Cache] Cache R packages"
         if: runner.os != 'Windows'
-        uses: pat-s/always-upload-cache@v2.0.0
+        uses: pat-s/always-upload-cache@v2.1.3
         with:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{steps.date.outputs.date}}
@@ -104,9 +91,21 @@ jobs:
           Rscript -e "if (!requireNamespace('remotes')) install.packages('remotes', type = 'source')"
           Rscript -e "if (getRversion() < '3.2' && !requireNamespace('curl')) install.packages('curl', type = 'source')"
 
-      - name: "[Stage] [Linux] Install curl"
+      - name: "[Stage] [Linux] Install curl and libgit2"
         if: runner.os == 'Linux'
-        run: sudo apt install libcurl4-openssl-dev
+        run: sudo apt install libcurl4-openssl-dev libgit2-dev
+
+      - name: "[Stage] [macOS] Install libgit2"
+        if: runner.os == 'macOS'
+        run: brew install libgit2
+
+      - name: "[Stage] [macOS] Install system libs for pkgdown"
+        if: runner.os == 'macOS' && matrix.config.pkgdown != ''
+        run: brew install harfbuzz fribidi
+
+      - name: "[Stage] [Linux] Install system libs for pkgdown"
+        if: runner.os == 'Linux' && matrix.config.pkgdown != ''
+        run: sudo apt install libharfbuzz-dev libfribidi-dev
 
       - name: "[Stage] Install"
         if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
@@ -128,7 +127,7 @@ jobs:
 
       - name: "[Stage] Upload R CMD check artifacts"
         if: failure()
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2.2.1
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
