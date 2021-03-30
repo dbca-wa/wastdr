@@ -107,7 +107,7 @@ jobs:
         if: runner.os == 'Linux' && matrix.config.pkgdown != ''
         run: sudo apt install libharfbuzz-dev libfribidi-dev
 
-      - name: Add Ubuntu Bionic patches
+      - name: "Add Ubuntu Bionic sysreqs"
         if: runner.os == 'Linux'
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
