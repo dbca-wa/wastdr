@@ -66,6 +66,7 @@ Suggests:
     listviewer (>= 3.0.0),
     rmarkdown (>= 1.17),
     skimr (>= 1.0.7),
+    sysreqs,
     testthat (>= 2.3.2),
     roxygen2 (>= 7.1.0),
     xml2 (>= 1.2.2),
