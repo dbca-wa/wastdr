@@ -91,9 +91,9 @@ jobs:
           Rscript -e "if (!requireNamespace('remotes')) install.packages('remotes', type = 'source')"
           Rscript -e "if (getRversion() < '3.2' && !requireNamespace('curl')) install.packages('curl', type = 'source')"
 
-      - name: "[Stage] [Linux] Install curl and libgit2"
+      - name: "[Stage] [Linux] Install system deps"
         if: runner.os == 'Linux'
-        run: sudo apt install libcurl4-openssl-dev libgit2-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libnode-dev
+        run: sudo apt install libcurl4-openssl-dev libgit2-dev libudunits2-dev libgdal1-dev libgdal-dev libgeos-c1 libproj-dev libgeos-dev libnode-dev
 
       - name: "[Stage] [macOS] Install libgit2"
         if: runner.os == 'macOS'
@@ -122,7 +122,7 @@ jobs:
         run: Rscript -e 'tic::script()'
 
       - name: "[Stage] After Success"
-        if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'release'
+        if: matrix.config.os == 'ubuntu-latest' && matrix.config.r == 'release'
         run: Rscript -e "tic::after_success()"
 
       - name: "[Stage] Upload R CMD check artifacts"
