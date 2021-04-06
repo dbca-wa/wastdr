@@ -1,7 +1,7 @@
 test_that("download_w2_data works", {
   testthat::skip_if(
-    Sys.getenv("WASTDR_SKIP_SLOW_TESTS", unset = FALSE) == TRUE,
-    message = "Skip slow running tests"
+    Sys.getenv("WASTDR_SKIP_ODBC", unset = FALSE) == TRUE,
+    message = "Skip tests requiring ODBC connections"
   )
 
   testthat::skip_if_not(
