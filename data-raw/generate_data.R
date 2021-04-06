@@ -14,7 +14,8 @@ sanitize_names <- . %>%
           "ft1_ft1_handled_by",
           "ft2_ft2_handled_by",
           "ft3_ft3_handled_by",
-          "morphometrics_morphometrics_handled_by"
+          "morphometrics_morphometrics_handled_by",
+          "tag_handled_by"
         )
       ),
     ),
