@@ -37,16 +37,16 @@ An S3 class "odkc_turtledata" with items:
 \item tracks The turtle tracks and nests from form
 "Turtle Track or Nest 1.0".
 \item tracks_dist Individual disturbances recorded against tracks,
-one row per disturbance.
+one record per disturbance.
 \item tracks_log Individual nest tags recorded against nests,
-one row per tag.
-\item tracks_egg Next excavation photos, one row per photo.
-\item tracks_hatch Turtle hatchling morphometrics, one row per measured
+one record per tag.
+\item tracks_egg Next excavation photos, one record per photo.
+\item tracks_hatch Turtle hatchling morphometrics, one record per measured
 hatchling.
 \item tracks_fan_outlier Individual hatchling track outliers recorded
-against hatched nests, one row per outlier.
+against hatched nests, one record per outlier.
 \item tracks_light Individual light sources known at hatchling emergence,
-one row per light source.
+one record per light source.
 \item track_tally A line transect tally of turtle tracks from form
 "Track Tally 0.6".
 \item dist The disturbance and predation records from form
@@ -56,10 +56,21 @@ one row per light source.
 \item mwi_dmg Individual injuries recorded against mwi,
 one record per injury.
 \item mwi_tag Individual tags sighted during an mwi, one record per tag.
-\item tsi Turtle Sightings from form "Turtle Sighting 0.1/0.2",
-one row per sighted turtle.
-\item svs Survey start points from form "Site Visit Start 1.3".
-\item sve Survey end points from form "Site Visit End 1.2".
+\item tsi Turtle Sightings from form \code{Turtle-Sighting},
+one record per sighted turtle.
+\item tt Individual turtles encountered and tagged after nesting
+during night time turtle tagging from form \code{Turtle-Tagging-3-0},
+one record per encountered turtle.
+\item tt_dmg Characteristic damages or injuries recorded during turtle
+tagging, one record per damage.
+\item tt_tag Individual tags recorded during turtle tagging,
+one record per tag. Tags can be of different type,
+re-sighted, applied, or removed.
+\item tt_log Individual loggers recorded during turtle tagging,
+one record per logger. Loggers can be of different type,
+re-sighted, deployed, or removed.
+\item svs Survey start points from form \code{Site-Visit-Start}.
+\item sve Survey end points from form \code{Site-Visit-End}.
 \item sites An sf object of known WAStD sites.
 \item areas An sf object of known WAStD localities.
 }

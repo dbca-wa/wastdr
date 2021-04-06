@@ -42,6 +42,10 @@
 #'   \item mwi_tag Individual tags sighted during an mwi, one record per tag.
 #'   \item tsi Turtle Sightings from form "Turtle Sighting 0.1/0.2",
 #'         one row per sighted turtle.
+#'   \item tt Placeholder for form `Turtle-Tagging-3-0`, here: NULL.
+#'   \item tt_dmg Placeholder for form `Turtle-Tagging-3-0` (damages), here: NULL.
+#'   \item tt_tag Placeholder for form `Turtle-Tagging-3-0` (tags), here: NULL.
+#'   \item tt_log Placeholder for form `Turtle-Tagging-3-0` (loggers), here: NULL.
 #'   \item svs Survey start points from form "Site Visit Start 1.3".
 #'   \item sve Survey end points from form "Site Visit End 1.2".
 #'   \item sites An sf object of known WAStD sites.
@@ -553,6 +557,10 @@ download_odkc_turtledata_2019 <-
           mwi_dmg = mwi_dmg,
           mwi_tag = mwi_tag,
           tsi = tsi,
+          tt = NULL,
+          tt_dmg = NULL,
+          tt_tag = NULL,
+          tt_log = NULL,
           svs = svs,
           sve = sve,
           sites = sites,
@@ -576,14 +584,15 @@ print.odkc_turtledata <- function(x, ...) {
   print(
     glue::glue(
       "<ODKC Turtle Data> accessed on {x$downloaded_on}\n",
-      "Areas: {nrow(x$areas)}\n",
-      "Sites: {nrow(x$sites)}\n",
-      "Survey start points: {nrow(x$svs)}\n",
-      "Survey end points: {nrow(x$sve)}\n",
-      "Marine Wildlife Incidents (rescues, strandings): {nrow(x$mwi)}\n",
-      "Live sightings: {nrow(x$tsi)}\n",
-      "Turtle Tracks or Nests: {nrow(x$tracks)}\n",
-      "Turtle Track Tallies: {nrow(x$track_tally)}"
+      "Areas:                     {nrow(x$areas)}\n",
+      "Sites:                     {nrow(x$sites)}\n",
+      "Survey Start Points:       {nrow(x$svs)}\n",
+      "Survey End Points:         {nrow(x$sve)}\n",
+      "Marine Wildlife Incidents: {nrow(x$mwi)}\n",
+      "Live Sightings:            {nrow(x$tsi)}\n",
+      "Tagged Turtles:            {if(!is.null(x$tt))nrow(x$tt) else 'None\n'}",
+      "Turtle Tracks or Nests:    {nrow(x$tracks)}\n",
+      "Turtle Track Tallies:      {nrow(x$track_tally)}"
     )
   )
   invisible(x)

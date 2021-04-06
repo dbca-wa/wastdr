@@ -9,7 +9,12 @@ sanitize_names <- . %>%
           "observer",
           "handler",
           "recorder",
-          "system_submitter_name"
+          "system_submitter_name",
+          "encounter_handler",
+          "ft1_ft1_handled_by",
+          "ft2_ft2_handled_by",
+          "ft3_ft3_handled_by",
+          "morphometrics_morphometrics_handled_by"
         )
       ),
     ),
@@ -39,30 +44,7 @@ q2 <- list(reporter = 4)
 wastd_surveys_raw <- wastdr::wastd_GET("surveys", query = q2, max_records = 10)
 usethis::use_data(wastd_surveys_raw, compress = "xz", overwrite = TRUE)
 
-# ODKC turtle data, pre-QA
-# library(turtleviewer)
-# data(odkc, package = "turtleviewer")
-# odkc_data <- list(
-#   tracks = head(odkc$tracks),
-#   tracks_dist = head(odkc$tracks_dist),
-#   tracks_egg = head(odkc$tracks_egg),
-#   tracks_log = head(odkc$tracks_log),
-#   tracks_hatch = head(odkc$tracks_hatch),
-#   tracks_fan_outlier = head(odkc$tracks_fan_outlier),
-#   tracks_light = head(odkc$tracks_light),
-#   track_tally = head(odkc$track_tally),
-#   track_tally_dist = head(odkc$track_tally_dist),
-#   dist = head(odkc$dist),
-#   mwi = head(odkc$mwi),
-#   mwi_dmg = head(odkc$mwi_dmg),
-#   mwi_tag = head(odkc$mwi_tag),
-#   tsi = head(odkc$tsi),
-#   svs = head(odkc$svs),
-#   sve = head(odkc$sve),
-#   sites = odkc$sites,
-#   areas = odkc$areas,
-#   downloaded_on = odkc$downloaded_on
-# )
+# ODKC data
 odkc_data <- wastdr::download_odkc_turtledata_2020(download = FALSE, verbose = FALSE)
 # x <- odkc_data %>% wastdr::filter_odkc_turtledata(area_name = "Perth Metro")
 odkc_data$tracks <- odkc_data$tracks %>%
@@ -105,6 +87,18 @@ odkc_data$svs <- odkc_data$svs %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$sve <- odkc_data$sve %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$tt <- odkc_data$tt %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$tt_tag <- odkc_data$tt_tag %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$tt_log <- odkc_data$tt_log %>%
+  head(n = 100) %>%
+  sanitize_names()
+odkc_data$tt_dmg <- odkc_data$tt_dmg %>%
   head(n = 100) %>%
   sanitize_names()
 

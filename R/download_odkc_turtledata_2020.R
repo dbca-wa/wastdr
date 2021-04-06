@@ -18,16 +18,16 @@
 #'   \item tracks The turtle tracks and nests from form
 #'         "Turtle Track or Nest 1.0".
 #'   \item tracks_dist Individual disturbances recorded against tracks,
-#'         one row per disturbance.
+#'         one record per disturbance.
 #'   \item tracks_log Individual nest tags recorded against nests,
-#'         one row per tag.
-#'   \item tracks_egg Next excavation photos, one row per photo.
-#'   \item tracks_hatch Turtle hatchling morphometrics, one row per measured
+#'         one record per tag.
+#'   \item tracks_egg Next excavation photos, one record per photo.
+#'   \item tracks_hatch Turtle hatchling morphometrics, one record per measured
 #'         hatchling.
 #'   \item tracks_fan_outlier Individual hatchling track outliers recorded
-#'         against hatched nests, one row per outlier.
+#'         against hatched nests, one record per outlier.
 #'   \item tracks_light Individual light sources known at hatchling emergence,
-#'         one row per light source.
+#'         one record per light source.
 #'   \item track_tally A line transect tally of turtle tracks from form
 #'         "Track Tally 0.6".
 #'   \item dist The disturbance and predation records from form
@@ -37,10 +37,21 @@
 #'   \item mwi_dmg Individual injuries recorded against mwi,
 #'         one record per injury.
 #'   \item mwi_tag Individual tags sighted during an mwi, one record per tag.
-#'   \item tsi Turtle Sightings from form "Turtle Sighting 0.1/0.2",
-#'         one row per sighted turtle.
-#'   \item svs Survey start points from form "Site Visit Start 1.3".
-#'   \item sve Survey end points from form "Site Visit End 1.2".
+#'   \item tsi Turtle Sightings from form `Turtle-Sighting`,
+#'         one record per sighted turtle.
+#'   \item tt Individual turtles encountered and tagged after nesting
+#'         during night time turtle tagging from form `Turtle-Tagging-3-0`,
+#'         one record per encountered turtle.
+#'   \item tt_dmg Characteristic damages or injuries recorded during turtle
+#'         tagging, one record per damage.
+#'   \item tt_tag Individual tags recorded during turtle tagging,
+#'         one record per tag. Tags can be of different type,
+#'         re-sighted, applied, or removed.
+#'   \item tt_log Individual loggers recorded during turtle tagging,
+#'         one record per logger. Loggers can be of different type,
+#'         re-sighted, deployed, or removed.
+#'   \item svs Survey start points from form `Site-Visit-Start`.
+#'   \item sve Survey end points from form `Site-Visit-End`.
 #'   \item sites An sf object of known WAStD sites.
 #'   \item areas An sf object of known WAStD localities.
 #'  }
@@ -64,141 +75,16 @@ download_odkc_turtledata_2020 <-
       pw = ruODK::get_default_pw(),
       odkc_version = 1.0
     )
-    pl <- ruODK::project_list()
+    # pl <- ruODK::project_list()
     # pl
 
-    fl <- ruODK::form_list()
+    # fl <- ruODK::form_list()
     # fl
-
-    # SV start
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "Site-Visit-Start",
-      url = prod
-    )
-    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    svs_prod <-
-      ruODK::odata_submission_get(
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
-
-    # SV start (map)
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "Site-Visit-Start-map",
-      url = prod
-    )
-    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    svs_prod_map <-
-      ruODK::odata_submission_get(
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
-
-    # SV end
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "Site-Visit-End",
-      url = prod
-    )
-    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    sve_prod <-
-      ruODK::odata_submission_get(
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
-
-    # MWI
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "Marine-Wildlife-Incident",
-      url = prod
-    )
-    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    ft <- ruODK::odata_service_get()
-
-    mwi_prod <- ft$url[[1]] %>%
-      ruODK::odata_submission_get(
-        table = .,
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
-
-    mwi_dmg_prod <- ft$url[[2]] %>%
-      ruODK::odata_submission_get(
-        table = .,
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      ) %>%
-      dplyr::left_join(mwi_prod, by = c("submissions_id" = "id"))
-
-    mwi_tag_prod <- ft$url[[3]] %>%
-      ruODK::odata_submission_get(
-        table = .,
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      ) %>%
-      dplyr::left_join(mwi_prod, by = c("submissions_id" = "id"))
-
-    # Turtle Sighting
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "Turtle-Sighting",
-      url = prod
-    )
-    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    ft <- ruODK::odata_service_get()
-    tsi_prod <- ft$url[[1]] %>%
-      ruODK::odata_submission_get(
-        table = .,
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
-
-    # Dist
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "Predator-or-Disturbance",
-      url = prod
-    )
-    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    dist_prod <-
-      ruODK::odata_submission_get(
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
-
-    # Tracks
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "Turtle-Track-or-Nest",
-      url = prod
-    )
+    #
+    # -------------------------------------------------------------------------#
+    # Turtle Tracks
+    #
+    ruODK::ru_setup(fid = "Turtle-Track-or-Nest")
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     ft <- ruODK::odata_service_get()
 
@@ -281,13 +167,10 @@ download_odkc_turtledata_2020 <-
       ) %>%
       dplyr::left_join(tracks_prod, by = c("submissions_id" = "id"))
 
-
+    # -------------------------------------------------------------------------#
     # Track Tally (enc and denormalised tt obs)
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "Turtle-Track-Tally",
-      url = prod
-    )
+    #
+    ruODK::ru_setup(fid = "Turtle-Track-Tally")
     ft <- ruODK::odata_service_get()
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     tracktally_prod <- ruODK::odata_submission_get(
@@ -311,7 +194,160 @@ download_odkc_turtledata_2020 <-
     ) %>%
       dplyr::left_join(tracktally_prod, by = c("submissions_id" = "id"))
 
+    # -------------------------------------------------------------------------#
+    # Dist or Pred
+    #
+    ruODK::ru_setup(fid = "Predator-or-Disturbance")
+    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    dist_prod <-
+      ruODK::odata_submission_get(
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      )
 
+    # -------------------------------------------------------------------------#
+    # MWI
+    #
+    ruODK::ru_setup(fid = "Marine-Wildlife-Incident")
+    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    ft <- ruODK::odata_service_get()
+
+    mwi_prod <- ft$url[[1]] %>%
+      ruODK::odata_submission_get(
+        table = .,
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      )
+
+    mwi_dmg_prod <- ft$url[[2]] %>%
+      ruODK::odata_submission_get(
+        table = .,
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      ) %>%
+      dplyr::left_join(mwi_prod, by = c("submissions_id" = "id"))
+
+    mwi_tag_prod <- ft$url[[3]] %>%
+      ruODK::odata_submission_get(
+        table = .,
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      ) %>%
+      dplyr::left_join(mwi_prod, by = c("submissions_id" = "id"))
+
+    # -------------------------------------------------------------------------#
+    #  Turtle Sighting
+    #
+    ruODK::ru_setup(fid = "Turtle-Sighting")
+    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    ft <- ruODK::odata_service_get()
+    tsi_prod <- ft$url[[1]] %>%
+      ruODK::odata_submission_get(
+        table = .,
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      )
+
+    # -------------------------------------------------------------------------#
+    # Turtle Tagging
+    #
+    ruODK::ru_setup(fid = "Turtle-Tagging-3-0")
+    ft <- ruODK::odata_service_get()
+    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    tt_prod <- ruODK::odata_submission_get(
+        table = ft$url[1],
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      )
+
+    tt_dmg_prod <- ruODK::odata_submission_get(
+        table = ft$url[2],
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      )
+
+    tt_tag_prod <- ruODK::odata_submission_get(
+        table = ft$url[3],
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      )
+
+    tt_log_prod <- ruODK::odata_submission_get(
+        table = ft$url[4],
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      )
+
+    # -------------------------------------------------------------------------#
+    # Site Visit Start
+    #
+    ruODK::ru_setup(fid = "Site-Visit-Start")
+    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    svs_prod <-
+      ruODK::odata_submission_get(
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      )
+
+    # SV start (map)
+    ruODK::ru_setup(fid = "Site-Visit-Start-map")
+    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    svs_prod_map <-
+      ruODK::odata_submission_get(
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      )
+
+    # -------------------------------------------------------------------------#
+    # Site Visit End
+    #
+    ruODK::ru_setup(fid = "Site-Visit-End")
+    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    sve_prod <-
+      ruODK::odata_submission_get(
+        verbose = verbose,
+        local_dir = local_dir,
+        download = download,
+        odkc_version = odkc_version,
+        wkt = FALSE
+      )
+
+    # -------------------------------------------------------------------------#
+    # WAStD Areas
+    #
     areas_sf <- wastdr::wastd_GET("area") %>%
       magrittr::extract2("data") %>%
       geojsonio::as.json() %>%
@@ -326,37 +362,9 @@ download_odkc_turtledata_2020 <-
       dplyr::transmute(site_id = pk, site_name = name) %>%
       sf::st_join(areas)
 
-    mwi <- mwi_prod %>%
-      wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
-      wastdr::add_dates(parse_date = FALSE)
-
-    mwi_dmg <- mwi_dmg_prod %>%
-      wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
-      wastdr::add_dates(parse_date = FALSE)
-
-    mwi_tag <- mwi_tag_prod %>%
-      wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
-      wastdr::add_dates(parse_date = FALSE)
-
-    tsi <- tsi_prod %>%
-      wastdr::join_tsc_sites(sites, prefix = "encounter_observed_at_") %>%
-      wastdr::add_dates(parse_date = FALSE)
-
-    svs <- svs_prod %>%
-      dplyr::bind_rows(svs_prod_map) %>%
-      wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
-      wastdr::add_dates(date_col = "survey_start_time", parse_date = FALSE)
-
-    sve <- sve_prod %>%
-      wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
-      wastdr::add_dates(date_col = "survey_end_time", parse_date = FALSE)
-
-    dist <- dist_prod %>%
-      wastdr::join_tsc_sites(sites,
-        prefix = "disturbanceobservation_location_"
-      ) %>%
-      wastdr::add_dates(parse_date = FALSE)
-
+    # -------------------------------------------------------------------------#
+    # Spatial joins (require sf)
+    #
     tracks <- tracks_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates(parse_date = FALSE)
@@ -391,6 +399,49 @@ download_odkc_turtledata_2020 <-
 
     track_tally_dist <- tracktally_dist_prod
 
+
+    dist <- dist_prod %>%
+      wastdr::join_tsc_sites(sites,
+                             prefix = "disturbanceobservation_location_"
+      ) %>%
+      wastdr::add_dates(parse_date = FALSE)
+
+    mwi <- mwi_prod %>%
+      wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
+      wastdr::add_dates(parse_date = FALSE)
+
+    mwi_dmg <- mwi_dmg_prod %>%
+      wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
+      wastdr::add_dates(parse_date = FALSE)
+
+    mwi_tag <- mwi_tag_prod %>%
+      wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
+      wastdr::add_dates(parse_date = FALSE)
+
+    tsi <- tsi_prod %>%
+      wastdr::join_tsc_sites(sites, prefix = "encounter_observed_at_") %>%
+      wastdr::add_dates(parse_date = FALSE)
+
+    tt <- tt_prod %>%
+      wastdr::join_tsc_sites(sites, prefix = "start_location_") %>%
+      wastdr::add_dates(parse_date = FALSE)
+
+    tt_dmg <- tt_dmg_prod
+
+    tt_tag <- tt_tag_prod
+
+    tt_log <- tt_log_prod
+
+    svs <- svs_prod %>%
+      dplyr::bind_rows(svs_prod_map) %>%
+      wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
+      wastdr::add_dates(date_col = "survey_start_time", parse_date = FALSE)
+
+    sve <- sve_prod %>%
+      wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
+      wastdr::add_dates(date_col = "survey_end_time", parse_date = FALSE)
+
+
     odkc_turtledata <-
       structure(
         list(
@@ -409,6 +460,10 @@ download_odkc_turtledata_2020 <-
           mwi_dmg = mwi_dmg,
           mwi_tag = mwi_tag,
           tsi = tsi,
+          tt = tt,
+          tt_dmg = tt_dmg,
+          tt_tag = tt_tag,
+          tt_log = tt_log,
           svs = svs,
           sve = sve,
           sites = sites,

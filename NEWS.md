@@ -4,6 +4,16 @@
 ## Docs
 ## Data
 
+# wastdr 0.7.0
+## Major fixes
+## Minor fixes
+* `download_odkc_turtledata2020()` now includes Turtle Tagging data (4 tables),
+  `download_odkc_turtledata2019()` contains NULL as placeholder in these four 
+  tables, and will be sunset after season 2020-21.
+## Docs
+## Data
+* `odkc_data` contains Turtle Tagging data.
+
 # wastdr 0.6.1
 ## Major fixes
 ## Minor fixes
