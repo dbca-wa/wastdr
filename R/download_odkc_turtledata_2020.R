@@ -270,40 +270,40 @@ download_odkc_turtledata_2020 <-
     ft <- ruODK::odata_service_get()
     message(glue::glue("Downloading {ruODK::get_default_fid()}"))
     tt_prod <- ruODK::odata_submission_get(
-        table = ft$url[1],
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
+      table = ft$url[1],
+      verbose = verbose,
+      local_dir = local_dir,
+      download = download,
+      odkc_version = odkc_version,
+      wkt = FALSE
+    )
 
     tt_dmg_prod <- ruODK::odata_submission_get(
-        table = ft$url[2],
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
+      table = ft$url[2],
+      verbose = verbose,
+      local_dir = local_dir,
+      download = download,
+      odkc_version = odkc_version,
+      wkt = FALSE
+    )
 
     tt_tag_prod <- ruODK::odata_submission_get(
-        table = ft$url[3],
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
+      table = ft$url[3],
+      verbose = verbose,
+      local_dir = local_dir,
+      download = download,
+      odkc_version = odkc_version,
+      wkt = FALSE
+    )
 
     tt_log_prod <- ruODK::odata_submission_get(
-        table = ft$url[4],
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
+      table = ft$url[4],
+      verbose = verbose,
+      local_dir = local_dir,
+      download = download,
+      odkc_version = odkc_version,
+      wkt = FALSE
+    )
 
     # -------------------------------------------------------------------------#
     # Site Visit Start
@@ -402,7 +402,7 @@ download_odkc_turtledata_2020 <-
 
     dist <- dist_prod %>%
       wastdr::join_tsc_sites(sites,
-                             prefix = "disturbanceobservation_location_"
+        prefix = "disturbanceobservation_location_"
       ) %>%
       wastdr::add_dates(parse_date = FALSE)
 
