@@ -93,7 +93,9 @@ jobs:
 
       - name: "[Stage] [Linux] Install system deps"
         if: runner.os == 'Linux'
-        run: sudo apt install libcurl4-openssl-dev libgit2-dev libudunits2-dev libgdal1-dev libgdal-dev libgeos-c1 libproj-dev libgeos-dev libnode-dev
+        run: |
+          sudo apt install libcurl4-openssl-dev libgit2-dev libudunits2-dev \
+          libgdal1-dev libgdal-dev libproj-dev libgeos-c1v5 libgeos-dev libnode-dev
 
       - name: "[Stage] [macOS] Install libgit2"
         if: runner.os == 'macOS'
