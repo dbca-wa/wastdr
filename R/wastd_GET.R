@@ -61,7 +61,7 @@ wastd_GET <- function(serializer,
     wastdr_msg_info(verbose = verbose)
   res <- httr::GET(url, auth, ua, query = query)
 
-  handle_http_status(res)
+  handle_http_status(res, verbose = verbose)
 
   res_parsed <- res %>%
     httr::content(as = "text", encoding = "UTF-8") %>%

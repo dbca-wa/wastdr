@@ -25,7 +25,7 @@ test_that("download_odkc_turtledata_2020 works", {
   xout <- capture.output(print(x))
   expect_true(stringr::str_detect(xout[[1]], "ODKC Turtle Data"))
   expect_true(stringr::str_detect(xout[[2]], "Areas"))
-  expect_equal(length(xout), 10) # This will change if we add more data
+  expect_equal(length(xout), 9) # This will change if we add more data
 })
 
 # usethis::use_r("download_odkc_turtledata_2020")
