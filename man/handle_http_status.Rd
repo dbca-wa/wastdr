@@ -4,10 +4,13 @@
 \alias{handle_http_status}
 \title{Emit a specific warning messages depending on HTTP status}
 \usage{
-handle_http_status(response)
+handle_http_status(response, verbose = wastdr::get_wastdr_verbose())
 }
 \arguments{
 \item{response}{An HTTP response.}
+
+\item{verbose}{Whether to show debug messages.
+Default: wastdr::get_wastdr_verbose()}
 }
 \description{
 Status 401: Instruct how to authenticate.

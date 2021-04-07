@@ -5,6 +5,9 @@ test_that("tracks_as_geojson produces a geojson geofeaturecollection", {
   testthat::skip_if(!require(geojsonio),
                     message="Package geojsonio not available.")
 
+  testthat::skip_if(!require(geojsonlint),
+                    message="Package geojsonlint not available.")
+
   data(wastd_data)
   nests_gj <- tracks_as_geojson(wastd_data$tracks)
 
