@@ -1,4 +1,6 @@
 test_that("download_wastd_users works", {
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
+
   x <- download_wastd_users()
   testthat::expect_s3_class(x, "tbl_df")
   testthat::expect_equivalent(

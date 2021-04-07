@@ -11,6 +11,8 @@ test_that("download_odkc_turtledata_2019 works", {
     verbose = ruODK::get_ru_verbose()
   )
   testthat::skip_if_not(odkc_works(), message = "ODKC offline or wrong auth")
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
+
 
   destdir <- fs::path(tempdir(), "odkc2019")
   if (fs::dir_exists(destdir)) fs::dir_delete(destdir)

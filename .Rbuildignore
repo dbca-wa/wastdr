@@ -21,3 +21,4 @@ vignettes/rsconnect/*
 ^tic\.R$
 ^odkc_import.RData$
 ^users.csv$
+^media$

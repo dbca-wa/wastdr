@@ -4,6 +4,8 @@ test_that("download_minimal_wastd_turtledata works", {
     message = "Skip slow running tests"
   )
 
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
+
   x <- download_minimal_wastd_turtledata(year = 2020)
 
   testthat::expect_length(x, 6)

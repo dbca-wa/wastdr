@@ -4,6 +4,8 @@ test_that("download_odkc_turtledata_2020 works", {
   )
 
   testthat::skip_if_not(odkc_works(), message = "ODKC offline or wrong auth")
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
+
   ruODK::ru_setup(
     # url = ruODK::get_default_url(), # hard-coded in dl_odkc_td_2020
     un = ruODK::get_default_un(), # same credentials for new server
