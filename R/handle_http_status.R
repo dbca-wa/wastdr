@@ -24,7 +24,7 @@ handle_http_status <- function(response,
 
   if (httr::http_error(response)) {
     "WAStD API request failed with [{httr::status_code(response)}]" %>%
-      glue::glue() %>% wastdr::wastdr_msg_warn()
+      glue::glue() %>% wastdr::wastdr_msg_warn(verbose = verbose)
   }
 
 
