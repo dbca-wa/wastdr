@@ -55,6 +55,7 @@ Suggests:
     leaftime (>= 0.2.0),
     reactable (>= 0.1.0),
     geojsonio (>= 0.9.0),
+    geojsonlint,
     geojsonsf (>= 1.3.0),
     ggalt (>= 0.4.0),
     ggTimeSeries (>= 1.0.1),
