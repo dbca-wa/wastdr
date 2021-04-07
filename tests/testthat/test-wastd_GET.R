@@ -1,7 +1,8 @@
 test_that("wastd_GET parses GeoJSON properties", {
   testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
 
-  area <- wastdr::wastd_GET("area", max_records = 3, verbose = T) %>%
+  area <-
+    wastdr::wastd_GET("area", max_records = 3, verbose = T) %>%
     wastdr::parse_area()
   expect_true(class(area$area_name) == "character")
   expect_false("properties" %in% names(area))
@@ -16,12 +17,10 @@ test_that("wastd_GET parses GeoJSON properties", {
 test_that("wastd_GET aborts with NULL api_un or api_pw", {
   testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
 
-  testthat::expect_error(
-    res <- wastd_GET("area", api_token = NULL, api_un = NULL)
-  )
-  testthat::expect_error(
-    res <- wastd_GET("area", api_token = NULL, api_pw = NULL)
-  )
+  testthat::expect_error(res <-
+                           wastd_GET("area", api_token = NULL, api_un = NULL))
+  testthat::expect_error(res <-
+                           wastd_GET("area", api_token = NULL, api_pw = NULL))
 })
 
 
@@ -50,15 +49,24 @@ test_that("wastd_GET returns something", {
 
 
 test_that("wastd_GET fails if HTTP error is returned", {
-  expect_warning(
-    wastd_GET("", api_url = "http://httpstat.us/401", query = list())
-  )
-  expect_warning(
-    wastd_GET("", api_url = "http://httpstat.us/500", query = list())
-  )
-  expect_warning(
-    wastd_GET("", api_url = "http://httpstat.us/404", query = list())
-  )
+  expect_warning(wastd_GET(
+    "",
+    api_url = "http://httpstat.us/401",
+    query = list(),
+    verbose = TRUE
+  ))
+  expect_warning(wastd_GET(
+    "",
+    api_url = "http://httpstat.us/500",
+    query = list(),
+    verbose = TRUE
+  ))
+  expect_warning(wastd_GET(
+    "",
+    api_url = "http://httpstat.us/404",
+    query = list(),
+    verbose = TRUE
+  ))
 })
 
 test_that("wastd_GET works with correct API token", {
@@ -89,7 +97,10 @@ test_that("wastd_GET respects limit", {
 test_that("wastd_GET combines pagination", {
   testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
   # With geojson
-  ae <- wastd_GET("animal-encounters", max_records = 21, chunk_size = 5)
+  ae <-
+    wastd_GET("animal-encounters",
+              max_records = 21,
+              chunk_size = 5)
   capture.output(print(ae))
   expect_equal(ae$status_code, 200)
   expect_true(length(ae$data) >= 21)

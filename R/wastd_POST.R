@@ -48,7 +48,7 @@ wastd_POST <- function(data,
 
   res <- httr::POST(url, auth, ua, encode = encode, body = data, query = query)
 
-  handle_http_status(res)
+  handle_http_status(res, verbose = verbose)
 
   text <- httr::content(res, as = "text", encoding = "UTF-8")
 
