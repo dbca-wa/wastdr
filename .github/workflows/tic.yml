@@ -106,10 +106,6 @@ jobs:
         if: runner.os == 'macOS'
         run: brew install libgit2
 
-      - name: "[Stage] [macOS] Install system libs for pkgdown"
-        if: runner.os == 'macOS' && matrix.config.pkgdown != ''
-        run: brew install harfbuzz fribidi
-
       - name: "[Stage] [Linux] Install system libs for pkgdown"
         if: runner.os == 'Linux' && matrix.config.pkgdown != ''
         run: sudo apt install libharfbuzz-dev libfribidi-dev
@@ -138,3 +134,22 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
+
+      - name: Report test coverage
+        if: runner.os == 'Linux' && matrix.config.pkgdown != ''
+        run: covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
+        shell: Rscript {0}
+
+      - name: Setup git and install package
+        if: runner.os == 'Linux' && matrix.config.pkgdown != ''
+        run: |
+          git config --global user.name ${{secrets.GH_USER}}
+          git config --global user.email ${{secrets.GH_EMAIL}}
+          R CMD INSTALL .
+
+      - name: Deploy pkgdown docs
+        if: runner.os == 'Linux' && matrix.config.pkgdown != ''
+        run: |
+          remotes::install_dev("pkgdown")
+          pkgdown::deploy_to_branch(new_process = FALSE)
+        shell: Rscript {0}
