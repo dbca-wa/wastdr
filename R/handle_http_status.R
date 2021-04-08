@@ -5,6 +5,7 @@
 #'
 #' @param response An HTTP response.
 #' @template param-verbose
+#' @family api
 #' @export
 handle_http_status <- function(response,
                                verbose = wastdr::get_wastdr_verbose()) {

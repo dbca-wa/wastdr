@@ -3,6 +3,7 @@
 #' @param gj_ls A GeoJSON linestring
 #' @return The linestring as `sf::sfg`
 #' @export
+#' @family helpers
 #' @examples
 #' \dontrun{
 #' gj_ls <- paste0(

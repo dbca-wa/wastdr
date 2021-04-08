@@ -13,6 +13,7 @@
 #'
 #' @return The `wastd_api_response` of the last batch of data.
 #' @export
+#' @family api
 #'
 #' @examples
 #' \dontrun{

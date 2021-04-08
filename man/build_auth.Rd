@@ -34,3 +34,21 @@ httr::authenticate() for Basicauth or httr::add_headers for TokenAuth
 \description{
 Build token or basic authentication based on given credentials
 }
+\seealso{
+Other api: 
+\code{\link{download_minimal_wastd_turtledata}()},
+\code{\link{download_wastd_sites}()},
+\code{\link{download_wastd_turtledata}()},
+\code{\link{download_wastd_users}()},
+\code{\link{export_wastd_turtledata}()},
+\code{\link{filter_wastd_turtledata}()},
+\code{\link{handle_http_status}()},
+\code{\link{wastd_GET}()},
+\code{\link{wastd_POST}()},
+\code{\link{wastd_bulk_post}()},
+\code{\link{wastd_chunk_post}()},
+\code{\link{wastd_create_update_skip}()},
+\code{\link{wastd_parse}()},
+\code{\link{wastd_post_one}()}
+}
+\concept{api}

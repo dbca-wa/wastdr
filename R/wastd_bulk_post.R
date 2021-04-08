@@ -11,7 +11,7 @@
 #' @template param-auth
 #' @template param-verbose
 #' @return The list of \code{wastd_api_response}s from \code{\link{wastd_POST}}
-#' @family("api")
+#' @family api
 #' @export
 #' @examples
 #' \dontrun{

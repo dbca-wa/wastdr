@@ -3,6 +3,7 @@
 #' @template param-auth
 #' @template param-verbose
 #' @return httr::authenticate() for Basicauth or httr::add_headers for TokenAuth
+#' @family api
 #' @export
 build_auth <- function(api_token = get_wastdr_api_token(),
                        api_un = get_wastdr_api_un(),

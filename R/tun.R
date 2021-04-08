@@ -7,6 +7,7 @@
 #' @return The data frame `data` with column `col` replaced by its unnested
 #'   components.
 #' @export
+#' @family helpers
 tun <- function(data, col) {
   if (col %in% colnames(data)) {
     tidyr::unnest_wider(

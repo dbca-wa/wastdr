@@ -13,6 +13,7 @@
 #' @template param-tokenauth
 #' @template param-verbose
 #' @export
+#' @family api
 #' @return A list of three objects:
 #'
 #' * `created` The WAStD API response for all created records

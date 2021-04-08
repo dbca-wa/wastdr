@@ -71,13 +71,18 @@ wastd_POST(props[[1]], serializer = "names")
 }
 \seealso{
 Other api: 
+\code{\link{build_auth}()},
 \code{\link{download_minimal_wastd_turtledata}()},
 \code{\link{download_wastd_sites}()},
 \code{\link{download_wastd_turtledata}()},
 \code{\link{download_wastd_users}()},
 \code{\link{export_wastd_turtledata}()},
 \code{\link{filter_wastd_turtledata}()},
+\code{\link{handle_http_status}()},
 \code{\link{wastd_GET}()},
+\code{\link{wastd_bulk_post}()},
+\code{\link{wastd_chunk_post}()},
+\code{\link{wastd_create_update_skip}()},
 \code{\link{wastd_parse}()},
 \code{\link{wastd_post_one}()}
 }
