@@ -125,12 +125,16 @@ jobs:
       - name: "[Stage] Script"
         run: Rscript -e 'tic::script()'
 
-      - name: "[Stage] After Success (install, pkgdown, codecov)"
+      - name: "[Stage] Setup git and install package"
         if: runner.os == 'Linux' && matrix.config.pkgdown != ''
         run: |
           git config --global user.name ${{secrets.GH_USER}}
           git config --global user.email ${{secrets.GH_EMAIL}}
           R CMD INSTALL .
+
+      - name: "[Stage] After Success (install, pkgdown, codecov)"
+        if: runner.os == 'Linux' && matrix.config.pkgdown != ''
+        run: |
           Rscript -e "tic::after_success()"
 
 
@@ -141,12 +145,6 @@ jobs:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
 
-      # - name: Setup git and install package
-      #   if: runner.os == 'Linux' && matrix.config.pkgdown != ''
-      #   run: |
-      #     git config --global user.name ${{secrets.GH_USER}}
-      #     git config --global user.email ${{secrets.GH_EMAIL}}
-      #     R CMD INSTALL .
       #
       # - name: Deploy pkgdown docs
       #   if: runner.os == 'Linux' && matrix.config.pkgdown != ''
