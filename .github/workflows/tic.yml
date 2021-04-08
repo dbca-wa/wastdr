@@ -24,9 +24,9 @@ jobs:
           - { os: windows-latest, r: "devel" }
           - { os: windows-latest, r: "release" }
           - { os: windows-latest, r: "oldrel" }
-          # - { os: macOS-latest, r: "devel"}
+          - { os: macOS-latest, r: "devel"}
           - { os: macOS-latest, r: "release"}
-          # - { os: macOS-latest, r: "oldrel"}
+          - { os: macOS-latest, r: "oldrel"}
           - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release", pkgdown: "true", latex: "true" }
           - { os: ubuntu-latest, r: "oldrel" }
@@ -96,20 +96,20 @@ jobs:
           Rscript -e "if (!requireNamespace('remotes')) install.packages('remotes', type = 'source')"
           Rscript -e "if (getRversion() < '3.2' && !requireNamespace('curl')) install.packages('curl', type = 'source')"
 
-      - name: "[Stage] [Linux] Install system deps"
+      - name: "[Stage] [Linux] Install system libs"
         if: runner.os == 'Linux'
         run: |
           sudo apt install libcurl4-openssl-dev libgit2-dev libudunits2-dev \
           libgdal-dev libproj-dev libgeos-c1v5 libgeos-dev libnode-dev \
-          libprotobuf-dev protobuf-compiler libjq-dev
+          libprotobuf-dev protobuf-compiler libjq-dev libharfbuzz-dev libfribidi-dev
 
       - name: "[Stage] [macOS] Install libgit2"
         if: runner.os == 'macOS'
         run: brew install libgit2
 
-      - name: "[Stage] [Linux] Install system libs for pkgdown"
-        if: runner.os == 'Linux' && matrix.config.pkgdown != ''
-        run: sudo apt install libharfbuzz-dev libfribidi-dev
+      # - name: "[Stage] [Linux] Install system libs for pkgdown"
+      #   if: runner.os == 'Linux' && matrix.config.pkgdown != ''
+      #   run: sudo apt install libharfbuzz-dev libfribidi-dev
 
       - name: "[Stage] Install"
         if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
@@ -125,9 +125,14 @@ jobs:
       - name: "[Stage] Script"
         run: Rscript -e 'tic::script()'
 
-      - name: "[Stage] After Success"
+      - name: "[Stage] After Success (install, pkgdown, codecov)"
         if: runner.os == 'Linux' && matrix.config.pkgdown != ''
-        run: Rscript -e "tic::after_success()"
+        run: |
+          git config --global user.name ${{secrets.GH_USER}}
+          git config --global user.email ${{secrets.GH_EMAIL}}
+          R CMD INSTALL .
+          Rscript -e "tic::after_success()"
+
 
       - name: "[Stage] Upload R CMD check artifacts"
         if: failure()
@@ -135,11 +140,6 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
-
-      - name: Report test coverage
-        if: runner.os == 'Linux' && matrix.config.pkgdown != ''
-        run: covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
-        shell: Rscript {0}
 
       # - name: Setup git and install package
       #   if: runner.os == 'Linux' && matrix.config.pkgdown != ''
@@ -153,4 +153,9 @@ jobs:
       #   run: |
       #     remotes::install_dev("pkgdown")
       #     pkgdown::deploy_to_branch(new_process = FALSE)
+      #   shell: Rscript {0}
+      #
+      # - name: Report test coverage
+      #   if: runner.os == 'Linux' && matrix.config.pkgdown != ''
+      #   run: covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
       #   shell: Rscript {0}
