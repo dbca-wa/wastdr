@@ -121,7 +121,7 @@ jobs:
       - name: "[Stage] Script"
         run: Rscript -e 'tic::script()'
 
-      - name: "[Stage] After Success (git, install, pkgdown, codecov)"
+      - name: "[Stage] After Success 1 (git, install)"
         if: runner.os == 'Linux' && matrix.config.pkgdown != ''
         run: |
           git config --global user.name ${{secrets.GH_USER}}
@@ -129,7 +129,7 @@ jobs:
           R CMD INSTALL .
           Rscript -e "tic::after_success()"
 
-      - name: Report test coverage
+      - name: "[Stage] After Success 2 (codecov, pkgdown)"
         if: runner.os == 'Linux' && matrix.config.pkgdown != ''
         run: |
           covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
