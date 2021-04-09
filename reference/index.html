@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -178,6 +178,12 @@
       <tr>
         
         <td>
+          <p><code><a href="build_auth.html">build_auth()</a></code> </p>
+        </td>
+        <td><p>Build token or basic authentication based on given credentials</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="download_minimal_wastd_turtledata.html">download_minimal_wastd_turtledata()</a></code> </p>
         </td>
         <td><p>Download a minimal dataset of turtle observations from WAStD</p></td>
@@ -214,6 +220,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="handle_http_status.html">handle_http_status()</a></code> </p>
+        </td>
+        <td><p>Emit a specific warning messages depending on HTTP status</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="wastd_GET.html">wastd_GET()</a></code> </p>
         </td>
         <td><p>Return GeoJSON features from a WAStD API endpoint</p></td>
@@ -223,6 +235,24 @@
           <p><code><a href="wastd_POST.html">wastd_POST()</a></code> </p>
         </td>
         <td><p>Send a POST request to WAStD's API</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="wastd_bulk_post.html">wastd_bulk_post()</a></code> </p>
+        </td>
+        <td><p>Post a list of records to a WAStD or TSC API endpoint</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="wastd_chunk_post.html">wastd_chunk_post()</a></code> </p>
+        </td>
+        <td><p>POST data to a WAStD API serializer in chunks</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="wastd_create_update_skip.html">wastd_create_update_skip()</a></code> </p>
+        </td>
+        <td><p>Create, update, skip records to a WAStD serializer.</p></td>
       </tr><tr>
         
         <td>
@@ -487,6 +517,12 @@ and species</p></td>
           <p><code><a href="summarise_hatching_and_emergence_success.html">summarise_hatching_and_emergence_success()</a></code> </p>
         </td>
         <td><p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="summarise_wastd_data_per_day_site.html">summarise_wastd_data_per_day_site()</a></code> </p>
+        </td>
+        <td><p>Summarise WAStD data per day and site</p></td>
       </tr><tr>
         
         <td>
@@ -904,6 +940,12 @@ ODKC data</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="gj_linestring_to_st_linestring.html">gj_linestring_to_st_linestring()</a></code> </p>
+        </td>
+        <td><p>Convert a GeoJSON linestring into an st_linestring</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="httpdate_as_gmt08.html">httpdate_as_gmt08()</a></code> </p>
         </td>
         <td><p>Return a UTC HTTP date string as POSIXct object in GMT+08</p></td>
@@ -964,6 +1006,12 @@ ODKC data</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="tun.html">tun()</a></code> </p>
+        </td>
+        <td><p>A wrapper for <code>tidyr::unnest_wider</code></p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="urlize.html">urlize()</a></code> </p>
         </td>
         <td><p>Convert between url-safe dash-separated-names and Human Readable Title Case</p></td>
@@ -984,25 +1032,25 @@ ODKC data</p></td>
         <td>
           <p><code><a href="wastdr_msg_info.html">wastdr_msg_info()</a></code> </p>
         </td>
-        <td><p>Print a blue info message with an info symbol.</p></td>
+        <td><p>Print a blue info message with an info symbol if verbose.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="wastdr_msg_noop.html">wastdr_msg_noop()</a></code> </p>
         </td>
-        <td><p>Print a green noop message with a filled circle symbol.</p></td>
+        <td><p>Print a green noop message with a filled circle symbol if verbose.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="wastdr_msg_success.html">wastdr_msg_success()</a></code> </p>
         </td>
-        <td><p>Print a green success message with a tick symbol.</p></td>
+        <td><p>Print a green success message with a tick symbol if verbose.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="wastdr_msg_warn.html">wastdr_msg_warn()</a></code> </p>
         </td>
-        <td><p>rlang::warn() with a yellow warning message with a warning symbol.</p></td>
+        <td><p>rlang::warn() with a yellow warning message with a warning symbol if verbose.</p></td>
       </tr><tr>
         
         <td>

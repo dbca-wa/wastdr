@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Accessing WAStD Data</h1>
                         <h4 class="author">Florian Mayer</h4>
             
-            <h4 class="date">2021-03-18</h4>
+            <h4 class="date">2021-04-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/access.Rmd"><code>vignettes/access.Rmd</code></a></small>
       <div class="hidden name"><code>access.Rmd</code></div>
@@ -153,24 +153,27 @@
 <p><code>wastd_data</code> comes with its own print method:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wastd_data</span></code></pre></div>
-<pre><code>## &lt;WAStD Data&gt; accessed on 2021-03-12 05:09:44
-## Areas: 15
-## Sites: 121
+<pre><code>## &lt;WAStD Data&gt; accessed on 2021-04-07 09:38:46
+## Areas:   19
+## Sites:   123
 ## Surveys: 1000
-## Animal Encounters (tags, strandings): 1000
-## Turtle Nest Encounters (tracks): 1000
-## Line Transect Encounters (track tallies) 217
-## Logger Observations 122</code></pre>
-<p>If your workflow</p>
+## Animals (tags, incidents): 73
+##   Turtle Tags:             1000
+##   Turtle Damages:          560
+##   Turtle Morphometrics:    948
+## Turtle Nest Encounters:    1000
+##   Logger Observations:     135
+##   Nest Tags:               1000
+##   Nest Excavations:        532
+##   Hatchling Morph:         87
+##   Hatchling Fans:          1000
+##   Hatchling Outliers:      257
+##   Light Sources:           617
+## Line Transect Encounters:  216
+##   Track Tallies:           357
+##   Disturbance Tallies:     115
+## Dist/Pred (nest/general):  1000</code></pre>
 <p>Read the source code of <code><a href="../reference/download_wastd_turtledata.html">wastdr::download_wastd_turtledata</a></code> to see the individual steps. You can use those as starters to download subsets of data.</p>
-</div>
-<div id="encounters" class="section level1">
-<h1 class="hasAnchor">
-<a href="#encounters" class="anchor"></a>Encounters</h1>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Encounters from 2016 onwards (this includes disturbances, animal and turtle </span>
-<span class="co"># nest encounters but not their specific details)</span>
-<span class="co"># https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?when__year__gte=2016</span></code></pre></div>
 <div id="filtering-the-results" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filtering-the-results" class="anchor"></a>Filtering the results</h2>
@@ -190,14 +193,14 @@
 <div id="animalencounters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#animalencounters" class="anchor"></a>AnimalEncounters</h2>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># AnimalEncounters of Turtles from 2016 onwards</span>
 <span class="co"># https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</span></code></pre></div>
 </div>
 <div id="turtlenestencounters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#turtlenestencounters" class="anchor"></a>TurtleNestEncounters</h2>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</span></code></pre></div>
 </div>
 <div id="linetransectencounters" class="section level2">

@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -194,6 +194,7 @@
 <code><a href='filter_surveys_requiring_qa.html'>filter_surveys_requiring_qa</a>()</code>,
 <code><a href='filter_wastd_season.html'>filter_wastd_season</a>()</code>,
 <code><a href='get_more.html'>get_more</a>()</code>,
+<code><a href='gj_linestring_to_st_linestring.html'>gj_linestring_to_st_linestring</a>()</code>,
 <code><a href='httpdate_as_gmt08_turtle_date.html'>httpdate_as_gmt08_turtle_date</a>()</code>,
 <code><a href='httpdate_as_gmt08.html'>httpdate_as_gmt08</a>()</code>,
 <code><a href='httpdate_as_season.html'>httpdate_as_season</a>()</code>,
@@ -203,6 +204,7 @@
 <code><a href='odkc_works.html'>odkc_works</a>()</code>,
 <code><a href='tdate_as_fdate.html'>tdate_as_fdate</a>()</code>,
 <code><a href='tracks_as_geojson.html'>tracks_as_geojson</a>()</code>,
+<code><a href='tun.html'>tun</a>()</code>,
 <code><a href='urlize.html'>urlize</a>()</code>,
 <code><a href='wastd_works.html'>wastd_works</a>()</code>,
 <code><a href='wastdr_msg_abort.html'>wastdr_msg_abort</a>()</code>,
@@ -216,20 +218,20 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span>
 <span class='fu'>sf_as_tbl</span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>sites</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 121 x 4</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 123 x 4</span><span>
 #&gt;    site_id site_name                            area_id area_name         
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     145 Cape Domett                               44 Cape Domett       
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>      51 Smokey Bay                               148 Smokey Bay Area   
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>      52 Langgi                                   148 Smokey Bay Area   
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>      24 Cable Beach Broome Sector 3               19 Cable Beach Broome
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>      23 Cable Beach Broome Sector 2               19 Cable Beach Broome
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>      22 Cable Beach Broome Sector 1               19 Cable Beach Broome
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>      57 Roebuck Bay                               </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>                
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>      31 Broome DBCA Office and Training Area      </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>                
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>      43 Eco Beach                                174 Eco Beach         
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>      37 Anna Plains                               </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>                
-#&gt; </span><span style='color: #949494;'># … with 111 more rows</span><span></div></span></pre>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     177 Troughton Island                         176 Troughton Island  
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     145 Cape Domett                               44 Cape Domett       
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>      51 Smokey Bay                               148 Smokey Bay Area   
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>      52 Langgi                                   148 Smokey Bay Area   
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>      24 Cable Beach Broome Sector 3               19 Cable Beach Broome
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>      23 Cable Beach Broome Sector 2               19 Cable Beach Broome
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>      22 Cable Beach Broome Sector 1               19 Cable Beach Broome
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>      57 Roebuck Bay                              175 Roebuck Bay       
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>      57 Roebuck Bay                              174 Eco Beach         
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>      31 Broome DBCA Office and Training Area      </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>                
+#&gt; </span><span style='color: #949494;'># … with 113 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

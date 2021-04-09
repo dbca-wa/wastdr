@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -233,21 +233,25 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 <span class='co'># One area</span>
 <span class='va'>area_names</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>areas</span><span class='op'>$</span><span class='va'>area_name</span><span class='op'>)</span>
 <span class='va'>area_names</span>
-</div><div class='output co'>#&gt;  [1] "Cape Domett"                                     
-#&gt;  [2] "Smokey Bay Area"                                 
-#&gt;  [3] "Cable Beach Broome"                              
-#&gt;  [4] "Eco Beach"                                       
-#&gt;  [5] "Port Hedland"                                    
-#&gt;  [6] "Delambre Island"                                 
-#&gt;  [7] "Rosemary Island"                                 
-#&gt;  [8] "Conzinc Bay"                                     
-#&gt;  [9] "West Pilbara Turtle Program beaches Wickam"      
-#&gt; [10] "West Pilbara Turtle Program beaches Caravan Park"
-#&gt; [11] "Barrow Island"                                   
-#&gt; [12] "Thevenard Island"                                
-#&gt; [13] "Ningaloo"                                        
-#&gt; [14] "Onslow"                                          
-#&gt; [15] "Perth Metro"                                     </div><div class='input'><span class='va'>data_area_1</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span><span class='op'>(</span><span class='va'>odkc_data</span>, area_name <span class='op'>=</span> <span class='st'>"Cape Dommett"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "Troughton Island"                                
+#&gt;  [2] "Cape Domett"                                     
+#&gt;  [3] "Smokey Bay Area"                                 
+#&gt;  [4] "Cable Beach Broome"                              
+#&gt;  [5] "Roebuck Bay"                                     
+#&gt;  [6] "Eco Beach"                                       
+#&gt;  [7] "Bedout Island"                                   
+#&gt;  [8] "Port Hedland"                                    
+#&gt;  [9] "Delambre Island"                                 
+#&gt; [10] "Montebello Islands"                              
+#&gt; [11] "Rosemary Island"                                 
+#&gt; [12] "Conzinc Bay"                                     
+#&gt; [13] "West Pilbara Turtle Program beaches Wickam"      
+#&gt; [14] "West Pilbara Turtle Program beaches Caravan Park"
+#&gt; [15] "Barrow Island"                                   
+#&gt; [16] "Thevenard Island"                                
+#&gt; [17] "Ningaloo"                                        
+#&gt; [18] "Onslow"                                          
+#&gt; [19] "Perth Metro"                                     </div><div class='input'><span class='va'>data_area_1</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span><span class='op'>(</span><span class='va'>odkc_data</span>, area_name <span class='op'>=</span> <span class='st'>"Cape Dommett"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data_area_1</span><span class='op'>$</span><span class='va'>tracks</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='va'>data_area_2</span> <span class='op'>&lt;-</span> <span class='fu'>filter_odkc_turtledata</span><span class='op'>(</span><span class='va'>odkc_data</span>, area_name <span class='op'>=</span> <span class='va'>area_names</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data_area_2</span><span class='op'>$</span><span class='va'>tracks</span><span class='op'>)</span>

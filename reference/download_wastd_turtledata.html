@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -162,7 +162,7 @@
     <p><a href='https://lifecycle.r-lib.org/articles/stages.html#maturing'><img src='figures/lifecycle-maturing.svg' alt='[Maturing]' /></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>download_wastd_turtledata</span><span class='op'>(</span>max_records <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='fu'><a href='wastdr_settings.html'>get_wastdr_verbose</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>download_wastd_turtledata</span><span class='op'>(</span>max_records <span class='op'>=</span> <span class='cn'>NULL</span>, min_year <span class='op'>=</span> <span class='fl'>2016</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,9 +173,8 @@
 default: NULL (download all).</p></td>
     </tr>
     <tr>
-      <th>verbose</th>
-      <td><p>Whether to show debug messages.
-Default: wastdr::get_wastdr_verbose()</p></td>
+      <th>min_year</th>
+      <td><p>(int) The earliest year to include.</p></td>
     </tr>
     </table>
 
@@ -214,16 +213,22 @@ associated with Encounters.</p></li>
 
     <p>See also <code>??wastdr::export_wastd_turtledata</code> for a detailed explanation of
 the data tables.</p>
+<p>Verbosity is governed by <code><a href='wastdr_settings.html'>wastdr::get_wastdr_verbose()</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other api: 
+<code><a href='build_auth.html'>build_auth</a>()</code>,
 <code><a href='download_minimal_wastd_turtledata.html'>download_minimal_wastd_turtledata</a>()</code>,
 <code><a href='download_wastd_sites.html'>download_wastd_sites</a>()</code>,
 <code><a href='download_wastd_users.html'>download_wastd_users</a>()</code>,
 <code><a href='export_wastd_turtledata.html'>export_wastd_turtledata</a>()</code>,
 <code><a href='filter_wastd_turtledata.html'>filter_wastd_turtledata</a>()</code>,
+<code><a href='handle_http_status.html'>handle_http_status</a>()</code>,
 <code><a href='wastd_GET.html'>wastd_GET</a>()</code>,
 <code><a href='wastd_POST.html'>wastd_POST</a>()</code>,
+<code><a href='wastd_bulk_post.html'>wastd_bulk_post</a>()</code>,
+<code><a href='wastd_chunk_post.html'>wastd_chunk_post</a>()</code>,
+<code><a href='wastd_create_update_skip.html'>wastd_create_update_skip</a>()</code>,
 <code><a href='wastd_parse.html'>wastd_parse</a>()</code>,
 <code><a href='wastd_post_one.html'>wastd_post_one</a>()</code></p></div>
 
