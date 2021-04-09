@@ -18,9 +18,9 @@ test_that("wastd_GET aborts with NULL api_un or api_pw", {
   testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
 
   testthat::expect_error(res <-
-                           wastd_GET("area", api_token = NULL, api_un = NULL))
+    wastd_GET("area", api_token = NULL, api_un = NULL))
   testthat::expect_error(res <-
-                           wastd_GET("area", api_token = NULL, api_pw = NULL))
+    wastd_GET("area", api_token = NULL, api_pw = NULL))
 })
 
 
@@ -99,8 +99,9 @@ test_that("wastd_GET combines pagination", {
   # With geojson
   ae <-
     wastd_GET("animal-encounters",
-              max_records = 21,
-              chunk_size = 5)
+      max_records = 21,
+      chunk_size = 5
+    )
   capture.output(print(ae))
   expect_equal(ae$status_code, 200)
   expect_true(length(ae$data) >= 21)

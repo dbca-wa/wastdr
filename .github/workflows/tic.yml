@@ -24,7 +24,7 @@ jobs:
           - { os: windows-latest, r: "devel" }
           - { os: windows-latest, r: "release" }
           - { os: windows-latest, r: "oldrel" }
-          - { os: macOS-latest, r: "devel"}
+          # - { os: macOS-latest, r: "devel"} # missing sf, janitor, ruODK, stringr
           - { os: macOS-latest, r: "release"}
           - { os: macOS-latest, r: "oldrel"}
           - { os: ubuntu-latest, r: "devel" }
@@ -105,7 +105,7 @@ jobs:
 
       - name: "[Stage] [macOS] Install libgit2"
         if: runner.os == 'macOS'
-        run: brew install libgit2
+        run: brew install libgit2 udunits
 
       # - name: "[Stage] [Linux] Install system libs for pkgdown"
       #   if: runner.os == 'Linux' && matrix.config.pkgdown != ''

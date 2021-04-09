@@ -9,8 +9,6 @@ wastd_works <- function(api_url = get_wastdr_api_url(),
                         api_token = get_wastdr_api_token(),
                         api_un = get_wastdr_api_un(),
                         api_pw = get_wastdr_api_pw()) {
-
-
   auth <- build_auth(api_token = api_token, api_un = api_un, api_pw = api_pw)
   res <- httr::GET(api_url, auth)
   return(res$status_code == 200)
