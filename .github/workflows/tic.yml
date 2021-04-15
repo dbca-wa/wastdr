@@ -24,11 +24,11 @@ jobs:
           - { os: windows-latest, r: "devel" }
           - { os: windows-latest, r: "release" }
           - { os: windows-latest, r: "oldrel" }
-          - { os: macOS-latest, r: "devel"}
-          - { os: macOS-latest, r: "release"}
-          - { os: macOS-latest, r: "oldrel"}
-          - { os: ubuntu-latest, r: "devel" }
-          - { os: ubuntu-latest, r: "release", pkgdown: "true", latex: "true" }
+          # - { os: macOS-latest, r: "devel"}
+          # - { os: macOS-latest, r: "release"}
+          # - { os: macOS-latest, r: "oldrel"}
+          - { os: ubuntu-latest, r: "devel", pkgdown: "true", latex: "true" }
+          - { os: ubuntu-latest, r: "release" }
           - { os: ubuntu-latest, r: "oldrel" }
 
     env:
@@ -127,6 +127,7 @@ jobs:
           git config --global user.name ${{secrets.GH_USER}}
           git config --global user.email ${{secrets.GH_EMAIL}}
           R CMD INSTALL .
+          Rscript -e "install.packages('pkgdown')"
           Rscript -e "tic::after_success()"
 
       - name: "[Stage] After Success 2 (codecov, pkgdown)"
