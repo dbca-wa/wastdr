@@ -73,6 +73,9 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
       -area, -site, -survey, -observer, -reporter, -comments
     )
 
+  obs2enc <- c("encounter_source_id" = "source_id")
+  obs2enc_st <- c("encounter_source_id" = "source_id", "status" = "status")
+
   # AnimalEncounters ----------------------------------------------------------#
   "Downloading AnimalEncounters {min_year} and on..." %>%
     glue::glue() %>%
@@ -104,7 +107,7 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
   turtle_tags <- "tag-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(animals_subset, by = c("encounter_source_id" = "source_id"))
+    dplyr::left_join(animals_subset, by = obs2enc)
 
   # damages
   wastdr_msg_info("Downloading turtle damages...")
@@ -138,22 +141,29 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
       nest_type_text
     )
 
+  # Some Observations can link to either AE or TNE
+  tracks_animals <- dplyr::bind_rows(tracks_subset, animals_subset)
+
   wastdr_msg_info("Downloading nest disturbances...")
   nest_dist <- "turtle-nest-disturbance-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by = c("encounter_source_id" = "source_id")) %>%
-    dplyr::left_join(enc_subset, by = c("encounter_source_id" = "source_id"))
+    dplyr::left_join(tracks_subset, by = obs2enc) %>%
+    dplyr::left_join(enc_subset, by = obs2enc_st)
 
   wastdr_msg_info("Downloading nest tags...")
   nest_tags <- "nest-tag-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_animals, by = obs2enc) %>%
+    dplyr::left_join(enc_subset, by = obs2enc_st)
 
   wastdr_msg_info("Downloading nest excavations...")
   nest_excavations <- "turtle-nest-excavations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::left_join(tracks_animals, by = obs2enc) %>%
+    dplyr::left_join(enc_subset, by = obs2enc_st)
 
   wastdr_msg_info("Downloading hatchling morph...")
   hatchling_morph <- "turtle-hatchling-morphometrics" %>%
@@ -181,7 +191,8 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
   nest_loggers <- "logger-observations" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::parse_encounterobservations() %>%
-    dplyr::left_join(tracks_subset, by = c("encounter_source_id" = "source_id"))
+    dplyr::left_join(tracks_animals, by = obs2enc) %>%
+    dplyr::left_join(enc_subset, by = obs2enc_st)
 
   # LoggerEncounters ----------------------------------------------------------#
   # Pending shut-down and replacement with LoggerObs

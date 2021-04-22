@@ -1,4 +1,3 @@
-sf_as_tbl
 test_that("sf_as_tbl returns a tibble", {
   data("wastd_data")
 
@@ -281,7 +280,7 @@ test_that("hatching_emergence_success returns a tibble", {
 
   expect_true(tibble::is_tibble(x))
   expect_true("season" %in% names(x))
-  expect_true("encounter_species" %in% names(x))
+  expect_true("species" %in% names(x))
   expect_true("count" %in% names(x))
   expect_true("clutch_size_fresh" %in% names(x))
   expect_true("clutch_size_mean" %in% names(x))
@@ -307,7 +306,7 @@ test_that("hatching_emergence_success_area returns a tibble", {
 
   expect_true("encounter_area_name" %in% names(x))
   expect_true("season" %in% names(x))
-  expect_true("encounter_species" %in% names(x))
+  expect_true("species" %in% names(x))
   expect_true("count" %in% names(x))
   expect_true("clutch_size_fresh" %in% names(x))
   expect_true("clutch_size_mean" %in% names(x))
@@ -334,7 +333,7 @@ test_that("hatching_emergence_success_site returns a tibble", {
 
   expect_true("encounter_site_name" %in% names(x))
   expect_true("season" %in% names(x))
-  expect_true("encounter_species" %in% names(x))
+  expect_true("species" %in% names(x))
   expect_true("count" %in% names(x))
   expect_true("clutch_size_fresh" %in% names(x))
   expect_true("clutch_size_mean" %in% names(x))
