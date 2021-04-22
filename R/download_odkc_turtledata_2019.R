@@ -217,7 +217,7 @@ download_odkc_turtledata_2019 <-
         odkc_version = odkc_version,
         wkt = FALSE
       ) %>%
-      wastdr::exclude_training_species_odkc() %>%
+      # wastdr::exclude_training_species_odkc() %>%
       wastdr::add_nest_labels_odkc()
 
     tracks_dist_prod <- ft$url[2] %>%
@@ -431,7 +431,7 @@ download_odkc_turtledata_2019 <-
         odkc_version = odkc_version,
         wkt = FALSE
       ) %>%
-      wastdr::exclude_training_species_odkc() %>%
+      # wastdr::exclude_training_species_odkc() %>%
       wastdr::add_nest_labels_odkc()
     tracks_extra <-
       dplyr::anti_join(tracks_uat, tracks_prod, by = "meta_instance_id")
