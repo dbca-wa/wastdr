@@ -173,22 +173,35 @@ wastd_data$animals %>% filter_dead() %>% map_mwi(sites = wastd_data$sites)
 # Surveys
 
 ```{r surveys, fig.width=7}
-wastd_data$surveys %>% surveys_per_site_name_and_date() %>% knitr::kable()
-wastd_data$surveys %>% survey_hours_per_site_name_and_date() %>% knitr::kable()
-wastd_data$surveys %>% survey_hours_per_person() %>% knitr::kable()
+rt <- . %>% reactable::reactable(filterable = TRUE,
+                                 sortable = TRUE,
+                                 searchable = TRUE)
+wastd_data$surveys %>% surveys_per_site_name_and_date() %>% rt
+wastd_data$surveys %>% survey_hours_per_site_name_and_date() %>% rt
+wastd_data$surveys %>% survey_hours_per_person() %>% rt
 wastd_data$surveys %>% list_survey_count()
 wastd_data$surveys %>% plot_survey_count()
 wastd_data$surveys %>% list_survey_effort()
 wastd_data$surveys %>% plot_survey_effort()
-wastd_data$surveys %>% survey_hours_heatmap(placename = "All the places", prefix = "TEST")
-wastd_data$surveys %>% survey_count_heatmap(placename = "All the places", prefix = "TEST")
-wastd_data$surveys %>% survey_season_stats() %>% knitr::kable()
-wastd_data$surveys %>% survey_season_site_stats() %>% knitr::kable()
-wastd_data$surveys %>% survey_show_detail() %>% reactable::reactable(filterable = TRUE, sortable = TRUE)
+wastd_data$surveys %>%
+  survey_hours_heatmap(placename = "All the places", prefix = "TEST")
+wastd_data$surveys %>%
+  survey_count_heatmap(placename = "All the places", prefix = "TEST")
+wastd_data$surveys %>% survey_season_stats() %>% rt
+wastd_data$surveys %>% survey_season_site_stats() %>% rt
+wastd_data$surveys %>% survey_show_detail() %>%
+  reactable::reactable(
+    filterable = TRUE,
+    sortable = TRUE,
+    searchable = TRUE,
+    columns = list(change_url = colDef(html = TRUE))
+  )
 ```
 
 # QA
 
-QA products are being developed as part of the ETL pipeline in R package
+QA products are part of the ETL pipeline in R package
 [etlTurtleNesting](https://github.com/dbca-wa/etlTurtleNesting).
+
+Currently, there are QA reports for user mapping as well as sites and surveys.
 

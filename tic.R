@@ -18,6 +18,7 @@ get_stage("install") %>%
     add_step(step_install_github("r-spatial/mapview", dependencies = TRUE)) %>%
     add_step(step_install_github("r-spatial/leafem", dependencies = TRUE)) %>%
     add_step(step_install_github("ropensci/geojsonio", dependencies = TRUE)) %>%
+    add_step(step_install_github("Ather-Energy/ggTimeSeries", dependencies = TRUE)) %>%
     # add_step(step_install_cran("listviewer")) %>% # already installed
     # add_step(step_install_cran("geojsonlint")) %>% # already installed
     # libicui8n not found: fixed by stringi forced install
