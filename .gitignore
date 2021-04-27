@@ -10,3 +10,4 @@ docs/
 odkc_import.RData
 users.csv
 media
+*.RData
