@@ -92,7 +92,7 @@ wastdr_setup <- function(wastd_url = get_wastd_url(),
 #' @rdname wastdr_settings
 get_wastd_url <- function() {
   Sys.getenv("WASTD_URL",
-    unset = "https://wastd.dbca.wa.gov.au/"
+    unset = "https://wastd.dbca.wa.gov.au"
   )
 }
 

@@ -23,6 +23,12 @@ library(ggplot2)
 library(reactable)
 wastdr::wastdr_setup()
 # wastdr::wastdr_settings()
+
+# A shortcut for reactable
+rt <- . %>% reactable::reactable(filterable = TRUE,
+                                 sortable = TRUE,
+                                 searchable = TRUE,
+                                 defaultColDef = colDef(html = TRUE))
 ```
 # Data
 
@@ -71,12 +77,13 @@ Map markers can be grouped or not.
 
 Non-grouped markers show the actual location more accurately, but can overlap to
 the point where it is not possible to open the pop-ups. 
+Maps with many markers can be slow to render.
 
-Grouped markers in densely populated locations will expand to prevent the overlap of
-markers and pop-ups.
+Grouped markers in densely populated locations will expand to prevent the 
+overlap of markers and pop-ups. Maps with many clustered markers render fast.
 
-Use "Place names" where the aerial imagery is not available at the zoom level required
-for the grouped markers to expand.
+Use "Place names" where the aerial imagery is not available at the zoom level 
+required for the grouped markers to expand.
 
 ```{r tracks_maps}
 wastd_data$tracks %>% 
@@ -95,20 +102,20 @@ We show print-optimised `knitr` tables here, but could also use the more refined
 `reactable` (filterable, sortable, searchable) for interactive use.
 
 ```{r tracks_ns}
-wastd_data$tracks %>% nesting_type_by_season_species() %>% knitr::kable()
-wastd_data$tracks %>% nesting_type_by_area_season_species() %>% knitr::kable()
-wastd_data$tracks %>% nesting_type_by_site_season_species() %>% knitr::kable()
-wastd_data$tracks %>% nesting_type_by_season_week_species() %>% knitr::kable()
-wastd_data$tracks %>% nesting_type_by_season_day_species() %>% knitr::kable()
+wastd_data$tracks %>% nesting_type_by_season_species() %>% rt
+wastd_data$tracks %>% nesting_type_by_area_season_species() %>% rt
+wastd_data$tracks %>% nesting_type_by_site_season_species() %>% rt
+wastd_data$tracks %>% nesting_type_by_season_week_species() %>% rt
+wastd_data$tracks %>% nesting_type_by_season_day_species() %>% rt
 
 # Track success by day and species
-wastd_data$tracks %>% track_success() %>% knitr::kable()
+wastd_data$tracks %>% track_success() %>% rt
 
 # Track success by species
 wastd_data$tracks %>% 
   track_success() %>% 
   track_success_by_species() %>% 
-  knitr::kable()
+  rt
 
 wastd_data$tracks %>% 
   track_success %>% 
@@ -124,9 +131,9 @@ wastd_data$tracks %>%
 ## Nest excavations: Hatching and emergence success
 
 ```{r tracks_hses}
-wastd_data$nest_excavations %>% hatching_emergence_success() %>% knitr::kable()
-wastd_data$nest_excavations %>% hatching_emergence_success_area() %>% knitr::kable()
-wastd_data$nest_excavations %>% hatching_emergence_success_site() %>% knitr::kable()
+wastd_data$nest_excavations %>% hatching_emergence_success() %>% rt
+wastd_data$nest_excavations %>% hatching_emergence_success_area() %>% rt
+wastd_data$nest_excavations %>% hatching_emergence_success_site() %>% rt
 ```
 
 ## Tagged nests
@@ -151,7 +158,7 @@ wastd_data$tracks %>%
 
 # Disturbances and predation
 ```{r}
-wastd_data$nest_dist %>% disturbance_by_season() %>% knitr::kable()
+wastd_data$nest_dist %>% disturbance_by_season() %>% rt
 wastd_data$nest_dist %>% map_dist()
 wastd_data$nest_dist %>% map_dist(cluster=T)
 ```
@@ -173,9 +180,6 @@ wastd_data$animals %>% filter_dead() %>% map_mwi(sites = wastd_data$sites)
 # Surveys
 
 ```{r surveys, fig.width=7}
-rt <- . %>% reactable::reactable(filterable = TRUE,
-                                 sortable = TRUE,
-                                 searchable = TRUE)
 wastd_data$surveys %>% surveys_per_site_name_and_date() %>% rt
 wastd_data$surveys %>% survey_hours_per_site_name_and_date() %>% rt
 wastd_data$surveys %>% survey_hours_per_person() %>% rt
@@ -189,13 +193,7 @@ wastd_data$surveys %>%
   survey_count_heatmap(placename = "All the places", prefix = "TEST")
 wastd_data$surveys %>% survey_season_stats() %>% rt
 wastd_data$surveys %>% survey_season_site_stats() %>% rt
-wastd_data$surveys %>% survey_show_detail() %>%
-  reactable::reactable(
-    filterable = TRUE,
-    sortable = TRUE,
-    searchable = TRUE,
-    columns = list(change_url = colDef(html = TRUE))
-  )
+wastd_data$surveys %>% survey_show_detail() %>% rt
 ```
 
 # QA
