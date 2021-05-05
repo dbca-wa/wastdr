@@ -15,7 +15,8 @@ test_that("download_wastd_users works", {
       "email",
       "is_active",
       "role",
-      "phone"
+      "phone",
+      "alive"
     )
   )
 })

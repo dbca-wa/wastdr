@@ -96,14 +96,14 @@ jobs:
           Rscript -e "if (!requireNamespace('remotes')) install.packages('remotes', type = 'source')"
           Rscript -e "if (getRversion() < '3.2' && !requireNamespace('curl')) install.packages('curl', type = 'source')"
 
-      - name: "[Stage] [Linux] Install system libs"
+      - name: "[Custom block] [Stage] [Linux] Install system libs"
         if: runner.os == 'Linux'
         run: |
           sudo apt install libcurl4-openssl-dev libgit2-dev libudunits2-dev \
           libgdal-dev libproj-dev libgeos-c1v5 libgeos-dev libnode-dev \
           libprotobuf-dev protobuf-compiler libjq-dev libharfbuzz-dev libfribidi-dev
 
-      - name: "[Stage] [macOS] Install libgit2"
+      - name: "[Custom block] [Stage] [macOS] Install libgit2"
         if: runner.os == 'macOS'
         run: brew install libgit2 udunits
 
@@ -121,8 +121,8 @@ jobs:
       - name: "[Stage] Script"
         run: Rscript -e 'tic::script()'
 
-      - name: "[Stage] After Success 1 (git, install)"
-        if: runner.os == 'Linux' && matrix.config.pkgdown != ''
+      - name: "[Custom block] [Stage] After Success 1 (git, install)"
+        if: matrix.config.pkgdown == 'true'
         run: |
           git config --global user.name ${{secrets.GH_USER}}
           git config --global user.email ${{secrets.GH_EMAIL}}
@@ -130,8 +130,8 @@ jobs:
           Rscript -e "install.packages('pkgdown')"
           Rscript -e "tic::after_success()"
 
-      - name: "[Stage] After Success 2 (codecov, pkgdown)"
-        if: runner.os == 'Linux' && matrix.config.pkgdown != ''
+      - name: "[Custom block] [Stage] After Success 2 (codecov, pkgdown)"
+        if: matrix.config.pkgdown == 'true'
         run: |
           covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
           pkgdown::deploy_to_branch(new_process = FALSE)
