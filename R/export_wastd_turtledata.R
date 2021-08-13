@@ -114,7 +114,8 @@
 #'  * `loggers.csv` Encounters with Data Loggers, deprecated.
 #'    * Data to be migrated to LoggerObservations.
 #'  * `loggers.geojson` Loggers.csv as GeoJSON.
-#'  * `wastd_data.RData` The entire data as `RData`, ready to be loaded into R.
+#'  * `wastd_data.rds` The given wastd_data object saved to file as `.rds`,
+#'    ready to be loaded into R with `readRDS`.
 #' @export
 #' @family api
 #' @examples
@@ -138,7 +139,7 @@ export_wastd_turtledata <- function(x,
 
   if (!fs::dir_exists(outdir)) fs::dir_create(outdir, recurse = TRUE)
 
-  x %>% save(file = fs::path(outdir, "wastd_data.RData"))
+  x %>% saveRDS(file = fs::path(outdir, "wastd_data.rds"))
 
   x$areas %>% geojsonio::geojson_write(file = fs::path(outdir, "areas.geojson"))
   x$sites %>% geojsonio::geojson_write(file = fs::path(outdir, "sites.geojson"))
