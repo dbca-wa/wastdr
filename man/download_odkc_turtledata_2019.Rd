@@ -6,11 +6,11 @@
 \usage{
 download_odkc_turtledata_2019(
   local_dir = here::here("media"),
-  prod = "https://odkcentral.dbca.wa.gov.au",
+  prod = "https://odkc-uat.dbca.wa.gov.au",
   uat = "https://odkcentral-uat.dbca.wa.gov.au",
   tz = "Australia/Perth",
   download = TRUE,
-  odkc_version = 0.6,
+  odkc_version = 1.2,
   verbose = wastdr::get_wastdr_verbose()
 )
 }

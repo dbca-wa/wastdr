@@ -55,11 +55,11 @@
 #' @family odkc
 download_odkc_turtledata_2019 <-
   function(local_dir = here::here("media"),
-           prod = "https://odkcentral.dbca.wa.gov.au",
+           prod = "https://odkc-uat.dbca.wa.gov.au",
            uat = "https://odkcentral-uat.dbca.wa.gov.au",
            tz = "Australia/Perth",
            download = TRUE,
-           odkc_version = 0.6,
+           odkc_version = 1.2,
            verbose = wastdr::get_wastdr_verbose()) {
     if (download == TRUE) fs::dir_create(local_dir, recurse = TRUE) # nocov
 
@@ -298,11 +298,14 @@ download_odkc_turtledata_2019 <-
     tracktally_prod <- ruODK::odata_submission_get(
       table = ft$url[1],
       verbose = verbose,
-      wkt = FALSE,
+      wkt = TRUE,
       local_dir = local_dir,
       download = download,
       odkc_version = odkc_version
-    )
+    ) %>%
+      dplyr::rename(tx = overview_location) %>%
+      sf::st_as_sf(wkt = "tx")
+
 
     tracktally_dist_prod <- ruODK::odata_submission_get(
       table = ft$url[2],
@@ -311,7 +314,8 @@ download_odkc_turtledata_2019 <-
       local_dir = local_dir,
       download = download,
       odkc_version = odkc_version
-    )
+    ) %>%
+      dplyr::left_join(tracktally_prod, by = c("submissions_id" = "id"))
 
     # Track Tally 0.7
     ruODK::ru_setup(
@@ -324,130 +328,133 @@ download_odkc_turtledata_2019 <-
     tracktally07_prod <- ruODK::odata_submission_get(
       table = ft$url[1],
       verbose = verbose,
-      wkt = FALSE,
+      wkt = TRUE,
       local_dir = local_dir,
       download = download,
       odkc_version = odkc_version
-    )
+    ) %>%
+      dplyr::rename(tx = overview_location) %>%
+      sf::st_as_sf(wkt = "tx")
 
-    tracktally07_dist_prod <- ruODK::odata_submission_get(
-      table = ft$url[2],
-      verbose = verbose,
-      wkt = FALSE,
-      local_dir = local_dir,
-      download = download,
-      odkc_version = odkc_version
-    )
+    # tracktally07_dist_prod <- ruODK::odata_submission_get(
+    #   table = ft$url[2],
+    #   verbose = verbose,
+    #   wkt = TRUE,
+    #   local_dir = local_dir,
+    #   download = download,
+    #   odkc_version = odkc_version
+    # ) #%>%
+    #   # dplyr::left_join(tracktally07_prod, by = c("submissions_id" = "id"))
 
     #--------------------------------------------------------------------------#
     # Fix error: PROD used UAT db for a week - what's in UAT but not in PROD?
 
-    # SV start
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "build_Site-Visit-Start-0-3_1559789550",
-      url = uat
-    )
-    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    svs_uat <-
-      ruODK::odata_submission_get(
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
-    svs_extra <-
-      dplyr::anti_join(svs_uat, svs_prod, by = "meta_instance_id")
-
-    # SV end
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "build_Site-Visit-End-0-2_1559789512",
-      url = uat
-    )
-    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    sve_uat <-
-      ruODK::odata_submission_get(
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
-    sve_extra <-
-      dplyr::anti_join(sve_uat, sve_prod, by = "meta_instance_id")
-
-    # MWI
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "build_Marine-Wildlife-Incident-0-6_1559789189",
-      url = uat
-    )
-    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    mwi_uat <-
-      ruODK::odata_submission_get(
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
-    mwi_extra <-
-      dplyr::anti_join(mwi_uat, mwi_prod, by = "meta_instance_id")
-
-    # Dist
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "build_Predator-or-Disturbance-1-1_1559789410",
-      url = uat
-    )
-    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    dist_uat <-
-      ruODK::odata_submission_get(
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      )
-    dist_extra <-
-      dplyr::anti_join(dist_uat, dist_prod, by = "meta_instance_id")
-
-    # Tracks
-    ruODK::ru_setup(
-      pid = 1,
-      fid = "build_Turtle-Track-or-Nest-1-0_1559789920",
-      url = uat
-    )
-    message(glue::glue("Downloading {ruODK::get_default_fid()}"))
-    ft <- ruODK::odata_service_get()
-    tracks_uat <- ft$url[1] %>%
-      ruODK::odata_submission_get(
-        table = .,
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      ) %>%
-      # wastdr::exclude_training_species_odkc() %>%
-      wastdr::add_nest_labels_odkc()
-    tracks_extra <-
-      dplyr::anti_join(tracks_uat, tracks_prod, by = "meta_instance_id")
-
-    tracks_dist_uat <- ft$url[2] %>%
-      ruODK::odata_submission_get(
-        table = .,
-        verbose = verbose,
-        local_dir = local_dir,
-        download = download,
-        odkc_version = odkc_version,
-        wkt = FALSE
-      ) %>%
-      dplyr::left_join(tracks_uat, by = c("submissions_id" = "id"))
-    tracks_dist_extra <- tracks_dist_uat %>%
-      dplyr::anti_join(tracks_dist_prod, by = "meta_instance_id")
+    # # SV start
+    # ruODK::ru_setup(
+    #   pid = 1,
+    #   fid = "build_Site-Visit-Start-0-3_1559789550",
+    #   url = uat
+    # )
+    # message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    # svs_uat <-
+    #   ruODK::odata_submission_get(
+    #     verbose = verbose,
+    #     local_dir = local_dir,
+    #     download = download,
+    #     odkc_version = odkc_version,
+    #     wkt = FALSE
+    #   )
+    # svs_extra <-
+    #   dplyr::anti_join(svs_uat, svs_prod, by = "meta_instance_id")
+    #
+    # # SV end
+    # ruODK::ru_setup(
+    #   pid = 1,
+    #   fid = "build_Site-Visit-End-0-2_1559789512",
+    #   url = uat
+    # )
+    # message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    # sve_uat <-
+    #   ruODK::odata_submission_get(
+    #     verbose = verbose,
+    #     local_dir = local_dir,
+    #     download = download,
+    #     odkc_version = odkc_version,
+    #     wkt = FALSE
+    #   )
+    # sve_extra <-
+    #   dplyr::anti_join(sve_uat, sve_prod, by = "meta_instance_id")
+    #
+    # # MWI
+    # ruODK::ru_setup(
+    #   pid = 1,
+    #   fid = "build_Marine-Wildlife-Incident-0-6_1559789189",
+    #   url = uat
+    # )
+    # message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    # mwi_uat <-
+    #   ruODK::odata_submission_get(
+    #     verbose = verbose,
+    #     local_dir = local_dir,
+    #     download = download,
+    #     odkc_version = odkc_version,
+    #     wkt = FALSE
+    #   )
+    # mwi_extra <-
+    #   dplyr::anti_join(mwi_uat, mwi_prod, by = "meta_instance_id")
+    #
+    # # Dist
+    # ruODK::ru_setup(
+    #   pid = 1,
+    #   fid = "build_Predator-or-Disturbance-1-1_1559789410",
+    #   url = uat
+    # )
+    # message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    # dist_uat <-
+    #   ruODK::odata_submission_get(
+    #     verbose = verbose,
+    #     local_dir = local_dir,
+    #     download = download,
+    #     odkc_version = odkc_version,
+    #     wkt = FALSE
+    #   )
+    # dist_extra <-
+    #   dplyr::anti_join(dist_uat, dist_prod, by = "meta_instance_id")
+    #
+    # # Tracks
+    # ruODK::ru_setup(
+    #   pid = 1,
+    #   fid = "build_Turtle-Track-or-Nest-1-0_1559789920",
+    #   url = uat
+    # )
+    # message(glue::glue("Downloading {ruODK::get_default_fid()}"))
+    # ft <- ruODK::odata_service_get()
+    # tracks_uat <- ft$url[1] %>%
+    #   ruODK::odata_submission_get(
+    #     table = .,
+    #     verbose = verbose,
+    #     local_dir = local_dir,
+    #     download = download,
+    #     odkc_version = odkc_version,
+    #     wkt = FALSE
+    #   ) %>%
+    #   # wastdr::exclude_training_species_odkc() %>%
+    #   wastdr::add_nest_labels_odkc()
+    # tracks_extra <-
+    #   dplyr::anti_join(tracks_uat, tracks_prod, by = "meta_instance_id")
+    #
+    # tracks_dist_uat <- ft$url[2] %>%
+    #   ruODK::odata_submission_get(
+    #     table = .,
+    #     verbose = verbose,
+    #     local_dir = local_dir,
+    #     download = download,
+    #     odkc_version = odkc_version,
+    #     wkt = FALSE
+    #   ) %>%
+    #   dplyr::left_join(tracks_uat, by = c("submissions_id" = "id"))
+    # tracks_dist_extra <- tracks_dist_uat %>%
+    #   dplyr::anti_join(tracks_dist_prod, by = "meta_instance_id")
 
     areas_sf <- wastdr::wastd_GET("area") %>%
       magrittr::extract2("data") %>%
@@ -463,7 +470,8 @@ download_odkc_turtledata_2019 <-
       dplyr::transmute(site_id = pk, site_name = name) %>%
       sf::st_join(areas)
 
-    mwi <- dplyr::bind_rows(mwi_prod, mwi_extra) %>%
+    mwi <- #dplyr::bind_rows(mwi_prod, mwi_extra) %>%
+      mwi_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
       wastdr::add_dates(parse_date = FALSE)
 
@@ -479,26 +487,30 @@ download_odkc_turtledata_2019 <-
       wastdr::join_tsc_sites(sites, prefix = "encounter_observed_at_") %>%
       wastdr::add_dates(parse_date = FALSE)
 
-    svs <- dplyr::bind_rows(svs_prod, svs_extra) %>%
+    svs <- #dplyr::bind_rows(svs_prod, svs_extra) %>%
+      svs_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
       wastdr::add_dates(date_col = "survey_start_time", parse_date = FALSE)
 
-    sve <- dplyr::bind_rows(sve_prod, sve_extra) %>%
+    sve <- #dplyr::bind_rows(sve_prod, sve_extra) %>%
+      sve_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
       wastdr::add_dates(date_col = "survey_end_time", parse_date = FALSE)
 
-    dist <- dplyr::bind_rows(dist_prod, dist_extra) %>%
+    dist <- #dplyr::bind_rows(dist_prod, dist_extra) %>%
+      dist_prod %>%
       wastdr::join_tsc_sites(sites,
         prefix = "disturbanceobservation_location_"
       ) %>%
       wastdr::add_dates(parse_date = FALSE)
 
-    tracks <- dplyr::bind_rows(tracks_prod, tracks_extra) %>%
+    tracks <- # dplyr::bind_rows(tracks_prod, tracks_extra) %>%
+      tracks_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates(parse_date = FALSE)
 
     tracks_dist <- tracks_dist_prod %>%
-      dplyr::bind_rows(tracks_dist_extra) %>%
+      # dplyr::bind_rows(tracks_dist_extra) %>%
       wastdr::join_tsc_sites(sites, prefix = "details_observed_at_") %>%
       wastdr::add_dates(parse_date = FALSE)
 
@@ -524,20 +536,11 @@ download_odkc_turtledata_2019 <-
       wastdr::add_dates(parse_date = FALSE)
 
     track_tally <- dplyr::bind_rows(tracktally_prod, tracktally07_prod) %>%
-      dplyr::mutate(
-        tx = purrr::map(
-          overview_location,
-          wastdr::gj_linestring_to_st_linestring
-        )
-      ) %>%
-      sf::st_as_sf(crs = "WGS84") %>%
-      sf::st_zm() %>%
-      sf::st_join(sites)
+      sf::st_set_crs(4326) %>%
+      sf::st_join(sites, join = sf::st_crosses)
 
-    track_tally_dist <- dplyr::bind_rows(
-      tracktally_dist_prod,
-      tracktally07_dist_prod
-    )
+    track_tally_dist <- tracktally_dist_prod
+
 
     odkc_turtledata <-
       structure(
