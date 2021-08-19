@@ -7,6 +7,9 @@
 
 # wastdr 0.7.1
 ## Major fixes
+* New: `duplicate_surveys` links to sites and dates with more than one survey.
+* Plots from summarize surveys now save to a given `local_dir` only on 
+  `export=TRUE` like plots from summarize tracks.
 ## Minor fixes
 ## Docs
 ## Data
