@@ -22,6 +22,7 @@ build_auth <- function(api_token = get_wastdr_api_token(),
     }
     auth <- httr::authenticate(api_un, api_pw, type = "basic")
   }
+  auth
 }
 
 # usethis::use_test("build_auth")
