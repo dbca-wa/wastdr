@@ -102,7 +102,7 @@ survey_hours_per_person <- function(surveys) {
 #' \lifecycle{stable}
 #'
 #' @template param-surveys
-#' @param placename (string) The place name, used in labels. Default: ""
+#' @template param-placename
 #' @export
 #' @family wastd
 list_survey_count <- function(surveys, placename = "") {
@@ -116,15 +116,22 @@ list_survey_count <- function(surveys, placename = "") {
 #' \lifecycle{stable}
 #'
 #' @template param-surveys
-#' @param placename (string) The place name, used in labels. Default: ""
-#' @param prefix (string) A prefix for the filename. Default: ""
+#' @template param-local_dir
+#' @template param-placename
+#' @template param-prefix
+#' @template param-export
 #' @export
 #' @family wastd
 plot_survey_count <-
   function(surveys,
+           local_dir = here::here(),
            placename = "",
-           prefix = "") {
-    surveys %>%
+           prefix = "",
+           export = FALSE) {
+    fname <- glue::glue("{prefix}_survey_count_{urlize(placename)}.png")
+    ttle <- glue::glue("Survey Count {placename}")
+
+    plt <- surveys %>%
       surveys_per_site_name_and_date() %>%
       ggplot2::ggplot(
         .,
@@ -133,16 +140,22 @@ plot_survey_count <-
           fill = n
         )
       ) +
-      ggplot2::geom_raster() +
+      ggplot2::geom_tile() +
       ggplot2::facet_grid(rows = ggplot2::vars(season)) +
       ggplot2::theme_classic() +
-      ggplot2::ggtitle(glue::glue("Survey Count {placename}")) +
-      ggplot2::labs(x = "Turtle date", y = "", fill = "Number of surveys") +
+      ggplot2::ggtitle(ttle) +
+      ggplot2::labs(x = "Turtle date", y = "", fill = "Number of surveys")
+
+    if (export == TRUE) {
       ggplot2::ggsave(
-        filename = glue::glue("{prefix}_survey_count_{urlize(placename)}.png"),
+        plot = plt,
+        filename = fname,
+        path = local_dir,
         width = 10,
         height = 6
       )
+    }
+    plt
   }
 
 #' Create a table from the surveyed hours from the output of
@@ -151,7 +164,7 @@ plot_survey_count <-
 #' \lifecycle{stable}
 #'
 #' @template param-surveys
-#' @param placename (string) The place name, used in labels. Default: ""
+#' @template param-placename
 #' @export
 #' @family wastd
 list_survey_effort <- function(surveys, placename = "") {
@@ -165,15 +178,20 @@ list_survey_effort <- function(surveys, placename = "") {
 #' \lifecycle{stable}
 #'
 #' @template param-surveys
+#' @template param-local_dir
 #' @template param-placename
 #' @template param-prefix
+#' @template param-export
 #' @export
 #' @family wastd
 plot_survey_effort <-
   function(surveys,
+           local_dir = here::here(),
            placename = "",
-           prefix = "") {
-    surveys %>%
+           prefix = "",
+           export = FALSE) {
+    fname <- glue::glue("{prefix}_survey_effort_{urlize(placename)}.png")
+    plt <- surveys %>%
       survey_hours_per_site_name_and_date() %>%
       ggplot2::ggplot(
         .,
@@ -190,12 +208,18 @@ plot_survey_effort <-
       ) +
       ggplot2::theme_classic() +
       ggplot2::ggtitle(glue::glue("Survey Effort {placename}")) +
-      ggplot2::labs(x = "Turtle date", y = "", fill = "Hours surveyed") +
+      ggplot2::labs(x = "Turtle date", y = "", fill = "Hours surveyed")
+
+    if (export == TRUE) {
       ggplot2::ggsave(
-        filename = glue::glue("{prefix}_survey_effort_{urlize(placename)}.png"),
+        plot = plt,
+        filename = fname,
+        path = local_dir,
         width = 10,
         height = 6
       )
+    }
+    plt
   }
 
 #' Plot the surveyed hours from the output of \code{parse_surveys} as heatmap
@@ -203,29 +227,39 @@ plot_survey_effort <-
 #' \lifecycle{stable}
 #'
 #' @template param-surveys
+#' @template param-local_dir
 #' @template param-placename
 #' @template param-prefix
+#' @template param-export
 #' @export
 #' @family wastd
 survey_hours_heatmap <-
   function(surveys,
+           local_dir = here::here(),
            placename = "",
-           prefix = "") {
-    surveys %>%
+           prefix = "",
+           export = FALSE) {
+    fname <- glue::glue(
+      "{prefix}_survey_hours_heatmap_{wastdr::urlize(placename)}.png"
+    )
+    plt <- surveys %>%
       wastdr::survey_hours_per_site_name_and_date(.) %>%
       ggTimeSeries::ggplot_calendar_heatmap("turtle_date", "hours_surveyed") +
       ggplot2::scale_fill_continuous(low = "green", high = "red") +
       ggplot2::facet_grid(rows = ggplot2::vars(Year)) +
       ggplot2::ggtitle(glue::glue("Survey effort at {placename}")) +
       ggplot2::xlab(NULL) + ggplot2::ylab(NULL) +
-      ggplot2::theme_classic() +
+      ggplot2::theme_classic()
+    if (export == TRUE) {
       ggplot2::ggsave(
-        glue::glue(
-          "{prefix}_survey_hours_heatmap_{wastdr::urlize(placename)}.png"
-        ),
+        plot = plt,
+        filename = fname,
+        path = local_dir,
         width = 10,
         height = 6
       )
+    }
+    plt
   }
 
 #' Plot the survey count from the output of \code{parse_surveys} as heatmap
@@ -233,30 +267,40 @@ survey_hours_heatmap <-
 #' \lifecycle{stable}
 #'
 #' @template param-surveys
+#' @template param-local_dir
 #' @template param-placename
 #' @template param-prefix
+#' @template param-export
 #' @export
 #' @family wastd
-survey_count_heatmap <-
-  function(surveys,
-           placename = "",
-           prefix = "") {
-    surveys %>%
-      wastdr::surveys_per_site_name_and_date(.) %>%
-      ggTimeSeries::ggplot_calendar_heatmap("turtle_date", "n") +
-      ggplot2::scale_fill_continuous(low = "green", high = "red") +
-      ggplot2::facet_grid(rows = ggplot2::vars(Year)) +
-      ggplot2::ggtitle(glue::glue("Survey effort at {placename}")) +
-      ggplot2::xlab(NULL) + ggplot2::ylab(NULL) +
-      ggplot2::theme_classic() +
-      ggplot2::ggsave(
-        glue::glue(
-          "{prefix}_survey_count_heatmap_{wastdr::urlize(placename)}.png"
-        ),
-        width = 10,
-        height = 6
-      )
+survey_count_heatmap <- function(surveys,
+                                 local_dir = here::here(),
+                                 placename = "",
+                                 prefix = "",
+                                 export = FALSE) {
+  fname <- glue::glue(
+    "{prefix}_survey_count_heatmap_{wastdr::urlize(placename)}.png"
+  )
+  plt <- surveys %>%
+    wastdr::surveys_per_site_name_and_date(.) %>%
+    ggTimeSeries::ggplot_calendar_heatmap("turtle_date", "n") +
+    ggplot2::scale_fill_continuous(low = "green", high = "red") +
+    ggplot2::facet_grid(rows = ggplot2::vars(Year)) +
+    ggplot2::ggtitle(glue::glue("Survey effort at {placename}")) +
+    ggplot2::xlab(NULL) + ggplot2::ylab(NULL) +
+    ggplot2::theme_classic()
+
+  if (export == TRUE) {
+    ggplot2::ggsave(
+      plot = plt,
+      filename = fname,
+      path = local_dir,
+      width = 10,
+      height = 6
+    )
   }
+  plt
+}
 
 #' Generate a season summary from the output of \code{parse_surveys}
 #'
@@ -332,6 +376,38 @@ survey_show_detail <- function(surveys) {
       start_comments,
       end_comments,
       status
+    )
+}
+
+
+#' List sites with more than one production survey on a given date
+#'
+#' Sites are expected to be surveyed not more than once daily with the exception
+#' of turtle tagging, where a morning survey and night tagging can happen
+#' legitimately on the same calendar date.
+#'
+#' QA operators will want to open each link from this list of potential duplicate
+#' surveys, inspect their details, then decide on whether to make one the main
+#' survey and close others as duplicates with the "make production" button.
+#'
+#' \lifecycle{stable}
+#'
+#' @template param-surveys
+#' @family wastd
+#' @export
+duplicate_surveys <- function(surveys) {
+  surveys %>%
+    wastdr::filter_realsurveys() %>%
+    dplyr::group_by(season, calendar_date_awst, site_name, site_id) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    dplyr::arrange(-season, -n) %>%
+    dplyr::filter(n > 1) %>%
+    dplyr::mutate(
+      wastd = glue::glue(
+        "<a href=\"https://wastd.dbca.wa.gov.au/observations/surveys/",
+        "?site={site_id}&survey_date={calendar_date_awst}\">QA surveys</a>"
+      )
     )
 }
 # usethis::use_test("summarise_surveys")

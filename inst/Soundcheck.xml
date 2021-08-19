@@ -1,0 +1,283 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:odk="http://www.opendatakit.org/xforms">
+  <h:head>
+    <h:title>Soundcheck</h:title>
+    <model>
+      <instance>
+        <data id="Soundcheck" version="1629108984">
+          <meta>
+            <instanceID/>
+          </meta>
+          <start_geopoint/>
+          <device_id/>
+          <start_time/>
+          <metadata_repeat>
+            <guidance_tutorial/>
+            <username_repeat/>
+            <current_time/>
+            <device_label/>
+            <needs_service/>
+            <other_damage/>
+          </metadata_repeat>
+          <location>
+            <location_gps/>
+            <gps_works/>
+            <location_manual/>
+            <location_problems/>
+          </location>
+          <photos>
+            <photo/>
+          </photos>
+          <save_and_send>
+            <save_message/>
+          </save_and_send>
+          <end_time/>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="English">
+          <text id="/data/metadata_repeat:label">
+            <value>Metadata</value>
+          </text>
+          <text id="/data/metadata_repeat/guidance_tutorial:label">
+            <value>Try out guidance text</value>
+          </text>
+          <text id="/data/metadata_repeat/guidance_tutorial:hint">
+            <value>Tap this hint to toggle guidance text.&lt;br/&gt; No &#9432; showing?&lt;br/&gt; &amp;#x22EE; &gt; Settings &gt; Form mgmt &gt; Guidance collapsed</value>
+            <value form="guidance">Hints with an info symbol (&#9432;) expand to provide long-form instructions as guidance for tricky or error-prone questions. Read it when you need it, then tap the hint to collapse the guidance again.</value>
+          </text>
+          <text id="/data/metadata_repeat/username_repeat:label">
+            <value>Is this your name?</value>
+          </text>
+          <text id="/data/metadata_repeat/username_repeat:hint">
+            <value>If not, tap here to learn how to set the Username.</value>
+            <value form="guidance">&lt;strong&gt;Setting the Username&lt;/strong&gt;&lt;br/&gt; &amp;#x22EE; &gt; Settings &gt; User and device &gt; Form metadata &gt; Username&lt;br/&gt; &lt;strong&gt;Name format&lt;/strong&gt;&lt;br/&gt;The Username should be your full Given and Surname, e.g. Joe Bloggs. Avoid nicknames, abbreviations, or multiple names. Provide only and completely the name of the person who is solely or mainly responsible for data entry. Team members go into a separate field in form &quot;Site Visit Start&quot;.&lt;br/&gt; &lt;strong&gt;Now what?&lt;/strong&gt;&lt;br/&gt;Exit this form with the device's back button and &quot;ignore changes&quot;, then fill it again to see the updated Username. Subsequent forms will record this name.&lt;br/&gt;</value>
+          </text>
+          <text id="/data/metadata_repeat/current_time:label">
+            <value>Is this the current time?</value>
+          </text>
+          <text id="/data/metadata_repeat/current_time:hint">
+            <value>Make sure this device is runs in the local timezone.</value>
+            <value form="guidance">We capture the current date and time in every form, so you don't have to.&lt;br/&gt; Time and date can be out of sync if the device hasn't been online after periods of long storage.&lt;br/&gt; If date and time are wrong, let the device connect to WiFi and set date and time to &quot;auto&quot; in the system settings. Make sure they are correctly set.</value>
+          </text>
+          <text id="/data/metadata_repeat/device_label:label">
+            <value>What is the device label?</value>
+          </text>
+          <text id="/data/metadata_repeat/device_label:hint">
+            <value>See upper rear edge underneath silicone cover.</value>
+            <value form="guidance">This helps our device inventory.</value>
+          </text>
+          <text id="/data/metadata_repeat/needs_service:label">
+            <value>Does the device need service or a replacement?</value>
+          </text>
+          <text id="/data/metadata_repeat/needs_service:hint">
+            <value>Select anything that applies.</value>
+          </text>
+          <text id="/data/metadata_repeat/needs_service:option0">
+            <value>Replace screen protector</value>
+          </text>
+          <text id="/data/metadata_repeat/needs_service:option1">
+            <value>Screen cracked</value>
+          </text>
+          <text id="/data/metadata_repeat/needs_service:option2">
+            <value>Replace silicone sleeve</value>
+          </text>
+          <text id="/data/metadata_repeat/needs_service:option3">
+            <value>Update system or apps</value>
+          </text>
+          <text id="/data/metadata_repeat/needs_service:option4">
+            <value>Replace length reference (marked yardstick)</value>
+          </text>
+          <text id="/data/metadata_repeat/needs_service:option5">
+            <value>Replace neoprene pouch</value>
+          </text>
+          <text id="/data/metadata_repeat/needs_service:option6">
+            <value>Replace writing board and pen</value>
+          </text>
+          <text id="/data/metadata_repeat/other_damage:label">
+            <value>Any other damage or service requests?</value>
+          </text>
+          <text id="/data/location:label">
+            <value>Location capture</value>
+          </text>
+          <text id="/data/location/location_gps:label">
+            <value>Test the GPS</value>
+          </text>
+          <text id="/data/location/location_gps:hint">
+            <value>Capture your current location to test reception, accuracy, and speed.</value>
+            <value form="guidance">&lt;strong&gt;Reception&lt;/strong&gt;&lt;br/&gt;Capture this point with WiFi off and outdoors, as WiFi and roofs often override or block GPS.&lt;br/&gt; &lt;strong&gt;Accuracy&lt;/strong&gt;&lt;br/&gt;You can save the point as soon as an accuracy is shown. If the accuracy falls below 5m, the widget will auto-save.  If the accuracy stalls above the auto-save threshold, it is OK to save. Aim for an accuracy below 20m.&lt;br/&gt; &lt;strong&gt;Speed&lt;/strong&gt;&lt;br/&gt;If the GPS consistently takes more than 10s to auto-save, let your coordinator know.&lt;br/&gt; &lt;strong&gt;Warm-up&lt;/strong&gt;&lt;br/&gt;This form warms up the GPS by capturing a silent initial location, which pops up a &quot;toast&quot; style warning about being tracked. It is OK to ignore this warning.</value>
+          </text>
+          <text id="/data/location/gps_works:label">
+            <value>Did GPS capture work?</value>
+          </text>
+          <text id="/data/location/gps_works:option0">
+            <value>Yes</value>
+          </text>
+          <text id="/data/location/gps_works:option1">
+            <value>Yes, but took longer than 10s to auto-save</value>
+          </text>
+          <text id="/data/location/gps_works:option2">
+            <value>Yes, but had to save manually</value>
+          </text>
+          <text id="/data/location/gps_works:option3">
+            <value>No, no GPS fix obtained</value>
+          </text>
+          <text id="/data/location/location_manual:label">
+            <value>Practice using the offline map</value>
+          </text>
+          <text id="/data/location/location_manual:hint">
+            <value>Tap to view guidance instructions.</value>
+            <value form="guidance">&lt;strong&gt;Pan and zoom&lt;/strong&gt;&lt;br/&gt;This map will auto-zoom to your current location once GPS has a fix. You can pan and zoom elsewhere, then reset the map with the crosshair icon. &lt;br/&gt; &lt;strong&gt;Layers&lt;/strong&gt;&lt;br/&gt;Select an offline reference layer for the intended fieldwork location from the layer button. The map will remember chosen layers across all forms. These layers provide aerial imagery as well as known site names and boundaries.&lt;br/&gt; &lt;strong&gt;Capture a new point&lt;/strong&gt;&lt;br/&gt;Long-press any point on the map to record a point. You can replace a captured point by long-pressing another location until you're happy with the placement. The plus-marker icon captures your current position.&lt;br/&gt; &lt;strong&gt;Which point?&lt;/strong&gt;&lt;br/&gt;The point can be your current position, but it doesn't have to be. The widget will be used if we want to know a location other than your own, e.g. which site you intend to survey, or the remote location of an incident.&lt;br/&gt; &lt;strong&gt;Save and exit&lt;/strong&gt;&lt;br/&gt;Press the save button at the lower right.</value>
+          </text>
+          <text id="/data/location/location_problems:label">
+            <value>Any problems with location capture?</value>
+          </text>
+          <text id="/data/location/location_problems:hint">
+            <value>Tell us about anything that went wrong.</value>
+          </text>
+          <text id="/data/photos:label">
+            <value>Photos</value>
+          </text>
+          <text id="/data/photos/photo:label">
+            <value>Take a photo</value>
+          </text>
+          <text id="/data/photos/photo:hint">
+            <value>Bonus points for silly photos. Follow the guidance!</value>
+            <value form="guidance">&lt;strong&gt;Landscape&lt;/strong&gt;&lt;br/&gt;We prefer landscape (horizontal) photos, because they display better on monitors. Unless you have a good reason to take a portrait (vertical) photo, flip the device sideways to take a landscape photo.&lt;br/&gt; &lt;strong&gt;Occasion&lt;/strong&gt;&lt;br/&gt;Unless it's too dark, or conditions otherwise prevent you from taking a clear photo, please always take a photo if the form asks for one. Photos are brilliant to answer QA questions like unsure species or surveyed sites. Taking a photo we don't need costs a few seconds, but skipping a photo we would have needed cannot be recovered. Make your sweat count and always take a photo!&lt;br/&gt; &lt;strong&gt;Sun angle&lt;/strong&gt;&lt;br/&gt;Position yourself so that the sun is at an optimal angle, and sun/shade shows the best detail.&lt;br/&gt; &lt;strong&gt;Reference&lt;/strong&gt;&lt;br/&gt;Turtle tracks always need a clearly visible length reference. Place the taped yardstick across the track as shown in training. Tracks without length reference are hard to identify from photos. If showing anything else (e.g. excavated eggs), include the whiteboard and write on it what the photo shows.&lt;br/&gt; &lt;strong&gt;Location tags&lt;/strong&gt;&lt;br/&gt;Make sure that the camera saves location tags in its settings. This makes photos with a whiteboard like a mini-form. &lt;strong&gt;Photo size&lt;/strong&gt;&lt;br/&gt; We send reduced size images to keep uploads fast. For reference, this is set via&lt;br/&gt;  &amp;#x22EE; &gt; Project settings &gt; Form mgmt &gt; Image size &gt; Medium (2048px).</value>
+          </text>
+          <text id="/data/save_and_send:label">
+            <value>Save and send</value>
+          </text>
+          <text id="/data/save_and_send/save_message:label">
+            <value>Save and send</value>
+          </text>
+          <text id="/data/save_and_send/save_message:hint">
+            <value>Test whether save and send works.</value>
+            <value form="guidance">&lt;strong&gt;Upload a complete submission&lt;/strong&gt;&lt;br/&gt;Swipe or forward the form to the last page, then &quot;save form and exit&quot;. Upload within WiFi to verify that both WiFi and uploads are working.&lt;br/&gt; &lt;strong&gt;Flag for review before upload&lt;/strong&gt;&lt;br/&gt;Append a short problem description to the form name and de-select &quot;Mark as finalized&quot; to mark a form for review before upload. Note: this keeps the submission on the device until reviewed and uploaded. Do this only if the coordinator has regular access to the device. In remote locations, we prefer to have the form uploaded.</value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" jr:preload="uid"/>
+      <bind nodeset="/data/start_geopoint" type="geopoint"/>
+      <odk:setgeopoint ref="/data/start_geopoint" event="odk-instance-first-load"/>
+      <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/data/metadata_repeat/guidance_tutorial" type="string" readonly="true()"/>
+      <bind nodeset="/data/metadata_repeat/username_repeat" type="string" readonly="true()" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/metadata_repeat/current_time" type="dateTime" readonly="true()" calculate="now()"/>
+      <bind nodeset="/data/metadata_repeat/device_label" type="string"/>
+      <bind nodeset="/data/metadata_repeat/needs_service" type="select"/>
+      <bind nodeset="/data/metadata_repeat/other_damage" type="string"/>
+      <bind nodeset="/data/location/location_gps" type="geopoint"/>
+      <bind nodeset="/data/location/gps_works" type="select1"/>
+      <bind nodeset="/data/location/location_manual" type="geopoint"/>
+      <bind nodeset="/data/location/location_problems" type="string"/>
+      <bind nodeset="/data/photos/photo" type="binary"/>
+      <bind nodeset="/data/save_and_send/save_message" type="string" readonly="true()"/>
+      <bind nodeset="/data/end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/data/metadata_repeat" appearance="field-list">
+      <label ref="jr:itext('/data/metadata_repeat:label')"/>
+      <input ref="/data/metadata_repeat/guidance_tutorial">
+        <label ref="jr:itext('/data/metadata_repeat/guidance_tutorial:label')"/>
+        <hint ref="jr:itext('/data/metadata_repeat/guidance_tutorial:hint')"/>
+      </input>
+      <input ref="/data/metadata_repeat/username_repeat">
+        <label ref="jr:itext('/data/metadata_repeat/username_repeat:label')"/>
+        <hint ref="jr:itext('/data/metadata_repeat/username_repeat:hint')"/>
+      </input>
+      <input ref="/data/metadata_repeat/current_time">
+        <label ref="jr:itext('/data/metadata_repeat/current_time:label')"/>
+        <hint ref="jr:itext('/data/metadata_repeat/current_time:hint')"/>
+      </input>
+      <input ref="/data/metadata_repeat/device_label">
+        <label ref="jr:itext('/data/metadata_repeat/device_label:label')"/>
+        <hint ref="jr:itext('/data/metadata_repeat/device_label:hint')"/>
+      </input>
+      <select ref="/data/metadata_repeat/needs_service">
+        <label ref="jr:itext('/data/metadata_repeat/needs_service:label')"/>
+        <hint ref="jr:itext('/data/metadata_repeat/needs_service:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/metadata_repeat/needs_service:option0')"/>
+          <value>screen-protector</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/metadata_repeat/needs_service:option1')"/>
+          <value>screen-cracked</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/metadata_repeat/needs_service:option2')"/>
+          <value>sleeve-damaged</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/metadata_repeat/needs_service:option3')"/>
+          <value>system-update</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/metadata_repeat/needs_service:option4')"/>
+          <value>length-reference-missing</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/metadata_repeat/needs_service:option5')"/>
+          <value>neoprene-pouch-missing</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/metadata_repeat/needs_service:option6')"/>
+          <value>writing-board-missing</value>
+        </item>
+      </select>
+      <input ref="/data/metadata_repeat/other_damage">
+        <label ref="jr:itext('/data/metadata_repeat/other_damage:label')"/>
+      </input>
+    </group>
+    <group ref="/data/location" appearance="field-list">
+      <label ref="jr:itext('/data/location:label')"/>
+      <input ref="/data/location/location_gps">
+        <label ref="jr:itext('/data/location/location_gps:label')"/>
+        <hint ref="jr:itext('/data/location/location_gps:hint')"/>
+      </input>
+      <select1 ref="/data/location/gps_works">
+        <label ref="jr:itext('/data/location/gps_works:label')"/>
+        <item>
+          <label ref="jr:itext('/data/location/gps_works:option0')"/>
+          <value>yes</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/location/gps_works:option1')"/>
+          <value>auto-save-longer-than-10s</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/location/gps_works:option2')"/>
+          <value>manual-save</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/location/gps_works:option3')"/>
+          <value>no-gps-fix</value>
+        </item>
+      </select1>
+      <input ref="/data/location/location_manual" appearance="placement-map">
+        <label ref="jr:itext('/data/location/location_manual:label')"/>
+        <hint ref="jr:itext('/data/location/location_manual:hint')"/>
+      </input>
+      <input ref="/data/location/location_problems">
+        <label ref="jr:itext('/data/location/location_problems:label')"/>
+        <hint ref="jr:itext('/data/location/location_problems:hint')"/>
+      </input>
+    </group>
+    <group ref="/data/photos" appearance="field-list">
+      <label ref="jr:itext('/data/photos:label')"/>
+      <upload ref="/data/photos/photo" mediatype="image/*">
+        <label ref="jr:itext('/data/photos/photo:label')"/>
+        <hint ref="jr:itext('/data/photos/photo:hint')"/>
+      </upload>
+    </group>
+    <group ref="/data/save_and_send" appearance="field-list">
+      <label ref="jr:itext('/data/save_and_send:label')"/>
+      <input ref="/data/save_and_send/save_message">
+        <label ref="jr:itext('/data/save_and_send/save_message:label')"/>
+        <hint ref="jr:itext('/data/save_and_send/save_message:hint')"/>
+      </input>
+    </group>
+  </h:body>
+</h:html>

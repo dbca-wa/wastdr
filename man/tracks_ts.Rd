@@ -4,18 +4,28 @@
 \alias{tracks_ts}
 \title{Plot of nesting_type_by_season_day_species over time}
 \usage{
-tracks_ts(data, surveys, local_dir = ".", placename = "", prefix = "")
+tracks_ts(
+  data,
+  surveys,
+  local_dir = here::here(),
+  placename = "",
+  prefix = "",
+  export = FALSE
+)
 }
 \arguments{
 \item{data}{The output of \code{parse_turtle_nest_encounters}.}
 
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
 
-\item{local_dir}{A local directory to save the plot to, default: ".".}
+\item{local_dir}{A local directory to save the plot to,
+default: \code{here::here()}.}
 
 \item{placename}{(string) The place name, used in labels.}
 
 \item{prefix}{(string) A prefix for the filename. Default: ""}
+
+\item{export}{Whether to export the figure as a file, default: FALSE}
 }
 \value{
 A ggplot2 object. Saves the plot to .png.
@@ -27,6 +37,7 @@ Plot of nesting_type_by_season_day_species over time
 Other wastd: 
 \code{\link{add_nest_labels}()},
 \code{\link{disturbance_by_season}()},
+\code{\link{duplicate_surveys}()},
 \code{\link{filter_alive}()},
 \code{\link{filter_dead}()},
 \code{\link{filter_disturbance}()},

@@ -179,18 +179,21 @@ wastd_data$animals %>% filter_dead() %>% map_mwi(sites = wastd_data$sites)
 
 # Surveys
 
+All plots can be exported as a PNG file with `export = TRUE`.
+
 ```{r surveys, fig.width=7}
+pl <- "Western Australia"
+pr <- "WA"
+
 wastd_data$surveys %>% surveys_per_site_name_and_date() %>% rt
 wastd_data$surveys %>% survey_hours_per_site_name_and_date() %>% rt
 wastd_data$surveys %>% survey_hours_per_person() %>% rt
 wastd_data$surveys %>% list_survey_count()
-wastd_data$surveys %>% plot_survey_count()
+wastd_data$surveys %>% plot_survey_count(placename = pl, prefix = pr, export = FALSE)
 wastd_data$surveys %>% list_survey_effort()
-wastd_data$surveys %>% plot_survey_effort()
-wastd_data$surveys %>%
-  survey_hours_heatmap(placename = "All the places", prefix = "TEST")
-wastd_data$surveys %>%
-  survey_count_heatmap(placename = "All the places", prefix = "TEST")
+wastd_data$surveys %>% plot_survey_effort(placename = pl, prefix = pr, export = FALSE)
+wastd_data$surveys %>% survey_hours_heatmap(placename = pl, prefix = pr, export = FALSE)
+wastd_data$surveys %>% survey_count_heatmap(placename = pl, prefix = pr, export = FALSE)
 wastd_data$surveys %>% survey_season_stats() %>% rt
 wastd_data$surveys %>% survey_season_site_stats() %>% rt
 wastd_data$surveys %>% survey_show_detail() %>% rt
@@ -202,4 +205,17 @@ QA products are part of the ETL pipeline in R package
 [etlTurtleNesting](https://github.com/dbca-wa/etlTurtleNesting).
 
 Currently, there are QA reports for user mapping as well as sites and surveys.
+
+## Duplicate Surveys
+Sites are expected to be surveyed not more than once daily with the exception
+of turtle tagging, where a morning survey and night tagging can happen legitimately
+on the same calendar date.
+
+QA operators will want to open each link from this list of potential duplicate
+surveys, inspect their details, then decide on whether to make one the main survey
+and close others as duplicates with the "make production" button.
+```{r}
+wastd_data$surveys %>% wastdr::duplicate_surveys() %>% rt
+```
+
 

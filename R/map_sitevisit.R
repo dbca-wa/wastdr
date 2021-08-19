@@ -65,7 +65,6 @@ map_sv_odkc <- function(svs,
 
 <img class="d-block w-100" alt="Photo" src="{site_visit_site_conditions %||% ""}"></img>
     '),
-
       group = "Site Visit Start",
       clusterOptions = co
     ) %>%

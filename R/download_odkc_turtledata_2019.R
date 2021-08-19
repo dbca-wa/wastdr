@@ -470,7 +470,7 @@ download_odkc_turtledata_2019 <-
       dplyr::transmute(site_id = pk, site_name = name) %>%
       sf::st_join(areas)
 
-    mwi <- #dplyr::bind_rows(mwi_prod, mwi_extra) %>%
+    mwi <- # dplyr::bind_rows(mwi_prod, mwi_extra) %>%
       mwi_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "incident_observed_at_") %>%
       wastdr::add_dates(parse_date = FALSE)
@@ -487,17 +487,17 @@ download_odkc_turtledata_2019 <-
       wastdr::join_tsc_sites(sites, prefix = "encounter_observed_at_") %>%
       wastdr::add_dates(parse_date = FALSE)
 
-    svs <- #dplyr::bind_rows(svs_prod, svs_extra) %>%
+    svs <- # dplyr::bind_rows(svs_prod, svs_extra) %>%
       svs_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
       wastdr::add_dates(date_col = "survey_start_time", parse_date = FALSE)
 
-    sve <- #dplyr::bind_rows(sve_prod, sve_extra) %>%
+    sve <- # dplyr::bind_rows(sve_prod, sve_extra) %>%
       sve_prod %>%
       wastdr::join_tsc_sites(sites, prefix = "site_visit_location_") %>%
       wastdr::add_dates(date_col = "survey_end_time", parse_date = FALSE)
 
-    dist <- #dplyr::bind_rows(dist_prod, dist_extra) %>%
+    dist <- # dplyr::bind_rows(dist_prod, dist_extra) %>%
       dist_prod %>%
       wastdr::join_tsc_sites(sites,
         prefix = "disturbanceobservation_location_"

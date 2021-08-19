@@ -4,14 +4,25 @@
 \alias{plot_survey_effort}
 \title{Plot the surveyed hours from the output of \code{parse_surveys}}
 \usage{
-plot_survey_effort(surveys, placename = "", prefix = "")
+plot_survey_effort(
+  surveys,
+  local_dir = here::here(),
+  placename = "",
+  prefix = "",
+  export = FALSE
+)
 }
 \arguments{
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
 
+\item{local_dir}{A local directory to save the plot to,
+default: \code{here::here()}.}
+
 \item{placename}{(string) The place name, used in labels.}
 
 \item{prefix}{(string) A prefix for the filename. Default: ""}
+
+\item{export}{Whether to export the figure as a file, default: FALSE}
 }
 \description{
 \lifecycle{stable}
@@ -20,6 +31,7 @@ plot_survey_effort(surveys, placename = "", prefix = "")
 Other wastd: 
 \code{\link{add_nest_labels}()},
 \code{\link{disturbance_by_season}()},
+\code{\link{duplicate_surveys}()},
 \code{\link{filter_alive}()},
 \code{\link{filter_dead}()},
 \code{\link{filter_disturbance}()},

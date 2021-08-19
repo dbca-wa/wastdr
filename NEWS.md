@@ -3,6 +3,15 @@
 ## Minor fixes
 ## Docs
 ## Data
+## Maintenance
+
+# wastdr 0.7.1
+## Major fixes
+## Minor fixes
+## Docs
+## Data
+## Maintenance
+* Dependency versions updated
 
 # wastdr 0.7.0
 ## Major fixes

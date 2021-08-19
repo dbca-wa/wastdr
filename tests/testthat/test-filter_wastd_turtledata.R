@@ -1,7 +1,11 @@
 test_that("filter_wastd_turtledata returns a valid wastd_data object", {
   data("wastd_data")
   # Get an area_name that exists in the packaged data
-  an <- wastd_data$tracks %>% tidyr::drop_na(area_name) %>% dplyr::select(area_name) %>% .[1,] %>% unlist()
+  an <- wastd_data$tracks %>%
+    tidyr::drop_na(area_name) %>%
+    dplyr::select(area_name) %>%
+    .[1, ] %>%
+    unlist()
   x <- wastd_data %>% filter_wastd_turtledata(area_name = an)
   testthat::expect_s3_class(x, "wastd_data")
 })

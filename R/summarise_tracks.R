@@ -354,9 +354,8 @@ track_success_by_species <- function(track_success) {
 #' @param speciesname The species name, e.g. "natator-depressus"
 #' @template param-placename
 #' @template param-prefix
-#' @param local_dir The dir to save the plot to as PNG,
-#'   default: \code{here::here()}
-#' @param export Whether to export the figure as a file, default: FALSE
+#' @template param-local_dir
+#' @template param-export
 #' @export
 #' @family wastd
 #' @examples
@@ -369,7 +368,10 @@ ggplot_track_success_by_date <- function(data,
                                          prefix = "",
                                          local_dir = here::here(),
                                          export = FALSE) {
-  data %>%
+  fname <- glue::glue(
+    "{prefix}_track_effort_{wastdr::urlize(placename)}_{speciesname}.png"
+  )
+  plt <- data %>%
     dplyr::filter(species == speciesname) %>%
     ggplot2::ggplot(ggplot2::aes(x = tdate_as_fdate(turtle_date))) +
     ggplot2::facet_grid(rows = ggplot2::vars(season), scales = "free_x") +
@@ -395,22 +397,18 @@ ggplot_track_success_by_date <- function(data,
       }
     ) +
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
-    ggplot2::theme_classic() +
-    {
-      if (export == TRUE) {
-        ggplot2::ggsave(fs::path(
-          local_dir,
-          glue::glue(
-            "{prefix}_track_effort_",
-            "{wastdr::urlize(placename)}_{speciesname}.png"
-          )
-        ),
-        width = 10,
-        height = 6
-        )
-      }
-    } +
-    NULL
+    ggplot2::theme_classic()
+
+  if (export == TRUE) {
+    ggplot2::ggsave(
+      plot = plt,
+      filename = fname,
+      path = local_dir,
+      width = 10,
+      height = 6
+    )
+  }
+  plt
 }
 
 #' Plot the track success rate (relative numbers) of a given species as time
@@ -422,9 +420,8 @@ ggplot_track_success_by_date <- function(data,
 #' @param speciesname The species name, e.g. "natator-depressus"
 #' @template param-placename
 #' @template param-prefix
-#' @param local_dir The dir to save the plot to as PNG,
-#'   default: \code{here::here()}
-#' @param export Whether to export the figure as a file, default: FALSE
+#' @template param-local_dir
+#' @template param-export
 #' @export
 #' @family wastd
 #' @examples
@@ -437,7 +434,11 @@ ggplot_track_successrate_by_date <- function(tracks,
                                              prefix = "",
                                              local_dir = here::here(),
                                              export = FALSE) {
-  tracks %>%
+  fname <- glue::glue(
+    "{prefix}_track_success_",
+    "{wastdr::urlize(placename)}_{speciesname}.png"
+  )
+  plt <- tracks %>%
     dplyr::filter(species == speciesname) %>%
     ggplot2::ggplot(ggplot2::aes(x = tdate_as_fdate(turtle_date))) +
     ggplot2::facet_grid(rows = ggplot2::vars(season), scales = "free_x") +
@@ -457,22 +458,18 @@ ggplot_track_successrate_by_date <- function(tracks,
       }
     ) +
     ggplot2::scale_y_continuous(limits = c(0, NA)) +
-    ggplot2::theme_classic() +
-    {
-      if (export == TRUE) {
-        ggplot2::ggsave(fs::path(
-          local_dir,
-          glue::glue(
-            "{prefix}_track_success_",
-            "{wastdr::urlize(placename)}_{speciesname}.png"
-          )
-        ),
-        width = 10,
-        height = 6
-        )
-      }
-    } +
-    NULL
+    ggplot2::theme_classic()
+
+  if (export == TRUE) {
+    ggplot2::ggsave(
+      plot = plt,
+      filename = fname,
+      path = local_dir,
+      width = 10,
+      height = 6
+    )
+  }
+  plt
 }
 
 #------------------------------------------------------------------------------#

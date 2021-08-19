@@ -20,8 +20,7 @@
 #' * `updated` The WAStD API response for all updated records
 #' * `skipped` The original records for all skipped records
 wastd_create_update_skip <-
-  function(
-           data_create,
+  function(data_create,
            data_update,
            data_skip,
            update_existing = FALSE,
@@ -73,8 +72,7 @@ wastd_create_update_skip <-
         "Updated {nrow(data_update)} {label}" %>%
           glue::glue() %>%
           wastdr_msg_success()
-      }
-      else {
+      } else {
         "Retained {nrow(data_update)} existing and uncurated {label}" %>%
           glue::glue() %>%
           wastdr_msg_noop()

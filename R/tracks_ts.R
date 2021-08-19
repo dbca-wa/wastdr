@@ -2,20 +2,22 @@
 #'
 #' @param data The output of \code{parse_turtle_nest_encounters}.
 #' @template param-surveys
-#' @param local_dir A local directory to save the plot to, default: ".".
+#' @template param-local_dir
 #' @template param-placename
 #' @template param-prefix
+#' @template param-export
 #' @return A ggplot2 object. Saves the plot to .png.
 #' @export
 #' @family wastd
 tracks_ts <- function(data,
                       surveys,
-                      local_dir = ".",
+                      local_dir = here::here(),
                       placename = "",
-                      prefix = "") {
+                      prefix = "",
+                      export = FALSE) {
   fname <-
     glue::glue("{prefix}_track_abundance_{wastdr::urlize(placename)}.png")
-  data %>%
+  plt <- data %>%
     wastdr::nesting_type_by_season_day_species(.) %>%
     {
       ggplot2::ggplot() +
@@ -49,9 +51,19 @@ tracks_ts <- function(data,
         ggplot2::ylab("Number of turtle tracks or nests") +
         ggplot2::xlab("Turtle date") +
         ggplot2::guides(colour = ggplot2::guide_legend(title = "Nest type")) +
-        ggplot2::theme_classic() +
-        ggplot2::ggsave(fs::path(local_dir, fname), width = 10, height = 6)
+        ggplot2::theme_classic()
     }
+
+  if (export == TRUE) {
+    ggplot2::ggsave(
+      plot = plt,
+      filename = fname,
+      path = local_dir,
+      width = 10,
+      height = 6
+    )
+  }
+  plt
 }
 
 # usethis::use_test("tracks_ts")

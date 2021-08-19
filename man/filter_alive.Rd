@@ -33,6 +33,7 @@ odkc_data$mwi \%>\%
 Other wastd: 
 \code{\link{add_nest_labels}()},
 \code{\link{disturbance_by_season}()},
+\code{\link{duplicate_surveys}()},
 \code{\link{filter_dead}()},
 \code{\link{filter_disturbance}()},
 \code{\link{filter_predation}()},

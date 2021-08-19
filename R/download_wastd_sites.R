@@ -4,8 +4,7 @@
 #' @return An `sf` dataframe of WAStD Sites joined to Locality details.
 #' @export
 #' @family api
-download_wastd_sites <- function(
-                                 api_url = wastdr::get_wastdr_api_url(),
+download_wastd_sites <- function(api_url = wastdr::get_wastdr_api_url(),
                                  api_token = wastdr::get_wastdr_api_token(),
                                  verbose = wastdr::get_wastdr_verbose()) {
   areas_sf <- wastdr::wastd_GET("area") %>%

@@ -96,14 +96,15 @@ jobs:
           Rscript -e "if (!requireNamespace('remotes')) install.packages('remotes', type = 'source')"
           Rscript -e "if (getRversion() < '3.2' && !requireNamespace('curl')) install.packages('curl', type = 'source')"
 
-      - name: "[Custom block] [Stage] [Linux] Install system libs"
+      - name: "[Custom block] [Linux] Install system libs"
         if: runner.os == 'Linux'
         run: |
           sudo apt install libcurl4-openssl-dev libgit2-dev libudunits2-dev \
           libgdal-dev libproj-dev libgeos-c1v5 libgeos-dev libnode-dev \
-          libprotobuf-dev protobuf-compiler libjq-dev libharfbuzz-dev libfribidi-dev
+          libprotobuf-dev protobuf-compiler libjq-dev libharfbuzz-dev \
+          libfribidi-dev libxml2-dev libicu-dev libv8-dev
 
-      - name: "[Custom block] [Stage] [macOS] Install libgit2"
+      - name: "[Custom block] [macOS] Install libgit2"
         if: runner.os == 'macOS'
         run: brew install libgit2 udunits
 

@@ -10,8 +10,7 @@
 #' @return The httr::content of a GET request to the WFS GetFeature endpoint
 #' @export
 #' @family wacensus
-gs_getFeature <- function(
-                          layer_name = "public:herbie_hbvsupra_public",
+gs_getFeature <- function(layer_name = "public:herbie_hbvsupra_public",
                           url = "https://kmi.dbca.wa.gov.au/geoserver/dpaw/ows") {
   ua <- httr::user_agent("http://github.com/dbca-wa/scarab-scripts")
   url <- "https://kmi.dbca.wa.gov.au/geoserver/public/ows"

@@ -23,8 +23,8 @@ ggplot_track_successrate_by_date(
 
 \item{prefix}{(string) A prefix for the filename. Default: ""}
 
-\item{local_dir}{The dir to save the plot to as PNG,
-default: \code{here::here()}}
+\item{local_dir}{A local directory to save the plot to,
+default: \code{here::here()}.}
 
 \item{export}{Whether to export the figure as a file, default: FALSE}
 }
@@ -40,6 +40,7 @@ track_success(wastd_data$tracks) \%>\% ggplot_track_successrate_by_date(sp)
 Other wastd: 
 \code{\link{add_nest_labels}()},
 \code{\link{disturbance_by_season}()},
+\code{\link{duplicate_surveys}()},
 \code{\link{filter_alive}()},
 \code{\link{filter_dead}()},
 \code{\link{filter_disturbance}()},

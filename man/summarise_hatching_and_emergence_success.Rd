@@ -35,6 +35,7 @@ summarise_hatching_and_emergence_success(wastd_data$nest_excavations)
 Other wastd: 
 \code{\link{add_nest_labels}()},
 \code{\link{disturbance_by_season}()},
+\code{\link{duplicate_surveys}()},
 \code{\link{filter_alive}()},
 \code{\link{filter_dead}()},
 \code{\link{filter_disturbance}()},

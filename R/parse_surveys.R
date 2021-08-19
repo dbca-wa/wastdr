@@ -52,8 +52,7 @@
 #' }
 #' @export
 #' @family wastd
-parse_surveys <- function(
-                          wastd_api_response,
+parse_surveys <- function(wastd_api_response,
                           wastd_url = wastdr::get_wastd_url()) {
   wastd_api_response$data %>%
     {

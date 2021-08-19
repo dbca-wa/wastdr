@@ -29,6 +29,7 @@ survey_ground_covered(wastd_data$surveys, one_site_id, some_kms, one_season)
 Other wastd: 
 \code{\link{add_nest_labels}()},
 \code{\link{disturbance_by_season}()},
+\code{\link{duplicate_surveys}()},
 \code{\link{filter_alive}()},
 \code{\link{filter_dead}()},
 \code{\link{filter_disturbance}()},

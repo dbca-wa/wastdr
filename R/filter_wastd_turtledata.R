@@ -69,7 +69,6 @@ filter_wastd_turtledata <- function(x,
   structure(
     list(
       downloaded_on = x$downloaded_on,
-
       areas = x$areas,
       sites = x$sites %>% my_filter(),
       surveys = x$surveys %>%
@@ -78,12 +77,10 @@ filter_wastd_turtledata <- function(x,
           by = c("area_id", "area_name", "site_id", "site_name")
         ) %>%
         my_filter(),
-
       animals = x$animals %>% my_filter(),
       turtle_dmg = x$turtle_dmg %>% obs_filter(),
       turtle_tags = x$turtle_tags %>% obs_filter(),
       turtle_morph = x$turtle_morph %>% obs_filter(),
-
       tracks = x$tracks %>% my_filter(),
       nest_dist = x$nest_dist %>% obs_filter(),
       nest_tags = x$nest_tags %>% obs_filter(),
@@ -93,11 +90,9 @@ filter_wastd_turtledata <- function(x,
       nest_fan_outliers = x$nest_fan_outliers %>% obs_filter(),
       nest_lightsources = x$nest_lightsources %>% obs_filter(),
       nest_loggers = x$nest_loggers %>% obs_filter(),
-
       linetx = x$linetx %>% my_filter(), # TODO: filter doesn't work yet
       track_tally = x$track_tally %>% obs_filter(),
       disturbance_tally = x$disturbance_tally %>% obs_filter(),
-
       loggers = x$loggers %>% my_filter()
     ),
     class = "wastd_data"

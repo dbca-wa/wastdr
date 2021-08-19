@@ -9,16 +9,14 @@ exclude_training_species <- . %>%
   {
     if ("species" %in% names(.)) {
       dplyr::filter(., species != "corolla-corolla")
-    }
-    else {
+    } else {
       .
     }
   } %>%
   {
     if ("encounter_species" %in% names(.)) {
       dplyr::filter(., encounter_species != "corolla-corolla")
-    }
-    else {
+    } else {
       .
     }
   }
@@ -29,16 +27,14 @@ filter_realspecies <- . %>%
   {
     if ("species" %in% names(.)) {
       dplyr::filter(., species != "corolla-corolla")
-    }
-    else {
+    } else {
       .
     }
   } %>%
   {
     if ("encounter_species" %in% names(.)) {
       dplyr::filter(., encounter_species != "corolla-corolla")
-    }
-    else {
+    } else {
       .
     }
   }

@@ -90,7 +90,6 @@ Confidence: {humanize(disturbanceobservation_disturbance_cause_confidence)}.
 src="{ifelse(!is.na({disturbanceobservation_photo_disturbance}),
 disturbanceobservation_photo_disturbance, "")}"></img><br/>
           '),
-
           group = humanize(df),
           clusterOptions = co
         )

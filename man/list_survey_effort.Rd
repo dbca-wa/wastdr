@@ -10,7 +10,7 @@ list_survey_effort(surveys, placename = "")
 \arguments{
 \item{surveys}{(tibble) The output of \code{parse_surveys}.}
 
-\item{placename}{(string) The place name, used in labels. Default: ""}
+\item{placename}{(string) The place name, used in labels.}
 }
 \description{
 \lifecycle{stable}
@@ -19,6 +19,7 @@ list_survey_effort(surveys, placename = "")
 Other wastd: 
 \code{\link{add_nest_labels}()},
 \code{\link{disturbance_by_season}()},
+\code{\link{duplicate_surveys}()},
 \code{\link{filter_alive}()},
 \code{\link{filter_dead}()},
 \code{\link{filter_disturbance}()},
