@@ -1,17 +1,18 @@
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:odk="http://www.opendatakit.org/xforms">
   <h:head>
     <h:title>Marine Wildlife Incident</h:title>
     <model>
       <instance>
-        <data id="Marine-Wildlife-Incident">
+        <data id="Marine-Wildlife-Incident" version="1629442019">
           <meta>
             <instanceID/>
           </meta>
+          <start_geopoint/>
           <observation_start_time/>
-          <reporter/>
           <device_id/>
-          <phone_number/>
+          <reporter/>
           <incident>
+            <reporter_repeat/>
             <observed_at/>
             <observed_at_manual/>
             <location_comment/>
@@ -129,17 +130,26 @@
           <text id="/data/incident:label">
             <value>Incident</value>
           </text>
+          <text id="/data/incident/reporter_repeat:label">
+            <value>Is this your name?</value>
+          </text>
+          <text id="/data/incident/reporter_repeat:hint">
+            <value>If not, tap here to learn how to set the Username.</value>
+            <value form="guidance">&lt;strong&gt;Setting the Username&lt;/strong&gt;&lt;br/&gt; &amp;#x22EE; &gt; Settings &gt; User and device &gt; Form metadata &gt; Username&lt;br/&gt; &lt;strong&gt;Name format&lt;/strong&gt;&lt;br/&gt;The Username should be your full Given and Surname, e.g. Joe Bloggs. Avoid nicknames, abbreviations, or multiple names. Provide only and completely the name of the person who is solely or mainly responsible for data entry. Team members go into a separate field in form &quot;Site Visit Start&quot;.&lt;br/&gt; &lt;strong&gt;Now what?&lt;/strong&gt;&lt;br/&gt;Exit this form with the device's back button and &quot;ignore changes&quot;, then fill it again to see the updated Username. Subsequent forms will record this name.&lt;br/&gt;</value>
+          </text>
           <text id="/data/incident/observed_at:label">
             <value>Observer location</value>
           </text>
           <text id="/data/incident/observed_at:hint">
             <value>Stand next to animal if possible</value>
+            <value form="guidance">&lt;strong&gt;Accuracy&lt;/strong&gt;&lt;br/&gt;You can save the captured point as soon as an accuracy is shown. If the accuracy falls below 5m, the widget will auto-save.  If the accuracy stalls above the auto-save threshold, it is OK to save. Aim for an accuracy below 20m.&lt;br/&gt; &lt;strong&gt;Speed&lt;/strong&gt;&lt;br/&gt;If the GPS consistently takes more than 10s to auto-save, let your coordinator know.&lt;br/&gt; &lt;strong&gt;Warm-up&lt;/strong&gt;&lt;br/&gt;This form warms up the GPS by capturing a silent initial location, which pops up a &quot;toast&quot; style warning about being tracked. It is OK to ignore this warning.</value>
           </text>
           <text id="/data/incident/observed_at_manual:label">
             <value>Animal location (manual)</value>
           </text>
           <text id="/data/incident/observed_at_manual:hint">
             <value>Enter if not on site</value>
+            <value form="guidance">&lt;strong&gt;Pan and zoom&lt;/strong&gt;&lt;br/&gt;This map will auto-zoom to your current location once GPS has a fix. You can pan and zoom elsewhere, then reset the map with the crosshair icon. &lt;br/&gt; &lt;strong&gt;Layers&lt;/strong&gt;&lt;br/&gt;Select an offline reference layer for the intended fieldwork location from the layer button. The map will remember chosen layers across all forms. These layers provide aerial imagery as well as known site names and boundaries.&lt;br/&gt; &lt;strong&gt;Capture a new point&lt;/strong&gt;&lt;br/&gt;Long-press any point on the map to record a point. You can replace a captured point by long-pressing another location until you're happy with the placement. The plus-marker icon captures your current position.&lt;br/&gt; &lt;strong&gt;Which point?&lt;/strong&gt;&lt;br/&gt;The point can be your current position, but it doesn't have to be. The widget will be used if we want to know a location other than your own, e.g. which site you intend to survey, or the remote location of an incident.&lt;br/&gt; &lt;strong&gt;Save and exit&lt;/strong&gt;&lt;br/&gt;Press the save button at the lower right.</value>
           </text>
           <text id="/data/incident/location_comment:label">
             <value>Location comment</value>
@@ -1052,11 +1062,13 @@
           </text>
         </translation>
       </itext>
-      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" jr:preload="uid"/>
+      <bind nodeset="/data/start_geopoint" type="geopoint"/>
+      <odk:setgeopoint ref="/data/start_geopoint" event="odk-instance-first-load"/>
       <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
-      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
       <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
-      <bind nodeset="/data/phone_number" type="string" jr:preload="property" jr:preloadParams="phonenumber"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/incident/reporter_repeat" type="string" readonly="true()" calculate="once(/data/reporter)"/>
       <bind nodeset="/data/incident/observed_at" type="geopoint" required="true()"/>
       <bind nodeset="/data/incident/observed_at_manual" type="geopoint"/>
       <bind nodeset="/data/incident/location_comment" type="string" jr:constraintMsg="jr:itext('/data/incident/location_comment:constraintMsg')"/>
@@ -1114,6 +1126,10 @@
   <h:body>
     <group ref="/data/incident" appearance="field-list">
       <label ref="jr:itext('/data/incident:label')"/>
+      <input ref="/data/incident/reporter_repeat">
+        <label ref="jr:itext('/data/incident/reporter_repeat:label')"/>
+        <hint ref="jr:itext('/data/incident/reporter_repeat:hint')"/>
+      </input>
       <input ref="/data/incident/observed_at">
         <label ref="jr:itext('/data/incident/observed_at:label')"/>
         <hint ref="jr:itext('/data/incident/observed_at:hint')"/>

@@ -3,13 +3,14 @@
     <h:title>Soundcheck</h:title>
     <model>
       <instance>
-        <data id="Soundcheck" version="1629108984">
+        <data id="Soundcheck" version="1629441956">
           <meta>
             <instanceID/>
           </meta>
           <start_geopoint/>
-          <device_id/>
           <start_time/>
+          <device_id/>
+          <username/>
           <metadata_repeat>
             <guidance_tutorial/>
             <username_repeat/>
@@ -159,10 +160,11 @@
       <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" jr:preload="uid"/>
       <bind nodeset="/data/start_geopoint" type="geopoint"/>
       <odk:setgeopoint ref="/data/start_geopoint" event="odk-instance-first-load"/>
-      <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
       <bind nodeset="/data/start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/username" type="string" jr:preload="property" jr:preloadParams="username"/>
       <bind nodeset="/data/metadata_repeat/guidance_tutorial" type="string" readonly="true()"/>
-      <bind nodeset="/data/metadata_repeat/username_repeat" type="string" readonly="true()" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/metadata_repeat/username_repeat" type="string" readonly="true()" calculate="once(/data/username)"/>
       <bind nodeset="/data/metadata_repeat/current_time" type="dateTime" readonly="true()" calculate="now()"/>
       <bind nodeset="/data/metadata_repeat/device_label" type="string"/>
       <bind nodeset="/data/metadata_repeat/needs_service" type="select"/>

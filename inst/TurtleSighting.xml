@@ -1,15 +1,16 @@
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:odk="http://www.opendatakit.org/xforms">
   <h:head>
     <h:title>Turtle Sighting</h:title>
     <model>
       <instance>
-        <data id="Turtle-Sighting">
+        <data id="Turtle-Sighting" version="1629441864">
           <meta>
             <instanceID/>
           </meta>
+          <start_geopoint/>
           <observation_start_time/>
-          <reporter/>
           <device_id/>
+          <reporter/>
           <encounter>
             <observed_at/>
             <species>
@@ -42,6 +43,7 @@
           </text>
           <text id="/data/encounter/observed_at:hint">
             <value></value>
+            <value form="guidance">&lt;strong&gt;Accuracy&lt;/strong&gt;&lt;br/&gt;You can save the point as soon as an accuracy is shown. If the accuracy falls below 5m, the widget will auto-save.  If the accuracy stalls above the auto-save threshold, it is OK to save. Aim for an accuracy below 20m.&lt;br/&gt; &lt;strong&gt;Speed&lt;/strong&gt;&lt;br/&gt;If the GPS consistently takes more than 10s to auto-save, let your coordinator know.&lt;br/&gt; &lt;strong&gt;Warm-up&lt;/strong&gt;&lt;br/&gt;This form warms up the GPS by capturing a silent initial location, which pops up a &quot;toast&quot; style warning about being tracked. It is OK to ignore this warning.</value>
           </text>
           <text id="/data/encounter/species:label">
             <value>Species</value>
@@ -155,17 +157,20 @@
             <value>NA</value>
           </text>
           <text id="/data/encounter/photo_habitat:label">
-            <value>Photo</value>
+            <value>Habitat</value>
           </text>
           <text id="/data/encounter/photo_habitat:hint">
-            <value>Optional</value>
+            <value>Optional photo of the habitat in landscape aspect</value>
+            <value form="guidance">&lt;strong&gt;Landscape&lt;/strong&gt;&lt;br/&gt;We prefer landscape (horizontal) photos, because they display better on monitors. Unless you have a good reason to take a portrait (vertical) photo, flip the device sideways to take a landscape photo.&lt;br/&gt;</value>
           </text>
         </translation>
       </itext>
-      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" jr:preload="uid"/>
+      <bind nodeset="/data/start_geopoint" type="geopoint"/>
+      <odk:setgeopoint ref="/data/start_geopoint" event="odk-instance-first-load"/>
       <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
-      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
       <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
       <bind nodeset="/data/encounter/observed_at" type="geopoint" required="true()"/>
       <bind nodeset="/data/encounter/species" type="select1" required="true()"/>
       <bind nodeset="/data/encounter/sex" type="select1" required="true()"/>

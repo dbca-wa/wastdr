@@ -1,19 +1,20 @@
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:odk="http://www.opendatakit.org/xforms">
   <h:head>
     <h:title>Site Visit End</h:title>
     <model>
       <instance>
-        <data id="Site-Visit-End">
+        <data id="Site-Visit-End" version="1629442092">
           <meta>
             <instanceID/>
           </meta>
+          <start_geopoint/>
           <survey_end_time/>
-          <reporter/>
           <device_id/>
+          <reporter/>
           <site_visit>
-            <location/>
             <site_conditions/>
             <comments/>
+            <location/>
           </site_visit>
           <end_time/>
         </data>
@@ -23,17 +24,12 @@
           <text id="/data/site_visit:label">
             <value>Site Visit Details</value>
           </text>
-          <text id="/data/site_visit/location:label">
-            <value>Location</value>
-          </text>
-          <text id="/data/site_visit/location:hint">
-            <value>Where are you now?</value>
-          </text>
           <text id="/data/site_visit/site_conditions:label">
             <value>Site conditions</value>
           </text>
           <text id="/data/site_visit/site_conditions:hint">
             <value>Take photo in landscape mode</value>
+            <value form="guidance">&lt;strong&gt;Landscape&lt;/strong&gt;&lt;br/&gt;We prefer landscape (horizontal) photos, because they display better on monitors. Unless you have a good reason to take a portrait (vertical) photo, flip the device sideways to take a landscape photo.&lt;br/&gt;</value>
           </text>
           <text id="/data/site_visit/comments:label">
             <value>Comments</value>
@@ -41,25 +37,30 @@
           <text id="/data/site_visit/comments:hint">
             <value>Conditions impacting protocol, irregularities</value>
           </text>
+          <text id="/data/site_visit/location:label">
+            <value>Site visited</value>
+          </text>
+          <text id="/data/site_visit/location:hint">
+            <value>Select a point within the site you just visited. Tap to view instructions.</value>
+            <value form="guidance">&lt;strong&gt;Pan and zoom&lt;/strong&gt;&lt;br/&gt;This map will auto-zoom to your current location once GPS has a fix. You can pan and zoom elsewhere, then reset the map with the crosshair icon. &lt;br/&gt; &lt;strong&gt;Layers&lt;/strong&gt;&lt;br/&gt;Select an offline reference layer for the intended fieldwork location from the layer button. The map will remember chosen layers across all forms. These layers provide aerial imagery as well as known site names and boundaries.&lt;br/&gt; &lt;strong&gt;Capture a new point&lt;/strong&gt;&lt;br/&gt;Long-press any point on the map to record a point. You can replace a captured point by long-pressing another location until you're happy with the placement. The plus-marker icon captures your current position.&lt;br/&gt; &lt;strong&gt;Which point?&lt;/strong&gt;&lt;br/&gt;The point can be your current position, but it doesn't have to be. The widget will be used if we want to know a location other than your own, e.g. which site you intend to survey, or the remote location of an incident.&lt;br/&gt; &lt;strong&gt;Save and exit&lt;/strong&gt;&lt;br/&gt;Press the save button at the lower right.</value>
+          </text>
         </translation>
       </itext>
-      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" jr:preload="uid"/>
+      <bind nodeset="/data/start_geopoint" type="geopoint"/>
+      <odk:setgeopoint ref="/data/start_geopoint" event="odk-instance-first-load"/>
       <bind nodeset="/data/survey_end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
-      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
       <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
-      <bind nodeset="/data/site_visit/location" type="geopoint" required="true()"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
       <bind nodeset="/data/site_visit/site_conditions" type="binary"/>
       <bind nodeset="/data/site_visit/comments" type="string"/>
+      <bind nodeset="/data/site_visit/location" type="geopoint" required="true()"/>
       <bind nodeset="/data/end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
     </model>
   </h:head>
   <h:body>
     <group ref="/data/site_visit" appearance="field-list">
       <label ref="jr:itext('/data/site_visit:label')"/>
-      <input ref="/data/site_visit/location">
-        <label ref="jr:itext('/data/site_visit/location:label')"/>
-        <hint ref="jr:itext('/data/site_visit/location:hint')"/>
-      </input>
       <upload ref="/data/site_visit/site_conditions" mediatype="image/*">
         <label ref="jr:itext('/data/site_visit/site_conditions:label')"/>
         <hint ref="jr:itext('/data/site_visit/site_conditions:hint')"/>
@@ -67,6 +68,10 @@
       <input ref="/data/site_visit/comments">
         <label ref="jr:itext('/data/site_visit/comments:label')"/>
         <hint ref="jr:itext('/data/site_visit/comments:hint')"/>
+      </input>
+      <input ref="/data/site_visit/location" appearance="placement-map">
+        <label ref="jr:itext('/data/site_visit/location:label')"/>
+        <hint ref="jr:itext('/data/site_visit/location:hint')"/>
       </input>
     </group>
   </h:body>

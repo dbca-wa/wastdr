@@ -1,23 +1,16 @@
-<h:html
-  xmlns="http://www.w3.org/2002/xforms"
-  xmlns:h="http://www.w3.org/1999/xhtml"
-  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  xmlns:jr="http://openrosa.org/javarosa"
-  xmlns:ev="http://www.w3.org/2001/xml-events"
-  xmlns:odk="http://www.opendatakit.org/xforms"
->
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:odk="http://www.opendatakit.org/xforms">
   <h:head>
     <h:title>Turtle Track or Nest</h:title>
     <model>
       <instance>
-        <data id="Turtle-Track-or-Nest" version="1.4">
+        <data id="Turtle-Track-or-Nest" version="1629442720">
           <meta>
             <instanceID/>
           </meta>
+          <start_geopoint/>
           <observation_start_time/>
-          <start_location />
-          <reporter/>
           <device_id/>
+          <reporter/>
           <details>
             <nest_age>
               fresh
@@ -205,7 +198,8 @@
             <value>Species</value>
           </text>
           <text id="/data/details/species:hint">
-            <value>&quot;Turtle&quot; if unsure</value>
+            <value>Unsure or almost sure? Tap here!</value>
+            <value form="guidance">&lt;strong&gt;Unsure of species?&lt;/strong&gt;&lt;br/&gt;If you are unsure of the species, select &quot;Turtle (species unsure). This lets you take photos and measurements of the turtle track, which allow us to ID the track later on.&lt;br/&gt; &lt;strong&gt;Almost sure of species?&lt;/strong&gt;&lt;br/&gt;If you are almost sure, select &quot;Turtle (species unsure), take photos and measurements, then go back and select the species you think it is. We can verify these track IDs later on. This will result in a valid record, even if you are not 100 percent sure.</value>
           </text>
           <text id="/data/details/species:option0">
             <value>Turtle (species unsure)</value>
@@ -232,7 +226,8 @@
             <value>Track or nest type</value>
           </text>
           <text id="/data/details/nest_type:hint">
-            <value></value>
+            <value>Unsure or almost sure? Tap here!</value>
+            <value form="guidance">&lt;strong&gt;Unsure whether this is a nest?&lt;/strong&gt;&lt;br/&gt;Select &quot;track, checked for nest, unsure if nest&quot;. This lets you take photos of the possible nest, which allow us to ID the nest later on.&lt;br/&gt; &lt;strong&gt;Almost sure of nest?&lt;/strong&gt;&lt;br/&gt;Same as above - select &quot;unsure if nest&quot;, take photos of the nest, then go back and select what you think it is.</value>
           </text>
           <text id="/data/details/nest_type:option0">
             <value>track, not checked for nest</value>
@@ -260,6 +255,7 @@
           </text>
           <text id="/data/details/observed_at:hint">
             <value>Nest or last body pit or track apex</value>
+            <value form="guidance">&lt;strong&gt;Accuracy&lt;/strong&gt;&lt;br/&gt;You can save the captured point as soon as an accuracy is shown. If the accuracy falls below 5m, the widget will auto-save.  If the accuracy stalls above the auto-save threshold, it is OK to save. Aim for an accuracy below 20m.&lt;br/&gt; &lt;strong&gt;Speed&lt;/strong&gt;&lt;br/&gt;If the GPS consistently takes more than 10s to auto-save, let your coordinator know.&lt;br/&gt; &lt;strong&gt;Warm-up&lt;/strong&gt;&lt;br/&gt;This form warms up the GPS by capturing a silent initial location, which pops up a &quot;toast&quot; style warning about being tracked. It is OK to ignore this warning.</value>
           </text>
           <text id="/data/details/observed_at:requiredMsg">
             <value>Location is required</value>
@@ -272,6 +268,9 @@
           </text>
           <text id="/data/track_photos/photo_track_1:hint">
             <value>Place ruler across track as length reference</value>
+          </text>
+          <text id="/data/track_photos/photo_track_1:requiredMsg">
+            <value>Please take a photo of the uptrack</value>
           </text>
           <text id="/data/track_photos/photo_track_2:label">
             <value>Downtrack</value>
@@ -341,6 +340,9 @@
           </text>
           <text id="/data/nest_photos/photo_nest_1:hint">
             <value>Include length reference, landscape aspect</value>
+          </text>
+          <text id="/data/nest_photos/photo_nest_1:requiredMsg">
+            <value>Please take at least one photo of the possible nest</value>
           </text>
           <text id="/data/nest_photos/photo_nest_2:label">
             <value>Possible nest 2</value>
@@ -458,6 +460,9 @@
           </text>
           <text id="/data/disturbanceobservation/photo_disturbance:hint">
             <value>Show disturbance cause and extent</value>
+          </text>
+          <text id="/data/disturbanceobservation/photo_disturbance:requiredMsg">
+            <value>Please take a photo of the disturbance or predator sign</value>
           </text>
           <text id="/data/disturbanceobservation/disturbance_cause:label">
             <value>Disturbance cause</value>
@@ -646,7 +651,8 @@
             <value>Exactly one flipper tag ID if available</value>
           </text>
           <text id="/data/nest_tag/flipper_tag_id:hint">
-            <value></value>
+            <value>No date, no tag ID</value>
+            <value form="guidance">E.g. WB12345</value>
           </text>
           <text id="/data/nest_tag/date_nest_laid:label">
             <value>Calendar date of nesting event if available</value>
@@ -655,10 +661,11 @@
             <value></value>
           </text>
           <text id="/data/nest_tag/tag_label:label">
-            <value>Nest name if no tag and date available</value>
+            <value>Remaining tag label</value>
           </text>
           <text id="/data/nest_tag/tag_label:hint">
-            <value>Enter the date in the field above</value>
+            <value>The remaining tag label minus the date and flipper tag</value>
+            <value form="guidance">Any component of the nest tag label other than the flipper tag and date.</value>
           </text>
           <text id="/data/nest_tag/tag_comments:label">
             <value>Additional info about tag</value>
@@ -668,6 +675,10 @@
           </text>
           <text id="/data/nest_tag/photo_tag:label">
             <value>Photo of tag</value>
+          </text>
+          <text id="/data/nest_tag/photo_tag:hint">
+            <value>Please take a photo if light conditions allow</value>
+            <value form="guidance">This photo is a failsafe against typos or formatting issues of the tag label.</value>
           </text>
           <text id="/data/logger_details:label">
             <value>Logger details</value>
@@ -694,7 +705,8 @@
             <value>Photo of logger ID</value>
           </text>
           <text id="/data/logger_details/photo_logger:hint">
-            <value></value>
+            <value>Please take a photo if light conditions allow</value>
+            <value form="guidance">This photo is a failsafe against typos in the logger ID.</value>
           </text>
           <text id="/data/logger_details/logger_status:label">
             <value>Action undertaken with logger</value>
@@ -735,11 +747,17 @@
           <text id="/data/fan_angles/photo_hatchling_tracks_seawards:hint">
             <value>From 1m behind nest, include length reference</value>
           </text>
+          <text id="/data/fan_angles/photo_hatchling_tracks_seawards:requiredMsg">
+            <value>Please take a photo of fan angles towars sea</value>
+          </text>
           <text id="/data/fan_angles/photo_hatchling_tracks_relief:label">
             <value>Photo from best lighting angle</value>
           </text>
           <text id="/data/fan_angles/photo_hatchling_tracks_relief:hint">
             <value>Include length reference</value>
+          </text>
+          <text id="/data/fan_angles/photo_hatchling_tracks_relief:requiredMsg">
+            <value>Please take a photo from the best lighting angle</value>
           </text>
           <text id="/data/fan_angles/bearing_to_water_manual:label">
             <value>Bearing to water</value>
@@ -747,11 +765,17 @@
           <text id="/data/fan_angles/bearing_to_water_manual:hint">
             <value>Shortest path to water</value>
           </text>
+          <text id="/data/fan_angles/bearing_to_water_manual:requiredMsg">
+            <value>Bearing to water is required</value>
+          </text>
           <text id="/data/fan_angles/leftmost_track_manual:label">
             <value>Leftmost track bearing of main fan</value>
           </text>
           <text id="/data/fan_angles/leftmost_track_manual:hint">
             <value>Excluding outlier tracks, 5m from nest or at HWM</value>
+          </text>
+          <text id="/data/fan_angles/leftmost_track_manual:requiredMsg">
+            <value>Leftmost track bearing is required</value>
           </text>
           <text id="/data/fan_angles/rightmost_track_manual:label">
             <value>Rightmost track bearing of main fan</value>
@@ -759,11 +783,17 @@
           <text id="/data/fan_angles/rightmost_track_manual:hint">
             <value>Excluding outlier tracks, 5m from nest or at HWM</value>
           </text>
+          <text id="/data/fan_angles/rightmost_track_manual:requiredMsg">
+            <value>Rightmost track bearing is required</value>
+          </text>
           <text id="/data/fan_angles/no_tracks_main_group:label">
             <value>Number of tracks in main fan</value>
           </text>
           <text id="/data/fan_angles/no_tracks_main_group:hint">
             <value>Exact count or best estimate</value>
+          </text>
+          <text id="/data/fan_angles/no_tracks_main_group:requiredMsg">
+            <value>Number of tracks in main fan is required</value>
           </text>
           <text id="/data/fan_angles/no_tracks_main_group_min:label">
             <value>Min number of tracks in main fan</value>
@@ -876,6 +906,9 @@
           <text id="/data/outlier_track/outlier_track_photo:hint">
             <value>Show nest, outlier and length reference</value>
           </text>
+          <text id="/data/outlier_track/outlier_track_photo:requiredMsg">
+            <value>Please take a photo</value>
+          </text>
           <text id="/data/outlier_track/outlier_track_bearing_manual:label">
             <value>Bearing</value>
           </text>
@@ -887,6 +920,9 @@
           </text>
           <text id="/data/outlier_track/outlier_group_size:label">
             <value>Number of tracks in outlier group</value>
+          </text>
+          <text id="/data/outlier_track/outlier_group_size:requiredMsg">
+            <value>Number of tracks is required</value>
           </text>
           <text id="/data/outlier_track/outlier_track_comment:label">
             <value>Comment</value>
@@ -936,6 +972,9 @@
           <text id="/data/light_source/light_source_photo:hint">
             <value>Optional but nice to have</value>
           </text>
+          <text id="/data/light_source/light_source_photo:requiredMsg">
+            <value>Please take a photo</value>
+          </text>
           <text id="/data/light_source/light_bearing_manual:label">
             <value>Bearing to light source</value>
           </text>
@@ -980,18 +1019,18 @@
           </text>
         </translation>
       </itext>
-      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" jr:preload="uid"/>
+      <bind nodeset="/data/start_geopoint" type="geopoint"/>
+      <odk:setgeopoint ref="/data/start_geopoint" event="odk-instance-first-load"/>
       <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
-      <bind nodeset="/data/start_location" type="geopoint" />
-      <odk:setgeopoint event="odk-instance-first-load" ref="/data/start_location" />
-      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
       <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
       <bind nodeset="/data/details/nest_age" type="select1" required="true()"/>
       <bind nodeset="/data/details/species" type="select1" required="true()"/>
       <bind nodeset="/data/details/nest_type" type="select1" required="true()"/>
       <bind nodeset="/data/details/observed_at" type="geopoint" required="true()" jr:requiredMsg="jr:itext('/data/details/observed_at:requiredMsg')"/>
       <bind nodeset="/data/track_photos" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
-      <bind nodeset="/data/track_photos/photo_track_1" type="binary" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
+      <bind nodeset="/data/track_photos/photo_track_1" type="binary" required="true()" jr:requiredMsg="jr:itext('/data/track_photos/photo_track_1:requiredMsg')" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
       <bind nodeset="/data/track_photos/photo_track_2" type="binary" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
       <bind nodeset="/data/track_photos/max-track-width-front" type="int" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))" constraint="(. &gt;= '0') and (. &lt;= '2000')" jr:constraintMsg="jr:itext('/data/track_photos/max-track-width-front:constraintMsg')"/>
       <bind nodeset="/data/track_photos/max-track-width-rear" type="int" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))" constraint="(. &gt;= '0') and (. &lt;= '2000')" jr:constraintMsg="jr:itext('/data/track_photos/max-track-width-rear:constraintMsg')"/>
@@ -999,7 +1038,7 @@
       <bind nodeset="/data/track_photos/step-length" type="int" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))" constraint="(. &gt;= '0') and (. &lt;= '1000')" jr:constraintMsg="jr:itext('/data/track_photos/step-length:constraintMsg')"/>
       <bind nodeset="/data/track_photos/tail-pokes" type="select1" required="true()" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
       <bind nodeset="/data/nest_photos" relevant="(/data/details/nest_type = 'track-unsure')"/>
-      <bind nodeset="/data/nest_photos/photo_nest_1" type="binary" relevant="(/data/details/nest_type = 'track-unsure')"/>
+      <bind nodeset="/data/nest_photos/photo_nest_1" type="binary" required="true()" jr:requiredMsg="jr:itext('/data/nest_photos/photo_nest_1:requiredMsg')" relevant="(/data/details/nest_type = 'track-unsure')"/>
       <bind nodeset="/data/nest_photos/photo_nest_2" type="binary" relevant="(/data/details/nest_type = 'track-unsure')"/>
       <bind nodeset="/data/nest_photos/photo_nest_3" type="binary" relevant="(/data/details/nest_type = 'track-unsure')"/>
       <bind nodeset="/data/nest" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
@@ -1011,7 +1050,7 @@
       <bind nodeset="/data/nest/hatchlings_measured" type="select1" required="true()" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
       <bind nodeset="/data/nest/fan_angles_measured" type="select1" required="true()" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
       <bind nodeset="/data/disturbanceobservation" relevant="(/data/nest/disturbance = 'present')"/>
-      <bind nodeset="/data/disturbanceobservation/photo_disturbance" type="binary" required="true()" relevant="(/data/nest/disturbance = 'present')"/>
+      <bind nodeset="/data/disturbanceobservation/photo_disturbance" type="binary" required="true()" jr:requiredMsg="jr:itext('/data/disturbanceobservation/photo_disturbance:requiredMsg')" relevant="(/data/nest/disturbance = 'present')"/>
       <bind nodeset="/data/disturbanceobservation/disturbance_cause" type="select1" required="true()" relevant="(/data/nest/disturbance = 'present')"/>
       <bind nodeset="/data/disturbanceobservation/disturbance_cause_confidence" type="select1" required="true()" relevant="(/data/nest/disturbance = 'present')"/>
       <bind nodeset="/data/disturbanceobservation/disturbance_severity" type="select1" required="true()" relevant="(/data/nest/disturbance = 'present')"/>
@@ -1047,12 +1086,12 @@
       <bind nodeset="/data/hatchling_measurements/straight_carapace_width_mm" type="int" relevant="(/data/nest/hatchlings_measured = 'yes')"/>
       <bind nodeset="/data/hatchling_measurements/body_weight_g" type="int" relevant="(/data/nest/hatchlings_measured = 'yes')"/>
       <bind nodeset="/data/fan_angles" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
-      <bind nodeset="/data/fan_angles/photo_hatchling_tracks_seawards" type="binary" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
-      <bind nodeset="/data/fan_angles/photo_hatchling_tracks_relief" type="binary" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
-      <bind nodeset="/data/fan_angles/bearing_to_water_manual" type="decimal" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
-      <bind nodeset="/data/fan_angles/leftmost_track_manual" type="decimal" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
-      <bind nodeset="/data/fan_angles/rightmost_track_manual" type="decimal" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
-      <bind nodeset="/data/fan_angles/no_tracks_main_group" type="int" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt; '0') and (. &lt;= '500')" jr:constraintMsg="Value must be between 0 and 500"/>
+      <bind nodeset="/data/fan_angles/photo_hatchling_tracks_seawards" type="binary" required="true()" jr:requiredMsg="jr:itext('/data/fan_angles/photo_hatchling_tracks_seawards:requiredMsg')" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
+      <bind nodeset="/data/fan_angles/photo_hatchling_tracks_relief" type="binary" required="true()" jr:requiredMsg="jr:itext('/data/fan_angles/photo_hatchling_tracks_relief:requiredMsg')" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
+      <bind nodeset="/data/fan_angles/bearing_to_water_manual" type="decimal" required="true()" jr:requiredMsg="jr:itext('/data/fan_angles/bearing_to_water_manual:requiredMsg')" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
+      <bind nodeset="/data/fan_angles/leftmost_track_manual" type="decimal" required="true()" jr:requiredMsg="jr:itext('/data/fan_angles/leftmost_track_manual:requiredMsg')" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
+      <bind nodeset="/data/fan_angles/rightmost_track_manual" type="decimal" required="true()" jr:requiredMsg="jr:itext('/data/fan_angles/rightmost_track_manual:requiredMsg')" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
+      <bind nodeset="/data/fan_angles/no_tracks_main_group" type="int" required="true()" jr:requiredMsg="jr:itext('/data/fan_angles/no_tracks_main_group:requiredMsg')" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt; '0') and (. &lt;= '500')" jr:constraintMsg="Value must be between 0 and 500"/>
       <bind nodeset="/data/fan_angles/no_tracks_main_group_min" type="int" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt; '0') and (. &lt;= '500')" jr:constraintMsg="Value must be between 0 and 500"/>
       <bind nodeset="/data/fan_angles/no_tracks_main_group_max" type="int" relevant="(/data/nest/fan_angles_measured = 'yes')" constraint="(. &gt; '0') and (. &lt;= '500')" jr:constraintMsg="Value must be between 0 and 500"/>
       <bind nodeset="/data/fan_angles/outlier_tracks_present" type="select1" required="true()" jr:requiredMsg="jr:itext('/data/fan_angles/outlier_tracks_present:requiredMsg')" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
@@ -1062,9 +1101,9 @@
       <bind nodeset="/data/fan_angles/cloud_cover_at_emergence_known" type="select1" required="true()" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
       <bind nodeset="/data/fan_angles/light_sources_present" type="select1" required="true()" relevant="(/data/nest/fan_angles_measured = 'yes')"/>
       <bind nodeset="/data/outlier_track" relevant="(/data/fan_angles/outlier_tracks_present = 'present')"/>
-      <bind nodeset="/data/outlier_track/outlier_track_photo" type="binary" relevant="(/data/fan_angles/outlier_tracks_present = 'present')"/>
+      <bind nodeset="/data/outlier_track/outlier_track_photo" type="binary" required="true()" jr:requiredMsg="jr:itext('/data/outlier_track/outlier_track_photo:requiredMsg')" relevant="(/data/fan_angles/outlier_tracks_present = 'present')"/>
       <bind nodeset="/data/outlier_track/outlier_track_bearing_manual" type="decimal" required="true()" jr:requiredMsg="jr:itext('/data/outlier_track/outlier_track_bearing_manual:requiredMsg')" relevant="(/data/fan_angles/outlier_tracks_present = 'present')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
-      <bind nodeset="/data/outlier_track/outlier_group_size" type="int" required="true()" relevant="(/data/fan_angles/outlier_tracks_present = 'present')" constraint="(. &gt;= '1') and (. &lt;= '100')" jr:constraintMsg="Value must be between 1 and 100"/>
+      <bind nodeset="/data/outlier_track/outlier_group_size" type="int" required="true()" jr:requiredMsg="jr:itext('/data/outlier_track/outlier_group_size:requiredMsg')" relevant="(/data/fan_angles/outlier_tracks_present = 'present')" constraint="(. &gt;= '1') and (. &lt;= '100')" jr:constraintMsg="Value must be between 1 and 100"/>
       <bind nodeset="/data/outlier_track/outlier_track_comment" type="string" relevant="(/data/fan_angles/outlier_tracks_present = 'present')"/>
       <bind nodeset="/data/hatchling_emergence_time_group" relevant="(/data/fan_angles/hatchling_emergence_time_known = 'yes')"/>
       <bind nodeset="/data/hatchling_emergence_time_group/hatchling_emergence_time" type="dateTime" relevant="(/data/fan_angles/hatchling_emergence_time_known = 'yes')"/>
@@ -1072,7 +1111,7 @@
       <bind nodeset="/data/emergence_climate" relevant="(/data/fan_angles/cloud_cover_at_emergence_known = 'yes')"/>
       <bind nodeset="/data/emergence_climate/cloud_cover_at_emergence" type="int" relevant="(/data/fan_angles/cloud_cover_at_emergence_known = 'yes')"/>
       <bind nodeset="/data/light_source" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
-      <bind nodeset="/data/light_source/light_source_photo" type="binary" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
+      <bind nodeset="/data/light_source/light_source_photo" type="binary" required="true()" jr:requiredMsg="jr:itext('/data/light_source/light_source_photo:requiredMsg')" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
       <bind nodeset="/data/light_source/light_bearing_manual" type="decimal" required="true()" jr:requiredMsg="jr:itext('/data/light_source/light_bearing_manual:requiredMsg')" relevant="(/data/fan_angles/light_sources_present = 'present')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
       <bind nodeset="/data/light_source/light_source_type" type="select1" required="true()" jr:requiredMsg="jr:itext('/data/light_source/light_source_type:requiredMsg')" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
       <bind nodeset="/data/light_source/light_source_description" type="string" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
@@ -1545,6 +1584,7 @@
       </input>
       <upload ref="/data/nest_tag/photo_tag" mediatype="image/*">
         <label ref="jr:itext('/data/nest_tag/photo_tag:label')"/>
+        <hint ref="jr:itext('/data/nest_tag/photo_tag:hint')"/>
       </upload>
     </group>
     <group ref="/data/logger_details">

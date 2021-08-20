@@ -1,23 +1,17 @@
-<h:html
-  xmlns="http://www.w3.org/2002/xforms"
-  xmlns:h="http://www.w3.org/1999/xhtml"
-  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  xmlns:jr="http://openrosa.org/javarosa"
-  xmlns:ev="http://www.w3.org/2001/xml-events"
-  xmlns:odk="http://www.opendatakit.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:odk="http://www.opendatakit.org/xforms">
   <h:head>
     <h:title>Turtle Tagging</h:title>
     <model>
       <instance>
-        <data id ="Turtle-Tagging-3-0" version="1606982420">
+        <data id="Turtle-Tagging-3-0" version="1629444108">
           <meta>
             <instanceID/>
             <instanceName/>
           </meta>
+          <start_geopoint/>
           <observation_start_time/>
-          <start_location/>
-          <reporter/>
           <device_id/>
+          <reporter/>
           <encounter>
             <reporter_repeat/>
             <capture_mode>
@@ -222,11 +216,11 @@
             <value>Minimal record</value>
           </text>
           <text id="/data/encounter/reporter_repeat:label">
-            <value>Reporter</value>
+            <value>Primary reporter</value>
           </text>
           <text id="/data/encounter/reporter_repeat:hint">
-            <value>Not you or empty? Discard this form and set ODK Collect Username.</value>
-            <value form="guidance"> Exit this form with the back button, Discard changes, General Settings &gt; User and device identity &gt; Form metadata &gt; Username.</value>
+            <value>Is this your name? If not, tap here to learn how to set the Username.</value>
+            <value form="guidance">&lt;strong&gt;Setting the Username&lt;/strong&gt;&lt;br/&gt; &amp;#x22EE; &gt; Settings &gt; User and device &gt; Form metadata &gt; Username&lt;br/&gt; &lt;strong&gt;Name format&lt;/strong&gt;&lt;br/&gt;The Username should be your full Given and Surname, e.g. Joe Bloggs. Avoid nicknames, abbreviations, or multiple names. Provide only and completely the name of the person who is solely or mainly responsible for data entry. Team members go into a separate field in form &quot;Site Visit Start&quot;.&lt;br/&gt; &lt;strong&gt;After updating the Username&lt;/strong&gt;&lt;br/&gt;Exit this form with the device's back button and &quot;ignore changes&quot;, then fill it again to see the updated Username. Subsequent forms will record this name.&lt;br/&gt;</value>
           </text>
           <text id="/data/encounter/capture_mode:label">
             <value>Data capture mode</value>
@@ -265,6 +259,7 @@
           </text>
           <text id="/data/realtime/nest_location:hint">
             <value>Nest or last location of turtle activity. Tap navigation arrow top right to view in decimal degrees.</value>
+            <value form="guidance">&lt;strong&gt;Accuracy&lt;/strong&gt;&lt;br/&gt;You can save the point as soon as an accuracy is shown. If the accuracy falls below 5m, the widget will auto-save.  If the accuracy stalls above the auto-save threshold, it is OK to save. Aim for an accuracy below 20m.&lt;br/&gt; &lt;strong&gt;Speed&lt;/strong&gt;&lt;br/&gt;If the GPS consistently takes more than 10s to auto-save, let your coordinator know.&lt;br/&gt; &lt;strong&gt;Warm-up&lt;/strong&gt;&lt;br/&gt;This form warms up the GPS by capturing a silent initial location, which pops up a &quot;toast&quot; style warning about being tracked. It is OK to ignore this warning.</value>
           </text>
           <text id="/data/realtime/nest_location:requiredMsg">
             <value>If nest or turtle location is not available, record your current location.</value>
@@ -273,7 +268,7 @@
             <value>Recorded time (read-only)</value>
           </text>
           <text id="/data/realtime/start_time_repeat:hint">
-            <value>Use as nesting time on datasheet.</value>
+            <value>Use as nesting time on datasheet</value>
             <value form="guidance">This timestamp is read-only and only shown for backfilling a paper datasheet. You are not supposed or required to edit it here.</value>
           </text>
           <text id="/data/manual:label">
@@ -295,8 +290,8 @@
             <value>Nest location fallback</value>
           </text>
           <text id="/data/manual/nest_location_map:hint">
-            <value>If no GPS coords available.</value>
-            <value form="guidance">Offline maps showing aerial imagery and study sites are available from the layers button in the map widget.</value>
+            <value>If no GPS coords available, pick a credible point on the map</value>
+            <value form="guidance">&lt;strong&gt;Pan and zoom&lt;/strong&gt;&lt;br/&gt;This map will auto-zoom to your current location once GPS has a fix. You can pan and zoom elsewhere, then reset the map with the crosshair icon. &lt;br/&gt; &lt;strong&gt;Layers&lt;/strong&gt;&lt;br/&gt;Select an offline reference layer for the intended fieldwork location from the layer button. The map will remember chosen layers across all forms. These layers provide aerial imagery as well as known site names and boundaries.&lt;br/&gt; &lt;strong&gt;Capture a new point&lt;/strong&gt;&lt;br/&gt;Long-press any point on the map to record a point. You can replace a captured point by long-pressing another location until you're happy with the placement. The plus-marker icon captures your current position.&lt;br/&gt; &lt;strong&gt;Which point?&lt;/strong&gt;&lt;br/&gt;The point can be your current position, but it doesn't have to be. The widget will be used if we want to know a location other than your own, e.g. which site you intend to survey, or the remote location of an incident.&lt;br/&gt; &lt;strong&gt;Save and exit&lt;/strong&gt;&lt;br/&gt;Press the save button at the lower right.</value>
           </text>
           <text id="/data/manual/time:label">
             <value>Date and time of nesting</value>
@@ -1183,8 +1178,7 @@
             <value>ID</value>
           </text>
           <text id="/data/tag_observation/tag_name:hint">
-            <value>The alphanumeric tag or sample ID.</value>
-            <value form="guidance">To delete this group, go to hierarchy view and tap the trash icon.</value>
+            <value>The alphanumeric tag or sample ID. To delete this group, go to hierarchy view and tap the trash icon.</value>
           </text>
           <text id="/data/tag_observation/tag_name:constraintMsg">
             <value></value>
@@ -1362,8 +1356,7 @@
             <value>ID</value>
           </text>
           <text id="/data/logger_observation/logger_name:hint">
-            <value>The logger ID.</value>
-            <value form="guidance">To delete this group, go to hierarchy view and tap the trash icon.</value>
+            <value>The logger ID. To delete this group, go to hierarchy view and tap the trash icon.</value>
           </text>
           <text id="/data/logger_observation/logger_name:constraintMsg">
             <value></value>
@@ -1418,7 +1411,7 @@
           </text>
           <text id="/data/datasheet/photo_datasheet_front:hint">
             <value>Capture entire datasheet holding device in portrait orientation.</value>
-            <value form="guidance"> Tilt the device slightly up so that the camera stays in portrait orientation.</value>
+            <value form="guidance">Tilt the device slightly up so that the camera stays in portrait orientation.</value>
           </text>
           <text id="/data/datasheet/photo_datasheet_rear:label">
             <value>Photo datasheet rear</value>
@@ -1434,14 +1427,14 @@
           </text>
         </translation>
       </itext>
-      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" jr:preload="uid"/>
       <bind nodeset="/data/meta/instanceName" type="string" calculate="concat('Turtle Tagging ', /data/encounter/datasheet_id)"/>
+      <bind nodeset="/data/start_geopoint" type="geopoint"/>
+      <odk:setgeopoint ref="/data/start_geopoint" event="odk-instance-first-load"/>
       <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
-      <bind nodeset="/data/start_location" type="geopoint" />
-      <odk:setgeopoint event="odk-instance-first-load" ref="/data/start_location" />
-      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
       <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
-      <bind nodeset="/data/encounter/reporter_repeat" type="string" readonly="true()" calculate="/data/reporter"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/encounter/reporter_repeat" type="string" readonly="true()" calculate="once(/data/reporter)"/>
       <bind nodeset="/data/encounter/capture_mode" type="select1" required="true()"/>
       <bind nodeset="/data/encounter/datasheet_id" type="string"/>
       <bind nodeset="/data/encounter/handler" type="string" calculate="once(/data/reporter)"/>

@@ -1,21 +1,22 @@
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:odk="http://www.opendatakit.org/xforms">
   <h:head>
     <h:title>Site Visit Start</h:title>
     <model>
       <instance>
-        <data id="Site-Visit-Start">
+        <data id="Site-Visit-Start" version="1629442057">
           <meta>
             <instanceID/>
           </meta>
-          <reporter/>
+          <start_geopoint/>
           <survey_start_time/>
           <device_id/>
+          <reporter/>
           <site_visit>
             <reporter_repeat/>
-            <location/>
-            <site_conditions/>
             <team/>
+            <site_conditions/>
             <comments/>
+            <location/>
           </site_visit>
           <end_time/>
         </data>
@@ -29,19 +30,8 @@
             <value>Primary reporter</value>
           </text>
           <text id="/data/site_visit/reporter_repeat:hint">
-            <value>Not your name? Exit this form and ignore changes, then update General Settings &gt; User and Device Identity &gt; Form metadata &gt; Username</value>
-          </text>
-          <text id="/data/site_visit/location:label">
-            <value>Location</value>
-          </text>
-          <text id="/data/site_visit/location:hint">
-            <value>Walk about 30m into the visited site, capture the location, then walk back and record tracks from site start.</value>
-          </text>
-          <text id="/data/site_visit/site_conditions:label">
-            <value>Site conditions</value>
-          </text>
-          <text id="/data/site_visit/site_conditions:hint">
-            <value>Take photo in landscape mode</value>
+            <value>Is this your name? If not, tap here to learn how to set the Username.</value>
+            <value form="guidance">&lt;strong&gt;Setting the Username&lt;/strong&gt;&lt;br/&gt; &amp;#x22EE; &gt; Settings &gt; User and device &gt; Form metadata &gt; Username&lt;br/&gt; &lt;strong&gt;Name format&lt;/strong&gt;&lt;br/&gt;The Username should be your full Given and Surname, e.g. Joe Bloggs. Avoid nicknames, abbreviations, or multiple names. Provide only and completely the name of the person who is solely or mainly responsible for data entry. Team members go into a separate field in form &quot;Site Visit Start&quot;.&lt;br/&gt; &lt;strong&gt;Now what?&lt;/strong&gt;&lt;br/&gt;Exit this form with the device's back button and &quot;ignore changes&quot;, then fill it again to see the updated Username. Subsequent forms will record this name.&lt;br/&gt;</value>
           </text>
           <text id="/data/site_visit/team:label">
             <value>Other data collectors in survey</value>
@@ -49,23 +39,39 @@
           <text id="/data/site_visit/team:hint">
             <value>Full names, comma separated, do not include primary reporter (set in Username)</value>
           </text>
+          <text id="/data/site_visit/site_conditions:label">
+            <value>Site conditions</value>
+          </text>
+          <text id="/data/site_visit/site_conditions:hint">
+            <value>Take photo in landscape mode</value>
+            <value form="guidance">&lt;strong&gt;Landscape&lt;/strong&gt;&lt;br/&gt;We prefer landscape (horizontal) photos, because they display better on monitors. Unless you have a good reason to take a portrait (vertical) photo, flip the device sideways to take a landscape photo.&lt;br/&gt;</value>
+          </text>
           <text id="/data/site_visit/comments:label">
             <value>Comments</value>
           </text>
           <text id="/data/site_visit/comments:hint">
             <value>Conditions impacting protocol, irregularities</value>
           </text>
+          <text id="/data/site_visit/location:label">
+            <value>Site to visit</value>
+          </text>
+          <text id="/data/site_visit/location:hint">
+            <value>Select a point inside the site you will visit. Tap to view guidance instructions.</value>
+            <value form="guidance">&lt;strong&gt;Pan and zoom&lt;/strong&gt;&lt;br/&gt;This map will auto-zoom to your current location once GPS has a fix. You can pan and zoom elsewhere, then reset the map with the crosshair icon. &lt;br/&gt; &lt;strong&gt;Layers&lt;/strong&gt;&lt;br/&gt;Select an offline reference layer for the intended fieldwork location from the layer button. The map will remember chosen layers across all forms. These layers provide aerial imagery as well as known site names and boundaries.&lt;br/&gt; &lt;strong&gt;Capture a new point&lt;/strong&gt;&lt;br/&gt;Long-press any point on the map to record a point. You can replace a captured point by long-pressing another location until you're happy with the placement. The plus-marker icon captures your current position.&lt;br/&gt; &lt;strong&gt;Which point?&lt;/strong&gt;&lt;br/&gt;The point can be your current position, but it doesn't have to be. The widget will be used if we want to know a location other than your own, e.g. which site you intend to survey, or the remote location of an incident.&lt;br/&gt; &lt;strong&gt;Save and exit&lt;/strong&gt;&lt;br/&gt;Press the save button at the lower right.</value>
+          </text>
         </translation>
       </itext>
-      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
-      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" jr:preload="uid"/>
+      <bind nodeset="/data/start_geopoint" type="geopoint"/>
+      <odk:setgeopoint ref="/data/start_geopoint" event="odk-instance-first-load"/>
       <bind nodeset="/data/survey_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
       <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
-      <bind nodeset="/data/site_visit/reporter_repeat" type="string" jr:preload="property" jr:preloadParams="username" readonly="true()"/>
-      <bind nodeset="/data/site_visit/location" type="geopoint" required="true()"/>
-      <bind nodeset="/data/site_visit/site_conditions" type="binary"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/site_visit/reporter_repeat" type="string" readonly="true()" calculate="once(/data/reporter)"/>
       <bind nodeset="/data/site_visit/team" type="string"/>
+      <bind nodeset="/data/site_visit/site_conditions" type="binary"/>
       <bind nodeset="/data/site_visit/comments" type="string"/>
+      <bind nodeset="/data/site_visit/location" type="geopoint" required="true()"/>
       <bind nodeset="/data/end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
     </model>
   </h:head>
@@ -76,21 +82,21 @@
         <label ref="jr:itext('/data/site_visit/reporter_repeat:label')"/>
         <hint ref="jr:itext('/data/site_visit/reporter_repeat:hint')"/>
       </input>
-      <input ref="/data/site_visit/location">
-        <label ref="jr:itext('/data/site_visit/location:label')"/>
-        <hint ref="jr:itext('/data/site_visit/location:hint')"/>
+      <input ref="/data/site_visit/team">
+        <label ref="jr:itext('/data/site_visit/team:label')"/>
+        <hint ref="jr:itext('/data/site_visit/team:hint')"/>
       </input>
       <upload ref="/data/site_visit/site_conditions" mediatype="image/*">
         <label ref="jr:itext('/data/site_visit/site_conditions:label')"/>
         <hint ref="jr:itext('/data/site_visit/site_conditions:hint')"/>
       </upload>
-      <input ref="/data/site_visit/team">
-        <label ref="jr:itext('/data/site_visit/team:label')"/>
-        <hint ref="jr:itext('/data/site_visit/team:hint')"/>
-      </input>
       <input ref="/data/site_visit/comments">
         <label ref="jr:itext('/data/site_visit/comments:label')"/>
         <hint ref="jr:itext('/data/site_visit/comments:hint')"/>
+      </input>
+      <input ref="/data/site_visit/location" appearance="placement-map">
+        <label ref="jr:itext('/data/site_visit/location:label')"/>
+        <hint ref="jr:itext('/data/site_visit/location:hint')"/>
       </input>
     </group>
   </h:body>

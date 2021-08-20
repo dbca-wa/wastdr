@@ -1,17 +1,17 @@
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:odk="http://www.opendatakit.org/xforms">
   <h:head>
     <h:title>Predator or Disturbance</h:title>
     <model>
       <instance>
-        <data id="Predator-or-Disturbance">
+        <data id="Predator-or-Disturbance" version="1629442783">
           <meta>
             <instanceID/>
           </meta>
+          <start_geopoint/>
           <observation_start_time/>
-          <reporter/>
           <device_id/>
+          <reporter/>
           <disturbanceobservation>
-            <location/>
             <photo_disturbance/>
             <disturbance_cause>
               unknown
@@ -19,6 +19,7 @@
             <disturbance_cause_confidence>
               expert-opinion
             </disturbance_cause_confidence>
+            <location/>
             <comments/>
           </disturbanceobservation>
           <observation_end_time/>
@@ -29,17 +30,15 @@
           <text id="/data/disturbanceobservation:label">
             <value>Signs of predators or disturbance</value>
           </text>
-          <text id="/data/disturbanceobservation/location:label">
-            <value>Location</value>
-          </text>
-          <text id="/data/disturbanceobservation/location:hint">
-            <value></value>
-          </text>
           <text id="/data/disturbanceobservation/photo_disturbance:label">
             <value>Predator tracks or disturbance</value>
           </text>
           <text id="/data/disturbanceobservation/photo_disturbance:hint">
             <value>Show tracks or disturbance cause and extent</value>
+            <value form="guidance">&lt;strong&gt;Landscape&lt;/strong&gt;&lt;br/&gt;We prefer landscape (horizontal) photos, because they display better on monitors. Unless you have a good reason to take a portrait (vertical) photo, flip the device sideways to take a landscape photo.&lt;br/&gt; &lt;strong&gt;Occasion&lt;/strong&gt;&lt;br/&gt;Unless it's too dark, or conditions otherwise prevent you from taking a clear photo, please always take a photo if the form asks for one. Photos are brilliant to answer QA questions like unsure species or surveyed sites. Taking a photo we don't need costs a few seconds, but skipping a photo we would have needed cannot be recovered. Make your sweat count and always take a photo!&lt;br/&gt; &lt;strong&gt;Sun angle&lt;/strong&gt;&lt;br/&gt;Position yourself so that the sun is at an optimal angle, and sun/shade shows the best detail.&lt;br/&gt; &lt;strong&gt;Reference&lt;/strong&gt;&lt;br/&gt;Turtle tracks and any other animal tracks always need a clearly visible length reference. Place the taped yardstick across the track as shown in training. Tracks without length reference are hard to identify from photos. If showing anything else (e.g. excavated eggs), include the whiteboard and write on it what the photo shows.&lt;br/&gt; &lt;strong&gt;Location tags&lt;/strong&gt;&lt;br/&gt;Make sure that the camera saves location tags in its settings. This makes photos with a whiteboard like a mini-form. &lt;strong&gt;Photo size&lt;/strong&gt;&lt;br/&gt; We send reduced size images to keep uploads fast. For reference, this is set via&lt;br/&gt;  &amp;#x22EE; &gt; Project settings &gt; Form mgmt &gt; Image size &gt; Medium (2048px).</value>
+          </text>
+          <text id="/data/disturbanceobservation/photo_disturbance:requiredMsg">
+            <value>Please take a photo of the disturbance or predator signs</value>
           </text>
           <text id="/data/disturbanceobservation/disturbance_cause:label">
             <value>Predator or disturbance cause</value>
@@ -113,6 +112,13 @@
           <text id="/data/disturbanceobservation/disturbance_cause_confidence:option1">
             <value>Certain</value>
           </text>
+          <text id="/data/disturbanceobservation/location:label">
+            <value>Location</value>
+          </text>
+          <text id="/data/disturbanceobservation/location:hint">
+            <value>Location of disturbance or predation signs</value>
+            <value form="guidance">&lt;strong&gt;Accuracy&lt;/strong&gt;&lt;br/&gt;You can save the point as soon as an accuracy is shown. If the accuracy falls below 5m, the widget will auto-save.  If the accuracy stalls above the auto-save threshold, it is OK to save. Aim for an accuracy below 20m.&lt;br/&gt; &lt;strong&gt;Speed&lt;/strong&gt;&lt;br/&gt;If the GPS consistently takes more than 10s to auto-save, let your coordinator know.&lt;br/&gt; &lt;strong&gt;Warm-up&lt;/strong&gt;&lt;br/&gt;This form warms up the GPS by capturing a silent initial location, which pops up a &quot;toast&quot; style warning about being tracked. It is OK to ignore this warning.</value>
+          </text>
           <text id="/data/disturbanceobservation/comments:label">
             <value>Comments</value>
           </text>
@@ -121,14 +127,16 @@
           </text>
         </translation>
       </itext>
-      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" jr:preload="uid"/>
+      <bind nodeset="/data/start_geopoint" type="geopoint"/>
+      <odk:setgeopoint ref="/data/start_geopoint" event="odk-instance-first-load"/>
       <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
-      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
       <bind nodeset="/data/device_id" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
-      <bind nodeset="/data/disturbanceobservation/location" type="geopoint" required="true()"/>
-      <bind nodeset="/data/disturbanceobservation/photo_disturbance" type="binary"/>
+      <bind nodeset="/data/reporter" type="string" jr:preload="property" jr:preloadParams="username"/>
+      <bind nodeset="/data/disturbanceobservation/photo_disturbance" type="binary" required="true()" jr:requiredMsg="jr:itext('/data/disturbanceobservation/photo_disturbance:requiredMsg')"/>
       <bind nodeset="/data/disturbanceobservation/disturbance_cause" type="select1" required="true()"/>
       <bind nodeset="/data/disturbanceobservation/disturbance_cause_confidence" type="select1" required="true()"/>
+      <bind nodeset="/data/disturbanceobservation/location" type="geopoint" required="true()"/>
       <bind nodeset="/data/disturbanceobservation/comments" type="string"/>
       <bind nodeset="/data/observation_end_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
     </model>
@@ -136,10 +144,6 @@
   <h:body>
     <group ref="/data/disturbanceobservation" appearance="field-list">
       <label ref="jr:itext('/data/disturbanceobservation:label')"/>
-      <input ref="/data/disturbanceobservation/location">
-        <label ref="jr:itext('/data/disturbanceobservation/location:label')"/>
-        <hint ref="jr:itext('/data/disturbanceobservation/location:hint')"/>
-      </input>
       <upload ref="/data/disturbanceobservation/photo_disturbance" mediatype="image/*">
         <label ref="jr:itext('/data/disturbanceobservation/photo_disturbance:label')"/>
         <hint ref="jr:itext('/data/disturbanceobservation/photo_disturbance:hint')"/>
@@ -232,6 +236,10 @@
           <value>expert-opinion</value>
         </item>
       </select1>
+      <input ref="/data/disturbanceobservation/location">
+        <label ref="jr:itext('/data/disturbanceobservation/location:label')"/>
+        <hint ref="jr:itext('/data/disturbanceobservation/location:hint')"/>
+      </input>
       <input ref="/data/disturbanceobservation/comments">
         <label ref="jr:itext('/data/disturbanceobservation/comments:label')"/>
         <hint ref="jr:itext('/data/disturbanceobservation/comments:hint')"/>
