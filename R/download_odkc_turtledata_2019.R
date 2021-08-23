@@ -593,7 +593,7 @@ print.odkc_turtledata <- function(x, ...) {
       "Survey End Points:         {nrow(x$sve)}\n",
       "Marine Wildlife Incidents: {nrow(x$mwi)}\n",
       "Live Sightings:            {nrow(x$tsi)}\n",
-      "Tagged Turtles:            {if(!is.null(x$tt))nrow(x$tt) else 'None\n'}",
+      "Tagged Turtles:            {if(!is.null(x$tt))nrow(x$tt) else 'None'}\n",
       "Turtle Tracks or Nests:    {nrow(x$tracks)}\n",
       "Turtle Track Tallies:      {nrow(x$track_tally)}"
     )

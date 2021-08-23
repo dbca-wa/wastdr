@@ -64,7 +64,7 @@ download_odkc_turtledata_2020 <-
            tz = ruODK::get_default_tz(),
            download = TRUE,
            # exclude_training = TRUE,
-           odkc_version = 1.0,
+           odkc_version = 1.2,
            verbose = wastdr::get_wastdr_verbose()) {
     if (download == TRUE) fs::dir_create(local_dir, recurse = TRUE) # nocov
 
@@ -423,7 +423,7 @@ download_odkc_turtledata_2020 <-
       wastdr::add_dates(parse_date = FALSE)
 
     tt <- tt_prod %>%
-      wastdr::join_tsc_sites(sites, prefix = "start_location_") %>%
+      wastdr::join_tsc_sites(sites, prefix = "start_geopoint_") %>%
       wastdr::add_dates(parse_date = FALSE)
 
     tt_dmg <- tt_dmg_prod
