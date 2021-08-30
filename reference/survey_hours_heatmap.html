@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
       </span>
     </div>
 
@@ -162,7 +162,13 @@
     <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>survey_hours_heatmap</span><span class='op'>(</span><span class='va'>surveys</span>, placename <span class='op'>=</span> <span class='st'>""</span>, prefix <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>survey_hours_heatmap</span><span class='op'>(</span>
+  <span class='va'>surveys</span>,
+  local_dir <span class='op'>=</span> <span class='fu'>here</span><span class='fu'>::</span><span class='fu'>here</span><span class='op'>(</span><span class='op'>)</span>,
+  placename <span class='op'>=</span> <span class='st'>""</span>,
+  prefix <span class='op'>=</span> <span class='st'>""</span>,
+  export <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,12 +178,21 @@
       <td><p>(tibble) The output of <code>parse_surveys</code>.</p></td>
     </tr>
     <tr>
+      <th>local_dir</th>
+      <td><p>A local directory to save the plot to,
+default: <code>here::here()</code>.</p></td>
+    </tr>
+    <tr>
       <th>placename</th>
       <td><p>(string) The place name, used in labels.</p></td>
     </tr>
     <tr>
       <th>prefix</th>
       <td><p>(string) A prefix for the filename. Default: ""</p></td>
+    </tr>
+    <tr>
+      <th>export</th>
+      <td><p>Whether to export the figure as a file, default: FALSE</p></td>
     </tr>
     </table>
 
@@ -186,6 +201,7 @@
     <div class='dont-index'><p>Other wastd: 
 <code><a href='add_nest_labels.html'>add_nest_labels</a>()</code>,
 <code><a href='disturbance_by_season.html'>disturbance_by_season</a>()</code>,
+<code><a href='duplicate_surveys.html'>duplicate_surveys</a>()</code>,
 <code><a href='filter_alive.html'>filter_alive</a>()</code>,
 <code><a href='filter_dead.html'>filter_dead</a>()</code>,
 <code><a href='filter_disturbance.html'>filter_disturbance</a>()</code>,

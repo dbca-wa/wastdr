@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
       </span>
     </div>
 
@@ -178,6 +178,7 @@
     <div class='dont-index'><p>Other wastd: 
 <code><a href='add_nest_labels.html'>add_nest_labels</a>()</code>,
 <code><a href='disturbance_by_season.html'>disturbance_by_season</a>()</code>,
+<code><a href='duplicate_surveys.html'>duplicate_surveys</a>()</code>,
 <code><a href='filter_alive.html'>filter_alive</a>()</code>,
 <code><a href='filter_dead.html'>filter_dead</a>()</code>,
 <code><a href='filter_disturbance.html'>filter_disturbance</a>()</code>,
@@ -232,25 +233,21 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span>
 <span class='fu'>nesting_type_by_area_season_species</span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>tracks</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 15 x 9</span><span>
-#&gt;    area_name  season species `false-crawl` `hatched-nest`  nest `successful-cra…
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Perth Met…   </span><span style='text-decoration: underline;'>2</span><span>016 chelon…             0              0     0                0
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Perth Met…   </span><span style='text-decoration: underline;'>2</span><span>016 chelon…             0              0     0                1
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Perth Met…   </span><span style='text-decoration: underline;'>2</span><span>016 coroll…             1              0     0                2
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Perth Met…   </span><span style='text-decoration: underline;'>2</span><span>016 eretmo…             0              0     0                1
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Perth Met…   </span><span style='text-decoration: underline;'>2</span><span>016 natato…             0              0     1                1
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Port Hedl…   </span><span style='text-decoration: underline;'>2</span><span>009 natato…             2              4     1               14
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Thevenard…   </span><span style='text-decoration: underline;'>2</span><span>016 chelon…           308              3     0               63
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Thevenard…   </span><span style='text-decoration: underline;'>2</span><span>016 chelon…            11              5     0                4
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Thevenard…   </span><span style='text-decoration: underline;'>2</span><span>016 eretmo…            10              2     0                1
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Thevenard…   </span><span style='text-decoration: underline;'>2</span><span>016 natato…           163              1     0               59
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> </span><span style='color: #BB0000;'>NA</span><span>           </span><span style='text-decoration: underline;'>2</span><span>015 natato…             0              1     0                0
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> </span><span style='color: #BB0000;'>NA</span><span>           </span><span style='text-decoration: underline;'>2</span><span>016 chelon…             0              0     0                0
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> </span><span style='color: #BB0000;'>NA</span><span>           </span><span style='text-decoration: underline;'>2</span><span>016 chelon…             0              1     0                0
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> </span><span style='color: #BB0000;'>NA</span><span>           </span><span style='text-decoration: underline;'>2</span><span>016 eretmo…             7             20     0                4
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> </span><span style='color: #BB0000;'>NA</span><span>           </span><span style='text-decoration: underline;'>2</span><span>016 natato…             2              0     0                5
-#&gt; </span><span style='color: #949494;'># … with 2 more variables: track-not-assessed &lt;dbl&gt;, track-unsure &lt;dbl&gt;</span><span></div></span></pre>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 27 × 9</span>
+#&gt;    area_name          season species `false-crawl` `hatched-nest`  nest `successful-cra…
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> Cable Beach Broome   <span style='text-decoration: underline;'>2</span>020 chelon…             0              2     0                0
+#&gt; <span style='color: #BCBCBC;'> 2</span> Cable Beach Broome   <span style='text-decoration: underline;'>2</span>020 natato…             0              0     0                3
+#&gt; <span style='color: #BCBCBC;'> 3</span> Delambre Island      <span style='text-decoration: underline;'>2</span>020 carett…             0              1     0                0
+#&gt; <span style='color: #BCBCBC;'> 4</span> Delambre Island      <span style='text-decoration: underline;'>2</span>020 natato…             2             14     0                1
+#&gt; <span style='color: #BCBCBC;'> 5</span> Ningaloo             <span style='text-decoration: underline;'>2</span>020 carett…            13              0     0                4
+#&gt; <span style='color: #BCBCBC;'> 6</span> Ningaloo             <span style='text-decoration: underline;'>2</span>020 chelon…           547              0     0              199
+#&gt; <span style='color: #BCBCBC;'> 7</span> Ningaloo             <span style='text-decoration: underline;'>2</span>020 chelon…             2              0     3                2
+#&gt; <span style='color: #BCBCBC;'> 8</span> Ningaloo             <span style='text-decoration: underline;'>2</span>020 eretmo…             8              0     0                1
+#&gt; <span style='color: #BCBCBC;'> 9</span> Ningaloo             <span style='text-decoration: underline;'>2</span>020 natato…             0              0     0                1
+#&gt; <span style='color: #BCBCBC;'>10</span> Perth Metro          <span style='text-decoration: underline;'>2</span>020 coroll…             0              0     0                2
+#&gt; <span style='color: #949494;'># … with 17 more rows, and 2 more variables: track-not-assessed &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   track-unsure &lt;dbl&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

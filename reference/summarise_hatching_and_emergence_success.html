@@ -95,7 +95,7 @@ parse_encounterobservations drops columns with all NA." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
       </span>
     </div>
 
@@ -198,6 +198,7 @@ WAStD happens to contain all NA in either of these variables, as
     <div class='dont-index'><p>Other wastd: 
 <code><a href='add_nest_labels.html'>add_nest_labels</a>()</code>,
 <code><a href='disturbance_by_season.html'>disturbance_by_season</a>()</code>,
+<code><a href='duplicate_surveys.html'>duplicate_surveys</a>()</code>,
 <code><a href='filter_alive.html'>filter_alive</a>()</code>,
 <code><a href='filter_dead.html'>filter_dead</a>()</code>,
 <code><a href='filter_disturbance.html'>filter_disturbance</a>()</code>,
@@ -252,15 +253,15 @@ WAStD happens to contain all NA in either of these variables, as
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span>
 <span class='fu'>summarise_hatching_and_emergence_success</span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>nest_excavations</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 14</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 × 14</span>
 #&gt;   count clutch_size_fresh clutch_size_mean clutch_size_sd clutch_size_min
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>   532                </span><span style='color: #BB0000;'>NA</span><span>             74.1           440.               0
-#&gt; </span><span style='color: #949494;'># … with 9 more variables: clutch_size_max &lt;int&gt;, hatching_success_mean &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   hatching_success_sd &lt;dbl&gt;, hatching_success_min &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   hatching_success_max &lt;dbl&gt;, emergence_success_mean &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   emergence_success_sd &lt;dbl&gt;, emergence_success_min &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   emergence_success_max &lt;dbl&gt;</span><span></div></span></pre>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>   511                <span style='color: #BB0000;'>NA</span>             54.8           40.9               0
+#&gt; <span style='color: #949494;'># … with 9 more variables: clutch_size_max &lt;int&gt;, hatching_success_mean &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   hatching_success_sd &lt;dbl&gt;, hatching_success_min &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   hatching_success_max &lt;dbl&gt;, emergence_success_mean &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   emergence_success_sd &lt;dbl&gt;, emergence_success_min &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   emergence_success_max &lt;dbl&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

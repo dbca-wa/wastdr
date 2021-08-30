@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
       </span>
     </div>
 
@@ -175,30 +175,33 @@
 <h2 class="hasAnchor">
 <a href="#data" class="anchor"></a>Data</h2>
 </div>
+<div id="maintenance" class="section level2">
+<h2 class="hasAnchor">
+<a href="#maintenance" class="anchor"></a>Maintenance</h2>
+</div>
+</div>
+    <div id="wastdr-071" class="section level1">
+<h1 class="page-header" data-toc-text="0.7.1">
+<a href="#wastdr-071" class="anchor"></a>wastdr 0.7.1</h1>
+<div id="major-fixes-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-fixes-1" class="anchor"></a>Major fixes</h2>
+<ul>
+<li><p>New: <code>duplicate_surveys</code> links to sites and dates with more than one survey.</p></li>
+<li>
+<p>Plots from summarize surveys now save to a given <code>local_dir</code> only on <code>export=TRUE</code> like plots from summarize tracks.</p>
+<h2 id="minor-fixes-1">Minor fixes</h2>
+<h2 id="docs-1">Docs</h2>
+<h2 id="data-1">Data</h2>
+<h2 id="maintenance-1">Maintenance</h2>
+</li>
+<li><p>Dependency versions updated</p></li>
+</ul>
+</div>
 </div>
     <div id="wastdr-070" class="section level1">
 <h1 class="page-header" data-toc-text="0.7.0">
 <a href="#wastdr-070" class="anchor"></a>wastdr 0.7.0</h1>
-<div id="major-fixes-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#major-fixes-1" class="anchor"></a>Major fixes</h2>
-</div>
-<div id="minor-fixes-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#minor-fixes-1" class="anchor"></a>Minor fixes</h2>
-<ul>
-<li>
-<p><code>download_odkc_turtledata2020()</code> now includes Turtle Tagging data (4 tables), <code>download_odkc_turtledata2019()</code> contains NULL as placeholder in these four tables, and will be sunset after season 2020-21.</p>
-<h2 id="docs-1">Docs</h2>
-<h2 id="data-1">Data</h2>
-</li>
-<li><p><code>odkc_data</code> contains Turtle Tagging data.</p></li>
-</ul>
-</div>
-</div>
-    <div id="wastdr-061" class="section level1">
-<h1 class="page-header" data-toc-text="0.6.1">
-<a href="#wastdr-061" class="anchor"></a>wastdr 0.6.1</h1>
 <div id="major-fixes-2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#major-fixes-2" class="anchor"></a>Major fixes</h2>
@@ -208,9 +211,29 @@
 <a href="#minor-fixes-2" class="anchor"></a>Minor fixes</h2>
 <ul>
 <li>
-<p>New summary for <code>wastd_data</code>: <code><a href="../reference/summarise_wastd_data_per_day_site.html">summarise_wastd_data_per_day_site()</a></code></p>
+<p><code>download_odkc_turtledata2020()</code> now includes Turtle Tagging data (4 tables), <code>download_odkc_turtledata2019()</code> contains NULL as placeholder in these four tables, and will be sunset after season 2020-21.</p>
 <h2 id="docs-2">Docs</h2>
 <h2 id="data-2">Data</h2>
+</li>
+<li><p><code>odkc_data</code> contains Turtle Tagging data.</p></li>
+</ul>
+</div>
+</div>
+    <div id="wastdr-061" class="section level1">
+<h1 class="page-header" data-toc-text="0.6.1">
+<a href="#wastdr-061" class="anchor"></a>wastdr 0.6.1</h1>
+<div id="major-fixes-3" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-fixes-3" class="anchor"></a>Major fixes</h2>
+</div>
+<div id="minor-fixes-3" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-fixes-3" class="anchor"></a>Minor fixes</h2>
+<ul>
+<li>
+<p>New summary for <code>wastd_data</code>: <code><a href="../reference/summarise_wastd_data_per_day_site.html">summarise_wastd_data_per_day_site()</a></code></p>
+<h2 id="docs-3">Docs</h2>
+<h2 id="data-3">Data</h2>
 </li>
 </ul>
 </div>
@@ -218,9 +241,9 @@
     <div id="wastdr-060" class="section level1">
 <h1 class="page-header" data-toc-text="0.6.0">
 <a href="#wastdr-060" class="anchor"></a>wastdr 0.6.0</h1>
-<div id="major-fixes-3" class="section level2">
+<div id="major-fixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-fixes-3" class="anchor"></a>Major fixes</h2>
+<a href="#major-fixes-4" class="anchor"></a>Major fixes</h2>
 <ul>
 <li>WAStD API changes:
 <ul>
@@ -240,33 +263,33 @@
 <code>TurtleNestObservation.nest_position</code> has been replaced and merged with the already existing <code>TurtleNestEncounter.habitat</code> in WAStD. This simplifies the contents of the WAStD table <code>TurtleNestObservation</code>, which is aptly named <code>turtle-nest-excavation</code> in the API to include only excavation data (egg counts, HS/ES, nest depth, ambient temperatures). “Nest habitat-only” records have been deleted from <code>TurtleNestObservation</code>. The calculation of HS and ES is also rectified to now exclude a false <code>0</code> for “Nest habitat-only” records (which are deleted and not coming back anyways).</li>
 </ul>
 </div>
-<div id="minor-fixes-3" class="section level2">
+<div id="minor-fixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-fixes-3" class="anchor"></a>Minor fixes</h2>
+<a href="#minor-fixes-4" class="anchor"></a>Minor fixes</h2>
 </div>
-<div id="docs-3" class="section level2">
+<div id="docs-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#docs-3" class="anchor"></a>Docs</h2>
+<a href="#docs-4" class="anchor"></a>Docs</h2>
 </div>
-<div id="data-3" class="section level2">
+<div id="data-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#data-3" class="anchor"></a>Data</h2>
+<a href="#data-4" class="anchor"></a>Data</h2>
 </div>
 </div>
     <div id="wastdr-057" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.7">
 <a href="#wastdr-057" class="anchor"></a>wastdr 0.5.7</h1>
-<div id="major-fixes-4" class="section level2">
+<div id="major-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-fixes-4" class="anchor"></a>Major fixes</h2>
+<a href="#major-fixes-5" class="anchor"></a>Major fixes</h2>
 </div>
-<div id="minor-fixes-4" class="section level2">
+<div id="minor-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-fixes-4" class="anchor"></a>Minor fixes</h2>
+<a href="#minor-fixes-5" class="anchor"></a>Minor fixes</h2>
 <ul>
 <li>
 <p>Join essential Encounter details to nested tables in <code><a href="../reference/download_wastd_turtledata.html">download_wastd_turtledata()</a></code>. This should restore behaviour of analysis functions to 0.5.5.</p>
-<h2 id="docs-4">Docs</h2>
+<h2 id="docs-5">Docs</h2>
 <h2 id="datadownload_wastd_turtledata">Data<code>download_wastd_turtledata()</code>
 </h2>
 </li>
@@ -277,18 +300,18 @@
     <div id="wastdr-056" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.6">
 <a href="#wastdr-056" class="anchor"></a>wastdr 0.5.6</h1>
-<div id="major-fixes-5" class="section level2">
+<div id="major-fixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-fixes-5" class="anchor"></a>Major fixes</h2>
+<a href="#major-fixes-6" class="anchor"></a>Major fixes</h2>
 <ul>
 <li>
 <p>Bugfix: <code><a href="../reference/download_wastd_turtledata.html">download_wastd_turtledata()</a></code> now shows correct encounter details for nested observations like nest tags, nest loggers etc.</p>
-<h2 id="minor-fixes-5">Minor fixes</h2>
+<h2 id="minor-fixes-6">Minor fixes</h2>
 </li>
 <li>
 <p><code><a href="../reference/download_wastd_turtledata.html">download_wastd_turtledata()</a></code> infers verbosity from <code><a href="../reference/wastdr_settings.html">get_wastdr_verbose()</a></code>.</p>
-<h2 id="docs-5">Docs</h2>
-<h2 id="data-4">Data</h2>
+<h2 id="docs-6">Docs</h2>
+<h2 id="data-5">Data</h2>
 </li>
 </ul>
 </div>
@@ -296,18 +319,18 @@
     <div id="wastdr-055" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.5">
 <a href="#wastdr-055" class="anchor"></a>wastdr 0.5.5</h1>
-<div id="major-fixes-6" class="section level2">
+<div id="major-fixes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-fixes-6" class="anchor"></a>Major fixes</h2>
+<a href="#major-fixes-7" class="anchor"></a>Major fixes</h2>
 <ul>
 <li>
 <p>Updated turtle tagging database extractor <code><a href="../reference/download_w2_data.html">download_w2_data()</a></code>. (<a href='https://github.com/dbca-wa/wastdr/issues/29'>#29</a>)</p>
-<h2 id="minor-fixes-6">Minor fixes</h2>
+<h2 id="minor-fixes-7">Minor fixes</h2>
 </li>
 <li>
 <p><code>wastdr_msg_*</code> has new parameter <code>verbose = get_wastdr_verbose()</code> because we always want to make message verbosity conditional.</p>
-<h2 id="docs-6">Docs</h2>
-<h2 id="data-5">Data</h2>
+<h2 id="docs-7">Docs</h2>
+<h2 id="data-6">Data</h2>
 </li>
 </ul>
 </div>
@@ -315,15 +338,15 @@
     <div id="wastdr-054" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.4">
 <a href="#wastdr-054" class="anchor"></a>wastdr 0.5.4</h1>
-<div id="major-fixes-7" class="section level2">
+<div id="major-fixes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-fixes-7" class="anchor"></a>Major fixes</h2>
+<a href="#major-fixes-8" class="anchor"></a>Major fixes</h2>
 <ul>
 <li>
 <p>Improved parsing of WAStD data</p>
-<h2 id="minor-fixes-7">Minor fixes</h2>
-<h2 id="docs-7">Docs</h2>
-<h2 id="data-6">Data</h2>
+<h2 id="minor-fixes-8">Minor fixes</h2>
+<h2 id="docs-8">Docs</h2>
+<h2 id="data-7">Data</h2>
 </li>
 </ul>
 </div>
@@ -331,21 +354,21 @@
     <div id="wastdr-053" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.3">
 <a href="#wastdr-053" class="anchor"></a>wastdr 0.5.3</h1>
-<div id="major-fixes-8" class="section level2">
+<div id="major-fixes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-fixes-8" class="anchor"></a>Major fixes</h2>
+<a href="#major-fixes-9" class="anchor"></a>Major fixes</h2>
 </div>
-<div id="minor-fixes-8" class="section level2">
+<div id="minor-fixes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-fixes-8" class="anchor"></a>Minor fixes</h2>
+<a href="#minor-fixes-9" class="anchor"></a>Minor fixes</h2>
 </div>
-<div id="docs-8" class="section level2">
+<div id="docs-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#docs-8" class="anchor"></a>Docs</h2>
+<a href="#docs-9" class="anchor"></a>Docs</h2>
 </div>
-<div id="data-7" class="section level2">
+<div id="data-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#data-7" class="anchor"></a>Data</h2>
+<a href="#data-8" class="anchor"></a>Data</h2>
 <ul>
 <li>
 <code>export_wastd_turtledata</code> now also exports all data to an RData file.</li>
@@ -355,17 +378,17 @@
     <div id="wastdr-052" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.2">
 <a href="#wastdr-052" class="anchor"></a>wastdr 0.5.2</h1>
-<div id="data-8" class="section level2">
+<div id="data-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#data-8" class="anchor"></a>Data</h2>
+<a href="#data-9" class="anchor"></a>Data</h2>
 <ul>
 <li>WAStD API changes: Surveys now contain in addition to the surveyed <code>site</code> also the Locality (<code>area</code>), e.g. “Ningaloo”. This allows filtering to whole monitoring programs.</li>
 <li>WAStD API changes: Users now include <code>is_active</code> to indicate whether they are a closed duplicate profile or an active one. This is useful to exclude duplicate profiles from user name mapping (e.g. in <code>etlTurtleNesting</code>).</li>
 </ul>
 </div>
-<div id="docs-9" class="section level2">
+<div id="docs-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#docs-9" class="anchor"></a>Docs</h2>
+<a href="#docs-10" class="anchor"></a>Docs</h2>
 <ul>
 <li>All functions are now shown in Reference sorted by function family.</li>
 <li>Reference docs now support Markdown. Bullet point lists are easier to write now.</li>
@@ -375,9 +398,9 @@
     <div id="wastdr-051" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.1">
 <a href="#wastdr-051" class="anchor"></a>wastdr 0.5.1</h1>
-<div id="data-9" class="section level2">
+<div id="data-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#data-9" class="anchor"></a>Data</h2>
+<a href="#data-10" class="anchor"></a>Data</h2>
 <ul>
 <li>
 <code>odkc_data</code> is not generated from <code>wastdr::download_odkc_turtledata2020()</code>. The first 100 records of each element are retained and sanitised of PII (names).</li>
@@ -390,9 +413,9 @@
 <h1 class="page-header" data-toc-text="0.5.0">
 <a href="#wastdr-050" class="anchor"></a>wastdr 0.5.0</h1>
 <p>Status Oct 2020</p>
-<div id="minor-fixes-9" class="section level2">
+<div id="minor-fixes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-fixes-9" class="anchor"></a>Minor fixes</h2>
+<a href="#minor-fixes-10" class="anchor"></a>Minor fixes</h2>
 <ul>
 <li>
 <code>download_odkc_turtledata_2020</code> now includes Site Visit Start (Map)</li>

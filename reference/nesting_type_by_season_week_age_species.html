@@ -92,7 +92,7 @@ and species — nesting_type_by_season_week_age_species" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
       </span>
     </div>
 
@@ -181,6 +181,7 @@ and species</h1>
     <div class='dont-index'><p>Other wastd: 
 <code><a href='add_nest_labels.html'>add_nest_labels</a>()</code>,
 <code><a href='disturbance_by_season.html'>disturbance_by_season</a>()</code>,
+<code><a href='duplicate_surveys.html'>duplicate_surveys</a>()</code>,
 <code><a href='filter_alive.html'>filter_alive</a>()</code>,
 <code><a href='filter_dead.html'>filter_dead</a>()</code>,
 <code><a href='filter_disturbance.html'>filter_disturbance</a>()</code>,
@@ -235,27 +236,21 @@ and species</h1>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span>
 <span class='fu'>nesting_type_by_season_week_age_species</span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>tracks</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 16 x 11</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 49 × 11</span>
 #&gt;    season season_week iso_week species     nest_age `false-crawl` `hatched-nest`
-#&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>   </span><span style='text-decoration: underline;'>2</span><span>009          36       10 natator-de… fresh                2              0
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>   </span><span style='text-decoration: underline;'>2</span><span>009          38       12 natator-de… fresh                0              2
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          20       46 chelonia-m… fresh               28              1
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          20       46 cheloniida… fresh                3              1
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          20       46 corolla-co… fresh                1              0
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          20       46 eretmochel… fresh                5              1
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          20       46 natator-de… fresh               28              0
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          21       47 chelonia-m… fresh              145              0
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          21       47 cheloniida… fresh                3              2
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          21       47 corolla-co… fresh                0              0
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          21       47 eretmochel… fresh                5             10
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          21       47 natator-de… fresh               71              0
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          22       48 chelonia-m… fresh              123              0
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          22       48 cheloniida… fresh                5              2
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          22       48 eretmochel… fresh                7              8
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span>   </span><span style='text-decoration: underline;'>2</span><span>016          22       48 natator-de… fresh               56              0
-#&gt; </span><span style='color: #949494;'># … with 4 more variables: nest &lt;dbl&gt;, successful-crawl &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   track-not-assessed &lt;dbl&gt;, track-unsure &lt;dbl&gt;</span><span></div></span></pre>
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>020           0       26 lepidochel… fresh                1              0
+#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>020           0       26 natator-de… fresh                0              0
+#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>020          30        4 caretta-ca… fresh                5              0
+#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>020          30        4 chelonia-m… fresh              331              0
+#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>020          30        4 cheloniida… fresh                2              0
+#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>020          30        4 eretmochel… fresh                4              0
+#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>020          30        4 natator-de… fresh                0              0
+#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>020          31        5 caretta-ca… fresh                5              0
+#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>020          31        5 chelonia-m… fresh                4              0
+#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>020          31        5 cheloniida… fresh                0              1
+#&gt; <span style='color: #949494;'># … with 39 more rows, and 4 more variables: nest &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   successful-crawl &lt;dbl&gt;, track-not-assessed &lt;dbl&gt;, track-unsure &lt;dbl&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
