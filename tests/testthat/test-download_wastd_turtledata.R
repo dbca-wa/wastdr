@@ -30,7 +30,7 @@ test_that("download_wastd_turtledata emits verbose messages", {
 
   verbose <- wastdr::get_wastdr_verbose()
   Sys.setenv(WASTDR_VERBOSE = TRUE)
-  testthat::expect_message(download_wastd_turtledata(max_records = 100, min_year = 2021))
+  testthat::expect_message(download_wastd_turtledata(max_records = 1000, min_year = 2021))
   Sys.setenv(WASTDR_VERBOSE = verbose)
 })
 
