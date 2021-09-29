@@ -47,26 +47,21 @@ Default: wastdr::get_wastdr_verbose()}
 \value{
 An S3 object of class 'wastd_api_response' containing:
 
-features: The sent GeoJSON features
+data: The parsed response content
 
 serializer: The called serializer, e.g. 'supra'
 
-response: The API HTTP response with all metadata
+url: The called URL
+
+date: The timestamp of the request
+
+status_code: The HTTP status code of the request
 }
 \description{
 \lifecycle{stable}
 }
 \examples{
 \dontrun{
-# One by one
-gj <- "public:herbie_hbvnames_public" \%>\% kmi_getFeature()
-props <- purrr::map(gj[["features"]], "properties")
-wastd_POST(props[[1]], serializer = "names")
-
-# All in batch
-"public:herbie_hbvnames_public" \%>\%
-  kmi_getFeature() \%>\%
-  wastd_upsert_geojson(serializer = "names", verbose = T)
 }
 }
 \seealso{

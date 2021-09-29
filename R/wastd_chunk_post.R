@@ -39,7 +39,7 @@ wastd_chunk_post <- function(data,
 
     "[chunk_post][{Sys.time()}][{i}] Processing feature {start} to {end}" %>%
       glue::glue() %>%
-      wastdr::wastdr_msg_info()
+      wastdr::wastdr_msg_info(verbose = verbose)
 
     res <- data[start:end, ] %>%
       wastdr::wastd_POST(.,
@@ -54,6 +54,6 @@ wastd_chunk_post <- function(data,
 
   "[chunk_post][{Sys.time()}] Finished, {len} records created/updated." %>%
     glue::glue() %>%
-    wastdr::wastdr_msg_info()
+    wastdr::wastdr_msg_info(verbose = verbose)
   res
 }

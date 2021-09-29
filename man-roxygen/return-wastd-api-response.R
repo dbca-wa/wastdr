@@ -1,7 +1,12 @@
 #' @return An S3 object of class 'wastd_api_response' containing:
 #'
-#'   features: The sent GeoJSON features
+#'   data: The parsed response content
 #'
 #'   serializer: The called serializer, e.g. 'supra'
 #'
-#'   response: The API HTTP response with all metadata
+#'   url: The called URL
+#'
+#'   date: The timestamp of the request
+#'
+#'   status_code: The HTTP status code of the request
+#'

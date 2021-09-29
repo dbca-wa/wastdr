@@ -5,10 +5,12 @@ test_that("download_wastd_turtledata works", {
 
   testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
 
-  # Bad things will happen if all records have all NULL area or site
+  # Bad things will happen if all records have all NULL area or site or survey
   # This can break tests with `max_records = 1`
-  # We get 10 records to lower the risk of picking the few with NULL area/sites
-  x <- suppressWarnings(download_wastd_turtledata(max_records = 100, min_year = 2021))
+  # We get 10 records to lower the risk of picking the few with NULL area/sites/surveys
+  x <- suppressWarnings(
+    download_wastd_turtledata(max_records = 1000, min_year = 2021)
+    )
 
   expect_equal(class(x), "wastd_data")
   expect_equal(length(x), 22) # This will change if we add more data

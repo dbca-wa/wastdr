@@ -6,7 +6,7 @@
 #' @param sid The ID of a site, e.g. 22
 #' @param seas The season as integer, e.g. 2018
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 #' @examples
 #' data("wastd_data")
 #' one_season <- unique(wastd_data$surveys$season)[1]
@@ -27,7 +27,7 @@ survey_count <- function(surveys, sid, seas) {
 #' @param kms The numbers of kilometers covered in a survey, e.g. 1.6
 #' @param seas The season as integer, e.g. 2018
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 #' @examples
 #' data("wastd_data")
 #' one_season <- unique(wastd_data$surveys$season)[1]
@@ -48,7 +48,7 @@ survey_ground_covered <- function(surveys, sid, kms, seas) {
 #' @return A tibble with columns season, turtle_date, site_name, n
 #' (number of surveys)
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 #' @examples
 #' data("wastd_data")
 #' surveys_per_site_name_and_date(wastd_data$surveys)
@@ -67,7 +67,7 @@ surveys_per_site_name_and_date <- function(surveys) {
 #' @template param-surveys
 #' @return A tibble with columns season, turtle_date, site_name, hours_surveyed
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 survey_hours_per_site_name_and_date <- function(surveys) {
   surveys %>%
     dplyr::group_by(season, turtle_date, site_name) %>%
@@ -86,11 +86,11 @@ survey_hours_per_site_name_and_date <- function(surveys) {
 #' @return A tibble with columns reporter, season, hours_surveyed,
 #' sorted by most to fewest hours.
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 survey_hours_per_person <- function(surveys) {
   surveys %>%
     dplyr::group_by(season, reporter) %>%
-    tally(duration_hours) %>%
+    dplyr::tally(duration_hours) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(hours_surveyed = round(n)) %>%
     dplyr::select(-n) %>%
@@ -104,7 +104,7 @@ survey_hours_per_person <- function(surveys) {
 #' @template param-surveys
 #' @template param-placename
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 list_survey_count <- function(surveys, placename = "") {
   surveys %>%
     surveys_per_site_name_and_date() %>%
@@ -121,35 +121,37 @@ list_survey_count <- function(surveys, placename = "") {
 #' @template param-prefix
 #' @template param-export
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 plot_survey_count <-
   function(surveys,
            local_dir = here::here(),
            placename = "",
            prefix = "",
            export = FALSE) {
-    fname <- glue::glue("{prefix}_survey_count_{urlize(placename)}.png")
-    ttle <- glue::glue("Survey Count {placename}")
-
     plt <- surveys %>%
       surveys_per_site_name_and_date() %>%
       ggplot2::ggplot(
         .,
-        ggplot2::aes(turtle_date,
-          site_name,
-          fill = n
-        )
+        ggplot2::aes(x = tdate_as_fdate(turtle_date), site_name)
       ) +
-      ggplot2::geom_tile() +
-      ggplot2::facet_grid(rows = ggplot2::vars(season)) +
+      ggplot2::geom_bar(ggplot2::aes(y = n),
+        stat = "identity",
+        color = "black",
+        fill = "grey"
+      ) +
+      ggplot2::facet_grid(facets = ggplot2::vars(season), scales = "free_x") +
+      ggplot2::scale_x_continuous(labels = function(x) {fdate_as_tdate(x)}) +
+      ggplot2::scale_y_continuous(limits = c(0, NA)) +
       ggplot2::theme_classic() +
-      ggplot2::ggtitle(ttle) +
-      ggplot2::labs(x = "Turtle date", y = "", fill = "Number of surveys")
+      ggplot2::ggtitle(glue::glue("Survey Count {placename}"),
+                       subtitle = "Number of surveys"
+        ) +
+      ggplot2::labs(x = "Turtle date", y = "")
 
     if (export == TRUE) {
       ggplot2::ggsave(
         plot = plt,
-        filename = fname,
+        filename = glue::glue("{prefix}_survey_count_{urlize(placename)}.png"),
         path = local_dir,
         width = 10,
         height = 6
@@ -166,7 +168,7 @@ plot_survey_count <-
 #' @template param-surveys
 #' @template param-placename
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 list_survey_effort <- function(surveys, placename = "") {
   surveys %>%
     survey_hours_per_site_name_and_date() %>%
@@ -183,7 +185,7 @@ list_survey_effort <- function(surveys, placename = "") {
 #' @template param-prefix
 #' @template param-export
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 plot_survey_effort <-
   function(surveys,
            local_dir = here::here(),
@@ -195,20 +197,20 @@ plot_survey_effort <-
       survey_hours_per_site_name_and_date() %>%
       ggplot2::ggplot(
         .,
-        ggplot2::aes(turtle_date,
-          site_name,
-          fill = hours_surveyed
-        )
+        ggplot2::aes(x = tdate_as_fdate(turtle_date), site_name)
       ) +
-      ggplot2::geom_raster() +
-      ggplot2::facet_grid(rows = ggplot2::vars(season)) +
-      ggplot2::scale_x_date(
-        breaks = scales::pretty_breaks(),
-        labels = scales::date_format("%d %b %Y")
+      ggplot2::geom_bar(ggplot2::aes(y = hours_surveyed),
+                        stat = "identity",
+                        color = "black",
+                        fill = "grey"
       ) +
+      ggplot2::facet_grid(facets = ggplot2::vars(season), scales = "free_x") +
+      ggplot2::scale_x_continuous(labels = function(x) {fdate_as_tdate(x)}) +
+      ggplot2::scale_y_continuous(limits = c(0, NA)) +
       ggplot2::theme_classic() +
-      ggplot2::ggtitle(glue::glue("Survey Effort {placename}")) +
-      ggplot2::labs(x = "Turtle date", y = "", fill = "Hours surveyed")
+      ggplot2::ggtitle(glue::glue("Survey Effort {placename}"),
+                       subtitle = "Hours surveyed") +
+      ggplot2::labs(x = "Turtle date", y = "")
 
     if (export == TRUE) {
       ggplot2::ggsave(
@@ -232,16 +234,13 @@ plot_survey_effort <-
 #' @template param-prefix
 #' @template param-export
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 survey_hours_heatmap <-
   function(surveys,
            local_dir = here::here(),
            placename = "",
            prefix = "",
            export = FALSE) {
-    fname <- glue::glue(
-      "{prefix}_survey_hours_heatmap_{wastdr::urlize(placename)}.png"
-    )
     plt <- surveys %>%
       wastdr::survey_hours_per_site_name_and_date(.) %>%
       ggTimeSeries::ggplot_calendar_heatmap("turtle_date", "hours_surveyed") +
@@ -250,15 +249,19 @@ survey_hours_heatmap <-
       ggplot2::ggtitle(glue::glue("Survey effort at {placename}")) +
       ggplot2::xlab(NULL) + ggplot2::ylab(NULL) +
       ggplot2::theme_classic()
+
     if (export == TRUE) {
       ggplot2::ggsave(
         plot = plt,
-        filename = fname,
+        filename = glue::glue(
+          "{prefix}_survey_hours_heatmap_{wastdr::urlize(placename)}.png"
+        ),
         path = local_dir,
         width = 10,
         height = 6
       )
     }
+
     plt
   }
 
@@ -272,7 +275,7 @@ survey_hours_heatmap <-
 #' @template param-prefix
 #' @template param-export
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 survey_count_heatmap <- function(surveys,
                                  local_dir = here::here(),
                                  placename = "",
@@ -312,7 +315,7 @@ survey_count_heatmap <- function(surveys,
 #'
 #' @template param-surveys
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 survey_season_stats <- function(surveys) {
   surveys %>%
     dplyr::group_by(season) %>%
@@ -339,7 +342,7 @@ survey_season_stats <- function(surveys) {
 #' @template param-surveys
 #'
 #' @export
-#' @family wastd
+#' @family wastd_surveys
 survey_season_site_stats <- function(surveys) {
   surveys %>%
     dplyr::group_by(season, site_name) %>%
@@ -360,7 +363,7 @@ survey_season_site_stats <- function(surveys) {
 #' \lifecycle{stable}
 #'
 #' @template param-surveys
-#' @family wastd
+#' @family wastd_surveys
 #' @export
 survey_show_detail <- function(surveys) {
   surveys %>%
@@ -393,7 +396,7 @@ survey_show_detail <- function(surveys) {
 #' \lifecycle{stable}
 #'
 #' @template param-surveys
-#' @family wastd
+#' @family wastd_surveys
 #' @export
 duplicate_surveys <- function(surveys) {
   surveys %>%

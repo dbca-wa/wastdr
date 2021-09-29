@@ -3,7 +3,7 @@
     <h:title>Turtle Track or Nest</h:title>
     <model>
       <instance>
-        <data id="Turtle-Track-or-Nest" version="1629442720">
+        <data id="Turtle-Track-or-Nest" version="1631153497">
           <meta>
             <instanceID/>
           </meta>
@@ -269,9 +269,6 @@
           <text id="/data/track_photos/photo_track_1:hint">
             <value>Place ruler across track as length reference</value>
           </text>
-          <text id="/data/track_photos/photo_track_1:requiredMsg">
-            <value>Please take a photo of the uptrack</value>
-          </text>
           <text id="/data/track_photos/photo_track_2:label">
             <value>Downtrack</value>
           </text>
@@ -340,9 +337,6 @@
           </text>
           <text id="/data/nest_photos/photo_nest_1:hint">
             <value>Include length reference, landscape aspect</value>
-          </text>
-          <text id="/data/nest_photos/photo_nest_1:requiredMsg">
-            <value>Please take at least one photo of the possible nest</value>
           </text>
           <text id="/data/nest_photos/photo_nest_2:label">
             <value>Possible nest 2</value>
@@ -972,9 +966,6 @@
           <text id="/data/light_source/light_source_photo:hint">
             <value>Optional but nice to have</value>
           </text>
-          <text id="/data/light_source/light_source_photo:requiredMsg">
-            <value>Please take a photo</value>
-          </text>
           <text id="/data/light_source/light_bearing_manual:label">
             <value>Bearing to light source</value>
           </text>
@@ -1030,7 +1021,7 @@
       <bind nodeset="/data/details/nest_type" type="select1" required="true()"/>
       <bind nodeset="/data/details/observed_at" type="geopoint" required="true()" jr:requiredMsg="jr:itext('/data/details/observed_at:requiredMsg')"/>
       <bind nodeset="/data/track_photos" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
-      <bind nodeset="/data/track_photos/photo_track_1" type="binary" required="true()" jr:requiredMsg="jr:itext('/data/track_photos/photo_track_1:requiredMsg')" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
+      <bind nodeset="/data/track_photos/photo_track_1" type="binary" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
       <bind nodeset="/data/track_photos/photo_track_2" type="binary" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
       <bind nodeset="/data/track_photos/max-track-width-front" type="int" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))" constraint="(. &gt;= '0') and (. &lt;= '2000')" jr:constraintMsg="jr:itext('/data/track_photos/max-track-width-front:constraintMsg')"/>
       <bind nodeset="/data/track_photos/max-track-width-rear" type="int" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))" constraint="(. &gt;= '0') and (. &lt;= '2000')" jr:constraintMsg="jr:itext('/data/track_photos/max-track-width-rear:constraintMsg')"/>
@@ -1038,7 +1029,7 @@
       <bind nodeset="/data/track_photos/step-length" type="int" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))" constraint="(. &gt;= '0') and (. &lt;= '1000')" jr:constraintMsg="jr:itext('/data/track_photos/step-length:constraintMsg')"/>
       <bind nodeset="/data/track_photos/tail-pokes" type="select1" required="true()" relevant="(/data/details/species = 'cheloniidae-fam' and not(contains(/data/details/nest_type, 'nest') or /data/details/nest_type = 'body-pit'))"/>
       <bind nodeset="/data/nest_photos" relevant="(/data/details/nest_type = 'track-unsure')"/>
-      <bind nodeset="/data/nest_photos/photo_nest_1" type="binary" required="true()" jr:requiredMsg="jr:itext('/data/nest_photos/photo_nest_1:requiredMsg')" relevant="(/data/details/nest_type = 'track-unsure')"/>
+      <bind nodeset="/data/nest_photos/photo_nest_1" type="binary" relevant="(/data/details/nest_type = 'track-unsure')"/>
       <bind nodeset="/data/nest_photos/photo_nest_2" type="binary" relevant="(/data/details/nest_type = 'track-unsure')"/>
       <bind nodeset="/data/nest_photos/photo_nest_3" type="binary" relevant="(/data/details/nest_type = 'track-unsure')"/>
       <bind nodeset="/data/nest" relevant="(/data/details/nest_type = 'successful-crawl' or /data/details/nest_type = 'nest' or /data/details/nest_type = 'hatched-nest')"/>
@@ -1111,7 +1102,7 @@
       <bind nodeset="/data/emergence_climate" relevant="(/data/fan_angles/cloud_cover_at_emergence_known = 'yes')"/>
       <bind nodeset="/data/emergence_climate/cloud_cover_at_emergence" type="int" relevant="(/data/fan_angles/cloud_cover_at_emergence_known = 'yes')"/>
       <bind nodeset="/data/light_source" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
-      <bind nodeset="/data/light_source/light_source_photo" type="binary" required="true()" jr:requiredMsg="jr:itext('/data/light_source/light_source_photo:requiredMsg')" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
+      <bind nodeset="/data/light_source/light_source_photo" type="binary" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
       <bind nodeset="/data/light_source/light_bearing_manual" type="decimal" required="true()" jr:requiredMsg="jr:itext('/data/light_source/light_bearing_manual:requiredMsg')" relevant="(/data/fan_angles/light_sources_present = 'present')" constraint="(. &gt;= '0') and (. &lt;= '360')" jr:constraintMsg="Value must be between 0 and 360"/>
       <bind nodeset="/data/light_source/light_source_type" type="select1" required="true()" jr:requiredMsg="jr:itext('/data/light_source/light_source_type:requiredMsg')" relevant="(/data/fan_angles/light_sources_present = 'present')"/>
       <bind nodeset="/data/light_source/light_source_description" type="string" relevant="(/data/fan_angles/light_sources_present = 'present')"/>

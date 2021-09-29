@@ -3,7 +3,7 @@
     <h:title>Soundcheck</h:title>
     <model>
       <instance>
-        <data id="Soundcheck" version="1629441956">
+        <data id="Soundcheck" version="1631153336">
           <meta>
             <instanceID/>
           </meta>
@@ -54,11 +54,11 @@
             <value form="guidance">&lt;strong&gt;Setting the Username&lt;/strong&gt;&lt;br/&gt; &amp;#x22EE; &gt; Settings &gt; User and device &gt; Form metadata &gt; Username&lt;br/&gt; &lt;strong&gt;Name format&lt;/strong&gt;&lt;br/&gt;The Username should be your full Given and Surname, e.g. Joe Bloggs. Avoid nicknames, abbreviations, or multiple names. Provide only and completely the name of the person who is solely or mainly responsible for data entry. Team members go into a separate field in form &quot;Site Visit Start&quot;.&lt;br/&gt; &lt;strong&gt;Now what?&lt;/strong&gt;&lt;br/&gt;Exit this form with the device's back button and &quot;ignore changes&quot;, then fill it again to see the updated Username. Subsequent forms will record this name.&lt;br/&gt;</value>
           </text>
           <text id="/data/metadata_repeat/current_time:label">
-            <value>Is this the current time?</value>
+            <value>Time of form start</value>
           </text>
           <text id="/data/metadata_repeat/current_time:hint">
-            <value>Make sure this device is runs in the local timezone.</value>
-            <value form="guidance">We capture the current date and time in every form, so you don't have to.&lt;br/&gt; Time and date can be out of sync if the device hasn't been online after periods of long storage.&lt;br/&gt; If date and time are wrong, let the device connect to WiFi and set date and time to &quot;auto&quot; in the system settings. Make sure they are correctly set.</value>
+            <value>Make sure this device is runs in the local timezone. Compare to an external clock.</value>
+            <value form="guidance">We capture the date and time at the start of every form, so you don't have to.&lt;br/&gt; Time and date can be out of sync if the device hasn't been online after periods of long storage.&lt;br/&gt; If date and time are wrong, let the device connect to WiFi and set date and time to &quot;auto&quot; in the system settings. Make sure they are correctly set.</value>
           </text>
           <text id="/data/metadata_repeat/device_label:label">
             <value>What is the device label?</value>
@@ -143,7 +143,7 @@
           </text>
           <text id="/data/photos/photo:hint">
             <value>Bonus points for silly photos. Follow the guidance!</value>
-            <value form="guidance">&lt;strong&gt;Landscape&lt;/strong&gt;&lt;br/&gt;We prefer landscape (horizontal) photos, because they display better on monitors. Unless you have a good reason to take a portrait (vertical) photo, flip the device sideways to take a landscape photo.&lt;br/&gt; &lt;strong&gt;Occasion&lt;/strong&gt;&lt;br/&gt;Unless it's too dark, or conditions otherwise prevent you from taking a clear photo, please always take a photo if the form asks for one. Photos are brilliant to answer QA questions like unsure species or surveyed sites. Taking a photo we don't need costs a few seconds, but skipping a photo we would have needed cannot be recovered. Make your sweat count and always take a photo!&lt;br/&gt; &lt;strong&gt;Sun angle&lt;/strong&gt;&lt;br/&gt;Position yourself so that the sun is at an optimal angle, and sun/shade shows the best detail.&lt;br/&gt; &lt;strong&gt;Reference&lt;/strong&gt;&lt;br/&gt;Turtle tracks always need a clearly visible length reference. Place the taped yardstick across the track as shown in training. Tracks without length reference are hard to identify from photos. If showing anything else (e.g. excavated eggs), include the whiteboard and write on it what the photo shows.&lt;br/&gt; &lt;strong&gt;Location tags&lt;/strong&gt;&lt;br/&gt;Make sure that the camera saves location tags in its settings. This makes photos with a whiteboard like a mini-form. &lt;strong&gt;Photo size&lt;/strong&gt;&lt;br/&gt; We send reduced size images to keep uploads fast. For reference, this is set via&lt;br/&gt;  &amp;#x22EE; &gt; Project settings &gt; Form mgmt &gt; Image size &gt; Medium (2048px).</value>
+            <value form="guidance">&lt;strong&gt;Landscape&lt;/strong&gt;&lt;br/&gt;We prefer landscape (horizontal) photos, because they display better on monitors. Unless you have a good reason to take a portrait (vertical) photo, flip the device sideways to take a landscape photo.&lt;br/&gt; &lt;strong&gt;Occasion&lt;/strong&gt;&lt;br/&gt;Unless it's too dark, or conditions otherwise prevent you from taking a clear photo, please always take a photo if the form asks for one. Photos are brilliant to answer QA questions like unsure species or surveyed sites. Taking a photo we don't need costs a few seconds, but skipping a photo we would have needed cannot be recovered. Make your sweat count and always take a photo!&lt;br/&gt; &lt;strong&gt;Sun angle&lt;/strong&gt;&lt;br/&gt;Position yourself so that the sun is at an optimal angle, and sun/shade shows the best detail.&lt;br/&gt; &lt;strong&gt;Reference&lt;/strong&gt;&lt;br/&gt;Turtle tracks and any other animal tracks always need a clearly visible length reference. Place the taped yardstick across the track as shown in training. Tracks without length reference are hard to identify from photos. If showing anything else (e.g. excavated eggs), include the whiteboard and write on it what the photo shows.&lt;br/&gt; &lt;strong&gt;Location tags&lt;/strong&gt;&lt;br/&gt;Make sure that the camera saves location tags in its settings. This makes photos with a whiteboard like a mini-form.&lt;br/&gt; &lt;strong&gt;Photo size&lt;/strong&gt;&lt;br/&gt; We send reduced size images to keep uploads fast. For reference, this is set via&lt;br/&gt;  &amp;#x22EE; &gt; Project settings &gt; Form mgmt &gt; Image size &gt; Medium (2048px).</value>
           </text>
           <text id="/data/save_and_send:label">
             <value>Save and send</value>

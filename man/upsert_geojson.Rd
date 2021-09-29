@@ -42,8 +42,4 @@ Default: wastdr::get_wastdr_verbose()}
 \description{
 Upsert GeoJSON into WAStD API endpoints
 }
-\seealso{
-Other wacensus: 
-\code{\link{gs_getFeature}()}
-}
 \concept{wacensus}
