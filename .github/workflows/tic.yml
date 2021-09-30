@@ -140,7 +140,7 @@ jobs:
         if: matrix.config.pkgdown == 'true'
         run: |
           covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
-          # pkgdown::deploy_to_branch(new_process = FALSE)
+          pkgdown::deploy_to_branch(new_process = FALSE)
         shell: Rscript {0}
 
       - name: "[Stage] Upload R CMD check artifacts"
