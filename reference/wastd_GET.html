@@ -242,9 +242,11 @@ Default: wastdr::get_wastdr_verbose()</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An S3 object of class 'wastd_api_response' containing:</p>
-<p>features: The sent GeoJSON features</p>
+<p>data: The parsed response content</p>
 <p>serializer: The called serializer, e.g. 'supra'</p>
-<p>response: The API HTTP response with all metadata</p>
+<p>url: The called URL</p>
+<p>date: The timestamp of the request</p>
+<p>status_code: The HTTP status code of the request</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>

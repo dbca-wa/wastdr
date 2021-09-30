@@ -227,9 +227,11 @@ Default: wastdr::get_wastdr_verbose()</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An S3 object of class 'wastd_api_response' containing:</p>
-<p>features: The sent GeoJSON features</p>
+<p>data: The parsed response content</p>
 <p>serializer: The called serializer, e.g. 'supra'</p>
-<p>response: The API HTTP response with all metadata</p>
+<p>url: The called URL</p>
+<p>date: The timestamp of the request</p>
+<p>status_code: The HTTP status code of the request</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other api: 
@@ -250,15 +252,6 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># One by one</span>
-<span class='va'>gj</span> <span class='op'>&lt;-</span> <span class='st'>"public:herbie_hbvnames_public"</span> <span class='op'>%&gt;%</span> <span class='fu'>kmi_getFeature</span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>props</span> <span class='op'>&lt;-</span> <span class='fu'>purrr</span><span class='fu'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>gj</span><span class='op'>[[</span><span class='st'>"features"</span><span class='op'>]</span><span class='op'>]</span>, <span class='st'>"properties"</span><span class='op'>)</span>
-<span class='fu'>wastd_POST</span><span class='op'>(</span><span class='va'>props</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>, serializer <span class='op'>=</span> <span class='st'>"names"</span><span class='op'>)</span>
-
-<span class='co'># All in batch</span>
-<span class='st'>"public:herbie_hbvnames_public"</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>kmi_getFeature</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>wastd_upsert_geojson</span><span class='op'>(</span>serializer <span class='op'>=</span> <span class='st'>"names"</span>, verbose <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
