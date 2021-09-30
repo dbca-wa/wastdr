@@ -32,7 +32,7 @@ reference:
 - title: WA Sea Turtles DB
   contents:
   - has_concept("wastd")
-- title: WA Sea Turtles DB: Surveys
+- title: WA Sea Turtles DB - Surveys
   contents:
   - has_concept("wastd_surveys")
 - title: ODK Central Turtle Data
