@@ -1,11 +1,7 @@
 test_that("wastd_works returns FALSE if unauthenticated", {
   suppressWarnings(
     expect_false(
-      wastd_works(
-        api_token = "invalid",
-        api_un = "invalid",
-        api_pw = "invalid"
-      )
+      wastd_works(api_url = "http://httpstat.us/401")
     )
   )
 })
