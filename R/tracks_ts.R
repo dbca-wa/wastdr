@@ -29,7 +29,7 @@ tracks_ts <- function(data,
         ) +
         ggplot2::scale_y_continuous(limits = c(0, NA)) +
         ggplot2::geom_bar(
-          data = surveys,
+          data =  wastdr::filter_realsurveys(surveys),
           ggplot2::aes(x = tdate_as_fdate(turtle_date)),
           show.legend = FALSE
         ) +
