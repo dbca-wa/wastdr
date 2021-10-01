@@ -22,4 +22,3 @@ vignettes/rsconnect/*
 ^odkc_import.RData$
 ^users.csv$
 ^media$
-^w2.RData$

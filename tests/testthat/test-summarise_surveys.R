@@ -93,30 +93,73 @@ test_that("list_survey_effort returns a reactable", {
 
 test_that("plot_survey_count returns a ggplot", {
   data("wastd_data")
-
-  suppressWarnings(x <- plot_survey_count(wastd_data$surveys))
+  t <- tempdir()
+  fs::dir_ls(t) %>% fs::file_delete()
+  suppressWarnings(
+    x <- plot_survey_count(wastd_data$surveys)
+  )
   expect_equal(class(x), c("gg", "ggplot"))
+  expect_false(fs::file_exists(fs::path(t, "TEST_survey_count_place.png")))
+
+  suppressWarnings(
+    x <- plot_survey_count(wastd_data$surveys,
+                         export = TRUE, local_dir = t,
+                         prefix="TEST", placename = "PLACE")
+  )
+  expect_equal(class(x), c("gg", "ggplot"))
+  expect_true(fs::file_exists(fs::path(t, "TEST_survey_count_place.png")))
 })
 
 test_that("plot_survey_effort returns a ggplot", {
   data("wastd_data")
+  t <- tempdir()
+  fs::dir_ls(t) %>% fs::file_delete()
 
-  suppressWarnings(x <- plot_survey_effort(wastd_data$surveys))
+  suppressWarnings(
+    x <- plot_survey_effort(wastd_data$surveys)
+  )
   expect_equal(class(x), c("gg", "ggplot"))
+  expect_false(fs::file_exists(fs::path(t, "TEST_survey_effort_place.png")))
+
+  suppressWarnings(
+    x <- plot_survey_effort(wastd_data$surveys,
+                            export = TRUE, local_dir = t,
+                            prefix="TEST", placename = "PLACE")
+  )
+  expect_equal(class(x), c("gg", "ggplot"))
+  expect_true(fs::file_exists(fs::path(t, "TEST_survey_effort_place.png")))
 })
 
 test_that("survey_hours_heatmap returns a ggplot", {
   data("wastd_data")
+  t <- tempdir()
+  fs::dir_ls(t) %>% fs::file_delete()
 
   x <- survey_hours_heatmap(wastd_data$surveys)
   expect_equal(class(x), c("gg", "ggplot"))
+  expect_false(fs::file_exists(fs::path(t, "TEST_survey_hours_heatmap_place.png")))
+
+  x <- survey_hours_heatmap(wastd_data$surveys,
+                            export = TRUE, local_dir = t,
+                            prefix="TEST", placename = "PLACE")
+  expect_equal(class(x), c("gg", "ggplot"))
+  expect_true(fs::file_exists(fs::path(t, "TEST_survey_hours_heatmap_place.png")))
 })
 
 test_that("survey_count_heatmap returns a ggplot", {
   data("wastd_data")
+  t <- tempdir()
+  fs::dir_ls(t) %>% fs::file_delete()
 
   x <- survey_count_heatmap(wastd_data$surveys)
   expect_equal(class(x), c("gg", "ggplot"))
+  expect_false(fs::file_exists(fs::path(t, "TEST_survey_count_heatmap_place.png")))
+
+  x <- survey_count_heatmap(wastd_data$surveys,
+                            export = TRUE, local_dir = t,
+                            prefix="TEST", placename = "PLACE")
+  expect_equal(class(x), c("gg", "ggplot"))
+  expect_true(fs::file_exists(fs::path(t, "TEST_survey_count_heatmap_place.png")))
 })
 
 test_that("survey_season_stats returns a tibble", {
@@ -178,5 +221,25 @@ test_that("survey_show_detail returns a tibble", {
     )
   )
 })
+
+test_that("duplicate_surveys returns a tibble", {
+  data("wastd_data")
+
+  x <- duplicate_surveys(wastd_data$surveys)
+  expect_true(tibble::is_tibble(x))
+
+  expect_equal(
+    names(x),
+    c(
+      "season",
+      "calendar_date_awst",
+      "site_name",
+      "site_id",
+      "n",
+      "wastd"
+    )
+  )
+})
+
 
 # usethis::use_r("summarise_surveys")
