@@ -161,7 +161,7 @@ download_odkc_turtledata_2019." />
 
     <div class="ref-description">
     <p>Prints a short representation of data returned by
-<code><a href='download_odkc_turtledata_2019.html'>download_odkc_turtledata_2019</a></code>.</p>
+<code>download_odkc_turtledata_2019</code>.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for odkc_turtledata</span>
@@ -173,7 +173,7 @@ download_odkc_turtledata_2019." />
     <tr>
       <th>x</th>
       <td><p>An object of class <code>wastd_data</code> as returned by
-<code><a href='download_odkc_turtledata_2019.html'>download_odkc_turtledata_2019</a></code>.</p></td>
+<code>download_odkc_turtledata_2019</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -181,6 +181,511 @@ download_odkc_turtledata_2019." />
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>#' Download all turtle data from DBCA's ODK Central
+#'
+#' <a href='https://lifecycle.r-lib.org/articles/stages.html#maturing'><img src='figures/lifecycle-maturing.svg' alt='[Maturing]' /></a>
+
+#'
+#' @param local_dir A local directory to which to save the attachment files.
+#'   Attachment filepaths will be relative to the directory.
+#'   The directory and its parent folders will be created if not existing.
+#' @param prod The ODKC PROD server,
+#' default: "https://odkcentral.dbca.wa.gov.au".
+#' @param uat The ODKC UAT server,
+#' default: "https://odkcentral-uat.dbca.wa.gov.au".
+#' @template param-tz
+#' @param odkc_version The numeric ODK Central version, e.g. 0.7 or 0.8.
+#' @param download (lgl) Whether to download attachments to <code>local_dir</code> or not,
+#' default: TRUE.
+#' @template param-verbose
+#'
+#' @return An S3 class "odkc_turtledata" with items:
+#'</p><ul>
+<li><p>downloaded_on An UTC POSIXct timestamp of the data snapshot.
+#'</p></li>
+<li><p>tracks The turtle tracks and nests from form
+#'         "Turtle Track or Nest 1.0".
+#'</p></li>
+<li><p>tracks_dist Individual disturbances recorded against tracks,
+#'         one row per disturbance.
+#'</p></li>
+<li><p>tracks_log Individual nest tags recorded against nests,
+#'         one row per tag.
+#'</p></li>
+<li><p>tracks_egg Next excavation photos, one row per photo.
+#'</p></li>
+<li><p>tracks_hatch Turtle hatchling morphometrics, one row per measured
+#'         hatchling.
+#'</p></li>
+<li><p>tracks_fan_outlier Individual hatchling track outliers recorded
+#'         against hatched nests, one row per outlier.
+#'</p></li>
+<li><p>tracks_light Individual light sources known at hatchling emergence,
+#'         one row per light source.
+#'</p></li>
+<li><p>track_tally A line transect tally of turtle tracks from form
+#'         "Track Tally 0.6".
+#'</p></li>
+<li><p>dist The disturbance and predation records from form
+#'         "Predator or Disturbance 1.1".
+#'</p></li>
+<li><p>mwi Strandings and rescues from the form
+#'         "Marine Wildlife Incident 0.6 ".
+#'</p></li>
+<li><p>mwi_dmg Individual injuries recorded against mwi,
+#'         one record per injury.
+#'</p></li>
+<li><p>mwi_tag Individual tags sighted during an mwi, one record per tag.
+#'</p></li>
+<li><p>tsi Turtle Sightings from form "Turtle Sighting 0.1/0.2",
+#'         one row per sighted turtle.
+#'</p></li>
+<li><p>tt Placeholder for form <code>Turtle-Tagging-3-0</code>, here: NULL.
+#'</p></li>
+<li><p>tt_dmg Placeholder for form <code>Turtle-Tagging-3-0</code> (damages), here: NULL.
+#'</p></li>
+<li><p>tt_tag Placeholder for form <code>Turtle-Tagging-3-0</code> (tags), here: NULL.
+#'</p></li>
+<li><p>tt_log Placeholder for form <code>Turtle-Tagging-3-0</code> (loggers), here: NULL.
+#'</p></li>
+<li><p>svs Survey start points from form "Site Visit Start 1.3".
+#'</p></li>
+<li><p>sve Survey end points from form "Site Visit End 1.2".
+#'</p></li>
+<li><p>sites An sf object of known WAStD sites.
+#'</p></li>
+<li><p>areas An sf object of known WAStD localities.
+#'</p></li>
+</ul><p>#' @export
+#' @family odkc
+download_odkc_turtledata_2019 &lt;-
+function(local_dir = here::here("media"),
+prod = "https://odkc-uat.dbca.wa.gov.au",
+uat = "https://odkcentral-uat.dbca.wa.gov.au",
+tz = "Australia/Perth",
+download = TRUE,
+odkc_version = 1.2,
+verbose = wastdr::get_wastdr_verbose()) 
+if (download == TRUE) fs::dir_create(local_dir, recurse = TRUE) # nocov<pre><span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_setup.html'>ru_setup</a></span><span class='op'>(</span>
+  pid <span class='op'>=</span> <span class='fl'>1</span>,
+  url <span class='op'>=</span> <span class='va'>prod</span>,
+  un <span class='op'>=</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_settings.html'>get_default_un</a></span><span class='op'>(</span><span class='op'>)</span>,
+  pw <span class='op'>=</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_settings.html'>get_default_pw</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
+<span class='va'>pl</span> <span class='op'>&lt;-</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/project_list.html'>project_list</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># pl</span><span class='va'>fl</span> <span class='op'>&lt;-</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/form_list.html'>form_list</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># fl</span><span class='co'># SV start</span>
+<span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_setup.html'>ru_setup</a></span><span class='op'>(</span>
+  pid <span class='op'>=</span> <span class='fl'>1</span>,
+  fid <span class='op'>=</span> <span class='st'>"build_Site-Visit-Start-0-3_1559789550"</span>,
+  url <span class='op'>=</span> <span class='va'>prod</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"Downloading {ruODK::get_default_fid()}"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>svs_prod</span> <span class='op'>&lt;-</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span><span class='co'># SV end</span>
+<span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_setup.html'>ru_setup</a></span><span class='op'>(</span>
+  pid <span class='op'>=</span> <span class='fl'>1</span>,
+  fid <span class='op'>=</span> <span class='st'>"build_Site-Visit-End-0-2_1559789512"</span>,
+  url <span class='op'>=</span> <span class='va'>prod</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"Downloading {ruODK::get_default_fid()}"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>sve_prod</span> <span class='op'>&lt;-</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span><span class='co'># MWI</span>
+<span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_setup.html'>ru_setup</a></span><span class='op'>(</span>
+  pid <span class='op'>=</span> <span class='fl'>1</span>,
+  fid <span class='op'>=</span> <span class='st'>"build_Marine-Wildlife-Incident-0-6_1559789189"</span>,
+  url <span class='op'>=</span> <span class='va'>prod</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"Downloading {ruODK::get_default_fid()}"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>ft</span> <span class='op'>&lt;-</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_service_get.html'>odata_service_get</a></span><span class='op'>(</span><span class='op'>)</span><span class='va'>mwi_prod</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span><span class='va'>mwi_dmg_prod</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>mwi_prod</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"submissions_id"</span> <span class='op'>=</span> <span class='st'>"id"</span><span class='op'>)</span><span class='op'>)</span><span class='va'>mwi_tag_prod</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>mwi_prod</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"submissions_id"</span> <span class='op'>=</span> <span class='st'>"id"</span><span class='op'>)</span><span class='op'>)</span><span class='co'># Turtle Sighting</span>
+<span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_setup.html'>ru_setup</a></span><span class='op'>(</span>
+  pid <span class='op'>=</span> <span class='fl'>1</span>,
+  fid <span class='op'>=</span> <span class='st'>"build_Turtle-Sighting-0-1_1559790020"</span>,
+  url <span class='op'>=</span> <span class='va'>prod</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"Downloading {ruODK::get_default_fid()}"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>ft</span> <span class='op'>&lt;-</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_service_get.html'>odata_service_get</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>tsi01</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span><span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_setup.html'>ru_setup</a></span><span class='op'>(</span>
+  pid <span class='op'>=</span> <span class='fl'>1</span>,
+  fid <span class='op'>=</span> <span class='st'>"build_Turtle-Sighting-0-2_1581567844"</span>,
+  url <span class='op'>=</span> <span class='va'>prod</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"Downloading {ruODK::get_default_fid()}"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>ft</span> <span class='op'>&lt;-</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_service_get.html'>odata_service_get</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>tsi02</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span><span class='co'># Dist</span>
+<span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_setup.html'>ru_setup</a></span><span class='op'>(</span>
+  pid <span class='op'>=</span> <span class='fl'>1</span>,
+  fid <span class='op'>=</span> <span class='st'>"build_Predator-or-Disturbance-1-1_1559789410"</span>,
+  url <span class='op'>=</span> <span class='va'>prod</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"Downloading {ruODK::get_default_fid()}"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>dist_prod</span> <span class='op'>&lt;-</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span><span class='co'># Tracks</span>
+<span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_setup.html'>ru_setup</a></span><span class='op'>(</span>
+  pid <span class='op'>=</span> <span class='fl'>1</span>,
+  fid <span class='op'>=</span> <span class='st'>"build_Turtle-Track-or-Nest-1-0_1559789920"</span>,
+  url <span class='op'>=</span> <span class='va'>prod</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"Downloading {ruODK::get_default_fid()}"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>ft</span> <span class='op'>&lt;-</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_service_get.html'>odata_service_get</a></span><span class='op'>(</span><span class='op'>)</span><span class='va'>tracks_prod</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='co'># wastdr::exclude_training_species_odkc() %&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_nest_labels_odkc.html'>add_nest_labels_odkc</a></span><span class='op'>(</span><span class='op'>)</span><span class='va'>tracks_dist_prod</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>tracks_prod</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"submissions_id"</span> <span class='op'>=</span> <span class='st'>"id"</span><span class='op'>)</span><span class='op'>)</span><span class='va'>tracks_egg_prod</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>tracks_prod</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"submissions_id"</span> <span class='op'>=</span> <span class='st'>"id"</span><span class='op'>)</span><span class='op'>)</span><span class='va'>tracks_log_prod</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[</span><span class='fl'>4</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>tracks_prod</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"submissions_id"</span> <span class='op'>=</span> <span class='st'>"id"</span><span class='op'>)</span><span class='op'>)</span><span class='va'>tracks_hatch_prod</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>tracks_prod</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"submissions_id"</span> <span class='op'>=</span> <span class='st'>"id"</span><span class='op'>)</span><span class='op'>)</span><span class='va'>tracks_fan_outlier_prod</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[</span><span class='fl'>6</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>tracks_prod</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"submissions_id"</span> <span class='op'>=</span> <span class='st'>"id"</span><span class='op'>)</span><span class='op'>)</span><span class='va'>tracks_light_prod</span> <span class='op'>&lt;-</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[</span><span class='fl'>7</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+    table <span class='op'>=</span> <span class='va'>.</span>,
+    verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+    local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+    download <span class='op'>=</span> <span class='va'>download</span>,
+    odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>,
+    wkt <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>tracks_prod</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"submissions_id"</span> <span class='op'>=</span> <span class='st'>"id"</span><span class='op'>)</span><span class='op'>)</span><span class='co'># Track Tally (enc and denormalised tt obs)</span>
+<span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_setup.html'>ru_setup</a></span><span class='op'>(</span>
+  pid <span class='op'>=</span> <span class='fl'>1</span>,
+  fid <span class='op'>=</span> <span class='st'>"build_Turtle-Track-Tally-0-6_1564387009"</span>,
+  url <span class='op'>=</span> <span class='va'>prod</span>
+<span class='op'>)</span>
+<span class='va'>ft</span> <span class='op'>&lt;-</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_service_get.html'>odata_service_get</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"Downloading {ruODK::get_default_fid()}"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>tracktally_prod</span> <span class='op'>&lt;-</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+  table <span class='op'>=</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>,
+  verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+  wkt <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+  download <span class='op'>=</span> <span class='va'>download</span>,
+  odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>
+<span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>tx <span class='op'>=</span> <span class='va'>overview_location</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span>wkt <span class='op'>=</span> <span class='st'>"tx"</span><span class='op'>)</span><span class='va'>tracktally_dist_prod</span> <span class='op'>&lt;-</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+  table <span class='op'>=</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>,
+  verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+  wkt <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+  download <span class='op'>=</span> <span class='va'>download</span>,
+  odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>
+<span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>tracktally_prod</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"submissions_id"</span> <span class='op'>=</span> <span class='st'>"id"</span><span class='op'>)</span><span class='op'>)</span><span class='co'># Track Tally 0.7</span>
+<span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/ru_setup.html'>ru_setup</a></span><span class='op'>(</span>
+  pid <span class='op'>=</span> <span class='fl'>1</span>,
+  fid <span class='op'>=</span> <span class='st'>"build_Turtle-Track-Tally-0-7_1596509970"</span>,
+  url <span class='op'>=</span> <span class='va'>prod</span>
+<span class='op'>)</span>
+<span class='va'>ft</span> <span class='op'>&lt;-</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_service_get.html'>odata_service_get</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"Downloading {ruODK::get_default_fid()}"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>tracktally07_prod</span> <span class='op'>&lt;-</span> <span class='fu'>ruODK</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/ruODK/reference/odata_submission_get.html'>odata_submission_get</a></span><span class='op'>(</span>
+  table <span class='op'>=</span> <span class='va'>ft</span><span class='op'>$</span><span class='va'>url</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>,
+  verbose <span class='op'>=</span> <span class='va'>verbose</span>,
+  wkt <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  local_dir <span class='op'>=</span> <span class='va'>local_dir</span>,
+  download <span class='op'>=</span> <span class='va'>download</span>,
+  odkc_version <span class='op'>=</span> <span class='va'>odkc_version</span>
+<span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>tx <span class='op'>=</span> <span class='va'>overview_location</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span>wkt <span class='op'>=</span> <span class='st'>"tx"</span><span class='op'>)</span><span class='co'># tracktally07_dist_prod &lt;- ruODK::odata_submission_get(</span>
+<span class='co'>#   table = ft$url[2],</span>
+<span class='co'>#   verbose = verbose,</span>
+<span class='co'>#   wkt = TRUE,</span>
+<span class='co'>#   local_dir = local_dir,</span>
+<span class='co'>#   download = download,</span>
+<span class='co'>#   odkc_version = odkc_version</span>
+<span class='co'># ) #%&gt;%</span>
+<span class='co'>#   # dplyr::left_join(tracktally07_prod, by = c("submissions_id" = "id"))</span><span class='co'>#--------------------------------------------------------------------------#</span>
+<span class='co'># Fix error: PROD used UAT db for a week - what's in UAT but not in PROD?</span><span class='co'># # SV start</span>
+<span class='co'># ruODK::ru_setup(</span>
+<span class='co'>#   pid = 1,</span>
+<span class='co'>#   fid = "build_Site-Visit-Start-0-3_1559789550",</span>
+<span class='co'>#   url = uat</span>
+<span class='co'># )</span>
+<span class='co'># message(glue::glue("Downloading {ruODK::get_default_fid()}"))</span>
+<span class='co'># svs_uat &lt;-</span>
+<span class='co'>#   ruODK::odata_submission_get(</span>
+<span class='co'>#     verbose = verbose,</span>
+<span class='co'>#     local_dir = local_dir,</span>
+<span class='co'>#     download = download,</span>
+<span class='co'>#     odkc_version = odkc_version,</span>
+<span class='co'>#     wkt = FALSE</span>
+<span class='co'>#   )</span>
+<span class='co'># svs_extra &lt;-</span>
+<span class='co'>#   dplyr::anti_join(svs_uat, svs_prod, by = "meta_instance_id")</span>
+<span class='co'>#</span>
+<span class='co'># # SV end</span>
+<span class='co'># ruODK::ru_setup(</span>
+<span class='co'>#   pid = 1,</span>
+<span class='co'>#   fid = "build_Site-Visit-End-0-2_1559789512",</span>
+<span class='co'>#   url = uat</span>
+<span class='co'># )</span>
+<span class='co'># message(glue::glue("Downloading {ruODK::get_default_fid()}"))</span>
+<span class='co'># sve_uat &lt;-</span>
+<span class='co'>#   ruODK::odata_submission_get(</span>
+<span class='co'>#     verbose = verbose,</span>
+<span class='co'>#     local_dir = local_dir,</span>
+<span class='co'>#     download = download,</span>
+<span class='co'>#     odkc_version = odkc_version,</span>
+<span class='co'>#     wkt = FALSE</span>
+<span class='co'>#   )</span>
+<span class='co'># sve_extra &lt;-</span>
+<span class='co'>#   dplyr::anti_join(sve_uat, sve_prod, by = "meta_instance_id")</span>
+<span class='co'>#</span>
+<span class='co'># # MWI</span>
+<span class='co'># ruODK::ru_setup(</span>
+<span class='co'>#   pid = 1,</span>
+<span class='co'>#   fid = "build_Marine-Wildlife-Incident-0-6_1559789189",</span>
+<span class='co'>#   url = uat</span>
+<span class='co'># )</span>
+<span class='co'># message(glue::glue("Downloading {ruODK::get_default_fid()}"))</span>
+<span class='co'># mwi_uat &lt;-</span>
+<span class='co'>#   ruODK::odata_submission_get(</span>
+<span class='co'>#     verbose = verbose,</span>
+<span class='co'>#     local_dir = local_dir,</span>
+<span class='co'>#     download = download,</span>
+<span class='co'>#     odkc_version = odkc_version,</span>
+<span class='co'>#     wkt = FALSE</span>
+<span class='co'>#   )</span>
+<span class='co'># mwi_extra &lt;-</span>
+<span class='co'>#   dplyr::anti_join(mwi_uat, mwi_prod, by = "meta_instance_id")</span>
+<span class='co'>#</span>
+<span class='co'># # Dist</span>
+<span class='co'># ruODK::ru_setup(</span>
+<span class='co'>#   pid = 1,</span>
+<span class='co'>#   fid = "build_Predator-or-Disturbance-1-1_1559789410",</span>
+<span class='co'>#   url = uat</span>
+<span class='co'># )</span>
+<span class='co'># message(glue::glue("Downloading {ruODK::get_default_fid()}"))</span>
+<span class='co'># dist_uat &lt;-</span>
+<span class='co'>#   ruODK::odata_submission_get(</span>
+<span class='co'>#     verbose = verbose,</span>
+<span class='co'>#     local_dir = local_dir,</span>
+<span class='co'>#     download = download,</span>
+<span class='co'>#     odkc_version = odkc_version,</span>
+<span class='co'>#     wkt = FALSE</span>
+<span class='co'>#   )</span>
+<span class='co'># dist_extra &lt;-</span>
+<span class='co'>#   dplyr::anti_join(dist_uat, dist_prod, by = "meta_instance_id")</span>
+<span class='co'>#</span>
+<span class='co'># # Tracks</span>
+<span class='co'># ruODK::ru_setup(</span>
+<span class='co'>#   pid = 1,</span>
+<span class='co'>#   fid = "build_Turtle-Track-or-Nest-1-0_1559789920",</span>
+<span class='co'>#   url = uat</span>
+<span class='co'># )</span>
+<span class='co'># message(glue::glue("Downloading {ruODK::get_default_fid()}"))</span>
+<span class='co'># ft &lt;- ruODK::odata_service_get()</span>
+<span class='co'># tracks_uat &lt;- ft$url[1] %&gt;%</span>
+<span class='co'>#   ruODK::odata_submission_get(</span>
+<span class='co'>#     table = .,</span>
+<span class='co'>#     verbose = verbose,</span>
+<span class='co'>#     local_dir = local_dir,</span>
+<span class='co'>#     download = download,</span>
+<span class='co'>#     odkc_version = odkc_version,</span>
+<span class='co'>#     wkt = FALSE</span>
+<span class='co'>#   ) %&gt;%</span>
+<span class='co'>#   # wastdr::exclude_training_species_odkc() %&gt;%</span>
+<span class='co'>#   wastdr::add_nest_labels_odkc()</span>
+<span class='co'># tracks_extra &lt;-</span>
+<span class='co'>#   dplyr::anti_join(tracks_uat, tracks_prod, by = "meta_instance_id")</span>
+<span class='co'>#</span>
+<span class='co'># tracks_dist_uat &lt;- ft$url[2] %&gt;%</span>
+<span class='co'>#   ruODK::odata_submission_get(</span>
+<span class='co'>#     table = .,</span>
+<span class='co'>#     verbose = verbose,</span>
+<span class='co'>#     local_dir = local_dir,</span>
+<span class='co'>#     download = download,</span>
+<span class='co'>#     odkc_version = odkc_version,</span>
+<span class='co'>#     wkt = FALSE</span>
+<span class='co'>#   ) %&gt;%</span>
+<span class='co'>#   dplyr::left_join(tracks_uat, by = c("submissions_id" = "id"))</span>
+<span class='co'># tracks_dist_extra &lt;- tracks_dist_uat %&gt;%</span>
+<span class='co'>#   dplyr::anti_join(tracks_dist_prod, by = "meta_instance_id")</span><span class='va'>areas_sf</span> <span class='op'>&lt;-</span> <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='wastd_GET.html'>wastd_GET</a></span><span class='op'>(</span><span class='st'>"area"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>magrittr</span><span class='fu'>::</span><span class='fu'><a href='https://magrittr.tidyverse.org/reference/aliases.html'>extract2</a></span><span class='op'>(</span><span class='st'>"data"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>geojsonio</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/geojsonio/reference/as.json.html'>as.json</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>geojsonsf</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/geojsonsf/man/geojson_sf.html'>geojson_sf</a></span><span class='op'>(</span><span class='op'>)</span><span class='va'>areas</span> <span class='op'>&lt;-</span> <span class='va'>areas_sf</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>area_type</span> <span class='op'>==</span> <span class='st'>"Locality"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>transmute</a></span><span class='op'>(</span>area_id <span class='op'>=</span> <span class='va'>pk</span>, area_name <span class='op'>=</span> <span class='va'>name</span><span class='op'>)</span><span class='va'>sites</span> <span class='op'>&lt;-</span> <span class='va'>areas_sf</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>area_type</span> <span class='op'>==</span> <span class='st'>"Site"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>transmute</a></span><span class='op'>(</span>site_id <span class='op'>=</span> <span class='va'>pk</span>, site_name <span class='op'>=</span> <span class='va'>name</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_join.html'>st_join</a></span><span class='op'>(</span><span class='va'>areas</span><span class='op'>)</span><span class='va'>mwi</span> <span class='op'>&lt;-</span> <span class='co'># dplyr::bind_rows(mwi_prod, mwi_extra) %&gt;%</span>
+  <span class='va'>mwi_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"incident_observed_at_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>mwi_dmg</span> <span class='op'>&lt;-</span> <span class='va'>mwi_dmg_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"incident_observed_at_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>mwi_tag</span> <span class='op'>&lt;-</span> <span class='va'>mwi_tag_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"incident_observed_at_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>tsi</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_rows</a></span><span class='op'>(</span><span class='va'>tsi01</span>, <span class='va'>tsi02</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"encounter_observed_at_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>svs</span> <span class='op'>&lt;-</span> <span class='co'># dplyr::bind_rows(svs_prod, svs_extra) %&gt;%</span>
+  <span class='va'>svs_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"site_visit_location_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>date_col <span class='op'>=</span> <span class='st'>"survey_start_time"</span>, parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>sve</span> <span class='op'>&lt;-</span> <span class='co'># dplyr::bind_rows(sve_prod, sve_extra) %&gt;%</span>
+  <span class='va'>sve_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"site_visit_location_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>date_col <span class='op'>=</span> <span class='st'>"survey_end_time"</span>, parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>dist</span> <span class='op'>&lt;-</span> <span class='co'># dplyr::bind_rows(dist_prod, dist_extra) %&gt;%</span>
+  <span class='va'>dist_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>,
+    prefix <span class='op'>=</span> <span class='st'>"disturbanceobservation_location_"</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>tracks</span> <span class='op'>&lt;-</span> <span class='co'># dplyr::bind_rows(tracks_prod, tracks_extra) %&gt;%</span>
+  <span class='va'>tracks_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"details_observed_at_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>tracks_dist</span> <span class='op'>&lt;-</span> <span class='va'>tracks_dist_prod</span> <span class='op'>%&gt;%</span>
+  <span class='co'># dplyr::bind_rows(tracks_dist_extra) %&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"details_observed_at_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>tracks_log</span> <span class='op'>&lt;-</span> <span class='va'>tracks_log_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"details_observed_at_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>tracks_egg</span> <span class='op'>&lt;-</span> <span class='va'>tracks_egg_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"details_observed_at_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>tracks_hatch</span> <span class='op'>&lt;-</span> <span class='va'>tracks_hatch_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"details_observed_at_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>tracks_fan_outlier</span> <span class='op'>&lt;-</span>
+  <span class='va'>tracks_fan_outlier_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"details_observed_at_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>tracks_light</span> <span class='op'>&lt;-</span> <span class='va'>tracks_light_prod</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='join_tsc_sites.html'>join_tsc_sites</a></span><span class='op'>(</span><span class='va'>sites</span>, prefix <span class='op'>=</span> <span class='st'>"details_observed_at_"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_dates.html'>add_dates</a></span><span class='op'>(</span>parse_date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='va'>track_tally</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_rows</a></span><span class='op'>(</span><span class='va'>tracktally_prod</span>, <span class='va'>tracktally07_prod</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_crs.html'>st_set_crs</a></span><span class='op'>(</span><span class='fl'>4326</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_join.html'>st_join</a></span><span class='op'>(</span><span class='va'>sites</span>, join <span class='op'>=</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='va'><a href='https://r-spatial.github.io/sf/reference/geos_binary_pred.html'>st_crosses</a></span><span class='op'>)</span><span class='va'>track_tally_dist</span> <span class='op'>&lt;-</span> <span class='va'>tracktally_dist_prod</span><span class='va'>odkc_turtledata</span> <span class='op'>&lt;-</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+      downloaded_on <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>,
+      tracks <span class='op'>=</span> <span class='va'>tracks</span>,
+      tracks_dist <span class='op'>=</span> <span class='va'>tracks_dist</span>,
+      tracks_egg <span class='op'>=</span> <span class='va'>tracks_egg</span>,
+      tracks_log <span class='op'>=</span> <span class='va'>tracks_log</span>,
+      tracks_hatch <span class='op'>=</span> <span class='va'>tracks_hatch</span>,
+      tracks_fan_outlier <span class='op'>=</span> <span class='va'>tracks_fan_outlier</span>,
+      tracks_light <span class='op'>=</span> <span class='va'>tracks_light</span>,
+      track_tally <span class='op'>=</span> <span class='va'>track_tally</span>,
+      track_tally_dist <span class='op'>=</span> <span class='va'>track_tally_dist</span>,
+      dist <span class='op'>=</span> <span class='va'>dist</span>,
+      mwi <span class='op'>=</span> <span class='va'>mwi</span>,
+      mwi_dmg <span class='op'>=</span> <span class='va'>mwi_dmg</span>,
+      mwi_tag <span class='op'>=</span> <span class='va'>mwi_tag</span>,
+      tsi <span class='op'>=</span> <span class='va'>tsi</span>,
+      tt <span class='op'>=</span> <span class='cn'>NULL</span>,
+      tt_dmg <span class='op'>=</span> <span class='cn'>NULL</span>,
+      tt_tag <span class='op'>=</span> <span class='cn'>NULL</span>,
+      tt_log <span class='op'>=</span> <span class='cn'>NULL</span>,
+      svs <span class='op'>=</span> <span class='va'>svs</span>,
+      sve <span class='op'>=</span> <span class='va'>sve</span>,
+      sites <span class='op'>=</span> <span class='va'>sites</span>,
+      areas <span class='op'>=</span> <span class='va'>areas</span>
+    <span class='op'>)</span>,
+    class <span class='op'>=</span> <span class='st'>"odkc_turtledata"</span>
+  <span class='op'>)</span><span class='va'>odkc_turtledata</span>
+</pre></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other included: 
