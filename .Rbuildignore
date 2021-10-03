@@ -1,4 +1,5 @@
 ^_pkgdown\.yml$
+^codecov\.yml$
 ^packrat/
 ^\.Rprofile$
 ^.*\.Rproj$

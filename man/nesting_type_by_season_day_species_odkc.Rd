@@ -17,7 +17,6 @@ Pivot table of nesting type by season, turtle date. and species for ODKC data
 Other odkc: 
 \code{\link{add_hatching_emergence_success_odkc}()},
 \code{\link{add_nest_labels_odkc}()},
-\code{\link{download_odkc_turtledata_2019}()},
 \code{\link{download_odkc_turtledata_2020}()},
 \code{\link{exclude_training_species_odkc}()},
 \code{\link{filter_odkc_turtledata}()},
