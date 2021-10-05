@@ -1,5 +1,10 @@
 library(wastdr)
 library(sf)
+
+# We don't include W2 data in the package to protect its sensitive and PII data
+w2 <- download_w2_data()
+saveRDS(w2, file = here::here("data-raw/w2.RData"), compress="xz")
+
 sanitize_names <- . %>%
   dplyr::mutate_at(
     dplyr::vars(

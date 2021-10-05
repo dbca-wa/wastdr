@@ -5,6 +5,14 @@
 ## Data
 ## Maintenance
 
+# wastdr 0.7.3
+## Major fixes
+## Minor fixes
+* `download_w2_data` improved to exclude duplicate attributes, added print fn.
+## Docs
+## Data
+## Maintenance
+
 # wastdr 0.7.1
 ## Major fixes
 * New: `duplicate_surveys` links to sites and dates with more than one survey.

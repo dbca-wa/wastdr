@@ -343,6 +343,13 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
+  # Reconstructed turtles without duplicated attributes
+  turtles_min <- turtles %>%
+    dplyr::select(
+      -entered_by, -entry_batch_id, -date_entered
+    ) %>%
+    dplyr::rename(turtle_comments=comments)
+
   wastdr_msg_info("Parsing TRT_OBSERVATIONS")
   o <- obs %>%
     dplyr::mutate(
@@ -374,7 +381,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     # left_join(person_names, by=c("REPORTER_PERSON_ID" = "PERSON_ID")) %>%
     # rename(reported_by=name) %>%
     dplyr::left_join(sites, by = c("place_code" = "code")) %>%
-    dplyr::left_join(turtles, by = "turtle_id") %>%
+    dplyr::left_join(turtles_min, by = "turtle_id") %>%
     dplyr::mutate(
       latitude = ifelse(is.na(latitude), site_latitude, latitude),
       longitude = ifelse(is.na(longitude), site_longitude, longitude)
@@ -474,6 +481,36 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
 
   wamtram_data
   # nocov end
+}
+
+#' @title S3 print method for 'wamtram_data'.
+#' @description Prints a short representation of data returned by
+#' \code{\link{download_w2_data}}.
+#' @param x An object of class `wamtram_data` as returned by
+#'   \code{\link{download_w2_data}}.
+#' @param ... Extra parameters for `print`
+#' @export
+#' @family included
+print.wamtram_data <- function(x, ...) {
+  print(
+    glue::glue(
+      "<WAMTRAM Turtle Tagging Data> accessed on {x$downloaded_on}\n",
+      "Turtle Obs (acceptable): {nrow(x$enc)}\n",
+      "Turtle Obs (need QA):    {nrow(x$enc_qa)}\n",
+      "  Flipper tag obs:       {nrow(x$obs_flipper_tags)}\n",
+      "  PIT tag obs:           {nrow(x$obs_pit_tags)}\n",
+      "  Damage obs:            {nrow(x$obs_damages)}\n",
+      "  Morphometric obs:      {nrow(x$obs_measurements)}\n",
+      "  Samples:               {nrow(x$obs_samples)}\n",
+      "Persons:                 {nrow(x$persons)}\n",
+      "Sites:                   {nrow(x$sites)}\n",
+      "Reconstructed turtles:   {nrow(x$reconstructed_turtles)}\n",
+      "Rec'd flipper tags:      {nrow(x$reconstructed_tags)}\n",
+      "Rec'd PIT tags:          {nrow(x$reconstructed_pit_tags)}\n",
+      "Turtle identifications:  {nrow(x$identifications)}\n"
+    )
+  )
+  invisible(x)
 }
 
 # usethis::use_test("download_w2_data")  # nolint

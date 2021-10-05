@@ -19,6 +19,7 @@ with \code{head()}.
 \seealso{
 Other included: 
 \code{\link{print.odkc_turtledata}()},
+\code{\link{print.wamtram_data}()},
 \code{\link{print.wastd_data}()},
 \code{\link{tsc_data}},
 \code{\link{wastd_ae_raw}},

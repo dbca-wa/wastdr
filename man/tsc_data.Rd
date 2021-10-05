@@ -17,6 +17,7 @@ TSC data, parsed, first ten records each
 Other included: 
 \code{\link{odkc_data}},
 \code{\link{print.odkc_turtledata}()},
+\code{\link{print.wamtram_data}()},
 \code{\link{print.wastd_data}()},
 \code{\link{wastd_ae_raw}},
 \code{\link{wastd_ae}},

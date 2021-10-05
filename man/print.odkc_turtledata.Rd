@@ -597,6 +597,7 @@ odkc_turtledata
 \seealso{
 Other included: 
 \code{\link{odkc_data}},
+\code{\link{print.wamtram_data}()},
 \code{\link{print.wastd_data}()},
 \code{\link{tsc_data}},
 \code{\link{wastd_ae_raw}},
