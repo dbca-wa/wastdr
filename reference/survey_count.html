@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
       </span>
     </div>
 
@@ -200,11 +200,12 @@
 <code><a href='surveys_per_site_name_and_date.html'>surveys_per_site_name_and_date</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span>
-<span class='va'>one_season</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>surveys</span><span class='op'>$</span><span class='va'>season</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
-<span class='va'>one_site_id</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>surveys</span><span class='op'>$</span><span class='va'>site_id</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
-<span class='fu'>survey_count</span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>surveys</span>, <span class='va'>one_site_id</span>, <span class='va'>one_season</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 6</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>one_season</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>surveys</span><span class='op'>$</span><span class='va'>season</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span></span>
+<span class='r-in'><span class='va'>one_site_id</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>surveys</span><span class='op'>$</span><span class='va'>site_id</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span></span>
+<span class='r-in'><span class='fu'>survey_count</span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>surveys</span>, <span class='va'>one_site_id</span>, <span class='va'>one_season</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 2</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

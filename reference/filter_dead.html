@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
       </span>
     </div>
 
@@ -221,47 +221,49 @@ e.g. <code>wastd_data$animals</code> with column <code>health</code> or
 <code><a href='tracks_ts.html'>tracks_ts</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span>
-<span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>animals</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>filter_dead</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 65</span>
-#&gt;   source_id   type      pk source encounter_type status when  latitude longitude
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> uuid:c4c9a… Feat… <span style='text-decoration: underline;'>213</span>353 odk    stranding      new    2021…    -<span style='color: #BB0000;'>20.9</span>      115.
-#&gt; <span style='color: #BCBCBC;'>2</span> uuid:a9b84… Feat… <span style='text-decoration: underline;'>213</span>351 odk    stranding      new    2021…    -<span style='color: #BB0000;'>21.9</span>      114.
-#&gt; <span style='color: #BCBCBC;'>3</span> uuid:c69ce… Feat… <span style='text-decoration: underline;'>213</span>352 odk    stranding      new    2021…    -<span style='color: #BB0000;'>20.7</span>      115.
-#&gt; <span style='color: #BCBCBC;'>4</span> uuid:e7413… Feat… <span style='text-decoration: underline;'>213</span>183 odk    stranding      new    2021…    -<span style='color: #BB0000;'>22.0</span>      114.
-#&gt; <span style='color: #BCBCBC;'>5</span> uuid:35e71… Feat… <span style='text-decoration: underline;'>213</span>184 odk    stranding      new    2021…    -<span style='color: #BB0000;'>22.0</span>      114.
-#&gt; <span style='color: #BCBCBC;'>6</span> uuid:8f838… Feat… <span style='text-decoration: underline;'>213</span>188 odk    stranding      new    2021…    -<span style='color: #BB0000;'>20.9</span>      115.
-#&gt; <span style='color: #949494;'># … with 56 more variables: crs &lt;chr&gt;, location_accuracy &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   location_accuracy_m &lt;int&gt;, leaflet_title &lt;chr&gt;, observer_pk &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   observer_username &lt;chr&gt;, observer_name &lt;chr&gt;, reporter_pk &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   reporter_username &lt;chr&gt;, reporter_name &lt;chr&gt;, comments &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   area_pk &lt;int&gt;, area_area_type &lt;chr&gt;, area_name &lt;chr&gt;, site_pk &lt;int&gt;,</span>
-#&gt; <span style='color: #949494;'>#   site_area_type &lt;chr&gt;, site_name &lt;chr&gt;, taxon &lt;chr&gt;, species &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   health &lt;chr&gt;, sex &lt;chr&gt;, maturity &lt;chr&gt;, behaviour &lt;chr&gt;, habitat &lt;chr&gt;, …</span></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"odkc_data"</span><span class='op'>)</span>
-<span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>mwi</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>filter_dead</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 70</span>
-#&gt;   id             observation_start_t… reporter  device_id    observation_end_ti…
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dttm&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dttm&gt;</span>             
-#&gt; <span style='color: #BCBCBC;'>1</span> uuid:c4c9a5be… 2021-08-14 <span style='color: #949494;'>09:26:51</span>  Name hid… collect:E6x… 2021-08-14 <span style='color: #949494;'>09:30:27</span>
-#&gt; <span style='color: #BCBCBC;'>2</span> uuid:a9b84d93… 2021-07-22 <span style='color: #949494;'>14:07:12</span>  Name hid… collect:bH0… 2021-07-22 <span style='color: #949494;'>14:12:19</span>
-#&gt; <span style='color: #BCBCBC;'>3</span> uuid:c69ce3ff… 2021-07-13 <span style='color: #949494;'>08:29:56</span>  Name hid… collect:E6x… 2021-07-13 <span style='color: #949494;'>08:34:49</span>
-#&gt; <span style='color: #BCBCBC;'>4</span> uuid:e741336e… 2021-06-16 <span style='color: #949494;'>13:51:58</span>  Name hid… collect:bH0… 2021-06-16 <span style='color: #949494;'>14:16:49</span>
-#&gt; <span style='color: #BCBCBC;'>5</span> uuid:35e7159b… 2021-05-28 <span style='color: #949494;'>09:41:56</span>  Name hid… collect:bH0… 2021-05-28 <span style='color: #949494;'>10:52:54</span>
-#&gt; <span style='color: #BCBCBC;'>6</span> uuid:8f83831d… 2021-05-23 <span style='color: #949494;'>07:28:19</span>  Name hid… collect:YZ6… 2021-05-23 <span style='color: #949494;'>07:34:01</span>
-#&gt; <span style='color: #949494;'># … with 65 more variables: system_submission_date &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   system_submitter_id &lt;chr&gt;, system_submitter_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   system_attachments_present &lt;int&gt;, system_attachments_expected &lt;int&gt;,</span>
-#&gt; <span style='color: #949494;'>#   system_device_id &lt;chr&gt;, system_edits &lt;int&gt;, meta_instance_id &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   incident_observed_at_longitude &lt;dbl&gt;, incident_observed_at_latitude &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   incident_observed_at_altitude &lt;dbl&gt;, incident_observed_at_accuracy &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   incident_observed_at &lt;list&gt;, incident_location_comment &lt;chr&gt;, …</span></div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>animals</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>filter_dead</span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 × 65</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       id type    source source_id encounter_type status when  latitude longitude</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> <span style='text-decoration: underline;'>214</span>565 Feature odk    uuid:082… stranding      new    2021…    -<span style='color: #BB0000;'>14.1</span>      124.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> <span style='text-decoration: underline;'>214</span>566 Feature odk    uuid:687… stranding      new    2021…    -<span style='color: #BB0000;'>14.1</span>      124.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> <span style='text-decoration: underline;'>214</span>567 Feature odk    uuid:de6… stranding      new    2021…    -<span style='color: #BB0000;'>14.1</span>      124.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> <span style='text-decoration: underline;'>214</span>568 Feature odk    uuid:a13… stranding      new    2021…    -<span style='color: #BB0000;'>14.1</span>      124.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> <span style='text-decoration: underline;'>214</span>569 Feature odk    uuid:9c6… stranding      new    2021…    -<span style='color: #BB0000;'>14.1</span>      124.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> <span style='text-decoration: underline;'>214</span>570 Feature odk    uuid:ebc… stranding      new    2021…    -<span style='color: #BB0000;'>14.1</span>      124.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 56 more variables: crs &lt;chr&gt;, location_accuracy &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   location_accuracy_m &lt;int&gt;, leaflet_title &lt;chr&gt;, observer_pk &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   observer_username &lt;chr&gt;, observer_name &lt;chr&gt;, reporter_pk &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   reporter_username &lt;chr&gt;, reporter_name &lt;chr&gt;, comments &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   area_pk &lt;int&gt;, area_area_type &lt;chr&gt;, area_name &lt;chr&gt;, site_pk &lt;int&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   site_area_type &lt;chr&gt;, site_name &lt;chr&gt;, taxon &lt;chr&gt;, species &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   health &lt;chr&gt;, sex &lt;chr&gt;, maturity &lt;chr&gt;, behaviour &lt;chr&gt;, habitat &lt;chr&gt;, …</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"odkc_data"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>mwi</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>filter_dead</span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 × 75</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   id       meta_instance_id   start_geopoint_… start_geopoint_… start_geopoint_…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> uuid:08… uuid:082f9da3-587…             124.            -<span style='color: #BB0000;'>14.1</span>             32.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> uuid:68… uuid:68759ab9-5f0…             124.            -<span style='color: #BB0000;'>14.1</span>             39.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> uuid:de… uuid:de6c5287-afd…             124.            -<span style='color: #BB0000;'>14.1</span>             37.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> uuid:a1… uuid:a1303471-449…             124.            -<span style='color: #BB0000;'>14.1</span>             37.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> uuid:9c… uuid:9c6973dd-285…             124.            -<span style='color: #BB0000;'>14.1</span>             39.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> uuid:eb… uuid:ebcba3fc-092…             124.            -<span style='color: #BB0000;'>14.1</span>             35.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 70 more variables: start_geopoint_accuracy &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   start_geopoint &lt;list&gt;, observation_start_time &lt;dttm&gt;, device_id &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   reporter &lt;chr&gt;, incident_reporter_repeat &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   incident_observed_at_longitude &lt;dbl&gt;, incident_observed_at_latitude &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   incident_observed_at_altitude &lt;dbl&gt;, incident_observed_at_accuracy &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   incident_observed_at &lt;list&gt;, incident_observed_at_manual_longitude &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   incident_observed_at_manual_latitude &lt;dbl&gt;, …</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
       </span>
     </div>
 
@@ -173,7 +173,7 @@
 <code>
   <a href='wastd_GET.html'>wastd_GET</a>("turtle-nest-disturbance-observations") <!-- %&gt;% -->
   <a href='parse_encounterobservations.html'>parse_encounterobservations</a>()
-  </code> or <code><a href='https://rdrr.io/r/utils/data.html'>data("wastd_data"); wastd_data$nest_dist</a></code></p></td>
+  </code> or <code>data("wastd_data"); wastd_data$nest_dist</code></p></td>
     </tr>
     </table>
 
@@ -223,67 +223,70 @@
 <code><a href='tracks_ts.html'>tracks_ts</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span>
-<span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>nest_dist</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>filter_disturbance</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 60</span>
-#&gt;      pk source source_id        encounter_pk encounter_area_… encounter_area_ar…
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             
-#&gt; <span style='color: #BCBCBC;'>1</span>  <span style='text-decoration: underline;'>2</span>493      0 280ed802-d6b8-1…          315               18 Locality          
-#&gt; <span style='color: #BCBCBC;'>2</span>  <span style='text-decoration: underline;'>5</span>562      0 280ed802-d6b8-1…         <span style='text-decoration: underline;'>4</span>919              148 Locality          
-#&gt; <span style='color: #BCBCBC;'>3</span>  <span style='text-decoration: underline;'>3</span>652      0 280ed802-d6b8-1…         <span style='text-decoration: underline;'>2</span>681               18 Locality          
-#&gt; <span style='color: #BCBCBC;'>4</span>  <span style='text-decoration: underline;'>4</span>038      0 280ed802-d6b8-1…         <span style='text-decoration: underline;'>2</span>749               14 Locality          
-#&gt; <span style='color: #BCBCBC;'>5</span>  <span style='text-decoration: underline;'>2</span>487      0 280ed802-d6b8-1…          314               18 Locality          
-#&gt; <span style='color: #BCBCBC;'>6</span>  <span style='text-decoration: underline;'>2</span>501      0 280ed802-d6b8-1…          322               18 Locality          
-#&gt; <span style='color: #949494;'># … with 54 more variables: encounter_area_name &lt;chr&gt;, encounter_site_pk &lt;int&gt;,</span>
-#&gt; <span style='color: #949494;'>#   encounter_site_area_type &lt;chr&gt;, encounter_site_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   encounter_survey_id &lt;int&gt;, encounter_survey_start_time &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   encounter_survey_end_time &lt;chr&gt;, encounter_survey_start_comments &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   encounter_survey_end_comments &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   encounter_survey_absolute_admin_url &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   encounter_survey_production &lt;lgl&gt;, encounter_observer_pk &lt;chr&gt;, …</span></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"odkc_data"</span><span class='op'>)</span>
-<span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>tracks_dist</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>filter_disturbance</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 103</span>
-#&gt;   photo_disturbance disturbance_cau… disturbance_cau… disturbance_sev… comments 
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'>1</span> 1612702211500.jpg vehicle          expert-opinion   na               Compacte…
-#&gt; <span style='color: #BCBCBC;'>2</span> 1612658931937.jpg unknown          guess            completely       Perhaps …
-#&gt; <span style='color: #BCBCBC;'>3</span> 1612821093050.jpg vehicle          expert-opinion   negligible       This nes…
-#&gt; <span style='color: #BCBCBC;'>4</span> 1612821128093.jpg human            expert-opinion   na               <span style='color: #BB0000;'>NA</span>       
-#&gt; <span style='color: #BCBCBC;'>5</span> 1610491068298.jpg turtle           guess            na               <span style='color: #BB0000;'>NA</span>       
-#&gt; <span style='color: #BCBCBC;'>6</span> 1610491086015.jpg unknown          expert-opinion   na               <span style='color: #BB0000;'>NA</span>       
-#&gt; <span style='color: #949494;'># … with 98 more variables: id &lt;chr&gt;, submissions_id &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   odata_context.x &lt;chr&gt;, observation_start_time &lt;dttm&gt;,</span>
-#&gt; <span style='color: #949494;'>#   start_location_longitude &lt;dbl&gt;, start_location_latitude &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   start_location_altitude &lt;dbl&gt;, start_location_accuracy &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   start_location &lt;list&gt;, reporter &lt;chr&gt;, device_id &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   observation_end_time &lt;dttm&gt;, system_submission_date &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   system_submitter_id &lt;chr&gt;, system_submitter_name &lt;chr&gt;, …</span></div><div class='input'>
-<span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>dist</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>filter_disturbance</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 33</span>
-#&gt;   id             observation_start_t… reporter  device_id    observation_end_ti…
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dttm&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dttm&gt;</span>             
-#&gt; <span style='color: #BCBCBC;'>1</span> uuid:022fc54a… 2021-02-19 <span style='color: #949494;'>06:23:05</span>  Name hid… collect:3PX… 2021-02-19 <span style='color: #949494;'>06:23:37</span>
-#&gt; <span style='color: #BCBCBC;'>2</span> uuid:c41af415… 2021-02-19 <span style='color: #949494;'>06:21:27</span>  Name hid… collect:3PX… 2021-02-19 <span style='color: #949494;'>06:21:53</span>
-#&gt; <span style='color: #BCBCBC;'>3</span> uuid:67922931… 2021-01-25 <span style='color: #949494;'>06:18:53</span>  Name hid… db5f004fe94… 2021-03-22 <span style='color: #949494;'>15:35:01</span>
-#&gt; <span style='color: #BCBCBC;'>4</span> uuid:18d19d8e… 2021-02-27 <span style='color: #949494;'>07:44:43</span>  Name hid… collect:y6H… 2021-02-27 <span style='color: #949494;'>07:46:12</span>
-#&gt; <span style='color: #BCBCBC;'>5</span> uuid:d9954448… 2021-02-15 <span style='color: #949494;'>06:27:01</span>  Name hid… collect:3PX… 2021-02-15 <span style='color: #949494;'>06:27:24</span>
-#&gt; <span style='color: #BCBCBC;'>6</span> uuid:abf4684e… 2021-02-12 <span style='color: #949494;'>06:16:58</span>  Name hid… collect:3PX… 2021-02-12 <span style='color: #949494;'>06:17:28</span>
-#&gt; <span style='color: #949494;'># … with 28 more variables: system_submission_date &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   system_submitter_id &lt;chr&gt;, system_submitter_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   system_attachments_present &lt;int&gt;, system_attachments_expected &lt;int&gt;,</span>
-#&gt; <span style='color: #949494;'>#   system_device_id &lt;chr&gt;, system_edits &lt;int&gt;, meta_instance_id &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   disturbanceobservation_location_longitude &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   disturbanceobservation_location_latitude &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   disturbanceobservation_location_altitude &lt;dbl&gt;, …</span></div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>nest_dist</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>filter_disturbance</span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 × 60</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       pk source source_id        encounter_id encounter_area_… encounter_area_a…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>   <span style='text-decoration: underline;'>2</span>493      0 280ed802-d6b8-1…          315               18 Locality         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span>   <span style='text-decoration: underline;'>2</span>501      0 280ed802-d6b8-1…          322               18 Locality         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span>   <span style='text-decoration: underline;'>2</span>487      0 280ed802-d6b8-1…          314               18 Locality         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span>   <span style='text-decoration: underline;'>3</span>652      0 280ed802-d6b8-1…         <span style='text-decoration: underline;'>2</span>681               18 Locality         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span>   <span style='text-decoration: underline;'>4</span>038      0 280ed802-d6b8-1…         <span style='text-decoration: underline;'>2</span>749               14 Locality         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> <span style='text-decoration: underline;'>213</span>825      2 9494e670e4ef028…       <span style='text-decoration: underline;'>213</span>614              144 Locality         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 54 more variables: encounter_area_name &lt;chr&gt;, encounter_site_pk &lt;int&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   encounter_site_area_type &lt;chr&gt;, encounter_site_name &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   encounter_survey_id &lt;int&gt;, encounter_survey_start_time &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   encounter_survey_end_time &lt;chr&gt;, encounter_survey_start_comments &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   encounter_survey_absolute_admin_url &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   encounter_survey_production &lt;lgl&gt;, encounter_survey_end_comments &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   encounter_observer_pk &lt;chr&gt;, encounter_observer_username &lt;chr&gt;, …</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"odkc_data"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>tracks_dist</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>filter_disturbance</span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 × 103</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   photo_disturbance disturbance_cause disturbance_cau… disturbance_sev… comments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> 1636152299839.jpg turtle            guess            partly           <span style='color: #BB0000;'>NA</span>      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> 1635718341418.jpg human             expert-opinion   na               <span style='color: #BB0000;'>NA</span>      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> 1635717644923.jpg human             expert-opinion   negligible       <span style='color: #BB0000;'>NA</span>      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> 1635716669234.jpg human             expert-opinion   negligible       <span style='color: #BB0000;'>NA</span>      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> 1635634497695.jpg other             guess            negligible       Turtle …</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> 1635277537529.jpg unknown           expert-opinion   na               <span style='color: #BB0000;'>NA</span>      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 98 more variables: id &lt;chr&gt;, submissions_id &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   odata_context.x &lt;chr&gt;, meta_instance_id &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   start_geopoint_longitude &lt;dbl&gt;, start_geopoint_latitude &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   start_geopoint_altitude &lt;dbl&gt;, start_geopoint_accuracy &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   start_geopoint &lt;list&gt;, observation_start_time &lt;dttm&gt;, device_id &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   reporter &lt;chr&gt;, details_nest_age &lt;chr&gt;, details_species &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   details_nest_type &lt;chr&gt;, details_observed_at_longitude &lt;dbl&gt;, …</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>dist</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>filter_disturbance</span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 × 38</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   id       meta_instance_id   start_geopoint_… start_geopoint_… start_geopoint_…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> uuid:c9… uuid:c9939bdc-f82…             119.            -<span style='color: #BB0000;'>20.3</span>            13.4 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> uuid:14… uuid:14ab2ba8-82f…             114.            -<span style='color: #BB0000;'>21.9</span>            -<span style='color: #BB0000;'>7.65</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> uuid:e7… uuid:e7d1d405-161…              <span style='color: #BB0000;'>NA</span>              <span style='color: #BB0000;'>NA</span>              <span style='color: #BB0000;'>NA</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> uuid:79… uuid:79ca3ba3-090…             119.            -<span style='color: #BB0000;'>20.3</span>            17.1 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> uuid:e5… uuid:e5cb31ea-bd5…             119.            -<span style='color: #BB0000;'>20.3</span>            -<span style='color: #BB0000;'>3.00</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> uuid:32… uuid:32f3eba1-a29…             122.            -<span style='color: #BB0000;'>17.9</span>            29.0 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 33 more variables: start_geopoint_accuracy &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   start_geopoint &lt;list&gt;, observation_start_time &lt;dttm&gt;, device_id &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   reporter &lt;chr&gt;, disturbanceobservation_photo_disturbance &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   disturbanceobservation_disturbance_cause &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   disturbanceobservation_disturbance_cause_confidence &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   disturbanceobservation_location_longitude &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   disturbanceobservation_location_latitude &lt;dbl&gt;, …</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

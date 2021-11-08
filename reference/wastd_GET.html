@@ -93,7 +93,7 @@ features (if GeoJSON) or data (if JSON)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
       </span>
     </div>
 
@@ -269,14 +269,14 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 <code><a href='wastd_post_one.html'>wastd_post_one</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>track_records</span> <span class='op'>&lt;-</span> <span class='fu'>wastd_GET</span><span class='op'>(</span><span class='st'>"turtle-nest-encounters"</span><span class='op'>)</span>
-<span class='va'>tag_records</span> <span class='op'>&lt;-</span> <span class='fu'>wastd_GET</span><span class='op'>(</span><span class='st'>"animal-encounters"</span><span class='op'>)</span>
-<span class='va'>hatched_nest_records</span> <span class='op'>&lt;-</span> <span class='fu'>wastd_GET</span><span class='op'>(</span><span class='st'>"turtle-nest-encounters"</span>,
-  query <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>nest_type <span class='op'>=</span> <span class='st'>"hatched-nest"</span><span class='op'>)</span>
-<span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='va'>track_records</span> <span class='op'>&lt;-</span> <span class='fu'>wastd_GET</span><span class='op'>(</span><span class='st'>"turtle-nest-encounters"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>tag_records</span> <span class='op'>&lt;-</span> <span class='fu'>wastd_GET</span><span class='op'>(</span><span class='st'>"animal-encounters"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hatched_nest_records</span> <span class='op'>&lt;-</span> <span class='fu'>wastd_GET</span><span class='op'>(</span><span class='st'>"turtle-nest-encounters"</span>,</span>
+<span class='r-in'>  query <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>nest_type <span class='op'>=</span> <span class='st'>"hatched-nest"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

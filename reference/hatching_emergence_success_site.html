@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
       </span>
     </div>
 
@@ -216,28 +216,29 @@
 <code><a href='tracks_ts.html'>tracks_ts</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span>
-<span class='fu'>hatching_emergence_success_site</span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>nest_excavations</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 30 × 17</span>
-#&gt; <span style='color: #949494;'># Groups:   encounter_site_name, season [28]</span>
-#&gt;    encounter_site_name   season species  count clutch_size_fre… clutch_size_mean
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> Cable Beach Broome S…   <span style='text-decoration: underline;'>2</span>017 <span style='color: #BB0000;'>NA</span>           1               <span style='color: #BB0000;'>NA</span>             10  
-#&gt; <span style='color: #BCBCBC;'> 2</span> Cable Beach Broome S…   <span style='text-decoration: underline;'>2</span>018 <span style='color: #BB0000;'>NA</span>           1               <span style='color: #BB0000;'>NA</span>              1  
-#&gt; <span style='color: #BCBCBC;'> 3</span> Cape Lambert Bells B…   <span style='text-decoration: underline;'>2</span>019 <span style='color: #BB0000;'>NA</span>           6               <span style='color: #BB0000;'>NA</span>             45.3
-#&gt; <span style='color: #BCBCBC;'> 4</span> Delambre Island         <span style='text-decoration: underline;'>2</span>017 <span style='color: #BB0000;'>NA</span>         113               <span style='color: #BB0000;'>NA</span>             58.5
-#&gt; <span style='color: #BCBCBC;'> 5</span> Delambre Island         <span style='text-decoration: underline;'>2</span>018 <span style='color: #BB0000;'>NA</span>          28               <span style='color: #BB0000;'>NA</span>             53.0
-#&gt; <span style='color: #BCBCBC;'> 6</span> Delambre Island         <span style='text-decoration: underline;'>2</span>019 <span style='color: #BB0000;'>NA</span>          33               <span style='color: #BB0000;'>NA</span>             44.7
-#&gt; <span style='color: #BCBCBC;'> 7</span> Delambre Island         <span style='text-decoration: underline;'>2</span>020 caretta…     1               <span style='color: #BB0000;'>NA</span>             35  
-#&gt; <span style='color: #BCBCBC;'> 8</span> Delambre Island         <span style='text-decoration: underline;'>2</span>020 natator…    11               <span style='color: #BB0000;'>NA</span>             43.6
-#&gt; <span style='color: #BCBCBC;'> 9</span> Karratha DBCA Office…   <span style='text-decoration: underline;'>2</span>017 <span style='color: #BB0000;'>NA</span>           1               <span style='color: #BB0000;'>NA</span>              4  
-#&gt; <span style='color: #BCBCBC;'>10</span> Kensington DBCA Offi…   <span style='text-decoration: underline;'>2</span>016 <span style='color: #BB0000;'>NA</span>           2               <span style='color: #BB0000;'>NA</span>            132  
-#&gt; <span style='color: #949494;'># … with 20 more rows, and 11 more variables: clutch_size_sd &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   clutch_size_min &lt;int&gt;, clutch_size_max &lt;int&gt;, hatching_success_mean &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   hatching_success_sd &lt;dbl&gt;, hatching_success_min &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   hatching_success_max &lt;dbl&gt;, emergence_success_mean &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   emergence_success_sd &lt;dbl&gt;, emergence_success_min &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   emergence_success_max &lt;dbl&gt;</span></div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wastd_data"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>hatching_emergence_success_site</span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>nest_excavations</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 25 × 17</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># Groups:   encounter_site_name, season [25]</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    encounter_site_name    season species count clutch_size_fre… clutch_size_mean</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Cable Beach Broome Se…   <span style='text-decoration: underline;'>2</span>017 <span style='color: #BB0000;'>NA</span>          1               <span style='color: #BB0000;'>NA</span>             10  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> Cable Beach Broome Se…   <span style='text-decoration: underline;'>2</span>018 <span style='color: #BB0000;'>NA</span>          1               <span style='color: #BB0000;'>NA</span>              1  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> Cape Lambert Bells Be…   <span style='text-decoration: underline;'>2</span>019 <span style='color: #BB0000;'>NA</span>          6               <span style='color: #BB0000;'>NA</span>             45.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> Delambre Island          <span style='text-decoration: underline;'>2</span>017 <span style='color: #BB0000;'>NA</span>        111               <span style='color: #BB0000;'>NA</span>             47.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> Delambre Island          <span style='text-decoration: underline;'>2</span>018 <span style='color: #BB0000;'>NA</span>         28               <span style='color: #BB0000;'>NA</span>             53.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Delambre Island          <span style='text-decoration: underline;'>2</span>019 <span style='color: #BB0000;'>NA</span>         33               <span style='color: #BB0000;'>NA</span>             44.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> Delambre Island          <span style='text-decoration: underline;'>2</span>020 <span style='color: #BB0000;'>NA</span>         12               <span style='color: #BB0000;'>NA</span>             42.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> Karratha DBCA Office …   <span style='text-decoration: underline;'>2</span>017 <span style='color: #BB0000;'>NA</span>          1               <span style='color: #BB0000;'>NA</span>              4  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> Kensington DBCA Offic…   <span style='text-decoration: underline;'>2</span>016 <span style='color: #BB0000;'>NA</span>          2               <span style='color: #BB0000;'>NA</span>            132  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> Kensington DBCA Offic…   <span style='text-decoration: underline;'>2</span>017 <span style='color: #BB0000;'>NA</span>          2               <span style='color: #BB0000;'>NA</span>             56  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 15 more rows, and 11 more variables: clutch_size_sd &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   clutch_size_min &lt;int&gt;, clutch_size_max &lt;int&gt;, hatching_success_mean &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   hatching_success_sd &lt;dbl&gt;, hatching_success_min &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   hatching_success_max &lt;dbl&gt;, emergence_success_mean &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   emergence_success_sd &lt;dbl&gt;, emergence_success_min &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   emergence_success_max &lt;dbl&gt;</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

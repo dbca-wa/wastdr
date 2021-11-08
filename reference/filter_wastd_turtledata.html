@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
       </span>
     </div>
 
@@ -183,7 +183,7 @@ an area_name (WAStD Area of type Locality).</p></td>
 <li><p>NULL (default): do not filter data, return unfiltered data.</p></li>
 <li><p>"All turtle programs": do not filter data, return unfiltered data.</p></li>
 <li><p>"Other": Filter data to area_name NA.</p></li>
-<li><p>Any name in <code><a href='https://rdrr.io/r/base/unique.html'>unique(wastd_data$areas$area_name)</a></code>: return data filtered to
+<li><p>Any name in <code>unique(wastd_data$areas$area_name)</code>: return data filtered to
 this area_name.</p></li>
 </ul></td>
     </tr>
@@ -217,15 +217,15 @@ Default: wastdr::get_wastdr_verbose()</p></td>
 <code><a href='wastd_post_one.html'>wastd_post_one</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>)</span>
-<span class='va'>first_area</span> <span class='op'>&lt;-</span> <span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>areas</span><span class='op'>$</span><span class='va'>area_name</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
-<span class='va'>wastd_data_filtered</span> <span class='op'>&lt;-</span> <span class='va'>wastd_data</span> <span class='op'>%&gt;%</span> <span class='fu'>filter_wastd_turtledata</span><span class='op'>(</span><span class='va'>first_area</span><span class='op'>)</span>
-<span class='va'>wastd_data</span>
-<span class='va'>wastd_data_filtered</span>
-<span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>wastd_data_filtered</span><span class='op'>$</span><span class='va'>areas</span><span class='op'>$</span><span class='va'>area_name</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>wastd_data</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>first_area</span> <span class='op'>&lt;-</span> <span class='va'>wastd_data</span><span class='op'>$</span><span class='va'>areas</span><span class='op'>$</span><span class='va'>area_name</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span></span>
+<span class='r-in'><span class='va'>wastd_data_filtered</span> <span class='op'>&lt;-</span> <span class='va'>wastd_data</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span> <span class='fu'>filter_wastd_turtledata</span><span class='op'>(</span><span class='va'>first_area</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>wastd_data</span></span>
+<span class='r-in'><span class='va'>wastd_data_filtered</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>wastd_data_filtered</span><span class='op'>$</span><span class='va'>areas</span><span class='op'>$</span><span class='va'>area_name</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

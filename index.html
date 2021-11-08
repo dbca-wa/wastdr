@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
       </span>
     </div>
 
@@ -197,8 +197,8 @@
 <a href="#get-wastd" class="anchor"></a>Get WAStD</h2>
 <p>Once set up, <code>wastdr</code> can load data from WAStD simply with:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tracks</span> <span class="op">&lt;-</span> <span class="st">"turtle-nest-encounters"</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="reference/wastd_GET.html">wastd_GET</a></span><span class="op">(</span>max_records <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span>  
+<code class="sourceCode R"><span class="va">tracks</span> <span class="op">&lt;-</span> <span class="st">"turtle-nest-encounters"</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> 
+    <span class="fu"><a href="reference/wastd_GET.html">wastd_GET</a></span><span class="op">(</span>max_records <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>  
     <span class="fu"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Valid endpoints are listed in the base API URL of WAStD, e.g.:</p>
 <ul>
@@ -279,10 +279,10 @@
 <span class="co">#&gt; #   season &lt;dbl&gt;, season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, species_colours &lt;chr&gt;,</span>
 <span class="co">#&gt; #   nest_type_text &lt;chr&gt;</span>
 
-<span class="va">wastd_data</span><span class="op">$</span><span class="va">tracks</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/map_tracks.html">map_tracks</a></span><span class="op">(</span>sites <span class="op">=</span> <span class="va">wastd_data</span><span class="op">$</span><span class="va">sites</span><span class="op">)</span></code></pre></div>
+<span class="va">wastd_data</span><span class="op">$</span><span class="va">tracks</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/map_tracks.html">map_tracks</a></span><span class="op">(</span>sites <span class="op">=</span> <span class="va">wastd_data</span><span class="op">$</span><span class="va">sites</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">odkc_data</span><span class="op">$</span><span class="va">tracks</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/map_tracks_odkc.html">map_tracks_odkc</a></span><span class="op">(</span>sites <span class="op">=</span> <span class="va">odkc_data</span><span class="op">$</span><span class="va">sites</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">odkc_data</span><span class="op">$</span><span class="va">tracks</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/map_tracks_odkc.html">map_tracks_odkc</a></span><span class="op">(</span>sites <span class="op">=</span> <span class="va">odkc_data</span><span class="op">$</span><span class="va">sites</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-2.png"><!-- --></p>
 </div>
 <div id="learn-more" class="section level2">

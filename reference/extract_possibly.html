@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
       </span>
     </div>
 
@@ -214,14 +214,16 @@
 <code><a href='wastdr_setup.html'>wastdr_setup</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>lol</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>field1 <span class='op'>=</span> <span class='fl'>1</span>, field2 <span class='op'>=</span> <span class='fl'>2</span>, field3 <span class='op'>=</span> <span class='fl'>3</span>, field4 <span class='op'>=</span> <span class='fl'>4</span>, field5 <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-<span class='fu'>extract_possibly</span><span class='op'>(</span><span class='va'>lol</span>, <span class='st'>"field1"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $field1
-#&gt; [1] 1
-#&gt; </div><div class='input'><span class='fu'>extract_possibly</span><span class='op'>(</span><span class='va'>lol</span>, <span class='st'>"field8"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $&lt;NA&gt;
-#&gt; NULL
-#&gt; </div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>lol</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>field1 <span class='op'>=</span> <span class='fl'>1</span>, field2 <span class='op'>=</span> <span class='fl'>2</span>, field3 <span class='op'>=</span> <span class='fl'>3</span>, field4 <span class='op'>=</span> <span class='fl'>4</span>, field5 <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>extract_possibly</span><span class='op'>(</span><span class='va'>lol</span>, <span class='st'>"field1"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $field1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='fu'>extract_possibly</span><span class='op'>(</span><span class='va'>lol</span>, <span class='st'>"field8"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $&lt;NA&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

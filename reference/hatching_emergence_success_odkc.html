@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
       </span>
     </div>
 
@@ -201,25 +201,26 @@
 <code><a href='nesting_type_by_site_season_species_odkc.html'>nesting_type_by_site_season_species_odkc</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"odkc_data"</span><span class='op'>)</span>
-<span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>tracks_egg</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_hatching_emergence_success_odkc.html'>add_hatching_emergence_success_odkc</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'>hatching_emergence_success_odkc</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 × 16</span>
-#&gt; <span style='color: #949494;'># Groups:   season [1]</span>
-#&gt;   season details_species        count clutch_size_fre… clutch_size_mean clutch_size_sd
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span>   <span style='text-decoration: underline;'>2</span>020 caretta-caretta            1               <span style='color: #BB0000;'>NA</span>             35             <span style='color: #BB0000;'>NA</span>  
-#&gt; <span style='color: #BCBCBC;'>2</span>   <span style='text-decoration: underline;'>2</span>020 cheloniidae-fam            2               <span style='color: #BB0000;'>NA</span>            108             14.1
-#&gt; <span style='color: #BCBCBC;'>3</span>   <span style='text-decoration: underline;'>2</span>020 corolla-corolla            1               <span style='color: #BB0000;'>NA</span>             60             <span style='color: #BB0000;'>NA</span>  
-#&gt; <span style='color: #BCBCBC;'>4</span>   <span style='text-decoration: underline;'>2</span>020 eretmochelys-imbricata    21               <span style='color: #BB0000;'>NA</span>            113.            26.9
-#&gt; <span style='color: #BCBCBC;'>5</span>   <span style='text-decoration: underline;'>2</span>020 natator-depressus         33               <span style='color: #BB0000;'>NA</span>             47.6           10.6
-#&gt; <span style='color: #949494;'># … with 10 more variables: clutch_size_min &lt;int&gt;, clutch_size_max &lt;int&gt;,</span>
-#&gt; <span style='color: #949494;'>#   hatching_success_mean &lt;dbl&gt;, hatching_success_sd &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   hatching_success_min &lt;dbl&gt;, hatching_success_max &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   emergence_success_mean &lt;dbl&gt;, emergence_success_sd &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   emergence_success_min &lt;dbl&gt;, emergence_success_max &lt;dbl&gt;</span></div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"odkc_data"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>odkc_data</span><span class='op'>$</span><span class='va'>tracks_egg</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='sf_as_tbl.html'>sf_as_tbl</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'><a href='add_hatching_emergence_success_odkc.html'>add_hatching_emergence_success_odkc</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>wastdr</span><span class='fu'>::</span><span class='fu'>hatching_emergence_success_odkc</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 5 × 16</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># Groups:   season [1]</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   season details_species  count clutch_size_fre… clutch_size_mean clutch_size_sd</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>   <span style='text-decoration: underline;'>2</span>020 caretta-caretta      1               <span style='color: #BB0000;'>NA</span>             35             <span style='color: #BB0000;'>NA</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span>   <span style='text-decoration: underline;'>2</span>020 cheloniidae-fam      2               <span style='color: #BB0000;'>NA</span>            108             14.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span>   <span style='text-decoration: underline;'>2</span>020 corolla-corolla      1               <span style='color: #BB0000;'>NA</span>             60             <span style='color: #BB0000;'>NA</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span>   <span style='text-decoration: underline;'>2</span>020 eretmochelys-im…    21               <span style='color: #BB0000;'>NA</span>            113.            26.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span>   <span style='text-decoration: underline;'>2</span>020 natator-depress…    33               <span style='color: #BB0000;'>NA</span>             47.6           10.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 10 more variables: clutch_size_min &lt;int&gt;, clutch_size_max &lt;int&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   hatching_success_mean &lt;dbl&gt;, hatching_success_sd &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   hatching_success_min &lt;dbl&gt;, hatching_success_max &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   emergence_success_mean &lt;dbl&gt;, emergence_success_sd &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   emergence_success_min &lt;dbl&gt;, emergence_success_max &lt;dbl&gt;</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

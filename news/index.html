@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
       </span>
     </div>
 
@@ -739,7 +739,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes-9" class="anchor"></a>Minor changes</h2>
 <ul>
-<li>All <code>parse_</code> functions now include <code>season</code>, as in the earlier year of the fiscal year. This cleanly groups the (Australian) summer nesters (nesting Oct-Mar) under the same season number. E.g., any observations made between 01/07/2017 and 30/06/2018 (AWST for the sticklers) will come up as season <code>2017</code>. Note, the season for (Australian) winter nesters can be grouped by the calendar year, which can itself be derived trivially from the <code>datetime</code> as <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate(year = lubridate::year(datetime))</a></code>. The same goes for the calendar week, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate(week = lubridate::isoweek(datetime))</a></code>.</li>
+<li>All <code>parse_</code> functions now include <code>season</code>, as in the earlier year of the fiscal year. This cleanly groups the (Australian) summer nesters (nesting Oct-Mar) under the same season number. E.g., any observations made between 01/07/2017 and 30/06/2018 (AWST for the sticklers) will come up as season <code>2017</code>. Note, the season for (Australian) winter nesters can be grouped by the calendar year, which can itself be derived trivially from the <code>datetime</code> as <code>dplyr::mutate(year = lubridate::year(datetime))</code>. The same goes for the calendar week, <code>dplyr::mutate(week = lubridate::isoweek(datetime))</code>.</li>
 </ul>
 </div>
 </div>
