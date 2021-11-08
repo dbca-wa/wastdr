@@ -59,7 +59,7 @@ surveys_per_site_name_and_date <- function(surveys) {
     dplyr::ungroup()
 }
 
-#' Sum the hours surveyed per site_name and date from the output of
+#' Sum the hours surveyed per site_name and turtle date from the output of
 #' \code{parse_surveys}
 #'
 #' \lifecycle{stable}
@@ -226,6 +226,8 @@ plot_survey_effort <-
 
 #' Plot the surveyed hours from the output of \code{parse_surveys} as heatmap
 #'
+#' All surveys are plotted, production and training surveys alike.
+#'
 #' \lifecycle{stable}
 #'
 #' @template param-surveys
@@ -266,6 +268,8 @@ survey_hours_heatmap <-
   }
 
 #' Plot the survey count from the output of \code{parse_surveys} as heatmap
+#'
+#' All surveys are plotted, production and training surveys alike.
 #'
 #' \lifecycle{stable}
 #'
@@ -309,7 +313,8 @@ survey_count_heatmap <- function(surveys,
 #'
 #' \lifecycle{stable}
 #'
-#' @details Surveys, gruped by \code{season},
+#' @details Surveys, excluding training surveys,
+#'   grouped by \code{season},
 #'   summarised as first and last day of surveys, season length in days,
 #'   number and total hours of surveys.
 #'
@@ -318,13 +323,14 @@ survey_count_heatmap <- function(surveys,
 #' @family wastd_surveys
 survey_season_stats <- function(surveys) {
   surveys %>%
+    wastdr::filter_realsurveys() %>%
     dplyr::group_by(season) %>%
     dplyr::summarise(
-      first_day = min(turtle_date),
-      last_day = max(turtle_date),
-      season_length_days = as.numeric(
-        lubridate::interval(first_day, last_day)
-      ) / (3600 * 24),
+      first_day = min(calendar_date_awst),
+      last_day = max(calendar_date_awst),
+      season_length_days = (as.numeric(
+          lubridate::interval(first_day, last_day)
+      ) / (3600 * 24)) + 1,
       number_surveys = dplyr::n(),
       hours_surveyed = round(sum(duration_hours))
     )
@@ -335,7 +341,8 @@ survey_season_stats <- function(surveys) {
 #'
 #' \lifecycle{stable}
 #'
-#' @details Surveys, gruped by \code{season} and \code{site_name},
+#' @details Surveys, excluding training surveys,
+#'   grouped by \code{season} and \code{site_name},
 #'   summarised as first and last day of surveys, season length in days,
 #'   number and total hours of surveys.
 #'
@@ -345,13 +352,14 @@ survey_season_stats <- function(surveys) {
 #' @family wastd_surveys
 survey_season_site_stats <- function(surveys) {
   surveys %>%
+    wastdr::filter_realsurveys() %>%
     dplyr::group_by(season, site_name) %>%
     dplyr::summarise(
-      first_day = min(turtle_date),
-      last_day = max(turtle_date),
-      season_length_days = as.numeric(
-        lubridate::interval(first_day, last_day)
-      ) / (3600 * 24),
+      first_day = min(calendar_date_awst),
+      last_day = max(calendar_date_awst),
+      season_length_days = (as.numeric(
+          lubridate::interval(first_day, last_day)
+      ) / (3600 * 24)) + 1,
       number_surveys = dplyr::n(),
       hours_surveyed = round(sum(duration_hours))
     )
@@ -372,6 +380,7 @@ survey_show_detail <- function(surveys) {
       site_name,
       season,
       turtle_date,
+      calendar_date_awst,
       is_production,
       start_time,
       end_time,
