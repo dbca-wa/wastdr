@@ -25,6 +25,9 @@ default: \code{here::here()}.}
 \item{export}{Whether to export the figure as a file, default: FALSE}
 }
 \description{
+All surveys are plotted, production and training surveys alike.
+}
+\details{
 \lifecycle{stable}
 }
 \seealso{

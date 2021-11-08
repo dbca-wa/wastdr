@@ -575,30 +575,4 @@
 #'     odkc_turtledata
 #'   }
 
-#' @title S3 print method for 'odkc_turtledata'.
-#' @description Prints a short representation of data returned by
-#' \code{\link{download_odkc_turtledata_2019}}.
-#' @param x An object of class `wastd_data` as returned by
-#'   \code{\link{download_odkc_turtledata_2019}}.
-#' @param ... Extra parameters for `print`
-#' @export
-#' @family included
-print.odkc_turtledata <- function(x, ...) {
-  print(
-    glue::glue(
-      "<ODKC Turtle Data> accessed on {x$downloaded_on}\n",
-      "Areas:                     {nrow(x$areas)}\n",
-      "Sites:                     {nrow(x$sites)}\n",
-      "Survey Start Points:       {nrow(x$svs)}\n",
-      "Survey End Points:         {nrow(x$sve)}\n",
-      "Marine Wildlife Incidents: {nrow(x$mwi)}\n",
-      "Live Sightings:            {nrow(x$tsi)}\n",
-      "Tagged Turtles:            {if(!is.null(x$tt))nrow(x$tt) else 'None'}\n",
-      "Turtle Tracks or Nests:    {nrow(x$tracks)}\n",
-      "Turtle Track Tallies:      {nrow(x$track_tally)}"
-    )
-  )
-  invisible(x)
-}
-
 # usethis::use_test("download_odkc_turtledata_2019")

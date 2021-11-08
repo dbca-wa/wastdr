@@ -211,6 +211,7 @@ test_that("survey_show_detail returns a tibble", {
       "site_name",
       "season",
       "turtle_date",
+      "calendar_date_awst",
       "is_production",
       "start_time",
       "end_time",

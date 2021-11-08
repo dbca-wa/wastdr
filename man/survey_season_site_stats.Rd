@@ -13,7 +13,8 @@ survey_season_site_stats(surveys)
 \lifecycle{stable}
 }
 \details{
-Surveys, gruped by \code{season} and \code{site_name},
+Surveys, excluding training surveys,
+grouped by \code{season} and \code{site_name},
 summarised as first and last day of surveys, season length in days,
 number and total hours of surveys.
 }

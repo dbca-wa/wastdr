@@ -6,6 +6,7 @@ test_that("summarise_wastd_data_per_day_site works", {
     "site_name",
     "calendar_date_awst",
     "no_surveys",
+    "body_pit",
     "false_crawl",
     "hatched_nest",
     "nest",
