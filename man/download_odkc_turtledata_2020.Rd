@@ -9,7 +9,7 @@ download_odkc_turtledata_2020(
   prod = "https://odkc.dbca.wa.gov.au",
   tz = ruODK::get_default_tz(),
   download = TRUE,
-  odkc_version = 1.2,
+  odkc_version = ruODK::get_default_odkc_version(),
   verbose = wastdr::get_wastdr_verbose()
 )
 }

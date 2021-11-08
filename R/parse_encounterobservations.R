@@ -33,7 +33,7 @@ parse_encounterobservations <- function(wastd_api_response) {
     wastdr::wastd_parse() %>%
     tidyr::unnest_wider("encounter", names_repair = "universal") %>%
     dplyr::select(-"geometry", -"type") %>%
-    dplyr::rename(encounter = properties) %>%
+    dplyr::rename(encounter = properties, encounter_id = id) %>%
     tun("encounter") %>%
     tun("encounter_area") %>%
     tun("encounter_site") %>%

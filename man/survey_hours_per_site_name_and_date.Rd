@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_surveys.R
 \name{survey_hours_per_site_name_and_date}
 \alias{survey_hours_per_site_name_and_date}
-\title{Sum the hours surveyed per site_name and date from the output of
+\title{Sum the hours surveyed per site_name and turtle date from the output of
 \code{parse_surveys}}
 \usage{
 survey_hours_per_site_name_and_date(surveys)

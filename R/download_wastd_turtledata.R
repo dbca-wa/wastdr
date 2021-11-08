@@ -69,7 +69,7 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
 
   enc_subset <- enc %>%
     dplyr::select(
-      -source, -pk, -encounter_type, -geometry,
+      -source, -encounter_type, -geometry,
       -area, -site, -survey, -observer, -reporter, -comments
     )
 
