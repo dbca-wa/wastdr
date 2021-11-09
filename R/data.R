@@ -1,7 +1,7 @@
 #' Turtle Nesting Census data from ODK Central.
 #'
 #' This dataset contains the truncated output from
-#' \code{\link{download_odkc_turtledata_2019}}.
+#' \code{\link{download_odkc_turtledata_2020}}.
 #' All WAStD sites and areas are included, while all other tables are truncated
 #' with \code{head()}.
 #' @family included

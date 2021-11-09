@@ -3,7 +3,7 @@
     <h:title>Turtle Tagging</h:title>
     <model>
       <instance>
-        <data id="Turtle-Tagging-3-0" version="1636363597">
+        <data id="Turtle-Tagging-3-0" version="1636423076">
           <meta>
             <instanceID/>
             <instanceName/>
@@ -145,6 +145,10 @@
               absent
             </nesting_disturbed>
             <nesting_disturbance_cause/>
+            <eggs_counted>
+              no
+            </eggs_counted>
+            <egg_count/>
             <nest_tag_date/>
             <nest_tag_label/>
             <nest_tag_comments/>
@@ -1011,6 +1015,24 @@
           <text id="/data/nest/nesting_disturbance_cause:hint">
             <value></value>
           </text>
+          <text id="/data/nest/eggs_counted:label">
+            <value>&lt;h3&gt;Egg count&lt;/h3&gt;Were eggs counted?</value>
+          </text>
+          <text id="/data/nest/eggs_counted:option0">
+            <value>Witnessed drop during laying</value>
+          </text>
+          <text id="/data/nest/eggs_counted:option1">
+            <value>Nest excavation after laying</value>
+          </text>
+          <text id="/data/nest/eggs_counted:option2">
+            <value>No</value>
+          </text>
+          <text id="/data/nest/egg_count:label">
+            <value>Number of eggs counted</value>
+          </text>
+          <text id="/data/nest/egg_count:hint">
+            <value>If available</value>
+          </text>
           <text id="/data/nest/nest_tag_date:label">
             <value>&lt;h3&gt;Nest tag&lt;/h3&gt;Nest tag date</value>
           </text>
@@ -1518,6 +1540,8 @@
       <bind nodeset="/data/nest/observed_nesting_success" type="select1" relevant="(/data/encounter/capture_mode != 'paper')"/>
       <bind nodeset="/data/nest/nesting_disturbed" type="select1" required="true()" relevant="(/data/encounter/capture_mode != 'paper')"/>
       <bind nodeset="/data/nest/nesting_disturbance_cause" type="string" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/eggs_counted" type="select1" required="true()" relevant="(/data/encounter/capture_mode != 'paper')"/>
+      <bind nodeset="/data/nest/egg_count" type="int" relevant="(/data/encounter/capture_mode != 'paper')"/>
       <bind nodeset="/data/nest/nest_tag_date" type="date" calculate="/data/observation_start_time" relevant="(/data/encounter/capture_mode != 'paper')"/>
       <bind nodeset="/data/nest/nest_tag_label" type="string" relevant="(/data/encounter/capture_mode != 'paper')"/>
       <bind nodeset="/data/nest/nest_tag_comments" type="string" relevant="(/data/encounter/capture_mode != 'paper')"/>
@@ -2268,6 +2292,25 @@
       <input ref="/data/nest/nesting_disturbance_cause">
         <label ref="jr:itext('/data/nest/nesting_disturbance_cause:label')"/>
         <hint ref="jr:itext('/data/nest/nesting_disturbance_cause:hint')"/>
+      </input>
+      <select1 ref="/data/nest/eggs_counted">
+        <label ref="jr:itext('/data/nest/eggs_counted:label')"/>
+        <item>
+          <label ref="jr:itext('/data/nest/eggs_counted:option0')"/>
+          <value>during-laying</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/eggs_counted:option1')"/>
+          <value>after-laying</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/nest/eggs_counted:option2')"/>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/data/nest/egg_count">
+        <label ref="jr:itext('/data/nest/egg_count:label')"/>
+        <hint ref="jr:itext('/data/nest/egg_count:hint')"/>
       </input>
       <input ref="/data/nest/nest_tag_date">
         <label ref="jr:itext('/data/nest/nest_tag_date:label')"/>

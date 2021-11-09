@@ -56,7 +56,8 @@ wastd_data
 ```
 
 
-Read the source code of `wastdr::download_wastd_turtledata` to see the individual steps. You can use those as starters to download subsets of data.
+Read the source code of `wastdr::download_wastd_turtledata` to see the individual steps. 
+You can use those as starters to download subsets of data.
 
 ## Filtering the results
 See examples of filter parameters and possible filter values on:
