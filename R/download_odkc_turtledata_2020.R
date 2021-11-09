@@ -484,21 +484,21 @@ download_odkc_turtledata_2020 <-
 #' @export
 #' @family included
 print.odkc_turtledata <- function(x, ...) {
-    print(
-        glue::glue(
-            "<ODKC Turtle Data> accessed on {x$downloaded_on}\n",
-            "Areas:                     {nrow(x$areas)}\n",
-            "Sites:                     {nrow(x$sites)}\n",
-            "Survey Start Points:       {nrow(x$svs)}\n",
-            "Survey End Points:         {nrow(x$sve)}\n",
-            "Marine Wildlife Incidents: {nrow(x$mwi)}\n",
-            "Live Sightings:            {nrow(x$tsi)}\n",
-            "Tagged Turtles:            {if(!is.null(x$tt))nrow(x$tt) else 'None'}\n",
-            "Turtle Tracks or Nests:    {nrow(x$tracks)}\n",
-            "Turtle Track Tallies:      {nrow(x$track_tally)}"
-        )
+  print(
+    glue::glue(
+      "<ODKC Turtle Data> accessed on {x$downloaded_on}\n",
+      "Areas:                     {nrow(x$areas)}\n",
+      "Sites:                     {nrow(x$sites)}\n",
+      "Survey Start Points:       {nrow(x$svs)}\n",
+      "Survey End Points:         {nrow(x$sve)}\n",
+      "Marine Wildlife Incidents: {nrow(x$mwi)}\n",
+      "Live Sightings:            {nrow(x$tsi)}\n",
+      "Tagged Turtles:            {if(!is.null(x$tt))nrow(x$tt) else 'None'}\n",
+      "Turtle Tracks or Nests:    {nrow(x$tracks)}\n",
+      "Turtle Track Tallies:      {nrow(x$track_tally)}"
     )
-    invisible(x)
+  )
+  invisible(x)
 }
 
 # usethis::use_test("download_odkc_turtledata_2020")

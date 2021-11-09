@@ -17,6 +17,7 @@
 #' @family api
 #' @examples
 #' \dontrun{
+#' # TBA
 #' }
 wastd_POST <- function(data,
                        serializer,

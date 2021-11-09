@@ -103,8 +103,9 @@ test_that("plot_survey_count returns a ggplot", {
 
   suppressWarnings(
     x <- plot_survey_count(wastd_data$surveys,
-                         export = TRUE, local_dir = t,
-                         prefix="TEST", placename = "PLACE")
+      export = TRUE, local_dir = t,
+      prefix = "TEST", placename = "PLACE"
+    )
   )
   expect_equal(class(x), c("gg", "ggplot"))
   expect_true(fs::file_exists(fs::path(t, "TEST_survey_count_place.png")))
@@ -123,8 +124,9 @@ test_that("plot_survey_effort returns a ggplot", {
 
   suppressWarnings(
     x <- plot_survey_effort(wastd_data$surveys,
-                            export = TRUE, local_dir = t,
-                            prefix="TEST", placename = "PLACE")
+      export = TRUE, local_dir = t,
+      prefix = "TEST", placename = "PLACE"
+    )
   )
   expect_equal(class(x), c("gg", "ggplot"))
   expect_true(fs::file_exists(fs::path(t, "TEST_survey_effort_place.png")))
@@ -140,8 +142,9 @@ test_that("survey_hours_heatmap returns a ggplot", {
   expect_false(fs::file_exists(fs::path(t, "TEST_survey_hours_heatmap_place.png")))
 
   x <- survey_hours_heatmap(wastd_data$surveys,
-                            export = TRUE, local_dir = t,
-                            prefix="TEST", placename = "PLACE")
+    export = TRUE, local_dir = t,
+    prefix = "TEST", placename = "PLACE"
+  )
   expect_equal(class(x), c("gg", "ggplot"))
   expect_true(fs::file_exists(fs::path(t, "TEST_survey_hours_heatmap_place.png")))
 })
@@ -156,8 +159,9 @@ test_that("survey_count_heatmap returns a ggplot", {
   expect_false(fs::file_exists(fs::path(t, "TEST_survey_count_heatmap_place.png")))
 
   x <- survey_count_heatmap(wastd_data$surveys,
-                            export = TRUE, local_dir = t,
-                            prefix="TEST", placename = "PLACE")
+    export = TRUE, local_dir = t,
+    prefix = "TEST", placename = "PLACE"
+  )
   expect_equal(class(x), c("gg", "ggplot"))
   expect_true(fs::file_exists(fs::path(t, "TEST_survey_count_heatmap_place.png")))
 })

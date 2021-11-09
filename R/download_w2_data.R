@@ -348,7 +348,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     dplyr::select(
       -entered_by, -entry_batch_id, -date_entered
     ) %>%
-    dplyr::rename(turtle_comments=comments)
+    dplyr::rename(turtle_comments = comments)
 
   wastdr_msg_info("Parsing TRT_OBSERVATIONS")
   o <- obs %>%

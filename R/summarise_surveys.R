@@ -140,12 +140,14 @@ plot_survey_count <-
         fill = "grey"
       ) +
       ggplot2::facet_grid(facets = ggplot2::vars(season), scales = "free_x") +
-      ggplot2::scale_x_continuous(labels = function(x) {fdate_as_tdate(x)}) +
+      ggplot2::scale_x_continuous(labels = function(x) {
+        fdate_as_tdate(x)
+      }) +
       ggplot2::scale_y_continuous(limits = c(0, NA)) +
       ggplot2::theme_classic() +
       ggplot2::ggtitle(glue::glue("Survey Count {placename}"),
-                       subtitle = "Number of surveys"
-        ) +
+        subtitle = "Number of surveys"
+      ) +
       ggplot2::labs(x = "Turtle date", y = "")
 
     if (export == TRUE) {
@@ -200,16 +202,19 @@ plot_survey_effort <-
         ggplot2::aes(x = tdate_as_fdate(turtle_date), site_name)
       ) +
       ggplot2::geom_bar(ggplot2::aes(y = hours_surveyed),
-                        stat = "identity",
-                        color = "black",
-                        fill = "grey"
+        stat = "identity",
+        color = "black",
+        fill = "grey"
       ) +
       ggplot2::facet_grid(facets = ggplot2::vars(season), scales = "free_x") +
-      ggplot2::scale_x_continuous(labels = function(x) {fdate_as_tdate(x)}) +
+      ggplot2::scale_x_continuous(labels = function(x) {
+        fdate_as_tdate(x)
+      }) +
       ggplot2::scale_y_continuous(limits = c(0, NA)) +
       ggplot2::theme_classic() +
       ggplot2::ggtitle(glue::glue("Survey Effort {placename}"),
-                       subtitle = "Hours surveyed") +
+        subtitle = "Hours surveyed"
+      ) +
       ggplot2::labs(x = "Turtle date", y = "")
 
     if (export == TRUE) {
@@ -329,7 +334,8 @@ survey_season_stats <- function(surveys) {
       first_day = min(calendar_date_awst),
       last_day = max(calendar_date_awst),
       season_length_days = (as.numeric(lubridate::interval(
-          min(turtle_date), max(turtle_date))) / (3600 * 24)) + 1,
+        min(turtle_date), max(turtle_date)
+      )) / (3600 * 24)) + 1,
       number_surveys = dplyr::n(),
       hours_surveyed = round(sum(duration_hours))
     )
@@ -357,7 +363,8 @@ survey_season_site_stats <- function(surveys) {
       first_day = min(calendar_date_awst),
       last_day = max(calendar_date_awst),
       season_length_days = (as.numeric(lubridate::interval(
-          min(turtle_date), max(turtle_date))) / (3600 * 24)) + 1,
+        min(turtle_date), max(turtle_date)
+      )) / (3600 * 24)) + 1,
       number_surveys = dplyr::n(),
       hours_surveyed = round(sum(duration_hours))
     )

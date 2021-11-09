@@ -18,34 +18,35 @@
 #' @family wastd
 parse_area <- function(wastd_api_response,
                        wastd_url = wastdr::get_wastd_url()) {
-  wastd_api_response$data %>% {
-    tibble::tibble(
-      area_name = purrr::map_chr(
-        ., c("properties", "name"),
-        .default = NA_character_
-      ),
-      area_type = purrr::map_chr(
-        ., c("properties", "area_type"),
-        .default = NA_character_
-      ),
-      area_id = purrr::map_int(
-        ., c("properties", "pk"),
-        .default = NA_real_
-      ),
-      northern_extent = purrr::map_dbl(
-        ., c("properties", "northern_extent"),
-        .default = NA_real_
-      ),
-      length_surveyed_m = purrr::map_chr(
-        ., c("properties", "length_surveyed_m"),
-        .default = NA
-      ) %>% as.integer(),
-      length_survey_roundtrip_m = purrr::map_chr(
-        ., c("properties", "length_survey_roundtrip_m"),
-        .default = NA
-      ) %>% as.integer()
-    )
-  }
+  wastd_api_response$data %>%
+    {
+      tibble::tibble(
+        area_name = purrr::map_chr(
+          ., c("properties", "name"),
+          .default = NA_character_
+        ),
+        area_type = purrr::map_chr(
+          ., c("properties", "area_type"),
+          .default = NA_character_
+        ),
+        area_id = purrr::map_int(
+          ., c("properties", "pk"),
+          .default = NA_real_
+        ),
+        northern_extent = purrr::map_dbl(
+          ., c("properties", "northern_extent"),
+          .default = NA_real_
+        ),
+        length_surveyed_m = purrr::map_chr(
+          ., c("properties", "length_surveyed_m"),
+          .default = NA
+        ) %>% as.integer(),
+        length_survey_roundtrip_m = purrr::map_chr(
+          ., c("properties", "length_survey_roundtrip_m"),
+          .default = NA
+        ) %>% as.integer()
+      )
+    }
 }
 
 # usethis::use_test("parse_area")

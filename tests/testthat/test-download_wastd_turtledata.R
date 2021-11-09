@@ -10,7 +10,7 @@ test_that("download_wastd_turtledata works", {
   # We get 10 records to lower the risk of picking the few with NULL area/sites/surveys
   x <- suppressWarnings(
     download_wastd_turtledata(max_records = 1000, min_year = 2021)
-    )
+  )
 
   expect_equal(class(x), "wastd_data")
   expect_equal(length(x), 22) # This will change if we add more data
