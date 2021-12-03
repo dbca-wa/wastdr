@@ -32,6 +32,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -44,18 +46,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -67,17 +63,20 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="divider">
-    <li class="dropdown-header">Setup</li>
+    </li>
+<li class="dropdown-header">Setup</li>
     <li>
       <a href="../articles/setup.html">Setup</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Access</li>
+    </li>
+<li class="dropdown-header">Access</li>
     <li>
       <a href="../articles/access.html">Accessing WAStD Data</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Analyze</li>
+    </li>
+<li class="dropdown-header">Analyze</li>
     <li>
       <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
     </li>
@@ -89,7 +88,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/dbca-wa/wastdr/">
+  <a href="https://github.com/dbca-wa/wastdr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -110,7 +109,7 @@
       <h1 data-toc-skip>Turtle Tagging ETL</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/wamtram.Rmd"><code>vignettes/wamtram.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/HEAD/vignettes/wamtram.Rmd" class="external-link"><code>vignettes/wamtram.Rmd</code></a></small>
       <div class="hidden name"><code>wamtram.Rmd</code></div>
 
     </div>
@@ -118,7 +117,7 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dbca-wa/wastdr">wastdr</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dbca-wa/wastdr" class="external-link">wastdr</a></span><span class="op">)</span></code></pre></div>
 <p>This workflow copies the contents of the turtle tagging database WAMTRAM2 into the WA Sea Turtle Database (WAStD).</p>
 <ul>
 <li>Load the turtle tagging db WAMTRAM from its MS SQL Server database into memory and save objects as RData</li>
@@ -137,7 +136,7 @@
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/download_w2_data.html">download_w2_data</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>The current ETL process is being built in the R package <a href="https://github.com/dbca-wa/etlTurtleNesting">etlTurtleNesting</a>. Progress is tracked at <a href="https://github.com/dbca-wa/wastdr/milestone/2">wastdr</a>.</p>
+<p>The current ETL process is being built in the R package <a href="https://github.com/dbca-wa/etlTurtleNesting" class="external-link">etlTurtleNesting</a>. Progress is tracked at <a href="https://github.com/dbca-wa/wastdr/milestone/2" class="external-link">wastdr</a>.</p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -149,11 +148,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Florian W. Mayer, <a href="https://www.dbca.wa.gov.au/science/"><img src="man/figures/dbca_bcs.png" width="150" alt="DBCA"></a>, <a href="https://flatbacks.dbca.wa.gov.au/"><img src="man/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a>.</p>
+  <p></p>
+<p>Developed by Florian W. Mayer, <a href="https://www.dbca.wa.gov.au/science/" class="external-link"><img src="reference/figures/dbca_bcs.png" width="150" alt="DBCA"></a>, <a href="https://flatbacks.dbca.wa.gov.au/" class="external-link"><img src="reference/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -161,6 +162,8 @@
 
   
 
+
+  
 
   </body>
 </html>

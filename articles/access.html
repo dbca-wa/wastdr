@@ -32,6 +32,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -44,18 +46,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -67,17 +63,20 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="divider">
-    <li class="dropdown-header">Setup</li>
+    </li>
+<li class="dropdown-header">Setup</li>
     <li>
       <a href="../articles/setup.html">Setup</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Access</li>
+    </li>
+<li class="dropdown-header">Access</li>
     <li>
       <a href="../articles/access.html">Accessing WAStD Data</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Analyze</li>
+    </li>
+<li class="dropdown-header">Analyze</li>
     <li>
       <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
     </li>
@@ -89,7 +88,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/dbca-wa/wastdr/">
+  <a href="https://github.com/dbca-wa/wastdr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -108,11 +107,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Accessing WAStD Data</h1>
-                        <h4 class="author">Florian Mayer</h4>
+                        <h4 data-toc-skip class="author">Florian Mayer</h4>
             
-            <h4 class="date">2021-11-30</h4>
+            <h4 data-toc-skip class="date">2021-12-03</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/access.Rmd"><code>vignettes/access.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/HEAD/vignettes/access.Rmd" class="external-link"><code>vignettes/access.Rmd</code></a></small>
       <div class="hidden name"><code>access.Rmd</code></div>
 
     </div>
@@ -120,32 +119,32 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>rmarkdown.html_vignette.check_title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<div id="get-wastd" class="section level2">
-<h2 class="hasAnchor">
-<a href="#get-wastd" class="anchor"></a>Get WAStD</h2>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>rmarkdown.html_vignette.check_title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="get-wastd">Get WAStD<a class="anchor" aria-label="anchor" href="#get-wastd"></a>
+</h2>
 <p>After setting up <code>wastdr</code>’s authentication in vignette “Setup”, we can now retrieve data using <code><a href="../reference/wastd_GET.html">wastdr::wastd_GET()</a></code> to send <code>GET</code> requests to the <code>WAStD</code> API.</p>
 <p>This vignette shows examples of retrieving and parsing data from all existing WAStD API endpoints. The intent of this vignette is to serve as a starting point</p>
 <p>See vignette “get-tsc” for examples of the Threatened Species and Communities side.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dbca-wa/wastdr">wastdr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dbca-wa/wastdr" class="external-link">wastdr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## </span>
+<span class="co">## Attaching package: 'dplyr'</span></code></pre>
+<pre><code><span class="co">## The following objects are masked from 'package:stats':</span>
+<span class="co">## </span>
+<span class="co">##     filter, lag</span></code></pre>
+<pre><code><span class="co">## The following objects are masked from 'package:base':</span>
+<span class="co">## </span>
+<span class="co">##     intersect, setdiff, setequal, union</span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/timelyportfolio/listviewer">listviewer</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/" class="external-link">leaflet</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/timelyportfolio/listviewer" class="external-link">listviewer</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="all-the-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#all-the-data" class="anchor"></a>All the data</h1>
+<div class="section level1">
+<h1 id="all-the-data">All the data<a class="anchor" aria-label="anchor" href="#all-the-data"></a>
+</h1>
 <p>You can download all the Turtle data from WAStD in one step. Be warned, this step will run for about half an hour.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wastd_data</span> <span class="op">&lt;-</span> <span class="fu">wastdr</span><span class="fu">::</span><span class="fu"><a href="../reference/download_wastd_turtledata.html">download_wastd_turtledata</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -153,33 +152,33 @@
 <p><code>wastd_data</code> comes with its own print method:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wastd_data</span></code></pre></div>
-<pre><code>## &lt;WAStD Data&gt; accessed on 2021-11-08 08:45:41
-## Areas:   23
-## Sites:   125
-## Surveys: 1000
-## Animals (tags, incidents): 366
-##   Turtle Tags:             271
-##   Turtle Damages:          601
-##   Turtle Morphometrics:    1000
-## Turtle Nest Encounters:    1000
-##   Logger Observations:     144
-##   Nest Tags:               1000
-##   Nest Excavations:        509
-##   Hatchling Morph:         88
-##   Hatchling Fans:          1000
-##   Hatchling Outliers:      259
-##   Light Sources:           619
-## Line Transect Encounters:  242
-##   Track Tallies:           486
-##   Disturbance Tallies:     115
-## Dist/Pred (nest/general):  1000</code></pre>
+<pre><code><span class="co">## &lt;WAStD Data&gt; accessed on 2021-11-08 08:45:41</span>
+<span class="co">## Areas:   23</span>
+<span class="co">## Sites:   125</span>
+<span class="co">## Surveys: 1000</span>
+<span class="co">## Animals (tags, incidents): 366</span>
+<span class="co">##   Turtle Tags:             271</span>
+<span class="co">##   Turtle Damages:          601</span>
+<span class="co">##   Turtle Morphometrics:    1000</span>
+<span class="co">## Turtle Nest Encounters:    1000</span>
+<span class="co">##   Logger Observations:     144</span>
+<span class="co">##   Nest Tags:               1000</span>
+<span class="co">##   Nest Excavations:        509</span>
+<span class="co">##   Hatchling Morph:         88</span>
+<span class="co">##   Hatchling Fans:          1000</span>
+<span class="co">##   Hatchling Outliers:      259</span>
+<span class="co">##   Light Sources:           619</span>
+<span class="co">## Line Transect Encounters:  242</span>
+<span class="co">##   Track Tallies:           486</span>
+<span class="co">##   Disturbance Tallies:     115</span>
+<span class="co">## Dist/Pred (nest/general):  1000</span></code></pre>
 <p>Read the source code of <code><a href="../reference/download_wastd_turtledata.html">wastdr::download_wastd_turtledata</a></code> to see the individual steps. You can use those as starters to download subsets of data.</p>
-<div id="filtering-the-results" class="section level2">
-<h2 class="hasAnchor">
-<a href="#filtering-the-results" class="anchor"></a>Filtering the results</h2>
+<div class="section level2">
+<h2 id="filtering-the-results">Filtering the results<a class="anchor" aria-label="anchor" href="#filtering-the-results"></a>
+</h2>
 <p>See examples of filter parameters and possible filter values on:</p>
 <ul>
-<li><a href="https://tsc.dbca.wa.gov.au/api/1/animal-encounters/">https://tsc.dbca.wa.gov.au/api/1/animal-encounters/</a></li>
+<li><a href="https://tsc.dbca.wa.gov.au/api/1/animal-encounters/" class="external-link">https://tsc.dbca.wa.gov.au/api/1/animal-encounters/</a></li>
 <li><a href=""></a></li>
 <li><a href=""></a></li>
 </ul>
@@ -190,26 +189,26 @@
 <li>All data with specific properties, e.g. only certain stranding types, taxonomic groups etc.</li>
 </ul>
 </div>
-<div id="animalencounters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#animalencounters" class="anchor"></a>AnimalEncounters</h2>
+<div class="section level2">
+<h2 id="animalencounters">AnimalEncounters<a class="anchor" aria-label="anchor" href="#animalencounters"></a>
+</h2>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># AnimalEncounters of Turtles from 2016 onwards</span>
 <span class="co"># https://tsc.dbca.wa.gov.au/api/1/animal-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</span></code></pre></div>
 </div>
-<div id="turtlenestencounters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#turtlenestencounters" class="anchor"></a>TurtleNestEncounters</h2>
+<div class="section level2">
+<h2 id="turtlenestencounters">TurtleNestEncounters<a class="anchor" aria-label="anchor" href="#turtlenestencounters"></a>
+</h2>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># https://tsc.dbca.wa.gov.au/api/1/turtle-nest-encounters/?taxon=Cheloniidae&amp;when__year__gte=2016</span></code></pre></div>
 </div>
-<div id="linetransectencounters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#linetransectencounters" class="anchor"></a>LineTransectEncounters</h2>
+<div class="section level2">
+<h2 id="linetransectencounters">LineTransectEncounters<a class="anchor" aria-label="anchor" href="#linetransectencounters"></a>
+</h2>
 </div>
-<div id="loggerencounters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#loggerencounters" class="anchor"></a>LoggerEncounters</h2>
+<div class="section level2">
+<h2 id="loggerencounters">LoggerEncounters<a class="anchor" aria-label="anchor" href="#loggerencounters"></a>
+</h2>
 </div>
 </div>
   </div>
@@ -225,11 +224,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Florian W. Mayer, <a href="https://www.dbca.wa.gov.au/science/"><img src="man/figures/dbca_bcs.png" width="150" alt="DBCA"></a>, <a href="https://flatbacks.dbca.wa.gov.au/"><img src="man/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a>.</p>
+  <p></p>
+<p>Developed by Florian W. Mayer, <a href="https://www.dbca.wa.gov.au/science/" class="external-link"><img src="reference/figures/dbca_bcs.png" width="150" alt="DBCA"></a>, <a href="https://flatbacks.dbca.wa.gov.au/" class="external-link"><img src="reference/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -237,6 +238,8 @@
 
   
 
+
+  
 
   </body>
 </html>

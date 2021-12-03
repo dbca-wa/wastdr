@@ -38,6 +38,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -50,18 +52,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -73,17 +69,20 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="divider">
-    <li class="dropdown-header">Setup</li>
+    </li>
+<li class="dropdown-header">Setup</li>
     <li>
       <a href="articles/setup.html">Setup</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Access</li>
+    </li>
+<li class="dropdown-header">Access</li>
     <li>
       <a href="articles/access.html">Accessing WAStD Data</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Analyze</li>
+    </li>
+<li class="dropdown-header">Analyze</li>
     <li>
       <a href="articles/analysis.html">Data analysis - Producing insight from WAStD</a>
     </li>
@@ -95,7 +94,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/dbca-wa/wastdr/">
+  <a href="https://github.com/dbca-wa/wastdr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -113,27 +112,26 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="wastdr-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#wastdr-" class="anchor"></a>wastdr <img src="reference/figures/logo.png" align="right">
+<div class="section level1">
+<div class="page-header"><h1 id="wastdr-">wastdr <img src="reference/figures/logo.png" align="right"><a class="anchor" aria-label="anchor" href="#wastdr-"></a>
 </h1></div>
 <!-- badges: start -->
 
-<p>The <a href="https://wastd.dbca.wa.gov.au/">WA Strandings Database WAStD</a> (<a href="https://github.com/dbca-wa/wastd/">github</a>) provides a <a href="https://wastd.dbca.wa.gov.au/api/1/">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Biodiversity, Conservation and Attractions. The WAStD API uses token and basic authentication, see vignette on details.</p>
-<p>The API returns spatially explicit data as GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. <a href="http://www.qgis.org/en/site/">Quantum GIS</a>.</p>
+<p>The <a href="https://wastd.dbca.wa.gov.au/" class="external-link">WA Strandings Database WAStD</a> (<a href="https://github.com/dbca-wa/wastd/" class="external-link">github</a>) provides a <a href="https://wastd.dbca.wa.gov.au/api/1/" class="external-link">RESTful API</a>. WAStD contains data about turtle strandings, turtle taggings, turtle track and nest encounters, and some ancillary data (areas, surveys, staff). WAStD is accessible to authenticated staff of the WA Department of Biodiversity, Conservation and Attractions. The WAStD API uses token and basic authentication, see vignette on details.</p>
+<p>The API returns spatially explicit data as GeoJSON, which can be loaded directly into any standard-compliant GIS environments, e.g. <a href="http://www.qgis.org/en/site/" class="external-link">Quantum GIS</a>.</p>
 <p>If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (GeoJSON properties) into a two-dimensional tabular structure. This requires knowledge about the structure and content of the nested data from WAStD.</p>
-<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a> <code><a href="https://tibble.tidyverse.org/reference/tibble.html">dplyr::tibble</a></code>.</p>
+<p>The main purpose of <code>wastdr</code> is to facilitate reading, parsing and using WAStD data by providing helpers to access the API and flatten the API outputs into a <a href="http://vita.had.co.nz/papers/tidy-data.html" class="external-link">tidy</a> <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">dplyr::tibble</a></code>.</p>
 <p>The secondary purpose of <code>wastdr</code> is to centralize a collection of commonly used analyses and visualisations of turtle data. As development progresses, example analyses and visualisations will be added to the vignette. Contributions and requests are welcome!</p>
 <p>Lastly, to facilitate collaboration with external stakeholders, <code>wastdr</code> contains some anonymized example data (raw GeoJSON and parsed <code>tibble</code>) of turtle taggings, turtle track counts, and turtle nests.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>Install <code>wastdr</code> from GitHub:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="co"># </span>
 <span class="co"># https://github.com/r-spatial/mapview/issues/312</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>
     <span class="st">"r-spatial/mapview"</span>,
     dependencies <span class="op">=</span> <span class="cn">TRUE</span>,
     upgrade <span class="op">=</span> <span class="st">"always"</span>,
@@ -141,7 +139,7 @@
     build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span>
 
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>
     <span class="st">"ropensci/ruODK"</span>,
     dependencies <span class="op">=</span> <span class="cn">TRUE</span>,
     upgrade <span class="op">=</span> <span class="st">"always"</span>,
@@ -149,7 +147,7 @@
     build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span>
 
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>
     <span class="st">"dbca-wa/wastdr"</span>,
     dependencies <span class="op">=</span> <span class="cn">TRUE</span>,
     upgrade <span class="op">=</span> <span class="st">"always"</span>,
@@ -157,11 +155,11 @@
 <span class="op">)</span></code></pre></div>
 <p>While the WAStD API is only accessible to a selected audience, and <code>wastdr</code> is under active development, it is not feasible to release <code>wastdr</code> on CRAN yet. Therefore, <code>wastdr</code> will be distributed via GitHub for the time being.</p>
 </div>
-<div id="setup" class="section level2">
-<h2 class="hasAnchor">
-<a href="#setup" class="anchor"></a>Setup</h2>
+<div class="section level2">
+<h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
+</h2>
 <p><code>wastdr</code> requires to be configured with the WAStD API URL and an access token or a username / password combination. <code>wastdr</code> functions expect these settings to be available as environment variables. For convenience, <code>wastdr_setup</code> sets the correct variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
-<p>DBCA staff can find their WAStD API Token at <a href="https://wastd.dbca.wa.gov.au/">WAStD</a> under “My Profile” and add to their <code>.Renviron</code>. To use ODK Central turtle data download helpers, also add ODK Central credentials.</p>
+<p>DBCA staff can find their WAStD API Token at <a href="https://wastd.dbca.wa.gov.au/" class="external-link">WAStD</a> under “My Profile” and add to their <code>.Renviron</code>. To use ODK Central turtle data download helpers, also add ODK Central credentials.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">WASTDR_API_URL</span><span class="op">=</span><span class="st">"https://wastd.dbca.wa.gov.au/api/1/"</span>
 <span class="va">WASTDR_API_TOKEN</span><span class="op">=</span><span class="st">"Token XXX"</span>
@@ -192,13 +190,13 @@
 <span class="co">#&gt;   Verbose:       TRUE</span></code></pre></div>
 <p>For other configuration methods please see the vignette “Setup”.</p>
 </div>
-<div id="get-wastd" class="section level2">
-<h2 class="hasAnchor">
-<a href="#get-wastd" class="anchor"></a>Get WAStD</h2>
+<div class="section level2">
+<h2 id="get-wastd">Get WAStD<a class="anchor" aria-label="anchor" href="#get-wastd"></a>
+</h2>
 <p>Once set up, <code>wastdr</code> can load data from WAStD simply with:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tracks</span> <span class="op">&lt;-</span> <span class="st">"turtle-nest-encounters"</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> 
-    <span class="fu"><a href="reference/wastd_GET.html">wastd_GET</a></span><span class="op">(</span>max_records <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>  
+<code class="sourceCode R"><span class="va">tracks</span> <span class="op">&lt;-</span> <span class="st">"turtle-nest-encounters"</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="reference/wastd_GET.html">wastd_GET</a></span><span class="op">(</span>max_records <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>  
     <span class="fu"><a href="reference/parse_turtle_nest_encounters.html">parse_turtle_nest_encounters</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Valid endpoints are listed in the base API URL of WAStD, e.g.:</p>
 <ul>
@@ -208,15 +206,15 @@
 <li><code>turte-nest-disturbance-observations</code></li>
 </ul>
 </div>
-<div id="or-have-a-pickle" class="section level2">
-<h2 class="hasAnchor">
-<a href="#or-have-a-pickle" class="anchor"></a>…or have a pickle</h2>
+<div class="section level2">
+<h2 id="or-have-a-pickle">…or have a pickle<a class="anchor" aria-label="anchor" href="#or-have-a-pickle"></a>
+</h2>
 <p>If you don’t have access to the WAStD API, you can still get a feel for the data by using the pickled example data:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dbca-wa/wastdr">wastdr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dbca-wa/wastdr" class="external-link">wastdr</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"wastd_data"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"odkc_data"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"wastd_data"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"odkc_data"</span><span class="op">)</span>
 
 <span class="va">wastd_data</span><span class="op">$</span><span class="va">animals</span>
 <span class="co">#&gt; # A tibble: 1,000 x 46</span>
@@ -279,95 +277,106 @@
 <span class="co">#&gt; #   season &lt;dbl&gt;, season_week &lt;dbl&gt;, iso_week &lt;dbl&gt;, species_colours &lt;chr&gt;,</span>
 <span class="co">#&gt; #   nest_type_text &lt;chr&gt;</span>
 
-<span class="va">wastd_data</span><span class="op">$</span><span class="va">tracks</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/map_tracks.html">map_tracks</a></span><span class="op">(</span>sites <span class="op">=</span> <span class="va">wastd_data</span><span class="op">$</span><span class="va">sites</span><span class="op">)</span></code></pre></div>
+<span class="va">wastd_data</span><span class="op">$</span><span class="va">tracks</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="reference/map_tracks.html">map_tracks</a></span><span class="op">(</span>sites <span class="op">=</span> <span class="va">wastd_data</span><span class="op">$</span><span class="va">sites</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">odkc_data</span><span class="op">$</span><span class="va">tracks</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/map_tracks_odkc.html">map_tracks_odkc</a></span><span class="op">(</span>sites <span class="op">=</span> <span class="va">odkc_data</span><span class="op">$</span><span class="va">sites</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">odkc_data</span><span class="op">$</span><span class="va">tracks</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="reference/map_tracks_odkc.html">map_tracks_odkc</a></span><span class="op">(</span>sites <span class="op">=</span> <span class="va">odkc_data</span><span class="op">$</span><span class="va">sites</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-2.png"><!-- --></p>
 </div>
-<div id="learn-more" class="section level2">
-<h2 class="hasAnchor">
-<a href="#learn-more" class="anchor"></a>Learn more</h2>
+<div class="section level2">
+<h2 id="learn-more">Learn more<a class="anchor" aria-label="anchor" href="#learn-more"></a>
+</h2>
 <p>See the vignette for built-in helpers to transform, analyze and visualize WAStD data.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span><span class="op">(</span><span class="st">"getting-wastd"</span>, package <span class="op">=</span> <span class="st">"wastdr"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span><span class="op">(</span><span class="st">"analysis"</span>, package <span class="op">=</span> <span class="st">"wastdr"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"getting-wastd"</span>, package <span class="op">=</span> <span class="st">"wastdr"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"analysis"</span>, package <span class="op">=</span> <span class="st">"wastdr"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="contribute" class="section level1">
-<h1 class="hasAnchor">
-<a href="#contribute" class="anchor"></a>Contribute</h1>
+<div class="section level1">
+<h1 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
+</h1>
 <p>Every contribution, constructive feedback, or suggestion is welcome!</p>
-<p>Send us your ideas and requests as <a href="https://github.com/dbca-wa/wastdr/issues">issues</a> or submit a pull request.</p>
+<p>Send us your ideas and requests as <a href="https://github.com/dbca-wa/wastdr/issues" class="external-link">issues</a> or submit a pull request.</p>
 <p>Pull requests should eventually pass tests and checks (not introducing new ERRORs, WARNINGs or NOTEs apart from the “New CRAN package” NOTE):</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">styler</span><span class="fu">:::</span><span class="fu">style_pkg</span><span class="op">(</span><span class="op">)</span>
-<span class="fu">spelling</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/spelling/reference/spell_check_package.html">spell_check_package</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">spelling</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/spelling/reference/wordlist.html">update_wordlist</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span>roclets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rd"</span>, <span class="st">"collate"</span>, <span class="st">"namespace"</span>, <span class="st">"vignette"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">spelling</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/spelling/reference/spell_check_package.html" class="external-link">spell_check_package</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">spelling</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/spelling/reference/wordlist.html" class="external-link">update_wordlist</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span>roclets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rd"</span>, <span class="st">"collate"</span>, <span class="st">"namespace"</span>, <span class="st">"vignette"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">build</span><span class="op">(</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="op">)</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span>force_suggests <span class="op">=</span> <span class="cn">T</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"--as-cran"</span>, <span class="st">"--timings"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">rcmdcheck</span><span class="fu">::</span><span class="fu"><a href="http://r-lib.github.io/rcmdcheck/reference/rcmdcheck.html">rcmdcheck</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span>force_suggests <span class="op">=</span> <span class="cn">T</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"--as-cran"</span>, <span class="st">"--timings"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">rcmdcheck</span><span class="fu">::</span><span class="fu"><a href="http://r-lib.github.io/rcmdcheck/reference/rcmdcheck.html" class="external-link">rcmdcheck</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">goodpractice</span><span class="fu">::</span><span class="fu">goodpractice</span><span class="op">(</span>quiet <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
-<span class="fu">covr</span><span class="fu">::</span><span class="fu"><a href="http://covr.r-lib.org/reference/codecov.html">codecov</a></span><span class="op">(</span>token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"CODECOV_TOKEN"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">covr</span><span class="fu">::</span><span class="fu"><a href="http://covr.r-lib.org/reference/codecov.html" class="external-link">codecov</a></span><span class="op">(</span>token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"CODECOV_TOKEN"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>To enable local testing of the API as well as checking and upload of test coverage, add your CODECOV token to your .Renviron:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">CODECOV_TOKEN</span> <span class="op">=</span> <span class="st">"my-codecov-token"</span></code></pre></div>
-<p>The <code>wastdr</code> <a href="https://dbca-wa.github.io/wastdr/">webpage</a> is hosted on gh-pages and generated using <a href="https://github.com/hadley/pkgdown">pkgdown</a>.</p>
+<p>The <code>wastdr</code> <a href="https://dbca-wa.github.io/wastdr/" class="external-link">webpage</a> is hosted on gh-pages and generated using <a href="https://github.com/hadley/pkgdown" class="external-link">pkgdown</a>.</p>
 </div>
 
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/dbca-wa/wastdr/">https://​github.com/​dbca-wa/​wastdr/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/dbca-wa/wastdr/issues">https://​github.com/​dbca-wa/​wastdr/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
-</li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Florian W. Mayer <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-4269-4242" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>
-<a href="https://www.dbca.wa.gov.au/science/"><img src="reference/figures/dbca_bcs.png" width="150" alt="DBCA"></a> <br><small class="roles"> Copyright holder, funder </small>  </li>
-<li>
-<a href="https://flatbacks.dbca.wa.gov.au/"><img src="reference/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a> <br><small class="roles"> Funder </small>  </li>
+<li><a href="https://github.com/dbca-wa/wastdr/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/dbca-wa/wastdr/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
-<li><a href="https://github.com/dbca-wa/wastdr/issues"><img src="https://img.shields.io/github/issues/dbca-wa/wastdr.svg?style=popout" alt="GitHub issues"></a></li>
-<li><a href="https://github.com/dbca-wa/wastdr/commits/master"><img src="https://img.shields.io/github/last-commit/dbca-wa/wastdr.svg" alt="Last-changedate"></a></li>
-<li><a href="https://github.com/dbca-wa/wastdr/actions"><img src="https://github.com/dbca-wa/wastdr/workflows/tic/badge.svg" alt="tic"></a></li>
-<li><a href="https://codecov.io/gh/dbca-wa/wastdr"><img src="https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg" alt="Test coverage"></a></li>
+<li>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+</li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing wastdr</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Florian W. Mayer <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-4269-4242" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://www.dbca.wa.gov.au/science/" class="external-link"><img src="reference/figures/dbca_bcs.png" width="150" alt="DBCA"></a> <br><small class="roles"> Copyright holder, funder </small>  </li>
+<li>
+<a href="https://flatbacks.dbca.wa.gov.au/" class="external-link"><img src="reference/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a> <br><small class="roles"> Funder </small>  </li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://www.repostatus.org/#active" class="external-link"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
+<li><a href="https://github.com/dbca-wa/wastdr/issues" class="external-link"><img src="https://img.shields.io/github/issues/dbca-wa/wastdr.svg?style=popout" alt="GitHub issues"></a></li>
+<li><a href="https://github.com/dbca-wa/wastdr/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/dbca-wa/wastdr.svg" alt="Last-changedate"></a></li>
+<li><a href="https://github.com/dbca-wa/wastdr/actions" class="external-link"><img src="https://github.com/dbca-wa/wastdr/workflows/tic/badge.svg" alt="tic"></a></li>
+<li><a href="https://codecov.io/gh/dbca-wa/wastdr" class="external-link"><img src="https://codecov.io/gh/dbca-wa/wastdr/branch/master/graph/badge.svg" alt="Test coverage"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Florian W. Mayer, <a href="https://www.dbca.wa.gov.au/science/"><img src="reference/figures/dbca_bcs.png" width="150" alt="DBCA"></a>, <a href="https://flatbacks.dbca.wa.gov.au/"><img src="reference/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a>.</p>
+  <p></p>
+<p>Developed by Florian W. Mayer, <a href="https://www.dbca.wa.gov.au/science/" class="external-link"><img src="reference/figures/dbca_bcs.png" width="150" alt="DBCA"></a>, <a href="https://flatbacks.dbca.wa.gov.au/" class="external-link"><img src="reference/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -375,6 +384,8 @@
 
   
 
+
+  
 
   </body>
 </html>

@@ -32,6 +32,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -44,18 +46,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -67,17 +63,20 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="divider">
-    <li class="dropdown-header">Setup</li>
+    </li>
+<li class="dropdown-header">Setup</li>
     <li>
       <a href="../articles/setup.html">Setup</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Access</li>
+    </li>
+<li class="dropdown-header">Access</li>
     <li>
       <a href="../articles/access.html">Accessing WAStD Data</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Analyze</li>
+    </li>
+<li class="dropdown-header">Analyze</li>
     <li>
       <a href="../articles/analysis.html">Data analysis - Producing insight from WAStD</a>
     </li>
@@ -89,7 +88,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/dbca-wa/wastdr/">
+  <a href="https://github.com/dbca-wa/wastdr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -108,35 +107,34 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Setup</h1>
-                        <h4 class="author">Florian Mayer</h4>
+                        <h4 data-toc-skip class="author">Florian Mayer</h4>
             
-            <h4 class="date">2021-11-30</h4>
+            <h4 data-toc-skip class="date">2021-12-03</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/master/vignettes/setup.Rmd"><code>vignettes/setup.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dbca-wa/wastdr/blob/HEAD/vignettes/setup.Rmd" class="external-link"><code>vignettes/setup.Rmd</code></a></small>
       <div class="hidden name"><code>setup.Rmd</code></div>
 
     </div>
 
     
     
-<div id="authentication" class="section level1">
-<h1 class="hasAnchor">
-<a href="#authentication" class="anchor"></a>Authentication</h1>
+<div class="section level1">
+<h1 id="authentication">Authentication<a class="anchor" aria-label="anchor" href="#authentication"></a>
+</h1>
 <p>This vignette explains how to authenticate to the WAStD API.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dbca-wa/wastdr">wastdr</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dbca-wa/wastdr" class="external-link">wastdr</a></span><span class="op">)</span></code></pre></div>
 <p>There are two audiences with two different authentication options.</p>
-<p>The first audience, DBCA staff, has access to <a href="https://strandings.dpaw.wa.gov.au">WAStD</a>. On their profile page they will find their own API token.</p>
-<p>The second audience, external collaborators, will be given a username and password. Using these credentials, they can access the <a href="https://strandings.dpaw.wa.gov.au/api/1/">WAStD API</a> both through their browser and from other software like <code>wastdr</code>.</p>
+<p>The first audience, DBCA staff, has access to <a href="https://strandings.dpaw.wa.gov.au" class="external-link">WAStD</a>. On their profile page they will find their own API token.</p>
+<p>The second audience, external collaborators, will be given a username and password. Using these credentials, they can access the <a href="https://strandings.dpaw.wa.gov.au/api/1/" class="external-link">WAStD API</a> both through their browser and from other software like <code>wastdr</code>.</p>
 <p><code>wastdr::get_wastd()</code> accesses the <code>WAStD</code> API using:</p>
 <ul>
 <li>the API URL, and</li>
 <li>an access token <strong>or</strong> a username / password.</li>
 </ul>
 <p>There are three ways to supply the required settings to <code>wastdr::get_wastd()</code>.</p>
-<div id="best-practice--renviron" class="section level2">
-<h2 class="hasAnchor">
-<a href="#best-practice--renviron" class="anchor"></a>Best practice: <code>.Renviron</code>
+<div class="section level2">
+<h2 id="best-practice--renviron">Best practice: <code>.Renviron</code><a class="anchor" aria-label="anchor" href="#best-practice--renviron"></a>
 </h2>
 <p>For a permanent setup, the environment variables can be set in the user’s <code>.Renviron</code>.</p>
 <p>DBCA staff visit their own profile on WAStD and add their API Token as advertised on their profile to their <code>.Renviron</code>:</p>
@@ -151,9 +149,9 @@
 <span class="va">WASTDR_API_PW</span><span class="op">=</span><span class="st">"XXX"</span></code></pre></div>
 <p>In the long term, this last method is the most elegant and persistent way of configuring <code>wastdr</code>.</p>
 </div>
-<div id="per-session" class="section level2">
-<h2 class="hasAnchor">
-<a href="#per-session" class="anchor"></a>Per session</h2>
+<div class="section level2">
+<h2 id="per-session">Per session<a class="anchor" aria-label="anchor" href="#per-session"></a>
+</h2>
 <p>If <code>api_*</code> settings are not provided, <code>wastdr::get_wastd</code> defaults to specifically named environment variables.</p>
 <p>For convenience, <code>wastdr_setup</code> sets these environment variables, while <code>wastdr_settings</code> retrieves the currently set values.</p>
 <p>If these variables haven’t been provided through e.g. <code>.Renviron</code>, you may set them on a per session basis:</p>
@@ -174,9 +172,9 @@
 <span class="co">#&gt;   Verbose:       FALSE</span></code></pre></div>
 <p><code>wastdr_setup</code> defaults <code>api_url</code> to the currently only existing API url.</p>
 </div>
-<div id="per-function-call" class="section level2">
-<h2 class="hasAnchor">
-<a href="#per-function-call" class="anchor"></a>Per function call</h2>
+<div class="section level2">
+<h2 id="per-function-call">Per function call<a class="anchor" aria-label="anchor" href="#per-function-call"></a>
+</h2>
 <p>Crendentials can be supplied directly to functions:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">wastdr</span><span class="fu">::</span><span class="fu"><a href="../reference/wastd_GET.html">wastd_GET</a></span><span class="op">(</span><span class="st">'encounters'</span>, 
@@ -201,11 +199,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Florian W. Mayer, <a href="https://www.dbca.wa.gov.au/science/"><img src="man/figures/dbca_bcs.png" width="150" alt="DBCA"></a>, <a href="https://flatbacks.dbca.wa.gov.au/"><img src="man/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a>.</p>
+  <p></p>
+<p>Developed by Florian W. Mayer, <a href="https://www.dbca.wa.gov.au/science/" class="external-link"><img src="reference/figures/dbca_bcs.png" width="150" alt="DBCA"></a>, <a href="https://flatbacks.dbca.wa.gov.au/" class="external-link"><img src="reference/figures/flatbacks.svg" width="150" alt="NWSFTCP"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -213,6 +213,8 @@
 
   
 
+
+  
 
   </body>
 </html>
