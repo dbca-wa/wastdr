@@ -73,18 +73,17 @@ parse_surveys <- function(wastd_api_response,
         start_time = purrr::map_chr(., c("properties", "start_time")) %>%
           httpdate_as_gmt08(),
         end_time = map_chr_hack(
-          ., c("properties", "end_time")
-        ) %>% httpdate_as_gmt08(),
-        calendar_date_awst = start_time %>%
-          lubridate::with_tz("Australia/Perth") %>%
-          lubridate::floor_date(unit = "day") %>%
-          as.character(),
+            ., c("properties", "end_time")) %>% httpdate_as_gmt08(),
+        # calendar_date_awst = start_time %>%
+          # lubridate::with_tz("Australia/Perth") %>%
+          # lubridate::floor_date(unit = "day") %>%
+          # as.character(),
         start_comments = map_chr_hack(., c("properties", "start_comments")),
         end_comments = map_chr_hack(., c("properties", "end_comments")),
-        turtle_date = start_time %>% datetime_as_turtle_date(),
-        season = start_time %>% datetime_as_season(),
-        season_week = start_time %>% datetime_as_seasonweek(),
-        iso_week = start_time %>% datetime_as_isoweek(),
+        # turtle_date = start_time %>% datetime_as_turtle_date(),
+        # season = start_time %>% datetime_as_season(),
+        # season_week = start_time %>% datetime_as_seasonweek(),
+        # iso_week = start_time %>% datetime_as_isoweek(),
         source = purrr::map_chr(., c("properties", "source")),
         source_id = map_chr_hack(., c("properties", "source_id")),
         end_source_id = map_chr_hack(., c("properties", "end_source_id")),
@@ -101,6 +100,7 @@ parse_surveys <- function(wastd_api_response,
         # transect, start_location, end_location, team
       )
     } %>%
+    add_dates(date_col="start_time") %>%
     dplyr::mutate(
       change_url = glue::glue(
         '<a href="{wastd_url}{absolute_admin_url}"

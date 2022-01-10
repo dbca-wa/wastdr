@@ -351,6 +351,8 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     dplyr::rename(turtle_comments = comments)
 
   wastdr_msg_info("Parsing TRT_OBSERVATIONS")
+  # TODO date_convention "C" calendar date, "E" evening date = turtle date
+  # Does date_convention affect o_date?
   o <- obs %>%
     dplyr::mutate(
       o_date = lubridate::parse_date_time(corrected_date, orders = ord, tz = tz),
