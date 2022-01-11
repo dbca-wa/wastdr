@@ -171,6 +171,16 @@ test_that("survey_season_stats returns a tibble", {
 
   x <- survey_season_stats(wastd_data$surveys)
   expect_true(tibble::is_tibble(x))
+  expect_false(is.na(x$season))
+  expect_false(is.na(x$first_day))
+  expect_false(is.na(x$last_day))
+  expect_false(is.na(x$season_length_days))
+
+  expect_equal(class(x$season), "numeric")
+  expect_equal(class(x$first_day), c("POSIXct", "POSIXt"))
+  expect_equal(class(x$last_day), c("POSIXct", "POSIXt"))
+  expect_equal(class(x$season_length_days), "numeric")
+
   expect_equal(
     names(x),
     c(

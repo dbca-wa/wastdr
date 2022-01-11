@@ -7,7 +7,7 @@ test_that("parse_surveys parses to tibble with correct column classes", {
   testthat::expect_true(is.character(surveys$site_name))
 
   # calendar_date_awst is cast to character to prevent auto tz conversion
-  testthat::expect_true(is.character(surveys$calendar_date_awst))
+  testthat::expect_equal(class(surveys$calendar_date_awst), c("POSIXct", "POSIXt"))
 
   # start time is an actual time with local tz
   testthat::expect_equal(lubridate::tz(surveys$start_time), "Australia/Perth")

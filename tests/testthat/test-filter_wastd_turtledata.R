@@ -36,11 +36,11 @@ test_that("filter_wastd_turtledata returns data outside areas when asked", {
   data("wastd_data")
   # testthat::expect_message(
   x <- wastd_data %>%
-    filter_wastd_turtledata(area_name = "Other")
+    filter_wastd_turtledata(area_name = wastd_data$tracks$area_name[[1]])
   # )
   # Data have all areas as NA
-  testthat::expect_true(is.na(unique(x$tracks$area_name)))
-  testthat::expect_true(is.na(unique(x$animals$area_name)))
+  testthat::expect_true(length(unique(x$tracks$area_name)) == 1)
+  testthat::expect_true(length(unique(x$animals$area_name)) == 1)
 })
 
 # usethis::use_r("filter_wastd_turtledata")  # nolint

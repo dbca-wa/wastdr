@@ -15,6 +15,7 @@ test_that("summarise_wastd_data_per_day_site works", {
     "track_unsure",
     "disturbed_nests",
     "general_dist",
+    "stranding",
     "live_sightings",
     "mortalities",
     "track_tallies"
