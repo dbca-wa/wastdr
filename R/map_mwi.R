@@ -12,6 +12,8 @@
 #' @template param-fmt
 #' @template param-tz
 #' @template param-cluster
+#' @param split_species Whether to split data by species or taxon,
+#'   default: TRUE (split by species)
 #' @return A leaflet map
 #' @export
 #' @family wastd
