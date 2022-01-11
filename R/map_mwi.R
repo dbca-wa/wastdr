@@ -18,9 +18,10 @@
 map_mwi <- function(data,
                     sites = NULL,
                     wastd_url = wastdr::get_wastd_url(),
-                    fmt = "%d/%m/%Y %H:%M",
+                    fmt = "%Y-%m-%d %H:%M",
                     tz = "Australia/Perth",
-                    cluster = FALSE) {
+                    cluster = FALSE,
+                    split_species=FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
   overlay_names <- c()
   url <- sub("/$", "", wastd_url)
@@ -32,8 +33,12 @@ map_mwi <- function(data,
 
 
   if (!is.null(data) && nrow(data) > 0) {
-    pal_mwi <- leaflet::colorFactor(palette = "viridis", domain = data$taxon)
-    data.df <- data %>% split(data$taxon)
+    split_col = ifelse(split_species==TRUE, "species", "taxon")
+    data.df <- data %>% split(data[split_col])
+
+    dom <- dplyr::pull(data, split_col)
+    pal_mwi <- leaflet::colorFactor(palette = "viridis", domain = dom)
+
     overlay_names <- names(data.df)
     if (!is.null(sites)) overlay_names <- c("Sites", overlay_names)
 
@@ -44,9 +49,9 @@ map_mwi <- function(data,
           lng = ~longitude,
           lat = ~latitude,
           icon = leaflet::makeAwesomeIcon(
-            icon = "warning-sign",
+            # icon = "fa-thumbs-up",
             markerColor = "red",
-            iconColor = ~ pal_mwi(taxon)
+            iconColor = "grey"
           ),
           label = ~ glue::glue("
              {lubridate::with_tz(datetime, tz)}

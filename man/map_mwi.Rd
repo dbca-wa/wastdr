@@ -8,9 +8,10 @@ map_mwi(
   data,
   sites = NULL,
   wastd_url = wastdr::get_wastd_url(),
-  fmt = "\%d/\%m/\%Y \%H:\%M",
+  fmt = "\%Y-\%m-\%d \%H:\%M",
   tz = "Australia/Perth",
-  cluster = FALSE
+  cluster = FALSE,
+  split_species = FALSE
 )
 }
 \arguments{
