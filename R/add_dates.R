@@ -44,8 +44,7 @@ add_dates <-
       } %>%
       dplyr::mutate(
         calendar_date_awst = datetime %>%
-          lubridate::floor_date(unit = "day") %>%
-          as.character(),
+          lubridate::floor_date(unit = "day"), #%>%  as.character(),
         calendar_year = datetime %>% lubridate::year(),
         turtle_date = datetime %>% datetime_as_turtle_date(),
         season = datetime %>% datetime_as_season(),
