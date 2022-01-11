@@ -53,10 +53,6 @@ was captured on.
 a training survey.
 \item absolute_admin_url (chr) The absolute URL path to edit the survey in
 WAStD. Append this to the base \code{WASTD_URL}.
-\item start_photo_url (chr) The URL of the start photo, if given.
-Requires DBCA SSO when viewed.
-\item end_photo_url (chr) The URL of the end photo, if given.
-Requires DBCA SSO when viewed.
 }
 }
 \description{

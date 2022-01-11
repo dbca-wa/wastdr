@@ -45,10 +45,6 @@
 #'     a training survey.
 #'   \item absolute_admin_url (chr) The absolute URL path to edit the survey in
 #'   WAStD. Append this to the base `WASTD_URL`.
-#'   \item start_photo_url (chr) The URL of the start photo, if given.
-#'   Requires DBCA SSO when viewed.
-#'   \item end_photo_url (chr) The URL of the end photo, if given.
-#'   Requires DBCA SSO when viewed.
 #' }
 #' @export
 #' @family wastd
@@ -74,16 +70,8 @@ parse_surveys <- function(wastd_api_response,
           httpdate_as_gmt08(),
         end_time = map_chr_hack(
             ., c("properties", "end_time")) %>% httpdate_as_gmt08(),
-        # calendar_date_awst = start_time %>%
-          # lubridate::with_tz("Australia/Perth") %>%
-          # lubridate::floor_date(unit = "day") %>%
-          # as.character(),
         start_comments = map_chr_hack(., c("properties", "start_comments")),
         end_comments = map_chr_hack(., c("properties", "end_comments")),
-        # turtle_date = start_time %>% datetime_as_turtle_date(),
-        # season = start_time %>% datetime_as_season(),
-        # season_week = start_time %>% datetime_as_seasonweek(),
-        # iso_week = start_time %>% datetime_as_isoweek(),
         source = purrr::map_chr(., c("properties", "source")),
         source_id = map_chr_hack(., c("properties", "source_id")),
         end_source_id = map_chr_hack(., c("properties", "end_source_id")),
@@ -100,7 +88,7 @@ parse_surveys <- function(wastd_api_response,
         # transect, start_location, end_location, team
       )
     } %>%
-    add_dates(date_col="start_time") %>%
+    add_dates(date_col="start_time", parse_date = FALSE) %>%
     dplyr::mutate(
       change_url = glue::glue(
         '<a href="{wastd_url}{absolute_admin_url}"
