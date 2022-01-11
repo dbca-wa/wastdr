@@ -8,6 +8,8 @@
 #' @param outdir The destination to write exported data to,
 #'   default: \code{here::here()}.
 #' @param filename The filename for the ZIP archive, default: `export`.
+#' @param zip Whether to archive the files as ZIP or keep them separate.
+#'   Default: FALSE (keep separate files).
 #' @return A set of files in the folder `outdir`.
 #'   GeoJSON files can be opened in any GIS, such as Quantum GIS or ESRI ArcGIS.
 #'   CSV files can be opened in any spreadsheet program, such as MS Excel or
@@ -129,7 +131,8 @@
 #' }
 export_wastd_turtledata <- function(x,
                                     outdir = here::here(),
-                                    filename = "export") {
+                                    filename = "export",
+                                    zip=FALSE) {
   if (class(x) != "wastd_data") {
     wastdr_msg_abort(glue::glue(
       "The first argument needs to be an object of class \"wastd_data\", ",
@@ -184,9 +187,12 @@ export_wastd_turtledata <- function(x,
       geojsonio::geojson_write(file = fs::path(outdir, "loggers.geojson"))
   }
 
-  zipfile <- paste0(filename, ".zip")
-  utils::zip(zipfile, fs::dir_ls(outdir), flags = "-jr9X")
-  fs::file_move(zipfile, new_path = outdir)
+  if (zip == TRUE) {
+      zipfile <- paste0(filename, ".zip")
+      utils::zip(zipfile, fs::dir_ls(outdir), flags = "-jr9X")
+      fs::file_move(zipfile, new_path = outdir)
+      # fs::dir_ls(outdir, glob=".zip", invert=TRUE) %>% fs::delete()
+  }
 }
 
 # use_test("export_wastd_turtledata")

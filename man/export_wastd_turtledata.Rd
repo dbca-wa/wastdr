@@ -4,7 +4,12 @@
 \alias{export_wastd_turtledata}
 \title{Export all WAStD turtledata to CSV and GeoJSON files}
 \usage{
-export_wastd_turtledata(x, outdir = here::here(), filename = "export")
+export_wastd_turtledata(
+  x,
+  outdir = here::here(),
+  filename = "export",
+  zip = FALSE
+)
 }
 \arguments{
 \item{x}{An object of class \code{wastd_data} as returned by
@@ -16,6 +21,9 @@ an area_name (WAStD Area of type Locality).}
 default: \code{here::here()}.}
 
 \item{filename}{The filename for the ZIP archive, default: \code{export}.}
+
+\item{zip}{Whether to archive the files as ZIP or keep them separate.
+Default: FALSE (keep separate files).}
 }
 \value{
 A set of files in the folder \code{outdir}.
