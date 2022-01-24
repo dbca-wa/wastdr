@@ -33,9 +33,12 @@ map_sv_odkc <- function(svs,
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
-    leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
-    leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-    leaflet::clearBounds() %>%
+      leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
+      leaflet::addProviderTiles(
+          "OpenStreetMap.Mapnik", group = "Basemap",
+          options = leaflet::providerTileOptions(opacity = 0.35)) %>%
+      leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+      leaflet::clearBounds() %>%
     # Site Visit Start
     leaflet::addAwesomeMarkers(
       data = svs,
@@ -109,7 +112,7 @@ map_sv_odkc <- function(svs,
       label = ~site_name
     ) %>%
     leaflet::addLayersControl(
-      baseGroups = c("Aerial", "Place names"),
+      baseGroups = c("Basemap"),
       overlayGroups = c("Site Visit Start", "Site Visit End"),
       options = leaflet::layersControlOptions(collapsed = FALSE)
     )

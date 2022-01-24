@@ -41,9 +41,12 @@ map_dist_odkc <- function(dist,
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
-    leaflet::addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
-    leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "Place names") %>%
-    leaflet::clearBounds()
+      leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
+      leaflet::addProviderTiles(
+          "OpenStreetMap.Mapnik", group = "Basemap",
+          options = leaflet::providerTileOptions(opacity = 0.35)) %>%
+      leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+      leaflet::clearBounds()
 
   # ---------------------------------------------------------------------------#
   # Disturbances by cause
@@ -168,7 +171,7 @@ src="{photo_disturbance %||% ""}"></img>
       }
     } %>%
     leaflet::addLayersControl(
-      baseGroups = c("Aerial", "Place names"),
+      baseGroups = c("Basemap"),
       overlayGroups = overlay_names,
       options = leaflet::layersControlOptions(collapsed = FALSE)
     )

@@ -52,6 +52,7 @@ Suggests:
     covr (>= 3.5.1),
     DBI (>= 1.1.1),
     leaflet (>= 2.0.4.1),
+    leaflet.extras (>= 1.0.0),
     leaftime (>= 0.2.0),
     geojsonio (>= 0.9.4),
     geojsonlint (>= 0.4.0),

@@ -61,6 +61,7 @@ Other wastd:
 \code{\link{map_dist}()},
 \code{\link{map_nests}()},
 \code{\link{map_tracks}()},
+\code{\link{map_wastd}()},
 \code{\link{nesting_type_by_area_season_age_species}()},
 \code{\link{nesting_type_by_area_season_species}()},
 \code{\link{nesting_type_by_season_age_species}()},
