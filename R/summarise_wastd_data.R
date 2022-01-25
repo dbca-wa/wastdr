@@ -78,7 +78,7 @@
 summarise_wastd_data_per_day_site <- function(x) {
   svy <- x$surveys %>%
     filter_realsurveys() %>%
-    dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
+    dplyr::group_by(area_name, site_name, calendar_date_awst, calendar_date_awst_text) %>%
     dplyr::tally(name = "no_surveys") %>%
     dplyr::arrange(by_group = TRUE) %>%
     dplyr::ungroup()
@@ -88,7 +88,7 @@ summarise_wastd_data_per_day_site <- function(x) {
     dplyr::mutate(
       nest_type = stringr::str_replace_all(nest_type, "-", "_")
     ) %>%
-    dplyr::group_by(area_name, site_name, calendar_date_awst, nest_type) %>%
+    dplyr::group_by(area_name, site_name, calendar_date_awst, calendar_date_awst_text, nest_type) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
     tidyr::spread(nest_type, n, fill = 0)
@@ -100,7 +100,7 @@ summarise_wastd_data_per_day_site <- function(x) {
       encounter_type = encounter_encounter_type
     ) %>%
     dplyr::group_by(
-      area_name, site_name, calendar_date_awst, encounter_type
+      area_name, site_name, calendar_date_awst, calendar_date_awst_text, encounter_type
     ) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
@@ -124,23 +124,26 @@ summarise_wastd_data_per_day_site <- function(x) {
   ani <- x$animals %>%
     filter_realspecies() %>%
     filter_alive() %>%
-    dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
+    dplyr::group_by(area_name, site_name, calendar_date_awst, calendar_date_awst_text) %>%
     dplyr::tally(name = "live_sightings") %>%
     dplyr::ungroup()
 
   ded <- x$animals %>%
     filter_realspecies() %>%
     filter_dead() %>%
-    dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
+    dplyr::group_by(area_name, site_name, calendar_date_awst, calendar_date_awst_text) %>%
     dplyr::tally(name = "mortalities") %>%
     dplyr::ungroup()
 
   tal <- x$linetx %>%
-    dplyr::group_by(area_name, site_name, calendar_date_awst) %>%
+    dplyr::group_by(area_name, site_name, calendar_date_awst, calendar_date_awst_text) %>%
     dplyr::tally(name = "track_tallies") %>%
     dplyr::ungroup()
 
-  common_vars <- c("area_name", "site_name", "calendar_date_awst")
+  common_vars <- c("area_name",
+                   "site_name",
+                   "calendar_date_awst",
+                   "calendar_date_awst_text")
 
   svy %>%
     dplyr::left_join(trk, by = common_vars) %>%

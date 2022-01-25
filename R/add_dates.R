@@ -12,7 +12,9 @@
 #'   into a date format (TRUE, default) or already comes as a POSIXct/POSIXt.
 #' @return The initial dataframe plus new columns
 #' \itemize{
-#'   \item calendar_date_awst (chr) The calendar date in GMT+08 (AWST) as
+#'   \item calendar_date_awst (POSIXct) The calendar date in GMT+08 (AWST) as
+#'     POSIXct, an ISO datetime in GMT+00.
+#'   \item calendar_date_awst_text (chr) The calendar date in GMT+08 (AWST) as
 #'     character to prevent spreadsheet programs from corrupting the values.
 #'   \item calendar_year (int) The calendar year in GMT+08 (AWST) as integer.
 #'   \item turtle_date (POSIXct) The turtle date,
@@ -45,6 +47,8 @@ add_dates <-
       dplyr::mutate(
         calendar_date_awst = datetime %>%
           lubridate::floor_date(unit = "day"), #%>%  as.character(),
+        calendar_date_awst_text = datetime %>%
+            lubridate::floor_date(unit = "day") %>%  as.character(),
         calendar_year = datetime %>% lubridate::year(),
         turtle_date = datetime %>% datetime_as_turtle_date(),
         season = datetime %>% datetime_as_season(),

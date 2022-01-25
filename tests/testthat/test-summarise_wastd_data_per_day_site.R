@@ -5,14 +5,11 @@ test_that("summarise_wastd_data_per_day_site works", {
     "area_name",
     "site_name",
     "calendar_date_awst",
+    "calendar_date_awst_text",
     "no_surveys",
-    "body_pit",
     "false_crawl",
     "hatched_nest",
-    "nest",
     "successful_crawl",
-    "track_not_assessed",
-    "track_unsure",
     "disturbed_nests",
     "general_dist",
     "stranding",
@@ -26,9 +23,11 @@ test_that("summarise_wastd_data_per_day_site works", {
 
 test_that("summarise_wastd_data_per_day_site works with minimal data", {
   data("wastd_data")
-  x <- wastd_data %>%
-    filter_wastd_turtledata(area_name = "Troughton Island") %>%
-    summarise_wastd_data_per_day_site()
+  expect_warning(
+      x <- wastd_data %>%
+          filter_wastd_turtledata(area_name = "Troughton Island") %>%
+          summarise_wastd_data_per_day_site()
+  )
   testthat::expect_true("area_name" %in% names(x))
   testthat::expect_true("site_name" %in% names(x))
   testthat::expect_true("calendar_date_awst" %in% names(x))
