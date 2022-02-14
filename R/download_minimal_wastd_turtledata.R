@@ -72,11 +72,15 @@ download_minimal_wastd_turtledata <-
 
     areas <- areas_sf %>%
       dplyr::filter(area_type == "Locality") %>%
-      dplyr::transmute(area_id = pk, area_name = name)
+      dplyr::transmute(area_id = pk, area_name = name,
+                       w2_location_code = w2_location_code)
 
     sites <- areas_sf %>%
       dplyr::filter(area_type == "Site") %>%
-      dplyr::transmute(site_id = pk, site_name = name) %>%
+      dplyr::transmute(
+          site_id = pk,
+          site_name = name,
+          w2_place_code = w2_place_code) %>%
       sf::st_join(areas)
 
     list(
