@@ -270,6 +270,20 @@ utils::globalVariables(
     "disturbance_comments",
     "no_nests_disturbed",
     "no_tracks_encountered",
-    "submissions_id"
+    "submissions_id",
+    "w2_location_code",
+    "w2_place_code",
+    "calendar_date_awst_text",
+    "code",
+    "latitude_degrees",
+    "latitude_from_dms",
+    "latitude_minutes",
+    "latitude_seconds",
+    "longitude_degrees",
+    "longitude_from_dms",
+    "longitude_minutes",
+    "longitude_seconds",
+    "na.omit",
+    "prefix"
   )
 )

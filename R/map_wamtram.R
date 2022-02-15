@@ -1,16 +1,26 @@
 #' Map WAMTRAM data
 #'
-#' @param data The output of `wastdr::download_w2_data()`
-#' @return A leaflet map showing W2 sites and encounters
+#' @param data The output of `wastdr::download_w2_data()`.
+#' @param location A W2 location code, e.g. "TH", to filter the data by.
+#' @param place A W2 place code, e.g. "THEE", to filter the data by. Providing
+#'   `place` overrides `location`.
+#' @return A leaflet map showing W2 sites and encounters.
 #' @export
 #' @examples \dontrun{
-#' data("w2_data")
-#' map_wamtram(wamtram_data)
+#' data("w2_data", package="etlTurtleNesting")
+#' map_wamtram(w2_data)
 #'
-#' map_wamtram(wamtram_data, location_code="DH")
-#' map_wamtram(wamtram_data, place_code="DHTB")
+#' map_wamtram(w2_data, location="DH")
+#' map_wamtram(w2_data, place="DHTB")
 #' }
 map_wamtram <- function(data, location=NULL, place=NULL){
+
+    if (class(data) != "wamtram_data") {
+        glue::glue(
+            "The first argument needs to be an object of class ",
+            "\"wamtram_data\", e.g. the output of wastdr::download_w2_data."
+        ) %>% wastdr_msg_abort()
+    }
 
     enc <- data$enc
     sites <- data$sites
@@ -63,3 +73,6 @@ map_wamtram <- function(data, location=NULL, place=NULL){
             options = leaflet::layersControlOptions(collapsed = FALSE)
         )
 }
+
+
+# usethis::use_test("map_wamtram")  # nolint
