@@ -337,7 +337,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     DBI::dbReadTable(con, .) %>%
     janitor::clean_names()
 
-  # 167k+ AnimalEncounters (raw)
+  # 175k+ AnimalEncounters (raw)
   wastdr_msg_info("Data Table TRT_OBSERVATIONS")
   obs <- "TRT_OBSERVATIONS" %>%
     DBI::dbReadTable(con, .) %>%
@@ -356,22 +356,26 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
   o <- obs %>%
     dplyr::mutate(
       o_date = lubridate::parse_date_time(corrected_date, orders = ord, tz = tz),
-      o_time = lubridate::parse_date_time(observation_time, orders = ord, tz = tz),
-      observation_datetime_gmt08 = o_date - lubridate::days(1) +
+      o_time = observation_time %>%
+          lubridate::parse_date_time(orders = ord, tz = tz) %>%
+          tidyr::replace_na(lubridate::ymd_hms("2000-01-01T00:00:00+08")),
+      observation_datetime_gmt08 = o_date +
         lubridate::hours(lubridate::hour(o_time)) +
         lubridate::minutes(lubridate::minute(o_time)),
-      observation_datetime_utc = lubridate::with_tz(
-        observation_datetime_gmt08,
-        tz = "UTC"
-      )
+      observation_datetime_utc = lubridate::with_tz(observation_datetime_gmt08, tz = "UTC"),
+      longitude_dd = longitude,
+      latitude_dd = latitude,
+      latitude_from_dms = latitude_degrees + latitude_minutes / 60 + latitude_seconds / 3600,
+      longitude_from_dms = longitude_degrees + longitude_minutes / 60 + longitude_seconds / 3600
+      # TODO lon lat from E/N/datum_code/zone
     ) %>%
     dplyr::select(
       -observation_date,
       -observation_date_old,
       -corrected_date,
-      -observation_time,
-      -o_date,
-      -o_time
+      -observation_time
+      # -o_date,
+      # -o_time
     ) %>%
     dplyr::left_join(activities, by = "activity_code") %>%
     # left_join(person_names, by=c("MEASURER_PERSON_ID" = "PERSON_ID")) %>%
@@ -382,14 +386,14 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     # rename(tagged_by=name) %>%
     # left_join(person_names, by=c("REPORTER_PERSON_ID" = "PERSON_ID")) %>%
     # rename(reported_by=name) %>%
+    #
+    #
     dplyr::left_join(sites, by = c("place_code" = "code")) %>%
     dplyr::left_join(turtles_min, by = "turtle_id") %>%
     dplyr::mutate(
-      latitude = ifelse(is.na(latitude), site_latitude, latitude),
-      longitude = ifelse(is.na(longitude), site_longitude, longitude)
+      latitude = dplyr::first(na.omit(latitude, latitude_from_dms, site_latitude)),
+      longitude = dplyr::first(na.omit(longitude, longitude_from_dms, site_longitude))
     )
-
-  # TODO reconstruct empty DD from DMS or UTM or site coords
 
   encounters <- o %>%
     dplyr::filter(!is.na(longitude)) %>%
@@ -398,9 +402,11 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     dplyr::arrange(desc(observation_datetime_utc))
 
   encounters_missing <- o %>%
-    dplyr::filter(is.na(longitude) |
-      is.na(latitude) | is.na(observation_datetime_utc)) %>%
-    dplyr::arrange(desc(observation_datetime_utc))
+    dplyr::filter(
+        is.na(longitude) |
+        is.na(latitude) |
+        is.na(observation_datetime_utc)
+    )
 
   wastdr_msg_info("Done, closing DB connection.")
 
