@@ -20,10 +20,10 @@
 #'   filter_alive() %>%
 #'   head()
 filter_alive <- function(data) {
-    if (is.null(data) || nrow(data) == 0) {
-        wastdr_msg_warn("[filter_alive] missing data")
-        return(data)
-    }
+  if (is.null(data) || nrow(data) == 0) {
+    wastdr_msg_warn("[filter_alive] missing data")
+    return(data)
+  }
 
   flt_col <- dplyr::case_when(
     "status_health" %in% names(data) ~ "status_health",
@@ -63,10 +63,10 @@ filter_alive <- function(data) {
 #'   filter_dead() %>%
 #'   head()
 filter_dead <- function(data) {
-    if (is.null(data) || nrow(data) == 0) {
-        wastdr_msg_warn("[filter_dead] missing data")
-        return(data)
-    }
+  if (is.null(data) || nrow(data) == 0) {
+    wastdr_msg_warn("[filter_dead] missing data")
+    return(data)
+  }
 
   flt_col <- dplyr::case_when(
     "status_health" %in% names(data) ~ "status_health",
@@ -85,7 +85,6 @@ filter_dead <- function(data) {
   )
 
   data %>% dplyr::filter(!!rlang::sym(flt_col) %in% flt_val)
-
 }
 
 # usethis::use_test("summarise_mwi")

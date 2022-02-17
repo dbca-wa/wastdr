@@ -35,12 +35,14 @@ map_mwi_odkc <- function(data,
   overlay_names <- c()
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
-      leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
-      leaflet::addProviderTiles(
-          "OpenStreetMap.Mapnik", group = "Basemap",
-          options = leaflet::providerTileOptions(opacity = 0.35)) %>%
-      leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
-      leaflet::clearBounds()
+    leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
+    leaflet::addProviderTiles(
+      "OpenStreetMap.Mapnik",
+      group = "Basemap",
+      options = leaflet::providerTileOptions(opacity = 0.35)
+    ) %>%
+    leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+    leaflet::clearBounds()
 
 
   if (!is.null(data) && nrow(data) > 0) {

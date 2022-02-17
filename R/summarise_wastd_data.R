@@ -140,10 +140,12 @@ summarise_wastd_data_per_day_site <- function(x) {
     dplyr::tally(name = "track_tallies") %>%
     dplyr::ungroup()
 
-  common_vars <- c("area_name",
-                   "site_name",
-                   "calendar_date_awst",
-                   "calendar_date_awst_text")
+  common_vars <- c(
+    "area_name",
+    "site_name",
+    "calendar_date_awst",
+    "calendar_date_awst_text"
+  )
 
   svy %>%
     dplyr::left_join(trk, by = common_vars) %>%

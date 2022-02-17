@@ -69,7 +69,8 @@ parse_surveys <- function(wastd_api_response,
         start_time = purrr::map_chr(., c("properties", "start_time")) %>%
           httpdate_as_gmt08(),
         end_time = map_chr_hack(
-            ., c("properties", "end_time")) %>% httpdate_as_gmt08(),
+          ., c("properties", "end_time")
+        ) %>% httpdate_as_gmt08(),
         start_comments = map_chr_hack(., c("properties", "start_comments")),
         end_comments = map_chr_hack(., c("properties", "end_comments")),
         source = purrr::map_chr(., c("properties", "source")),
@@ -88,7 +89,7 @@ parse_surveys <- function(wastd_api_response,
         # transect, start_location, end_location, team
       )
     } %>%
-    add_dates(date_col="start_time", parse_date = FALSE) %>%
+    add_dates(date_col = "start_time", parse_date = FALSE) %>%
     dplyr::mutate(
       change_url = glue::glue(
         '<a href="{wastd_url}{absolute_admin_url}"

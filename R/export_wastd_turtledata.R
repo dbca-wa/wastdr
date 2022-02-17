@@ -132,7 +132,7 @@
 export_wastd_turtledata <- function(x,
                                     outdir = here::here(),
                                     filename = "export",
-                                    zip=FALSE) {
+                                    zip = FALSE) {
   if (class(x) != "wastd_data") {
     wastdr_msg_abort(glue::glue(
       "The first argument needs to be an object of class \"wastd_data\", ",
@@ -188,10 +188,10 @@ export_wastd_turtledata <- function(x,
   }
 
   if (zip == TRUE) {
-      zipfile <- paste0(filename, ".zip")
-      utils::zip(zipfile, fs::dir_ls(outdir), flags = "-jr9X")
-      fs::file_move(zipfile, new_path = outdir)
-      # fs::dir_ls(outdir, glob=".zip", invert=TRUE) %>% fs::delete()
+    zipfile <- paste0(filename, ".zip")
+    utils::zip(zipfile, fs::dir_ls(outdir), flags = "-jr9X")
+    fs::file_move(zipfile, new_path = outdir)
+    # fs::dir_ls(outdir, glob=".zip", invert=TRUE) %>% fs::delete()
   }
 }
 

@@ -26,12 +26,14 @@ map_nests <- function(data,
   url <- sub("/$", "", wastd_url)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
-      leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
-      leaflet::addProviderTiles(
-          "OpenStreetMap.Mapnik", group = "Basemap",
-          options = leaflet::providerTileOptions(opacity = 0.35)) %>%
-      leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
-      leaflet::clearBounds() %>%
+    leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
+    leaflet::addProviderTiles(
+      "OpenStreetMap.Mapnik",
+      group = "Basemap",
+      options = leaflet::providerTileOptions(opacity = 0.35)
+    ) %>%
+    leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+    leaflet::clearBounds() %>%
     leaflet::addAwesomeMarkers(
       data = data,
       lng = ~encounter_longitude,

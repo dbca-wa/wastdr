@@ -23,22 +23,24 @@ map_mwi <- function(data,
                     fmt = "%Y-%m-%d %H:%M",
                     tz = "Australia/Perth",
                     cluster = FALSE,
-                    split_species=FALSE) {
+                    split_species = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
   overlay_names <- c()
   url <- sub("/$", "", wastd_url)
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
-      leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
-      leaflet::addProviderTiles(
-          "OpenStreetMap.Mapnik", group = "Basemap",
-          options = leaflet::providerTileOptions(opacity = 0.35)) %>%
-      leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
-      leaflet::clearBounds()
+    leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
+    leaflet::addProviderTiles(
+      "OpenStreetMap.Mapnik",
+      group = "Basemap",
+      options = leaflet::providerTileOptions(opacity = 0.35)
+    ) %>%
+    leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+    leaflet::clearBounds()
 
 
   if (!is.null(data) && nrow(data) > 0) {
-    split_col = ifelse(split_species==TRUE, "species", "taxon")
+    split_col <- ifelse(split_species == TRUE, "species", "taxon")
     data.df <- data %>% split(data[split_col])
 
     dom <- dplyr::pull(data, split_col)

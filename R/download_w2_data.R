@@ -91,7 +91,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
                              db_pass = Sys.getenv("W2_PW"),
                              db_port = Sys.getenv("W2_PT"),
                              verbose = wastdr::get_wastdr_verbose(),
-                             save=NULL) {
+                             save = NULL) {
   # Open a database connection
   # nocov start
   if (DBI::dbCanConnect(
@@ -360,8 +360,8 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     dplyr::mutate(
       o_date = lubridate::parse_date_time(corrected_date, orders = ord, tz = tz),
       o_time = observation_time %>%
-          lubridate::parse_date_time(orders = ord, tz = tz) %>%
-          tidyr::replace_na(lubridate::ymd_hms("2000-01-01T00:00:00+08")),
+        lubridate::parse_date_time(orders = ord, tz = tz) %>%
+        tidyr::replace_na(lubridate::ymd_hms("2000-01-01T00:00:00+08")),
       observation_datetime_gmt08 = o_date +
         lubridate::hours(lubridate::hour(o_time)) +
         lubridate::minutes(lubridate::minute(o_time)),
@@ -407,7 +407,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
 
   encounters_missing <- o %>%
     dplyr::filter(
-        is.na(longitude) |
+      is.na(longitude) |
         is.na(latitude) |
         is.na(observation_datetime_utc)
     )
@@ -492,11 +492,13 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
   )
 
   if (!is.null(save)) {
-      "Saving WAMTRAM data to {save}..." %>%
-          glue::glue() %>% wastdr::wastdr_msg_success()
-      saveRDS(wamtram_data, file = save, compress = "xz")
-      "Done. Open the saved file with\nw2_data <- readRds({save})" %>%
-          glue::glue() %>% wastdr::wastdr_msg_success()
+    "Saving WAMTRAM data to {save}..." %>%
+      glue::glue() %>%
+      wastdr::wastdr_msg_success()
+    saveRDS(wamtram_data, file = save, compress = "xz")
+    "Done. Open the saved file with\nw2_data <- readRds({save})" %>%
+      glue::glue() %>%
+      wastdr::wastdr_msg_success()
   }
 
   wamtram_data
