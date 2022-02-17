@@ -109,7 +109,8 @@ map_wamtram <- function(data, location=NULL, place=NULL, obs_id=NULL,
             popup = ~ glue::glue('
             <h3>{species_code} {observation_status}</h3>
             <i class="fa fa-solid fa-calendar"></i> {observation_datetime_gmt08}<br/>
-            <i class="fa fa-solid fa-eye"></i> <strong>Turtle ID</strong> 65845 <strong>ObsID</strong> 288417<br/>
+            <i class="fa fa-solid fa-tags"></i> <strong>Turtle ID</strong> {turtle_id}<br/>
+            <i class="fa fa-solid fa-eye"></i> <strong>ObsID</strong> {observation_id}<br/>
             <i class="fa fa-solid fa-map-location-dot"></i><strong> {location_code} {place_code}</strong><br/>
             <i class="fa fa-solid fa-location-dot"></i> <strong>Chosen</strong> {latitude}  {longitude}<br/>
             <i class="fa fa-solid fa-location-dot"></i> <strong>Supplied DD</strong> {latitude_dd}  {longitude_dd}<br/>
