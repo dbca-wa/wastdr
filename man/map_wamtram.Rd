@@ -38,18 +38,20 @@ Map WAMTRAM data
 }
 \examples{
 \dontrun{
-data("w2_data", package="etlTurtleNesting")
+data("w2_data", package = "etlTurtleNesting")
 w2_data <- readRDS("~/projects/etlTurtleNesting/inst/w2.rds")
 map_wamtram(w2_data)
 
-map_wamtram(w2_data, location="DH")
-map_wamtram(w2_data, place="THEE")
+map_wamtram(w2_data, location = "DH")
+map_wamtram(w2_data, place = "THEE")
 
-map_wamtram(w2_data, place="WKBB", l_height="calc(100vh - 80px)")
+map_wamtram(w2_data, place = "WKBB", l_height = "calc(100vh - 80px)")
 
 # With WAStD Sites
-areas_sf <- wastd_GET("area") \%>\% magrittr::extract2("data") \%>\%
-  geojsonio::as.json() \%>\% geojsonsf::geojson_sf()
+areas_sf <- wastd_GET("area") \%>\%
+  magrittr::extract2("data") \%>\%
+  geojsonio::as.json() \%>\%
+  geojsonsf::geojson_sf()
 
 areas <- areas_sf \%>\%
   dplyr::filter(area_type == "Locality") \%>\%
@@ -60,6 +62,6 @@ sites <- areas_sf \%>\%
   dplyr::transmute(site_id = pk, site_name = name, w2_place_code = w2_place_code) \%>\%
   sf::st_join(areas)
 
-map_wamtram(w2_data, place="THEE", wa_sites = sites)
+map_wamtram(w2_data, place = "THEE", wa_sites = sites)
 }
 }

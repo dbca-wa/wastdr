@@ -152,10 +152,10 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
           fillColor = "green",
           label = ~ glue::glue("[{w2_location_code} {w2_place_code}] {site_name}"),
           popup = ~ glue::glue(
-            '<h3>{area_name}</h3>
+            '<h3>{site_name}</h3>
         <strong>W2 location</strong> {w2_location_code}<br/>
         <strong>W2 place</strong> {w2_place_code}<br/>
-        <a href="https://wastd.dbca.wa.gov.au/admin/observations/area/{area_id}"
+        <a href="https://wastd.dbca.wa.gov.au/admin/observations/area/{site_id}"
          class="btn btn-xs btn-success"
          target="_">Edit</a>'
           ),

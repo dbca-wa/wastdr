@@ -31,8 +31,10 @@ map_wastd_wamtram_sites(wastd_data$areas, wastd_data$sites, wamtram_data$sites)
 
 
 # From live data
-areas_sf <- wastd_GET("area") \%>\% magrittr::extract2("data") \%>\%
-  geojsonio::as.json() \%>\% geojsonsf::geojson_sf()
+areas_sf <- wastd_GET("area") \%>\%
+  magrittr::extract2("data") \%>\%
+  geojsonio::as.json() \%>\%
+  geojsonsf::geojson_sf()
 
 areas <- areas_sf \%>\%
   dplyr::filter(area_type == "Locality") \%>\%
