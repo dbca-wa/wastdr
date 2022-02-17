@@ -9,6 +9,7 @@ map_wamtram(
   location = NULL,
   place = NULL,
   obs_id = NULL,
+  wa_sites = NULL,
   l_width = NULL,
   l_height = NULL
 )
@@ -20,6 +21,10 @@ map_wamtram(
 
 \item{place}{A W2 place code, e.g. "THEE", to filter the data by. Providing
 \code{place} overrides \code{location}.}
+
+\item{obs_id}{An Observation ID to filter W2 obs by.}
+
+\item{wa_sites}{WAStD Sites (joined to Localities) to display.}
 
 \item{l_width}{The parameter \code{width} for \code{leaflet::leaflet()}.}
 
@@ -38,8 +43,23 @@ w2_data <- readRDS("~/projects/etlTurtleNesting/inst/w2.rds")
 map_wamtram(w2_data)
 
 map_wamtram(w2_data, location="DH")
-map_wamtram(w2_data, place="DHTB")
+map_wamtram(w2_data, place="THEE")
 
 map_wamtram(w2_data, place="WKBB", l_height="calc(100vh - 80px)")
+
+# With WAStD Sites
+areas_sf <- wastd_GET("area") \%>\% magrittr::extract2("data") \%>\%
+  geojsonio::as.json() \%>\% geojsonsf::geojson_sf()
+
+areas <- areas_sf \%>\%
+  dplyr::filter(area_type == "Locality") \%>\%
+  dplyr::transmute(area_id = pk, area_name = name, w2_location_code = w2_location_code)
+
+sites <- areas_sf \%>\%
+  dplyr::filter(area_type == "Site") \%>\%
+  dplyr::transmute(site_id = pk, site_name = name, w2_place_code = w2_place_code) \%>\%
+  sf::st_join(areas)
+
+map_wamtram(w2_data, place="THEE", wa_sites = sites)
 }
 }

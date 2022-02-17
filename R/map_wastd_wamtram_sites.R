@@ -21,8 +21,10 @@
 #'
 #'
 #' # From live data
-#' areas_sf <- wastd_GET("area") %>% magrittr::extract2("data") %>%
-#'   geojsonio::as.json() %>% geojsonsf::geojson_sf()
+#' areas_sf <- wastd_GET("area") %>%
+#'   magrittr::extract2("data") %>%
+#'   geojsonio::as.json() %>%
+#'   geojsonsf::geojson_sf()
 #'
 #' areas <- areas_sf %>%
 #'   dplyr::filter(area_type == "Locality") %>%
@@ -36,23 +38,23 @@
 #' # split rows by place code, map only what place codes are not in wastd yet
 #' map_wastd_wamtram_sites(areas, sites, w2_data$sites)
 #' }
-map_wastd_wamtram_sites <- function(wastd_areas, wastd_sites, wamtram_sites){
-
+map_wastd_wamtram_sites <-
+  function(wastd_areas, wastd_sites, wamtram_sites) {
     s <- wastd_sites %>%
-        tidyr::separate_rows(w2_place_code, sep=" ")
+      tidyr::separate_rows(w2_place_code, sep = " ")
 
     w_missing <- wamtram_sites %>%
-        dplyr::anti_join(s, by=c("code" = "w2_place_code"))
+      dplyr::anti_join(s, by = c("code" = "w2_place_code"))
 
     w_imported <- wamtram_sites %>%
-        dplyr::right_join(s, by=c("code" = "w2_place_code"))
+      dplyr::right_join(s, by = c("code" = "w2_place_code"))
 
-    w2_site_popup <- '<h3>{label}</h3>
+    w2_site_popup <- "<h3>{label}</h3>
         <strong>W2 location</strong> {prefix}<br/>
         <strong>W2 place</strong> {code}<br/>
         <strong>Lat</strong> {site_latitude}<br/>
         <strong>Lon</strong> {site_longitude}<br/>
-        {description}'
+        {description}"
 
     wastd_area_popup <- '<h3>{area_name}</h3>
         <strong>W2 location</strong> {w2_location_code}<br/>
@@ -68,60 +70,64 @@ map_wastd_wamtram_sites <- function(wastd_areas, wastd_sites, wamtram_sites){
          target="_">Edit</a>'
 
     leaflet::leaflet() %>%
-        leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
-        leaflet::addProviderTiles(
-            "OpenStreetMap.Mapnik",
-            group = "Basemap",
-            options = leaflet::providerTileOptions(opacity = 0.35)
-        ) %>%
-        leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
-        leaflet::clearBounds() %>%
-        leaflet::addAwesomeMarkers(
-            data = w_imported,
-            lng = ~ site_longitude,
-            lat = ~ site_latitude,
-            icon = leaflet::makeAwesomeIcon(markerColor = "green",
-                                            iconColor = "white"),
-            label = ~ glue::glue("[{prefix} {code}] {label}"),
-            popup = ~ glue::glue(w2_site_popup),
-            group = "WAMTRAM imported sites"
-        ) %>%
-        leaflet::addAwesomeMarkers(
-            data = w_missing,
-            lng = ~ site_longitude,
-            lat = ~ site_latitude,
-            icon = leaflet::makeAwesomeIcon(markerColor = "red",
-                                            iconColor = "white"),
-            label = ~ glue::glue("[{prefix} {code}] {label}"),
-            popup = ~ glue::glue(w2_site_popup),
-            group = "WAMTRAM missing sites"
-        ) %>%
-        leaflet::addPolygons(
-            data = wastd_areas,
-            weight = 1,
-            fillOpacity = 0.5,
-            fillColor = "blue",
-            label = ~ glue::glue("[{w2_location_code}] {area_name}"),
-            popup = ~ glue::glue(wastd_area_popup),
-group = "WAStD areas"
-        ) %>%
-        leaflet::addPolygons(
-            data = wastd_sites,
-            weight = 1,
-            fillOpacity = 0.5,
-            fillColor = "green",
-            label = ~ glue::glue("[{w2_location_code} {w2_place_code}] {site_name}"),
-            popup = ~ glue::glue(wastd_site_popup),
-group = "WAStD sites"
-        ) %>%
-        leaflet::addLayersControl(
-            baseGroups = c("Basemap"),
-            overlayGroups = c(
-                "WAMTRAM imported sites",
-                "WAMTRAM missing sites",
-                "WAStD areas",
-                "WAStD sites"),
-            options = leaflet::layersControlOptions(collapsed = FALSE)
-        )
-
-}
+      leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
+      leaflet::addProviderTiles(
+        "OpenStreetMap.Mapnik",
+        group = "Basemap",
+        options = leaflet::providerTileOptions(opacity = 0.35)
+      ) %>%
+      leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+      leaflet::clearBounds() %>%
+      leaflet::addAwesomeMarkers(
+        data = w_imported,
+        lng = ~site_longitude,
+        lat = ~site_latitude,
+        icon = leaflet::makeAwesomeIcon(
+          markerColor = "green",
+          iconColor = "white"
+        ),
+        label = ~ glue::glue("[{prefix} {code}] {label}"),
+        popup = ~ glue::glue(w2_site_popup),
+        group = "WAMTRAM imported sites"
+      ) %>%
+      leaflet::addAwesomeMarkers(
+        data = w_missing,
+        lng = ~site_longitude,
+        lat = ~site_latitude,
+        icon = leaflet::makeAwesomeIcon(
+          markerColor = "red",
+          iconColor = "white"
+        ),
+        label = ~ glue::glue("[{prefix} {code}] {label}"),
+        popup = ~ glue::glue(w2_site_popup),
+        group = "WAMTRAM missing sites"
+      ) %>%
+      leaflet::addPolygons(
+        data = wastd_areas,
+        weight = 1,
+        fillOpacity = 0.5,
+        fillColor = "blue",
+        label = ~ glue::glue("[{w2_location_code}] {area_name}"),
+        popup = ~ glue::glue(wastd_area_popup),
+        group = "WAStD areas"
+      ) %>%
+      leaflet::addPolygons(
+        data = wastd_sites,
+        weight = 1,
+        fillOpacity = 0.5,
+        fillColor = "green",
+        label = ~ glue::glue("[{w2_location_code} {w2_place_code}] {site_name}"),
+        popup = ~ glue::glue(wastd_site_popup),
+        group = "WAStD sites"
+      ) %>%
+      leaflet::addLayersControl(
+        baseGroups = c("Basemap"),
+        overlayGroups = c(
+          "WAMTRAM imported sites",
+          "WAMTRAM missing sites",
+          "WAStD areas",
+          "WAStD sites"
+        ),
+        options = leaflet::layersControlOptions(collapsed = FALSE)
+      )
+  }
