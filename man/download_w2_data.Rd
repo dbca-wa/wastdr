@@ -13,7 +13,8 @@ download_w2_data(
   db_user = Sys.getenv("W2_UN"),
   db_pass = Sys.getenv("W2_PW"),
   db_port = Sys.getenv("W2_PT"),
-  verbose = wastdr::get_wastdr_verbose()
+  verbose = wastdr::get_wastdr_verbose(),
+  save = NULL
 )
 }
 \arguments{
@@ -40,6 +41,9 @@ should resolve to a numeric port, e.g. \code{1234}.}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}
+
+\item{save}{If supplied, the filepath to save the "wamtram_data" object to.
+E.g., \code{here::here("inst/w2.rds")}}
 }
 \value{
 A structure of class "wamtram_data" containing a named list of

@@ -17,6 +17,8 @@
 #' @param db_port The database port, default: `Sys.getenv("W2_PT")`, which
 #'   should resolve to a numeric port, e.g. `1234`.
 #' @template param-verbose
+#' @param save If supplied, the filepath to save the "wamtram_data" object to.
+#'   E.g., `here::here("inst/w2.rds")`
 #' @return A structure of class "wamtram_data" containing a named list of
 #'   sanitised tables from the Turtle Tagging DB:
 #'   * Metadata:
@@ -88,7 +90,8 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
                              db_user = Sys.getenv("W2_UN"),
                              db_pass = Sys.getenv("W2_PW"),
                              db_port = Sys.getenv("W2_PT"),
-                             verbose = wastdr::get_wastdr_verbose()) {
+                             verbose = wastdr::get_wastdr_verbose(),
+                             save=NULL) {
   # Open a database connection
   # nocov start
   if (DBI::dbCanConnect(
@@ -487,6 +490,14 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     ),
     class = "wamtram_data"
   )
+
+  if (!is.null(save)) {
+      "Saving WAMTRAM data to {save}..." %>%
+          glue::glue() %>% wastdr::wastdr_msg_success()
+      saveRDS(wamtram_data, file = save, compress = "xz")
+      "Done. Open the saved file with\nw2_data <- readRds({save})" %>%
+          glue::glue() %>% wastdr::wastdr_msg_success()
+  }
 
   wamtram_data
   # nocov end
