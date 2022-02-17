@@ -108,14 +108,14 @@ map_wamtram <- function(data, location=NULL, place=NULL, obs_id=NULL,
             # <strong></strong> {}<br/>
             popup = ~ glue::glue('
             <h3>{species_code} {observation_status}</h3>
-            <i class="fa fa-solid fa-calendar"></i> {observation_datetime_gmt08}<br/>
-            <i class="fa fa-solid fa-tags"></i> <strong>Turtle ID</strong> {turtle_id}<br/>
-            <i class="fa fa-solid fa-eye"></i> <strong>ObsID</strong> {observation_id}<br/>
-            <i class="fa fa-solid fa-map-location-dot"></i><strong> {location_code} {place_code}</strong><br/>
-            <i class="fa fa-solid fa-location-dot"></i> <strong>Chosen</strong> {latitude}  {longitude}<br/>
-            <i class="fa fa-solid fa-location-dot"></i> <strong>Supplied DD</strong> {latitude_dd}  {longitude_dd}<br/>
-            <i class="fa fa-solid fa-location-dot"></i> <strong>Supplied DMS</strong> {latitude_from_dms}  {longitude_from_dms}<br/>
-            <i class="fa fa-solid fa-location-dot"></i> <strong>Supplied EN</strong> {northing} {easting} {zone} {datum_code}<br/>
+            <h4>{observation_datetime_gmt08} AWST</h4>
+            <i class="fa fa-tags"></i> <strong>Turtle ID</strong> {turtle_id}<br/>
+            <i class="fa fa-eye"></i> <strong>ObsID</strong> {observation_id}<br/>
+            <i class="fa fa-map-location-dot"></i><strong> {location_code} {place_code}</strong><br/>
+            <i class="fa fa-location-dot"></i> <strong>Chosen</strong> {latitude}  {longitude}<br/>
+            <i class="fa fa-location-dot"></i> <strong>Supplied DD</strong> {latitude_dd}  {longitude_dd}<br/>
+            <i class="fa fa-location-dot"></i> <strong>Supplied DMS</strong> {latitude_from_dms}  {longitude_from_dms}<br/>
+            <i class="fa fa-location-dot"></i> <strong>Supplied EN</strong> {northing} {easting} {zone} {datum_code}<br/>
                 '),
             group = "WAMTRAM turtles",
             clusterOptions = co
