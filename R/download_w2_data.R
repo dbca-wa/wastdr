@@ -390,9 +390,10 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     #
     dplyr::left_join(sites, by = c("place_code" = "code")) %>%
     dplyr::left_join(turtles_min, by = "turtle_id") %>%
+    dplyr::rowwise() %>%
     dplyr::mutate(
-      latitude = dplyr::first(stats::na.omit(latitude, latitude_from_dms, site_latitude)),
-      longitude = dplyr::first(stats::na.omit(longitude, longitude_from_dms, site_longitude))
+      latitude = dplyr::first(stats::na.omit(latitude_dd, latitude_from_dms, site_latitude)),
+      longitude = dplyr::first(stats::na.omit(longitude_dd, longitude_from_dms, site_longitude))
     )
 
   encounters <- o %>%

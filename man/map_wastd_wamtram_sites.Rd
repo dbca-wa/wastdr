@@ -26,7 +26,7 @@ library(wastdr)
 # From canned data
 data("wastd_data")
 data("wamtram_data") # canned data for package
-w2_data = readRDS(here::here("inst/w2.rds")) # full snapshot for dev
+w2_data <- readRDS("~/projects/etlTurtleNesting/inst/w2.rds")
 map_wastd_wamtram_sites(wastd_data$areas, wastd_data$sites, wamtram_data$sites)
 
 

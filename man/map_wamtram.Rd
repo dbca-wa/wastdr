@@ -4,7 +4,14 @@
 \alias{map_wamtram}
 \title{Map WAMTRAM data}
 \usage{
-map_wamtram(data, location = NULL, place = NULL)
+map_wamtram(
+  data,
+  location = NULL,
+  place = NULL,
+  obs_id = NULL,
+  l_width = NULL,
+  l_height = NULL
+)
 }
 \arguments{
 \item{data}{The output of \code{wastdr::download_w2_data()}.}
@@ -13,6 +20,10 @@ map_wamtram(data, location = NULL, place = NULL)
 
 \item{place}{A W2 place code, e.g. "THEE", to filter the data by. Providing
 \code{place} overrides \code{location}.}
+
+\item{l_width}{The parameter \code{width} for \code{leaflet::leaflet()}.}
+
+\item{l_height}{The parameter \code{height} for \code{leaflet::leaflet()}.}
 }
 \value{
 A leaflet map showing W2 sites and encounters.
@@ -23,9 +34,12 @@ Map WAMTRAM data
 \examples{
 \dontrun{
 data("w2_data", package="etlTurtleNesting")
+w2_data <- readRDS("~/projects/etlTurtleNesting/inst/w2.rds")
 map_wamtram(w2_data)
 
 map_wamtram(w2_data, location="DH")
 map_wamtram(w2_data, place="DHTB")
+
+map_wamtram(w2_data, place="WKBB", l_height="calc(100vh - 80px)")
 }
 }

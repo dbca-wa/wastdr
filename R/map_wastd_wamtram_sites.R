@@ -16,7 +16,7 @@
 #' # From canned data
 #' data("wastd_data")
 #' data("wamtram_data") # canned data for package
-#' w2_data = readRDS(here::here("inst/w2.rds")) # full snapshot for dev
+#' w2_data <- readRDS("~/projects/etlTurtleNesting/inst/w2.rds")
 #' map_wastd_wamtram_sites(wastd_data$areas, wastd_data$sites, wamtram_data$sites)
 #'
 #'
@@ -47,6 +47,26 @@ map_wastd_wamtram_sites <- function(wastd_areas, wastd_sites, wamtram_sites){
     w_imported <- wamtram_sites %>%
         dplyr::right_join(s, by=c("code" = "w2_place_code"))
 
+    w2_site_popup <- '<h3>{label}</h3>
+        <strong>W2 location</strong> {prefix}<br/>
+        <strong>W2 place</strong> {code}<br/>
+        <strong>Lat</strong> {site_latitude}<br/>
+        <strong>Lon</strong> {site_longitude}<br/>
+        {description}'
+
+    wastd_area_popup <- '<h3>{area_name}</h3>
+        <strong>W2 location</strong> {w2_location_code}<br/>
+        <a href="https://wastd.dbca.wa.gov.au/admin/observations/area/{area_id}"
+         class="btn btn-xs btn-success"
+         target="_">Edit</a>'
+
+    wastd_site_popup <- '<h3>{area_name}</h3>
+        <strong>W2 location</strong> {w2_location_code}<br/>
+        <strong>W2 place</strong> {w2_place_code}<br/>
+        <a href="https://wastd.dbca.wa.gov.au/admin/observations/area/{area_id}"
+         class="btn btn-xs btn-success"
+         target="_">Edit</a>'
+
     leaflet::leaflet() %>%
         leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
         leaflet::addProviderTiles(
@@ -63,7 +83,7 @@ map_wastd_wamtram_sites <- function(wastd_areas, wastd_sites, wamtram_sites){
             icon = leaflet::makeAwesomeIcon(markerColor = "green",
                                             iconColor = "white"),
             label = ~ glue::glue("[{prefix} {code}] {label}"),
-            popup = ~ glue::glue("[{prefix} {code}] {label}\n{description}"),
+            popup = ~ glue::glue(w2_site_popup),
             group = "WAMTRAM imported sites"
         ) %>%
         leaflet::addAwesomeMarkers(
@@ -73,7 +93,7 @@ map_wastd_wamtram_sites <- function(wastd_areas, wastd_sites, wamtram_sites){
             icon = leaflet::makeAwesomeIcon(markerColor = "red",
                                             iconColor = "white"),
             label = ~ glue::glue("[{prefix} {code}] {label}"),
-            popup = ~ glue::glue("[{prefix} {code}] {label}\n{description}"),
+            popup = ~ glue::glue(w2_site_popup),
             group = "WAMTRAM missing sites"
         ) %>%
         leaflet::addPolygons(
@@ -82,10 +102,7 @@ map_wastd_wamtram_sites <- function(wastd_areas, wastd_sites, wamtram_sites){
             fillOpacity = 0.5,
             fillColor = "blue",
             label = ~ glue::glue("[{w2_location_code}] {area_name}"),
-            popup = ~ glue::glue('
-<h3>[{w2_location_code}] {area_name}</h3>
-<a href="https://wastd.dbca.wa.gov.au/admin/observations/area/{area_id}" target="_">Edit</a>
-'),
+            popup = ~ glue::glue(wastd_area_popup),
 group = "WAStD areas"
         ) %>%
         leaflet::addPolygons(
@@ -94,10 +111,7 @@ group = "WAStD areas"
             fillOpacity = 0.5,
             fillColor = "green",
             label = ~ glue::glue("[{w2_location_code} {w2_place_code}] {site_name}"),
-            popup = ~ glue::glue('
-<h3>[{w2_location_code} {w2_place_code}] {site_name}</h3>
-<a href="https://wastd.dbca.wa.gov.au/admin/observations/area/{site_id}" target="_">Edit</a>
-'),
+            popup = ~ glue::glue(wastd_site_popup),
 group = "WAStD sites"
         ) %>%
         leaflet::addLayersControl(
