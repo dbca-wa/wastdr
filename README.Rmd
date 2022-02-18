@@ -43,7 +43,7 @@ As development progresses, example analyses and visualisations will be added to
 the vignette. Contributions and requests are welcome!
 
 Lastly, to facilitate collaboration with external stakeholders, `wastdr` contains
-some anonymized example data (raw GeoJSON and parsed `tibble`) of turtle taggings, 
+some anonymised example data (raw GeoJSON and parsed `tibble`) of turtle taggings, 
 turtle track counts, and turtle nests.
 
 ## Installation

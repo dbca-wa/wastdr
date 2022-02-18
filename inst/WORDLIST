@@ -42,7 +42,6 @@ RData
 RESTful
 RShiny
 Renviron
-SSO
 SimpleFeatures
 Strandings
 Summarise
@@ -53,6 +52,7 @@ TSC's
 Thevenard
 TokenAuth
 TurtleNest
+TurtleNestDisturbanceObservation
 TurtleNestDisturbanceObservations
 TurtleNestEncounter
 TurtleNestEncounters
@@ -68,6 +68,7 @@ XlsForm
 analyse
 analysing
 animalencounter
+anonymised
 anonymized
 api
 au
@@ -94,6 +95,7 @@ emergences
 etlTurtleNesting
 eval
 exacavations
+filepath
 fn
 funder
 ggplot

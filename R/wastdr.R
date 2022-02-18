@@ -283,6 +283,9 @@ utils::globalVariables(
     "longitude_from_dms",
     "longitude_minutes",
     "longitude_seconds",
+    "latitude_dd",
+    "longitude_dd",
+    "observation_id",
     "na.omit",
     "prefix"
   )

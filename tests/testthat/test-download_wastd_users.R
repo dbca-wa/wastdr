@@ -11,12 +11,12 @@ test_that("download_wastd_users works", {
       "name",
       "nickname",
       "aliases",
+      "role",
       "affiliation",
       "email",
+      "phone",
       "is_active",
-      "alive",
-      "role",
-      "phone"
+      "alive"
     )
   )
 })
