@@ -159,7 +159,7 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
          class="btn btn-xs btn-success"
          target="_">Edit</a>'
           ),
-          group = "WAStD sites"
+          group = "WAStD Sites"
         )
       } else {
         .
