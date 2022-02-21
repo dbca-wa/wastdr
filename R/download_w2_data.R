@@ -94,18 +94,21 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
                              save = NULL) {
   # Open a database connection
   # nocov start
-  if (DBI::dbCanConnect(
-    odbc::odbc(),
-    Driver   = db_drv,
-    Server   = db_srv,
-    Database = db_name,
-    UID      = db_user,
-    PWD      = db_pass,
-    Port     = db_port
-  )) {
+  con <- DBI::dbCanConnect(
+      odbc::odbc(),
+      Driver   = db_drv,
+      Server   = db_srv,
+      Database = db_name,
+      UID      = db_user,
+      PWD      = db_pass,
+      Port     = db_port
+  )
+
+  if (con == TRUE) {
     wastdr::wastdr_msg_success("Database credentials verified")
   } else {
-    wastdr_msg_abort("Database credentials invalid, aborting")
+      "Database connection failed with reason:\n{attr(con, \"reason\")}" %>%
+      glue::glue() %>% wastdr_msg_abort()
   }
 
 
