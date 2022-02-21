@@ -5,7 +5,7 @@
 #' @param rodbc Whether to use RODBC (if TRUE) or DBI (if FALSE, default)
 #' @export
 read_table <- function(connection, table_name, rodbc=FALSE){
-    if (use_rodbc==TRUE) {
+    if (rodbc==TRUE) {
         RODBC::sqlFetch(connection, table_name)
     } else {
         DBI::dbReadTable(connection, table_name)
