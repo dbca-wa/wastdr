@@ -14,6 +14,8 @@ download_w2_data(
   db_pass = Sys.getenv("W2_PW"),
   db_port = Sys.getenv("W2_PT"),
   verbose = wastdr::get_wastdr_verbose(),
+  dsn = Sys.getenv("W2_DSN"),
+  use_rodbc = Sys.getenv("W2_RODBC", FALSE),
   save = NULL
 )
 }
@@ -41,6 +43,12 @@ should resolve to a numeric port, e.g. \code{1234}.}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}
+
+\item{dsn}{The DSN for Windows systems, default: \code{Sys.getenv("W2_DSN")}.}
+
+\item{use_rodbc}{Whether to use the RODBC library (if TRUE, best for Windows
+systems), or the odbc/DBI library (if FALSE, default, best for GNU/Linux
+systems).}
 
 \item{save}{If supplied, the filepath to save the "wamtram_data" object to.
 E.g., \code{here::here("inst/w2.rds")}}
@@ -107,6 +115,19 @@ sanitised tables from the Turtle Tagging DB:
 \description{
 This function requires an installed ODBC driver for MS SQL Server 2012.
 The database credentials are handled via environment variables.
+}
+\details{
+In Windows systems, create a user defined DSN with settings
+\itemize{
+\item name WAMTRAMPROD
+\item server kens-mssql-001-prod.corporateict.domain
+\item SQL auth usign login ID and password entered by user
+\item trust server vertificate (this is where odbc falls over)
+}
+
+Add to .Renviron:
+W2_RODBC=TRUE
+W2_DSN="WAMTRAMPROD"
 }
 \examples{
 \dontrun{

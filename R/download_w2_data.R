@@ -3,6 +3,17 @@
 #' This function requires an installed ODBC driver for MS SQL Server 2012.
 #' The database credentials are handled via environment variables.
 #'
+#' In Windows systems, create a user defined DSN with settings
+#'
+#' * name WAMTRAMPROD
+#' * server kens-mssql-001-prod.corporateict.domain
+#' * SQL auth usign login ID and password entered by user
+#' * trust server vertificate (this is where odbc falls over)
+#'
+#' Add to .Renviron:
+#' W2_RODBC=TRUE
+#' W2_DSN="WAMTRAMPROD"
+#'
 #' @param ord Lubridate orders, default: `c("YmdHMS", "Ymd")`.
 #' @param tz Timezone, default: `"Australia/Perth"`.
 #' @param db_drv Database driver, default: `Sys.getenv("W2_DRV")` which should
@@ -16,6 +27,10 @@
 #' @param db_pass The database user's password, default: `Sys.getenv("W2_PW")`.
 #' @param db_port The database port, default: `Sys.getenv("W2_PT")`, which
 #'   should resolve to a numeric port, e.g. `1234`.
+#' @param dsn The DSN for Windows systems, default: `Sys.getenv("W2_DSN")`.
+#' @param use_rodbc Whether to use the RODBC library (if TRUE, best for Windows
+#'   systems), or the odbc/DBI library (if FALSE, default, best for GNU/Linux
+#'   systems).
 #' @template param-verbose
 #' @param save If supplied, the filepath to save the "wamtram_data" object to.
 #'   E.g., `here::here("inst/w2.rds")`
@@ -40,6 +55,7 @@
 #'     * lookup_egg_count_methods
 #'     * lookup_id_types
 #'     * lookup_measurement_types
+
 #'     * lookup_pit_tag_states
 #'     * lookup_sample_tissue_type
 #'     * lookup_tag_states
@@ -91,7 +107,13 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
                              db_pass = Sys.getenv("W2_PW"),
                              db_port = Sys.getenv("W2_PT"),
                              verbose = wastdr::get_wastdr_verbose(),
+                             dsn = Sys.getenv("W2_DSN"),
+                             use_rodbc = Sys.getenv("W2_RODBC", FALSE),
                              save = NULL) {
+
+  if(use_rodbc==TRUE) {
+      con <- RODBC::odbcConnect(dsn, uid = db_user, pwd= db_pass)
+  } else {
   # Open a database connection
   # nocov start
   con <- DBI::dbCanConnect(
@@ -101,7 +123,8 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       Database = db_name,
       UID      = db_user,
       PWD      = db_pass,
-      Port     = db_port
+      Port     = db_port,
+      Trusted_Connection = "yes"
   )
 
   if (con == TRUE) {
@@ -110,7 +133,6 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       "Database connection failed with reason:\n{attr(con, \"reason\")}" %>%
       glue::glue() %>% wastdr_msg_abort()
   }
-
 
   wastdr_msg_info("Opening database connection...")
 
@@ -121,8 +143,10 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     Database = db_name,
     UID      = db_user,
     PWD      = db_pass,
-    Port     = db_port
+    Port     = db_port,
+    Trusted_Connection = "yes"
   )
+    }
 
   # Extract all relevant tables into a named list.
   wastdr_msg_info("Reading tables...")
