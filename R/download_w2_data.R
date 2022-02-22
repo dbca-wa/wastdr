@@ -125,44 +125,48 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
                              use_rodbc = Sys.getenv("W2_RODBC", FALSE),
                              save = NULL) {
 
-  if(use_rodbc==TRUE) {
-      con <- RODBC::odbcConnect(dsn, uid = db_user, pwd= db_pass)
-  } else {
-  # Open a database connection
-  # nocov start
-  con <- DBI::dbCanConnect(
-      odbc::odbc(),
-      Driver   = db_drv,
-      Server   = db_srv,
-      Database = db_name,
-      UID      = db_user,
-      PWD      = db_pass,
-      Port     = db_port,
-      Trusted_Connection = "yes"
-  )
+    wastdr_msg_info("Opening database connection...")
 
-  if (con == TRUE) {
-    wastdr::wastdr_msg_success("Database credentials verified")
-  } else {
-      "Database connection failed with reason:\n{attr(con, \"reason\")}" %>%
-      glue::glue() %>% wastdr_msg_abort()
-  }
+    # Windows / RODBC ---------------------------------------------------------#
+    # nocov start
+    if (use_rodbc == TRUE) {
+        con <- RODBC::odbcConnect(dsn, uid = db_user, pwd = db_pass)
+        if (con == TRUE) {
+            wastdr::wastdr_msg_success("Database connection successful")
+        } else {
+            "Database connection failed with reason:\n{attr(con, \"reason\")}" %>%
+                glue::glue() %>% wastdr_msg_abort()
+        }
 
+    } else {
+    # Linux/DBI ---------------------------------------------------------------#
+        con <- DBI::dbCanConnect(
+            odbc::odbc(),
+            Driver   = db_drv,
+            Server   = db_srv,
+            Database = db_name,
+            UID      = db_user,
+            PWD      = db_pass,
+            Port     = db_port
+        )
 
+        if (con == TRUE) {
+            wastdr::wastdr_msg_success("Database connection successful")
+        } else {
+            "Database connection failed" %>% wastdr_msg_abort()
+        }
 
-  wastdr_msg_info("Opening database connection...")
-
-  con <- DBI::dbConnect(
-    odbc::odbc(),
-    Driver   = db_drv,
-    Server   = db_srv,
-    Database = db_name,
-    UID      = db_user,
-    PWD      = db_pass,
-    Port     = db_port,
-    Trusted_Connection = "yes"
-  )
+        con <- DBI::dbConnect(
+            odbc::odbc(),
+            Driver   = db_drv,
+            Server   = db_srv,
+            Database = db_name,
+            UID      = db_user,
+            PWD      = db_pass,
+            Port     = db_port
+        )
     }
+    # The open database connection is `con` -----------------------------------#
 
   # Extract all relevant tables into a named list.
   wastdr_msg_info("Reading tables...")
