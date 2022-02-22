@@ -65,7 +65,7 @@ map_wastd_wamtram_sites <-
     wastd_site_popup <- '<h3>{area_name}</h3>
         <strong>W2 location</strong> {w2_location_code}<br/>
         <strong>W2 place</strong> {w2_place_code}<br/>
-        <a href="https://wastd.dbca.wa.gov.au/admin/observations/area/{area_id}"
+        <a href="https://wastd.dbca.wa.gov.au/admin/observations/area/{site_id}"
          class="btn btn-xs btn-success"
          target="_">Edit</a>'
 
