@@ -96,7 +96,7 @@ class="btn btn-xs btn-secondary" target="_" rel="nofollow">
 Edit survey in WAStD</a>
 
 <p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
-href="{url}{absolute_admin_url}">
+href="{url}{encounter_absolute_admin_url}">
 Edit record in WAStD</a></p>
         '),
         group = df,
