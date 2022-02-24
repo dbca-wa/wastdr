@@ -48,9 +48,15 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
 
   enc <- data$enc %>%
       dplyr::filter(
-          longitude > -180, longitude < 180, latitude > -90, latitude < 90
+          !is.na(longitude),
+          !is.na(latitude),
+          longitude > -180,
+          longitude < 180,
+          latitude > -90,
+          latitude < 90
       )
-  sites <- data$sites
+  sites <- data$sites %>%
+      dplyr::filter(!is.na(site_longitude), !is.na(site_latitude))
 
   if (!is.null(location) && location != "") {
     enc <- enc %>% dplyr::filter(location_code == location)
