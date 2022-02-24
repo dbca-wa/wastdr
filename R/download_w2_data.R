@@ -397,6 +397,13 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       read_table(con, ., rodbc=use_rodbc) %>%
     janitor::clean_names()
 
+  # Close DB connection
+  if (use_rodbc == TRUE) {
+      RODBC::odbcCloseAll()
+  } else {
+      DBI::dbDisconnect(con)
+  }
+
   # Reconstructed turtles without duplicated attributes
   turtles_min <- turtles %>%
     dplyr::select(
