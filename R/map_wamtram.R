@@ -46,7 +46,10 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
     ) %>% wastdr_msg_abort()
   }
 
-  enc <- data$enc
+  enc <- data$enc %>%
+      dplyr::filter(
+          longitude > -180, longitude < 180, latitude > -90, latitude < 90
+      )
   sites <- data$sites
 
   if (!is.null(location) && location != "") {
