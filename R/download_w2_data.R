@@ -444,24 +444,33 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     #
     dplyr::left_join(sites, by = c("place_code" = "code")) %>%
     dplyr::left_join(turtles_min, by = "turtle_id") %>%
-    dplyr::rowwise() %>%
     dplyr::mutate(
-      latitude = dplyr::first(stats::na.omit(latitude_dd, latitude_from_dms, site_latitude)),
-      longitude = dplyr::first(stats::na.omit(longitude_dd, longitude_from_dms, site_longitude))
+      latitude = dplyr::case_when(
+          !is.na(latitude_dd) ~ latitude_dd,
+          !is.na(latitude_from_dms) ~ latitude_from_dms,
+          TRUE ~ site_latitude
+      ),
+      longitude = dplyr::case_when(
+          !is.na(longitude_dd) ~ longitude_dd,
+          !is.na(longitude_from_dms) ~ longitude_from_dms,
+          TRUE ~ site_longitude
+      )
     )
 
   encounters <- o %>%
-    dplyr::filter(!is.na(longitude)) %>%
-    dplyr::filter(!is.na(latitude)) %>%
-    dplyr::filter(!is.na(observation_datetime_utc)) %>%
+    dplyr::filter(
+        !is.na(longitude),
+        !is.na(latitude),
+        !is.na(observation_datetime_utc)
+    ) %>%
     dplyr::arrange(desc(observation_datetime_utc))
 
   encounters_missing <- o %>%
     dplyr::filter(
       is.na(longitude) |
-        is.na(latitude) |
-        is.na(observation_datetime_utc)
-    )
+      is.na(latitude) |
+      is.na(observation_datetime_utc)
+  )
 
   wastdr_msg_info("Done, closing DB connection.")
 
