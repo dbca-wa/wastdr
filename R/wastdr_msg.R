@@ -12,8 +12,8 @@ wastdr_msg_info <- function(message,
   if (verbose == FALSE) {
     return(NULL)
   }
-  # x <- clisymbols::symbol$info
-  message(crayon::cyan(glue::glue("ℹ {message}\n")))
+  x <- clisymbols::symbol$info
+  message(crayon::cyan(glue::glue("{x} {message}\n")))
 }
 
 #' Print a green success message with a tick symbol if verbose.
@@ -30,8 +30,8 @@ wastdr_msg_success <- function(message,
   if (verbose == FALSE) {
     return(NULL)
   }
-  # x <- clisymbols::symbol$tick
-  message(crayon::green(glue::glue("✔ {message}\n")))
+  x <- clisymbols::symbol$tick
+  message(crayon::green(glue::glue("{x} {message}\n")))
 }
 
 
@@ -49,8 +49,8 @@ wastdr_msg_noop <- function(message,
   if (verbose == FALSE) {
     return(NULL)
   }
-  # x <- clisymbols::symbol$circle_filled
-  message(crayon::green(glue::glue("◉ {message}\n")))
+  x <- clisymbols::symbol$circle_filled
+  message(crayon::green(glue::glue("{x} {message}\n")))
 }
 
 
@@ -70,8 +70,8 @@ wastdr_msg_warn <- function(message,
   if (verbose == FALSE) {
     return(NULL)
   }
-  # x <- clisymbols::symbol$warning
-  rlang::warn(crayon::yellow(glue::glue("⚠ {message}\n")))
+  x <- clisymbols::symbol$warning
+  rlang::warn(crayon::yellow(glue::glue("{x} {message}\n")))
 }
 
 
@@ -86,8 +86,8 @@ wastdr_msg_warn <- function(message,
 #' wastdr_msg_abort("This is an error, abort.")
 #' }
 wastdr_msg_abort <- function(message) {
-  # x <- clisymbols::symbol$cross
-  rlang::abort(crayon::red(glue::glue("✖ {message}\n")))
+  x <- clisymbols::symbol$cross
+  rlang::abort(crayon::red(glue::glue("{x} {message}\n")))
 }
 
 # usethis::use_test("wastdr_msg")
