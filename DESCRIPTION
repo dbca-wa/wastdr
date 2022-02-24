@@ -25,7 +25,6 @@ BugReports: https://github.com/dbca-wa/wastdr/issues
 Depends:
     R (>= 4.1.0)
 Imports:
-    clisymbols (>= 1.2.0),
     crayon (>= 1.4.1),
     dplyr (>= 1.0.7),
     fs (>= 1.5.0),
