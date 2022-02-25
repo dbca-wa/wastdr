@@ -51,12 +51,21 @@ test_that("filter_odkc_turtledata returns data outside areas when asked", {
 test_that("filter_odkc_turtledata returns data filtered by username", {
     data("odkc_data")
     un <- odkc_data$tracks$reporter[[1]]
+    un_lower <- stringr::str_to_lower(un)
+    un_upper <- stringr::str_to_upper(un)
+
     testthat::expect_message(
         x <- odkc_data %>% filter_odkc_turtledata(username = un, verbose = TRUE)
     )
+
+    x_lower <- odkc_data %>% filter_odkc_turtledata(username = un_lower)
+    x_upper <- odkc_data %>% filter_odkc_turtledata(username = un_upper)
+
     # Data have all areas as NA
     # testthat::expect_true(unique(x$tracks$area_name) == character(0))
     testthat::expect_true(unique(x$mwi$reporter) == un)
+    testthat::expect_true(unique(x_lower$mwi$reporter) == un)
+    testthat::expect_true(unique(x_upper$mwi$reporter) == un)
 })
 
 

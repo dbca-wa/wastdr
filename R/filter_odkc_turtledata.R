@@ -74,21 +74,24 @@ filter_odkc_turtledata <- function(data,
           wastdr::wastdr_msg_success(verbose = verbose)
 
       # Most odkc_data have a reporter
-      user_filter <- . %>% dplyr::filter(reporter == !!username)
+      user_filter <- . %>%
+          dplyr::filter(grepl(!!username, reporter, ignore.case = TRUE))
 
       # Turtle Tagging has a default handler and fields prepopulated from
       # that handler but possibly changed during data entry
       user_filter_tt <- . %>% dplyr::filter(
-          reporter == !!username |
-              encounter_handler == !!username |
-              ft1_ft1_handled_by == !!username |
-              ft2_ft2_handled_by == !!username |
-              ft3_ft3_handled_by == !!username |
-              morphometrics_morphometrics_handled_by == !!username
+          grepl(!!username, reporter, ignore.case = TRUE) |
+              grepl(!!username, encounter_handler, ignore.case = TRUE)|
+              grepl(!!username, ft1_ft1_handled_by, ignore.case = TRUE)|
+              grepl(!!username, ft2_ft2_handled_by, ignore.case = TRUE)|
+              grepl(!!username, ft3_ft3_handled_by, ignore.case = TRUE)|
+              grepl(!!username, morphometrics_morphometrics_handled_by,
+                    ignore.case = TRUE)
       )
 
       # TT tags are "handled by" a possibly different person from the reporter
-      user_filter_tt_tag <- . %>% dplyr::filter(tag_handled_by == !!username)
+      user_filter_tt_tag <- . %>% dplyr::filter(
+          grepl(!!username, tag_handled_by, ignore.case = TRUE))
   } else {
       user_filter <- . %>% identity(.)
       user_filter_tt <- . %>% identity(.)
