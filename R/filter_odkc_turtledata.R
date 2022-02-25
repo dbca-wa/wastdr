@@ -7,6 +7,9 @@
 #'   * "Other": Filter data to area_name NA.
 #'   * Any name in `unique(odkc_data$areas$area_name)`: return data filtered to
 #'     this area_name.
+#' @param username (chr) The ODK Collect username to filter the data by.
+#'   This is handy to investigate where and when a particular name was used.
+#'   Default: NULL
 #' @template param-verbose
 #' @return (list) The input data, optionally filtered to a subset of records.
 #' @export
@@ -32,6 +35,7 @@
 #' nrow(data_orphans)
 filter_odkc_turtledata <- function(data,
                                    area_name = NULL,
+                                   username = NULL,
                                    verbose = wastdr::get_wastdr_verbose()) {
   requireNamespace("sf") # overrides dplyr::filter with spatial equivalents
 
@@ -46,47 +50,76 @@ filter_odkc_turtledata <- function(data,
   }
 
   if (is.null(area_name)) {
-    "No area_name name given, returning all data." %>%
+    "No area_name name given, returning data without spatial filtering." %>%
       wastdr::wastdr_msg_success(verbose = verbose)
-    return(data)
-  }
-
-  if (area_name == "All turtle programs") {
-    "All areas requested, returning all data." %>%
+      geo_filter <- . %>% identity(.)
+  } else if (area_name == "All turtle programs") {
+    "All areas requested, returning data without spatial filtering." %>%
       wastdr::wastdr_msg_success(verbose = verbose)
-    return(data)
-  }
-
-  if (area_name == "Other") {
+      geo_filter <- . %>% identity(.)
+  } else if (area_name == "Other") {
     "Orphaned areas requested, returning data outside known areas." %>%
       wastdr::wastdr_msg_success(verbose = verbose)
-    my_filter <- . %>% dplyr::filter(is.na(area_name))
+      geo_filter <- . %>% dplyr::filter(is.na(area_name))
   } else {
     "Area {area_name} requested, returning filtered data." %>%
       glue::glue() %>%
       wastdr::wastdr_msg_success(verbose = verbose)
-    my_filter <- . %>% dplyr::filter(area_name == !!area_name)
+      geo_filter <- . %>% dplyr::filter(area_name == !!area_name)
+  }
+
+  if (!is.null(username)) {
+      "Username {username} requested, returning data from {username}." %>%
+          glue::glue() %>%
+          wastdr::wastdr_msg_success(verbose = verbose)
+
+      # Most odkc_data have a reporter
+      user_filter <- . %>% dplyr::filter(reporter == !!username)
+
+      # Turtle Tagging has a default handler and fields prepopulated from
+      # that handler but possibly changed during data entry
+      user_filter_tt <- . %>% dplyr::filter(
+          reporter == !!username |
+              encounter_handler == !!username |
+              ft1_ft1_handled_by == !!username |
+              ft2_ft2_handled_by == !!username |
+              ft3_ft3_handled_by == !!username |
+              morphometrics_morphometrics_handled_by == !!username
+      )
+
+      # TT tags are "handled by" a possibly different person from the reporter
+      user_filter_tt_tag <- . %>% dplyr::filter(tag_handled_by == !!username)
+  } else {
+      user_filter <- . %>% identity(.)
+      user_filter_tt <- . %>% identity(.)
+      user_filter_tt_tag <- . %>% identity(.)
   }
 
   structure(
     list(
       downloaded_on = data$downloaded_on,
-      tracks = data$tracks %>% my_filter(),
+      tracks = data$tracks %>% geo_filter() %>% user_filter(),
       # tracks_gj = data$tracks %>% my_filter() %>% ts_gj(),
-      tracks_dist = data$tracks_dist %>% my_filter(),
-      tracks_log = data$tracks_log %>% my_filter(),
-      tracks_egg = data$tracks_egg %>% my_filter(),
-      tracks_hatch = data$tracks_hatch %>% my_filter(),
-      tracks_fan_outlier = data$tracks_fan_outlier %>% my_filter(),
-      track_tally = data$track_tally %>% my_filter(),
-      dist = data$dist %>% my_filter(),
-      mwi = data$mwi %>% my_filter(),
-      mwi_dmg = data$mwi_dmg %>% my_filter(),
-      mwi_tag = data$mwi_tag %>% my_filter(),
-      tsi = data$tsi %>% my_filter(),
-      svs = data$svs %>% my_filter(),
-      sve = data$sve %>% my_filter(),
-      sites = data$sites %>% my_filter(),
+      tracks_dist = data$tracks_dist %>% geo_filter() %>% user_filter(),
+      tracks_egg = data$tracks_egg %>% geo_filter() %>% user_filter(),
+      tracks_log = data$tracks_log %>% geo_filter() %>% user_filter(),
+      tracks_hatch = data$tracks_hatch %>% geo_filter() %>% user_filter(),
+      tracks_fan_outlier = data$tracks_fan_outlier %>% geo_filter() %>% user_filter(),
+      tracks_light = data$tracks_light %>% geo_filter() %>% user_filter(),
+      track_tally = data$track_tally %>% geo_filter() %>% user_filter(),
+      track_tally_dist = data$track_tally_dist %>% geo_filter() %>% user_filter(),
+      dist = data$dist %>% geo_filter() %>% user_filter(),
+      mwi = data$mwi %>% geo_filter() %>% user_filter(),
+      mwi_dmg = data$mwi_dmg %>% geo_filter() %>% user_filter(),
+      mwi_tag = data$mwi_tag %>% geo_filter() %>% user_filter(),
+      tsi = data$tsi %>% geo_filter() %>% user_filter(),
+      tt = data$tt %>% geo_filter() %>% user_filter_tt(),
+      tt_dmg = data$tt_dmg %>% geo_filter(),
+      tt_tag = data$tt_tag %>% geo_filter() %>% user_filter_tt_tag(),
+      tt_log = data$tt_log %>% geo_filter(),
+      svs = data$svs %>% geo_filter() %>% user_filter(),
+      sve = data$sve %>% geo_filter() %>% user_filter(),
+      sites = data$sites %>% geo_filter(),
       areas = data$areas
     ),
     class = "odkc_data"

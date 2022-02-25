@@ -7,6 +7,7 @@
 filter_odkc_turtledata(
   data,
   area_name = NULL,
+  username = NULL,
   verbose = wastdr::get_wastdr_verbose()
 )
 }
@@ -21,6 +22,10 @@ filter_odkc_turtledata(
 \item Any name in \code{unique(odkc_data$areas$area_name)}: return data filtered to
 this area_name.
 }}
+
+\item{username}{(chr) The ODK Collect username to filter the data by.
+This is handy to investigate where and when a particular name was used.
+Default: NULL}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}

@@ -48,4 +48,16 @@ test_that("filter_odkc_turtledata returns data outside areas when asked", {
   testthat::expect_true(is.na(unique(x$mwi$area_name)))
 })
 
+test_that("filter_odkc_turtledata returns data filtered by username", {
+    data("odkc_data")
+    un <- odkc_data$tracks$reporter[[1]]
+    testthat::expect_message(
+        x <- odkc_data %>% filter_odkc_turtledata(username = un, verbose = TRUE)
+    )
+    # Data have all areas as NA
+    # testthat::expect_true(unique(x$tracks$area_name) == character(0))
+    testthat::expect_true(unique(x$mwi$reporter) == un)
+})
+
+
 # usethis::use_r("filter_odkc_turtledata")  # nolint

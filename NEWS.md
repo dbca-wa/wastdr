@@ -5,6 +5,16 @@
 ## Data
 ## Maintenance
 
+# wastdr 0.8.2
+## Major fixes
+## Minor fixes
+* `filter_odkc_turtledata` now accepts a `username`, which filters data by the 
+  ODK Collect Username of each submission. Some components, such as tagging data,
+  have hand typed names in additional fields. These are also filtered by.
+## Docs
+## Data
+## Maintenance
+
 # wastdr 0.7.3
 ## Major fixes
 ## Minor fixes
