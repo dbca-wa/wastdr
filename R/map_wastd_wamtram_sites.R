@@ -61,15 +61,13 @@ map_wastd_wamtram_sites <-
     wastd_area_popup <- '<h3>{area_name}</h3>
         <strong>W2 location</strong> {w2_location_code}<br/>
         <a href="https://wastd.dbca.wa.gov.au/admin/observations/area/{area_id}"
-         class="btn btn-xs btn-success"
-         target="_">Edit</a>'
+         class="btn btn-xs btn-success" target="_">Edit</a>'
 
-    wastd_site_popup <- '<h3>{area_name}</h3>
+    wastd_site_popup <- '<h3>{site_name}</h3>
         <strong>W2 location</strong> {w2_location_code}<br/>
         <strong>W2 place</strong> {w2_place_code}<br/>
         <a href="https://wastd.dbca.wa.gov.au/admin/observations/area/{site_id}"
-         class="btn btn-xs btn-success"
-         target="_">Edit</a>'
+         class="btn btn-xs btn-success" target="_">Edit</a>'
 
     leaflet::leaflet() %>%
       leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
@@ -109,7 +107,7 @@ map_wastd_wamtram_sites <-
         weight = 1,
         fillOpacity = 0.5,
         fillColor = "blue",
-        label = ~ glue::glue("[{w2_location_code}] {area_name}"),
+        label = ~ glue::glue("[{area_id} {w2_location_code}] {area_name}"),
         popup = ~ glue::glue(wastd_area_popup),
         group = "WAStD areas"
       ) %>%
@@ -118,7 +116,7 @@ map_wastd_wamtram_sites <-
         weight = 1,
         fillOpacity = 0.5,
         fillColor = "green",
-        label = ~ glue::glue("[{w2_location_code} {w2_place_code}] {site_name}"),
+        label = ~ glue::glue("[{site_id} {w2_location_code} {w2_place_code}] {site_name}"),
         popup = ~ glue::glue(wastd_site_popup),
         group = "WAStD sites"
       ) %>%
