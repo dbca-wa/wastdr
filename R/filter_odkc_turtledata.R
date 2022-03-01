@@ -125,7 +125,7 @@ filter_odkc_turtledata <- function(data,
       sites = data$sites %>% geo_filter(),
       areas = data$areas
     ),
-    class = "odkc_data"
+    class = "odkc_turtledata"
   )
 }
 

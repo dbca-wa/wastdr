@@ -6,7 +6,7 @@ test_that("filter_odkc_turtledata works", {
   # Filter
   x <- odkc_data %>% filter_odkc_turtledata(area_name = an)
 
-  testthat::expect_s3_class(x, "odkc_data")
+  testthat::expect_s3_class(x, "odkc_turtledata")
 })
 
 test_that("filter_odkc_turtledata requires a odkc_data object", {
