@@ -44,7 +44,7 @@ print.wastdr_settings <- function(x, ...) {
 #'   default: "https://wastd.dbca.wa.gov.au"
 #' @param api_url A WAStD API URL (optional),
 #'   default: "https://wastd.dbca.wa.gov.au/api/1/"
-#' @param api_token A WAStD API token, leading with "Token " (character)
+#' @param api_token A WAStD API token, optionally leading with "Token " (character)
 #' @param api_un Alternatively, a WAStD API username (character)
 #' @param api_pw The password to the WAStD username (character)
 #' @details
@@ -108,7 +108,8 @@ get_wastdr_api_url <- function() {
 #' @export
 #' @rdname wastdr_settings
 get_wastdr_api_token <- function() {
-  Sys.getenv("WASTDR_API_TOKEN")
+    token <- Sys.getenv("WASTDR_API_TOKEN")
+    if (!stringr::str_starts(token, "Token ")) token <- paste("Token", token)
 }
 
 #' @export

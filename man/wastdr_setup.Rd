@@ -19,7 +19,7 @@ default: "https://wastd.dbca.wa.gov.au"}
 \item{api_url}{A WAStD API URL (optional),
 default: "https://wastd.dbca.wa.gov.au/api/1/"}
 
-\item{api_token}{A WAStD API token, leading with "Token " (character)}
+\item{api_token}{A WAStD API token, optionally leading with "Token " (character)}
 
 \item{api_un}{Alternatively, a WAStD API username (character)}
 
