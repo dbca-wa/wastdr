@@ -40,16 +40,17 @@
 #' }
 map_wastd_wamtram_sites <-
   function(wastd_areas, wastd_sites, wamtram_sites) {
+    sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
     s <- wastd_sites %>%
       tidyr::separate_rows(w2_place_code, sep = " ")
 
     w_missing <- wamtram_sites %>%
       dplyr::anti_join(s, by = c("code" = "w2_place_code")) %>%
-        dplyr::filter(!is.na(site_longitude), !is.na(site_latitude))
+      dplyr::filter(!is.na(site_longitude), !is.na(site_latitude))
 
     w_imported <- wamtram_sites %>%
       dplyr::right_join(s, by = c("code" = "w2_place_code")) %>%
-        dplyr::filter(!is.na(site_longitude), !is.na(site_latitude))
+      dplyr::filter(!is.na(site_longitude), !is.na(site_latitude))
 
     w2_site_popup <- "<h3>{label}</h3>
         <strong>W2 location</strong> {prefix}<br/>
@@ -77,6 +78,7 @@ map_wastd_wamtram_sites <-
         options = leaflet::providerTileOptions(opacity = 0.35)
       ) %>%
       leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+      leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
       leaflet::clearBounds() %>%
       leaflet::addAwesomeMarkers(
         data = w_imported,

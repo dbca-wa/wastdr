@@ -29,6 +29,7 @@ map_tracks <- function(tracks,
                        cluster = FALSE,
                        ts = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
+  sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
   url <- sub("/$", "", wastd_url)
 
   if (!("name" %in% names(tracks))) tracks <- dplyr::mutate(tracks, name = "")
@@ -41,6 +42,7 @@ map_tracks <- function(tracks,
       options = leaflet::providerTileOptions(opacity = 0.35)
     ) %>%
     leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+    leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
     leaflet::clearBounds() %>%
     {
       if (ts == TRUE) {

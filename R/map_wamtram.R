@@ -47,16 +47,16 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
   }
 
   enc <- data$enc %>%
-      dplyr::filter(
-          !is.na(longitude),
-          !is.na(latitude),
-          longitude > -180,
-          longitude < 180,
-          latitude > -90,
-          latitude < 90
-      )
+    dplyr::filter(
+      !is.na(longitude),
+      !is.na(latitude),
+      longitude > -180,
+      longitude < 180,
+      latitude > -90,
+      latitude < 90
+    )
   sites <- data$sites %>%
-      dplyr::filter(!is.na(site_longitude), !is.na(site_latitude))
+    dplyr::filter(!is.na(site_longitude), !is.na(site_latitude))
 
   if (!is.null(location) && location != "") {
     enc <- enc %>% dplyr::filter(location_code == location)
@@ -74,6 +74,7 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
 
   co <- NULL
   co <- if (nrow(enc) > 1000) co <- leaflet::markerClusterOptions()
+  sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
 
   og <- c("WAMTRAM sites", "WAMTRAM turtles")
 
@@ -85,6 +86,7 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
       options = leaflet::providerTileOptions(opacity = 0.35)
     ) %>%
     leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+    leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
     leaflet::clearBounds() %>%
     leaflet::addAwesomeMarkers(
       data = sites,

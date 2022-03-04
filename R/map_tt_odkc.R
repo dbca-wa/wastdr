@@ -25,47 +25,49 @@
 #' map_tt_odkc(data = NULL, sites = odkc_data$sites)
 #' }
 map_tt_odkc <- function(data,
-                         sites = NULL,
-                         wastd_url = wastdr::get_wastd_url(),
-                         fmt = "%d/%m/%Y %H:%M",
-                         tz = "Australia/Perth",
-                         cluster = FALSE) {
-    co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
-    overlay_names <- c()
+                        sites = NULL,
+                        wastd_url = wastdr::get_wastd_url(),
+                        fmt = "%d/%m/%Y %H:%M",
+                        tz = "Australia/Perth",
+                        cluster = FALSE) {
+  co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
+  sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
+  overlay_names <- c()
 
-    l <- leaflet::leaflet(width = 800, height = 600) %>%
-        leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
-        leaflet::addProviderTiles(
-            "OpenStreetMap.Mapnik",
-            group = "Basemap",
-            options = leaflet::providerTileOptions(opacity = 0.35)
-        ) %>%
-        leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
-        leaflet::clearBounds()
+  l <- leaflet::leaflet(width = 800, height = 600) %>%
+    leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
+    leaflet::addProviderTiles(
+      "OpenStreetMap.Mapnik",
+      group = "Basemap",
+      options = leaflet::providerTileOptions(opacity = 0.35)
+    ) %>%
+    leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+    leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
+    leaflet::clearBounds()
 
 
-    if (!is.null(data) && nrow(data) > 0) {
-        data <- data %>% wastdr::sf_as_tbl()
-        pal_mwi <- leaflet::colorFactor(
-            palette = "viridis",
-            domain = data$turtle_species
-        )
-        data.df <- data %>% split(data$turtle_species)
-        overlay_names <- names(data.df)
-        if (!is.null(sites)) overlay_names <- c("Sites", overlay_names)
+  if (!is.null(data) && nrow(data) > 0) {
+    data <- data %>% wastdr::sf_as_tbl()
+    pal_mwi <- leaflet::colorFactor(
+      palette = "viridis",
+      domain = data$turtle_species
+    )
+    data.df <- data %>% split(data$turtle_species)
+    overlay_names <- names(data.df)
+    if (!is.null(sites)) overlay_names <- c("Sites", overlay_names)
 
-        names(data.df) %>%
-            purrr::walk(function(df) {
-                l <<- l %>% leaflet::addAwesomeMarkers(
-                    data = data.df[[df]],
-                    lng = ~start_geopoint_longitude,
-                    lat = ~start_geopoint_latitude,
-                    icon = leaflet::makeAwesomeIcon(
-                        icon = "home",
-                        markerColor = "green",
-                        iconColor = ~ pal_mwi(turtle_species)
-                    ),
-                    label = ~ glue::glue("
+    names(data.df) %>%
+      purrr::walk(function(df) {
+        l <<- l %>% leaflet::addAwesomeMarkers(
+          data = data.df[[df]],
+          lng = ~start_geopoint_longitude,
+          lat = ~start_geopoint_latitude,
+          icon = leaflet::makeAwesomeIcon(
+            icon = "home",
+            markerColor = "green",
+            iconColor = ~ pal_mwi(turtle_species)
+          ),
+          label = ~ glue::glue("
             {lubridate::with_tz(observation_start_time, tz)} {ft1_ft1_name}
           "),
           popup = ~ glue::glue('
@@ -82,33 +84,33 @@ map_tt_odkc <- function(data,
 <img class="d-block w-100" src="{datasheet_photo_datasheet_rear %||% ""}" alt="Photo datasheet rear">
 </div>
           '),
-group = df,
-clusterOptions = co
-                )
-            })
-    }
-
-    l %>%
-        {
-            if (!is.null(sites) && nrow(sites) > 0) {
-                leaflet::addPolygons(
-                    .,
-                    data = sites,
-                    group = "Sites",
-                    weight = 1,
-                    fillOpacity = 0.5,
-                    fillColor = "blue",
-                    label = ~site_name
-                )
-            } else {
-                .
-            }
-        } %>%
-        leaflet::addLayersControl(
-            baseGroups = c("Basemap"),
-            overlayGroups = overlay_names,
-            options = leaflet::layersControlOptions(collapsed = FALSE)
+          group = df,
+          clusterOptions = co
         )
+      })
+  }
+
+  l %>%
+    {
+      if (!is.null(sites) && nrow(sites) > 0) {
+        leaflet::addPolygons(
+          .,
+          data = sites,
+          group = "Sites",
+          weight = 1,
+          fillOpacity = 0.5,
+          fillColor = "blue",
+          label = ~site_name
+        )
+      } else {
+        .
+      }
+    } %>%
+    leaflet::addLayersControl(
+      baseGroups = c("Basemap"),
+      overlayGroups = overlay_names,
+      options = leaflet::layersControlOptions(collapsed = FALSE)
+    )
 }
 
 # usethis::use_test("map_tt_odkc")

@@ -108,8 +108,11 @@ get_wastdr_api_url <- function() {
 #' @export
 #' @rdname wastdr_settings
 get_wastdr_api_token <- function() {
-    token <- Sys.getenv("WASTDR_API_TOKEN")
-    if (!stringr::str_starts(token, "Token ")) token <- paste("Token", token)
+  token <- Sys.getenv("WASTDR_API_TOKEN")
+  if (!stringr::str_starts(token, "Token ")) {
+    token <- paste("Token", token)
+  }
+  token
 }
 
 #' @export

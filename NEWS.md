@@ -1,6 +1,7 @@
 # wastdr 0.8.7
 ## Major fixes
 ## Minor fixes
+* Add scalebar to all maps
 ## Docs
 ## Data
 ## Maintenance

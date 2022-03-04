@@ -32,6 +32,7 @@ map_mwi_odkc <- function(data,
                          tz = "Australia/Perth",
                          cluster = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
+  sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
   overlay_names <- c()
 
   l <- leaflet::leaflet(width = 800, height = 600) %>%
@@ -42,6 +43,7 @@ map_mwi_odkc <- function(data,
       options = leaflet::providerTileOptions(opacity = 0.35)
     ) %>%
     leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+    leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
     leaflet::clearBounds()
 
 

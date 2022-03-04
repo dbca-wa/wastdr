@@ -22,6 +22,7 @@ map_nests <- function(data,
                       fmt = "%d/%m/%Y %H:%M",
                       cluster = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
+  sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
   pal <- leaflet::colorFactor(palette = "RdYlBu", domain = data$encounter_status)
   url <- sub("/$", "", wastd_url)
 
@@ -33,6 +34,7 @@ map_nests <- function(data,
       options = leaflet::providerTileOptions(opacity = 0.35)
     ) %>%
     leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
+    leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
     leaflet::clearBounds() %>%
     leaflet::addAwesomeMarkers(
       data = data,
