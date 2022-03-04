@@ -4,12 +4,12 @@
 #' @param table_name The table to fetch all records for
 #' @param rodbc Whether to use RODBC (if TRUE) or DBI (if FALSE, default)
 #' @export
-read_table <- function(connection, table_name, rodbc=FALSE){
-    if (rodbc==TRUE) {
-        RODBC::sqlFetch(connection, table_name)
-    } else {
-        DBI::dbReadTable(connection, table_name)
-    }
+read_table <- function(connection, table_name, rodbc = FALSE) {
+  if (rodbc == TRUE) {
+    RODBC::sqlFetch(connection, table_name)
+  } else {
+    DBI::dbReadTable(connection, table_name)
+  }
 }
 
 #' Download Turtle Tagging data from WAMTRAM2.
@@ -124,49 +124,48 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
                              dsn = Sys.getenv("W2_DSN"),
                              use_rodbc = Sys.getenv("W2_RODBC", FALSE),
                              save = NULL) {
+  wastdr_msg_info("Opening database connection...")
 
-    wastdr_msg_info("Opening database connection...")
-
-    # Windows / RODBC ---------------------------------------------------------#
-    # nocov start
-    if (use_rodbc == TRUE) {
-        con <- RODBC::odbcConnect(dsn, uid = db_user, pwd = db_pass)
-        if (con == TRUE) {
-            wastdr::wastdr_msg_success("Database connection successful")
-        } else {
-            "Database connection failed with reason:\n{attr(con, \"reason\")}" %>%
-                glue::glue() %>% wastdr_msg_abort()
-        }
-
+  # Windows / RODBC ---------------------------------------------------------#
+  # nocov start
+  if (use_rodbc == TRUE) {
+    con <- RODBC::odbcConnect(dsn, uid = db_user, pwd = db_pass)
+    if (con == TRUE) {
+      wastdr::wastdr_msg_success("Database connection successful")
     } else {
-    # Linux/DBI ---------------------------------------------------------------#
-        con <- DBI::dbCanConnect(
-            odbc::odbc(),
-            Driver   = db_drv,
-            Server   = db_srv,
-            Database = db_name,
-            UID      = db_user,
-            PWD      = db_pass,
-            Port     = db_port
-        )
-
-        if (con == TRUE) {
-            wastdr::wastdr_msg_success("Database connection successful")
-        } else {
-            "Database connection failed" %>% wastdr_msg_abort()
-        }
-
-        con <- DBI::dbConnect(
-            odbc::odbc(),
-            Driver   = db_drv,
-            Server   = db_srv,
-            Database = db_name,
-            UID      = db_user,
-            PWD      = db_pass,
-            Port     = db_port
-        )
+      "Database connection failed with reason:\n{attr(con, \"reason\")}" %>%
+        glue::glue() %>%
+        wastdr_msg_abort()
     }
-    # The open database connection is `con` -----------------------------------#
+  } else {
+    # Linux/DBI ---------------------------------------------------------------#
+    con <- DBI::dbCanConnect(
+      odbc::odbc(),
+      Driver   = db_drv,
+      Server   = db_srv,
+      Database = db_name,
+      UID      = db_user,
+      PWD      = db_pass,
+      Port     = db_port
+    )
+
+    if (con == TRUE) {
+      wastdr::wastdr_msg_success("Database connection successful")
+    } else {
+      "Database connection failed" %>% wastdr_msg_abort()
+    }
+
+    con <- DBI::dbConnect(
+      odbc::odbc(),
+      Driver   = db_drv,
+      Server   = db_srv,
+      Database = db_name,
+      UID      = db_user,
+      PWD      = db_pass,
+      Port     = db_port
+    )
+  }
+  # The open database connection is `con` -----------------------------------#
 
   # Extract all relevant tables into a named list.
   wastdr_msg_info("Reading tables...")
@@ -174,30 +173,30 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
   # Metadata
   downloaded_on <- Sys.time()
   w2_tables <- ifelse(
-      use_rodbc==TRUE,
-      RODBC::sqlTables(con, catalog = NULL, schema = TRUE),
-      DBI::dbListTables(con)
+    use_rodbc == TRUE,
+    RODBC::sqlTables(con, catalog = NULL, schema = TRUE),
+    DBI::dbListTables(con)
   )
 
   # Tables
   wastdr_msg_info("Processing Table TRT_ENTRY_BATCHES")
   data_entry_batches <- "TRT_ENTRY_BATCHES" %>%
-    read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   wastdr_msg_info("Processing Table TRT_DATA_ENTRY")
   data_entry <- "TRT_DATA_ENTRY" %>%
-    read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   wastdr_msg_info("Personnel Table TRT_DATA_ENTRY_PERSONS")
   data_entry_operators <- "TRT_DATA_ENTRY_PERSONS" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   wastdr_msg_info("Sites Table TRT_PLACES")
   sites <- "TRT_PLACES" %>%
-    read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::rename(
       prefix = location_code,
@@ -214,12 +213,12 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
 
   wastdr_msg_info("Lookup Table TRT_TAG_STATES")
   tag_states <- "TRT_TAG_STATES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   wastdr_msg_info("Data Table TRT_PERSONS")
   persons <- "TRT_PERSONS" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::mutate(
       clean_name = paste(first_name, surname) %>%
@@ -232,7 +231,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
 
   wastdr_msg_info("Lookup Table TRT_ACTIVITIES")
   activities <- "TRT_ACTIVITIES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::rename(
       activity_description = description,
@@ -243,7 +242,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
 
   wastdr_msg_info("Lookup Table TRT_BEACH_POSITIONS")
   beach_positions <- "TRT_BEACH_POSITIONS" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::rename(
       beach_position_description = description,
@@ -252,7 +251,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
 
   wastdr_msg_info("Lookup Table TRT_BODY_PARTS")
   body_parts <- "TRT_BODY_PARTS" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::rename(
       body_part_code = body_part,
@@ -262,19 +261,19 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
 
   wastdr_msg_info("Lookup Table TRT_CAUSE_OF_DEATH")
   cause_of_death <- "TRT_CAUSE_OF_DEATH" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
   # %>% dplyr::rename(code = cause_of_death)
 
   wastdr_msg_info("Lookup Table TRT_CONDITION_CODES")
   conditions <- "TRT_CONDITION_CODES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::rename(condition_label = description)
 
   wastdr_msg_info("Lookup Table TRT_EGG_COUNT_METHODS")
   egg_count_methods <- "TRT_EGG_COUNT_METHODS" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::rename(
       egg_count_method_code = egg_count_method,
@@ -284,13 +283,13 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
   # use native datum conversion instead
   wastdr_msg_info("Lookup Table TRT_DATUM_CODES")
   datum_codes <- "TRT_DATUM_CODES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   # Tag types
   wastdr_msg_info("Lookup Table TRT_IDENTIFICATION_TYPES")
   id_types <- "TRT_IDENTIFICATION_TYPES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::transmute(
       id_type_code = identification_type,
@@ -300,7 +299,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
   # 260k+ records
   wastdr_msg_info("Data Table TRT_RECORDED_TAGS")
   recorded_tags <- "TRT_RECORDED_TAGS" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::rename(
       tag_name = tag_id,
@@ -312,47 +311,47 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
   # 60k+ inferred turtle identities, reconstructed from encounters.
   wastdr_msg_info("Data Table TRT_TURTLES")
   turtles <- "TRT_TURTLES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   # 127k+ Synthesised information about tags,
   # reconstructed from recorded_tags and other tag asset management operations.
   wastdr_msg_info("Data Table TRT_TAGS")
   tags <- "TRT_TAGS" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::arrange(desc(tag_id))
 
   wastdr_msg_info("Data Table TRT_SAMPLES")
   samples <- "TRT_SAMPLES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   wastdr_msg_info("Lookup Table TRT_TISSUE_TYPES")
   sample_tissue_type <- "TRT_TISSUE_TYPES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   # 22k+ PIT tags
   wastdr_msg_info("Data Table TRT_PIT_TAGS")
   pit_tags <- "TRT_PIT_TAGS" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   # 70k+ PIT tag encounters
   wastdr_msg_info("Table TRT_RECORDED_PIT_TAGS")
   recorded_pit_tags <- "TRT_RECORDED_PIT_TAGS" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   wastdr_msg_info("Lookup Table TRT_PIT_TAG_STATES")
   pit_tag_states <- "TRT_PIT_TAG_STATES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   wastdr_msg_info("Lookup Table TRT_MEASUREMENT_TYPES")
   measurement_types <- "TRT_MEASUREMENT_TYPES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::rename(
       measurement_type_code = measurement_type,
@@ -363,7 +362,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
   # 191k+ Morphometric Measurements
   wastdr_msg_info("Data Table TRT_MEASUREMENTS")
   measurements <- "TRT_MEASUREMENTS" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names() %>%
     dplyr::rename(
       measurement_type_code = measurement_type
@@ -372,36 +371,36 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
 
   wastdr_msg_info("Lookup Table TRT_DAMAGE_CODES")
   damage_codes <- "TRT_DAMAGE_CODES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   wastdr_msg_info("Lookup Table TRT_DAMAGE_CAUSE_CODES")
   damage_causes <- "TRT_DAMAGE_CAUSE_CODES" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   # 38k+ TurtleDamageObservations
   wastdr_msg_info("Data Table TRT_DAMAGE")
   damages <- "TRT_DAMAGE" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   wastdr_msg_info("Data Table TRT_IDENTIFICATION")
   identifications <- "TRT_IDENTIFICATION" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   # 175k+ AnimalEncounters (raw)
   wastdr_msg_info("Data Table TRT_OBSERVATIONS")
   obs <- "TRT_OBSERVATIONS" %>%
-      read_table(con, ., rodbc=use_rodbc) %>%
+    read_table(con, ., rodbc = use_rodbc) %>%
     janitor::clean_names()
 
   # Close DB connection
   if (use_rodbc == TRUE) {
-      RODBC::odbcCloseAll()
+    RODBC::odbcCloseAll()
   } else {
-      DBI::dbDisconnect(con)
+    DBI::dbDisconnect(con)
   }
 
   # Reconstructed turtles without duplicated attributes
@@ -453,31 +452,31 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     dplyr::left_join(turtles_min, by = "turtle_id") %>%
     dplyr::mutate(
       latitude = dplyr::case_when(
-          !is.na(latitude_dd) ~ latitude_dd,
-          !is.na(latitude_from_dms) ~ latitude_from_dms,
-          TRUE ~ site_latitude
+        !is.na(latitude_dd) ~ latitude_dd,
+        !is.na(latitude_from_dms) ~ latitude_from_dms,
+        TRUE ~ site_latitude
       ),
       longitude = dplyr::case_when(
-          !is.na(longitude_dd) ~ longitude_dd,
-          !is.na(longitude_from_dms) ~ longitude_from_dms,
-          TRUE ~ site_longitude
+        !is.na(longitude_dd) ~ longitude_dd,
+        !is.na(longitude_from_dms) ~ longitude_from_dms,
+        TRUE ~ site_longitude
       )
     )
 
   encounters <- o %>%
     dplyr::filter(
-        !is.na(longitude),
-        !is.na(latitude),
-        !is.na(observation_datetime_utc)
+      !is.na(longitude),
+      !is.na(latitude),
+      !is.na(observation_datetime_utc)
     ) %>%
     dplyr::arrange(desc(observation_datetime_utc))
 
   encounters_missing <- o %>%
     dplyr::filter(
       is.na(longitude) |
-      is.na(latitude) |
-      is.na(observation_datetime_utc)
-  )
+        is.na(latitude) |
+        is.na(observation_datetime_utc)
+    )
 
   wastdr_msg_info("Done, closing DB connection.")
 

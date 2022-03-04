@@ -52,50 +52,52 @@ filter_odkc_turtledata <- function(data,
   if (is.null(area_name)) {
     "No area_name name given, returning data without spatial filtering." %>%
       wastdr::wastdr_msg_success(verbose = verbose)
-      geo_filter <- . %>% identity(.)
+    geo_filter <- . %>% identity(.)
   } else if (area_name == "All turtle programs") {
     "All areas requested, returning data without spatial filtering." %>%
       wastdr::wastdr_msg_success(verbose = verbose)
-      geo_filter <- . %>% identity(.)
+    geo_filter <- . %>% identity(.)
   } else if (area_name == "Other") {
     "Orphaned areas requested, returning data outside known areas." %>%
       wastdr::wastdr_msg_success(verbose = verbose)
-      geo_filter <- . %>% dplyr::filter(is.na(area_name))
+    geo_filter <- . %>% dplyr::filter(is.na(area_name))
   } else {
     "Area {area_name} requested, returning filtered data." %>%
       glue::glue() %>%
       wastdr::wastdr_msg_success(verbose = verbose)
-      geo_filter <- . %>% dplyr::filter(area_name == !!area_name)
+    geo_filter <- . %>% dplyr::filter(area_name == !!area_name)
   }
 
   if (!is.null(username)) {
-      "Username {username} requested, returning data from {username}." %>%
-          glue::glue() %>%
-          wastdr::wastdr_msg_success(verbose = verbose)
+    "Username {username} requested, returning data from {username}." %>%
+      glue::glue() %>%
+      wastdr::wastdr_msg_success(verbose = verbose)
 
-      # Most odkc_data have a reporter
-      user_filter <- . %>%
-          dplyr::filter(grepl(!!username, reporter, ignore.case = TRUE))
+    # Most odkc_data have a reporter
+    user_filter <- . %>%
+      dplyr::filter(grepl(!!username, reporter, ignore.case = TRUE))
 
-      # Turtle Tagging has a default handler and fields prepopulated from
-      # that handler but possibly changed during data entry
-      user_filter_tt <- . %>% dplyr::filter(
-          grepl(!!username, reporter, ignore.case = TRUE) |
-              grepl(!!username, encounter_handler, ignore.case = TRUE)|
-              grepl(!!username, ft1_ft1_handled_by, ignore.case = TRUE)|
-              grepl(!!username, ft2_ft2_handled_by, ignore.case = TRUE)|
-              grepl(!!username, ft3_ft3_handled_by, ignore.case = TRUE)|
-              grepl(!!username, morphometrics_morphometrics_handled_by,
-                    ignore.case = TRUE)
-      )
+    # Turtle Tagging has a default handler and fields prepopulated from
+    # that handler but possibly changed during data entry
+    user_filter_tt <- . %>% dplyr::filter(
+      grepl(!!username, reporter, ignore.case = TRUE) |
+        grepl(!!username, encounter_handler, ignore.case = TRUE) |
+        grepl(!!username, ft1_ft1_handled_by, ignore.case = TRUE) |
+        grepl(!!username, ft2_ft2_handled_by, ignore.case = TRUE) |
+        grepl(!!username, ft3_ft3_handled_by, ignore.case = TRUE) |
+        grepl(!!username, morphometrics_morphometrics_handled_by,
+          ignore.case = TRUE
+        )
+    )
 
-      # TT tags are "handled by" a possibly different person from the reporter
-      user_filter_tt_tag <- . %>% dplyr::filter(
-          grepl(!!username, tag_handled_by, ignore.case = TRUE))
+    # TT tags are "handled by" a possibly different person from the reporter
+    user_filter_tt_tag <- . %>% dplyr::filter(
+      grepl(!!username, tag_handled_by, ignore.case = TRUE)
+    )
   } else {
-      user_filter <- . %>% identity(.)
-      user_filter_tt <- . %>% identity(.)
-      user_filter_tt_tag <- . %>% identity(.)
+    user_filter <- . %>% identity(.)
+    user_filter_tt <- . %>% identity(.)
+    user_filter_tt_tag <- . %>% identity(.)
   }
 
   structure(
