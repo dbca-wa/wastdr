@@ -1,4 +1,4 @@
-# wastdr (development version)
+# wastdr 0.8.7
 ## Major fixes
 ## Minor fixes
 ## Docs
