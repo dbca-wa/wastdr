@@ -4,13 +4,23 @@
 \alias{download_wastd_turtledata}
 \title{Download all turtle data from WAStD}
 \usage{
-download_wastd_turtledata(max_records = NULL, min_year = 2016)
+download_wastd_turtledata(
+  max_records = NULL,
+  min_year = 2016,
+  save = NULL,
+  compress = "xz"
+)
 }
 \arguments{
 \item{max_records}{(int) The max number of records to retrieve,
 default: NULL (download all).}
 
 \item{min_year}{(int) The earliest year to include.}
+
+\item{save}{If supplied, the filepath to save the data object to.}
+
+\item{compress}{The saveRDS compression parameter, default: "xz".
+Set to FALSE for faster writes and reads but larger filesize.}
 }
 \value{
 An S3 class "wastd_data" with items:

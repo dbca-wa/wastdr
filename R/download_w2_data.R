@@ -46,10 +46,12 @@ read_table <- function(connection, table_name, rodbc = FALSE) {
 #'   systems), or the odbc/DBI library (if FALSE, default, best for GNU/Linux
 #'   systems).
 #' @template param-verbose
-#' @param save If supplied, the filepath to save the "wamtram_data" object to.
-#'   E.g., `here::here("inst/w2.rds")`
+#' @param save If supplied, the filepath to save the data object to.
+#' @param compress The saveRDS compression parameter, default: "xz".
+#'   Set to FALSE for faster writes and reads but larger filesize.
 #' @return A structure of class "wamtram_data" containing a named list of
 #'   sanitised tables from the Turtle Tagging DB:
+#'
 #'   * Metadata:
 #'     * downloaded_on
 #'     * w2_tables
@@ -123,7 +125,8 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
                              verbose = wastdr::get_wastdr_verbose(),
                              dsn = Sys.getenv("W2_DSN"),
                              use_rodbc = Sys.getenv("W2_RODBC", FALSE),
-                             save = NULL) {
+                             save = NULL,
+                             compress = "xz") {
   wastdr_msg_info("Opening database connection...")
 
   # Windows / RODBC ---------------------------------------------------------#
@@ -561,7 +564,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     "Saving WAMTRAM data to {save}..." %>%
       glue::glue() %>%
       wastdr::wastdr_msg_success()
-    saveRDS(wamtram_data, file = save, compress = "xz")
+    saveRDS(wamtram_data, file = save, compress = compress)
     "Done. Open the saved file with\nw2_data <- readRds({save})" %>%
       glue::glue() %>%
       wastdr::wastdr_msg_success()

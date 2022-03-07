@@ -16,7 +16,8 @@ download_w2_data(
   verbose = wastdr::get_wastdr_verbose(),
   dsn = Sys.getenv("W2_DSN"),
   use_rodbc = Sys.getenv("W2_RODBC", FALSE),
-  save = NULL
+  save = NULL,
+  compress = "xz"
 )
 }
 \arguments{
@@ -50,8 +51,10 @@ Default: wastdr::get_wastdr_verbose()}
 systems), or the odbc/DBI library (if FALSE, default, best for GNU/Linux
 systems).}
 
-\item{save}{If supplied, the filepath to save the "wamtram_data" object to.
-E.g., \code{here::here("inst/w2.rds")}}
+\item{save}{If supplied, the filepath to save the data object to.}
+
+\item{compress}{The saveRDS compression parameter, default: "xz".
+Set to FALSE for faster writes and reads but larger filesize.}
 }
 \value{
 A structure of class "wamtram_data" containing a named list of

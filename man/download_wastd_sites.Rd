@@ -7,7 +7,9 @@
 download_wastd_sites(
   api_url = wastdr::get_wastdr_api_url(),
   api_token = wastdr::get_wastdr_api_token(),
-  verbose = wastdr::get_wastdr_verbose()
+  verbose = wastdr::get_wastdr_verbose(),
+  save = NULL,
+  compress = "xz"
 )
 }
 \arguments{
@@ -19,9 +21,19 @@ default \code{\link{get_wastdr_api_token}}, see \code{\link{wastdr_setup}}}
 
 \item{verbose}{Whether to show debug messages.
 Default: wastdr::get_wastdr_verbose()}
+
+\item{save}{If supplied, the filepath to save the data object to.}
+
+\item{compress}{The saveRDS compression parameter, default: "xz".
+Set to FALSE for faster writes and reads but larger filesize.}
 }
 \value{
-An \code{sf} dataframe of WAStD Sites joined to Locality details.
+A list
+\itemize{
+\item downloaded_on A timestamp of the download
+\item localities A \code{sf} object of WAStD Areas of type Locality
+\item sites An \code{sf} object of WAStD Areas of type Sites joined to Localities.
+}
 }
 \description{
 Download Areas of type Site from WAStD

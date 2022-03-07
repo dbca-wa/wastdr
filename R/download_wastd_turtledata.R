@@ -10,6 +10,9 @@
 #' @param max_records (int) The max number of records to retrieve,
 #'   default: NULL (download all).
 #' @param min_year (int) The earliest year to include.
+#' @param save If supplied, the filepath to save the data object to.
+#' @param compress The saveRDS compression parameter, default: "xz".
+#'   Set to FALSE for faster writes and reads but larger filesize.
 #'
 #' @return An S3 class "wastd_data" with items:
 #' \itemize{
@@ -42,7 +45,10 @@
 #' }
 #' @export
 #' @family api
-download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
+download_wastd_turtledata <- function(max_records = NULL,
+                                      min_year = 2016,
+                                      save = NULL,
+                                      compress = "xz") {
   # Areas ---------------------------------------------------------------------#
   wastdr_msg_info("Downloading Areas...")
   areas_sf <- wastdr::wastd_GET("area") %>% parse_area_sf()
@@ -241,7 +247,7 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
     wastdr::wastd_GET(max_records = max_records) %>%
     wastdr::wastd_parse()
 
-  structure(
+  x <- structure(
     list(
       downloaded_on = Sys.time(),
       areas = areas,
@@ -268,6 +274,19 @@ download_wastd_turtledata <- function(max_records = NULL, min_year = 2016) {
     ),
     class = "wastd_data"
   )
+
+  if (!is.null(save)) {
+      "Saving WAStD turtledata to {save}..." %>%
+          glue::glue() %>%
+          wastdr::wastdr_msg_success()
+      saveRDS(x, file = save, compress = compress)
+      "Done. Open the saved file with\nwastd_data <- readRds({save})" %>%
+          glue::glue() %>%
+          wastdr::wastdr_msg_success()
+  }
+
+  x
+
 }
 
 
