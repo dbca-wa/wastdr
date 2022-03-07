@@ -1,3 +1,5 @@
+# wastdr 0.8.8
+
 # wastdr 0.8.7
 ## Major fixes
 ## Minor fixes
