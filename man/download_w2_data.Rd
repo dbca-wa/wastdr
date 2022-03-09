@@ -97,6 +97,10 @@ sanitised tables from the Turtle Tagging DB:
 \item Encounters:
 \itemize{
 \item enc
+\itemize{
+\item location_code: the original rookery (where first encountered)
+\item place_code: the place of the encounter (where currently found)
+}
 \item enc_qa
 }
 \item Observations:

@@ -71,7 +71,6 @@ read_table <- function(connection, table_name, rodbc = FALSE) {
 #'     * lookup_egg_count_methods
 #'     * lookup_id_types
 #'     * lookup_measurement_types
-
 #'     * lookup_pit_tag_states
 #'     * lookup_sample_tissue_type
 #'     * lookup_tag_states
@@ -79,6 +78,8 @@ read_table <- function(connection, table_name, rodbc = FALSE) {
 #'     * sites
 #'   * Encounters:
 #'     * enc
+#'       * location_code: the original rookery (where first encountered)
+#'       * place_code: the place of the encounter (where currently found)
 #'     * enc_qa
 #'   * Observations:
 #'     * obs_flipper_tags
