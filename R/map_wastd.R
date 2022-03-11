@@ -41,21 +41,35 @@ map_wastd <- function(x,
   }
 
   animals <- x$animals %>% filter_realspecies()
-  animals_alive <- x$animals %>%
-    filter_realspecies() %>%
-    filter_alive()
-  animals_dead <- x$animals %>%
-    filter_realspecies() %>%
-    filter_dead()
-  tracks <- x$tracks %>% filter_realspecies()
+  suppressWarnings(
+    animals_alive <- x$animals %>%
+      filter_realspecies() %>%
+      filter_alive()
+  )
+  suppressWarnings(
+    animals_dead <- x$animals %>%
+      filter_realspecies() %>%
+      filter_dead()
+  )
 
-  if (is.null(animals) || nrow(animals) == 0) {
+  map_animals_alive <- map_animals
+  map_animals_dead <- map_animals
+
+  if (is.null(animals_alive) || nrow(animals_alive) == 0) {
     if (map_animals == TRUE) {
-      wastdr_msg_info("AnimalEncounters requested but none found")
+      wastdr_msg_info("AnimalEncounters (alive) requested but none found")
     }
-    map_animals <- FALSE
+    map_animals_alive <- FALSE
   }
 
+  if (is.null(animals_dead) || nrow(animals_dead) == 0) {
+    if (map_animals == TRUE) {
+      wastdr_msg_info("AnimalEncounters (dead) requested but none found")
+    }
+    map_animals_dead <- FALSE
+  }
+
+  tracks <- x$tracks %>% filter_realspecies()
   if (is.null(tracks) || nrow(tracks) == 0) {
     if (map_tracks == TRUE) {
       wastdr_msg_info("TurtleNestEncounters requested but none found")
@@ -102,7 +116,7 @@ Cause of death: {humanize(cause_of_death)}<br/>
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 Activity: {humanize(activity)}<br/>
 
-<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
+<p><a class="btn btn-xs btn-primary" target="_" rel="nofollow"
 href="{url}{absolute_admin_url}">Edit on WAStD</a></p>'
 
   animal_label_template <- "
@@ -134,7 +148,7 @@ href="{url}{absolute_admin_url}">Edit on WAStD</a></p>'
 {format(httpdate_as_gmt08(survey_start_time), fmt)}-
 {format(httpdate_as_gmt08(survey_end_time), fmt)} AWST</p>
 
-<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
+<p><a class="btn btn-xs btn-primary" target="_" rel="nofollow"
 href="{url}{absolute_admin_url}">Edit on WAStD</a></p>'
 
   dist_label_template <- "
@@ -161,10 +175,10 @@ href="{url}{absolute_admin_url}">Edit on WAStD</a></p>'
 <p>Survey {encounter_survey_id} at {encounter_site_name}<br/>
 {encounter_survey_start_time}-{encounter_survey_end_time}</p>
 <a href="{url}{encounter_survey_absolute_admin_url}"
-class="btn btn-xs btn-secondary" target="_" rel="nofollow">
+class="btn btn-xs btn-primary" target="_" rel="nofollow">
 Edit survey in WAStD</a>
 
-<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
+<p><a class="btn btn-xs btn-primary" target="_" rel="nofollow"
 href="{url}{absolute_admin_url}">
 Edit record in WAStD</a></p>'
 
@@ -181,12 +195,8 @@ Edit record in WAStD</a></p>'
     leaflet::clearBounds()
 
   # AnimalEncounters --------------------------------------------------------#
-  if (map_animals == TRUE) {
-    overlay_names <- c(
-      overlay_names,
-      "Live sightings (tags, rescue)",
-      "Mortalities (strandings)"
-    )
+  if (map_animals_alive == TRUE) {
+    overlay_names <- c(overlay_names, "Live sightings (tags, rescue)")
 
     l <- l %>%
       leaflet::addAwesomeMarkers(
@@ -201,7 +211,13 @@ Edit record in WAStD</a></p>'
         popup = ~ glue::glue(animal_popup_template),
         group = "Live sightings (tags, rescue)",
         clusterOptions = co
-      ) %>%
+      )
+  }
+
+  if (map_animals_dead == TRUE) {
+    overlay_names <- c(overlay_names, "Mortalities (strandings)")
+
+    l <- l %>%
       leaflet::addAwesomeMarkers(
         data = animals_dead,
         lng = ~longitude,
