@@ -116,8 +116,17 @@ Cause of death: {humanize(cause_of_death)}<br/>
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 Activity: {humanize(activity)}<br/>
 
-<p><a class="btn btn-xs btn-primary" target="_" rel="nofollow"
-href="{url}{absolute_admin_url}">Edit on WAStD</a></p>'
+<a href="{url}{survey_absolute_admin_url}"
+target="_" rel="nofollow" title="Edit Survey in WAStD">
+<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+Survey {survey_id}</a>
+{format(httpdate_as_gmt08(survey_start_time), fmt)} -
+{format(httpdate_as_gmt08(survey_end_time), fmt)}
+<br/>
+
+<a target="_" rel="nofollow" href="{url}{absolute_admin_url}">
+<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+Edit in WAStD</a><br/>'
 
   animal_label_template <- "
 {lubridate::with_tz(datetime, tz)}
@@ -144,43 +153,50 @@ href="{url}{absolute_admin_url}">Edit on WAStD</a></p>'
 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 {reporter_name}<br/>
 
-<p>Survey {survey_id} at {site_name}
-{format(httpdate_as_gmt08(survey_start_time), fmt)}-
-{format(httpdate_as_gmt08(survey_end_time), fmt)} AWST</p>
+<a href="{url}{survey_absolute_admin_url}"
+target="_" rel="nofollow" title="Edit Survey in WAStD">
+<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+Survey {survey_id}</a>
+{format(httpdate_as_gmt08(survey_start_time), fmt)} -
+{format(httpdate_as_gmt08(survey_end_time), fmt)}
+<br/>
 
-<p><a class="btn btn-xs btn-primary" target="_" rel="nofollow"
-href="{url}{absolute_admin_url}">Edit on WAStD</a></p>'
+<a target="_" rel="nofollow" href="{url}{absolute_admin_url}">
+<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+Edit in WAStD</a><br/>'
 
   dist_label_template <- "
 {lubridate::with_tz(datetime, tz)} {humanize(disturbance_cause)}"
 
   dist_popup_template <- '
-<h3>Signs of {humanize(disturbance_cause)}
-({humanize(encounter_encounter_type)})</h3>
+<h3>Signs of {humanize(disturbance_cause)} ({humanize(encounter_encounter_type)})
+</h3>
 
 <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-{encounter_area_name} - {encounter_site_name}</br>
+{encounter_area_name} - {encounter_site_name}<br/>
 
 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-{lubridate::with_tz(datetime, tz)} AWST</br>
+{lubridate::with_tz(datetime, tz)} AWST<br/>
 
 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 {encounter_observer_name}<br/>
 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 {encounter_reporter_name}<br/>
 
+<a href="{url}{encounter_survey_absolute_admin_url}"
+target="_" rel="nofollow" title="Edit Survey in WAStD">
+<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+Survey {encounter_survey_id}</a>
+{format(httpdate_as_gmt08(encounter_survey_start_time), fmt)} -
+{format(httpdate_as_gmt08(encounter_survey_end_time), fmt)}
+<br/>
+
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 {encounter_comments}<br/>
 
-<p>Survey {encounter_survey_id} at {encounter_site_name}<br/>
-{encounter_survey_start_time}-{encounter_survey_end_time}</p>
-<a href="{url}{encounter_survey_absolute_admin_url}"
-class="btn btn-xs btn-primary" target="_" rel="nofollow">
-Edit survey in WAStD</a>
-
-<p><a class="btn btn-xs btn-primary" target="_" rel="nofollow"
-href="{url}{absolute_admin_url}">
-Edit record in WAStD</a></p>'
+<a target="_" rel="nofollow" href="{url}{absolute_admin_url}">
+<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+Edit in WAStD</a><br/>'
 
   # Base map ----------------------------------------------------------------#
   l <- leaflet::leaflet(width = 800, height = 600) %>%
