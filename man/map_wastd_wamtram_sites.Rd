@@ -24,26 +24,14 @@ This map is useful to compare and update WAStD with and from WAMTRAM sites.
 library(wastdr)
 
 # From canned data
-data("wastd_data")
-data("wamtram_data") # canned data for package
-w2_data <- readRDS("~/projects/etlTurtleNesting/inst/w2.rds")
-map_wastd_wamtram_sites(wastd_data$areas, wastd_data$sites, wamtram_data$sites)
+wastd_sites <- wastdr::download_wastd_sites()
+load("inst/wamtram_data.RData")
+w2_data <- wamtram_data
+map_wastd_wamtram_sites(wastd_sites$localities, wastd_sites$sites, w2_data$sites)
 
 
 # From live data
-areas_sf <- wastd_GET("area") \%>\%
-  magrittr::extract2("data") \%>\%
-  geojsonio::as.json() \%>\%
-  geojsonsf::geojson_sf()
-
-areas <- areas_sf \%>\%
-  dplyr::filter(area_type == "Locality") \%>\%
-  dplyr::transmute(area_id = pk, area_name = name, w2_location_code = w2_location_code)
-
-sites <- areas_sf \%>\%
-  dplyr::filter(area_type == "Site") \%>\%
-  dplyr::transmute(site_id = pk, site_name = name, w2_place_code = w2_place_code) \%>\%
-  sf::st_join(areas)
+ws <- wastdr::download_wastd_sites()
 
 # split rows by place code, map only what place codes are not in wastd yet
 map_wastd_wamtram_sites(areas, sites, w2_data$sites)
