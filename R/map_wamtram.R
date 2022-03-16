@@ -39,6 +39,8 @@
 #' }
 map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
                         wa_sites = NULL, l_width = NULL, l_height = NULL) {
+
+  # Gatechecks ----------------------------------------------------------------#
   if (class(data) != "wamtram_data") {
     glue::glue(
       "The first argument needs to be an object of class ",
@@ -46,6 +48,7 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
     ) %>% wastdr_msg_abort()
   }
 
+ # Filter WAMTRAM Encounters by loc, place, obs ID ----------------------------#
   enc <- data$enc %>%
     dplyr::filter(
       !is.na(longitude),
@@ -55,7 +58,8 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
       latitude > -90,
       latitude < 90
     )
-  sites <- data$sites %>%
+
+    sites <- data$sites %>%
     dplyr::filter(!is.na(site_longitude), !is.na(site_latitude))
 
   if (!is.null(location) && location != "") {
@@ -72,13 +76,12 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
     enc <- enc %>% dplyr::filter(observation_id == obs_id)
   }
 
+  # Basemap -------------------------------------------------------------------#
   co <- NULL
   co <- if (nrow(enc) > 1000) co <- leaflet::markerClusterOptions()
   sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
 
-  og <- c("WAMTRAM sites", "WAMTRAM turtles")
-
-  leaflet::leaflet(width = l_width, height = l_height) %>%
+  l <- leaflet::leaflet(width = l_width, height = l_height) %>%
     leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
     leaflet::addProviderTiles(
       "OpenStreetMap.Mapnik",
@@ -87,57 +90,49 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
     ) %>%
     leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
     leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
-    leaflet::clearBounds() %>%
-    leaflet::addAwesomeMarkers(
-      data = sites,
-      lng = ~site_longitude,
-      lat = ~site_latitude,
-      icon = leaflet::makeAwesomeIcon(markerColor = "green", iconColor = "white"),
-      label = ~ glue::glue("[{prefix} {code}] {label}"),
-      popup = ~ glue::glue('
-                <h3>{label}</h3>
-                <i class="fa fa-solid fa-map-location-dot"></i> {prefix} {code}<br/>
-                <i class="fa fa-solid fa-location-dot"></i> {round(site_latitude, 5)} {round(site_longitude, 5)}<br/>
-                <i class="fa fa-solid fa-comment"></i> {description}
-            '),
-      group = "WAMTRAM sites"
-    ) %>%
-    leaflet::addAwesomeMarkers(
-      data = enc,
-      lng = ~longitude,
-      lat = ~latitude,
-      icon = leaflet::makeAwesomeIcon(markerColor = "red", iconColor = "white"),
-      label = ~ glue::glue("{observation_datetime_gmt08} {species_code} {observation_status}"),
+    leaflet::clearBounds()
 
+  # Split WAMTRAM Encounters by season ----------------------------------------#
+  data.df <- enc %>% split(enc$season)
+  og <- c(names(data.df), "WAMTRAM sites")
 
-      # observation_id turtle_id alive measurer_person_id
-      # measurer_reporter_person_id tagger_person_id reporter_person_id
-      # place_code place_description datum_code latitude longitude
-      # latitude_degrees latitude_minutes latitude_seconds
-      # longitude_degrees longitude_minutes longitude_seconds zone easting
-      # northing activity_code beach_position_code condition_code nesting
-      # clutch_completed number_of_eggs egg_count_method measurements
-      # action_taken comments entered_by date_entered
-      # original_observation_id entry_batch_id
-      # comment_fromrecordedtagstable scars_left scars_right other_tags
-      # other_tags_identification_type transfer_id mund
-      # entered_by_person_id scars_left_scale_1 scars_left_scale_2
-      # scars_left_scale_3 scars_right_scale_1 scars_right_scale_2
-      # scars_right_scale_3 cc_length_not_measured
-      # cc_notch_length_not_measured cc_width_not_measured
-      # tag_scar_not_checked did_not_check_for_injury date_convention
-      # observation_status o_date o_time observation_datetime_gmt08
-      # observation_datetime_utc longitude_dd latitude_dd
-      # latitude_from_dms longitude_from_dms activity_description
-      # activity_is_nesting activity_label display_this_observation label
-      # prefix is_rookery beach_approach beach_aspect site_datum
-      # site_latitude site_longitude description species_code
-      # identification_confidence sex turtle_status location_code
-      # cause_of_death re_entered_population turtle_comments
-      # original_turtle_id tag mund_id turtle_name
-      #
-      # <strong></strong> {}<br/>
-      popup = ~ glue::glue('
+  names(data.df) %>%
+    purrr::walk(function(df) {
+      l <<- l %>%
+        leaflet::addAwesomeMarkers(
+          data = data.df[[df]],
+          lng = ~longitude,
+          lat = ~latitude,
+          icon = leaflet::makeAwesomeIcon(markerColor = "red", iconColor = "white"),
+          label = ~ glue::glue("{observation_datetime_gmt08} {species_code} {observation_status}"),
+          # observation_id turtle_id alive measurer_person_id
+          # measurer_reporter_person_id tagger_person_id reporter_person_id
+          # place_code place_description datum_code latitude longitude
+          # latitude_degrees latitude_minutes latitude_seconds
+          # longitude_degrees longitude_minutes longitude_seconds zone easting
+          # northing activity_code beach_position_code condition_code nesting
+          # clutch_completed number_of_eggs egg_count_method measurements
+          # action_taken comments entered_by date_entered
+          # original_observation_id entry_batch_id
+          # comment_fromrecordedtagstable scars_left scars_right other_tags
+          # other_tags_identification_type transfer_id mund
+          # entered_by_person_id scars_left_scale_1 scars_left_scale_2
+          # scars_left_scale_3 scars_right_scale_1 scars_right_scale_2
+          # scars_right_scale_3 cc_length_not_measured
+          # cc_notch_length_not_measured cc_width_not_measured
+          # tag_scar_not_checked did_not_check_for_injury date_convention
+          # observation_status o_date o_time observation_datetime_gmt08
+          # observation_datetime_utc longitude_dd latitude_dd
+          # latitude_from_dms longitude_from_dms activity_description
+          # activity_is_nesting activity_label display_this_observation label
+          # prefix is_rookery beach_approach beach_aspect site_datum
+          # site_latitude site_longitude description species_code
+          # identification_confidence sex turtle_status location_code
+          # cause_of_death re_entered_population turtle_comments
+          # original_turtle_id tag mund_id turtle_name
+          #
+          # <strong></strong> {}<br/>
+          popup = ~ glue::glue('
             <h3>{species_code} {observation_status}</h3>
             <h4>{observation_datetime_gmt08} AWST</h4>
             <i class="fa fa-tags"></i> <strong>Turtle ID</strong> {turtle_id}<br/>
@@ -148,9 +143,29 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
             <i class="fa fa-location-dot"></i> <strong>Supplied DMS</strong> {latitude_from_dms}  {longitude_from_dms}<br/>
             <i class="fa fa-location-dot"></i> <strong>Supplied EN</strong> {northing} {easting} {zone} {datum_code}<br/>
                 '),
-      group = "WAMTRAM turtles",
-      clusterOptions = co
+          group = df,
+          clusterOptions = co
+        )
+    })
+
+  # WAMTRAM sites -------------------------------------------------------------#
+  l %>%
+    leaflet::addAwesomeMarkers(
+      data = sites,
+      lng = ~site_longitude,
+      lat = ~site_latitude,
+      icon = leaflet::makeAwesomeIcon(markerColor = "green", iconColor = "white"),
+      label = ~ glue::glue("[{prefix} {code}] {label}"),
+      popup = ~ glue::glue('
+                <h3>{label}</h3>
+                <i class="fa fa-solid fa-map-location-dot"></i> {prefix} {code}<br/>
+                <i class="fa fa-solid fa-location-dot"></i>
+                {round(site_latitude, 5)} {round(site_longitude, 5)}<br/>
+                <i class="fa fa-solid fa-comment"></i> {description}
+            '),
+      group = "WAMTRAM sites"
     ) %>%
+    # WAStD sites -------------------------------------------------------------#
     {
       if (!is.null(wa_sites)) {
         og <<- c(og, "WAStD Sites")
