@@ -48,7 +48,7 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
     ) %>% wastdr_msg_abort()
   }
 
- # Filter WAMTRAM Encounters by loc, place, obs ID ----------------------------#
+  # Filter WAMTRAM Encounters by loc, place, obs ID ----------------------------#
   enc <- data$enc %>%
     dplyr::filter(
       !is.na(longitude),
@@ -59,7 +59,7 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
       latitude < 90
     )
 
-    sites <- data$sites %>%
+  sites <- data$sites %>%
     dplyr::filter(!is.na(site_longitude), !is.na(site_latitude))
 
   if (!is.null(location) && location != "") {
@@ -94,7 +94,8 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
 
   # Split WAMTRAM Encounters by season ----------------------------------------#
   data.df <- enc %>% split(enc$season)
-  og <- c(names(data.df), "WAMTRAM sites")
+  seasons <- as.integer(names(data.df))
+  og <- c(glue::glue("Turtles {seasons}-{seasons+1}"), "WAMTRAM sites")
 
   names(data.df) %>%
     purrr::walk(function(df) {
@@ -143,7 +144,7 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
             <i class="fa fa-location-dot"></i> <strong>Supplied DMS</strong> {latitude_from_dms}  {longitude_from_dms}<br/>
             <i class="fa fa-location-dot"></i> <strong>Supplied EN</strong> {northing} {easting} {zone} {datum_code}<br/>
                 '),
-          group = df,
+          group = glue::glue("Turtles {df}-{as.integer(df)+1}"),
           clusterOptions = co
         )
     })
