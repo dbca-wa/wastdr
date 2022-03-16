@@ -79,18 +79,8 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
   # Basemap -------------------------------------------------------------------#
   co <- NULL
   co <- if (nrow(enc) > 1000) co <- leaflet::markerClusterOptions()
-  sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
 
-  l <- leaflet::leaflet(width = l_width, height = l_height) %>%
-    leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
-    leaflet::addProviderTiles(
-      "OpenStreetMap.Mapnik",
-      group = "Basemap",
-      options = leaflet::providerTileOptions(opacity = 0.35)
-    ) %>%
-    leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
-    leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
-    leaflet::clearBounds()
+  l <- leaflet_basemap()
 
   # Split WAMTRAM Encounters by season ----------------------------------------#
   data.df <- enc %>% split(enc$season)

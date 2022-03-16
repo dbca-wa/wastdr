@@ -93,7 +93,6 @@ map_wastd <- function(x,
 
   # Map options -------------------------------------------------------------#
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
-  sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
   overlay_names <- c()
   url <- sub("/$", "", wastd_url)
 
@@ -199,16 +198,7 @@ Survey {encounter_survey_id}</a>
 Edit in WAStD</a><br/>'
 
   # Base map ----------------------------------------------------------------#
-  l <- leaflet::leaflet(width = 800, height = 600) %>%
-    leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
-    leaflet::addProviderTiles(
-      "OpenStreetMap.Mapnik",
-      group = "Basemap",
-      options = leaflet::providerTileOptions(opacity = 0.35)
-    ) %>%
-    leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
-    leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
-    leaflet::clearBounds()
+  l <- leaflet_basemap()
 
   # AnimalEncounters --------------------------------------------------------#
   if (map_animals_alive == TRUE) {

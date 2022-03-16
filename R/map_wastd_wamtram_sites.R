@@ -28,7 +28,6 @@
 #' }
 map_wastd_wamtram_sites <-
   function(wastd_areas, wastd_sites, wamtram_sites) {
-    sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
     s <- wastd_sites %>%
       tidyr::separate_rows(w2_place_code, sep = " ")
 
@@ -58,16 +57,7 @@ map_wastd_wamtram_sites <-
         <a href="https://wastd.dbca.wa.gov.au/admin/observations/area/{site_id}"
          class="btn btn-xs btn-success">Edit</a>'
 
-    leaflet::leaflet() %>%
-      leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
-      leaflet::addProviderTiles(
-        "OpenStreetMap.Mapnik",
-        group = "Basemap",
-        options = leaflet::providerTileOptions(opacity = 0.35)
-      ) %>%
-      leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
-      leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
-      leaflet::clearBounds() %>%
+    leaflet_basemap() %>%
       leaflet::addAwesomeMarkers(
         data = w_imported,
         lng = ~site_longitude,

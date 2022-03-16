@@ -31,18 +31,8 @@ map_sv_odkc <- function(svs,
                         tz = "Australia/Perth",
                         cluster = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
-  sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
 
-  l <- leaflet::leaflet(width = 800, height = 600) %>%
-    leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
-    leaflet::addProviderTiles(
-      "OpenStreetMap.Mapnik",
-      group = "Basemap",
-      options = leaflet::providerTileOptions(opacity = 0.35)
-    ) %>%
-    leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
-    leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
-    leaflet::clearBounds() %>%
+  l <- leaflet_basemap() %>%
     # Site Visit Start
     leaflet::addAwesomeMarkers(
       data = svs,

@@ -29,21 +29,11 @@ map_tracks <- function(tracks,
                        cluster = FALSE,
                        ts = FALSE) {
   co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
-  sbo <- leaflet::scaleBarOptions(imperial = FALSE, maxWidth = 200)
   url <- sub("/$", "", wastd_url)
 
   if (!("name" %in% names(tracks))) tracks <- dplyr::mutate(tracks, name = "")
 
-  l <- leaflet::leaflet(width = 800, height = 600) %>%
-    leaflet::addProviderTiles("Esri.WorldImagery", group = "Basemap") %>%
-    leaflet::addProviderTiles(
-      "OpenStreetMap.Mapnik",
-      group = "Basemap",
-      options = leaflet::providerTileOptions(opacity = 0.35)
-    ) %>%
-    leaflet.extras::addFullscreenControl(pseudoFullscreen = TRUE) %>%
-    leaflet::addScaleBar(position = "bottomleft", options = sbo) %>%
-    leaflet::clearBounds() %>%
+  l <- leaflet_basemap() %>%
     {
       if (ts == TRUE) {
         leaftime::addTimeline(.,
