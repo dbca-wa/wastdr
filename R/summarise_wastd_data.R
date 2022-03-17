@@ -169,130 +169,132 @@ summarise_wastd_data_per_day_site <- function(x) {
 #' @examples
 #' data(wastd_data)
 #' wastd_data %>% total_emergences_per_area_season_species()
-total_emergences_per_area_season_species <- function(x){
-    if (class(x) != "wastd_data") {
-        wastdr_msg_abort(
-            glue::glue(
-                "The first argument needs to be an object of class \"wastd_data\", ",
-                "e.g. the output of wastdr::download_wastd_turtledata."
-            )
-        )
-    }
+total_emergences_per_area_season_species <- function(x) {
+  if (class(x) != "wastd_data") {
+    wastdr_msg_abort(
+      glue::glue(
+        "The first argument needs to be an object of class \"wastd_data\", ",
+        "e.g. the output of wastdr::download_wastd_turtledata."
+      )
+    )
+  }
 
-    shared_cols <- c("area_name", "species", "season")
+  shared_cols <- c("area_name", "species", "season")
 
-    # Missed turtles from form "Turtle Track or Nest" filled during tagging
-    # We don't filter by track_age
-    # This includes "missed just now" from tagging,
-    # "fresh" and "old" from morning track count.
-    wastd_missed_turtles_single <-
-        x$tracks %>%
-        wastdr::filter_realspecies() %>%
-        dplyr::filter(
-            nest_type %in% c(
-                "successful-crawl",
-                "false-crawl",
-                "track-unsure",
-                "track-not-assessed")
-        ) %>%
-        dplyr::group_by(area_name, season, species) %>%
-        dplyr::tally(name = "missed_single") %>%
-        dplyr::ungroup()
+  # Missed turtles from form "Turtle Track or Nest" filled during tagging
+  # We don't filter by track_age
+  # This includes "missed just now" from tagging,
+  # "fresh" and "old" from morning track count.
+  wastd_missed_turtles_single <-
+    x$tracks %>%
+    wastdr::filter_realspecies() %>%
+    dplyr::filter(
+      nest_type %in% c(
+        "successful-crawl",
+        "false-crawl",
+        "track-unsure",
+        "track-not-assessed"
+      )
+    ) %>%
+    dplyr::group_by(area_name, season, species) %>%
+    dplyr::tally(name = "missed_single") %>%
+    dplyr::ungroup()
 
-    # Missed turtles from "Track Tally"
-    # This data comes from either saturated beaches (CDO) or backfilled datasheets
-    wastd_missed_turtles_tally <-
-        x$track_tally %>%
-        wastdr::filter_realspecies() %>%
-        dplyr::filter(
-            nest_type %in% c(
-                "successful-crawl",
-                "false-crawl",
-                "track-unsure",
-                "track-not-assessed")
-        ) %>%
-        dplyr::group_by(encounter_area_name, season, species) %>%
-        dplyr::rename(area_name = encounter_area_name) %>%
-        dplyr::summarize(missed_tally = sum(tally)) %>%
-        dplyr::ungroup()
+  # Missed turtles from "Track Tally"
+  # This data comes from either saturated beaches (CDO) or backfilled datasheets
+  wastd_missed_turtles_tally <-
+    x$track_tally %>%
+    wastdr::filter_realspecies() %>%
+    dplyr::filter(
+      nest_type %in% c(
+        "successful-crawl",
+        "false-crawl",
+        "track-unsure",
+        "track-not-assessed"
+      )
+    ) %>%
+    dplyr::group_by(encounter_area_name, season, species) %>%
+    dplyr::rename(area_name = encounter_area_name) %>%
+    dplyr::summarize(missed_tally = sum(tally)) %>%
+    dplyr::ungroup()
 
-    # Combined from forms "Turtle Track or Nest" and "Track Tally"
-    wastd_missed_turtles <-
-        wastd_missed_turtles_single %>%
-        dplyr::full_join(wastd_missed_turtles_tally, by=shared_cols) %>%
-        tidyr::replace_na(list(missed_single=0, missed_tally=0)) %>%
-        dplyr::mutate(missed = missed_single + missed_tally) %>%
-        dplyr::select(-missed_single, -missed_tally)
+  # Combined from forms "Turtle Track or Nest" and "Track Tally"
+  wastd_missed_turtles <-
+    wastd_missed_turtles_single %>%
+    dplyr::full_join(wastd_missed_turtles_tally, by = shared_cols) %>%
+    tidyr::replace_na(list(missed_single = 0, missed_tally = 0)) %>%
+    dplyr::mutate(missed = missed_single + missed_tally) %>%
+    dplyr::select(-missed_single, -missed_tally)
 
-    # -----------------------------------------------------------------------------#
-    # Emergences: processed + missed
-    # w2_processed_turtles = w2_tagged_turtles + w2_non_tagged_turtles
-    # w2_processed_turtles <- w2 %>%
-    #     dplyr::group_by(season, turtle_date, species) %>%
-    #     dplyr::tally(name = "processed") %>%
-    #     dplyr::ungroup()
-    #
-    # w2_tagged_turtles <- w2 %>%
-    #     dplyr::filter(turtle_status %in% c("A", "P", "Q", "T", "R")) %>%
-    #     dplyr::group_by(season, turtle_date, species) %>%
-    #     dplyr::tally(name = "tagged") %>%
-    #     dplyr::ungroup()
-    #
-    # w2_non_tagged_turtles <- w2 %>%
-    #     dplyr::filter(turtle_status %in% c("N", NA, "C", "S")) %>%
-    #     dplyr::group_by(season, turtle_date, species) %>%
-    #     dplyr::tally(name = "non_tagged") %>%
-    #     dplyr::ungroup()
-    #
-    wastd_processed_turtles <- x$animals %>%
-        filter_realspecies() %>%
-        filter_alive() %>%
-        dplyr::filter(taxon == "Cheloniidae") %>%
-        dplyr::group_by(area_name, season, species) %>%
-        dplyr::tally(name = "processed") %>%
-        dplyr::ungroup()
+  # -----------------------------------------------------------------------------#
+  # Emergences: processed + missed
+  # w2_processed_turtles = w2_tagged_turtles + w2_non_tagged_turtles
+  # w2_processed_turtles <- w2 %>%
+  #     dplyr::group_by(season, turtle_date, species) %>%
+  #     dplyr::tally(name = "processed") %>%
+  #     dplyr::ungroup()
+  #
+  # w2_tagged_turtles <- w2 %>%
+  #     dplyr::filter(turtle_status %in% c("A", "P", "Q", "T", "R")) %>%
+  #     dplyr::group_by(season, turtle_date, species) %>%
+  #     dplyr::tally(name = "tagged") %>%
+  #     dplyr::ungroup()
+  #
+  # w2_non_tagged_turtles <- w2 %>%
+  #     dplyr::filter(turtle_status %in% c("N", NA, "C", "S")) %>%
+  #     dplyr::group_by(season, turtle_date, species) %>%
+  #     dplyr::tally(name = "non_tagged") %>%
+  #     dplyr::ungroup()
+  #
+  wastd_processed_turtles <- x$animals %>%
+    filter_realspecies() %>%
+    filter_alive() %>%
+    dplyr::filter(taxon == "Cheloniidae") %>%
+    dplyr::group_by(area_name, season, species) %>%
+    dplyr::tally(name = "processed") %>%
+    dplyr::ungroup()
 
-    wastd_processed_turtles_tagged <- x$animals %>%
-        filter_realspecies() %>%
-        filter_alive() %>%
-        dplyr::filter(taxon == "Cheloniidae") %>%
-        dplyr::filter(encounter_type == "tagging") %>%
-        dplyr::group_by(area_name, season, species) %>%
-        dplyr::tally(name = "tagged") %>%
-        dplyr::ungroup()
+  wastd_processed_turtles_tagged <- x$animals %>%
+    filter_realspecies() %>%
+    filter_alive() %>%
+    dplyr::filter(taxon == "Cheloniidae") %>%
+    dplyr::filter(encounter_type == "tagging") %>%
+    dplyr::group_by(area_name, season, species) %>%
+    dplyr::tally(name = "tagged") %>%
+    dplyr::ungroup()
 
-    wastd_processed_turtles_non_tagged <- x$animals %>%
-        filter_realspecies() %>%
-        filter_alive() %>%
-        dplyr::filter(taxon == "Cheloniidae") %>%
-        dplyr::filter(encounter_type != "tagging") %>%
-        dplyr::group_by(area_name, season, species) %>%
-        dplyr::tally(name = "non_tagged") %>%
-        dplyr::ungroup()
+  wastd_processed_turtles_non_tagged <- x$animals %>%
+    filter_realspecies() %>%
+    filter_alive() %>%
+    dplyr::filter(taxon == "Cheloniidae") %>%
+    dplyr::filter(encounter_type != "tagging") %>%
+    dplyr::group_by(area_name, season, species) %>%
+    dplyr::tally(name = "non_tagged") %>%
+    dplyr::ungroup()
 
-    # Total emergences = missed (WAStD) + processed (w2)
-    # Important to replace NA with 0 before adding, as num + NA = NA
-    total_turtles <-
-        wastd_missed_turtles %>%
-        dplyr::full_join(wastd_processed_turtles, by=shared_cols) %>%
-        dplyr::full_join(wastd_processed_turtles_tagged, by=shared_cols) %>%
-        dplyr::full_join(wastd_processed_turtles_non_tagged, by=shared_cols) %>%
-        tidyr::replace_na(list(missed=0, processed=0, tagged=0, non_tagged=0)) %>%
-        dplyr::mutate(
-            emergences = processed + missed,
-            processed_pct = round(processed * 100 / emergences, 2)
-        ) %>%
-        dplyr::arrange(season, species) %>%
-        dplyr::mutate(
-            species=stringr::str_to_sentence(species) %>% stringr::str_replace("-"," ")
-        ) %>%
-        dplyr::select(
-            area_name, season, species,
-            emergences, processed, missed, processed_pct, tagged, non_tagged
-        )
-    # %>% janitor::clean_names(case="sentence")
+  # Total emergences = missed (WAStD) + processed (w2)
+  # Important to replace NA with 0 before adding, as num + NA = NA
+  total_turtles <-
+    wastd_missed_turtles %>%
+    dplyr::full_join(wastd_processed_turtles, by = shared_cols) %>%
+    dplyr::full_join(wastd_processed_turtles_tagged, by = shared_cols) %>%
+    dplyr::full_join(wastd_processed_turtles_non_tagged, by = shared_cols) %>%
+    tidyr::replace_na(list(missed = 0, processed = 0, tagged = 0, non_tagged = 0)) %>%
+    dplyr::mutate(
+      emergences = processed + missed,
+      processed_pct = round(processed * 100 / emergences, 2)
+    ) %>%
+    dplyr::arrange(season, species) %>%
+    dplyr::mutate(
+      species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
+    ) %>%
+    dplyr::select(
+      area_name, season, species,
+      emergences, processed, missed, processed_pct, tagged, non_tagged
+    )
+  # %>% janitor::clean_names(case="sentence")
 
-    total_turtles
+  total_turtles
 }
 
 #' Calculate total emergences per site, season, species
@@ -307,131 +309,180 @@ total_emergences_per_area_season_species <- function(x){
 #' @examples
 #' data(wastd_data)
 #' wastd_data %>% total_emergences_per_site_season_species()
-total_emergences_per_site_season_species <- function(x){
-    if (class(x) != "wastd_data") {
-        wastdr_msg_abort(
-            glue::glue(
-                "The first argument needs to be an object of class \"wastd_data\", ",
-                "e.g. the output of wastdr::download_wastd_turtledata."
-            )
-        )
-    }
+total_emergences_per_site_season_species <- function(x) {
+  if (class(x) != "wastd_data") {
+    wastdr_msg_abort(
+      glue::glue(
+        "The first argument needs to be an object of class \"wastd_data\", ",
+        "e.g. the output of wastdr::download_wastd_turtledata."
+      )
+    )
+  }
 
-    shared_cols <- c("area_name", "site_name", "species", "season")
+  shared_cols <- c("area_name", "site_name", "species", "season")
 
-    # Missed turtles from form "Turtle Track or Nest" filled during tagging
-    # We don't filter by track_age
-    # This includes "missed just now" from tagging,
-    # "fresh" and "old" from morning track count.
-    wastd_missed_turtles_single <-
-        x$tracks %>%
-        wastdr::filter_realspecies() %>%
-        dplyr::filter(
-            nest_type %in% c(
-                "successful-crawl",
-                "false-crawl",
-                "track-unsure",
-                "track-not-assessed")
-        ) %>%
-        dplyr::group_by(area_name, site_name, species, season) %>%
-        dplyr::tally(name = "missed_single") %>%
-        dplyr::ungroup()
+  # Missed turtles from form "Turtle Track or Nest" filled during tagging
+  # We don't filter by track_age
+  # This includes "missed just now" from tagging,
+  # "fresh" and "old" from morning track count.
+  wastd_missed_turtles_single <-
+    x$tracks %>%
+    wastdr::filter_realspecies() %>%
+    dplyr::filter(
+      nest_type %in% c(
+        "successful-crawl",
+        "false-crawl",
+        "track-unsure",
+        "track-not-assessed"
+      )
+    ) %>%
+    dplyr::group_by(area_name, site_name, species, season) %>%
+    dplyr::tally(name = "missed_single") %>%
+    dplyr::ungroup()
 
-    # Missed turtles from "Track Tally"
-    # This data comes from either saturated beaches (CDO) or backfilled datasheets
-    wastd_missed_turtles_tally <-
-        x$track_tally %>%
-        wastdr::filter_realspecies() %>%
-        dplyr::filter(
-            nest_type %in% c(
-                "successful-crawl",
-                "false-crawl",
-                "track-unsure",
-                "track-not-assessed")
-        ) %>%
-        dplyr::group_by(encounter_area_name, encounter_site_name, season, species) %>%
-        dplyr::rename(area_name = encounter_area_name, site_name = encounter_site_name) %>%
-        dplyr::summarize(missed_tally = sum(tally)) %>%
-        dplyr::ungroup()
+  # Missed turtles from "Track Tally"
+  # This data comes from either saturated beaches (CDO) or backfilled datasheets
+  wastd_missed_turtles_tally <-
+    x$track_tally %>%
+    wastdr::filter_realspecies() %>%
+    dplyr::filter(
+      nest_type %in% c(
+        "successful-crawl",
+        "false-crawl",
+        "track-unsure",
+        "track-not-assessed"
+      )
+    ) %>%
+    dplyr::group_by(encounter_area_name, encounter_site_name, season, species) %>%
+    dplyr::rename(area_name = encounter_area_name, site_name = encounter_site_name) %>%
+    dplyr::summarize(missed_tally = sum(tally)) %>%
+    dplyr::ungroup()
 
-    # Combined from forms "Turtle Track or Nest" and "Track Tally"
-    wastd_missed_turtles <-
-        wastd_missed_turtles_single %>%
-        dplyr::full_join(wastd_missed_turtles_tally,
-                         by=shared_cols) %>%
-        tidyr::replace_na(list(missed_single=0, missed_tally=0)) %>%
-        dplyr::mutate(missed = missed_single + missed_tally) %>%
-        dplyr::select(-missed_single, -missed_tally)
+  # Combined from forms "Turtle Track or Nest" and "Track Tally"
+  wastd_missed_turtles <-
+    wastd_missed_turtles_single %>%
+    dplyr::full_join(wastd_missed_turtles_tally,
+      by = shared_cols
+    ) %>%
+    tidyr::replace_na(list(missed_single = 0, missed_tally = 0)) %>%
+    dplyr::mutate(missed = missed_single + missed_tally) %>%
+    dplyr::select(-missed_single, -missed_tally)
 
-    # -----------------------------------------------------------------------------#
-    # Emergences: processed + missed
-    # w2_processed_turtles = w2_tagged_turtles + w2_non_tagged_turtles
-    # w2_processed_turtles <- w2 %>%
-    #     dplyr::group_by(season, turtle_date, species) %>%
-    #     dplyr::tally(name = "processed") %>%
-    #     dplyr::ungroup()
-    #
-    # w2_tagged_turtles <- w2 %>%
-    #     dplyr::filter(turtle_status %in% c("A", "P", "Q", "T", "R")) %>%
-    #     dplyr::group_by(season, turtle_date, species) %>%
-    #     dplyr::tally(name = "tagged") %>%
-    #     dplyr::ungroup()
-    #
-    # w2_non_tagged_turtles <- w2 %>%
-    #     dplyr::filter(turtle_status %in% c("N", NA, "C", "S")) %>%
-    #     dplyr::group_by(season, turtle_date, species) %>%
-    #     dplyr::tally(name = "non_tagged") %>%
-    #     dplyr::ungroup()
-    #
-    wastd_processed_turtles <- x$animals %>%
-        filter_realspecies() %>%
-        filter_alive() %>%
-        dplyr::filter(taxon == "Cheloniidae") %>%
-        dplyr::group_by(area_name, site_name, season, species) %>%
-        dplyr::tally(name = "processed") %>%
-        dplyr::ungroup()
+  # -----------------------------------------------------------------------------#
+  # Emergences: processed + missed
+  # w2_processed_turtles = w2_tagged_turtles + w2_non_tagged_turtles
+  # w2_processed_turtles <- w2 %>%
+  #     dplyr::group_by(season, turtle_date, species) %>%
+  #     dplyr::tally(name = "processed") %>%
+  #     dplyr::ungroup()
+  #
+  # w2_tagged_turtles <- w2 %>%
+  #     dplyr::filter(turtle_status %in% c("A", "P", "Q", "T", "R")) %>%
+  #     dplyr::group_by(season, turtle_date, species) %>%
+  #     dplyr::tally(name = "tagged") %>%
+  #     dplyr::ungroup()
+  #
+  # w2_non_tagged_turtles <- w2 %>%
+  #     dplyr::filter(turtle_status %in% c("N", NA, "C", "S")) %>%
+  #     dplyr::group_by(season, turtle_date, species) %>%
+  #     dplyr::tally(name = "non_tagged") %>%
+  #     dplyr::ungroup()
+  #
+  wastd_processed_turtles <- x$animals %>%
+    filter_realspecies() %>%
+    filter_alive() %>%
+    dplyr::filter(taxon == "Cheloniidae") %>%
+    dplyr::group_by(area_name, site_name, season, species) %>%
+    dplyr::tally(name = "processed") %>%
+    dplyr::ungroup()
 
-    wastd_processed_turtles_tagged <- x$animals %>%
-        filter_realspecies() %>%
-        filter_alive() %>%
-        dplyr::filter(taxon == "Cheloniidae") %>%
-        dplyr::filter(encounter_type == "tagging") %>%
-        dplyr::group_by(area_name, site_name, season, species) %>%
-        dplyr::tally(name = "tagged") %>%
-        dplyr::ungroup()
+  wastd_processed_turtles_tagged <- x$animals %>%
+    filter_realspecies() %>%
+    filter_alive() %>%
+    dplyr::filter(taxon == "Cheloniidae") %>%
+    dplyr::filter(encounter_type == "tagging") %>%
+    dplyr::group_by(area_name, site_name, season, species) %>%
+    dplyr::tally(name = "tagged") %>%
+    dplyr::ungroup()
 
-    wastd_processed_turtles_non_tagged <- x$animals %>%
-        filter_realspecies() %>%
-        filter_alive() %>%
-        dplyr::filter(taxon == "Cheloniidae") %>%
-        dplyr::filter(encounter_type != "tagging") %>%
-        dplyr::group_by(area_name, site_name, season, species) %>%
-        dplyr::tally(name = "non_tagged") %>%
-        dplyr::ungroup()
+  wastd_processed_turtles_non_tagged <- x$animals %>%
+    filter_realspecies() %>%
+    filter_alive() %>%
+    dplyr::filter(taxon == "Cheloniidae") %>%
+    dplyr::filter(encounter_type != "tagging") %>%
+    dplyr::group_by(area_name, site_name, season, species) %>%
+    dplyr::tally(name = "non_tagged") %>%
+    dplyr::ungroup()
 
-    # Total emergences = missed (WAStD) + processed (w2)
-    # Important to replace NA with 0 before adding, as num + NA = NA
-    total_turtles <-
-        wastd_missed_turtles %>%
-        dplyr::full_join(wastd_processed_turtles, by=shared_cols) %>%
-        dplyr::full_join(wastd_processed_turtles_tagged, by=shared_cols) %>%
-        dplyr::full_join(wastd_processed_turtles_non_tagged, by=shared_cols) %>%
-        tidyr::replace_na(list(missed=0, processed=0, tagged=0, non_tagged=0)) %>%
-        dplyr::mutate(
-            emergences = processed + missed,
-            processed_pct = round(processed * 100 / emergences, 2)
-        ) %>%
-        dplyr::arrange(season, species) %>%
-        dplyr::mutate(
-            species=stringr::str_to_sentence(species) %>% stringr::str_replace("-"," ")
-        ) %>%
-        dplyr::select(
-            area_name, site_name, season, species, emergences, processed, missed, processed_pct, tagged, non_tagged
-        )
-    # %>% janitor::clean_names(case="sentence")
+  # Total emergences = missed (WAStD) + processed (w2)
+  # Important to replace NA with 0 before adding, as num + NA = NA
+  total_turtles <-
+    wastd_missed_turtles %>%
+    dplyr::full_join(wastd_processed_turtles, by = shared_cols) %>%
+    dplyr::full_join(wastd_processed_turtles_tagged, by = shared_cols) %>%
+    dplyr::full_join(wastd_processed_turtles_non_tagged, by = shared_cols) %>%
+    tidyr::replace_na(list(missed = 0, processed = 0, tagged = 0, non_tagged = 0)) %>%
+    dplyr::mutate(
+      emergences = processed + missed,
+      processed_pct = round(processed * 100 / emergences, 2)
+    ) %>%
+    dplyr::arrange(season, species) %>%
+    dplyr::mutate(
+      species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
+    ) %>%
+    dplyr::select(
+      area_name, site_name, season, species, emergences, processed, missed, processed_pct, tagged, non_tagged
+    )
+  # %>% janitor::clean_names(case="sentence")
 
-    total_turtles
+  total_turtles
 }
 
+#' Return a stacked ggplot barchart of emergences
+#'
+#' Facets: species
+#'
+#' @param data The output of `total_emergences_per_area_season_species`, a
+#'  summary of `wastd_data`.
+#' @param species The species to filter the data by.
+#'   Default: "Natator depressus".
+#'   Other options:
+#'   "Chelonia mydas" (Green), "Eretmochelys imbricata" (Hawksbill),
+#'   "Caretta caretta" (Loggerhead), "Lepidochelys olivacea" (Olive Ridley)
+#'
+#' @return A plotly figure
+#' @export
+#'
+#' @examples
+#' data(wastd_data)
+#' wastd_data %>%
+#'   total_emergences_per_area_season_species() %>%
+#'   ggplot_total_emergences_per_area_season_species()
+ggplot_total_emergences_per_area_season_species <- function(data) {
+    data %>%
+        dplyr::select(-emergences, -processed, -processed_pct) %>%
+        tidyr::pivot_longer(c(tagged, non_tagged, missed),
+                            names_to = "Processing",
+                            values_to = "Emergences") %>%
+      ggplot2::ggplot(ggplot2::aes(fill=Processing, y=Emergences, x=season)) +
+      ggplot2::geom_bar(position="stack", stat="identity") +
+      ggplot2::facet_wrap(~ species, ncol=1)
+}
 
-
+#' Return a stacked plotly barchart of emergences
+#'
+#' @param data The output of `ggplot_total_emergences_per_area_season_species`,
+#'  a visualisation of a summary of `wastd_data`.
+#'
+#' @return A plotly figure
+#' @export
+#'
+#' @examples
+#' data(wastd_data)
+#' wastd_data %>%
+#'   total_emergences_per_area_season_species() %>%
+#'   ggplot_total_emergences_per_area_season_species() %>%
+#'   plotly_total_emergences_per_area_season_species()
+plotly_total_emergences_per_area_season_species <- function(data) {
+    plotly::ggplotly(data)
+}
