@@ -78,7 +78,7 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
 
   # Basemap -------------------------------------------------------------------#
   co <- NULL
-  co <- if (nrow(enc) > 1000) co <- leaflet::markerClusterOptions()
+  co <- if (nrow(enc) > 1000) leaflet::markerClusterOptions()
 
   l <- leaflet_basemap()
 

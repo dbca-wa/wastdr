@@ -24,7 +24,12 @@ map_mwi <- function(data,
                     tz = "Australia/Perth",
                     cluster = FALSE,
                     split_species = FALSE) {
-  co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL
+  if (nrow(data) > 1000 || cluster == TRUE) {
+      co <- leaflet::markerClusterOptions()
+  } else {
+      co <- NULL
+  }
+
   overlay_names <- c()
   url <- sub("/$", "", wastd_url)
 
