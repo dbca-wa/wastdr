@@ -47,9 +47,9 @@ map_mwi <- function(data,
           lng = ~longitude,
           lat = ~latitude,
           icon = leaflet::makeAwesomeIcon(
-            # icon = "fa-thumbs-up",
+            icon = "remove",
             markerColor = "red",
-            iconColor = "grey"
+            iconColor = "white"
           ),
           label = ~ glue::glue("
              {lubridate::with_tz(datetime, tz)}
@@ -77,8 +77,16 @@ Cause of death: {humanize(cause_of_death)}<br/>
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 Activity: {humanize(activity)}<br/>
 
-<p><a class="btn btn-xs btn-secondary" target="_" rel="nofollow"
-href="{url}{absolute_admin_url}">Edit on WAStD</a></p>
+<p>
+<a class="btn btn-xs btn-outline-primary" target="_" rel="nofollow"
+href="{url}/observations/animal-encounters/{id}">View in WAStD</a>
+
+<a class="btn btn-xs btn-outline-secondary" target="_" rel="nofollow"
+href="{url}{absolute_admin_url}">Edit in WAStD</a>
+
+</p>
+
+
           '),
           group = df,
           clusterOptions = co

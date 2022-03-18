@@ -211,7 +211,8 @@ Edit in WAStD</a><br/>'
         lat = ~latitude,
         icon = leaflet::makeAwesomeIcon(
           markerColor = "green",
-          iconColor = "white"
+          iconColor = "white",
+          icon = "tag"
         ),
         label = ~ glue::glue(animal_label_template),
         popup = ~ glue::glue(animal_popup_template),
@@ -230,7 +231,8 @@ Edit in WAStD</a><br/>'
         lat = ~latitude,
         icon = leaflet::makeAwesomeIcon(
           markerColor = "red",
-          iconColor = "white"
+          iconColor = "white",
+          icon = "remove"
         ),
         label = ~ glue::glue(animal_label_template),
         popup = ~ glue::glue(animal_popup_template),
@@ -249,7 +251,8 @@ Edit in WAStD</a><br/>'
         lat = ~latitude,
         icon = leaflet::makeAwesomeIcon(
           markerColor = "blue",
-          iconColor = "white"
+          iconColor = "white",
+          icon = "ok-sign"
         ),
         label = ~ glue::glue(tracks_label_template),
         popup = ~ glue::glue(tracks_popup_template),
@@ -268,7 +271,8 @@ Edit in WAStD</a><br/>'
         lat = ~encounter_latitude,
         icon = leaflet::makeAwesomeIcon(
           markerColor = "orange",
-          iconColor = "white"
+          iconColor = "white",
+          icon = "alert"
         ),
         label = ~ glue::glue(dist_label_template),
         popup = ~ glue::glue(dist_popup_template),

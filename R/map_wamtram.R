@@ -145,7 +145,7 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
       data = sites,
       lng = ~site_longitude,
       lat = ~site_latitude,
-      icon = leaflet::makeAwesomeIcon(markerColor = "green", iconColor = "white"),
+      icon = leaflet::makeAwesomeIcon(markerColor = "green", iconColor = "white", icon = "tag"),
       label = ~ glue::glue("[{prefix} {code}] {label}"),
       popup = ~ glue::glue('
                 <h3>{label}</h3>
