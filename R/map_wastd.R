@@ -97,8 +97,9 @@ map_wastd <- function(x,
   url <- sub("/$", "", wastd_url)
 
   animal_popup_template <- '
-<h3>{humanize(health)} {humanize(maturity)}
-{humanize(sex)} {humanize(species)}</h3>
+<h4>
+{humanize(health)} {humanize(maturity)} {humanize(sex)} {humanize(species)}
+</h4>
 
 <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 {area_name} - {site_name}</br>
@@ -115,76 +116,96 @@ Cause of death: {humanize(cause_of_death)}<br/>
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 Activity: {humanize(activity)}<br/>
 
-<a href="{url}{survey_absolute_admin_url}"
-target="_" rel="nofollow" title="Edit Survey in WAStD">
-<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+<a href="{url}/observations/surveys/{survey_id}"
+class="btn btn-xs btn-default"
+target="_" rel="nofollow" title="View Survey in WAStD">
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 Survey {survey_id}</a>
 {format(httpdate_as_gmt08(survey_start_time), fmt)} -
 {format(httpdate_as_gmt08(survey_end_time), fmt)}
 <br/>
 
-<a target="_" rel="nofollow" href="{url}{absolute_admin_url}">
+<div>
+<a class="btn btn-xs btn-default" target="_" rel="nofollow"
+href="{url}/observations/animal-encounters/{id}">
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+View in WAStD</a>
+
+<a class="btn btn-xs btn-default" target="_" rel="nofollow"
+href="{url}{absolute_admin_url}">
 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-Edit in WAStD</a><br/>'
+Edit in WAStD</a>
+</div>
+'
 
   animal_label_template <- "
-{lubridate::with_tz(datetime, tz)}
+{format(datetime, fmt)}
 {humanize(health)}
 {humanize(maturity)}
 {humanize(sex)}
 {humanize(species)}"
 
   tracks_label_template <- "
-{lubridate::with_tz(datetime, tz)} {humanize(nest_age)}
+{format(datetime, fmt)} {humanize(nest_age)}
 {humanize(species)} {humanize(nest_type)} {name}"
 
   tracks_popup_template <- '
-<h3>{humanize(nest_age)} {humanize(species)}
-{humanize(nest_type)} {name}</h3>
+<h4>{humanize(nest_age)} {humanize(species)} {humanize(nest_type)} {name}</h4>
 
 <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 {area_name} - {site_name}</br>
 
 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-{lubridate::with_tz(datetime, tz)}<br/>
+{format(datetime, fmt)}<br/>
 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 {observer_name}<br/>
 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 {reporter_name}<br/>
 
-<a href="{url}{survey_absolute_admin_url}"
-target="_" rel="nofollow" title="Edit Survey in WAStD">
-<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+<a href="{url}/observations/surveys/{survey_id}"
+class="btn btn-xs btn-default"
+target="_" rel="nofollow" title="View Survey in WAStD">
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 Survey {survey_id}</a>
 {format(httpdate_as_gmt08(survey_start_time), fmt)} -
 {format(httpdate_as_gmt08(survey_end_time), fmt)}
 <br/>
 
-<a target="_" rel="nofollow" href="{url}{absolute_admin_url}">
+<div>
+<a class="btn btn-xs btn-default" target="_" rel="nofollow"
+href="{url}/observations/turtle-nest-encounters/{id}">
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+View in WAStD</a>
+
+<a class="btn btn-xs btn-default" target="_" rel="nofollow"
+href="{url}{absolute_admin_url}">
 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-Edit in WAStD</a><br/>'
+Edit in WAStD</a>
+</div>
+ '
 
   dist_label_template <- "
-{lubridate::with_tz(datetime, tz)} {humanize(disturbance_cause)}"
+{format(datetime, fmt)} {humanize(disturbance_cause)}"
 
   dist_popup_template <- '
-<h3>Signs of {humanize(disturbance_cause)} ({humanize(encounter_encounter_type)})
-</h3>
+<h4>Signs of {humanize(disturbance_cause)} ({humanize(encounter_encounter_type)})
+</h4>
 
 <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 {encounter_area_name} - {encounter_site_name}<br/>
 
 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-{lubridate::with_tz(datetime, tz)} AWST<br/>
+{format(datetime, fmt)} AWST<br/>
 
 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 {encounter_observer_name}<br/>
 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 {encounter_reporter_name}<br/>
 
-<a href="{url}{encounter_survey_absolute_admin_url}"
-target="_" rel="nofollow" title="Edit Survey in WAStD">
-<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+<a href="{url}/observations/surveys/{encounter_survey_id}"
+class="btn btn-xs btn-default"
+target="_" rel="nofollow" title="View Survey in WAStD">
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 Survey {encounter_survey_id}</a>
 {format(httpdate_as_gmt08(encounter_survey_start_time), fmt)} -
 {format(httpdate_as_gmt08(encounter_survey_end_time), fmt)}
@@ -193,9 +214,18 @@ Survey {encounter_survey_id}</a>
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 {encounter_comments}<br/>
 
-<a target="_" rel="nofollow" href="{url}{absolute_admin_url}">
+<div>
+<a class="btn btn-xs btn-default" target="_" rel="nofollow"
+href="{url}/observations/encounters/{encounter_id}">
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+View in WAStD</a>
+
+<a class="btn btn-xs btn-default" target="_" rel="nofollow"
+href="{url}{absolute_admin_url}">
 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-Edit in WAStD</a><br/>'
+Edit in WAStD</a>
+</div>
+'
 
   # Base map ----------------------------------------------------------------#
   l <- leaflet_basemap()

@@ -57,15 +57,16 @@ map_mwi <- function(data,
             iconColor = "white"
           ),
           label = ~ glue::glue("
-             {lubridate::with_tz(datetime, tz)}
+             {format(datetime, fmt)}
              {humanize(health)}
              {humanize(maturity)}
              {humanize(sex)}
              {humanize(species)}
           "),
           popup = ~ glue::glue('
-<h3>{humanize(health)} {humanize(maturity)}
-{humanize(sex)} {humanize(species)}</h3>
+<h4>
+{humanize(health)} {humanize(maturity)} {humanize(sex)} {humanize(species)}
+</h4>
 
 <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 {area_name} - {site_name}</br>
@@ -82,17 +83,27 @@ Cause of death: {humanize(cause_of_death)}<br/>
 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 Activity: {humanize(activity)}<br/>
 
-<p>
-<a class="btn btn-xs btn-outline-primary" target="_" rel="nofollow"
-href="{url}/observations/animal-encounters/{id}">View in WAStD</a>
+<a href="{url}/observations/surveys/{survey_id}"
+class="btn btn-xs btn-default"
+target="_" rel="nofollow" title="View Survey in WAStD">
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+Survey {survey_id}</a>
+{format(httpdate_as_gmt08(survey_start_time), fmt)} -
+{format(httpdate_as_gmt08(survey_end_time), fmt)}
+<br/>
 
-<a class="btn btn-xs btn-outline-secondary" target="_" rel="nofollow"
-href="{url}{absolute_admin_url}">Edit in WAStD</a>
+<div>
+<a class="btn btn-xs btn-default" target="_" rel="nofollow"
+href="{url}/observations/animal-encounters/{id}">
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+View in WAStD</a>
 
-</p>
-
-
-          '),
+<a class="btn btn-xs btn-default" target="_" rel="nofollow"
+href="{url}{absolute_admin_url}">
+<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+Edit in WAStD</a>
+</div>
+        '),
           group = df,
           clusterOptions = co
         )
@@ -119,7 +130,8 @@ href="{url}{absolute_admin_url}">Edit in WAStD</a>
       baseGroups = c("Basemap"),
       overlayGroups = overlay_names,
       options = leaflet::layersControlOptions(collapsed = FALSE)
-    )
+    ) %>%
+      leaflet.extras::addBootstrapDependency()
 }
 
 # usethis::use_test("map_mwi")
