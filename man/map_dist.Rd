@@ -8,6 +8,7 @@ map_dist(
   dist,
   wastd_url = wastdr::get_wastd_url(),
   fmt = "\%d/\%m/\%Y \%H:\%M",
+  tz = "Australia/Perth",
   cluster = FALSE
 )
 }
@@ -19,6 +20,8 @@ recorded against nests and general signs of disturbance or predation.}
 \item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
 
 \item{fmt}{The desired date format, default: "d/m/Y H:M"}
+
+\item{tz}{The lubridate timezone, default: "Australia/Perth}
 
 \item{cluster}{If TRUE, cluster map markers. Default: FALSE.
 Note: In some places, the aerial background layer does not provide imagery

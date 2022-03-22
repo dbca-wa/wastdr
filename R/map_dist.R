@@ -11,6 +11,7 @@
 #'   recorded against nests and general signs of disturbance or predation.
 #' @template param-wastd_url
 #' @template param-fmt
+#' @template param-tz
 #' @template param-cluster
 #' @return A leaflet map
 #' @export
@@ -23,6 +24,7 @@
 map_dist <- function(dist,
                      wastd_url = wastdr::get_wastd_url(),
                      fmt = "%d/%m/%Y %H:%M",
+                     tz = "Australia/Perth",
                      cluster = FALSE) {
   # ---------------------------------------------------------------------------#
   # Options
