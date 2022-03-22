@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_wastd_data.R
 \name{total_emergences_per_area_season_species}
 \alias{total_emergences_per_area_season_species}
-\title{Calculate total emergences per area, season, species}
+\title{Calculate processing success for emergences per area, season, species}
 \usage{
 total_emergences_per_area_season_species(x)
 }

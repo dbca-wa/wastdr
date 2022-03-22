@@ -157,7 +157,11 @@ summarise_wastd_data_per_day_site <- function(x) {
 
 # usethis::use_test("summarise_wastd_data_per_day_site")  # nolint
 
-#' Calculate total emergences per area, season, species
+
+# -----------------------------------------------------------------------------#
+# Processing Success
+# -----------------------------------------------------------------------------#
+#' Calculate processing success for emergences per area, season, species
 #'
 #' Break up total emergences into tagged and non_tagged animals
 #'
@@ -297,9 +301,9 @@ total_emergences_per_area_season_species <- function(x) {
   total_turtles
 }
 
-#' Calculate total emergences per site, season, species
+#' Calculate processing success for emergences per site, season, species
 #'
-#' Break up total emergences into tagged and non_tagged animals
+#' Break up total emergences into processed (tagged) and missed animals.
 #'
 #' @template param-wastd-data
 #'
@@ -486,3 +490,159 @@ ggplot_total_emergences_per_area_season_species <- function(data) {
 plotly_total_emergences_per_area_season_species <- function(data) {
     plotly::ggplotly(data)
 }
+
+
+# -----------------------------------------------------------------------------#
+# Nesting Success
+# -----------------------------------------------------------------------------#
+#' Calculate nesting success for emergences per area, season, species
+#'
+#' Break up total emergences into tagged and non_tagged animals
+#'
+#' @template param-wastd-data
+#'
+#' @return A tibble with the summary data
+#' @export
+#'
+#' @examples
+#' data(wastd_data)
+#' wastd_data %>% nesting_success_per_area_season_species()
+nesting_success_per_area_season_species <- function(x) {
+    if (class(x) != "wastd_data") {
+        wastdr_msg_abort(
+            glue::glue(
+                "The first argument needs to be an object of class \"wastd_data\", ",
+                "e.g. the output of wastdr::download_wastd_turtledata."
+            )
+        )
+    }
+
+    shared_cols <- c("area_name", "species", "season")
+
+    # Nesting success by season and species: season summary
+    # From ToN
+    wastd_nesting_success_by_season_area_species_single <-
+        x$tracks %>%
+        wastdr::filter_realspecies() %>%
+        dplyr::group_by(area_name, season, species, nest_type) %>%
+        dplyr::tally() %>%
+        dplyr::ungroup() %>%
+        tidyr::spread(nest_type, n, fill = 0)
+
+    # From TT
+    wastd_nesting_success_by_season_area_species_tally <-
+        x$track_tally %>%
+        wastdr::filter_realspecies() %>%
+        dplyr::rename(area_name = encounter_area_name) %>%
+        dplyr::group_by(area_name, season, species, nest_type) %>%
+        dplyr::summarise(n=sum(tally)) %>%
+        dplyr::ungroup() %>%
+        tidyr::spread(nest_type, n, fill = 0)
+
+    # From animals
+    wastd_nesting_success_by_season_area_species_animals <-
+        x$animals %>%
+        wastdr::filter_realspecies() %>%
+        dplyr::group_by(area_name, season, species, nesting_event) %>%
+        dplyr::tally() %>%
+        dplyr::ungroup() %>%
+        tidyr::spread(nesting_event, n, fill = 0)
+
+    # Combined
+    out <-
+        dplyr::bind_rows(
+            wastd_nesting_success_by_season_area_species_single %>% tibble::rownames_to_column(),
+            wastd_nesting_success_by_season_area_species_tally %>% tibble::rownames_to_column(),
+            wastd_nesting_success_by_season_area_species_animals %>% tibble::rownames_to_column()
+        ) %>%
+        dplyr::group_by(rowname, area_name, season, species) %>%
+        dplyr::summarise_all(sum) %>%
+        dplyr::ungroup() %>%
+        dplyr::arrange(season) %>%
+        dplyr::select(-rowname)
+
+    # All possible data cols
+    data_cols_have <- out %>% dplyr::select(-area_name, -season, -species) %>% names()
+    data_cols <- c("false-crawl", "hatched-nest", "nest",
+                       "successful-crawl", "track-not-assessed", "track-unsure",
+                       "absent", "na", "nest-unsure-of-eggs",
+                       "nest-with-eggs", "no-nest", "unsure-if-nest")
+    # Named list of all data cols for replace_na
+    data_cols_list <- as.list(setNames(rep(0, length(data_cols)), data_cols))
+
+    # Make sure all data cols exist
+    missing_data_cols <- setdiff(data_cols, data_cols_have)
+    # "Missing data columns {paste(missing_data_cols, collapse=', ')}" %>%
+    #     glue::glue() %>% wastdr::wastdr_msg_noop()
+    for (dc in missing_data_cols) {
+         out <- dplyr::mutate(out, !!dc := 0)
+         # "Adding missing column {dc}, cols: {paste(names(out), collapse=', ')}" %>%
+         # glue::glue() %>% wastdr::wastdr_msg_noop()
+    }
+
+    out %>%
+        tidyr::replace_na(data_cols_list) %>%
+        dplyr::transmute(
+            area_name = area_name,
+            season = season,
+            species = species,
+            emergences = (
+                `successful-crawl` + `nest-with-eggs` + `nest-unsure-of-eggs` +
+                `unsure-if-nest` + `track-not-assessed` + `track-unsure` + `na` +
+                `false-crawl` + `absent` + `no-nest`
+                ),
+            nesting_present = `successful-crawl` + `nest-with-eggs` + `nest-unsure-of-eggs`,
+            nesting_unsure =  `unsure-if-nest` + `track-not-assessed` + `track-unsure` + `na`,
+            nesting_absent = `false-crawl` + `absent` + `no-nest`,
+            nesting_success_optimistic = round(100 * (nesting_present + nesting_unsure)  / emergences, 2),
+            nesting_success_pessimistic = round(100 * nesting_present / emergences, 2)
+        )
+}
+
+#' Return a stacked ggplot barchart of emergences
+#'
+#' Facets: species
+#'
+#' @param data The output of `nesting_success_per_area_season_species`, a
+#'  summary of `wastd_data`.
+#'
+#' @return A ggplot figure
+#' @export
+#'
+#' @examples
+#' data(wastd_data)
+#' wastd_data %>%
+#'   nesting_success_per_area_season_species() %>%
+#'   ggplot_nesting_success_per_area_season_species()
+ggplot_nesting_success_per_area_season_species <- function(data) {
+    data %>%
+        dplyr::select(-emergences,
+                      -nesting_success_optimistic,
+                      -nesting_success_pessimistic) %>%
+        tidyr::pivot_longer(c(nesting_present, nesting_unsure, nesting_absent),
+                            names_to = "Nesting",
+                            values_to = "Emergences") %>%
+        ggplot2::ggplot(ggplot2::aes(fill=Nesting, y=Emergences, x=season)) +
+        ggplot2::geom_bar(position="stack", stat="identity") +
+        ggplot2::facet_wrap(~ species, ncol=1)
+}
+
+#' Return a stacked plotly barchart of emergences
+#'
+#' @param data The output of `ggplot_nesting_success_per_area_season_species`,
+#'  a visualisation of a summary of `wastd_data`.
+#'
+#' @return A plotly figure
+#' @export
+#'
+#' @examples
+#' data(wastd_data)
+#' wastd_data %>%
+#'   nesting_success_per_area_season_species() %>%
+#'   ggplot_nesting_success_per_area_season_species() %>%
+#'   plotly_nesting_success_per_area_season_species()
+plotly_nesting_success_per_area_season_species <- function(data) {
+    plotly::ggplotly(data)
+}
+
+# use_test("nesting_success_per_area_season_species")  # nolint
