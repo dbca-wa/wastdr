@@ -2,22 +2,16 @@
 % Please edit documentation in R/summarise_wastd_data.R
 \name{ggplot_total_emergences_per_area_season_species}
 \alias{ggplot_total_emergences_per_area_season_species}
-\title{Return a stacked ggplot barchart of emergences}
+\title{Return a stacked ggplot barchart of emergences by processing status}
 \usage{
 ggplot_total_emergences_per_area_season_species(data)
 }
 \arguments{
 \item{data}{The output of \code{total_emergences_per_area_season_species}, a
 summary of \code{wastd_data}.}
-
-\item{species}{The species to filter the data by.
-Default: "Natator depressus".
-Other options:
-"Chelonia mydas" (Green), "Eretmochelys imbricata" (Hawksbill),
-"Caretta caretta" (Loggerhead), "Lepidochelys olivacea" (Olive Ridley)}
 }
 \value{
-A plotly figure
+A ggplot2 figure
 }
 \description{
 Facets: species
@@ -27,4 +21,9 @@ data(wastd_data)
 wastd_data \%>\%
   total_emergences_per_area_season_species() \%>\%
   ggplot_total_emergences_per_area_season_species()
+
+wastd_data \%>\%
+  total_emergences_per_area_season_species() \%>\%
+  ggplot_total_emergences_per_area_season_species() \%>\%
+  plotly::ggplotly()
 }
