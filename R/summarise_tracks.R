@@ -501,6 +501,7 @@ ggplot_track_successrate_by_date <- function(tracks,
 #' summarise_hatching_and_emergence_success(wastd_data$nest_excavations)
 summarise_hatching_and_emergence_success <- function(data) {
   data %>%
+        filter_realspecies() %>%
     {
       if (!("egg_count" %in% names(.))) {
         dplyr::mutate(., egg_count = NA_integer_)
@@ -581,13 +582,13 @@ hatching_emergence_success_area <- function(data) {
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' wastd_data %>% plot_hatching_success()
+#' wastd_data %>% ggplot_hatching_success()
 #'
 #' wastd_data %>%
 #'   filter_wastd_turtledata(area_name = "Delambre Island") %>%
-#'   plot_hatching_success()
+#'   ggplot_hatching_success()
 #'
-plot_hatching_success <- function(x) {
+ggplot_hatching_success <- function(x) {
     if (class(x) != "wastd_data") {
         wastdr_msg_abort(
             glue::glue(
@@ -620,13 +621,13 @@ plot_hatching_success <- function(x) {
 #' @family wastd
 #' @examples
 #' data("wastd_data")
-#' wastd_data %>% plot_emergence_success()
+#' wastd_data %>% ggplot_emergence_success()
 #'
 #' wastd_data %>%
 #'   filter_wastd_turtledata(area_name = "Delambre Island") %>%
-#'   plot_emergence_success()
+#'   ggplot_emergence_success()
 #'
-plot_emergence_success <- function(x) {
+ggplot_emergence_success <- function(x) {
     if (class(x) != "wastd_data") {
         wastdr_msg_abort(
             glue::glue(
