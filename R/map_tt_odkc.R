@@ -52,7 +52,7 @@ map_tt_odkc <- function(data,
           lng = ~start_geopoint_longitude,
           lat = ~start_geopoint_latitude,
           icon = leaflet::makeAwesomeIcon(
-              icon = "ok-sign",
+            icon = "ok-sign",
             markerColor = "green",
             iconColor = ~ pal_mwi(turtle_species)
           ),

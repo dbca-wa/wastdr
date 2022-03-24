@@ -40,18 +40,19 @@ download_wastd_sites <- function(api_url = wastdr::get_wastdr_api_url(),
     sf::st_join(areas)
 
   sites <- list(
-      downloaded_on = downloaded_on,
-      areas = areas,
-      sites = sites)
+    downloaded_on = downloaded_on,
+    areas = areas,
+    sites = sites
+  )
 
   if (!is.null(save)) {
-      "Saving WAStD sites to {save}..." %>%
-          glue::glue() %>%
-          wastdr::wastdr_msg_success()
-      saveRDS(sites, file = save, compress = compress)
-      "Done. Open the saved file with\nwastd_sites <- readRds({save})" %>%
-          glue::glue() %>%
-          wastdr::wastdr_msg_success()
+    "Saving WAStD sites to {save}..." %>%
+      glue::glue() %>%
+      wastdr::wastdr_msg_success()
+    saveRDS(sites, file = save, compress = compress)
+    "Done. Open the saved file with\nwastd_sites <- readRds({save})" %>%
+      glue::glue() %>%
+      wastdr::wastdr_msg_success()
   }
 
   sites

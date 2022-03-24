@@ -29,7 +29,7 @@ test_that("wastd_GET warns and fails with incorrect api_token", {
 
   at <- get_wastdr_api_token()
   wastdr_setup(api_token = "invalid")
-  expect_equal(get_wastdr_api_token(), "invalid")
+  expect_equal(get_wastdr_api_token(), "Token invalid")
 
   # no warnings in check
   # warnings when run standalone

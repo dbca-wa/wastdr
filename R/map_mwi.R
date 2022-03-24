@@ -24,10 +24,10 @@ map_mwi <- function(data,
                     tz = "Australia/Perth",
                     cluster = FALSE,
                     split_species = FALSE) {
-  if (nrow(data) > 1000 || cluster == TRUE) {
-      co <- leaflet::markerClusterOptions()
+  if ((!is.null(data) && nrow(data) > 1000) || cluster == TRUE) {
+    co <- leaflet::markerClusterOptions()
   } else {
-      co <- NULL
+    co <- NULL
   }
 
   overlay_names <- c()
@@ -131,7 +131,7 @@ Edit in WAStD</a>
       overlayGroups = overlay_names,
       options = leaflet::layersControlOptions(collapsed = FALSE)
     ) %>%
-      leaflet.extras::addBootstrapDependency()
+    leaflet.extras::addBootstrapDependency()
 }
 
 # usethis::use_test("map_mwi")

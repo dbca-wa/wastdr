@@ -276,17 +276,16 @@ download_wastd_turtledata <- function(max_records = NULL,
   )
 
   if (!is.null(save)) {
-      "Saving WAStD turtledata to {save}..." %>%
-          glue::glue() %>%
-          wastdr::wastdr_msg_success()
-      saveRDS(x, file = save, compress = compress)
-      "Done. Open the saved file with\nwastd_data <- readRds({save})" %>%
-          glue::glue() %>%
-          wastdr::wastdr_msg_success()
+    "Saving WAStD turtledata to {save}..." %>%
+      glue::glue() %>%
+      wastdr::wastdr_msg_success()
+    saveRDS(x, file = save, compress = compress)
+    "Done. Open the saved file with\nwastd_data <- readRds({save})" %>%
+      glue::glue() %>%
+      wastdr::wastdr_msg_success()
   }
 
   x
-
 }
 
 

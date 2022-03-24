@@ -64,6 +64,8 @@ Other wastd:
 \code{\link{parse_encounterobservations}()},
 \code{\link{parse_surveys}()},
 \code{\link{parse_turtle_nest_encounters}()},
+\code{\link{plot_emergence_success}()},
+\code{\link{plot_hatching_success}()},
 \code{\link{print.wastd_api_response}()},
 \code{\link{summarise_hatching_and_emergence_success}()},
 \code{\link{summarise_wastd_data_per_day_site}()},

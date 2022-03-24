@@ -23,12 +23,12 @@ test_that("nesting_success_per_area_season_species works", {
 })
 
 test_that("nesting_success_per_area_season_species works with limited data", {
-    data(wastd_data)
-    first_found_area <- wastd_data$tracks$area_name[1]
-    x <- wastd_data %>%
-        wastdr::filter_wastd_turtledata(area_name = first_found_area) %>%
-        nesting_success_per_area_season_species()
+  data(wastd_data)
+  first_found_area <- wastd_data$tracks$area_name[1]
+  x <- wastd_data %>%
+    wastdr::filter_wastd_turtledata(area_name = first_found_area) %>%
+    nesting_success_per_area_season_species()
 
-    testthat::expect_s3_class(x, "tbl_df")
-    x
+  testthat::expect_s3_class(x, "tbl_df")
+  x
 })

@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_tracks.R
 \name{hatching_emergence_success_area}
 \alias{hatching_emergence_success_area}
-\title{Summarize HS and ES for excavations of hatched nests grouped by \code{area_name}}
+\title{Summarize HS for excavations of hatched nests grouped by \code{area_name}}
 \usage{
 hatching_emergence_success_area(data)
 }
@@ -51,6 +51,8 @@ Other wastd:
 \code{\link{parse_encounterobservations}()},
 \code{\link{parse_surveys}()},
 \code{\link{parse_turtle_nest_encounters}()},
+\code{\link{plot_emergence_success}()},
+\code{\link{plot_hatching_success}()},
 \code{\link{print.wastd_api_response}()},
 \code{\link{summarise_hatching_and_emergence_success}()},
 \code{\link{summarise_wastd_data_per_day_site}()},

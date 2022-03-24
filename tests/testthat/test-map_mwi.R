@@ -9,3 +9,5 @@ test_that("map_mwi tolerates NULL data", {
   themap <- map_mwi(NULL, sites = wastd_data$sites)
   testthat::expect_equal(class(themap), c("leaflet", "htmlwidget"))
 })
+
+# use_r("map_mwi")

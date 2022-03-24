@@ -13,8 +13,7 @@ w2_online(
   db_port = Sys.getenv("W2_PT"),
   verbose = wastdr::get_wastdr_verbose(),
   dsn = Sys.getenv("W2_DSN"),
-  use_rodbc = Sys.getenv("W2_RODBC", FALSE),
-  save = NULL
+  use_rodbc = Sys.getenv("W2_RODBC", FALSE)
 )
 }
 \arguments{

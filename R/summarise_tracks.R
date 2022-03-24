@@ -553,7 +553,7 @@ hatching_emergence_success <- function(data) {
     summarise_hatching_and_emergence_success(.)
 }
 
-#' Summarize HS and ES for excavations of hatched nests grouped by `area_name`
+#' Summarize HS for excavations of hatched nests grouped by `area_name`
 #'
 #' \lifecycle{stable}
 #'
@@ -568,6 +568,85 @@ hatching_emergence_success_area <- function(data) {
     dplyr::filter(hatching_success >= 0) %>%
     dplyr::group_by(encounter_area_name, season, species) %>%
     summarise_hatching_and_emergence_success(.)
+}
+
+
+#' Plot HS for excavations of hatched nests
+#'
+#' \lifecycle{stable}
+#'
+#' @template param-wastd-data
+#' @return A ggplot2 object
+#' @export
+#' @family wastd
+#' @examples
+#' data("wastd_data")
+#' wastd_data %>% plot_hatching_success()
+#'
+#' wastd_data %>%
+#'   filter_wastd_turtledata(area_name = "Delambre Island") %>%
+#'   plot_hatching_success()
+#'
+plot_hatching_success <- function(x) {
+    if (class(x) != "wastd_data") {
+        wastdr_msg_abort(
+            glue::glue(
+                "The first argument needs to be an object of class \"wastd_data\", ",
+                "e.g. the output of wastdr::download_wastd_turtledata."
+            )
+        )
+    }
+
+    x$nest_excavations %>%
+        ggplot2::ggplot(ggplot2::aes(x=as.factor(season), y=hatching_success)) +
+        ggplot2::geom_boxplot() +
+        ggplot2::facet_wrap(~species, ncol = 1) +
+        ggplot2::theme_minimal() +
+        ggplot2::labs(
+            title="Hatching success",
+            # subtitle="",
+            x = "Season (FY start)",
+            y="Hatching Success [%]"
+        )
+}
+
+#' Plot Emergence Success for excavations of hatched nests
+#'
+#' \lifecycle{stable}
+#'
+#' @template param-wastd-data
+#' @return A ggplot2 object
+#' @export
+#' @family wastd
+#' @examples
+#' data("wastd_data")
+#' wastd_data %>% plot_emergence_success()
+#'
+#' wastd_data %>%
+#'   filter_wastd_turtledata(area_name = "Delambre Island") %>%
+#'   plot_emergence_success()
+#'
+plot_emergence_success <- function(x) {
+    if (class(x) != "wastd_data") {
+        wastdr_msg_abort(
+            glue::glue(
+                "The first argument needs to be an object of class \"wastd_data\", ",
+                "e.g. the output of wastdr::download_wastd_turtledata."
+            )
+        )
+    }
+
+    x$nest_excavations %>%
+        ggplot2::ggplot(ggplot2::aes(x=as.factor(season), y=emergence_success)) +
+        ggplot2::geom_boxplot() +
+        ggplot2::facet_wrap(~species, ncol = 1) +
+        ggplot2::theme_minimal() +
+        ggplot2::labs(
+            title="Emergence success",
+            # subtitle="",
+            x = "Season (FY start)",
+            y="Emergence Success [%]"
+        )
 }
 
 #' Summarize HS and ES for excavations of hatched nests grouped by `site_name`

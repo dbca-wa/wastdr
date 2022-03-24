@@ -24,8 +24,8 @@ wastd_data \%>\%
   ggplot_nesting_success_per_area_season_species()
 
 wastd_data \%>\%
-  nesting_success_per_area_season_species() \%>\%
   filter_wastd_turtledata(area_name = "Delambre Island") \%>\%
+  nesting_success_per_area_season_species() \%>\%
   ggplot_nesting_success_per_area_season_species() \%>\%
   plotly::ggplotly()
 }

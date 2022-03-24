@@ -20,6 +20,5 @@ Break up total emergences into tagged and non_tagged animals
 \examples{
 data(wastd_data)
 wastd_data \%>\%
-  nesting_success_per_area_season_species() \%>\%
-  View()
+  nesting_success_per_area_season_species()
 }

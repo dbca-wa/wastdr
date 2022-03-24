@@ -473,7 +473,7 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
       !is.na(latitude),
       !is.na(observation_datetime_utc)
     ) %>%
-    wastdr::add_dates("observation_datetime_utc", parse_date=FALSE) %>%
+    wastdr::add_dates("observation_datetime_utc", parse_date = FALSE) %>%
     dplyr::arrange(desc(observation_datetime_utc))
 
   encounters_missing <- o %>%
