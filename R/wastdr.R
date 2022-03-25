@@ -320,6 +320,7 @@ utils::globalVariables(
     "tagged",
     "track-not-assessed",
     "track-unsure",
-    "unsure-if-nest"
+    "unsure-if-nest",
+    "turtle_date_awst_text"
   )
 )

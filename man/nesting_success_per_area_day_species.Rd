@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_wastd_data.R
 \name{nesting_success_per_area_day_species}
 \alias{nesting_success_per_area_day_species}
-\title{Calculate nesting success for emergences per area, day, species}
+\title{Calculate nesting success for emergences per area, day (turtle_date), species}
 \usage{
 nesting_success_per_area_day_species(x)
 }

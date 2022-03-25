@@ -78,7 +78,7 @@
 summarise_wastd_data_per_day_site <- function(x) {
   svy <- x$surveys %>%
     filter_realsurveys() %>%
-    dplyr::group_by(area_name, site_name, calendar_date_awst, calendar_date_awst_text) %>%
+    dplyr::group_by(area_name, site_name, turtle_date, turtle_date_awst_text) %>%
     dplyr::tally(name = "no_surveys") %>%
     dplyr::arrange(by_group = TRUE) %>%
     dplyr::ungroup()
@@ -88,7 +88,7 @@ summarise_wastd_data_per_day_site <- function(x) {
     dplyr::mutate(
       nest_type = stringr::str_replace_all(nest_type, "-", "_")
     ) %>%
-    dplyr::group_by(area_name, site_name, calendar_date_awst, calendar_date_awst_text, nest_type) %>%
+    dplyr::group_by(area_name, site_name, turtle_date, turtle_date_awst_text, nest_type) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
     tidyr::spread(nest_type, n, fill = 0)
@@ -100,7 +100,7 @@ summarise_wastd_data_per_day_site <- function(x) {
       encounter_type = encounter_encounter_type
     ) %>%
     dplyr::group_by(
-      area_name, site_name, calendar_date_awst, calendar_date_awst_text, encounter_type
+      area_name, site_name, turtle_date, turtle_date_awst_text, encounter_type
     ) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
@@ -124,27 +124,27 @@ summarise_wastd_data_per_day_site <- function(x) {
   ani <- x$animals %>%
     filter_realspecies() %>%
     filter_alive() %>%
-    dplyr::group_by(area_name, site_name, calendar_date_awst, calendar_date_awst_text) %>%
+    dplyr::group_by(area_name, site_name, turtle_date, turtle_date_awst_text) %>%
     dplyr::tally(name = "live_sightings") %>%
     dplyr::ungroup()
 
   ded <- x$animals %>%
     filter_realspecies() %>%
     filter_dead() %>%
-    dplyr::group_by(area_name, site_name, calendar_date_awst, calendar_date_awst_text) %>%
+    dplyr::group_by(area_name, site_name, turtle_date, turtle_date_awst_text) %>%
     dplyr::tally(name = "mortalities") %>%
     dplyr::ungroup()
 
   tal <- x$linetx %>%
-    dplyr::group_by(area_name, site_name, calendar_date_awst, calendar_date_awst_text) %>%
+    dplyr::group_by(area_name, site_name, turtle_date, turtle_date_awst_text) %>%
     dplyr::tally(name = "track_tallies") %>%
     dplyr::ungroup()
 
   common_vars <- c(
     "area_name",
     "site_name",
-    "calendar_date_awst",
-    "calendar_date_awst_text"
+    "turtle_date",
+    "turtle_date_awst_text"
   )
 
   svy %>%
@@ -569,7 +569,7 @@ nesting_success_per_area_season_species <- function(x) {
 }
 
 
-#' Calculate nesting success for emergences per area, day, species
+#' Calculate nesting success for emergences per area, day (turtle_date), species
 #'
 #' Break up total emergences into tagged and non_tagged animals
 #'
@@ -594,12 +594,12 @@ nesting_success_per_area_day_species <- function(x) {
 
   shared_cols <- c("area_name", "species", "calendar_date_awst")
 
-  # Nesting success by calendar_date_awst and species: calendar_date_awst summary
+  # Nesting success by turtle_date and species: turtle_date summary
   # From ToN
   wastd_nesting_success_by_day_area_species_single <-
     x$tracks %>%
     wastdr::filter_realspecies() %>%
-    dplyr::group_by(area_name, calendar_date_awst, species, nest_type) %>%
+    dplyr::group_by(area_name, turtle_date, species, nest_type) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
     tidyr::spread(nest_type, n, fill = 0)
@@ -609,7 +609,7 @@ nesting_success_per_area_day_species <- function(x) {
     x$track_tally %>%
     wastdr::filter_realspecies() %>%
     dplyr::rename(area_name = encounter_area_name) %>%
-    dplyr::group_by(area_name, season, calendar_date_awst, nest_type) %>%
+    dplyr::group_by(area_name, season, turtle_date, nest_type) %>%
     dplyr::summarise(n = sum(tally), .groups = "keep") %>%
     dplyr::ungroup() %>%
     tidyr::spread(nest_type, n, fill = 0)
@@ -618,7 +618,7 @@ nesting_success_per_area_day_species <- function(x) {
   wastd_nesting_success_by_day_area_species_animals <-
     x$animals %>%
     wastdr::filter_realspecies() %>%
-    dplyr::group_by(area_name, calendar_date_awst, species, nesting_event) %>%
+    dplyr::group_by(area_name, turtle_date, species, nesting_event) %>%
     dplyr::tally() %>%
     dplyr::ungroup() %>%
     tidyr::spread(nesting_event, n, fill = 0)
@@ -641,15 +641,15 @@ nesting_success_per_area_day_species <- function(x) {
       wastd_nesting_success_by_day_area_species_animals %>% tibble::rownames_to_column()
     ) %>%
     dplyr::select(-rowname) %>%
-    dplyr::group_by(area_name, calendar_date_awst, species) %>%
+    dplyr::group_by(area_name, turtle_date, species) %>%
     tidyr::replace_na(data_cols_list) %>%
     dplyr::summarise_all(sum) %>%
     dplyr::ungroup() %>%
-    dplyr::arrange(area_name, calendar_date_awst, species)
+    dplyr::arrange(area_name, turtle_date, species)
 
 
   data_cols_have <- out %>%
-    dplyr::select(-area_name, -calendar_date_awst, -species) %>%
+    dplyr::select(-area_name, -turtle_date, -species) %>%
     names()
 
 
@@ -667,7 +667,7 @@ nesting_success_per_area_day_species <- function(x) {
     tidyr::replace_na(data_cols_list) %>%
     dplyr::transmute(
       area_name = area_name,
-      calendar_date_awst = calendar_date_awst,
+      turtle_date = turtle_date,
       species = species,
       emergences = (
         `successful-crawl` + `nest-with-eggs` + `nest-unsure-of-eggs` +
@@ -681,6 +681,8 @@ nesting_success_per_area_day_species <- function(x) {
       nesting_success_pessimistic = round(100 * nesting_present / emergences, 2)
     )
 }
+
+# use_test("nesting_success_per_area_day_species")  # nolint
 
 
 #' Return a stacked ggplot barchart of emergences
