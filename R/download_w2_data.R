@@ -21,8 +21,8 @@ read_table <- function(connection, table_name, rodbc = FALSE) {
 #'
 #' * name WAMTRAMPROD
 #' * server kens-mssql-001-prod.corporateict.domain
-#' * SQL auth usign login ID and password entered by user
-#' * trust server vertificate (this is where odbc falls over)
+#' * SQL auth using login ID and password entered by user
+#' * trust server certificate (this is where odbc falls over)
 #'
 #' Add to .Renviron:
 #' W2_RODBC=TRUE

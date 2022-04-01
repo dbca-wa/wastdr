@@ -52,7 +52,7 @@ add_dates <-
         calendar_year = datetime %>% lubridate::year(),
         turtle_date = datetime %>% datetime_as_turtle_date(),
         turtle_date_awst_text = turtle_date %>%
-            lubridate::floor_date(unit = "day") %>% as.character(),
+          lubridate::floor_date(unit = "day") %>% as.character(),
         season = datetime %>% datetime_as_season(),
         season_week = datetime %>% datetime_as_seasonweek(),
         iso_week = datetime %>% datetime_as_isoweek()

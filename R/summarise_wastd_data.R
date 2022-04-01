@@ -839,9 +839,9 @@ sighting_status_per_area_season_species <- function(x) {
     dplyr::ungroup() %>%
     dplyr::arrange(area_name, season, species) %>%
     tidyr::pivot_wider(names_from = sighting_status, values_from = n)
-    # %>% dplyr::mutate(
-    # species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
-    # ) %>% janitor::clean_names(case = "sentence")
+  # %>% dplyr::mutate(
+  # species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
+  # ) %>% janitor::clean_names(case = "sentence")
 }
 
 
@@ -864,26 +864,26 @@ sighting_status_per_area_season_species <- function(x) {
 #' wastd_data %>%
 #'   sighting_status_per_site_season_species()
 sighting_status_per_site_season_species <- function(x) {
-    if (class(x) != "wastd_data") {
-        wastdr_msg_abort(
-            glue::glue(
-                "The first argument needs to be an object of class \"wastd_data\", ",
-                "e.g. the output of wastdr::download_wastd_turtledata."
-            )
-        )
-    }
+  if (class(x) != "wastd_data") {
+    wastdr_msg_abort(
+      glue::glue(
+        "The first argument needs to be an object of class \"wastd_data\", ",
+        "e.g. the output of wastdr::download_wastd_turtledata."
+      )
+    )
+  }
 
-    x$animals %>%
-        dplyr::filter(taxon == "Cheloniidae") %>%
-        filter_realspecies() %>%
-        dplyr::group_by(site_name, season, species, sighting_status) %>%
-        dplyr::tally() %>%
-        dplyr::ungroup() %>%
-        dplyr::arrange(site_name, season, species) %>%
-        tidyr::pivot_wider(names_from = sighting_status, values_from = n)
-    # %>% dplyr::mutate(
-    # species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
-    # ) %>% janitor::clean_names(case = "sentence")
+  x$animals %>%
+    dplyr::filter(taxon == "Cheloniidae") %>%
+    filter_realspecies() %>%
+    dplyr::group_by(site_name, season, species, sighting_status) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    dplyr::arrange(site_name, season, species) %>%
+    tidyr::pivot_wider(names_from = sighting_status, values_from = n)
+  # %>% dplyr::mutate(
+  # species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
+  # ) %>% janitor::clean_names(case = "sentence")
 }
 
 # use_test("sighting_status_per_site_season_species")  # nolint

@@ -138,29 +138,28 @@ disturbance_by_season <- function(data) {
 #' @examples
 #' data(wastd_data)
 #' wastd_data %>% ggplot_disturbance_by_season()
-ggplot_disturbance_by_season <- function(x){
-    if (class(x) != "wastd_data") {
-        wastdr_msg_abort(
-            glue::glue(
-                "The first argument needs to be an object of class \"wastd_data\", ",
-                "e.g. the output of wastdr::download_wastd_turtledata."
-            )
-        )
-    }
-    x$nest_dist %>%
-        disturbance_by_season() %>%
-        ggplot2::ggplot(ggplot2::aes(x=season, y=n, fill=disturbance_cause, group=encounter_type)) +
-        viridis::scale_fill_viridis(discrete = T) +
-        ggplot2::geom_bar(stat = "identity", position="stack") +
-        ggplot2::theme_minimal() +
-        ggplot2::labs(
-            title="Nest and general disturbance and predation",
-            subtitle="Nests can have multiple disturbances",
-            x = "Season (FY start)",
-            y="Count",
-            fill="Cause"
-        )
-
+ggplot_disturbance_by_season <- function(x) {
+  if (class(x) != "wastd_data") {
+    wastdr_msg_abort(
+      glue::glue(
+        "The first argument needs to be an object of class \"wastd_data\", ",
+        "e.g. the output of wastdr::download_wastd_turtledata."
+      )
+    )
+  }
+  x$nest_dist %>%
+    disturbance_by_season() %>%
+    ggplot2::ggplot(ggplot2::aes(x = season, y = n, fill = disturbance_cause, group = encounter_type)) +
+    viridis::scale_fill_viridis(discrete = T) +
+    ggplot2::geom_bar(stat = "identity", position = "stack") +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(
+      title = "Nest and general disturbance and predation",
+      subtitle = "Nests can have multiple disturbances",
+      x = "Season (FY start)",
+      y = "Count",
+      fill = "Cause"
+    )
 }
 
 #' Tally ODKC Nest disturbances by season, cause, and encounter type

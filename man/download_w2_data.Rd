@@ -128,8 +128,8 @@ In Windows systems, create a user defined DSN with settings
 \itemize{
 \item name WAMTRAMPROD
 \item server kens-mssql-001-prod.corporateict.domain
-\item SQL auth usign login ID and password entered by user
-\item trust server vertificate (this is where odbc falls over)
+\item SQL auth using login ID and password entered by user
+\item trust server certificate (this is where odbc falls over)
 }
 
 Add to .Renviron:

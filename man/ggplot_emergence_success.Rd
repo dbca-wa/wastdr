@@ -24,7 +24,6 @@ wastd_data \%>\% ggplot_emergence_success()
 wastd_data \%>\%
   filter_wastd_turtledata(area_name = "Delambre Island") \%>\%
   ggplot_emergence_success()
-
 }
 \seealso{
 Other wastd: 
