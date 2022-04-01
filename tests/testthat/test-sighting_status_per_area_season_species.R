@@ -27,4 +27,12 @@ test_that("sighting_status_per_area_season_species works with limited data", {
   x
 })
 
+test_that("ggplot_sighting_status_per_area_season_species works", {
+    data(wastd_data)
+    x <- wastd_data %>%
+        sighting_status_per_site_season_species() %>%
+        ggplot_sighting_status_per_area_season_species()
+    testthat::expect_s3_class(x, "ggplot")
+})
+
 # use_r("summarise_wastd_data")  # nolint

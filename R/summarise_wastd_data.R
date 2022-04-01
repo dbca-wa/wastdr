@@ -886,4 +886,56 @@ sighting_status_per_site_season_species <- function(x) {
   # ) %>% janitor::clean_names(case = "sentence")
 }
 
+#' Return a stacked ggplot barchart of processed emergences by recapture status
+#'
+#' Facets: species
+#'
+#' @param data The output of `total_emergences_per_area_season_species`, a
+#'  summary of `wastd_data`.
+#' @return A ggplot2 figure
+#' @export
+#'
+#' @examples
+#' data(wastd_data)
+#' wastd_data %>%
+#'   sighting_status_per_area_season_species() %>%
+#'   ggplot_sighting_status_per_area_season_species()
+#'
+#' wastd_data %>%
+#'   sighting_status_per_area_season_species() %>%
+#'   ggplot_sighting_status_per_area_season_species() %>%
+#'   plotly::ggplotly()
+ggplot_sighting_status_per_area_season_species <- function(data) {
+    data %>%
+        dplyr::mutate(
+          species = stringr::str_to_sentence(species) %>%
+              stringr::str_replace("-", " ")
+        ) %>%
+        tidyr::pivot_longer(c(na, new, resighting, remigrant),
+                            names_to = "Status",
+                            values_to = "Processed"
+        ) %>%
+        ggplot2::ggplot(ggplot2::aes(fill = Status, y = Processed, x = season)) +
+        ggplot2::geom_bar(position = "stack", stat = "identity") +
+        ggplot2::facet_wrap(~species, ncol = 1) +
+        ggplot2::theme_minimal() +
+        ggplot2::theme(
+            legend.position = "bottom"
+            # legend.title = ggplot2::element_text("Processing Status")
+        ) +
+        ggplot2::labs(
+            title = "Recapture status of processed animals",
+            subtitle = "Count of processed animals split by recapture status",
+            x = "Season (FY start)",
+            alt = paste0(
+                "Stacked bar charts showing numbers ",
+                "for each species (facets) over each season (x axis) ",
+                "as counts of processed emergences that were unidentified (na), ",
+                "tagged for the first time (new), resighted within the same site ",
+                "and season (resighting), or resighted from past seasons or ",
+                "other sites (remigrant)."
+            )
+        )
+}
+
 # use_test("sighting_status_per_site_season_species")  # nolint
