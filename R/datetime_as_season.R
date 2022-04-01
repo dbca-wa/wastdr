@@ -2,10 +2,16 @@
 #'
 #' \lifecycle{stable}
 #'
-#' @details Return the earliest year of the season start.
+#' @details Return the start year of the fiscal year of a given date.
 #'
-#' In practice, the turtle date is the date component (year, month, day) of the
-#' datetime minus 12 hours.
+#' The "turtle season" is calculated as the calendar year 180 days prior to
+#' the given date.
+#'
+#' Note the fiscal year is often labelled as the end year of the FY,
+#' so that FY 2020 referes to FY 2019-20.
+#' We use the start year (e.g. 2019 for a date in July-Dec 2019), as most
+#' turtle monitoring is done in the first half of the FY, where the
+#' "turtle season" year is equal to the calendar year.
 #'
 #' @param datetime (dttm) A datetime
 #' @return The season as int, e.g. 2017
