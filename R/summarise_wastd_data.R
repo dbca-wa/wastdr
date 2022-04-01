@@ -798,3 +798,92 @@ ggplot_nesting_success_per_area_season_species_pct <- function(data) {
 }
 
 # use_test("nesting_success_per_area_season_species")  # nolint
+
+
+# -----------------------------------------------------------------------------#
+# Nesting Success
+# -----------------------------------------------------------------------------#
+#' Calculate sighting status for emergences per area, season, species
+#'
+#' Break up total emergences by sighting status:
+#'
+#' * Na - Unidentified (encounter with untagged animal)
+#' * New - Initial sighting (new tags applied onto untagged animal)
+#' * Resighting (existing tags, animal resighted at same site, same season)
+#' * Remigrant (existing tags, animal resighted at different or same site, different season)
+#'
+#' @template param-wastd-data
+#'
+#' @return A tibble with the summary data
+#' @export
+#'
+#' @examples
+#' data(wastd_data)
+#' wastd_data %>%
+#'   sighting_status_per_area_season_species()
+sighting_status_per_area_season_species <- function(x) {
+  if (class(x) != "wastd_data") {
+    wastdr_msg_abort(
+      glue::glue(
+        "The first argument needs to be an object of class \"wastd_data\", ",
+        "e.g. the output of wastdr::download_wastd_turtledata."
+      )
+    )
+  }
+
+  x$animals %>%
+    dplyr::filter(taxon == "Cheloniidae") %>%
+    filter_realspecies() %>%
+    dplyr::group_by(area_name, season, species, sighting_status) %>%
+    dplyr::tally() %>%
+    dplyr::ungroup() %>%
+    dplyr::arrange(area_name, season, species) %>%
+    tidyr::pivot_wider(names_from = sighting_status, values_from = n)
+    # %>% dplyr::mutate(
+    # species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
+    # ) %>% janitor::clean_names(case = "sentence")
+}
+
+
+#' Calculate sighting status for emergences per site, season, species
+#'
+#' Break up total emergences by sighting status:
+#'
+#' * Na - Unidentified (encounter with untagged animal)
+#' * New - Initial sighting (new tags applied onto untagged animal)
+#' * Resighting (existing tags, animal resighted at same site, same season)
+#' * Remigrant (existing tags, animal resighted at different or same site, different season)
+#'
+#' @template param-wastd-data
+#'
+#' @return A tibble with the summary data
+#' @export
+#'
+#' @examples
+#' data(wastd_data)
+#' wastd_data %>%
+#'   sighting_status_per_site_season_species()
+sighting_status_per_site_season_species <- function(x) {
+    if (class(x) != "wastd_data") {
+        wastdr_msg_abort(
+            glue::glue(
+                "The first argument needs to be an object of class \"wastd_data\", ",
+                "e.g. the output of wastdr::download_wastd_turtledata."
+            )
+        )
+    }
+
+    x$animals %>%
+        dplyr::filter(taxon == "Cheloniidae") %>%
+        filter_realspecies() %>%
+        dplyr::group_by(site_name, season, species, sighting_status) %>%
+        dplyr::tally() %>%
+        dplyr::ungroup() %>%
+        dplyr::arrange(site_name, season, species) %>%
+        tidyr::pivot_wider(names_from = sighting_status, values_from = n)
+    # %>% dplyr::mutate(
+    # species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
+    # ) %>% janitor::clean_names(case = "sentence")
+}
+
+# use_test("sighting_status_per_site_season_species")  # nolint
