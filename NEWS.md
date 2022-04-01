@@ -1,3 +1,5 @@
+# wastdr 0.8.19
+
 # wastdr 0.8.18
 * add_dates: add new field `turtle_date_awst_text`
 * summarise wastd turtledata: summarise by turtle date, not calendar date
