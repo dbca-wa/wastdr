@@ -907,9 +907,10 @@ sighting_status_per_site_season_species <- function(x) {
 #'   plotly::ggplotly()
 ggplot_sighting_status_per_area_season_species <- function(data) {
     data %>%
-        tidyr::pivot_longer(c(na, new, resighting, remigrant),
-                            names_to = "Status",
-                            values_to = "Processed"
+        tidyr::pivot_longer(
+            tidyselect::any_of(c("na", "new", "resighting", "remigrant")),
+            names_to = "Status",
+            values_to = "Processed"
         ) %>%
         ggplot2::ggplot(ggplot2::aes(fill = Status, y = Processed, x = season)) +
         ggplot2::geom_bar(position = "stack", stat = "identity") +
