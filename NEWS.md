@@ -1,6 +1,8 @@
 # wastdr 0.8.26
+* Improve `filter_wastd_turtledata`: add seasons
 
 # wastdr 0.8.25
+* Fix `map_fanangles`: add misorientation and factor out `mean_bearing`
 
 # wastdr 0.8.24
 * New: `map_fanangles` using https://github.com/dbca-wa/leaflet.circlesector/ (#46)
