@@ -31,14 +31,7 @@ map_wastd <- function(x,
                       tz = "Australia/Perth",
                       cluster = FALSE) {
   # Data gatechecks ---------------------------------------------------------#
-  if (class(x) != "wastd_data") {
-    wastdr_msg_abort(
-      glue::glue(
-        "The first argument needs to be an object of class \"wastd_data\", ",
-        "e.g. the output of wastdr::download_wastd_turtledata."
-      )
-    )
-  }
+  verify_wastd_data(x)
 
   animals <- x$animals %>% filter_realspecies()
   suppressWarnings(

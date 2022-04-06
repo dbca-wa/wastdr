@@ -17,14 +17,7 @@
 map_fanangles <- function(x,
                           wastd_url = wastdr::get_wastd_url()){
     # Data gatechecks ---------------------------------------------------------#
-    if (class(x) != "wastd_data") {
-        wastdr_msg_abort(
-            glue::glue(
-                "The first argument needs to be an object of class \"wastd_data\", ",
-                "e.g. the output of wastdr::download_wastd_turtledata."
-            )
-        )
-    }
+    verify_wastd_data(x)
 
     # Map options -------------------------------------------------------------#
     # co <- if (cluster == TRUE) leaflet::markerClusterOptions() else NULL

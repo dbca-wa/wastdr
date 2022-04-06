@@ -34,6 +34,8 @@ Other api:
 \code{\link{download_wastd_sites}()},
 \code{\link{download_wastd_turtledata}()},
 \code{\link{export_wastd_turtledata}()},
+\code{\link{filter_wastd_turtledata_area}()},
+\code{\link{filter_wastd_turtledata_seasons}()},
 \code{\link{filter_wastd_turtledata}()},
 \code{\link{handle_http_status}()},
 \code{\link{wastd_GET}()},
