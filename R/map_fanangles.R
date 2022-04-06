@@ -62,8 +62,10 @@ map_fanangles <- function(x,
         dplyr::transmute(
             lat = encounter_latitude,
             lon = encounter_longitude,
-            bearing = bearing_leftmost_track_degrees + (
-                (bearing_leftmost_track_degrees - bearing_rightmost_track_degrees) / 2),
+            bearing = mean_bearing(
+                bearing_leftmost_track_degrees,
+                bearing_rightmost_track_degrees
+            ),
             angle = 1,
             radius = 15,
             weight = 1,
@@ -71,6 +73,7 @@ map_fanangles <- function(x,
             label = glue::glue("Mean bearing: {bearing} deg"),
             popup = glue::glue("Mean bearing: {bearing} deg")
         )
+
 
 
     # The main direction to water is a 15m 1deg black line
@@ -85,6 +88,30 @@ map_fanangles <- function(x,
             colour = "black",
             label = glue::glue("Bearing to water: {bearing} deg"),
             popup = glue::glue("Bearing to water: {bearing} deg")
+        )
+
+    # The misorientation of the fan is a 15m purple sector from
+    # mean_bearing to bearing_to_water
+    fans_mis <- fans %>%
+        dplyr::transmute(
+            lat = encounter_latitude,
+            lon = encounter_longitude,
+            start_angle = mean_bearing(
+                bearing_leftmost_track_degrees,
+                bearing_rightmost_track_degrees
+            ),
+            end_angle = bearing_to_water_degrees,
+            radius = 15,
+            weight = 1,
+            colour = "purple",
+            label = glue::glue("Misorientation: {mean_bearing(
+                bearing_leftmost_track_degrees,
+                bearing_rightmost_track_degrees
+            ) - bearing_to_water_degrees} deg"),
+            popup = glue::glue("Misorientation: {mean_bearing(
+                bearing_leftmost_track_degrees,
+                bearing_rightmost_track_degrees
+            ) - bearing_to_water_degrees} deg")
         )
 
 
@@ -157,6 +184,7 @@ map_fanangles <- function(x,
         addCircleSectorMid(data = fans_mean) %>%
         addCircleSectorMid(data = fans_water) %>%
         addCircleSectorMid(data = outlier_segments) %>%
+        addCircleSectorMinMax(data = fans_mis) %>%
         addCircleSectorMinMax(data = fans_tracks)
 
     # Return map --------------------------------------------------------------#

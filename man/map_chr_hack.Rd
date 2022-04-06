@@ -43,6 +43,7 @@ Other helpers:
 \code{\link{httpdate_as_season}()},
 \code{\link{humanize}()},
 \code{\link{join_tsc_sites}()},
+\code{\link{mean_bearing}()},
 \code{\link{odkc_works}()},
 \code{\link{sf_as_tbl}()},
 \code{\link{tdate_as_fdate}()},
