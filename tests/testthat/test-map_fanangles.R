@@ -5,6 +5,6 @@ test_that("map_fanangles returns a leaflet map", {
 })
 
 test_that("map_fanangles gatechecks for missing data", {
-    expect_error(map_fanangles(NULL))
+  expect_error(map_fanangles(NULL))
 })
 # use_r("map_fanangles")  # nolint

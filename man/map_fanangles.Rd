@@ -25,7 +25,6 @@ data(wastd_data)
 wastd_data \%>\%
   filter_wastd_turtledata(area_name = "Port Hedland") \%>\%
   map_fanangles()
-
 }
 }
 \seealso{

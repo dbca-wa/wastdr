@@ -19,6 +19,6 @@ Abort if the parameter x is not of class \code{wastd_data}
 data(wastd_data)
 verify_wastd_data(wastd_data)
 testthat::expect_error(verify_wastd_data(NULL))
-testthat::expect_error(verify_wastd_data(c(1,2,3)))
+testthat::expect_error(verify_wastd_data(c(1, 2, 3)))
 }
 }

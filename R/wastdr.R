@@ -321,6 +321,16 @@ utils::globalVariables(
     "track-not-assessed",
     "track-unsure",
     "unsure-if-nest",
-    "turtle_date_awst_text"
+    "turtle_date_awst_text",
+    "Processed",
+    "Season",
+    "Status",
+    "bearing_leftmost_track_degrees",
+    "bearing_light_degrees",
+    "bearing_rightmost_track_degrees",
+    "bearing_to_water_degrees",
+    "encounter_latitude",
+    "encounter_longitude",
+    "sighting_status"
   )
 )

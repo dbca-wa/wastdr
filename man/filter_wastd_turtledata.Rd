@@ -48,7 +48,7 @@ Filter WAStD turtledata to an area_name
 data(wastd_data)
 first_area <- wastd_data$areas$area_name[[1]]
 wastd_data_filtered <- wastd_data \%>\%
-  filter_wastd_turtledata(area_name=first_area)
+  filter_wastd_turtledata(area_name = first_area)
 wastd_data
 wastd_data_filtered
 unique(wastd_data_filtered$areas$area_name)

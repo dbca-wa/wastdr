@@ -118,9 +118,9 @@ filter_wastd_turtledata_area <- function(x,
 #' @examples
 #' \dontrun{
 #' data(wastd_data)
-#' first_season<- wastd_data$areas$season[[1]]
+#' first_season <- wastd_data$areas$season[[1]]
 #' wastd_data_filtered <- wastd_data %>%
-#' filter_wastd_turtledata_seasons(first_season)
+#'   filter_wastd_turtledata_seasons(first_season)
 #' wastd_data
 #' wastd_data_filtered
 #' unique(wastd_data_filtered$areas$season)
@@ -199,7 +199,7 @@ filter_wastd_turtledata_seasons <- function(x,
 #' data(wastd_data)
 #' first_area <- wastd_data$areas$area_name[[1]]
 #' wastd_data_filtered <- wastd_data %>%
-#'   filter_wastd_turtledata(area_name=first_area)
+#'   filter_wastd_turtledata(area_name = first_area)
 #' wastd_data
 #' wastd_data_filtered
 #' unique(wastd_data_filtered$areas$area_name)

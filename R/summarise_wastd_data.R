@@ -916,7 +916,7 @@ ggplot_sighting_status_per_area_season_species <- function(data) {
     ) %>%
     ggplot2::ggplot(ggplot2::aes(fill = Status, y = Processed, x = Season)) +
     ggplot2::geom_bar(position = "stack", stat = "identity") +
-    ggplot2::facet_wrap(~ Species, ncol = 1) +
+    ggplot2::facet_wrap(~Species, ncol = 1) +
     ggplot2::theme_minimal() +
     ggplot2::theme(
       legend.position = "bottom"

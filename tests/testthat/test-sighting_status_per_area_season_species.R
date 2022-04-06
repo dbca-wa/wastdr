@@ -2,10 +2,10 @@ test_that("sighting_status_per_area_season_species works", {
   data(wastd_data)
   x <- sighting_status_per_area_season_species(wastd_data)
   cols <- c(
-      # group cols
-      "Area name", "Season", "Species",
-      # summary cols
-      "Na", "Remigrant", "Resighting", "New"
+    # group cols
+    "Area name", "Season", "Species",
+    # summary cols
+    "Na", "Remigrant", "Resighting", "New"
   )
   purrr::map(
     names(x),
@@ -28,11 +28,11 @@ test_that("sighting_status_per_area_season_species works with limited data", {
 })
 
 test_that("ggplot_sighting_status_per_area_season_species works", {
-    data(wastd_data)
-    x <- wastd_data %>%
-        sighting_status_per_site_season_species() %>%
-        ggplot_sighting_status_per_area_season_species()
-    testthat::expect_s3_class(x, "ggplot")
+  data(wastd_data)
+  x <- wastd_data %>%
+    sighting_status_per_site_season_species() %>%
+    ggplot_sighting_status_per_area_season_species()
+  testthat::expect_s3_class(x, "ggplot")
 })
 
 # use_r("summarise_wastd_data")  # nolint

@@ -35,9 +35,9 @@ Filter WAStD turtledata to a season range
 \examples{
 \dontrun{
 data(wastd_data)
-first_season<- wastd_data$areas$season[[1]]
+first_season <- wastd_data$areas$season[[1]]
 wastd_data_filtered <- wastd_data \%>\%
-filter_wastd_turtledata_seasons(first_season)
+  filter_wastd_turtledata_seasons(first_season)
 wastd_data
 wastd_data_filtered
 unique(wastd_data_filtered$areas$season)
