@@ -19,6 +19,15 @@ A Leaflet map
 \description{
 Map turtle hatchling emergence orientation from wastd_data
 }
+\examples{
+\dontrun{
+data(wastd_data)
+wastd_data \%>\%
+  filter_wastd_turtledata(area_name = "Thevenard Island") \%>\%
+  map_fanangles()
+
+}
+}
 \seealso{
 Other wastd: 
 \code{\link{add_nest_labels}()},
