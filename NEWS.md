@@ -1,3 +1,5 @@
+# wastdr 0.8.25
+
 # wastdr 0.8.24
 * New: `map_fanangles` using https://github.com/dbca-wa/leaflet.circlesector/ (#46)
 
