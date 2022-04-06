@@ -2,10 +2,10 @@ test_that("sighting_status_per_area_season_species works", {
   data(wastd_data)
   x <- sighting_status_per_area_season_species(wastd_data)
   cols <- c(
-    # group cols
-    "area_name", "season", "species",
-    # summary cols
-    "na", "remigrant", "resighting", "new"
+      # group cols
+      "Area name", "Season", "Species",
+      # summary cols
+      "Na", "Remigrant", "Resighting", "New"
   )
   purrr::map(
     names(x),

@@ -3,9 +3,9 @@ test_that("sighting_status_per_site_season_species works", {
   x <- sighting_status_per_site_season_species(wastd_data)
   cols <- c(
     # group cols
-    "site_name", "season", "species",
+    "Site name", "Season", "Species",
     # summary cols
-    "na", "remigrant", "resighting", "new"
+    "Na", "Remigrant", "Resighting", "New"
   )
   purrr::map(
     names(x),

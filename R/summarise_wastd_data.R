@@ -838,10 +838,11 @@ sighting_status_per_area_season_species <- function(x) {
     dplyr::tally() %>%
     dplyr::ungroup() %>%
     dplyr::arrange(area_name, season, species) %>%
-    tidyr::pivot_wider(names_from = sighting_status, values_from = n)
-  # %>% dplyr::mutate(
-  # species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
-  # ) %>% janitor::clean_names(case = "sentence")
+    tidyr::pivot_wider(names_from = sighting_status, values_from = n) %>%
+    dplyr::mutate(
+      species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
+    ) %>%
+    janitor::clean_names(case = "sentence")
 }
 
 
@@ -880,10 +881,11 @@ sighting_status_per_site_season_species <- function(x) {
     dplyr::tally() %>%
     dplyr::ungroup() %>%
     dplyr::arrange(site_name, season, species) %>%
-    tidyr::pivot_wider(names_from = sighting_status, values_from = n)
-  # %>% dplyr::mutate(
-  # species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
-  # ) %>% janitor::clean_names(case = "sentence")
+    tidyr::pivot_wider(names_from = sighting_status, values_from = n) %>%
+    dplyr::mutate(
+      species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " ")
+    ) %>%
+    janitor::clean_names(case = "sentence")
 }
 
 #' Return a stacked ggplot barchart of processed emergences by recapture status
@@ -906,33 +908,33 @@ sighting_status_per_site_season_species <- function(x) {
 #'   ggplot_sighting_status_per_area_season_species() %>%
 #'   plotly::ggplotly()
 ggplot_sighting_status_per_area_season_species <- function(data) {
-    data %>%
-        tidyr::pivot_longer(
-            tidyselect::any_of(c("na", "new", "resighting", "remigrant")),
-            names_to = "Status",
-            values_to = "Processed"
-        ) %>%
-        ggplot2::ggplot(ggplot2::aes(fill = Status, y = Processed, x = season)) +
-        ggplot2::geom_bar(position = "stack", stat = "identity") +
-        ggplot2::facet_wrap(~species, ncol = 1) +
-        ggplot2::theme_minimal() +
-        ggplot2::theme(
-            legend.position = "bottom"
-            # legend.title = ggplot2::element_text("Processing Status")
-        ) +
-        ggplot2::labs(
-            title = "Recapture status of processed animals",
-            subtitle = "Count of processed animals split by recapture status",
-            x = "Season (FY start)",
-            alt = paste0(
-                "Stacked bar charts showing numbers ",
-                "for each species (facets) over each season (x axis) ",
-                "as counts of processed emergences that were unidentified (na), ",
-                "tagged for the first time (new), resighted within the same site ",
-                "and season (resighting), or resighted from past seasons or ",
-                "other sites (remigrant)."
-            )
-        )
+  data %>%
+    tidyr::pivot_longer(
+      tidyselect::any_of(c("Na", "New", "Resighting", "Remigrant")),
+      names_to = "Status",
+      values_to = "Processed"
+    ) %>%
+    ggplot2::ggplot(ggplot2::aes(fill = Status, y = Processed, x = Season)) +
+    ggplot2::geom_bar(position = "stack", stat = "identity") +
+    ggplot2::facet_wrap(~ Species, ncol = 1) +
+    ggplot2::theme_minimal() +
+    ggplot2::theme(
+      legend.position = "bottom"
+      # legend.title = ggplot2::element_text("Processing Status")
+    ) +
+    ggplot2::labs(
+      title = "Recapture status of processed animals",
+      subtitle = "Count of processed animals split by recapture status",
+      x = "Season (FY start)",
+      alt = paste0(
+        "Stacked bar charts showing absolute numbers ",
+        "for each species (facets) over each season (x axis) ",
+        "as counts of processed emergences that were unidentified (na), ",
+        "tagged for the first time (new), resighted within the same site ",
+        "and season (resighting), or resighted from past seasons or ",
+        "other sites (remigrant)."
+      )
+    )
 }
 
 # use_test("sighting_status_per_site_season_species")  # nolint

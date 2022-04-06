@@ -74,6 +74,7 @@ Other wastd:
 \code{\link{hatching_emergence_success_site}()},
 \code{\link{hatching_emergence_success}()},
 \code{\link{map_dist}()},
+\code{\link{map_fanangles}()},
 \code{\link{map_mwi}()},
 \code{\link{map_nests}()},
 \code{\link{map_tracks}()},
