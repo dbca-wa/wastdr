@@ -51,7 +51,7 @@ Imports:
     tidyselect,
     viridis
 Remotes:
-    github::dbca-wa/ruODK@main
+    github::dbca-wa/ruODK@main,
     github::dbca-wa/leaflet.circlesector@main
 Suggests:
     ckanr (>= 0.4.0),
