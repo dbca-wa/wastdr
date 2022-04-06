@@ -44,6 +44,7 @@ Other helpers:
 \code{\link{join_tsc_sites}()},
 \code{\link{map_chr_hack}()},
 \code{\link{mean_bearing}()},
+\code{\link{mis_bearing}()},
 \code{\link{odkc_works}()},
 \code{\link{tdate_as_fdate}()},
 \code{\link{tracks_as_geojson}()},
