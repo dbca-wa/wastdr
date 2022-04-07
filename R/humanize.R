@@ -29,9 +29,9 @@ humanize <- function(urlsafe_string) {
 #' sentencecase("natator-depressus")
 #' sentencecase("successful-crawl")
 sentencecase <- function(urlsafe_string) {
-    urlsafe_string %>%
-        stringr::str_to_sentence(.) %>%
-        stringr::str_replace_all("-", " ")
+  urlsafe_string %>%
+    stringr::str_to_sentence(.) %>%
+    stringr::str_replace_all("-", " ")
 }
 
 
