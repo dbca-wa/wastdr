@@ -14,6 +14,7 @@ odkc_works(url = ruODK::get_default_url())
 }
 \seealso{
 Other helpers: 
+\code{\link{absolute_angle}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},
@@ -38,6 +39,7 @@ Other helpers:
 \code{\link{map_chr_hack}()},
 \code{\link{mean_bearing}()},
 \code{\link{mis_bearing}()},
+\code{\link{sentencecase}()},
 \code{\link{sf_as_tbl}()},
 \code{\link{tdate_as_fdate}()},
 \code{\link{tracks_as_geojson}()},

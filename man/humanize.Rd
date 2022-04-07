@@ -2,7 +2,7 @@
 % Please edit documentation in R/humanize.R
 \name{humanize}
 \alias{humanize}
-\title{Convert between url-safe dash-separated-names and Human Readable Title Case}
+\title{Convert between url-safe dash-separated-strings and Human Readable Title Case}
 \usage{
 humanize(urlsafe_string)
 }
@@ -22,6 +22,7 @@ humanize("successful-crawl")
 }
 \seealso{
 Other helpers: 
+\code{\link{absolute_angle}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},
@@ -46,6 +47,7 @@ Other helpers:
 \code{\link{mean_bearing}()},
 \code{\link{mis_bearing}()},
 \code{\link{odkc_works}()},
+\code{\link{sentencecase}()},
 \code{\link{sf_as_tbl}()},
 \code{\link{tdate_as_fdate}()},
 \code{\link{tracks_as_geojson}()},

@@ -30,6 +30,7 @@ datetime_as_isoweek(httpdate_as_gmt08("2018-11-01T22:00:00Z")) # 44
 }
 \seealso{
 Other helpers: 
+\code{\link{absolute_angle}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_seasonweek}()},
 \code{\link{datetime_as_season}()},
@@ -54,6 +55,7 @@ Other helpers:
 \code{\link{mean_bearing}()},
 \code{\link{mis_bearing}()},
 \code{\link{odkc_works}()},
+\code{\link{sentencecase}()},
 \code{\link{sf_as_tbl}()},
 \code{\link{tdate_as_fdate}()},
 \code{\link{tracks_as_geojson}()},

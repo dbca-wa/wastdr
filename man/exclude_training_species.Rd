@@ -17,6 +17,7 @@ filter_realspecies(value)
 }
 \seealso{
 Other helpers: 
+\code{\link{absolute_angle}()},
 \code{\link{add_dates}()},
 \code{\link{datetime_as_isoweek}()},
 \code{\link{datetime_as_seasonweek}()},
@@ -41,6 +42,7 @@ Other helpers:
 \code{\link{mean_bearing}()},
 \code{\link{mis_bearing}()},
 \code{\link{odkc_works}()},
+\code{\link{sentencecase}()},
 \code{\link{sf_as_tbl}()},
 \code{\link{tdate_as_fdate}()},
 \code{\link{tracks_as_geojson}()},

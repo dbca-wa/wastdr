@@ -4,12 +4,18 @@
 \alias{map_fanangles}
 \title{Map turtle hatchling emergence orientation from wastd_data}
 \usage{
-map_fanangles(x, wastd_url = wastdr::get_wastd_url())
+map_fanangles(
+  x,
+  fmt = "\%Y-\%m-\%d \%H:\%M",
+  wastd_url = wastdr::get_wastd_url()
+)
 }
 \arguments{
 \item{x}{An object of S3 class \code{wastd_data}, e.g. the output of
 \code{wastdr::download_wastd_turtledata()}, optionally filtered to a locality
 by \code{wastdr::filter_wastd_turtledata(area_name="Thevenard Island")}.}
+
+\item{fmt}{The desired date format, default: "d/m/Y H:M"}
 
 \item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
 }

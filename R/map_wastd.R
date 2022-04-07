@@ -140,10 +140,10 @@ Edit in WAStD</a>
 
   tracks_label_template <- "
 {format(datetime, fmt)} {humanize(nest_age)}
-{humanize(species)} {humanize(nest_type)} {name}"
+{sentencecase(species)} {humanize(nest_type)} {name}"
 
   tracks_popup_template <- '
-<h4>{humanize(nest_age)} {humanize(species)} {humanize(nest_type)} {name}</h4>
+<h4>{humanize(nest_age)} {sentencecase(species)} {humanize(nest_type)} {name}</h4>
 
 <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 {area_name} - {site_name}</br>

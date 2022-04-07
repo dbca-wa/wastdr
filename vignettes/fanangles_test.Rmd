@@ -1,0 +1,20 @@
+---
+title: "Fanangles test"
+author: "Florian Mayer, DBCA"
+date: "07/04/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(wastdr)
+```
+
+## fanangles test
+
+
+```{r fanangles}
+data(wastd_data)
+wastd_data %>% filter_wastd_turtledata(area_name = "Port Hedland") %>% map_wastd()
+wastd_data %>% filter_wastd_turtledata(area_name = "Port Hedland") %>% map_fanangles()
+```
