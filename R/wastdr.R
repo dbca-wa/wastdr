@@ -331,6 +331,9 @@ utils::globalVariables(
     "bearing_to_water_degrees",
     "encounter_latitude",
     "encounter_longitude",
-    "sighting_status"
+    "sighting_status",
+    "bearing_mean",
+    "bearing_mis_from",
+    "bearing_mis_to"
   )
 )

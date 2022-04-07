@@ -176,7 +176,25 @@ download_wastd_turtledata <- function(max_records = NULL,
   wastdr_msg_info("Downloading hatchling fans...")
   nest_fans <- "turtle-nest-hatchling-emergences" %>%
     wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::parse_encounterobservations() %>%
+    dplyr::rowwise() %>% # should use pmap instead
+    dplyr::mutate(
+        bearing_mean = mean_bearing(
+            bearing_leftmost_track_degrees,
+            bearing_rightmost_track_degrees),
+        bearing_mis_from = mis_bearing(
+            bearing_leftmost_track_degrees,
+            bearing_rightmost_track_degrees,
+            bearing_to_water_degrees)[1],
+        bearing_mis_to = mis_bearing(
+            bearing_leftmost_track_degrees,
+            bearing_rightmost_track_degrees,
+            bearing_to_water_degrees)[2],
+        misorientation_deg = absolute_angle(
+            bearing_mis_from,
+            bearing_mis_to)
+    )
+
 
   wastdr_msg_info("Downloading hatchling fan outliers...")
   nest_fan_outliers <-

@@ -32,9 +32,9 @@ map_fanangles <- function(x,
 
   # Labels and popups ---------------------------------------------------------#
   label_fans_tracks <- "<strong>{format(datetime, fmt)}</strong> {no_tracks_main_group} tracks"
-  label_fans_mean <- "<strong>{format(datetime, fmt)}</strong> Mean bearing: {bearing}&deg;"
+  label_fans_mean <- "<strong>{format(datetime, fmt)}</strong> Mean bearing: {bearing_mean}&deg;"
   label_fans_water <- "<strong>{format(datetime, fmt)}</strong> Bearing to water: {bearing}&deg;"
-  label_fans_mis <- "<strong>{format(datetime, fmt)}</strong> Misorientation: {abs(end_angle - start_angle)}&deg;"
+  label_fans_mis <- "<strong>{format(datetime, fmt)}</strong> Misorientation: {absolute_angle(bearing_mis_from, bearing_mis_to)}&deg;"
   label_out <- "<strong>{format(datetime, fmt)}</strong> {outlier_group_size} track(s) {bearing}&deg; {outlier_track_comment}"
   label_light <- "<strong>{format(datetime, fmt)}</strong> {light_source_description}"
 
@@ -58,11 +58,11 @@ Tracks to: {bearing_rightmost_track_degrees}&deg;<br/>
 <h3>{format(datetime, fmt)} AWST</h3>
 "
   popup_fans_mis <- "
-<h2>Misorientation: {absolute_angle(start_angle, end_angle)}&deg;</h2>
+<h2>Misorientation: {absolute_angle(bearing_mis_from, bearing_mis_to)}&deg;</h2>
 <h3>{format(datetime, fmt)} AWST</h3>
 Tracks from: {bearing_leftmost_track_degrees}&deg;<br/>
 Tracks to: {bearing_rightmost_track_degrees}&deg;<br/>
-Tracks mean bearing: {mean_bearing(bearing_leftmost_track_degrees,bearing_rightmost_track_degrees)}&deg;<br/>
+Tracks mean bearing: {bearing_mean}&deg;<br/>
 Direction to water: {bearing_to_water_degrees}&deg;<br/>
 Misorientation is the angle between mean bearing and direction to water.
 "
@@ -103,14 +103,10 @@ Bearing: {bearing}&deg;
       !is.na(bearing_leftmost_track_degrees),
       !is.na(bearing_rightmost_track_degrees)
     ) %>%
-    dplyr::rowwise() %>%
     dplyr::transmute(
       lat = encounter_latitude,
       lon = encounter_longitude,
-      bearing = mean_bearing(
-        bearing_leftmost_track_degrees,
-        bearing_rightmost_track_degrees
-      ),
+      bearing = bearing_mean,
       angle = 1,
       radius = 15,
       weight = 1,
@@ -147,20 +143,11 @@ Bearing: {bearing}&deg;
       !is.na(bearing_to_water_degrees)
     ) %>%
     # rowwise is slow but needed for mis_bearing
-    dplyr::rowwise() %>%
     dplyr::transmute(
       lat = encounter_latitude,
       lon = encounter_longitude,
-      start_angle = mis_bearing(
-        bearing_leftmost_track_degrees,
-        bearing_rightmost_track_degrees,
-        bearing_to_water_degrees
-      )[1],
-      end_angle = mis_bearing(
-        bearing_leftmost_track_degrees,
-        bearing_rightmost_track_degrees,
-        bearing_to_water_degrees
-      )[2],
+      start_angle = bearing_mis_from,
+      end_angle = bearing_mis_to,
       radius = 15,
       weight = 1,
       colour = "purple",
