@@ -740,7 +740,7 @@ ggplot_nesting_success_per_area_season_species <- function(data) {
     )
 }
 
-#' Return a stacked ggplot barchart of emergences
+#' Return a ggplot of nesting success
 #'
 #' Facets: species
 #'

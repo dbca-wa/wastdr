@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarise_wastd_data.R
 \name{ggplot_nesting_success_per_area_season_species_pct}
 \alias{ggplot_nesting_success_per_area_season_species_pct}
-\title{Return a stacked ggplot barchart of emergences}
+\title{Return a ggplot of nesting success}
 \usage{
 ggplot_nesting_success_per_area_season_species_pct(data)
 }
