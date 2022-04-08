@@ -41,15 +41,16 @@ outputs into a [tidy](http://vita.had.co.nz/papers/tidy-data.html)
 The secondary purpose of `wastdr` is to centralize a collection of
 commonly used analyses and visualisations of turtle data. As development
 progresses, example analyses and visualisations will be added to the
-vignette. Contributions and requests are welcome!
+vignette. Contributions and requests are welcome\!
 
 Lastly, to facilitate collaboration with external stakeholders, `wastdr`
-contains some anonymized example data (raw GeoJSON and parsed `tibble`)
+contains some anonymised example data (raw GeoJSON and parsed `tibble`)
 of turtle taggings, turtle track counts, and turtle nests.
 
 ## Installation
 
-Install `wastdr` from GitHub:
+Install `wastdr` from GitHub. See also the top level `tic.R` file for
+other dependencies.
 
 ``` r
 # install.packages("devtools")
@@ -126,7 +127,7 @@ Review the settings with:
 ``` r
 wastdr::wastdr_settings()
 #> <wastdr settings>
-#>   WAStD URL:     https://wastd.dbca.wa.gov.au/ 
+#>   WAStD URL:     https://wastd.dbca.wa.gov.au 
 #>   API URL:       https://wastd.dbca.wa.gov.au/api/1/ 
 #>   API Token:     see wastdr::get_wastdr_api_token()
 #>   API Username:  FlorianM 
@@ -148,10 +149,10 @@ tracks <- "turtle-nest-encounters" %>%
 
 Valid endpoints are listed in the base API URL of WAStD, e.g.:
 
--   `encounters`
--   `animal-encounters`
--   `turtle-nest-encounters`
--   `turte-nest-disturbance-observations`
+  - `encounters`
+  - `animal-encounters`
+  - `turtle-nest-encounters`
+  - `turte-nest-disturbance-observations`
 
 ## …or have a pickle
 
@@ -164,66 +165,70 @@ library(wastdr)
 data("wastd_data")
 data("odkc_data")
 
+wastd_data
+#> <WAStD Data> accessed on 2022-04-07 17:20:31
+#> Areas:   25
+#> Sites:   218
+#> Surveys: 1000
+#> Animals (tags, incidents): 1000
+#>   Turtle Tags:             1000
+#>   Turtle Damages:          1000
+#>   Turtle Morphometrics:    1000
+#> Turtle Nest Encounters:    1000
+#>   Logger Observations:     275
+#>   Nest Tags:               1000
+#>   Nest Excavations:        608
+#>   Hatchling Morph:         148
+#>   Hatchling Fans:          1000
+#>   Hatchling Outliers:      284
+#>   Light Sources:           636
+#> Line Transect Encounters:  242
+#>   Track Tallies:           486
+#>   Disturbance Tallies:     115
+#> Dist/Pred (nest/general):  1000
+
 wastd_data$animals
-#> # A tibble: 1,000 x 46
-#>    area_name       area_type area_id site_name site_type site_id survey_id
-#>    <chr>           <chr>       <int> <chr>     <chr>       <int>     <int>
-#>  1 Barrow Island   Locality       41 <NA>      <NA>           NA        NA
-#>  2 Barrow Island   Locality       41 <NA>      <NA>           NA        NA
-#>  3 Mundabullangana Site           42 <NA>      <NA>           NA        NA
-#>  4 Mundabullangana Site           42 <NA>      <NA>           NA        NA
-#>  5 Mundabullangana Site           42 <NA>      <NA>           NA        NA
-#>  6 Barrow Island   Locality       41 <NA>      <NA>           NA        NA
-#>  7 Barrow Island   Locality       41 <NA>      <NA>           NA        NA
-#>  8 Barrow Island   Locality       41 <NA>      <NA>           NA        NA
-#>  9 Barrow Island   Locality       41 <NA>      <NA>           NA        NA
-#> 10 Mundabullangana Site           42 <NA>      <NA>           NA        NA
-#> # … with 990 more rows, and 39 more variables: survey_start_time <dttm>,
-#> #   survey_end_time <dttm>, survey_start_comments <chr>,
-#> #   survey_end_comments <chr>, datetime <dttm>, calendar_date_awst <chr>,
-#> #   turtle_date <date>, season <dbl>, season_week <dbl>, iso_week <dbl>,
-#> #   longitude <dbl>, latitude <dbl>, crs <chr>, location_accuracy <dbl>,
-#> #   location_accuracy_m <dbl>, taxon <chr>, name <chr>, species <chr>,
-#> #   health <chr>, sex <chr>, maturity <chr>, habitat <chr>, activity <chr>,
-#> #   behaviour <chr>, comments <chr>, nesting_event <chr>,
-#> #   checked_for_injuries <chr>, scanned_for_pit_tags <chr>,
-#> #   checked_for_flipper_tags <chr>, cause_of_death <chr>,
-#> #   cause_of_death_confidence <chr>, absolute_admin_url <chr>, obs <list>,
-#> #   source <chr>, source_id <chr>, encounter_type <chr>, status <chr>,
-#> #   observer <chr>, reporter <chr>
+#> # A tibble: 1,000 × 70
+#>        id type   source source_id encounter_type status when  latitude longitude
+#>     <int> <chr>  <chr>  <chr>     <chr>          <chr>  <chr>    <dbl>     <dbl>
+#>  1 417209 Featu… odk    uuid:905… inwater        new    2022…    -23.2      114.
+#>  2 417054 Featu… odk    uuid:09e… stranding      new    2022…    -20.9      115.
+#>  3 416954 Featu… direct 2022-02-… stranding      new    2022…    -34.9      118.
+#>  4 416395 Featu… odk    uuid:127… stranding      new    2022…    -21.8      114.
+#>  5 416951 Featu… direct 2022-02-… stranding      new    2022…    -17.9      122.
+#>  6 410660 Featu… paper  2022-02-… tagging        curat… 2022…    -21.9      114.
+#>  7 416955 Featu… direct 2022-02-… stranding      new    2022…    -17.9      122.
+#>  8 411441 Featu… wamtr… 315700    tagging        new    2022…    -25.8      114.
+#>  9 410177 Featu… odk    uuid:dd0… stranding      new    2022…    -21.9      114.
+#> 10 409666 Featu… wamtr… 315697    tagging        new    2022…    -21.9      114.
+#> # … with 990 more rows, and 61 more variables: crs <chr>,
+#> #   location_accuracy <chr>, location_accuracy_m <int>, name <chr>,
+#> #   leaflet_title <chr>, observer_pk <chr>, observer_username <chr>,
+#> #   observer_name <chr>, reporter_pk <chr>, reporter_username <chr>,
+#> #   reporter_name <chr>, comments <chr>, area_pk <int>, area_area_type <chr>,
+#> #   area_name <chr>, site_pk <int>, site_area_type <chr>, site_name <chr>,
+#> #   survey_id <int>, survey_area_pk <int>, survey_area_area_type <chr>, …
 wastd_data$tracks
-#> # A tibble: 1,000 x 60
-#>    type       pk source source_id encounter_type status when  latitude longitude
-#>    <chr>   <int> <chr>  <chr>     <chr>          <chr>  <chr>    <dbl>     <dbl>
-#>  1 Featu… 159497 odk    uuid:836… nest           new    2010…    -20.3      119.
-#>  2 Featu… 159498 odk    uuid:281… nest           new    2010…    -20.3      119.
-#>  3 Featu… 159499 odk    uuid:19d… nest           new    2010…    -20.3      119.
-#>  4 Featu… 182644 odk    uuid:c92… nest           new    2010…    -20.3      119.
-#>  5 Featu… 182643 odk    uuid:557… nest           new    2010…    -20.3      119.
-#>  6 Featu… 182642 odk    uuid:e0c… nest           new    2010…    -20.3      119.
-#>  7 Featu… 182641 odk    uuid:566… nest           new    2010…    -20.3      119.
-#>  8 Featu… 182640 odk    uuid:19b… nest           new    2010…    -20.3      119.
-#>  9 Featu… 182639 odk    uuid:89f… nest           new    2010…    -20.3      119.
-#> 10 Featu… 182638 odk    uuid:afe… nest           new    2010…    -20.3      119.
-#> # … with 990 more rows, and 51 more variables: crs <chr>,
-#> #   location_accuracy <chr>, leaflet_title <chr>, observer_pk <chr>,
-#> #   observer_username <chr>, observer_name <chr>, reporter_pk <chr>,
-#> #   reporter_username <chr>, reporter_name <chr>, comments <chr>,
-#> #   area_pk <int>, area_area_type <chr>, area_name <chr>, site_pk <int>,
-#> #   site_area_type <chr>, site_name <chr>, survey_id <int>,
-#> #   survey_start_time <chr>, survey_end_time <chr>,
-#> #   survey_start_comments <chr>, survey_reporter_pk <chr>,
-#> #   survey_reporter_username <chr>, survey_reporter_name <chr>,
-#> #   survey_absolute_admin_url <chr>, survey_production <lgl>,
-#> #   survey_area <int>, survey_site_pk <int>, survey_site_area_type <chr>,
-#> #   survey_site_name <chr>, survey_end_comments <chr>, nest_age <chr>,
-#> #   nest_type <chr>, species <chr>, habitat <chr>, disturbance <chr>,
-#> #   nest_tagged <chr>, logger_found <chr>, eggs_counted <chr>,
-#> #   hatchlings_measured <chr>, fan_angles_measured <chr>,
-#> #   absolute_admin_url <chr>, location_accuracy_m <dbl>, name <chr>,
-#> #   datetime <dttm>, calendar_date_awst <chr>, turtle_date <date>,
-#> #   season <dbl>, season_week <dbl>, iso_week <dbl>, species_colours <chr>,
-#> #   nest_type_text <chr>
+#> # A tibble: 1,000 × 65
+#>        id type   source source_id encounter_type status when  latitude longitude
+#>     <int> <chr>  <chr>  <chr>     <chr>          <chr>  <chr>    <dbl>     <dbl>
+#>  1 416440 Featu… odk    uuid:5ea… nest           new    2022…    -21.8      114.
+#>  2 416441 Featu… odk    uuid:82d… nest           new    2022…    -21.8      114.
+#>  3 416442 Featu… odk    uuid:9ec… nest           new    2022…    -21.8      114.
+#>  4 416443 Featu… odk    uuid:706… nest           new    2022…    -21.8      114.
+#>  5 416475 Featu… odk    uuid:88f… nest           new    2022…    -21.9      114.
+#>  6 416444 Featu… odk    uuid:617… nest           new    2022…    -21.8      114.
+#>  7 416459 Featu… odk    uuid:658… nest           new    2022…    -21.8      114.
+#>  8 416445 Featu… odk    uuid:408… nest           new    2022…    -21.8      114.
+#>  9 416446 Featu… odk    uuid:35c… nest           new    2022…    -21.8      114.
+#> 10 416463 Featu… odk    uuid:a4a… nest           new    2022…    -21.8      114.
+#> # … with 990 more rows, and 56 more variables: crs <chr>,
+#> #   location_accuracy <chr>, location_accuracy_m <dbl>, name <chr>,
+#> #   leaflet_title <chr>, observer_pk <chr>, observer_username <chr>,
+#> #   observer_name <chr>, reporter_pk <chr>, reporter_username <chr>,
+#> #   reporter_name <chr>, comments <chr>, area_pk <int>, area_area_type <chr>,
+#> #   area_name <chr>, site_pk <int>, site_area_type <chr>, site_name <chr>,
+#> #   survey_id <int>, survey_area_pk <int>, survey_area_area_type <chr>, …
 
 wastd_data$tracks %>% map_tracks(sites = wastd_data$sites)
 ```
@@ -238,7 +243,7 @@ odkc_data$tracks %>% map_tracks_odkc(sites = odkc_data$sites)
 
 ## Learn more
 
-See the vignette for built-in helpers to transform, analyze and
+See the vignettes for built-in helpers to transform, analyse and
 visualize WAStD data.
 
 ``` r
@@ -248,7 +253,7 @@ vignette("analysis", package = "wastdr")
 
 # Contribute
 
-Every contribution, constructive feedback, or suggestion is welcome!
+Every contribution, constructive feedback, or suggestion is welcome\!
 
 Send us your ideas and requests as
 [issues](https://github.com/dbca-wa/wastdr/issues) or submit a pull
@@ -268,6 +273,7 @@ devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))
 rcmdcheck::rcmdcheck()
 goodpractice::goodpractice(quiet = F)
 covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
+usethis::use_version("patch")
 ```
 
 To enable local testing of the API as well as checking and upload of

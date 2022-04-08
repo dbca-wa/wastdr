@@ -190,6 +190,7 @@ devtools::check(force_suggests = T, args = c("--as-cran", "--timings"))
 rcmdcheck::rcmdcheck()
 goodpractice::goodpractice(quiet = F)
 covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
+usethis::use_version("patch")
 ```
 
 To enable local testing of the API as well as checking and upload of test 
