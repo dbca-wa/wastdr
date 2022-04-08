@@ -46,6 +46,16 @@ Path to sea: {sentencecase(stringr::str_replace_all(path_to_sea_comments, "None"
 Emergence time: {hatchling_emergence_time} ({hatchling_emergence_time_accuracy})<br/>
 Light sources: {light_sources_present}<br/>
 Clouds: {cloud_cover_at_emergence}/8<br/>
+
+<div>
+<a class="btn btn-xs btn-default" target="_" rel="nofollow"
+href="{url}/observations/turtle-nest-encounters/{encounter_id}">
+View in WAStD</a>
+
+<a class="btn btn-xs btn-default" target="_" rel="nofollow"
+href="{url}{encounter_absolute_admin_url}">
+Edit in WAStD</a>
+</div>
 '
   popup_fans_mean <- "
 <h2>Mean bearing: {bearing}&deg;</h2>
