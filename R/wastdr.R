@@ -334,6 +334,7 @@ utils::globalVariables(
     "sighting_status",
     "bearing_mean",
     "bearing_mis_from",
-    "bearing_mis_to"
+    "bearing_mis_to",
+    "misorientation_deg"
   )
 )

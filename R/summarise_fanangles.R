@@ -38,7 +38,7 @@ ggplot_hatchling_misorientation <- function(x) {
       title = "Turtle Hatchling Misorientation",
       subtitle = "Difference between mean nest emergence bearing and direction to water in degrees",
       x = "Season (FY start)",
-      y = "Misorientation [°]",
+      y = "Misorientation [\u00B0]",
       alt = paste0(
         "Violin plots showing Turtle Hatchling Misorientation ",
         "for each species (facets) over each season (x axis) ",
