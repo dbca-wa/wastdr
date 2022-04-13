@@ -20,9 +20,16 @@
 #'   ggplot_hatchling_misorientation() %>%
 #'   plotly::ggplotly()
 ggplot_hatchling_misorientation <- function(x) {
-  x$nest_fans %>%
+  fans <- x$nest_fans %>%
     filter_realspecies() %>%
-    dplyr::filter(!is.na(misorientation_deg)) %>%
+    dplyr::filter(!is.na(misorientation_deg))
+
+  if (nrow(fans) == 0) {
+    wastdr_msg_warn("No data given, returning NULL")
+    return(NULL)
+  }
+
+  fans %>%
     dplyr::mutate(
       encounter_species = encounter_species %>%
         stringr::str_to_sentence(encounter_species) %>%

@@ -26,9 +26,24 @@ map_fanangles <- function(x,
   url <- sub("/$", "", wastd_url)
 
   # Prep data -----------------------------------------------------------------#
-  fans <- x$nest_fans %>% wastdr::filter_realspecies()
+  fans <- x$nest_fans %>%
+    wastdr::filter_realspecies() %>%
+    dplyr::filter(
+      !is.na(bearing_leftmost_track_degrees),
+      !is.na(bearing_rightmost_track_degrees)
+    )
+
+  fans_w <- fans %>% dplyr::filter(!is.na(bearing_to_water_degrees))
+
   outliers <- x$nest_fan_outliers %>% wastdr::filter_realspecies()
-  lights <- x$nest_lightsources %>% wastdr::filter_realspecies()
+
+  lights <- x$nest_lightsources %>%
+    wastdr::filter_realspecies() %>%
+    dplyr::filter(!is.na(bearing_light_degrees))
+
+  lights_a <- lights %>% dplyr::filter(light_source_type == "artificial")
+
+  lights_n <- lights %>% dplyr::filter(light_source_type == "natural")
 
   # Labels and popups ---------------------------------------------------------#
   label_fans_tracks <- "<strong>{format(datetime, fmt)}</strong> {no_tracks_main_group} tracks"
@@ -89,154 +104,166 @@ Type: {light_source_type}<br/>
 Bearing: {bearing}&deg;
 "
 
-  # Transmute data to default column names and values (radius, colour) --------#
-  fans_tracks <- fans %>%
-    dplyr::filter(
-      !is.na(bearing_leftmost_track_degrees),
-      !is.na(bearing_rightmost_track_degrees)
-    ) %>%
-    dplyr::transmute(
-      lat = encounter_latitude,
-      lon = encounter_longitude,
-      start_angle = bearing_leftmost_track_degrees,
-      end_angle = bearing_rightmost_track_degrees,
-      radius = 10,
-      weight = 2,
-      colour = "blue",
-      label = glue::glue(label_fans_tracks),
-      popup = glue::glue(popup_fans_tracks)
-    )
+  # Prepare data --------------------------------------------------------------#
+  # Target data objects
+  lights_art <- NULL
+  lights_nat <- NULL
+  fans_out <- NULL
+  fans_mean <- NULL
+  fans_tracks <- NULL
+  fans_mis <- NULL
+  fans_water <- NULL
 
-  # The mean direction of the fan is a 15m 1deg blue line
-  fans_mean <- fans %>%
-    dplyr::filter(
-      !is.na(bearing_leftmost_track_degrees),
-      !is.na(bearing_rightmost_track_degrees)
-    ) %>%
-    dplyr::transmute(
-      lat = encounter_latitude,
-      lon = encounter_longitude,
-      bearing = bearing_mean,
-      angle = 1,
-      radius = 15,
-      weight = 1,
-      colour = "blue",
-      label = glue::glue(label_fans_mean),
-      popup = glue::glue(popup_fans_mean)
-    )
+  if (nrow(fans) > 0) {
+    # Main track fans
+    fans_tracks <- fans %>%
+      dplyr::transmute(
+        lat = encounter_latitude,
+        lon = encounter_longitude,
+        start_angle = bearing_leftmost_track_degrees,
+        end_angle = bearing_rightmost_track_degrees,
+        radius = 10,
+        weight = 2,
+        colour = "blue",
+        label = glue::glue(label_fans_tracks),
+        popup = glue::glue(popup_fans_tracks)
+      )
 
-  # The main direction to water is a 15m 1deg black line
-  fans_water <- fans %>%
-    dplyr::filter(
-      !is.na(bearing_leftmost_track_degrees),
-      !is.na(bearing_rightmost_track_degrees),
-      is.na(bearing_to_water_degrees)
-    ) %>%
-    dplyr::transmute(
-      lat = encounter_latitude,
-      lon = encounter_longitude,
-      bearing = bearing_to_water_degrees,
-      angle = 1,
-      radius = 15,
-      weight = 1,
-      colour = "black",
-      label = glue::glue(label_fans_water),
-      popup = glue::glue(popup_fans_water)
-    )
+    # The mean direction of the fan
+    fans_mean <- fans %>%
+      dplyr::transmute(
+        lat = encounter_latitude,
+        lon = encounter_longitude,
+        bearing = bearing_mean,
+        angle = 1,
+        radius = 15,
+        weight = 1,
+        colour = "blue",
+        label = glue::glue(label_fans_mean),
+        popup = glue::glue(popup_fans_mean)
+      )
 
-  # The misorientation of the fan is a 15m purple sector from
-  # mean_bearing to bearing_to_water
-  fans_mis <- fans %>%
-    dplyr::filter(
-      !is.na(bearing_leftmost_track_degrees),
-      !is.na(bearing_rightmost_track_degrees),
-      !is.na(bearing_to_water_degrees)
-    ) %>%
-    # rowwise is slow but needed for mis_bearing
-    dplyr::transmute(
-      lat = encounter_latitude,
-      lon = encounter_longitude,
-      start_angle = bearing_mis_from,
-      end_angle = bearing_mis_to,
-      radius = 15,
-      weight = 1,
-      colour = "purple",
-      label = glue::glue(label_fans_mis),
-      popup = glue::glue(popup_fans_mis)
-    )
+    # The main direction to water
+    fans_water <- fans_w %>%
+      dplyr::transmute(
+        lat = encounter_latitude,
+        lon = encounter_longitude,
+        bearing = bearing_to_water_degrees,
+        angle = 1,
+        radius = 15,
+        weight = 1,
+        colour = "black",
+        label = glue::glue(label_fans_water),
+        popup = glue::glue(popup_fans_water)
+      )
 
-  # Outlier tracks are 12m red lines
-  fans_out <- outliers %>%
-    dplyr::filter(
-      !is.na(bearing_outlier_track_degrees)
-    ) %>%
-    dplyr::transmute(
-      lat = encounter_latitude,
-      lon = encounter_longitude,
-      bearing = bearing_outlier_track_degrees,
-      angle = 2,
-      radius = 10,
-      weight = 1,
-      colour = "red",
-      label = glue::glue(label_out),
-      popup = glue::glue(popup_out)
-    )
+    # The misorientation of the fan is a sector(mean_bearing, bearing_to_water)
+    fans_mis <- fans_w %>%
+      dplyr::transmute(
+        lat = encounter_latitude,
+        lon = encounter_longitude,
+        start_angle = bearing_mis_from,
+        end_angle = bearing_mis_to,
+        radius = 15,
+        weight = 1,
+        colour = "purple",
+        label = glue::glue(label_fans_mis),
+        popup = glue::glue(popup_fans_mis)
+      )
+  }
 
-  # Known light sources are 100m orange lines
-  lighs_art <- lights %>%
-    dplyr::filter(
-      !is.na(bearing_light_degrees)
-    ) %>%
-    dplyr::filter(light_source_type == "artificial") %>%
-    dplyr::transmute(
-      lat = encounter_latitude,
-      lon = encounter_longitude,
-      bearing = bearing_light_degrees,
-      angle = 1,
-      radius = 100,
-      weight = 2,
-      colour = "#FFC300",
-      label = glue::glue(label_light),
-      popup = glue::glue(popup_light)
-    )
+  if (nrow(outliers) > 0) {
+    # Outlier tracks
+    fans_out <- outliers %>%
+      dplyr::filter(
+        !is.na(bearing_outlier_track_degrees)
+      ) %>%
+      dplyr::transmute(
+        lat = encounter_latitude,
+        lon = encounter_longitude,
+        bearing = bearing_outlier_track_degrees,
+        angle = 2,
+        radius = 10,
+        weight = 1,
+        colour = "red",
+        label = glue::glue(label_out),
+        popup = glue::glue(popup_out)
+      )
+  }
 
-  lighs_nat <- lights %>%
-    dplyr::filter(
-      !is.na(bearing_light_degrees)
-    ) %>%
-    dplyr::filter(light_source_type == "natural") %>%
-    dplyr::transmute(
-      lat = encounter_latitude,
-      lon = encounter_longitude,
-      bearing = bearing_light_degrees,
-      angle = 1,
-      radius = 100,
-      weight = 2,
-      colour = "#f0ebc2",
-      label = glue::glue(label_light),
-      popup = glue::glue(popup_light)
-    )
+  if (nrow(lights_a) > 0) {
+    # Known light sources
+    lights_art <- lights_a %>%
+      dplyr::transmute(
+        lat = encounter_latitude,
+        lon = encounter_longitude,
+        bearing = bearing_light_degrees,
+        angle = 1,
+        radius = 100,
+        weight = 2,
+        colour = "#FFC300",
+        label = glue::glue(label_light),
+        popup = glue::glue(popup_light)
+      )
+  }
+
+  if (nrow(lights_n) > 0) {
+    lights_nat <- lights_n %>%
+      dplyr::transmute(
+        lat = encounter_latitude,
+        lon = encounter_longitude,
+        bearing = bearing_light_degrees,
+        angle = 1,
+        radius = 100,
+        weight = 2,
+        colour = "#f0ebc2",
+        label = glue::glue(label_light),
+        popup = glue::glue(popup_light)
+      )
+  }
 
   # Map -----------------------------------------------------------------------#
-  leaflet_basemap(l_height = 500, l_width = 700) %>%
+  l <- leaflet_basemap(l_height = 500, l_width = 700) %>%
     # clearBounds releases setView from leaflet_basemap
     # so that addCircleSectorMid/MinMax can expandLimits
-    leaflet::clearBounds() %>%
-    leaflet::addCircles(
-      data = fans_tracks,
-      lat = ~lat,
-      lng = ~lon,
-      color = "white",
-      weight = 2,
-      radius = 5
-    ) %>%
-    addCircleSectorMid(data = lighs_art) %>%
-    addCircleSectorMid(data = lighs_nat) %>%
-    addCircleSectorMid(data = fans_mean) %>%
-    addCircleSectorMid(data = fans_water) %>%
-    addCircleSectorMid(data = fans_out) %>%
-    addCircleSectorMinMax(data = fans_mis) %>%
-    addCircleSectorMinMax(data = fans_tracks)
+    leaflet::clearBounds()
+
+  # Draw layers in this sequence for best presentation
+  if (!is.null(fans_tracks)) {
+    l <- l %>%
+      leaflet::addCircles(
+        data = fans_tracks,
+        lat = ~lat,
+        lng = ~lon,
+        color = "white",
+        weight = 2,
+        radius = 5
+      )
+  }
+
+  if (!is.null(lights_art)) {
+    l <- l %>% addCircleSectorMid(data = lights_art)
+  }
+  if (!is.null(lights_nat)) {
+    l <- l %>% addCircleSectorMid(data = lights_nat)
+  }
+  if (!is.null(fans_out)) {
+    l <- l %>% addCircleSectorMid(data = fans_out)
+  }
+  if (!is.null(fans_mean)) {
+    l <- l %>% addCircleSectorMid(data = fans_mean)
+  }
+  if (!is.null(fans_tracks)) {
+    l <- l %>% addCircleSectorMinMax(data = fans_tracks)
+  }
+  if (!is.null(fans_mis)) {
+    l <- l %>% addCircleSectorMinMax(data = fans_mis)
+  }
+  if (!is.null(fans_water)) {
+    l <- l %>% addCircleSectorMid(data = fans_water)
+  }
+
+  l
 }
 
 # use_test("map_fanangles")  # nolint
