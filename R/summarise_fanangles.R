@@ -25,7 +25,7 @@ ggplot_hatchling_misorientation <- function(x) {
     dplyr::filter(!is.na(misorientation_deg))
 
   if (nrow(fans) == 0) {
-    wastdr_msg_warn("No data given, returning NULL")
+    wastdr_msg_warn("[ggplot_hatchling_misorientation] No data given, returning NULL")
     return(NULL)
   }
 

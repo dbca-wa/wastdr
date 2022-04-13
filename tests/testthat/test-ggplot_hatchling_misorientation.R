@@ -16,6 +16,7 @@ test_that("ggplot_hatchling_misorientation works", {
   testthat::expect_s3_class(p2, "plotly")
   testthat::expect_s3_class(p2, "htmlwidget")
 })
+
 test_that("ggplot_hatchling_misorientation works with missing data", {
   data(wastd_data)
 

@@ -426,6 +426,11 @@ total_emergences_per_site_season_species <- function(x) {
 #'   ggplot_total_emergences_per_area_season_species() %>%
 #'   plotly::ggplotly()
 ggplot_total_emergences_per_area_season_species <- function(data) {
+  if (is.null(data)) {
+    wastdr_msg_warn("[ggplot_total_emergences_per_area_season_species] No data given, returning NULL")
+    return(NULL)
+  }
+
   data %>%
     dplyr::select(-emergences, -processed, -processed_pct) %>%
     tidyr::pivot_longer(c(tagged, non_tagged, missed),
@@ -554,7 +559,7 @@ nesting_success_per_area_season_species <- function(x) {
     dplyr::transmute(
       area_name = area_name,
       season = season,
-      species = species,
+      species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " "),
       emergences = (
         `successful-crawl` + `nest-with-eggs` + `nest-unsure-of-eggs` +
           `unsure-if-nest` + `track-not-assessed` + `track-unsure` + `na` +
@@ -668,7 +673,7 @@ nesting_success_per_area_day_species <- function(x) {
     dplyr::transmute(
       area_name = area_name,
       turtle_date = turtle_date,
-      species = species,
+      species = stringr::str_to_sentence(species) %>% stringr::str_replace("-", " "),
       emergences = (
         `successful-crawl` + `nest-with-eggs` + `nest-unsure-of-eggs` +
           `unsure-if-nest` + `track-not-assessed` + `track-unsure` + `na` +
@@ -708,6 +713,11 @@ nesting_success_per_area_day_species <- function(x) {
 #'   ggplot_nesting_success_per_area_season_species() %>%
 #'   plotly::ggplotly()
 ggplot_nesting_success_per_area_season_species <- function(data) {
+  if (is.null(data)) {
+    wastdr_msg_warn("[ggplot_nesting_success_per_area_season_species] No data given, returning NULL")
+    return(NULL)
+  }
+
   data %>%
     dplyr::select(
       -emergences,
@@ -763,6 +773,11 @@ ggplot_nesting_success_per_area_season_species <- function(data) {
 #'   ggplot_nesting_success_per_area_season_species_pct() %>%
 #'   plotly::ggplotly()
 ggplot_nesting_success_per_area_season_species_pct <- function(data) {
+  if (is.null(data)) {
+    wastdr_msg_warn("[ggplot_nesting_success_per_area_season_species_pct] No data given, returning NULL")
+    return(NULL)
+  }
+
   data %>%
     dplyr::select(
       -emergences,
@@ -830,6 +845,11 @@ sighting_status_per_area_season_species <- function(x) {
       )
     )
   }
+
+    if (nrow(x$animals) == 0) {
+        wastdr_msg_warn("[sighting_status_per_area_season_species] No data given, returning NULL")
+        return(NULL)
+    }
 
   x$animals %>%
     dplyr::filter(taxon == "Cheloniidae") %>%
@@ -908,6 +928,11 @@ sighting_status_per_site_season_species <- function(x) {
 #'   ggplot_sighting_status_per_area_season_species() %>%
 #'   plotly::ggplotly()
 ggplot_sighting_status_per_area_season_species <- function(data) {
+  if (is.null(data)) {
+    wastdr_msg_warn("[ggplot_sighting_status_per_area_season_species] No data given, returning NULL")
+    return(NULL)
+  }
+
   data %>%
     tidyr::pivot_longer(
       tidyselect::any_of(c("Na", "New", "Resighting", "Remigrant")),
@@ -916,6 +941,7 @@ ggplot_sighting_status_per_area_season_species <- function(data) {
     ) %>%
     ggplot2::ggplot(ggplot2::aes(fill = Status, y = Processed, x = Season)) +
     ggplot2::geom_bar(position = "stack", stat = "identity") +
+    # ggplot2::scale_x(label = scales::label_number(big.mark = "", accuracy = 1)) +
     ggplot2::facet_wrap(~Species, ncol = 1) +
     ggplot2::theme_minimal() +
     ggplot2::theme(
