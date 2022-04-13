@@ -351,55 +351,53 @@ test_that("hatching_emergence_success_site returns a tibble", {
 })
 
 test_that("ggplot_hatching_success works with missing data", {
-    data(wastd_data)
+  data(wastd_data)
 
-    x <- wastd_data %>% filter_wastd_turtledata(area_name = "blub")
+  x <- wastd_data %>% filter_wastd_turtledata(area_name = "blub")
 
-    testthat::expect_warning(
-        p1 <- x %>% ggplot_hatching_success()
-    )
-    testthat::expect_null(p1)
+  testthat::expect_warning(
+    p1 <- x %>% ggplot_hatching_success()
+  )
+  testthat::expect_null(p1)
 
-    testthat::expect_warning(
-        p2 <- x %>%
-            ggplot_hatching_success() %>%
-            plotly::ggplotly()
-    )
-    testthat::expect_s3_class(p2, "shiny.tag")
+  testthat::expect_warning(
+    p2 <- x %>%
+      ggplot_hatching_success() %>%
+      plotly::ggplotly()
+  )
+  testthat::expect_s3_class(p2, "shiny.tag")
 })
 
 
 test_that("ggplot_emergence_success works with missing data", {
-    data(wastd_data)
+  data(wastd_data)
 
-    x <- wastd_data %>% filter_wastd_turtledata(area_name = "blub")
+  x <- wastd_data %>% filter_wastd_turtledata(area_name = "blub")
 
-    testthat::expect_warning(
-        p1 <- x %>% ggplot_emergence_success()
-    )
-    testthat::expect_null(p1)
+  testthat::expect_warning(
+    p1 <- x %>% ggplot_emergence_success()
+  )
+  testthat::expect_null(p1)
 
-    testthat::expect_warning(
-        p2 <- x %>%
-            ggplot_emergence_success() %>%
-            plotly::ggplotly()
-    )
-    testthat::expect_s3_class(p2, "shiny.tag")
+  testthat::expect_warning(
+    p2 <- x %>%
+      ggplot_emergence_success() %>%
+      plotly::ggplotly()
+  )
+  testthat::expect_s3_class(p2, "shiny.tag")
 })
 
 
 
 test_that("hatching_emergence_success_site works with missing data", {
-    data(wastd_data)
+  data(wastd_data)
 
-    x <- wastd_data %>% filter_wastd_turtledata(area_name = "blub")
+  x <- wastd_data %>% filter_wastd_turtledata(area_name = "blub")
 
-    testthat::expect_warning(
-        p1 <- x$nest_excavations %>% hatching_emergence_success_site()
-    )
-    testthat::expect_null(p1)
-
-
+  testthat::expect_warning(
+    p1 <- x$nest_excavations %>% hatching_emergence_success_site()
+  )
+  testthat::expect_null(p1)
 })
 
 # usethis::use_r("summarise_tracks")

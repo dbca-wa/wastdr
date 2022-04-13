@@ -25,7 +25,7 @@
 filter_disturbance <- function(data) {
   flt_col <- dplyr::case_when(
     "disturbanceobservation_disturbance_cause" %in% names(data) ~
-    "disturbanceobservation_disturbance_cause",
+      "disturbanceobservation_disturbance_cause",
     TRUE ~ "disturbance_cause"
   )
 
@@ -69,7 +69,7 @@ filter_disturbance <- function(data) {
 filter_predation <- function(data) {
   flt_col <- dplyr::case_when(
     "disturbanceobservation_disturbance_cause" %in% names(data) ~
-    "disturbanceobservation_disturbance_cause",
+      "disturbanceobservation_disturbance_cause",
     TRUE ~ "disturbance_cause"
   )
 
@@ -110,7 +110,7 @@ filter_predation <- function(data) {
 disturbance_by_season <- function(data) {
   flt_col <- dplyr::case_when(
     "disturbanceobservation_disturbance_cause" %in% names(data) ~
-    "disturbanceobservation_disturbance_cause",
+      "disturbanceobservation_disturbance_cause",
     TRUE ~ "disturbance_cause"
   )
 

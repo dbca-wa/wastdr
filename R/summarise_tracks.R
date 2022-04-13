@@ -599,10 +599,10 @@ ggplot_hatching_success <- function(x) {
     )
   }
 
-    if (nrow(x$nest_excavations) == 0) {
-        wastdr_msg_warn("[ggplot_hatching_success] No data given, returning NULL")
-        return(NULL)
-    }
+  if (nrow(x$nest_excavations) == 0) {
+    wastdr_msg_warn("[ggplot_hatching_success] No data given, returning NULL")
+    return(NULL)
+  }
 
   x$nest_excavations %>%
     ggplot2::ggplot(ggplot2::aes(x = as.factor(season), y = hatching_success)) +
@@ -642,10 +642,10 @@ ggplot_emergence_success <- function(x) {
     )
   }
 
-    if (nrow(x$nest_excavations) == 0) {
-        wastdr_msg_warn("[ggplot_hatching_success] No data given, returning NULL")
-        return(NULL)
-    }
+  if (nrow(x$nest_excavations) == 0) {
+    wastdr_msg_warn("[ggplot_hatching_success] No data given, returning NULL")
+    return(NULL)
+  }
 
   x$nest_excavations %>%
     ggplot2::ggplot(ggplot2::aes(x = as.factor(season), y = emergence_success)) +
@@ -671,10 +671,10 @@ ggplot_emergence_success <- function(x) {
 #' data("wastd_data")
 #' hatching_emergence_success_site(wastd_data$nest_excavations)
 hatching_emergence_success_site <- function(data) {
-    if (nrow(data) == 0) {
-        wastdr_msg_warn("[hatching_emergence_success_site] No data given, returning NULL")
-        return(NULL)
-    }
+  if (nrow(data) == 0) {
+    wastdr_msg_warn("[hatching_emergence_success_site] No data given, returning NULL")
+    return(NULL)
+  }
 
   data %>%
     filter_realspecies() %>%

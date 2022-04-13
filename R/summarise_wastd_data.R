@@ -846,10 +846,10 @@ sighting_status_per_area_season_species <- function(x) {
     )
   }
 
-    if (nrow(x$animals) == 0) {
-        wastdr_msg_warn("[sighting_status_per_area_season_species] No data given, returning NULL")
-        return(NULL)
-    }
+  if (nrow(x$animals) == 0) {
+    wastdr_msg_warn("[sighting_status_per_area_season_species] No data given, returning NULL")
+    return(NULL)
+  }
 
   x$animals %>%
     dplyr::filter(taxon == "Cheloniidae") %>%
