@@ -1,7 +1,7 @@
 Package: wastdr
 Type: Package
 Title: WA Sea Turtle Database 'WAStD' API Wrapper
-Version: 0.8.34
+Version: 0.8.35
 Authors@R: 
     c(person(given = c("Florian", "W."),
              family = "Mayer",
