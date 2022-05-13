@@ -1,5 +1,7 @@
 # wastdr 0.8.35
-
+* `download_wastd_turtledata()`: drop logger encounters, which have been removed
+  from the WAStD API and migrated to LoggerObservations.
+  
 # wastdr 0.8.34
 
 # wastdr 0.8.33
