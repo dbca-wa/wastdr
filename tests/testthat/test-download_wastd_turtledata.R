@@ -13,7 +13,7 @@ test_that("download_wastd_turtledata works", {
   )
 
   expect_equal(class(x), "wastd_data")
-  expect_equal(length(x), 22) # This will change if we add more data
+  expect_equal(length(x), 21) # This will change if we add more data
 
   xout <- capture.output(print(x))
   expect_true(stringr::str_detect(xout[[1]], "WAStD Data"))

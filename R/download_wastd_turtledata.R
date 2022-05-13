@@ -40,8 +40,6 @@
 #'   \item linetx LineTransects of Turtle Track Tally counts.
 #'   \item track_tally Tally of track type/species, many per linetx.
 #'   \item disturbance_tally Tally of dist/pred, many per linetx.
-#'   \item loggers LoggerEncounters, deprecated, will be migrated to LoggerObs
-#'         associated with Encounters.
 #' }
 #' @export
 #' @family api
@@ -218,22 +216,6 @@ download_wastd_turtledata <- function(max_records = NULL,
     wastdr::parse_encounterobservations() %>%
     dplyr::left_join(tracks_animals, by = obs2enc)
 
-  # LoggerEncounters ----------------------------------------------------------#
-  # Pending shut-down and replacement with LoggerObs
-  wastdr_msg_info("Downloading LoggerEncounters...")
-  loggers <- "logger-encounters" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::wastd_parse() %>%
-    tun("observer") %>%
-    tun("reporter") %>%
-    tun("area") %>%
-    tun("site") %>%
-    tun("survey") %>%
-    tun("survey_area") %>%
-    tun("survey_site") %>%
-    tun("survey_reporter") %>%
-    dplyr::select(-"geometry")
-
   # Track Tallies -------------------------------------------------------------#
   wastdr_msg_info("Downloading LineTransectEncounters...")
   linetx <- "line-transect-encounters" %>%
@@ -291,8 +273,7 @@ download_wastd_turtledata <- function(max_records = NULL,
       nest_loggers = nest_loggers,
       linetx = linetx,
       track_tally = track_tally,
-      disturbance_tally = disturbance_tally,
-      loggers = loggers # pending shut-down
+      disturbance_tally = disturbance_tally
     ),
     class = "wastd_data"
   )

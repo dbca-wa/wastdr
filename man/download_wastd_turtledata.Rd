@@ -49,8 +49,6 @@ were migrated to become LoggerObservations.
 \item linetx LineTransects of Turtle Track Tally counts.
 \item track_tally Tally of track type/species, many per linetx.
 \item disturbance_tally Tally of dist/pred, many per linetx.
-\item loggers LoggerEncounters, deprecated, will be migrated to LoggerObs
-associated with Encounters.
 }
 }
 \description{
