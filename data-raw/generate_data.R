@@ -132,7 +132,6 @@ wastd_data$nest_lightsources <- wastd_data$nest_lightsources %>% sanitize_names(
 wastd_data$linetx <- wastd_data$linetx %>% sanitize_names()
 wastd_data$track_tally <- wastd_data$track_tally %>% sanitize_names()
 wastd_data$disturbance_tally <- wastd_data$disturbance_tally %>% sanitize_names()
-wastd_data$loggers <- wastd_data$loggers %>% sanitize_names()
 usethis::use_data(wastd_data, compress = "xz", overwrite = TRUE)
 
 # # Generate data

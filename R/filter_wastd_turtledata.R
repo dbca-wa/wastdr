@@ -93,8 +93,7 @@ filter_wastd_turtledata_area <- function(x,
       nest_loggers = x$nest_loggers %>% obs_filter(),
       linetx = x$linetx %>% my_filter(), # TODO: filter doesn't work yet
       track_tally = x$track_tally %>% obs_filter(),
-      disturbance_tally = x$disturbance_tally %>% obs_filter(),
-      loggers = x$loggers %>% my_filter()
+      disturbance_tally = x$disturbance_tally %>% obs_filter()
     ),
     class = "wastd_data"
   )
@@ -165,8 +164,7 @@ filter_wastd_turtledata_seasons <- function(x,
       nest_loggers = x$nest_loggers %>% season_filter(),
       linetx = x$linetx %>% season_filter(), # TODO: filter doesn't work yet
       track_tally = x$track_tally %>% season_filter(),
-      disturbance_tally = x$disturbance_tally %>% season_filter(),
-      loggers = x$loggers # loggers are deprecated
+      disturbance_tally = x$disturbance_tally %>% season_filter()
     ),
     class = "wastd_data"
   )
