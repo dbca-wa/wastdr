@@ -4,10 +4,10 @@
 \alias{exclude_training_species_odkc}
 \title{Exclude ODKC records with \code{species} "corolla-corolla".}
 \usage{
-exclude_training_species_odkc(value)
+exclude_training_species_odkc(x)
 }
 \arguments{
-\item{value}{A tibble with a column "details_species".}
+\item{x}{A tibble with a column "details_species".}
 }
 \description{
 \lifecycle{stable}

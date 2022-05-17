@@ -5,10 +5,10 @@
 \title{Filter surveys with "NEEDS QA" in \code{start_comments} or
 \code{end_comments}.}
 \usage{
-filter_surveys_requiring_qa(value)
+filter_surveys_requiring_qa(x)
 }
 \arguments{
-\item{value}{The output of \code{parse_surveys}}
+\item{x}{The output of \code{parse_surveys}}
 }
 \description{
 \lifecycle{stable}

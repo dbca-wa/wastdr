@@ -4,10 +4,10 @@
 \alias{filter_surveys_missing_end}
 \title{Filter surveys with a missing \code{end_source_id}.}
 \usage{
-filter_surveys_missing_end(value)
+filter_surveys_missing_end(x)
 }
 \arguments{
-\item{value}{The output of \code{parse_surveys}}
+\item{x}{The output of \code{parse_surveys}}
 }
 \description{
 \lifecycle{stable}

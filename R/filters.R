@@ -2,122 +2,140 @@
 #'
 #' \lifecycle{stable}
 #'
-#' @param value A tibble with a column "species".
+#' @param x A tibble with a column "species".
 #' @export
 #' @family helpers
-exclude_training_species <- . %>%
-  {
-    if ("species" %in% names(.)) {
-      dplyr::filter(., species != "corolla-corolla")
-    } else {
-      .
+exclude_training_species <- function(x) {
+  x %>%
+    {
+      if ("species" %in% names(.)) {
+        dplyr::filter(., species != "corolla-corolla")
+      } else {
+        .
+      }
+    } %>%
+    {
+      if ("encounter_species" %in% names(.)) {
+        dplyr::filter(., encounter_species != "corolla-corolla")
+      } else {
+        .
+      }
     }
-  } %>%
-  {
-    if ("encounter_species" %in% names(.)) {
-      dplyr::filter(., encounter_species != "corolla-corolla")
-    } else {
-      .
-    }
-  }
+}
 
 #' @export
 #' @rdname exclude_training_species
-filter_realspecies <- . %>%
-  {
-    if ("species" %in% names(.)) {
-      dplyr::filter(., species != "corolla-corolla")
-    } else {
-      .
+filter_realspecies <- function(x) {
+  x %>%
+    {
+      if ("species" %in% names(.)) {
+        dplyr::filter(., species != "corolla-corolla")
+      } else {
+        .
+      }
+    } %>%
+    {
+      if ("encounter_species" %in% names(.)) {
+        dplyr::filter(., encounter_species != "corolla-corolla")
+      } else {
+        .
+      }
     }
-  } %>%
-  {
-    if ("encounter_species" %in% names(.)) {
-      dplyr::filter(., encounter_species != "corolla-corolla")
-    } else {
-      .
-    }
-  }
-
+}
 
 #' Exclude ODKC records with \code{species} "corolla-corolla".
 #'
 #' \lifecycle{stable}
 #'
-#' @param value A tibble with a column "details_species".
+#' @param x A tibble with a column "details_species".
 #' @export
 #' @family odkc
-exclude_training_species_odkc <- . %>%
-  dplyr::filter(details_species != "corolla-corolla")
+exclude_training_species_odkc <- function(x) {
+  x %>%
+    dplyr::filter(details_species != "corolla-corolla")
+}
 
 #' Filter records with missing \code{survey_id}
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{\link{parse_surveys}}
+#' @param x The output of \code{\link{parse_surveys}}
 #' @export
 #' @family helpers
-filter_missing_survey <- . %>% dplyr::filter(is.na(survey_id))
+filter_missing_survey <- function(x) {
+  x %>% dplyr::filter(is.na(survey_id))
+}
 
 #' @export
 #' @rdname filter_missing_survey
-filter_nosurvey <- . %>% dplyr::filter(is.na(survey_pk))
+filter_nosurvey <- function(x) {
+  x %>% dplyr::filter(is.na(survey_pk))
+}
 
 #' Filter records with missing \code{site_id}
-#' @param value The output of \code{parse_turtle_nest_encounters}
+#' @param x The output of \code{parse_turtle_nest_encounters}
 #' @export
 #' @family helpers
-filter_missing_site <- . %>% dplyr::filter(is.na(site_pk))
+filter_missing_site <- function(x) {
+  x %>% dplyr::filter(is.na(site_pk))
+}
 
 #' @export
 #' @rdname filter_missing_site
-filter_nosite <- . %>% dplyr::filter(is.na(site_pk))
-
+filter_nosite <- function(x) {
+  x %>% dplyr::filter(is.na(site_pk))
+}
 
 #' Exclude training surveys.
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_surveys}
+#' @param x The output of \code{parse_surveys}
 #' @export
 #' @family helpers
-exclude_training_surveys <- . %>% dplyr::filter(is_production == TRUE)
+exclude_training_surveys <- function(x) {
+  x %>% dplyr::filter(is_production == TRUE)
+}
 
 #' @export
 #' @rdname exclude_training_surveys
-filter_realsurveys <- . %>% dplyr::filter(is_production == TRUE)
-
+filter_realsurveys <- function(x) {
+  x %>% dplyr::filter(is_production == TRUE)
+}
 #' Filter surveys with "NEEDS QA" in \code{start_comments} or
 #' \code{end_comments}.
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_surveys}
+#' @param x The output of \code{parse_surveys}
 #' @export
 #' @family helpers
-filter_surveys_requiring_qa <- . %>%
-  dplyr::filter(
-    grepl("NEEDS QA", start_comments) | grepl("NEEDS QA", end_comments)
-  ) %>%
-  dplyr::select(
-    change_url, turtle_date, site_name, reporter, reporter_username,
-    start_comments, end_comments
-  )
+filter_surveys_requiring_qa <- function(x) {
+  x %>%
+    dplyr::filter(
+      grepl("NEEDS QA", start_comments) | grepl("NEEDS QA", end_comments)
+    ) %>%
+    dplyr::select(
+      change_url, turtle_date, site_name, reporter, reporter_username,
+      start_comments, end_comments
+    )
+}
 
 #' Filter surveys with a missing \code{end_source_id}.
 #'
 #' \lifecycle{stable}
 #'
-#' @param value The output of \code{parse_surveys}
+#' @param x The output of \code{parse_surveys}
 #' @export
 #' @family helpers
-filter_surveys_missing_end <- . %>%
-  dplyr::filter(is.na(end_source_id)) %>%
-  dplyr::select(
-    change_url, turtle_date, site_name, reporter, season,
-    start_time, end_time, start_comments, end_comments
-  )
-
+filter_surveys_missing_end <- function(x) {
+  x %>%
+    dplyr::filter(is.na(end_source_id)) %>%
+    dplyr::select(
+      change_url, turtle_date, site_name, reporter, season,
+      start_time, end_time, start_comments, end_comments
+    )
+}
 
 #' Filter a dataframe of tracks, disturbance, incidents, or surveys to season
 #'

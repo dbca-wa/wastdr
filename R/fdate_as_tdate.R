@@ -2,7 +2,7 @@
 #'
 #' \lifecycle{stable}
 #'
-#' @param value A date
+#' @param x A date
 #' @export
 #' @family helpers
 #' @examples
@@ -10,10 +10,11 @@
 #' fdate_as_tdate(1) # "02 Jul"
 #' fdate_as_tdate(55) # "25 Aug"
 #' fdate_as_tdate(365) # "01 Jul"
-fdate_as_tdate <- . %>%
-  {
-    lubridate::ddays(.) + lubridate::as_date("2000-07-01")
-  } %>%
-  format("%d %b")
-
+fdate_as_tdate <- function(x) {
+  x %>%
+    {
+      lubridate::ddays(.) + lubridate::as_date("2000-07-01")
+    } %>%
+    format("%d %b")
+}
 # usethis::use_test("fdate_as_tdate")

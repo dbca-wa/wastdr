@@ -5,12 +5,12 @@
 \alias{filter_realspecies}
 \title{Exclude records with \code{species} "corolla-corolla".}
 \usage{
-exclude_training_species(value)
+exclude_training_species(x)
 
-filter_realspecies(value)
+filter_realspecies(x)
 }
 \arguments{
-\item{value}{A tibble with a column "species".}
+\item{x}{A tibble with a column "species".}
 }
 \description{
 \lifecycle{stable}

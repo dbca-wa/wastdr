@@ -4,10 +4,10 @@
 \alias{fdate_as_tdate}
 \title{Days since fiscal year start as true date}
 \usage{
-fdate_as_tdate(value)
+fdate_as_tdate(x)
 }
 \arguments{
-\item{value}{A date}
+\item{x}{A date}
 }
 \description{
 \lifecycle{stable}

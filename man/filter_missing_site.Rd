@@ -5,12 +5,12 @@
 \alias{filter_nosite}
 \title{Filter records with missing \code{site_id}}
 \usage{
-filter_missing_site(value)
+filter_missing_site(x)
 
-filter_nosite(value)
+filter_nosite(x)
 }
 \arguments{
-\item{value}{The output of \code{parse_turtle_nest_encounters}}
+\item{x}{The output of \code{parse_turtle_nest_encounters}}
 }
 \description{
 Filter records with missing \code{site_id}

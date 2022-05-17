@@ -4,10 +4,10 @@
 \alias{tdate_as_fdate}
 \title{True date as days since fiscal year start}
 \usage{
-tdate_as_fdate(value)
+tdate_as_fdate(x)
 }
 \arguments{
-\item{value}{A date}
+\item{x}{A date}
 }
 \description{
 True date as days since fiscal year start

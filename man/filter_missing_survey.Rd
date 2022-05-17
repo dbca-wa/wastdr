@@ -5,12 +5,12 @@
 \alias{filter_nosurvey}
 \title{Filter records with missing \code{survey_id}}
 \usage{
-filter_missing_survey(value)
+filter_missing_survey(x)
 
-filter_nosurvey(value)
+filter_nosurvey(x)
 }
 \arguments{
-\item{value}{The output of \code{\link{parse_surveys}}}
+\item{x}{The output of \code{\link{parse_surveys}}}
 }
 \description{
 \lifecycle{stable}

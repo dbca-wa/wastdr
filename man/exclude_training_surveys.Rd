@@ -5,12 +5,12 @@
 \alias{filter_realsurveys}
 \title{Exclude training surveys.}
 \usage{
-exclude_training_surveys(value)
+exclude_training_surveys(x)
 
-filter_realsurveys(value)
+filter_realsurveys(x)
 }
 \arguments{
-\item{value}{The output of \code{parse_surveys}}
+\item{x}{The output of \code{parse_surveys}}
 }
 \description{
 \lifecycle{stable}

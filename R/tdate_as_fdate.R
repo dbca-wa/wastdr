@@ -1,10 +1,11 @@
 #' True date as days since fiscal year start
 #'
-#' @param value A date
+#' @param x A date
 #' @importFrom lubridate %--%
 #' @export
 #' @family helpers
-tdate_as_fdate <- . %>%
+tdate_as_fdate <- function(x){
+    x %>%
   {
     lubridate::as.duration(
       as_date(
@@ -13,5 +14,6 @@ tdate_as_fdate <- . %>%
     )
   } %>%
   as.numeric("days")
+}
 
 # usethis::use_test("tdate_as_fdate")

@@ -5,10 +5,10 @@
 \title{Pivot table of nesting type by area, season, track age, and species for
 ODKC data}
 \usage{
-nesting_type_by_area_season_age_species_odkc(value)
+nesting_type_by_area_season_age_species_odkc(x)
 }
 \arguments{
-\item{value}{Submissions to ODK Central from form Track or Nest 1.0,
+\item{x}{Submissions to ODK Central from form Track or Nest 1.0,
 retrieved and parsed with \code{ruODK::odata_submission_get()}.}
 }
 \description{
