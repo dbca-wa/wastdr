@@ -113,9 +113,6 @@
 #'    * There can be several per transect.
 #'    * Details of the overarching LineTransectEncounter are repeated for
 #'      convenience.
-#'  * `loggers.csv` Encounters with Data Loggers, deprecated.
-#'    * Data to be migrated to LoggerObservations.
-#'  * `loggers.geojson` Loggers.csv as GeoJSON.
 #'  * `wastd_data.rds` The given wastd_data object saved to file as `.rds`,
 #'    ready to be loaded into R with `readRDS`.
 #' @export
@@ -180,13 +177,6 @@ export_wastd_turtledata <- function(x,
     dplyr::select(-encounter_transect) %>%
     readr::write_csv(file = fs::path(outdir, "disturbance_tally.csv"))
 
-  if (nrow(x$loggers) > 0) {
-    x$loggers %>%
-      readr::write_csv(file = fs::path(outdir, "loggers.csv"))
-    x$loggers %>%
-      geojsonio::geojson_write(file = fs::path(outdir, "loggers.geojson"))
-  }
-
   if (zip == TRUE) {
     zipfile <- paste0(filename, ".zip")
     utils::zip(zipfile, fs::dir_ls(outdir), flags = "-jr9X")
@@ -195,4 +185,4 @@ export_wastd_turtledata <- function(x,
   }
 }
 
-# use_test("export_wastd_turtledata")
+# usethis::use_test("export_wastd_turtledata")

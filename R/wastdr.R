@@ -335,6 +335,11 @@ utils::globalVariables(
     "bearing_mean",
     "bearing_mis_from",
     "bearing_mis_to",
-    "misorientation_deg"
+    "misorientation_deg",
+    "site_pk",
+    "survey_id",
+    "survey_pk",
+    "end_source_id",
+    "reporter_username"
   )
 )

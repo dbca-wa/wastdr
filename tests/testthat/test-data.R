@@ -41,8 +41,7 @@ test_that("wastd_data contains expected tibbles", {
       "nest_loggers",
       "linetx",
       "track_tally",
-      "disturbance_tally",
-      "loggers"
+      "disturbance_tally"
     )
   )
   # purrr::map(wastd_data, class)

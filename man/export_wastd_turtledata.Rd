@@ -167,11 +167,6 @@ encountered during one LineTransectEncounter.
 \item Details of the overarching LineTransectEncounter are repeated for
 convenience.
 }
-\item \code{loggers.csv} Encounters with Data Loggers, deprecated.
-\itemize{
-\item Data to be migrated to LoggerObservations.
-}
-\item \code{loggers.geojson} Loggers.csv as GeoJSON.
 \item \code{wastd_data.rds} The given wastd_data object saved to file as \code{.rds},
 ready to be loaded into R with \code{readRDS}.
 }
