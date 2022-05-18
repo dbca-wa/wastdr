@@ -1,90 +1,83 @@
-Package: wastdr
 Type: Package
+Package: wastdr
 Title: WA Sea Turtle Database 'WAStD' API Wrapper
 Version: 0.8.36
-Authors@R: 
-    c(person(given = c("Florian", "W."),
-             family = "Mayer",
-             role = c("aut", "cre"),
-             email = "Florian.Mayer@dbca.wa.gov.au",
-             comment = c(ORCID = "0000-0003-4269-4242")),
-      person(given = "DBCA",
-             role = c("cph", "fnd")),
-      person(given = "NWSFTCP",
-             role = "fnd"))
+Authors@R: c(
+    person(c("Florian", "W."), "Mayer", , "Florian.Mayer@dbca.wa.gov.au", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-4269-4242")),
+    person("DBCA", role = c("cph", "fnd")),
+    person("NWSFTCP", role = "fnd")
+  )
 Maintainer: Florian W. Mayer <Florian.Mayer@dbca.wa.gov.au>
-Description: The 'WA Sea Turtle Database' 'WAStD' is a 'Django' web app with a 
-    'RESTful' 'API' returning 'GeoJSON' 'FeatureCollections'. 
-    'wastdr' provides helpers to retrieve data from the 'API', and to turn the 
-    received 'GeoJSON' into R 'tibbles'. 'wastdr' will grow alongside 
+Description: The 'WA Sea Turtle Database' 'WAStD' is a 'Django' web app
+    with a 'RESTful' 'API' returning 'GeoJSON' 'FeatureCollections'.
+    'wastdr' provides helpers to retrieve data from the 'API', and to turn
+    the received 'GeoJSON' into R 'tibbles'. 'wastdr' will grow alongside
     implemented use cases of retrieving and analysing 'WAStD' data.
-    'wastdr' can be seen as working examples for converting nested lists into
-    two-dimensional 'tibbles'.
+    'wastdr' can be seen as working examples for converting nested lists
+    into two-dimensional 'tibbles'.
+License: MIT + file LICENSE
 URL: https://github.com/dbca-wa/wastdr
 BugReports: https://github.com/dbca-wa/wastdr/issues
 Depends:
     R (>= 4.1.0)
 Imports:
-    crayon (>= 1.4.1),
     clisymbols,
+    crayon (>= 1.4.1),
+    DBI (>= 1.1.1),
     dplyr (>= 1.0.7),
     fs (>= 1.5.0),
+    geojsonio (>= 0.9.4),
+    geojsonsf (>= 2.0.1),
+    ggalt (>= 0.4.0),
     ggplot2 (>= 3.3.5),
+    ggTimeSeries (>= 1.0.1),
     glue (>= 1.4.2),
+    here,
+    htmlwidgets (>= 1.5.3),
     httr (>= 1.4.2),
     janitor (>= 2.1.0),
     jsonlite (>= 1.6.1),
-    lifecycle (>= 1.0.0),
+    leaflet (>= 2.0.4.1),
     leaflet.circlesector (>= 0.1.0),
+    leaflet.extras (>= 1.0.0),
+    leaftime (>= 0.2.0),
+    lifecycle (>= 1.0.0),
     lubridate (>= 1.7.10),
     magrittr (>= 2.0.1),
-    plotly (>= 4.10.0),
+    odbc (>= 1.3.2),
     purrr (>= 0.3.4),
+    reactable (>= 0.2.3),
     readr (>= 2.0.1),
     rlang (>= 0.4.11),
     RODBC (>= 1.3-19),
     ruODK (>= 1.2.0),
-    stringr (>= 1.4.0),
     sf (>= 1.0-2),
+    stats,
+    stringr (>= 1.4.0),
     tibble (>= 3.1.3),
     tidyr (>= 1.1.3),
     tidyselect,
+    utils,
     viridis
-Remotes:
-    github::dbca-wa/ruODK@main,
-    github::dbca-wa/leaflet.circlesector@main
 Suggests:
-    ckanr (>= 0.4.0),
-    covr (>= 3.5.1),
-    DBI (>= 1.1.1),
-    leaflet (>= 2.0.4.1),
-    leaflet.extras (>= 1.0.0),
-    leaftime (>= 0.2.0),
-    geojsonio (>= 0.9.4),
     geojsonlint (>= 0.4.0),
-    geojsonsf (>= 2.0.1),
-    ggalt (>= 0.4.0),
-    ggTimeSeries (>= 1.0.1),
-    htmlwidgets (>= 1.5.3),
     knitr (>= 1.33),
     listviewer (>= 3.0.0),
-    mapview (>= 2.10.1),
-    odbc (>= 1.3.2),
-    reactable (>= 0.2.3),
+    plotly (>= 4.10.0),
     rmarkdown (>= 2.10),
-    scales (>= 1.1.0),
-    spelling (>= 2.2),
     skimr (>= 2.1.3),
-    testthat (>= 3.0.4),
-    roxygen2 (>= 7.1.1),
-    xml2 (>= 1.3.2),
-    visNetwork (>= 2.0.9)
-License: MIT + file LICENSE
-Language: en_US
+    spelling (>= 2.2),
+    testthat (>= 3.0.4)
+VignetteBuilder: 
+    knitr
+RdMacros: 
+    lifecycle
+Remotes:
+    github::dbca-wa/leaflet.circlesector@main,
+    github::dbca-wa/ruODK@main
 Encoding: UTF-8
+Language: en_US
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
-RdMacros: 
-    lifecycle
-VignetteBuilder: knitr
