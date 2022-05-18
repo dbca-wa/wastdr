@@ -423,7 +423,8 @@ download_odkc_turtledata_2020 <-
       wastdr::add_dates(parse_date = FALSE)
 
     tt <- tt_prod %>%
-      wastdr::join_tsc_sites(sites, prefix = "start_geopoint_") %>%
+      # TODO select first available coordinate out of start_geopoint, manual, map
+      # wastdr::join_tsc_sites(sites, prefix = "start_geopoint_") %>%
       wastdr::add_dates(parse_date = FALSE)
 
     tt_dmg <- tt_dmg_prod
