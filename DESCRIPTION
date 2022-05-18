@@ -1,7 +1,7 @@
 Type: Package
 Package: wastdr
 Title: WA Sea Turtle Database 'WAStD' API Wrapper
-Version: 0.8.36
+Version: 0.8.37
 Authors@R: c(
     person(c("Florian", "W."), "Mayer", , "Florian.Mayer@dbca.wa.gov.au", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4269-4242")),
