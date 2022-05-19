@@ -69,6 +69,8 @@ re-sighted, applied, or removed.
 \item tt_log Individual loggers recorded during turtle tagging,
 one record per logger. Loggers can be of different type,
 re-sighted, deployed, or removed.
+\item tt_fix Turtle Tagging records with missing coordinates. These need to
+be backfilled into WAStD by hand from paper datasheets.
 \item svs Survey start points from form \code{Site-Visit-Start}.
 \item sve Survey end points from form \code{Site-Visit-End}.
 \item sites An sf object of known WAStD sites.

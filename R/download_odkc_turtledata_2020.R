@@ -50,6 +50,8 @@
 #'   \item tt_log Individual loggers recorded during turtle tagging,
 #'         one record per logger. Loggers can be of different type,
 #'         re-sighted, deployed, or removed.
+#'   \item tt_fix Turtle Tagging records with missing coordinates. These need to
+#'         be backfilled into WAStD by hand from paper datasheets.
 #'   \item svs Survey start points from form `Site-Visit-Start`.
 #'   \item sve Survey end points from form `Site-Visit-End`.
 #'   \item sites An sf object of known WAStD sites.
@@ -423,8 +425,25 @@ download_odkc_turtledata_2020 <-
       wastdr::add_dates(parse_date = FALSE)
 
     tt <- tt_prod %>%
-      # TODO select first available coordinate out of start_geopoint, manual, map
-      # wastdr::join_tsc_sites(sites, prefix = "start_geopoint_") %>%
+      # TT offers three user-facing location capture options, plus
+      # start_geolocation, which itself is not always populated
+      # join_tsc_sites drops NA coordinates else st_join fails
+      dplyr::rowwise() %>%
+        dplyr::mutate(
+            loc_latitude = dplyr::coalesce(
+                realtime_nest_location_latitude,
+                manual_nest_location_map_latitude,
+                start_geopoint_latitude,
+                manual_nest_location_lat
+                ),
+            loc_longitude = dplyr::coalesce(
+                realtime_nest_location_longitude,
+                manual_nest_location_map_longitude,
+                start_geopoint_longitude,
+                manual_nest_location_lon
+            )
+        ) %>%
+      wastdr::join_tsc_sites(sites, prefix = "loc_") %>%
       wastdr::add_dates(parse_date = FALSE)
 
     tt_dmg <- tt_dmg_prod
@@ -432,6 +451,8 @@ download_odkc_turtledata_2020 <-
     tt_tag <- tt_tag_prod
 
     tt_log <- tt_log_prod
+
+    tt_fix <- tt %>% dplyr::filter(is.na(loc_latitude))
 
     svs <- svs_prod %>%
       dplyr::bind_rows(svs_prod_map) %>%
@@ -465,6 +486,7 @@ download_odkc_turtledata_2020 <-
           tt_dmg = tt_dmg,
           tt_tag = tt_tag,
           tt_log = tt_log,
+          tt_fix = tt_fix,
           svs = svs,
           sve = sve,
           sites = sites,
