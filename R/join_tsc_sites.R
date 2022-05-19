@@ -14,9 +14,11 @@ join_tsc_sites <- function(data, sites, prefix = "observed_at_") {
   lat <- glue::glue("{prefix}latitude") %>% as.character()
 
   missing_coords <- data %>% dplyr::filter(is.na(!!lon) | is.na(!!lat))
-  if (nrow(missing_coords) > 0)
-      "Warning: excluding {nrow(missing_coords)} records with missing coordinates" %>%
-      glue::glue() %>% wastdr::wastdr_msg_warn()
+  if (nrow(missing_coords) > 0) {
+    "Warning: excluding {nrow(missing_coords)} records with missing coordinates" %>%
+      glue::glue() %>%
+      wastdr::wastdr_msg_warn()
+  }
 
   data %>%
     tidyr::drop_na(lon) %>%
@@ -28,7 +30,7 @@ join_tsc_sites <- function(data, sites, prefix = "observed_at_") {
       remove = FALSE
     )
   # %>%
-    # sf::st_join(sites)
+  # sf::st_join(sites)
 }
 
 # usethis::use_test("join_tsc_sites")

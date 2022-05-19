@@ -429,20 +429,20 @@ download_odkc_turtledata_2020 <-
       # start_geolocation, which itself is not always populated
       # join_tsc_sites drops NA coordinates else st_join fails
       dplyr::rowwise() %>%
-        dplyr::mutate(
-            loc_latitude = dplyr::coalesce(
-                realtime_nest_location_latitude,
-                manual_nest_location_map_latitude,
-                start_geopoint_latitude,
-                manual_nest_location_lat
-                ),
-            loc_longitude = dplyr::coalesce(
-                realtime_nest_location_longitude,
-                manual_nest_location_map_longitude,
-                start_geopoint_longitude,
-                manual_nest_location_lon
-            )
-        ) %>%
+      dplyr::mutate(
+        loc_latitude = dplyr::coalesce(
+          realtime_nest_location_latitude,
+          manual_nest_location_map_latitude,
+          start_geopoint_latitude,
+          manual_nest_location_lat
+        ),
+        loc_longitude = dplyr::coalesce(
+          realtime_nest_location_longitude,
+          manual_nest_location_map_longitude,
+          start_geopoint_longitude,
+          manual_nest_location_lon
+        )
+      ) %>%
       wastdr::join_tsc_sites(sites, prefix = "loc_") %>%
       wastdr::add_dates(parse_date = FALSE)
 
