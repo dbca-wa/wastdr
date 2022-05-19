@@ -28,9 +28,8 @@ join_tsc_sites <- function(data, sites, prefix = "observed_at_") {
       crs = 4326,
       agr = "constant",
       remove = FALSE
-    )
-  # %>%
-  # sf::st_join(sites)
+    ) %>%
+  sf::st_join(sites)
 }
 
 # usethis::use_test("join_tsc_sites")
