@@ -5,7 +5,7 @@
 \alias{odkc_data}
 \title{Turtle Nesting Census data from ODK Central.}
 \format{
-An object of class \code{odkc_turtledata} of length 23.
+An object of class \code{odkc_turtledata} of length 24.
 }
 \usage{
 odkc_data
