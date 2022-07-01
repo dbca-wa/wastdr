@@ -1,11 +1,12 @@
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:odk="http://www.opendatakit.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:orx="http://openrosa.org/xforms" xmlns:odk="http://www.opendatakit.org/xforms">
   <h:head>
     <h:title>Turtle Track Tally</h:title>
     <model>
       <instance>
-        <data id="Turtle-Track-Tally" version="1629442816">
+        <data id="Turtle-Track-Tally" version="1656396715">
           <meta>
             <instanceID/>
+            <audit/>
           </meta>
           <start_geopoint/>
           <observation_start_time/>
@@ -582,6 +583,8 @@
         </translation>
       </itext>
       <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" jr:preload="uid"/>
+      <submission method="form-data-post" orx:auto-send="false" orx:auto-delete="true"/>
+      <bind nodeset="/data/meta/audit" type="binary" odk:location-priority="balanced" odk:location-min-interval="20" odk:location-max-age="60" odk:track-changes="true" odk:identify-user="false"/>
       <bind nodeset="/data/start_geopoint" type="geopoint"/>
       <odk:setgeopoint ref="/data/start_geopoint" event="odk-instance-first-load"/>
       <bind nodeset="/data/observation_start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
