@@ -1,9 +1,10 @@
+url: https://dbca-wa.github.io/wastdr/
 authors:
   DBCA:
-    html: "<img src='man/figures/dbca_bcs.png' width='150' alt='DBCA'/>"
+    html: <img src='man/figures/dbca_bcs.png' width='150' alt='DBCA'/>
     href: https://www.dbca.wa.gov.au/science/
   NWSFTCP:
-    html: "<img src='man/figures/flatbacks.svg' width='150' alt='NWSFTCP'/>"
+    html: <img src='man/figures/flatbacks.svg' width='150' alt='NWSFTCP'/>
     href: https://flatbacks.dbca.wa.gov.au/
 template:
   params:
@@ -13,43 +14,32 @@ articles:
 - title: Setup
   desc: Configure wastdr
   navbar: Setup
-  contents:
-  - setup
+  contents: setup
 - title: Access
   desc: Access WAStD data
   navbar: Access
-  contents:
-  - access
+  contents: access
 - title: Analyze
   desc: Analyze WAStD data
   navbar: Analyze
-  contents:
-  - analysis
+  contents: analysis
 reference:
 - title: API access
-  contents:
-  - has_concept("api")
+  contents: has_concept("api")
 - title: WA Sea Turtles DB
-  contents:
-  - has_concept("wastd")
+  contents: has_concept("wastd")
 - title: WA Sea Turtles DB - Surveys
-  contents:
-  - has_concept("wastd_surveys")
+  contents: has_concept("wastd_surveys")
 - title: ODK Central Turtle Data
-  contents:
-  - has_concept("odkc")
+  contents: has_concept("odkc")
 - title: Turtle Nesting Census import
-  contents:
-  - has_concept("tnc")
+  contents: has_concept("tnc")
 - title: Turtle Tagging DB import
-  contents:
-  - has_concept("wamtram")
+  contents: has_concept("wamtram")
 - title: WACensus access
-  contents:
-  - has_concept("wacensus")
+  contents: has_concept("wacensus")
 - title: Helpers
-  contents:
-  - has_concept("helpers")
+  contents: has_concept("helpers")
 - title: Example data
-  contents:
-  - has_concept("included")
+  contents: has_concept("included")
+

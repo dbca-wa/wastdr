@@ -17,7 +17,8 @@ Description: The 'WA Sea Turtle Database' 'WAStD' is a 'Django' web app
     'wastdr' can be seen as working examples for converting nested lists
     into two-dimensional 'tibbles'.
 License: MIT + file LICENSE
-URL: https://github.com/dbca-wa/wastdr
+URL: https://github.com/dbca-wa/wastdr,
+    https://dbca-wa.github.io/wastdr/
 BugReports: https://github.com/dbca-wa/wastdr/issues
 Depends:
     R (>= 4.1.0)
