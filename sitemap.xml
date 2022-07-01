@@ -1,480 +1,567 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/articles/access.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/articles/access.html</loc>
   </url>
   <url>
-    <loc>/articles/analysis.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/articles/analysis.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/setup.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/articles/setup.html</loc>
   </url>
   <url>
-    <loc>/articles/tsc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/articles/tsc.html</loc>
   </url>
   <url>
-    <loc>/articles/wamtram.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/articles/wamtram.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/index.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/add_dates.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/absolute_angle.html</loc>
   </url>
   <url>
-    <loc>/reference/add_hatching_emergence_success_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/add_dates.html</loc>
   </url>
   <url>
-    <loc>/reference/add_nest_labels.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/add_hatching_emergence_success_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/add_nest_labels_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/add_nest_labels.html</loc>
   </url>
   <url>
-    <loc>/reference/build_auth.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/add_nest_labels_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/datetime_as_isoweek.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/build_auth.html</loc>
   </url>
   <url>
-    <loc>/reference/datetime_as_season.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/datetime_as_isoweek.html</loc>
   </url>
   <url>
-    <loc>/reference/datetime_as_seasonweek.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/datetime_as_season.html</loc>
   </url>
   <url>
-    <loc>/reference/datetime_as_turtle_date.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/datetime_as_seasonweek.html</loc>
   </url>
   <url>
-    <loc>/reference/disturbance_by_season.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/datetime_as_turtle_date.html</loc>
   </url>
   <url>
-    <loc>/reference/download_minimal_wastd_turtledata.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/disturbance_by_season.html</loc>
   </url>
   <url>
-    <loc>/reference/download_odkc_turtledata_2020.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/download_minimal_wastd_turtledata.html</loc>
   </url>
   <url>
-    <loc>/reference/download_w2_data.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/download_odkc_turtledata_2020.html</loc>
   </url>
   <url>
-    <loc>/reference/download_wastd_sites.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/download_w2_data.html</loc>
   </url>
   <url>
-    <loc>/reference/download_wastd_turtledata.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/download_wastd_sites.html</loc>
   </url>
   <url>
-    <loc>/reference/download_wastd_users.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/download_wastd_turtledata.html</loc>
   </url>
   <url>
-    <loc>/reference/duplicate_surveys.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/download_wastd_users.html</loc>
   </url>
   <url>
-    <loc>/reference/exclude_training_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/duplicate_surveys.html</loc>
   </url>
   <url>
-    <loc>/reference/exclude_training_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/exclude_training_species.html</loc>
   </url>
   <url>
-    <loc>/reference/exclude_training_surveys.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/exclude_training_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/export_wastd_turtledata.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/exclude_training_surveys.html</loc>
   </url>
   <url>
-    <loc>/reference/extract_possibly.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/export_wastd_turtledata.html</loc>
   </url>
   <url>
-    <loc>/reference/fdate_as_tdate.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/extract_possibly.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_alive.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/fdate_as_tdate.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_dead.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_alive.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_disturbance.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_dead.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_missing_site.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_disturbance.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_missing_survey.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_missing_site.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_odkc_turtledata.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_missing_survey.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_predation.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_odkc_turtledata.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_surveys_missing_end.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_predation.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_surveys_requiring_qa.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_surveys_missing_end.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_wastd_season.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_surveys_requiring_qa.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_wastd_turtledata.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_wastd_season.html</loc>
   </url>
   <url>
-    <loc>/reference/general_disturbance_by_season_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_wastd_turtledata.html</loc>
   </url>
   <url>
-    <loc>/reference/get_more.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_wastd_turtledata_area.html</loc>
   </url>
   <url>
-    <loc>/reference/ggplot_track_success_by_date.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/filter_wastd_turtledata_seasons.html</loc>
   </url>
   <url>
-    <loc>/reference/ggplot_track_successrate_by_date.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/general_disturbance_by_season_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/gj_linestring_to_st_linestring.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/get_more.html</loc>
   </url>
   <url>
-    <loc>/reference/handle_http_status.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/ggplot_disturbance_by_season.html</loc>
   </url>
   <url>
-    <loc>/reference/hatching_emergence_success.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/ggplot_emergence_success.html</loc>
   </url>
   <url>
-    <loc>/reference/hatching_emergence_success_area.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/ggplot_hatching_success.html</loc>
   </url>
   <url>
-    <loc>/reference/hatching_emergence_success_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/ggplot_hatchling_misorientation.html</loc>
   </url>
   <url>
-    <loc>/reference/hatching_emergence_success_site.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/ggplot_nesting_success_per_area_season_species.html</loc>
   </url>
   <url>
-    <loc>/reference/httpdate_as_gmt08.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/ggplot_nesting_success_per_area_season_species_pct.html</loc>
   </url>
   <url>
-    <loc>/reference/httpdate_as_gmt08_turtle_date.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/ggplot_sighting_status_per_area_season_species.html</loc>
   </url>
   <url>
-    <loc>/reference/httpdate_as_season.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/ggplot_total_emergences_per_area_season_species.html</loc>
   </url>
   <url>
-    <loc>/reference/humanize.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/ggplot_track_success_by_date.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/ggplot_track_successrate_by_date.html</loc>
   </url>
   <url>
-    <loc>/reference/join_tsc_sites.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/gj_linestring_to_st_linestring.html</loc>
   </url>
   <url>
-    <loc>/reference/lifecycle_shim.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/handle_http_status.html</loc>
   </url>
   <url>
-    <loc>/reference/list_survey_count.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/hatching_emergence_success.html</loc>
   </url>
   <url>
-    <loc>/reference/list_survey_effort.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/hatching_emergence_success_area.html</loc>
   </url>
   <url>
-    <loc>/reference/map_chr_hack.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/hatching_emergence_success_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/map_dist.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/hatching_emergence_success_site.html</loc>
   </url>
   <url>
-    <loc>/reference/map_dist_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/httpdate_as_gmt08.html</loc>
   </url>
   <url>
-    <loc>/reference/map_mwi.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/httpdate_as_gmt08_turtle_date.html</loc>
   </url>
   <url>
-    <loc>/reference/map_mwi_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/httpdate_as_season.html</loc>
   </url>
   <url>
-    <loc>/reference/map_nests.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/humanize.html</loc>
   </url>
   <url>
-    <loc>/reference/map_sv_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/map_tracks.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/join_tsc_sites.html</loc>
   </url>
   <url>
-    <loc>/reference/map_tracks_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/leaflet_basemap.html</loc>
   </url>
   <url>
-    <loc>/reference/nest_disturbance_by_season_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/lifecycle_shim.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_area_season_age_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/list_survey_count.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_area_season_age_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/list_survey_effort.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_area_season_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_chr_hack.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_area_season_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_dist.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_age_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_dist_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_age_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_fanangles.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_calendarday_age_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_mwi.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_calendarday_age_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_mwi_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_calendarday_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_nests.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_calendarday_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_sv_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_day_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_tracks.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_day_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_tracks_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_tt_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_wamtram.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_week_age_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_wastd.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_week_age_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/map_wastd_wamtram_sites.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_week_site_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/mean_bearing.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_week_site_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/mis_bearing.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_week_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nest_disturbance_by_season_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_season_week_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_success_per_area_day_species.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_site_season_age_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_success_per_area_season_species.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_site_season_age_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_area_season_age_species.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_site_season_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_area_season_age_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/nesting_type_by_site_season_species_odkc.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_area_season_species.html</loc>
   </url>
   <url>
-    <loc>/reference/odkc_data.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_area_season_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/odkc_works.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_age_species.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_animal_encounters.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_age_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_area.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_calendarday_age_species.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_area_sf.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_calendarday_age_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_encounterobservations.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_calendarday_species.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_surveys.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_calendarday_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_turtle_nest_encounters.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_day_species.html</loc>
   </url>
   <url>
-    <loc>/reference/pipe.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_day_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_survey_count.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_species.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_survey_effort.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/print.odkc_turtledata.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_week_age_species.html</loc>
   </url>
   <url>
-    <loc>/reference/print.wamtram_data.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_week_age_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/print.wastd_api_response.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_week_site_species.html</loc>
   </url>
   <url>
-    <loc>/reference/print.wastd_data.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_week_site_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/sf_as_tbl.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_week_species.html</loc>
   </url>
   <url>
-    <loc>/reference/sfdeps.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_season_week_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/summarise_hatching_and_emergence_success.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_site_season_age_species.html</loc>
   </url>
   <url>
-    <loc>/reference/summarise_wastd_data_per_day_site.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_site_season_age_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/survey_count.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_site_season_species.html</loc>
   </url>
   <url>
-    <loc>/reference/survey_count_heatmap.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/nesting_type_by_site_season_species_odkc.html</loc>
   </url>
   <url>
-    <loc>/reference/survey_ground_covered.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/odkc_data.html</loc>
   </url>
   <url>
-    <loc>/reference/survey_hours_heatmap.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/odkc_works.html</loc>
   </url>
   <url>
-    <loc>/reference/survey_hours_per_person.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/parse_animal_encounters.html</loc>
   </url>
   <url>
-    <loc>/reference/survey_hours_per_site_name_and_date.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/parse_area.html</loc>
   </url>
   <url>
-    <loc>/reference/survey_season_site_stats.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/parse_area_sf.html</loc>
   </url>
   <url>
-    <loc>/reference/survey_season_stats.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/parse_encounterobservations.html</loc>
   </url>
   <url>
-    <loc>/reference/survey_show_detail.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/parse_surveys.html</loc>
   </url>
   <url>
-    <loc>/reference/surveys_per_site_name_and_date.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/parse_turtle_nest_encounters.html</loc>
   </url>
   <url>
-    <loc>/reference/tdate_as_fdate.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>/reference/tidyeval.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/plot_survey_count.html</loc>
   </url>
   <url>
-    <loc>/reference/track_success.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/plot_survey_effort.html</loc>
   </url>
   <url>
-    <loc>/reference/track_success_by_species.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/print.odkc_turtledata.html</loc>
   </url>
   <url>
-    <loc>/reference/tracks_as_geojson.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/print.wamtram_data.html</loc>
   </url>
   <url>
-    <loc>/reference/tracks_ts.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/print.wastd_api_response.html</loc>
   </url>
   <url>
-    <loc>/reference/tsc_data.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/print.wastd_data.html</loc>
   </url>
   <url>
-    <loc>/reference/tun.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/read_table.html</loc>
   </url>
   <url>
-    <loc>/reference/urlize.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/sentencecase.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_GET.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/sf_as_tbl.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_POST.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/sfdeps.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_ae.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/sighting_status_per_area_season_species.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_ae_raw.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/sighting_status_per_site_season_species.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_area_raw.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/summarise_hatching_and_emergence_success.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_bulk_post.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/summarise_wastd_data_per_day_site.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_chunk_post.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/survey_count.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_create_update_skip.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/survey_count_heatmap.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_data.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/survey_ground_covered.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_parse.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/survey_hours_heatmap.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_post_one.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/survey_hours_per_person.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_surveys_raw.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/survey_hours_per_site_name_and_date.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_tne.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/survey_season_site_stats.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_tne_raw.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/survey_season_stats.html</loc>
   </url>
   <url>
-    <loc>/reference/wastd_works.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/survey_show_detail.html</loc>
   </url>
   <url>
-    <loc>/reference/wastdr-package.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/surveys_per_site_name_and_date.html</loc>
   </url>
   <url>
-    <loc>/reference/wastdr_msg_abort.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/tdate_as_fdate.html</loc>
   </url>
   <url>
-    <loc>/reference/wastdr_msg_info.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/tidyeval.html</loc>
   </url>
   <url>
-    <loc>/reference/wastdr_msg_noop.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/total_emergences_per_area_season_species.html</loc>
   </url>
   <url>
-    <loc>/reference/wastdr_msg_success.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/total_emergences_per_site_season_species.html</loc>
   </url>
   <url>
-    <loc>/reference/wastdr_msg_warn.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/track_success.html</loc>
   </url>
   <url>
-    <loc>/reference/wastdr_settings.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/track_success_by_species.html</loc>
   </url>
   <url>
-    <loc>/reference/wastdr_setup.html</loc>
+    <loc>https://dbca-wa.github.io/wastdr/reference/tracks_as_geojson.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/tracks_ts.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/tsc_data.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/tun.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/urlize.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/verify_wastd_data.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/w2_online.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_GET.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_POST.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_ae.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_ae_raw.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_area_raw.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_bulk_post.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_chunk_post.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_create_update_skip.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_data.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_parse.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_post_one.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_surveys_raw.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_tne.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_tne_raw.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastd_works.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastdr-package.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastdr_msg_abort.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastdr_msg_info.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastdr_msg_noop.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastdr_msg_success.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastdr_msg_warn.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastdr_settings.html</loc>
+  </url>
+  <url>
+    <loc>https://dbca-wa.github.io/wastdr/reference/wastdr_setup.html</loc>
   </url>
 </urlset>

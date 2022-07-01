@@ -1,5 +1,5 @@
-pandoc: 2.7.3
-pkgdown: 2.0.1
+pandoc: 2.14.2
+pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   access: access.html
@@ -7,5 +7,8 @@ articles:
   setup: setup.html
   tsc: tsc.html
   wamtram: wamtram.html
-last_built: 2022-01-08T18:22Z
+last_built: 2022-07-01T08:53Z
+urls:
+  reference: https://dbca-wa.github.io/wastdr/reference
+  article: https://dbca-wa.github.io/wastdr/articles
 
