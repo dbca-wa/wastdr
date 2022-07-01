@@ -4,6 +4,7 @@
 #' @param table_name The table to fetch all records for
 #' @param rodbc Whether to use RODBC (if TRUE) or DBI (if FALSE, default)
 #' @export
+#' @family helpers
 read_table <- function(connection, table_name, rodbc = FALSE) {
   if (rodbc == TRUE) {
     RODBC::sqlFetch(connection, table_name)

@@ -135,6 +135,7 @@ disturbance_by_season <- function(data) {
 #' @template param-wastd-data
 #' @return A ggplot2 object
 #' @export
+#' @family wastd
 #' @examples
 #' data(wastd_data)
 #' wastd_data %>% ggplot_disturbance_by_season()

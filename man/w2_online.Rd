@@ -74,6 +74,7 @@ w2_online()
 }
 \seealso{
 Other wamtram: 
-\code{\link{download_w2_data}()}
+\code{\link{download_w2_data}()},
+\code{\link{map_wamtram}()}
 }
 \concept{wamtram}

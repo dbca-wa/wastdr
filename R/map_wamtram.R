@@ -10,6 +10,7 @@
 #' @param l_height The parameter `height` for `leaflet::leaflet()`.
 #' @return A leaflet map showing W2 sites and encounters.
 #' @export
+#' @family wamtram
 #' @examples \dontrun{
 #' data("w2_data", package = "etlTurtleNesting")
 #' w2_data <- readRDS("~/projects/etlTurtleNesting/inst/w2.rds")

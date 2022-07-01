@@ -26,6 +26,7 @@ require their use.
 Useful links:
 \itemize{
   \item \url{https://github.com/dbca-wa/wastdr}
+  \item \url{https://dbca-wa.github.io/wastdr/}
   \item Report bugs at \url{https://github.com/dbca-wa/wastdr/issues}
 }
 

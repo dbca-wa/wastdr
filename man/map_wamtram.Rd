@@ -65,3 +65,9 @@ sites <- areas_sf \%>\%
 map_wamtram(w2_data, place = "THEE", wa_sites = sites)
 }
 }
+\seealso{
+Other wamtram: 
+\code{\link{download_w2_data}()},
+\code{\link{w2_online}()}
+}
+\concept{wamtram}

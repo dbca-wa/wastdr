@@ -5,6 +5,7 @@
 #'
 #' @return A Leaflet map focused on WA
 #' @export
+#' @family helpers
 #'
 #' @examples
 #' leaflet_basemap()

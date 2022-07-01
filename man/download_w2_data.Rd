@@ -161,6 +161,7 @@ con <- DBI::dbConnect(
 }
 \seealso{
 Other wamtram: 
+\code{\link{map_wamtram}()},
 \code{\link{w2_online}()}
 }
 \concept{wamtram}

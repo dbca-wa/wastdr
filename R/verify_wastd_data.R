@@ -2,6 +2,7 @@
 #'
 #' @template param-wastd-data
 #' @export
+#' @family helpers
 #' @examples
 #' \dontrun{
 #' data(wastd_data)

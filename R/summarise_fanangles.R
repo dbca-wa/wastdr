@@ -8,6 +8,7 @@
 #' @importFrom ggplot2 ggplot aes facet_wrap ylim theme theme_minimal labs
 #'   geom_violin geom_jitter geom_point
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' data(wastd_data)

@@ -8,6 +8,7 @@
 #'
 #' @return A leaflet map
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' \dontrun{
