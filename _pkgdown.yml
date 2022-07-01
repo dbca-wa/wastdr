@@ -16,13 +16,16 @@ articles:
   navbar: Setup
   contents: setup
 - title: Access
-  desc: Access WAStD data
+  desc: Access data
   navbar: Access
   contents: access
 - title: Analyze
-  desc: Analyze WAStD data
+  desc: Analyze data
   navbar: Analyze
-  contents: analysis
+  contents:
+    - analysis
+    - tsc
+    - wamtram
 reference:
 - title: API access
   contents: has_concept("api")
