@@ -169,6 +169,7 @@ summarise_wastd_data_per_day_site <- function(x) {
 #'
 #' @return A tibble with the summary data
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' data(wastd_data)
@@ -291,6 +292,7 @@ total_emergences_per_area_season_species <- function(x) {
 #'
 #' @return A tibble with the summary data
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' data(wastd_data)
@@ -414,6 +416,7 @@ total_emergences_per_site_season_species <- function(x) {
 #'  summary of `wastd_data`.
 #' @return A ggplot2 figure
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' data(wastd_data)
@@ -468,6 +471,7 @@ ggplot_total_emergences_per_area_season_species <- function(data) {
 #'
 #' @return A tibble with the summary data
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' data(wastd_data)
@@ -582,6 +586,7 @@ nesting_success_per_area_season_species <- function(x) {
 #'
 #' @return A tibble with the summary data
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' data(wastd_data)
@@ -699,6 +704,7 @@ nesting_success_per_area_day_species <- function(x) {
 #'
 #' @return A ggplot figure
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' data(wastd_data)
@@ -759,6 +765,7 @@ ggplot_nesting_success_per_area_season_species <- function(data) {
 #'
 #' @return A ggplot figure
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' data(wastd_data)
@@ -831,6 +838,7 @@ ggplot_nesting_success_per_area_season_species_pct <- function(data) {
 #'
 #' @return A tibble with the summary data
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' data(wastd_data)
@@ -879,6 +887,7 @@ sighting_status_per_area_season_species <- function(x) {
 #'
 #' @return A tibble with the summary data
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' data(wastd_data)
@@ -916,6 +925,7 @@ sighting_status_per_site_season_species <- function(x) {
 #'  summary of `wastd_data`.
 #' @return A ggplot2 figure
 #' @export
+#' @family wastd
 #'
 #' @examples
 #' data(wastd_data)
