@@ -590,14 +590,7 @@ hatching_emergence_success_area <- function(data) {
 #'   filter_wastd_turtledata(area_name = "Delambre Island") %>%
 #'   ggplot_hatching_success()
 ggplot_hatching_success <- function(x) {
-  if (class(x) != "wastd_data") {
-    wastdr_msg_abort(
-      glue::glue(
-        "The first argument needs to be an object of class \"wastd_data\", ",
-        "e.g. the output of wastdr::download_wastd_turtledata."
-      )
-    )
-  }
+    verify_wastd_data(x)
 
   if (nrow(x$nest_excavations) == 0) {
     wastdr_msg_warn("[ggplot_hatching_success] No data given, returning NULL")
@@ -633,14 +626,7 @@ ggplot_hatching_success <- function(x) {
 #'   filter_wastd_turtledata(area_name = "Delambre Island") %>%
 #'   ggplot_emergence_success()
 ggplot_emergence_success <- function(x) {
-  if (class(x) != "wastd_data") {
-    wastdr_msg_abort(
-      glue::glue(
-        "The first argument needs to be an object of class \"wastd_data\", ",
-        "e.g. the output of wastdr::download_wastd_turtledata."
-      )
-    )
-  }
+    verify_wastd_data(x)
 
   if (nrow(x$nest_excavations) == 0) {
     wastdr_msg_warn("[ggplot_hatching_success] No data given, returning NULL")

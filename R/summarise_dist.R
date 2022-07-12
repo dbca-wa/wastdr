@@ -140,14 +140,8 @@ disturbance_by_season <- function(data) {
 #' data(wastd_data)
 #' wastd_data %>% ggplot_disturbance_by_season()
 ggplot_disturbance_by_season <- function(x) {
-  if (class(x) != "wastd_data") {
-    wastdr_msg_abort(
-      glue::glue(
-        "The first argument needs to be an object of class \"wastd_data\", ",
-        "e.g. the output of wastdr::download_wastd_turtledata."
-      )
-    )
-  }
+    verify_wastd_data(x)
+
   x$nest_dist %>%
     disturbance_by_season() %>%
     ggplot2::ggplot(ggplot2::aes(x = season, y = n, fill = disturbance_cause, group = encounter_type)) +

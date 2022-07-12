@@ -2,6 +2,7 @@
 #'
 #' @template param-wastd-data
 #' @export
+#' @importFrom methods is
 #' @family helpers
 #' @examples
 #' \dontrun{
@@ -11,7 +12,7 @@
 #' testthat::expect_error(verify_wastd_data(c(1, 2, 3)))
 #' }
 verify_wastd_data <- function(x) {
-  if (class(x) != "wastd_data") {
+  if (!is(x, "wastd_data")) {
     wastdr_msg_abort(
       glue::glue(
         "The first argument needs to be an object of class \"wastd_data\", ",

@@ -130,12 +130,7 @@ export_wastd_turtledata <- function(x,
                                     outdir = here::here(),
                                     filename = "export",
                                     zip = FALSE) {
-  if (class(x) != "wastd_data") {
-    wastdr_msg_abort(glue::glue(
-      "The first argument needs to be an object of class \"wastd_data\", ",
-      "e.g. the output of wastdr::download_wastd_turtledata."
-    ))
-  }
+    verify_wastd_data(x)
 
   if (!fs::dir_exists(outdir)) fs::dir_create(outdir, recurse = TRUE)
 

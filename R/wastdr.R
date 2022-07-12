@@ -15,10 +15,6 @@
 #' @keywords internal
 "_PACKAGE"
 
-
-# Silence R CMD CHECK warning: Use lifecycle somewhere in package
-lifecycle::deprecate_soft
-
 # CMD check silencer
 utils::globalVariables(
   c(
@@ -340,6 +336,15 @@ utils::globalVariables(
     "survey_id",
     "survey_pk",
     "end_source_id",
-    "reporter_username"
+    "reporter_username",
+    "loc_latitude",
+    "manual_nest_location_lat",
+    "manual_nest_location_lon",
+    "manual_nest_location_map_latitude",
+    "manual_nest_location_map_longitude",
+    "realtime_nest_location_latitude",
+    "realtime_nest_location_longitude",
+    "start_geopoint_latitude",
+    "start_geopoint_longitude"
   )
 )

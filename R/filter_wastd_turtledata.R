@@ -30,14 +30,7 @@ filter_wastd_turtledata_area <- function(x,
   requireNamespace("sf", quietly = TRUE) # override dplyr::filter with spatial fns
 
   # Gate checks ---------------------------------------------------------------#
-  if (class(x) != "wastd_data") {
-    wastdr_msg_abort(
-      glue::glue(
-        "The first argument needs to be an object of class \"wastd_data\", ",
-        "e.g. the output of wastdr::download_wastd_turtledata."
-      )
-    )
-  }
+    verify_wastd_data(x)
 
   if (is.null(area_name)) {
     "No area_name name given, returning all data." %>%
