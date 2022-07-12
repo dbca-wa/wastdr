@@ -194,7 +194,7 @@
 <span class="r-in"><span>  <span class="fu"><a href="sf_as_tbl.html">sf_as_tbl</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">filter_disturbance</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 106</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 110</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   photo_disturbance disturbance_cause disturbance_cau… disturbance_sev… comments</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1644790046500.jpg unknown           guess            completely       <span style="color: #949494;">"</span>Turtle…</span>
@@ -203,7 +203,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 1641554118329.jpg unknown           expert-opinion   na                <span style="color: #BB0000;">NA</span>     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 1641856564509.jpg turtle            expert-opinion   partly            <span style="color: #BB0000;">NA</span>     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 1641856592733.jpg turtle            expert-opinion   partly            <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 101 more variables: id &lt;chr&gt;, submissions_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 105 more variables: id &lt;chr&gt;, submissions_id &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   odata_context.x &lt;chr&gt;, meta_instance_id &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   start_geopoint_longitude &lt;dbl&gt;, start_geopoint_latitude &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   start_geopoint_altitude &lt;dbl&gt;, start_geopoint_accuracy &lt;dbl&gt;,</span></span>
@@ -215,7 +215,7 @@
 <span class="r-in"><span>  <span class="fu"><a href="sf_as_tbl.html">sf_as_tbl</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">filter_disturbance</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 41</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 45</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id         meta_instance_id start_geopoint_… start_geopoint_… start_geopoint_…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> uuid:8c52… uuid:8c52211f-6…              <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>   </span>
@@ -224,7 +224,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> uuid:6ba9… uuid:6ba9fba3-f…             119.            -<span style="color: #BB0000;">20.3</span>             4.07</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> uuid:de27… uuid:de2729a7-9…             114.            -<span style="color: #BB0000;">21.8</span>            -<span style="color: #BB0000;">7.18</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> uuid:192f… uuid:192f364e-1…             114.            -<span style="color: #BB0000;">21.9</span>            -<span style="color: #BB0000;">9.11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 36 more variables: start_geopoint_accuracy &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 40 more variables: start_geopoint_accuracy &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   start_geopoint &lt;list&gt;, observation_start_time &lt;dttm&gt;, device_id &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   reporter &lt;chr&gt;, disturbanceobservation_photo_disturbance &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   disturbanceobservation_disturbance_cause &lt;chr&gt;,</span></span>
