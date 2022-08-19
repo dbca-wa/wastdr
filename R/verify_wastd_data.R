@@ -12,7 +12,7 @@
 #' testthat::expect_error(verify_wastd_data(c(1, 2, 3)))
 #' }
 verify_wastd_data <- function(x) {
-  if (!is(x, "wastd_data")) {
+  if (!inherits(x, "wastd_data")) {
     wastdr_msg_abort(
       glue::glue(
         "The first argument needs to be an object of class \"wastd_data\", ",

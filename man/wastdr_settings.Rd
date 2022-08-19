@@ -74,6 +74,8 @@ Other helpers:
 \code{\link{tracks_as_geojson}()},
 \code{\link{tun}()},
 \code{\link{urlize}()},
+\code{\link{verify_odkc_turtledata}()},
+\code{\link{verify_wamtram_data}()},
 \code{\link{verify_wastd_data}()},
 \code{\link{wastd_works}()},
 \code{\link{wastdr_msg_abort}()},

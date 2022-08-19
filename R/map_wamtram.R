@@ -42,14 +42,9 @@ map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
                         wa_sites = NULL, l_width = NULL, l_height = NULL) {
 
   # Gatechecks ----------------------------------------------------------------#
-  if (class(data) != "wamtram_data") {
-    glue::glue(
-      "The first argument needs to be an object of class ",
-      "\"wamtram_data\", e.g. the output of wastdr::download_w2_data."
-    ) %>% wastdr_msg_abort()
-  }
+  verify_wamtram_data(data)
 
-  # Filter WAMTRAM Encounters by loc, place, obs ID ----------------------------#
+  # Filter WAMTRAM Encounters by loc, place, obs ID ---------------------------#
   enc <- data$enc %>%
     dplyr::filter(
       !is.na(longitude),

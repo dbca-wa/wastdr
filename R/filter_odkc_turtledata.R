@@ -40,14 +40,7 @@ filter_odkc_turtledata <- function(data,
   requireNamespace("sf") # overrides dplyr::filter with spatial equivalents
 
   # Error handling
-  if (class(data) != "odkc_turtledata") {
-    wastdr_msg_abort(
-      glue::glue(
-        "The first argument needs to be an object of class \"odkc_turtledata\", ",
-        "e.g. the output of wastdr::download_odkc_turtledata_2020()."
-      )
-    )
-  }
+  verify_odkc_turtledata(data)
 
   if (is.null(area_name)) {
     "No area_name name given, returning data without spatial filtering." %>%

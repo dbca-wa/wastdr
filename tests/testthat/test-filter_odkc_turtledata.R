@@ -44,7 +44,10 @@ test_that("filter_odkc_turtledata returns data outside areas when asked", {
       )
   )
   # Data have all areas as NA
-  # testthat::expect_true(unique(x$tracks$area_name) == character(0))
+  testthat::skip_if(
+    nrow(x$mwi) == 0,
+    message = "odkc_data does not contain records outside known areas"
+  )
   testthat::expect_true(is.na(unique(x$mwi$area_name)))
 })
 

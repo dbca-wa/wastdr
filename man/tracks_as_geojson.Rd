@@ -51,6 +51,8 @@ Other helpers:
 \code{\link{tdate_as_fdate}()},
 \code{\link{tun}()},
 \code{\link{urlize}()},
+\code{\link{verify_odkc_turtledata}()},
+\code{\link{verify_wamtram_data}()},
 \code{\link{verify_wastd_data}()},
 \code{\link{wastd_works}()},
 \code{\link{wastdr_msg_abort}()},

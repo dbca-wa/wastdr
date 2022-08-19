@@ -30,7 +30,7 @@ filter_wastd_turtledata_area <- function(x,
   requireNamespace("sf", quietly = TRUE) # override dplyr::filter with spatial fns
 
   # Gate checks ---------------------------------------------------------------#
-    verify_wastd_data(x)
+  verify_wastd_data(x)
 
   if (is.null(area_name)) {
     "No area_name name given, returning all data." %>%
