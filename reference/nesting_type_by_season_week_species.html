@@ -161,20 +161,21 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"wastd_data"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="nesting_type_by_site_season_age_species.html">nesting_type_by_site_season_age_species</a></span><span class="op">(</span><span class="va">wastd_data</span><span class="op">$</span><span class="va">tracks</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 35 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    area_name      site_name season species nest_age `false-crawl` `hatched-nest`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Cable Beach B… Cable Be…   <span style="text-decoration: underline;">2</span>021 chelon… old                  0              1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Cable Beach B… Cable Be…   <span style="text-decoration: underline;">2</span>021 natato… unknown              0              1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Cable Beach B… Cable Be…   <span style="text-decoration: underline;">2</span>021 chelon… old                  0              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Delambre Isla… Delambre…   <span style="text-decoration: underline;">2</span>021 natato… old                  0             32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Ningaloo       North We…   <span style="text-decoration: underline;">2</span>021 chelon… fresh               78              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Ningaloo       North We…   <span style="text-decoration: underline;">2</span>021 carett… fresh                1              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Ningaloo       North We…   <span style="text-decoration: underline;">2</span>021 chelon… fresh               80              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Ningaloo       North We…   <span style="text-decoration: underline;">2</span>021 chelon… fresh                1              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Ningaloo       North We…   <span style="text-decoration: underline;">2</span>021 carett… fresh                0              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Ningaloo       North We…   <span style="text-decoration: underline;">2</span>021 chelon… fresh               56              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 25 more rows, and 2 more variables: nest &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `successful-crawl` &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    area_name        site_…¹ season species nest_…² false…³ hatch…⁴  nest succe…⁵</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Cable Beach Bro… Cable …   <span style="text-decoration: underline;">2</span>021 chelon… old           0       1     0       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Cable Beach Bro… Cable …   <span style="text-decoration: underline;">2</span>021 natato… unknown       0       1     0       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Cable Beach Bro… Cable …   <span style="text-decoration: underline;">2</span>021 chelon… old           0       0     1       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Delambre Island  Delamb…   <span style="text-decoration: underline;">2</span>021 natato… old           0      32     0       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Ningaloo         North …   <span style="text-decoration: underline;">2</span>021 chelon… fresh        78       0     0      17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Ningaloo         North …   <span style="text-decoration: underline;">2</span>021 carett… fresh         1       0     0       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Ningaloo         North …   <span style="text-decoration: underline;">2</span>021 chelon… fresh        80       0     0      19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Ningaloo         North …   <span style="text-decoration: underline;">2</span>021 chelon… fresh         1       0     0       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Ningaloo         North …   <span style="text-decoration: underline;">2</span>021 carett… fresh         0       0     0       2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Ningaloo         North …   <span style="text-decoration: underline;">2</span>021 chelon… fresh        56       0     0      18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 25 more rows, and abbreviated variable names ¹​site_name, ²​nest_age,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ³​`false-crawl`, ⁴​`hatched-nest`, ⁵​`successful-crawl`</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -189,7 +190,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
