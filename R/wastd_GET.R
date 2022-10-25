@@ -59,7 +59,10 @@ wastd_GET <- function(serializer,
   "Fetching {url}" %>%
     glue::glue() %>%
     wastdr_msg_info(verbose = verbose)
-  res <- httr::RETRY(verb = "GET", url, auth, ua, query = query, times = 3)
+  res <- httr::RETRY(
+    verb = "GET", url, auth, ua, query = query,
+    times = 10, quiet = FALSE, pause_min=10, pause_cap=600
+  )
 
   handle_http_status(res, verbose = verbose)
 
