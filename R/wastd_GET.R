@@ -61,7 +61,7 @@ wastd_GET <- function(serializer,
     wastdr_msg_info(verbose = verbose)
   res <- httr::RETRY(
     verb = "GET", url, auth, ua, query = query,
-    times = 10, quiet = FALSE, pause_min=10, pause_cap=600
+    times = 10, quiet = FALSE, pause_min = 10, pause_cap = 600
   )
 
   handle_http_status(res, verbose = verbose)
@@ -107,7 +107,10 @@ wastd_GET <- function(serializer,
     while (!is.null(next_url) &&
       get_more(total_count, max_records) == TRUE) {
       wastdr::wastdr_msg_info(glue::glue("Fetching {next_url}"))
-      next_res <- httr::RETRY(verb = "GET", next_url, auth, ua, times = 3) %>%
+      next_res <- httr::RETRY(
+        verb = "GET", next_url, auth, ua,
+        times = 10, quiet = FALSE, pause_min = 10, pause_cap = 600
+      ) %>%
         httr::warn_for_status(.) %>%
         httr::content(., as = "text", encoding = "UTF-8") %>%
         {
