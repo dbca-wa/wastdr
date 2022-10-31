@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">wastdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.42</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.0</span>
       </span>
     </div>
 
@@ -87,7 +87,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">parse_area_sf</span><span class="op">(</span><span class="va">wastd_api_response</span>, wastd_url <span class="op">=</span> <span class="fu">wastdr</span><span class="fu">::</span><span class="fu"><a href="wastdr_settings.html">get_wastd_url</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">parse_area_sf</span><span class="op">(</span></span>
+<span>  <span class="va">wastd_api_response</span>,</span>
+<span>  wastd_url <span class="op">=</span> <span class="fu">wastdr</span><span class="fu">::</span><span class="fu"><a href="wastdr_settings.html">get_wastd_url</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  payload <span class="op">=</span> <span class="st">"data"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -99,6 +103,10 @@
 
 <dt>wastd_url</dt>
 <dd><p>The base URL for WAStD, default: <code><a href="wastdr_settings.html">get_wastd_url()</a></code></p></dd>
+
+
+<dt>payload</dt>
+<dd><p>The parameter <code>payload</code> for <code>wastd_parse</code>.</p></dd>
 
 </dl></div>
     <div id="value">
