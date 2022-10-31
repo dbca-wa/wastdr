@@ -4,11 +4,13 @@
 \alias{parse_animal_encounters}
 \title{Parse a \code{wastd_api_response} of \code{animal-encounters} to tbl_df}
 \usage{
-parse_animal_encounters(wastd_api_response)
+parse_animal_encounters(wastd_api_response, payload = "data")
 }
 \arguments{
 \item{wastd_api_response}{A \code{wastd_api_response} of
 \code{animal-encounters}, e.g. \code{get_wastd("animal-encounters")}}
+
+\item{payload}{The parameter \code{payload} for \code{wastd_parse}.}
 }
 \value{
 A \code{tbl_df} with columns:

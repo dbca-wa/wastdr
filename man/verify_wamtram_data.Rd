@@ -16,8 +16,8 @@ Abort if the parameter x is not of class \code{wastd_data}
 }
 \examples{
 \dontrun{
-#data(wamtram_data)
-#verify_wamtram_data(wamtram_data)
+# data(wamtram_data)
+# verify_wamtram_data(wamtram_data)
 testthat::expect_error(verify_wamtram_data(NULL))
 testthat::expect_error(verify_wamtram_data(c(1, 2, 3)))
 }

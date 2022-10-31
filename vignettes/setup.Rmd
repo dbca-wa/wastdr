@@ -51,8 +51,8 @@ For a permanent setup, the environment variables can be set in the user's
 DBCA staff visit their own profile on WAStD and add their API Token as advertised on their profile to their `.Renviron`:
 
 ```{r, eval=F}
-WASTDR_API_URL="https://tsc.dbca.wa.gov.au/api/1/"
-WASTDR_API_TOKEN="Token xxx"
+WASTDR_API_URL <- "https://tsc.dbca.wa.gov.au/api/1/"
+WASTDR_API_TOKEN <- "Token xxx"
 ```
 
 Note that the API token contains the word `Token` and a whitespace in addition
@@ -61,9 +61,9 @@ to the actual API token (an alphanumeric hash).
 External collaborators add to their `.Renviron`:
 
 ```{r, eval=F}
-WASTDR_API_URL="https://tsc.dbca.wa.gov.au/api/1/"
-WASTDR_API_UN="XXX"
-WASTDR_API_PW="XXX"
+WASTDR_API_URL <- "https://tsc.dbca.wa.gov.au/api/1/"
+WASTDR_API_UN <- "XXX"
+WASTDR_API_PW <- "XXX"
 ```
 
 In the long term, this last method is the most elegant and persistent way of
@@ -104,12 +104,14 @@ wastdr::wastdr_settings()
 Crendentials can be supplied directly to functions:
 
 ```{r eval=F}
-wastdr::wastd_GET('encounters', 
-                  api_token = "Token XXX")
+wastdr::wastd_GET("encounters",
+  api_token = "Token XXX"
+)
 
-wastdr::wastd_GET('encounters',
-                  api_un = "XXX",
-                  api_pw = "XXX")
+wastdr::wastd_GET("encounters",
+  api_un = "XXX",
+  api_pw = "XXX"
+)
 ```
 
 This method overrides any other settings, but leads to verbose code with confidential

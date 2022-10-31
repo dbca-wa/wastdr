@@ -4,12 +4,14 @@
 \alias{parse_turtle_nest_encounters}
 \title{Parse a \code{wastd_api_response} of \code{turtle-nest-encounters} to tbl_df}
 \usage{
-parse_turtle_nest_encounters(wastd_api_response)
+parse_turtle_nest_encounters(wastd_api_response, payload = "data")
 }
 \arguments{
 \item{wastd_api_response}{A \code{wastd_api_response} of
 \code{turtle-nest-encounters}, e.g.
 \code{wastd_GET("turtle-nest-encounters")}}
+
+\item{payload}{The parameter \code{payload} for \code{wastd_parse}.}
 }
 \value{
 A \code{tbl_df} with columns:

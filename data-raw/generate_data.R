@@ -63,55 +63,55 @@ odkc_data$tracks_dist <- odkc_data$tracks_dist %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$tracks_log <- odkc_data$tracks_log %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$tracks_egg <- odkc_data$tracks_egg %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$tracks_hatch <- odkc_data$tracks_hatch %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$tracks_fan_outlier <- odkc_data$tracks_fan_outlier %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$track_tally <- odkc_data$track_tally %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$dist <- odkc_data$dist %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$mwi <- odkc_data$mwi %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$mwi_dmg <- odkc_data$mwi_dmg %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$mwi_tag <- odkc_data$mwi_tag %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$tsi <- odkc_data$tsi %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$svs <- odkc_data$svs %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$sve <- odkc_data$sve %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$tt <- odkc_data$tt %>%
-    dplyr::filter(!is.na(area_name)) %>%
+  dplyr::filter(!is.na(area_name)) %>%
   head(n = 100) %>%
   sanitize_names()
 odkc_data$tt_tag <- odkc_data$tt_tag %>%

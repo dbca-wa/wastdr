@@ -175,7 +175,7 @@ summarise_wastd_data_per_day_site <- function(x) {
 #' data(wastd_data)
 #' wastd_data %>% total_emergences_per_area_season_species()
 total_emergences_per_area_season_species <- function(x) {
-    verify_wastd_data(x)
+  verify_wastd_data(x)
 
   shared_cols <- c("area_name", "species", "season")
 
@@ -291,7 +291,7 @@ total_emergences_per_area_season_species <- function(x) {
 #' data(wastd_data)
 #' wastd_data %>% total_emergences_per_site_season_species()
 total_emergences_per_site_season_species <- function(x) {
-    verify_wastd_data(x)
+  verify_wastd_data(x)
 
   shared_cols <- c("area_name", "site_name", "species", "season")
 
@@ -464,7 +464,7 @@ ggplot_total_emergences_per_area_season_species <- function(data) {
 #' wastd_data %>%
 #'   nesting_success_per_area_season_species()
 nesting_success_per_area_season_species <- function(x) {
-    verify_wastd_data(x)
+  verify_wastd_data(x)
 
   shared_cols <- c("area_name", "species", "season")
 
@@ -572,7 +572,7 @@ nesting_success_per_area_season_species <- function(x) {
 #' wastd_data %>%
 #'   nesting_success_per_area_day_species()
 nesting_success_per_area_day_species <- function(x) {
-    verify_wastd_data(x)
+  verify_wastd_data(x)
 
   shared_cols <- c("area_name", "species", "calendar_date_awst")
 
@@ -817,7 +817,7 @@ ggplot_nesting_success_per_area_season_species_pct <- function(data) {
 #' wastd_data %>%
 #'   sighting_status_per_area_season_species()
 sighting_status_per_area_season_species <- function(x) {
-    verify_wastd_data(x)
+  verify_wastd_data(x)
 
   if (nrow(x$animals) == 0) {
     wastdr_msg_warn("[sighting_status_per_area_season_species] No data given, returning NULL")
@@ -859,7 +859,7 @@ sighting_status_per_area_season_species <- function(x) {
 #' wastd_data %>%
 #'   sighting_status_per_site_season_species()
 sighting_status_per_site_season_species <- function(x) {
-    verify_wastd_data(x)
+  verify_wastd_data(x)
 
   x$animals %>%
     dplyr::filter(taxon == "Cheloniidae") %>%

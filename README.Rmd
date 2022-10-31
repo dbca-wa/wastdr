@@ -53,29 +53,29 @@ dependencies.
 
 ```{r, eval=FALSE}
 # install.packages("devtools")
-# 
+#
 # https://github.com/r-spatial/mapview/issues/312
 remotes::install_github(
-    "r-spatial/mapview",
-    dependencies = TRUE,
-    upgrade = "always",
-    force = TRUE,
-    build_vignettes = TRUE
+  "r-spatial/mapview",
+  dependencies = TRUE,
+  upgrade = "always",
+  force = TRUE,
+  build_vignettes = TRUE
 )
 
 remotes::install_github(
-    "ropensci/ruODK",
-    dependencies = TRUE,
-    upgrade = "always",
-    force = TRUE,
-    build_vignettes = TRUE
+  "ropensci/ruODK",
+  dependencies = TRUE,
+  upgrade = "always",
+  force = TRUE,
+  build_vignettes = TRUE
 )
 
 remotes::install_github(
-    "dbca-wa/wastdr",
-    dependencies = TRUE,
-    upgrade = "always",
-    build_vignettes = TRUE
+  "dbca-wa/wastdr",
+  dependencies = TRUE,
+  upgrade = "always",
+  build_vignettes = TRUE
 )
 ```
 
@@ -96,26 +96,26 @@ To use ODK Central turtle data download helpers, also add ODK Central
 credentials.
 
 ```{r, eval=F}
-WASTDR_API_URL="https://wastd.dbca.wa.gov.au/api/1/"
-WASTDR_API_TOKEN="Token XXX"
-WASTDR_VERBOSE=TRUE
+WASTDR_API_URL <- "https://wastd.dbca.wa.gov.au/api/1/"
+WASTDR_API_TOKEN <- "Token XXX"
+WASTDR_VERBOSE <- TRUE
 
-ODKC_URL="https://odkcentral.dbca.wa.gov.au"
-ODKC_UN="..."
-ODKC_PW="..."
+ODKC_URL <- "https://odkcentral.dbca.wa.gov.au"
+ODKC_UN <- "..."
+ODKC_PW <- "..."
 ```
 
 External collaborators can use their allocated WAStD username and password:
 
 ```{r, eval=F}
-WASTDR_API_URL="https://wastd.dbca.wa.gov.au/api/1/"
-WASTDR_API_UN="..."
-WASTDR_API_PW="..."
-WASTDR_VERBOSE=TRUE
+WASTDR_API_URL <- "https://wastd.dbca.wa.gov.au/api/1/"
+WASTDR_API_UN <- "..."
+WASTDR_API_PW <- "..."
+WASTDR_VERBOSE <- TRUE
 
-ODKC_URL="https://odkcentral.dbca.wa.gov.au"
-ODKC_UN="..."
-ODKC_PW="..."
+ODKC_URL <- "https://odkcentral.dbca.wa.gov.au"
+ODKC_UN <- "..."
+ODKC_PW <- "..."
 ```
 
 Review the settings with:
@@ -130,9 +130,9 @@ For other configuration methods please see the vignette "Setup".
 Once set up, `wastdr` can load data from WAStD simply with:
 
 ```{r, eval=FALSE}
-tracks <- "turtle-nest-encounters" %>% 
-    wastd_GET(max_records = 10) %>%  
-    parse_turtle_nest_encounters()
+tracks <- "turtle-nest-encounters" %>%
+  wastd_GET(max_records = 10) %>%
+  parse_turtle_nest_encounters()
 ```
 
 Valid endpoints are listed in the base API URL of WAStD, e.g.:
@@ -197,7 +197,7 @@ To enable local testing of the API as well as checking and upload of test
 coverage, add your CODECOV token to your .Renviron:
 
 ```{r, eval=FALSE}
-CODECOV_TOKEN = "my-codecov-token"
+CODECOV_TOKEN <- "my-codecov-token"
 ```
 
 The `wastdr` [webpage](https://dbca-wa.github.io/wastdr/) is hosted on

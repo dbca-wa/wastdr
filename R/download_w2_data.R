@@ -491,7 +491,6 @@ download_w2_data <- function(ord = c("YmdHMS", "Ymd"),
     # [41] "TRT_NESTING_SEASON" "TRT_NESTING"  "TRT_DEFAULT" "TRT_YES_NO"
     # [61] "TRV_INTERSEASON_MIGRATION"
     # [63] "TRV_OBSERVATION_SUMMARY" "TRT_OBSERVATIONS"  "View_1"
-
     list(
       # Metadata
       downloaded_on = downloaded_on,

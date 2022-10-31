@@ -18,6 +18,7 @@
 #' @param wastd_api_response A \code{wastd_api_response} of
 #' \code{turtle-nest-*}, e.g.
 #' \code{wastd_GET("turtle-nest-encounters")}
+#' @param payload The parameter `payload` for \code{wastd_parse}.
 #' @return A \code{tbl_df} with non-repetitive columns of:
 #' \itemize{
 #'   \item Encounter
@@ -28,9 +29,9 @@
 #' }
 #' @export
 #' @family wastd
-parse_encounterobservations <- function(wastd_api_response) {
+parse_encounterobservations <- function(wastd_api_response, payload = "data") {
   wastd_api_response %>%
-    wastdr::wastd_parse() %>%
+    wastdr::wastd_parse(payload = payload) %>%
     tidyr::unnest_wider("encounter", names_repair = "universal") %>%
     dplyr::select(-"geometry", -"type") %>%
     dplyr::rename(encounter = properties, encounter_id = id) %>%

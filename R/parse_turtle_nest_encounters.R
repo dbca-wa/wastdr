@@ -5,6 +5,7 @@
 #' @param wastd_api_response A \code{wastd_api_response} of
 #' \code{turtle-nest-encounters}, e.g.
 #' \code{wastd_GET("turtle-nest-encounters")}
+#' @param payload The parameter `payload` for \code{wastd_parse}.
 #' @return A \code{tbl_df} with columns:
 #' \itemize{
 #'   \item area_name (chr)
@@ -51,9 +52,9 @@
 #' }
 #' @export
 #' @family wastd
-parse_turtle_nest_encounters <- function(wastd_api_response) {
+parse_turtle_nest_encounters <- function(wastd_api_response, payload = "data") {
   wastd_api_response %>%
-    wastdr::wastd_parse() %>%
+    wastdr::wastd_parse(payload = payload) %>%
     dplyr::select(-"geometry") %>%
     tun("area") %>%
     tun("site") %>%

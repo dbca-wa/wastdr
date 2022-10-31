@@ -26,29 +26,35 @@ library(wastdr)
 Use packaged data (fast, but older)
 
 ```{r}
-data("tsc_data", package="wastdr")
+data("tsc_data", package = "wastdr")
 ```
 
 Load fresh data from TSC (slow, but up to date with TSC)
 
 ```{r, eval=FALSE}
-get_all <- . %>% wastdr::wastd_GET() %>% wastd_parse()
+get_all <- . %>%
+  wastdr::wastd_GET() %>%
+  wastd_parse()
 
-taxon = get_all("taxon")
-taxon_fast = get_all("taxon-fast")
-vernacular = get_all("vernacular")
-crossreference = get_all("crossreference")
-community = get_all("community")
+taxon <- get_all("taxon")
+taxon_fast <- get_all("taxon-fast")
+vernacular <- get_all("vernacular")
+crossreference <- get_all("crossreference")
+community <- get_all("community")
 ```
 
 ## Inspect taxonomic data
 
 ```{r, fig.width=9}
-rt <- . %>% head %>% reactable::reactable(sortable = T, filterable = T)
+rt <- . %>%
+  head() %>%
+  reactable::reactable(sortable = T, filterable = T)
 
-tsc_data$taxon %>%  rt
-tsc_data$taxon_fast %>% rt
-tsc_data$vernacular %>% rt
-tsc_data$crossreference %>% head() %>% listviewer::jsonedit()
+tsc_data$taxon %>% rt()
+tsc_data$taxon_fast %>% rt()
+tsc_data$vernacular %>% rt()
+tsc_data$crossreference %>%
+  head() %>%
+  listviewer::jsonedit()
 ```
 

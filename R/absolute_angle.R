@@ -16,7 +16,6 @@
 #' testthat::expect_equal(absolute_angle(350, 10), 20)
 #' testthat::expect_equal(absolute_angle(10, 350), -20)
 absolute_angle <- function(from, to) {
-
   # If from or to are NA, return NA
   if ((is.na(from) || is.na(to))) {
     return(NA)

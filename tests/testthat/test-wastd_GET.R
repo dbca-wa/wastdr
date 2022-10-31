@@ -113,4 +113,20 @@ test_that("wastd_GET combines pagination", {
   expect_true(length(x$data) >= 21)
 })
 
+test_that("wastd_GET parses anima-encounters", {
+  testthat::skip_if_not(wastd_works(), message = "WAStD offline or wrong auth")
+  # With geojson
+  ae <- wastdr::wastd_GET("animal-encounters",
+    max_records = 20,
+    chunk_size = 5,
+    parse = TRUE
+  )
+  capture.output(print(ae))
+  expect_equal(ae$status_code, 200)
+  expect_true(length(ae$data) >= 82)
+  expect_s3_class(ae$data, "tbl_df")
+  expect_true("encounter_type" %in% names(ae$data))
+  expect_true("turtle_date" %in% names(ae$data))
+})
+
 # usethis::use_r("wastd_GET")

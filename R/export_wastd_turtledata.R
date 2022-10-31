@@ -130,7 +130,7 @@ export_wastd_turtledata <- function(x,
                                     outdir = here::here(),
                                     filename = "export",
                                     zip = FALSE) {
-    verify_wastd_data(x)
+  verify_wastd_data(x)
 
   if (!fs::dir_exists(outdir)) fs::dir_create(outdir, recurse = TRUE)
 
