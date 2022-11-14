@@ -590,7 +590,7 @@ hatching_emergence_success_area <- function(data) {
 #'   filter_wastd_turtledata(area_name = "Delambre Island") %>%
 #'   ggplot_hatching_success()
 ggplot_hatching_success <- function(x) {
-    verify_wastd_data(x)
+  verify_wastd_data(x)
 
   if (nrow(x$nest_excavations) == 0) {
     wastdr_msg_warn("[ggplot_hatching_success] No data given, returning NULL")
@@ -626,7 +626,7 @@ ggplot_hatching_success <- function(x) {
 #'   filter_wastd_turtledata(area_name = "Delambre Island") %>%
 #'   ggplot_emergence_success()
 ggplot_emergence_success <- function(x) {
-    verify_wastd_data(x)
+  verify_wastd_data(x)
 
   if (nrow(x$nest_excavations) == 0) {
     wastdr_msg_warn("[ggplot_hatching_success] No data given, returning NULL")

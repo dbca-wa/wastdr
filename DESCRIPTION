@@ -1,7 +1,7 @@
 Type: Package
 Package: wastdr
 Title: WA Sea Turtle Database 'WAStD' API Wrapper
-Version: 0.8.44
+Version: 0.9.1
 Authors@R: c(
     person(
         given = c("Florian", "W."), 
@@ -28,7 +28,7 @@ BugReports: https://github.com/dbca-wa/wastdr/issues
 Depends:
     R (>= 4.1.0)
 Imports:
-    clisymbols,
+    clisymbols (>= 1.2.0),
     crayon (>= 1.4.1),
     DBI (>= 1.1.1),
     dplyr (>= 1.0.7),
@@ -63,9 +63,9 @@ Imports:
     stringr (>= 1.4.0),
     tibble (>= 3.1.3),
     tidyr (>= 1.1.3),
-    tidyselect,
+    tidyselect (>= 1.2.0),
     utils,
-    viridis
+    viridis (>= 0.6.2)
 Suggests:
     geojsonlint (>= 0.4.0),
     knitr (>= 1.33),
@@ -86,4 +86,4 @@ Encoding: UTF-8
 Language: en_US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1

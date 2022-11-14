@@ -40,7 +40,6 @@
 #' }
 map_wamtram <- function(data, location = NULL, place = NULL, obs_id = NULL,
                         wa_sites = NULL, l_width = NULL, l_height = NULL) {
-
   # Gatechecks ----------------------------------------------------------------#
   verify_wamtram_data(data)
 

@@ -4,12 +4,14 @@
 \alias{parse_encounterobservations}
 \title{Parse a \code{wastd_api_response} of Encounter observations to tbl_df}
 \usage{
-parse_encounterobservations(wastd_api_response)
+parse_encounterobservations(wastd_api_response, payload = "data")
 }
 \arguments{
 \item{wastd_api_response}{A \code{wastd_api_response} of
 \code{turtle-nest-*}, e.g.
 \code{wastd_GET("turtle-nest-encounters")}}
+
+\item{payload}{The parameter \code{payload} for \code{wastd_parse}.}
 }
 \value{
 A \code{tbl_df} with non-repetitive columns of:

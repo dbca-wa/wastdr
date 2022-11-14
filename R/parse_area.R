@@ -5,6 +5,7 @@
 #' @param wastd_api_response A \code{wastd_api_response} of
 #' \code{area}, e.g. \code{get_wastd("area")}
 #' @template param-wastd_url
+#' @param payload The parameter `payload` for \code{wastd_parse}.
 #' @return A \code{tbl_df} with columns:
 #' \itemize{
 #'   \item area_name (chr)
@@ -17,8 +18,10 @@
 #' @export
 #' @family wastd
 parse_area <- function(wastd_api_response,
-                       wastd_url = wastdr::get_wastd_url()) {
-  wastd_api_response$data %>%
+                       wastd_url = wastdr::get_wastd_url(),
+                       payload = "data") {
+  wastd_api_response %>%
+    magrittr::extract2(payload) %>%
     {
       tibble::tibble(
         area_name = purrr::map_chr(

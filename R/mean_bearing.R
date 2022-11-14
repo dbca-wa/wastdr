@@ -12,7 +12,6 @@
 #' testthat::expect_equal(mean_bearing(20, 60), 40)
 #' testthat::expect_equal(mean_bearing(60, 0), 210)
 mean_bearing <- function(from, to) {
-
   # If from or to are NA, return NA
   if ((is.na(from) || is.na(to))) {
     return(NA)

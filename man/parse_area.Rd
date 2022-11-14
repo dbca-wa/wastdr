@@ -4,13 +4,19 @@
 \alias{parse_area}
 \title{Parse a \code{wastd_api_response} of \code{area} to tbl_df}
 \usage{
-parse_area(wastd_api_response, wastd_url = wastdr::get_wastd_url())
+parse_area(
+  wastd_api_response,
+  wastd_url = wastdr::get_wastd_url(),
+  payload = "data"
+)
 }
 \arguments{
 \item{wastd_api_response}{A \code{wastd_api_response} of
 \code{area}, e.g. \code{get_wastd("area")}}
 
 \item{wastd_url}{The base URL for WAStD, default: \code{get_wastd_url()}}
+
+\item{payload}{The parameter \code{payload} for \code{wastd_parse}.}
 }
 \value{
 A \code{tbl_df} with columns:

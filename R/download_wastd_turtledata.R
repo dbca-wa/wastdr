@@ -49,7 +49,7 @@ download_wastd_turtledata <- function(max_records = NULL,
                                       compress = "xz") {
   # Areas ---------------------------------------------------------------------#
   wastdr_msg_info("Downloading Areas...")
-  areas_sf <- wastdr::wastd_GET("area") %>% parse_area_sf()
+  areas_sf <- wastdr::wastd_GET("area", parse = TRUE)$data # %>% parse_area_sf()
 
   areas <- areas_sf %>%
     dplyr::filter(area_type == "Locality") %>%
@@ -67,9 +67,11 @@ download_wastd_turtledata <- function(max_records = NULL,
   enc <- "encounters-fast" %>%
     wastdr::wastd_GET(
       query = list(when__year__gte = min_year),
-      max_records = max_records
+      max_records = max_records,
+      parse = TRUE
     ) %>%
-    wastdr::wastd_parse()
+    magrittr::extract2("data")
+  # %>%  wastdr::wastd_parse()
 
   enc_subset <- enc %>%
     dplyr::select(
@@ -87,9 +89,11 @@ download_wastd_turtledata <- function(max_records = NULL,
   animals <- "animal-encounters" %>%
     wastdr::wastd_GET(
       query = list(when__year__gte = min_year),
-      max_records = max_records
+      max_records = max_records,
+      parse = TRUE
     ) %>%
-    wastdr::parse_animal_encounters()
+    magrittr::extract2("data")
+  # wastdr::parse_animal_encounters()
 
   animals_subset <- animals %>%
     dplyr::select(
@@ -101,29 +105,31 @@ download_wastd_turtledata <- function(max_records = NULL,
 
   wastdr_msg_info("Downloading turtle morphometrics...")
   turtle_morph <- "turtle-morphometrics" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data")
+  # wastdr::parse_encounterobservations()
 
   # tags
   # Tags are joined to Encounters, as they can be observed during inventory
   # while not associated to an AnimalEncounter.
   wastdr_msg_info("Downloading turtle tags...")
   turtle_tags <- "tag-observations" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data") %>%
+    # wastdr::parse_encounterobservations() %>%
     dplyr::left_join(animals_subset, by = obs2enc)
 
   # damages
   wastdr_msg_info("Downloading turtle damages...")
   turtle_dmg <- "turtle-damage-observations" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data")
 
   # TurtleNestEncounters ------------------------------------------------------#
   wastdr_msg_info("Downloading TurtleNestEncounters...")
   tracks <- "turtle-nest-encounters" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_turtle_nest_encounters()
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data")
 
   tracks_subset <-
     tracks %>% dplyr::select(
@@ -150,31 +156,31 @@ download_wastd_turtledata <- function(max_records = NULL,
 
   wastdr_msg_info("Downloading nest disturbances...")
   nest_dist <- "turtle-nest-disturbance-observations" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data") %>%
     dplyr::left_join(tracks_subset, by = obs2enc)
 
   wastdr_msg_info("Downloading nest tags...")
   nest_tags <- "nest-tag-observations" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data") %>%
     dplyr::left_join(tracks_animals, by = obs2enc)
 
   wastdr_msg_info("Downloading nest excavations...")
   nest_excavations <- "turtle-nest-excavations" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data") %>%
     dplyr::left_join(tracks_animals, by = obs2enc)
 
   wastdr_msg_info("Downloading hatchling morph...")
   hatchling_morph <- "turtle-hatchling-morphometrics" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data")
 
   wastdr_msg_info("Downloading hatchling fans...")
   nest_fans <- "turtle-nest-hatchling-emergences" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data") %>%
     dplyr::rowwise() %>% # should use pmap instead
     dplyr::mutate(
       bearing_mean = mean_bearing(
@@ -201,26 +207,26 @@ download_wastd_turtledata <- function(max_records = NULL,
   wastdr_msg_info("Downloading hatchling fan outliers...")
   nest_fan_outliers <-
     "turtle-nest-hatchling-emergence-outliers" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data")
 
   wastdr_msg_info("Downloading light sources...")
   nest_lightsources <-
     "turtle-nest-hatchling-emergence-light-sources" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data")
 
   wastdr_msg_info("Downloading logger observations...")
   nest_loggers <- "logger-observations" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations() %>%
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data") %>%
     dplyr::left_join(tracks_animals, by = obs2enc)
 
   # Track Tallies -------------------------------------------------------------#
   wastdr_msg_info("Downloading LineTransectEncounters...")
   linetx <- "line-transect-encounters" %>%
-    wastd_GET(max_records = max_records) %>%
-    wastd_parse() %>%
+    wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data") %>%
     tun("observer") %>%
     tun("reporter") %>%
     tun("area") %>%
@@ -233,23 +239,23 @@ download_wastd_turtledata <- function(max_records = NULL,
 
   wastdr_msg_info("Downloading track tallies...")
   track_tally <- "track-tally" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data")
 
   wastdr_msg_info("Downloading disturbance tallies...")
   disturbance_tally <- "turtle-nest-disturbance-tally" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_encounterobservations()
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data")
 
   # Surveys -------------------------------------------------------------------#
   wastdr_msg_info("Downloading surveys...")
   surveys <- "surveys" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::parse_surveys()
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data")
 
   survey_media <- "survey-media-attachments" %>%
-    wastdr::wastd_GET(max_records = max_records) %>%
-    wastdr::wastd_parse()
+    wastdr::wastd_GET(max_records = max_records, parse = TRUE) %>%
+    magrittr::extract2("data")
 
   x <- structure(
     list(

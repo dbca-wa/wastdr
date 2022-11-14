@@ -140,7 +140,7 @@ disturbance_by_season <- function(data) {
 #' data(wastd_data)
 #' wastd_data %>% ggplot_disturbance_by_season()
 ggplot_disturbance_by_season <- function(x) {
-    verify_wastd_data(x)
+  verify_wastd_data(x)
 
   x$nest_dist %>%
     disturbance_by_season() %>%
