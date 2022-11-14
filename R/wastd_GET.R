@@ -19,7 +19,7 @@
 #'   \code{chunk_size}.
 #'   Adjust \code{chunk_size} down if getting timeouts from the API.
 #'   Default: 1000.
-#' @param parse Whether to parse data (TRUE) or not (FALSe, default).
+#' @param parse Whether to parse data (TRUE) or not (FALSE, default).
 #' @template param-auth
 #' @template param-verbose
 #' @template return-wastd-api-response

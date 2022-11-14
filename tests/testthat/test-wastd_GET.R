@@ -62,10 +62,10 @@ test_that("wastd_GET fails if HTTP error is returned", {
     verbose = TRUE
   ))
   expect_warning(wastd_GET(
-      "",
-      api_url = "http://httpstat.us/404",
-      query = list(),
-      verbose = TRUE
+    "",
+    api_url = "http://httpstat.us/404",
+    query = list(),
+    verbose = TRUE
   ))
 })
 

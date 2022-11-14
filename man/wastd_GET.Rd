@@ -37,7 +37,7 @@ response. A specified but smaller \code{limit} will override
 Adjust \code{chunk_size} down if getting timeouts from the API.
 Default: 1000.}
 
-\item{parse}{Whether to parse data (TRUE) or not (FALSe, default).}
+\item{parse}{Whether to parse data (TRUE) or not (FALSE, default).}
 
 \item{api_url}{(character) The WAStD API URL,
 default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}
