@@ -106,10 +106,10 @@ wastd_GET <- function(serializer,
     auth,
     ua,
     query = query,
-    times = 10,
+    times = 20,
     quiet = FALSE,
-    pause_min = 3,
-    pause_cap = 60
+    pause_min = 30,
+    pause_cap = 120
   )
 
   handle_http_status(res, verbose = verbose)
@@ -167,10 +167,10 @@ wastd_GET <- function(serializer,
           next_url,
           auth,
           ua,
-          times = 10,
+          times = 20,
           quiet = FALSE,
-          pause_min = 3,
-          pause_cap = 60
+          pause_min = 30,
+          pause_cap = 120
         ) %>%
         httr::warn_for_status(.) %>%
         httr::content(., as = "text", encoding = "UTF-8") %>%
